@@ -6,12 +6,12 @@
 
 **Chia Plotting Optimization Tool - Beta Version**
 
-[🚀 Deploy on Replit](https://replit.com/github/squashplot/squashplot) • [📖 Documentation](https://github.com/squashplot/squashplot/wiki) • [🌐 Live Demo](https://squashplot.replit.dev) • [💬 Discord](https://discord.gg/squashplot)
+[📖 Documentation](https://github.com/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta/wiki) • [🐛 Issues](https://github.com/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta/issues) • [💬 Discord](https://discord.gg/squashplot)
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Replit](https://img.shields.io/badge/Deploy-Replit-orange.svg)](https://replit.com/github/squashplot/squashplot)
-[![Beta](https://img.shields.io/badge/Status-Beta-yellow.svg)](https://github.com/squashplot/squashplot)
+[![Replit](https://img.shields.io/badge/Deploy-Replit-orange.svg)](https://replit.com/github/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta)
+[![Beta](https://img.shields.io/badge/Status-Beta-yellow.svg)](https://github.com/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta)
 
 </div>
 
@@ -43,28 +43,21 @@
 
 ## 🚀 **Quick Start**
 
-### **Deploy on Replit (Recommended)**
-
-[![Run on Replit](https://replit.com/badge/github/squashplot/squashplot)](https://replit.com/github/squashplot/squashplot)
-
-```bash
-# 1. Click the "Run on Replit" button above
-# 2. Wait for dependencies to install
-# 3. Click "Open in new tab"
-# 4. Start using SquashPlot!
-```
-
-### **Local Installation**
+### **Local Installation (Recommended)**
 
 ```bash
 # Clone the repository
-git clone https://github.com/squashplot/squashplot.git
-cd squashplot
+git clone https://github.com/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta.git
+cd 222hr-Hackathon-Entry-Squashplot-Beta
+
+# Create virtual environment (recommended)
+python -m venv squashplot_env
+source squashplot_env/bin/activate  # On Windows: squashplot_env\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run setup
+# Run setup (optional)
 python setup.py
 
 # Start web interface
@@ -72,6 +65,10 @@ python main.py --web
 
 # Access at: http://localhost:8080
 ```
+
+### **Replit Deployment (Alternative)**
+
+[![Run on Replit](https://replit.com/badge/github/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta)](https://replit.com/github/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta)
 
 ### **Test Everything**
 
@@ -82,8 +79,8 @@ python test_squashplot.py
 # Benchmark performance
 python squashplot.py --benchmark
 
-# Validate compression
-python compression_validator.py --size 100
+# Run validation tests
+python test_squashplot_core.py
 ```
 
 ---
@@ -193,14 +190,32 @@ Covers:
 
 ## 📦 **Installation Options**
 
-### **1. Replit (One-Click Deploy)**
+### **1. Local Installation (Recommended)**
 
-[![Run on Replit](https://replit.com/badge/github/squashplot/squashplot)](https://replit.com/github/squashplot/squashplot)
+```bash
+# System requirements
+Python 3.8+
+8GB RAM minimum
+10GB disk space
 
-- ✅ **Zero setup required**
-- ✅ **Dependencies auto-installed**
-- ✅ **Web interface ready in 60 seconds**
-- ✅ **Free tier available**
+# Create virtual environment
+python -m venv squashplot_env
+source squashplot_env/bin/activate  # Windows: squashplot_env\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run setup (optional)
+python setup.py
+
+# Start application
+python main.py --web
+```
+
+- ✅ **Full control over environment**
+- ✅ **No external dependencies**
+- ✅ **Local data privacy**
+- ✅ **Easier debugging and development**
 
 ### **2. Docker Deployment**
 
@@ -212,20 +227,17 @@ docker build -t squashplot .
 docker run -p 8080:8080 squashplot
 ```
 
-### **3. Manual Installation**
+- ✅ **Isolated environment**
+- ✅ **Easy deployment**
+- ✅ **Cross-platform compatibility**
 
-```bash
-# System requirements
-Python 3.8+
-8GB RAM minimum
-10GB disk space
+### **3. Replit Deployment (Cloud Alternative)**
 
-# Install dependencies
-pip install -r requirements.txt
+[![Run on Replit](https://replit.com/badge/github/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta)](https://replit.com/github/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta)
 
-# Run setup
-python setup.py
-```
+- ✅ **Zero local setup required**
+- ✅ **Cloud-based deployment**
+- ✅ **Quick testing and demonstration**
 
 ---
 
@@ -496,7 +508,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 **📁 Files**: 1,138+
 **🐍 Python**: 3.8+ required
 **🌐 Platforms**: Windows, Linux, macOS
-**🚀 Deployments**: Replit, Docker, Manual
+**🚀 Deployments**: Local, Docker, Replit
 **📊 Test Coverage**: Complete
 **🔒 Security**: Audited
 
@@ -508,11 +520,18 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 <div align="center">
 
-### **🚀 Deploy Now**
+### **🚀 Get Started Locally**
 
-[![Run on Replit](https://replit.com/badge/github/squashplot/squashplot)](https://replit.com/github/squashplot/squashplot)
+```bash
+git clone https://github.com/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta.git
+cd 222hr-Hackathon-Entry-Squashplot-Beta
+python -m venv squashplot_env && source squashplot_env/bin/activate
+pip install -r requirements.txt && python main.py --web
+```
 
-**Experimental • Research • Community • Beta**
+**Local • Experimental • Research • Community • Beta**
+
+[![Run on Replit](https://replit.com/badge/github/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta)](https://replit.com/github/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta) *(Alternative Cloud Deployment)*
 
 ---
 
