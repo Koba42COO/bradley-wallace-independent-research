@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SquashPlot Beta - Chia Farming Dashboard</title>
+    <link rel="stylesheet" href="/static/css/unified-design-system.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-section="dashboard">
+    <div class="enterprise-layout">
+        <!-- Enterprise Sidebar Navigation -->
+        <aside class="enterprise-sidebar">
+            <div class="nav-brand">
+                <h1>SquashPlot <span class="beta-badge">Beta</span></h1>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Operations</div>
+                    <a href="/dashboard" class="nav-item active">
+                        <span class="nav-icon">📊</span>Dashboard
+                    </a>
+                    <a href="/jobs" class="nav-item">
+                        <span class="nav-icon">⚡</span>Plotting Jobs
+                    </a>
+                    <a href="/storage" class="nav-item">
+                        <span class="nav-icon">💾</span>Storage
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Farming</div>
+                    <a href="/rewards" class="nav-item">
+                        <span class="nav-icon">💰</span>Rewards
+                    </a>
+                    <a href="/pools" class="nav-item">
+                        <span class="nav-icon">🏊</span>Pools
+                    </a>
+                    <a href="/analytics" class="nav-item">
+                        <span class="nav-icon">📈</span>Analytics
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">System</div>
+                    <a href="/settings" class="nav-item">
+                        <span class="nav-icon">⚙</span>Settings
+                    </a>
+                    <a href="/help" class="nav-item">
+                        <span class="nav-icon">❓</span>Help
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Enterprise Header with KPIs and Actions -->
+        <header class="enterprise-header">
+            <!-- Status Bar -->
+            <div class="header-status">
+                <div id="connection-status" class="status-indicator online">
+                    <span class="status-dot online"></span>
+                    <span>Connected</span>
+                </div>
+                
+                <div class="price-ticker">
+                    <div class="price-item">
+                        <span class="price-label">XCH</span>
+                        <span id="xch-price" class="price-value">$--</span>
+                        <span id="price-change" class="price-change">--</span>
+                    </div>
+                    <div class="price-divider"></div>
+                    <div class="price-item">
+                        <span class="price-label">Netspace</span>
+                        <span id="netspace" class="price-value">-- EiB</span>
+                    </div>
+                </div>
+                
+                <div id="user-profile" class="user-profile">
+                    <div class="user-avatar">
+                        <img id="user-avatar" src="" alt="User" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="avatar-fallback">U</div>
+                    </div>
+                    <div class="user-info">
+                        <span id="user-name" class="user-name">Loading...</span>
+                        <span id="user-farm" class="user-farm">--</span>
+                    </div>
+                    <div class="user-menu-toggle">⚙</div>
+                </div>
+            </div>
+
+            <!-- Section Bar -->
+            <div class="section-bar">
+                <h1 class="section-title">
+                    <span class="section-icon">📊</span>
+                    Chia Farming Dashboard
+                </h1>
+                <div class="section-actions">
+                    <button class="btn-secondary">Export Report</button>
+                    <button class="btn-primary">Start Plotting</button>
+                </div>
+            </div>
+
+            <!-- Primary KPI Dashboard -->
+            <div class="kpi-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-value" id="plots-per-day">--</div>
+                    <div class="kpi-label">Plots/Day</div>
+                    <div class="kpi-trend positive" id="plots-trend">+12%</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-value" id="success-rate">--</div>
+                    <div class="kpi-label">Success Rate</div>
+                    <div class="kpi-trend positive" id="success-trend">98.5%</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-value" id="avg-time">--</div>
+                    <div class="kpi-label">Avg Time</div>
+                    <div class="kpi-trend negative" id="time-trend">-5 min</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-value" id="storage-headroom">--</div>
+                    <div class="kpi-label">Storage Days</div>
+                    <div class="kpi-trend positive" id="storage-trend">45 days</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-value" id="rewards-24h">--</div>
+                    <div class="kpi-label">24h Rewards</div>
+                    <div class="kpi-trend positive" id="rewards-trend">+0.05 XCH</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="enterprise-main">
+            <!-- Sticky Action Bar -->
+            <div class="action-bar">
+                <div class="action-group">
+                    <button id="start-btn" class="btn-primary">Start Plotting</button>
+                    <button id="stop-btn" class="btn-secondary" style="display: none;">Stop All</button>
+                </div>
+                
+                <div class="action-divider"></div>
+                
+                <div class="action-group">
+                    <label>Mode:</label>
+                    <select id="plot-mode" class="form-control">
+                        <option value="speed">Speed</option>
+                        <option value="balanced" selected>Balanced</option>
+                        <option value="economy">Economy</option>
+                    </select>
+                </div>
+                
+                <div class="action-divider"></div>
+                
+                <div class="action-group">
+                    <label>Compression:</label>
+                    <select id="compression" class="form-control">
+                        <option value="0">Level 0 (108GB)</option>
+                        <option value="3" selected>Level 3 (87GB)</option>
+                        <option value="7">Level 7 (69GB)</option>
+                    </select>
+                </div>
+                
+                <div class="action-divider"></div>
+                
+                <div class="action-group">
+                    <label>Queue:</label>
+                    <span id="queue-count" class="metric">0</span>
+                    <button class="btn-ghost" onclick="showQueueModal()">Manage</button>
+                </div>
+            </div>
+
+            <!-- Hidden elements for JavaScript compatibility -->
+            <div style="display: none;">
+                <div id="madmax-status" class="tool-indicator"></div>
+                <div id="bladebit-status" class="tool-indicator"></div>
+                <div id="chia-status" class="tool-indicator"></div>
+                <div id="compression-grid"></div>
+                <div id="compression-info"></div>
+                <form id="plot-config-form"></form>
+                <button id="validate-btn"></button>
+                <button id="theme-toggle"></button>
+            </div>
+
+            <!-- Plot Status Section -->
+            <div class="plot-status-section">
+                <div id="plot-status-indicator" class="status-indicator idle">
+                    <span class="status-dot"></span>
+                    <span>Ready to Plot</span>
+                </div>
+                
+                <div id="progress-info" class="progress-section" style="display: none;">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-details">
+                            <span id="progress-text" class="progress-text">0%</span>
+                            <span id="progress-stage" class="progress-stage">Ready</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operations Dashboard -->
+            <div class="dashboard-grid">
+                <!-- System Resources Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>System Resources</h3>
+                        <button class="icon-btn" title="Refresh data">⟲</button>
+                    </div>
+                    <div class="resource-bars">
+                        <div class="resource-bar">
+                            <span class="resource-label">CPU</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="cpu-bar" style="width: 0%"></div>
+                            </div>
+                            <span class="resource-value" id="cpu-value">--%</span>
+                        </div>
+                        <div class="resource-bar">
+                            <span class="resource-label">Memory</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="memory-bar" style="width: 0%"></div>
+                            </div>
+                            <span class="resource-value" id="memory-value">--%</span>
+                        </div>
+                        <div class="resource-bar" id="gpu-resource" style="display: none;">
+                            <span class="resource-label">GPU</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="gpu-bar" style="width: 0%"></div>
+                            </div>
+                            <span class="resource-value" id="gpu-value">--%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="system-details">
+                        <div class="detail-item">
+                            <span>CPU Cores:</span>
+                            <span id="cpu-cores">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>Memory Available:</span>
+                            <span id="memory-available">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>Storage Type:</span>
+                            <span id="storage-type">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>Total Storage:</span>
+                            <span id="total-storage">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Chart -->
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <h3>Performance Trends</h3>
+                        <div class="card-actions">
+                            <button class="btn-secondary">Export</button>
+                        </div>
+                    </div>
+                    <canvas id="performanceChart" width="400" height="200"></canvas>
+                </div>
+
+                <!-- Tool Status -->
+                <div class="card tool-status-card">
+                    <h3>Tool Availability</h3>
+                    <div class="tool-indicators">
+                        <div class="tool-item">
+                            <span>Mad Max:</span>
+                            <span id="madmax-status" class="tool-indicator unavailable">○</span>
+                        </div>
+                        <div class="tool-item">
+                            <span>BladeBit:</span>
+                            <span id="bladebit-status" class="tool-indicator unavailable">○</span>
+                        </div>
+                        <div class="tool-item">
+                            <span>Chia:</span>
+                            <span id="chia-status" class="tool-indicator unavailable">○</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compression Settings -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Compression Levels</h3>
+                    </div>
+                    <div class="compression-section">
+                        <div id="compression-grid" class="compression-grid"></div>
+                        <div id="compression-info" class="compression-info">Select a compression level above</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Enterprise Insights Panel -->
+        <aside class="enterprise-insights">
+            <div class="insights-section">
+                <h3 class="insights-title">Live Insights</h3>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">92%</div>
+                    <div class="insight-description">Storage efficiency vs standard plots</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">$127</div>
+                    <div class="insight-description">Monthly electricity savings</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">2.3x</div>
+                    <div class="insight-description">Faster than Mad Max alone</div>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3 class="insights-title">Capacity Forecast</h3>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">45 days</div>
+                    <div class="insight-description">Until storage full at current rate</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">+5TB</div>
+                    <div class="insight-description">Recommended storage addition</div>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3 class="insights-title">Market Analytics</h3>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">4.2%</div>
+                    <div class="insight-description">Estimated annual ROI</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">$43.20</div>
+                    <div class="insight-description">Current daily earnings potential</div>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3 class="insights-title">Quick Actions</h3>
+                
+                <button class="btn-secondary" style="width: 100%; margin-bottom: var(--space-md);" onclick="showQuickStartWizard()">
+                    Quick Start Wizard
+                </button>
+                
+                <button class="btn-ghost" style="width: 100%; margin-bottom: var(--space-md);" onclick="showPoolRecommendations()">
+                    Pool Recommendations
+                </button>
+                
+                <button class="btn-ghost" style="width: 100%;" onclick="exportReport()">
+                    Export Report
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/dashboard.js"></script>
+    <script src="/static/js/auth-features.js"></script>
+    <script src="/static/js/wallet-connect.js"></script>
+</body>
+</html>

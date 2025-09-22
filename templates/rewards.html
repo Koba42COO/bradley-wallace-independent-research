@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SquashPlot Beta - Rewards & Earnings</title>
+    <link rel="stylesheet" href="/static/css/unified-design-system.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-section="rewards">
+    <div class="enterprise-layout">
+        <!-- Enterprise Sidebar Navigation -->
+        <aside class="enterprise-sidebar">
+            <div class="nav-brand">
+                <h1>SquashPlot <span class="beta-badge">Beta</span></h1>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Operations</div>
+                    <a href="/dashboard" class="nav-item">
+                        <span class="nav-icon">📊</span>Dashboard
+                    </a>
+                    <a href="/jobs" class="nav-item">
+                        <span class="nav-icon">⚡</span>Plotting Jobs
+                    </a>
+                    <a href="/storage" class="nav-item">
+                        <span class="nav-icon">💾</span>Storage
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Farming</div>
+                    <a href="/rewards" class="nav-item active">
+                        <span class="nav-icon">💰</span>Rewards
+                    </a>
+                    <a href="/pools" class="nav-item">
+                        <span class="nav-icon">🏊</span>Pools
+                    </a>
+                    <a href="/analytics" class="nav-item">
+                        <span class="nav-icon">📈</span>Analytics
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">System</div>
+                    <a href="/settings" class="nav-item">
+                        <span class="nav-icon">⚙</span>Settings
+                    </a>
+                    <a href="/help" class="nav-item">
+                        <span class="nav-icon">❓</span>Help
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Enterprise Header with Rewards KPIs -->
+        <header class="enterprise-header compact">
+            <!-- Status Bar -->
+            <div class="header-status">
+                <div id="connection-status" class="status-indicator online">
+                    <span class="status-dot online"></span>
+                    <span>Connected</span>
+                </div>
+                
+                <div class="price-ticker">
+                    <div class="price-item">
+                        <span class="price-label">XCH</span>
+                        <span id="xch-price" class="price-value">$--</span>
+                        <span id="price-change" class="price-change">--</span>
+                    </div>
+                    <div class="price-divider"></div>
+                    <div class="price-item">
+                        <span class="price-label">Netspace</span>
+                        <span id="netspace" class="price-value">-- EiB</span>
+                    </div>
+                </div>
+                
+                <div id="user-profile" class="user-profile">
+                    <div class="user-avatar">
+                        <img id="user-avatar" src="" alt="User" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="avatar-fallback">U</div>
+                    </div>
+                    <div class="user-info">
+                        <span id="user-name" class="user-name">Loading...</span>
+                        <span id="user-farm" class="user-farm">--</span>
+                    </div>
+                    <div class="user-menu-toggle">⚙</div>
+                </div>
+            </div>
+
+            <!-- Section Bar -->
+            <div class="section-bar">
+                <h1 class="section-title">
+                    <span class="section-icon">💰</span>
+                    Rewards & Earnings
+                </h1>
+                <div class="section-actions">
+                    <button class="btn-secondary">Export CSV</button>
+                    <button class="btn-primary">Connect Wallet</button>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="enterprise-main">
+            <!-- Rewards Action Bar -->
+            <div class="action-bar">
+                <div class="action-group">
+                    <button id="claim-rewards-btn" class="btn-primary">Claim Rewards</button>
+                    <button id="auto-claim-btn" class="btn-secondary">Auto-Claim Settings</button>
+                </div>
+                
+                <div class="action-divider"></div>
+                
+                <div class="action-group">
+                    <label>Period:</label>
+                    <select id="time-period" class="form-control">
+                        <option value="7d">Last 7 Days</option>
+                        <option value="30d" selected>Last 30 Days</option>
+                        <option value="90d">Last 90 Days</option>
+                        <option value="1y">Last Year</option>
+                        <option value="all">All Time</option>
+                    </select>
+                </div>
+                
+                <div class="action-divider"></div>
+                
+                <div class="action-group">
+                    <button id="export-csv-btn" class="btn-ghost">Export CSV</button>
+                    <button id="tax-report-btn" class="btn-ghost">Tax Report</button>
+                </div>
+            </div>
+
+            <!-- Earnings Overview -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Earnings Overview</h3>
+                    <div class="card-actions">
+                        <button class="icon-btn" title="Refresh earnings">⟲</button>
+                        <button class="btn-secondary">View Calculator</button>
+                    </div>
+                </div>
+                
+                <div class="earnings-overview">
+                    <div class="earnings-chart">
+                        <canvas id="earningsChart" width="400" height="250"></canvas>
+                    </div>
+                    
+                    <div class="earnings-summary">
+                        <div class="earning-metric">
+                            <div class="metric-label">Total Balance</div>
+                            <div class="metric-value">15.42 XCH</div>
+                            <div class="metric-usd">$623.18 USD</div>
+                        </div>
+                        
+                        <div class="earning-metric">
+                            <div class="metric-label">Unclaimed</div>
+                            <div class="metric-value">0.0847 XCH</div>
+                            <div class="metric-usd">$3.42 USD</div>
+                        </div>
+                        
+                        <div class="earning-metric">
+                            <div class="metric-label">Last Reward</div>
+                            <div class="metric-value">2 hours ago</div>
+                            <div class="metric-usd">0.0156 XCH</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rewards History -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Rewards History</h3>
+                    <div class="card-actions">
+                        <select class="form-control">
+                            <option>All Rewards</option>
+                            <option>Block Rewards</option>
+                            <option>Pool Payouts</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="rewards-table">
+                    <div class="rewards-table-header">
+                        <div class="reward-col-date">Date</div>
+                        <div class="reward-col-type">Type</div>
+                        <div class="reward-col-amount">Amount</div>
+                        <div class="reward-col-usd">USD Value</div>
+                        <div class="reward-col-pool">Pool</div>
+                        <div class="reward-col-status">Status</div>
+                        <div class="reward-col-actions">Actions</div>
+                    </div>
+                    
+                    <div class="rewards-list">
+                        <div class="reward-row">
+                            <div class="reward-col-date">
+                                <strong>Sep 20, 2025</strong>
+                                <small>14:32 UTC</small>
+                            </div>
+                            <div class="reward-col-type">
+                                <span class="reward-type block">Block Reward</span>
+                            </div>
+                            <div class="reward-col-amount">2.0000 XCH</div>
+                            <div class="reward-col-usd">$80.84</div>
+                            <div class="reward-col-pool">Solo Farming</div>
+                            <div class="reward-col-status">
+                                <span class="status-badge completed">Confirmed</span>
+                            </div>
+                            <div class="reward-col-actions">
+                                <button class="btn-ghost btn-sm">View Block</button>
+                            </div>
+                        </div>
+                        
+                        <div class="reward-row">
+                            <div class="reward-col-date">
+                                <strong>Sep 20, 2025</strong>
+                                <small>12:45 UTC</small>
+                            </div>
+                            <div class="reward-col-type">
+                                <span class="reward-type pool">Pool Payout</span>
+                            </div>
+                            <div class="reward-col-amount">0.0156 XCH</div>
+                            <div class="reward-col-usd">$0.63</div>
+                            <div class="reward-col-pool">SpacePool</div>
+                            <div class="reward-col-status">
+                                <span class="status-badge completed">Confirmed</span>
+                            </div>
+                            <div class="reward-col-actions">
+                                <button class="btn-ghost btn-sm">Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="reward-row">
+                            <div class="reward-col-date">
+                                <strong>Sep 19, 2025</strong>
+                                <small>09:18 UTC</small>
+                            </div>
+                            <div class="reward-col-type">
+                                <span class="reward-type pool">Pool Payout</span>
+                            </div>
+                            <div class="reward-col-amount">0.0142 XCH</div>
+                            <div class="reward-col-usd">$0.57</div>
+                            <div class="reward-col-pool">SpacePool</div>
+                            <div class="reward-col-status">
+                                <span class="status-badge queued">Pending</span>
+                            </div>
+                            <div class="reward-col-actions">
+                                <button class="btn-ghost btn-sm">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Analytics -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Performance Analytics</h3>
+                    <button class="btn-secondary">Detailed Report</button>
+                </div>
+                
+                <div class="performance-grid">
+                    <div class="performance-card">
+                        <h4>Expected vs Actual</h4>
+                        <div class="performance-comparison">
+                            <div class="comparison-item">
+                                <span>Expected (30d):</span>
+                                <span>2.15 XCH</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span>Actual (30d):</span>
+                                <span>2.18 XCH</span>
+                            </div>
+                            <div class="comparison-variance positive">
+                                <span>+1.4% above expected</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-card">
+                        <h4>Farming Efficiency</h4>
+                        <div class="efficiency-metrics">
+                            <div class="efficiency-item">
+                                <span>Plot Utilization:</span>
+                                <span>98.7%</span>
+                            </div>
+                            <div class="efficiency-item">
+                                <span>Network Participation:</span>
+                                <span>99.2%</span>
+                            </div>
+                            <div class="efficiency-item">
+                                <span>Response Time:</span>
+                                <span>1.2s avg</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-card">
+                        <h4>ROI Analysis</h4>
+                        <div class="roi-metrics">
+                            <div class="roi-item">
+                                <span>Initial Investment:</span>
+                                <span>$12,500</span>
+                            </div>
+                            <div class="roi-item">
+                                <span>Current Value:</span>
+                                <span>$13,124</span>
+                            </div>
+                            <div class="roi-item roi-positive">
+                                <span>Total ROI:</span>
+                                <span>+4.99%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Enterprise Insights Panel -->
+        <aside class="enterprise-insights">
+            <div class="insights-section">
+                <h3 class="insights-title">Earnings Summary</h3>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">15.42 XCH</div>
+                    <div class="insight-description">Total lifetime earnings</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">$623.18</div>
+                    <div class="insight-description">Current USD value</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">4.2%</div>
+                    <div class="insight-description">Estimated annual yield</div>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3 class="insights-title">Recent Activity</h3>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">2 hours</div>
+                    <div class="insight-description">Since last reward</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">0.0847 XCH</div>
+                    <div class="insight-description">Pending claims</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">23</div>
+                    <div class="insight-description">Rewards this month</div>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3 class="insights-title">Market Insights</h3>
+                
+                <div class="insight-item">
+                    <div class="insight-description">XCH price up 3.2% this week - good time to hold</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-description">Network difficulty stable - consistent rewards expected</div>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3 class="insights-title">Quick Actions</h3>
+                
+                <button class="btn-secondary" style="width: 100%; margin-bottom: var(--space-md);">
+                    Claim All Rewards
+                </button>
+                
+                <button class="btn-ghost" style="width: 100%; margin-bottom: var(--space-md);">
+                    Setup Auto-Claim
+                </button>
+                
+                <button class="btn-ghost" style="width: 100%;">
+                    Download Tax Report
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/dashboard.js"></script>
+    <script src="/static/js/auth-features.js"></script>
+    <script src="/static/js/wallet-connect.js"></script>
+</body>
+</html>

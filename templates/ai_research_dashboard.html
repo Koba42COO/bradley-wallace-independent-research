@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOBA42 AI Research Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <!-- Header -->
+    <header class="bg-gray-800 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold">
+                            <span class="text-blue-400">KOBA42</span>
+                            <span class="text-purple-400">AI Research Platform</span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-sm">
+                        <span class="text-gray-400">Status:</span>
+                        <span id="system-status" class="text-green-400">Operational</span>
+                    </div>
+                    <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Welcome Section -->
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold text-center mb-4">
+                🧠 Welcome to the Future of AI Research
+            </h2>
+            <p class="text-gray-400 text-center text-lg">
+                Advanced AI systems for prime aligned compute research, machine learning, and quantum analysis
+            </p>
+        </div>
+
+        <!-- System Status Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <!-- ML Training System -->
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 hover:border-blue-500 transition-colors">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-semibold text-blue-400">
+                        <i class="fas fa-brain mr-2"></i>ML Training Protocol
+                    </h3>
+                    <span id="ml-status" class="status-indicator">
+                        {% if systems.ml_training %}
+                        <span class="text-green-400"><i class="fas fa-check-circle"></i></span>
+                        {% else %}
+                        <span class="text-yellow-400"><i class="fas fa-exclamation-triangle"></i></span>
+                        {% endif %}
+                    </span>
+                </div>
+                <p class="text-gray-400 mb-4">Revolutionary ML training with monotropic hyperfocus and reverse learning architecture.</p>
+                <div class="space-y-2 mb-4">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-cog mr-2"></i>Reverse Learning Architecture
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-target mr-2"></i>Adaptive Intelligence
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-chart-line mr-2"></i>Mastery Planning
+                    </div>
+                </div>
+                <button 
+                    onclick="runMLTraining()" 
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors">
+                    Launch Training Protocol
+                </button>
+            </div>
+
+            <!-- prime aligned compute Framework -->
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 hover:border-purple-500 transition-colors">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-semibold text-purple-400">
+                        <i class="fas fa-atom mr-2"></i>prime aligned compute Framework
+                    </h3>
+                    <span id="prime aligned compute-status" class="status-indicator">
+                        {% if systems.prime_aligned_framework %}
+                        <span class="text-green-400"><i class="fas fa-check-circle"></i></span>
+                        {% else %}
+                        <span class="text-yellow-400"><i class="fas fa-exclamation-triangle"></i></span>
+                        {% endif %}
+                    </span>
+                </div>
+                <p class="text-gray-400 mb-4">AI prime aligned compute research with quantum seed mapping and coherence analysis.</p>
+                <div class="space-y-2 mb-4">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-wave-square mr-2"></i>Quantum Seed Mapping
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-network-wired mr-2"></i>Coherence Analysis
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-shapes mr-2"></i>Topological Identification
+                    </div>
+                </div>
+                <button 
+                    onclick="runConsciousnessAnalysis()" 
+                    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded transition-colors">
+                    Start Analysis
+                </button>
+            </div>
+
+            <!-- Research Integration -->
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-colors">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-semibold text-green-400">
+                        <i class="fas fa-database mr-2"></i>Research Integration
+                    </h3>
+                    <span id="research-status" class="status-indicator">
+                        {% if systems.research_integration %}
+                        <span class="text-green-400"><i class="fas fa-check-circle"></i></span>
+                        {% else %}
+                        <span class="text-yellow-400"><i class="fas fa-exclamation-triangle"></i></span>
+                        {% endif %}
+                    </span>
+                </div>
+                <p class="text-gray-400 mb-4">Automated research paper processing and knowledge integration platform.</p>
+                <div class="space-y-2 mb-4">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-file-text mr-2"></i>Paper Processing
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-link mr-2"></i>Knowledge Integration
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-ledger mr-2"></i>Digital Ledger
+                    </div>
+                </div>
+                <button 
+                    onclick="runResearchIntegration()" 
+                    class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition-colors">
+                    Process Research
+                </button>
+            </div>
+        </div>
+
+        <!-- Activity Log -->
+        <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 class="text-xl font-semibold mb-4">
+                <i class="fas fa-history mr-2"></i>Recent Activity
+            </h3>
+            <div id="activity-log" class="space-y-2 max-h-64 overflow-y-auto">
+                <div class="text-gray-400 text-sm">
+                    <span class="text-gray-500">[System Start]</span> KOBA42 AI Research Platform initialized
+                </div>
+                <div class="text-gray-400 text-sm">
+                    <span class="text-gray-500">[System Check]</span> Checking AI system availability...
+                </div>
+            </div>
+        </div>
+
+        <!-- System Information -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <h4 class="font-semibold text-blue-400 mb-2">Available Systems</h4>
+                <div id="system-count" class="text-2xl font-bold">
+                    {{ systems.values() | select | list | length }}/{{ systems.values() | list | length }}
+                </div>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <h4 class="font-semibold text-purple-400 mb-2">Platform Status</h4>
+                <div class="text-2xl font-bold text-green-400">
+                    Operational
+                </div>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <h4 class="font-semibold text-green-400 mb-2">Uptime</h4>
+                <div id="uptime" class="text-2xl font-bold">
+                    Online
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 border-t border-gray-700 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="text-center text-gray-400">
+                <p>&copy; 2025 KOBA42 AI Research Platform. Advanced AI Research Tools.</p>
+                <p class="text-sm mt-2">prime aligned compute Framework | ML Training | Research Integration</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/static/js/dashboard.js"></script>
+    <script>
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SquashPlot Beta - Pool Management</title>
+    <link rel="stylesheet" href="/static/css/unified-design-system.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-section="pools">
+    <div class="enterprise-layout">
+        <!-- Enterprise Sidebar Navigation -->
+        <aside class="enterprise-sidebar">
+            <div class="nav-brand">
+                <h1>SquashPlot <span class="beta-badge">Beta</span></h1>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Operations</div>
+                    <a href="/dashboard" class="nav-item">
+                        <span class="nav-icon">📊</span>Dashboard
+                    </a>
+                    <a href="/jobs" class="nav-item">
+                        <span class="nav-icon">⚡</span>Plotting Jobs
+                    </a>
+                    <a href="/storage" class="nav-item">
+                        <span class="nav-icon">💾</span>Storage
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Farming</div>
+                    <a href="/rewards" class="nav-item">
+                        <span class="nav-icon">💰</span>Rewards
+                    </a>
+                    <a href="/pools" class="nav-item active">
+                        <span class="nav-icon">🏊</span>Pools
+                    </a>
+                    <a href="/analytics" class="nav-item">
+                        <span class="nav-icon">📈</span>Analytics
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">System</div>
+                    <a href="/settings" class="nav-item">
+                        <span class="nav-icon">⚙</span>Settings
+                    </a>
+                    <a href="/help" class="nav-item">
+                        <span class="nav-icon">❓</span>Help
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Enterprise Header with Pool KPIs -->
+        <header class="enterprise-header compact">
+            <!-- Status Bar -->
+            <div class="header-status">
+                <div id="connection-status" class="status-indicator online">
+                    <span class="status-dot online"></span>
+                    <span>Connected</span>
+                </div>
+                
+                <div class="price-ticker">
+                    <div class="price-item">
+                        <span class="price-label">XCH</span>
+                        <span id="xch-price" class="price-value">$--</span>
+                        <span id="price-change" class="price-change">--</span>
+                    </div>
+                    <div class="price-divider"></div>
+                    <div class="price-item">
+                        <span class="price-label">Netspace</span>
+                        <span id="netspace" class="price-value">-- EiB</span>
+                    </div>
+                </div>
+                
+                <div id="user-profile" class="user-profile">
+                    <div class="user-avatar">
+                        <img id="user-avatar" src="" alt="User" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="avatar-fallback">U</div>
+                    </div>
+                    <div class="user-info">
+                        <span id="user-name" class="user-name">Loading...</span>
+                        <span id="user-farm" class="user-farm">--</span>
+                    </div>
+                    <div class="user-menu-toggle">⚙</div>
+                </div>
+            </div>
+
+            <!-- Section Bar -->
+            <div class="section-bar">
+                <h1 class="section-title">
+                    <span class="section-icon">🏊</span>
+                    Pool Management
+                </h1>
+                <div class="section-actions">
+                    <button class="btn-secondary">Pool Stats</button>
+                    <button class="btn-primary">Switch Pool</button>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="enterprise-main">
+            <!-- Pool Action Bar -->
+            <div class="action-bar">
+                <div class="action-group">
+                    <button id="switch-pool-btn" class="btn-primary">Switch Pool</button>
+                    <button id="leave-pool-btn" class="btn-secondary">Leave Pool</button>
+                </div>
+                
+                <div class="action-divider"></div>
+                
+                <div class="action-group">
+                    <label>Farming Mode:</label>
+                    <select id="farming-mode" class="form-control">
+                        <option value="pool" selected>Pool Farming</option>
+                        <option value="solo">Solo Farming</option>
+                    </select>
+                </div>
+                
+                <div class="action-divider"></div>
+                
+                <div class="action-group">
+                    <button id="refresh-pools-btn" class="btn-ghost">Refresh Pools</button>
+                    <button id="pool-calculator-btn" class="btn-ghost">Profitability Calculator</button>
+                </div>
+            </div>
+
+            <!-- Current Pool Status -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Current Pool Status</h3>
+                    <div class="card-actions">
+                        <button class="icon-btn" title="Refresh status">⟲</button>
+                        <button class="btn-secondary">Pool Details</button>
+                    </div>
+                </div>
+                
+                <div class="pool-status-grid">
+                    <div class="pool-info-card">
+                        <div class="pool-logo">🏊</div>
+                        <div class="pool-details">
+                            <h4>SpacePool</h4>
+                            <p>Official Chia Pool • 0.7% Fee</p>
+                            <div class="pool-stats">
+                                <span>Connected: <strong>2 days, 14 hours</strong></span>
+                                <span>Status: <span class="status-badge running">Active</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pool-metrics">
+                        <div class="metric-row">
+                            <span>Pool Netspace:</span>
+                            <span>247.3 PiB</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Pool Difficulty:</span>
+                            <span>1,247</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Your Share:</span>
+                            <span>0.035%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Next Payout:</span>
+                            <span>~6 hours</span>
+                        </div>
+                    </div>
+                    
+                    <div class="pool-chart">
+                        <canvas id="poolPerformanceChart" width="300" height="150"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Pools -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Available Pools</h3>
+                    <div class="card-actions">
+                        <select class="form-control">
+                            <option>Sort by Popularity</option>
+                            <option>Sort by Fee</option>
+                            <option>Sort by Netspace</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="pools-table">
+                    <div class="pools-table-header">
+                        <div class="pool-col-name">Pool Name</div>
+                        <div class="pool-col-fee">Fee</div>
+                        <div class="pool-col-netspace">Netspace</div>
+                        <div class="pool-col-farmers">Farmers</div>
+                        <div class="pool-col-payout">Payout Freq</div>
+                        <div class="pool-col-status">Status</div>
+                        <div class="pool-col-actions">Actions</div>
+                    </div>
+                    
+                    <div class="pools-list">
+                        <div class="pool-row current">
+                            <div class="pool-col-name">
+                                <div class="pool-identity">
+                                    <div class="pool-icon">🏊</div>
+                                    <div>
+                                        <strong>SpacePool</strong>
+                                        <small>pool.chia.net</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pool-col-fee">0.7%</div>
+                            <div class="pool-col-netspace">247.3 PiB</div>
+                            <div class="pool-col-farmers">8,247</div>
+                            <div class="pool-col-payout">Daily</div>
+                            <div class="pool-col-status">
+                                <span class="status-badge running">Connected</span>
+                            </div>
+                            <div class="pool-col-actions">
+                                <button class="btn-ghost btn-sm" disabled>Current</button>
+                            </div>
+                        </div>
+                        
+                        <div class="pool-row">
+                            <div class="pool-col-name">
+                                <div class="pool-identity">
+                                    <div class="pool-icon">💎</div>
+                                    <div>
+                                        <strong>CorePool</strong>
+                                        <small>corepool.org</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pool-col-fee">0.5%</div>
+                            <div class="pool-col-netspace">189.7 PiB</div>
+                            <div class="pool-col-farmers">6,123</div>
+                            <div class="pool-col-payout">2x Daily</div>
+                            <div class="pool-col-status">
+                                <span class="status-badge completed">Available</span>
+                            </div>
+                            <div class="pool-col-actions">
+                                <button class="btn-primary btn-sm">Join Pool</button>
+                            </div>
+                        </div>
+                        
+                        <div class="pool-row">
+                            <div class="pool-col-name">
+                                <div class="pool-identity">
+                                    <div class="pool-icon">⚡</div>
+                                    <div>
+                                        <strong>FlexPool</strong>
+                                        <small>chia.flexpool.io</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pool-col-fee">1.0%</div>
+                            <div class="pool-col-netspace">156.2 PiB</div>
+                            <div class="pool-col-farmers">4,891</div>
+                            <div class="pool-col-payout">6x Daily</div>
+                            <div class="pool-col-status">
+                                <span class="status-badge completed">Available</span>
+                            </div>
+                            <div class="pool-col-actions">
+                                <button class="btn-primary btn-sm">Join Pool</button>
+                            </div>
+                        </div>
+                        
+                        <div class="pool-row">
+                            <div class="pool-col-name">
+                                <div class="pool-identity">
+                                    <div class="pool-icon">🌟</div>
+                                    <div>
+                                        <strong>Solo Farming</strong>
+                                        <small>No pool required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pool-col-fee">0.0%</div>
+                            <div class="pool-col-netspace">N/A</div>
+                            <div class="pool-col-farmers">1</div>
+                            <div class="pool-col-payout">On Win</div>
+                            <div class="pool-col-status">
+                                <span class="status-badge queued">Available</span>
+                            </div>
+                            <div class="pool-col-actions">
+                                <button class="btn-secondary btn-sm">Switch to Solo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pool Comparison -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Pool Comparison</h3>
+                    <button class="btn-secondary">Compare Selected</button>
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>Pool vs Solo Analysis</h4>
+                        <div class="comparison-metrics">
+                            <div class="comparison-row">
+                                <span>Expected Daily (Pool):</span>
+                                <span>0.072 XCH</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span>Expected Daily (Solo):</span>
+                                <span>0.000-2.000 XCH</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span>Variance (Pool):</span>
+                                <span class="low-variance">Low</span>
+                            </div>
+                            <div class="comparison-row">
+                                <span>Variance (Solo):</span>
+                                <span class="high-variance">High</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <h4>Fee Impact Analysis</h4>
+                        <div class="fee-analysis">
+                            <div class="fee-row">
+                                <span>SpacePool (0.7%):</span>
+                                <span>95.2 XCH/year</span>
+                            </div>
+                            <div class="fee-row">
+                                <span>CorePool (0.5%):</span>
+                                <span>95.4 XCH/year</span>
+                            </div>
+                            <div class="fee-row">
+                                <span>FlexPool (1.0%):</span>
+                                <span>95.0 XCH/year</span>
+                            </div>
+                            <div class="fee-recommendation">
+                                Best option: <strong>CorePool</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <h4>Historical Performance</h4>
+                        <div class="performance-summary">
+                            <div class="perf-item">
+                                <span>30-day Efficiency:</span>
+                                <span>103.2%</span>
+                            </div>
+                            <div class="perf-item">
+                                <span>Payout Reliability:</span>
+                                <span>99.8%</span>
+                            </div>
+                            <div class="perf-item">
+                                <span>Pool Uptime:</span>
+                                <span>99.95%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Enterprise Insights Panel -->
+        <aside class="enterprise-insights">
+            <div class="insights-section">
+                <h3 class="insights-title">Pool Performance</h3>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">247.3 PiB</div>
+                    <div class="insight-description">Current pool netspace</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">0.035%</div>
+                    <div class="insight-description">Your pool share</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">103.2%</div>
+                    <div class="insight-description">Efficiency vs expected</div>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3 class="insights-title">Payout Schedule</h3>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">~6 hours</div>
+                    <div class="insight-description">Next payout estimate</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">0.0156 XCH</div>
+                    <div class="insight-description">Expected payout amount</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">Daily</div>
+                    <div class="insight-description">Payout frequency</div>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3 class="insights-title">Recommendations</h3>
+                
+                <div class="insight-item">
+                    <div class="insight-description">Current pool performing 3.2% above expected - stay connected</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-description">Consider CorePool for 0.2% lower fees and similar performance</div>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3 class="insights-title">Quick Actions</h3>
+                
+                <button class="btn-secondary" style="width: 100%; margin-bottom: var(--space-md);">
+                    Compare Pools
+                </button>
+                
+                <button class="btn-ghost" style="width: 100%; margin-bottom: var(--space-md);">
+                    Pool Calculator
+                </button>
+                
+                <button class="btn-ghost" style="width: 100%;">
+                    Switch to Solo
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/dashboard.js"></script>
+    <script src="/static/js/auth-features.js"></script>
+    <script src="/static/js/wallet-connect.js"></script>
+</body>
+</html>
