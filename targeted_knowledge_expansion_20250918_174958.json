@@ -1,0 +1,133 @@
+{
+  "campaign_start": "2025-09-18T17:49:09.843568",
+  "duration_hours": 2,
+  "domains_targeted": [
+    "linguistics",
+    "sentiment_analysis",
+    "semantic_analysis",
+    "factual_knowledge",
+    "commonsense_reasoning",
+    "pragmatics"
+  ],
+  "content_scraped": {
+    "linguistics": 10,
+    "sentiment_analysis": 12,
+    "semantic_analysis": 15,
+    "factual_knowledge": 5,
+    "commonsense_reasoning": 8,
+    "pragmatics": 0
+  },
+  "knowledge_added": {
+    "linguistics": 0,
+    "sentiment_analysis": 0,
+    "semantic_analysis": 0,
+    "factual_knowledge": 0,
+    "commonsense_reasoning": 0,
+    "pragmatics": 0
+  },
+  "performance_improvements": {
+    "linguistics": {
+      "baseline_quality": 0.0,
+      "improved_quality": 0.0,
+      "improvement_percent": 0.0,
+      "reasoning_improvement": 0
+    },
+    "sentiment_analysis": {
+      "baseline_quality": 0.0,
+      "improved_quality": 0.0,
+      "improvement_percent": 0.0,
+      "reasoning_improvement": 0
+    },
+    "semantic_analysis": {
+      "baseline_quality": 0.0,
+      "improved_quality": 0.0,
+      "improvement_percent": 0.0,
+      "reasoning_improvement": 0
+    },
+    "factual_knowledge": {
+      "baseline_quality": 0.0,
+      "improved_quality": 0.0,
+      "improvement_percent": 0.0,
+      "reasoning_improvement": 0
+    },
+    "commonsense_reasoning": {
+      "baseline_quality": 0.0,
+      "improved_quality": 0.0,
+      "improvement_percent": 0.0,
+      "reasoning_improvement": 0
+    }
+  },
+  "recommendations": [
+    "Focus additional scraping on: linguistics, sentiment_analysis, semantic_analysis, factual_knowledge, commonsense_reasoning",
+    "Implement quality filtering for scraped content",
+    "Add domain-specific preprocessing pipelines",
+    "Increase scraping frequency for high-priority domains",
+    "Implement content deduplication to avoid redundancy",
+    "Add citation tracking for factual content verification"
+  ],
+  "baseline_metrics": {
+    "linguistics": {
+      "query": "Is this sentence grammatically correct: 'The book was read by the student.'",
+      "response_quality": 0.0,
+      "reasoning_steps": 0,
+      "timestamp": "2025-09-18T17:49:14.182115"
+    },
+    "sentiment_analysis": {
+      "query": "What is the sentiment of: 'I absolutely love this amazing product!'",
+      "response_quality": 0.0,
+      "reasoning_steps": 0,
+      "timestamp": "2025-09-18T17:49:14.182170"
+    },
+    "semantic_analysis": {
+      "query": "Do these mean the same: 'The cat sat on the mat' vs 'The feline rested on the rug'",
+      "response_quality": 0.0,
+      "reasoning_steps": 0,
+      "timestamp": "2025-09-18T17:49:14.182206"
+    },
+    "factual_knowledge": {
+      "query": "Is the sun a star in our solar system?",
+      "response_quality": 0.0,
+      "reasoning_steps": 0,
+      "timestamp": "2025-09-18T17:49:17.714633"
+    },
+    "commonsense_reasoning": {
+      "query": "Why did the student study hard for the exam?",
+      "response_quality": 0.0,
+      "reasoning_steps": 0,
+      "timestamp": "2025-09-18T17:49:21.244813"
+    }
+  },
+  "improved_metrics": {
+    "linguistics": {
+      "query": "Is this sentence grammatically correct: 'The book was read by the student.'",
+      "response_quality": 0.0,
+      "reasoning_steps": 0,
+      "timestamp": "2025-09-18T17:49:51.238668"
+    },
+    "sentiment_analysis": {
+      "query": "What is the sentiment of: 'I absolutely love this amazing product!'",
+      "response_quality": 0.0,
+      "reasoning_steps": 0,
+      "timestamp": "2025-09-18T17:49:51.238778"
+    },
+    "semantic_analysis": {
+      "query": "Do these mean the same: 'The cat sat on the mat' vs 'The feline rested on the rug'",
+      "response_quality": 0.0,
+      "reasoning_steps": 0,
+      "timestamp": "2025-09-18T17:49:51.238857"
+    },
+    "factual_knowledge": {
+      "query": "Is the sun a star in our solar system?",
+      "response_quality": 0.0,
+      "reasoning_steps": 0,
+      "timestamp": "2025-09-18T17:49:54.768103"
+    },
+    "commonsense_reasoning": {
+      "query": "Why did the student study hard for the exam?",
+      "response_quality": 0.0,
+      "reasoning_steps": 0,
+      "timestamp": "2025-09-18T17:49:58.292814"
+    }
+  },
+  "campaign_end": "2025-09-18T17:49:58.292886"
+}

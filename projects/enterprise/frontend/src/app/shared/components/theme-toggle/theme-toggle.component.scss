@@ -1,0 +1,29 @@
+.theme-toggle-btn {
+  --color: white;
+  --padding: 8px;
+  --border-radius: 50%;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    --background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+  }
+  
+  ion-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  &:active ion-icon {
+    transform: rotate(180deg);
+  }
+}
+
+// Dark theme styles
+:host-context(.dark) .theme-toggle-btn {
+  --color: #ffd700;
+  
+  &:hover {
+    --background: rgba(255, 215, 0, 0.1);
+  }
+}

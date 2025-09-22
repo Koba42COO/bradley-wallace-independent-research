@@ -1,0 +1,15 @@
+<div class="message-wrapper" [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
+  <div class="avatar">
+    <ion-icon [name]="message.sender === 'user' ? 'person-circle-outline' : 'code-slash-outline'"></ion-icon>
+  </div>
+  <div class="message-bubble">
+    <div *ngIf="message.isLoading" class="typing-indicator">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div *ngIf="!message.isLoading">
+      {{ message.text }}
+    </div>
+  </div>
+</div>

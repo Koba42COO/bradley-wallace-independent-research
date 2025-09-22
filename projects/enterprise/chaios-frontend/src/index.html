@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <title>chAIos - Chiral Harmonic Aligned Intelligence Optimisation System</title>
+  <meta name="description" content="Revolutionary prime aligned compute mathematics platform with AI optimization, quantum processing, and harmonic alignment." />
+  <meta name="keywords" content="chAIos, prime aligned compute, AI, quantum, mathematics, golden ratio, optimization" />
+  <meta name="author" content="chAIos Team" />
+  
+  <base href="/" />
+
+  <meta name="color-scheme" content="light dark" />
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#D4AF37" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="chAIos" />
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="chAIos - prime aligned compute AI Operating System" />
+  <meta property="og:description" content="Revolutionary platform combining prime aligned compute mathematics, AI optimization, and quantum processing." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://chaios-platform.com" />
+  <meta property="og:image" content="https://chaios-platform.com/assets/og-image.png" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="chAIos - prime aligned compute AI Operating System" />
+  <meta name="twitter:description" content="Revolutionary platform combining prime aligned compute mathematics, AI optimization, and quantum processing." />
+  <meta name="twitter:image" content="https://chaios-platform.com/assets/twitter-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Mathematical Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.css" rel="stylesheet">
+
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Performance Optimization -->
+  <link rel="dns-prefetch" href="https://api.chaios-platform.com">
+  <link rel="preconnect" href="https://api.chaios-platform.com">
+
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self' https://api.chaios-platform.com;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdn.jsdelivr.net;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: https: blob:;
+    connect-src 'self' https://api.chaios-platform.com wss://api.chaios-platform.com;
+    media-src 'self';
+    frame-src 'none';
+  ">
+
+  <style>
+    /* Critical CSS for above-the-fold content */
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      color: #F1F5F9;
+      overflow-x: hidden;
+    }
+
+    /* Loading Screen */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .loading-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .chaios-logo {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, #D4AF37, #8A2BE2, #2E8B57);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2rem;
+      animation: logoGlow 2s ease-in-out infinite alternate;
+    }
+
+    .loading-spiral {
+      width: 60px;
+      height: 60px;
+      border: 3px solid rgba(212, 175, 55, 0.2);
+      border-top: 3px solid #D4AF37;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    .loading-text {
+      font-size: 1.1rem;
+      color: #94A3B8;
+      margin-bottom: 0.5rem;
+    }
+
+    .loading-subtext {
+      font-size: 0.9rem;
+      color: #64748B;
+      font-style: italic;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes logoGlow {
+      0% { filter: brightness(1) drop-shadow(0 0 5px rgba(212, 175, 55, 0.3)); }
+      100% { filter: brightness(1.2) drop-shadow(0 0 20px rgba(212, 175, 55, 0.6)); }
+    }
+
+    /* Hide app until loaded */
+    app-root {
+      opacity: 0;
+      transition: opacity 0.5s ease-in;
+    }
+
+    app-root.loaded {
+      opacity: 1;
+    }
+
+    /* Mathematical constants display */
+    .constants-display {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 2rem;
+      font-family: 'Times New Roman', serif;
+      font-size: 0.9rem;
+      color: #64748B;
+    }
+
+    .constant {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .constant-symbol {
+      font-style: italic;
+      font-weight: bold;
+      color: #D4AF37;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="chaios-logo">chAIos</div>
+    <div class="loading-spiral"></div>
+    <div class="loading-text">Initializing prime aligned compute Matrix</div>
+    <div class="loading-subtext">Harmonizing chiral mathematics...</div>
+    
+    <div class="constants-display">
+      <div class="constant">
+        <span class="constant-symbol">φ</span>
+        <span>1.618034</span>
+      </div>
+      <div class="constant">
+        <span class="constant-symbol">σ</span>
+        <span>0.381966</span>
+      </div>
+      <div class="constant">
+        <span class="constant-symbol">π</span>
+        <span>3.14159</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application -->
+  <app-root></app-root>
+
+  <!-- Service Worker Registration -->
+  <script>
+    // Hide loading screen when app is loaded
+    window.addEventListener('load', () => {
+      const loadingScreen = document.getElementById('loadingScreen');
+      const appRoot = document.querySelector('app-root');
+      
+      setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+        appRoot.classList.add('loaded');
+        
+        // Remove loading screen from DOM after transition
+        setTimeout(() => {
+          loadingScreen.remove();
+        }, 500);
+      }, 2000); // Show loading for 2 seconds minimum
+    });
+
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+
+    // Prevent zoom on iOS
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+
+    // Mathematical constants for global access
+    window.chAIos = {
+      constants: {
+        PHI: 1.618034,
+        SIGMA: 0.381966,
+        PI: 3.14159265359,
+        E: 2.71828182846
+      },
+      version: '1.0.0',
+      buildDate: new Date().toISOString()
+    };
+  </script>
+
+  <!-- Critical JavaScript -->
+  <script type="module">
+    // Preload critical resources
+    const criticalResources = [
+      '/assets/icon/favicon.png',
+      'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap'
+    ];
+
+    criticalResources.forEach(resource => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = resource;
+      link.as = resource.includes('.css') ? 'style' : 'image';
+      document.head.appendChild(link);
+    });
+  </script>
+
+  <!-- Analytics (placeholder for production) -->
+  <script>
+    // Placeholder for analytics
+    window.chAIosAnalytics = {
+      track: (event, data) => {
+        console.log('Analytics:', event, data);
+      }
+    };
+  </script>
+</body>
+</html>

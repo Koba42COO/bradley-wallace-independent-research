@@ -1,0 +1,215 @@
+// chAIos Consciousness Page Styles
+// ==================================
+
+.consciousness-content {
+  --padding: var(--spacing-lg);
+
+  ion-card {
+    margin-bottom: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    background: rgba(var(--ion-color-light-rgb), 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--ion-color-medium-rgb), 0.1);
+    
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      font-size: var(--text-heading-3);
+      background: var(--processing-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+}
+
+// Header Elements
+ion-toolbar ion-buttons[slot="end"] {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+// Control Card
+.control-card {
+  .config-item {
+    --background: transparent;
+    --padding-start: 0;
+    --padding-end: 0;
+  }
+
+  .algorithm-description,
+  .parameter-value {
+    font-size: var(--text-caption);
+    color: var(--ion-color-medium);
+    padding: var(--spacing-xs) var(--spacing-sm) 0 var(--spacing-sm);
+    min-height: 3em;
+  }
+
+  .control-buttons {
+    margin-top: var(--spacing-md);
+    
+    ion-button {
+      font-weight: 600;
+    }
+    
+    .primary-button {
+      --background: var(--processing-primary);
+      --color: white;
+    }
+  }
+}
+
+// Progress Card
+.progress-card {
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+
+    h3 {
+      margin: 0;
+      font-size: var(--text-body-large);
+    }
+  }
+
+  .consciousness-progress {
+    height: 12px;
+    border-radius: 6px;
+  }
+
+  .progress-details {
+    display: flex;
+    justify-content: space-around;
+    margin-top: var(--spacing-md);
+    font-size: var(--text-caption);
+    color: var(--ion-color-medium);
+  }
+}
+
+// Visualization Grid
+.visualization-grid {
+  .visualization-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    ion-card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .correlation-matrix {
+    .matrix-row {
+      display: flex;
+    }
+    .matrix-cell {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+    }
+  }
+
+  .phi-evolution {
+    width: 100%;
+    
+    .phi-stats {
+      display: flex;
+      justify-content: space-around;
+      margin-top: var(--spacing-md);
+    }
+  }
+}
+
+// Constants Card
+.constants-card {
+  .constants-display {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+
+    .constant-item {
+      .constant-symbol {
+        font-family: 'Times New Roman', serif;
+        font-size: var(--text-heading-2);
+        color: var(--ion-color-primary);
+      }
+      .constant-value {
+        font-family: 'Courier New', monospace;
+        font-weight: 600;
+      }
+      .constant-name {
+        font-size: var(--text-caption);
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+}
+
+// Info Card
+.info-card {
+  .info-stats {
+    margin-top: var(--spacing-lg);
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--spacing-xs) 0;
+      border-bottom: 1px solid var(--ion-color-step-150);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .stat-label {
+        color: var(--ion-color-medium);
+      }
+
+      .stat-value {
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// Dark Theme Adjustments
+@media (prefers-color-scheme: dark) {
+  .consciousness-content ion-card {
+    background: rgba(var(--ion-color-dark-rgb), 0.6);
+    border: 1px solid rgba(var(--ion-color-light-rgb), 0.1);
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .control-buttons ion-button {
+    font-size: 12px;
+  }
+
+  .visualization-grid {
+    .correlation-matrix .matrix-cell {
+      width: 20px;
+      height: 20px;
+      font-size: 8px;
+    }
+  }
+
+  .constants-card .constants-display {
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    .constant-item {
+      flex-basis: 40%;
+    }
+  }
+}

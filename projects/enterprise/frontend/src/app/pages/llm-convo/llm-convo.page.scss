@@ -1,0 +1,83 @@
+.chat-container {
+  padding: 1rem;
+  max-width: 100%;
+  
+  app-chat-message {
+    display: block;
+    margin-bottom: 1rem;
+    animation: fadeInUp 0.3s ease-out;
+  }
+}
+
+ion-header {
+  ion-toolbar {
+    --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --color: white;
+    
+    ion-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    
+    ion-buttons {
+      ion-menu-button, app-theme-toggle {
+        --color: white;
+      }
+    }
+  }
+}
+
+ion-content {
+  --background: #f8fafc;
+  
+  &::part(scroll) {
+    padding-bottom: 1rem;
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Loading state
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  
+  ion-spinner {
+    --color: var(--ion-color-primary);
+  }
+}
+
+// Mobile responsiveness
+@media (max-width: 768px) {
+  .chat-container {
+    padding: 0.5rem;
+  }
+  
+  ion-header ion-toolbar ion-title {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,170 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-icon name="flash" slot="start"></ion-icon>
+      CUDNT Dashboard
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="refreshDashboard()">
+        <ion-icon name="refresh" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button (click)="showSystemDetails()">
+        <ion-icon name="information-circle" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refreshDashboard($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- System Status Cards -->
+  <div class="dashboard-container" *ngIf="systemStatus">
+
+    <!-- Primary Status Card -->
+    <ion-card class="status-card">
+      <ion-card-header>
+        <ion-card-subtitle>System Status</ion-card-subtitle>
+        <ion-card-title>
+          <ion-badge [color]="systemStatus.systemStatus === 'Operational' ? 'success' : 'danger'">
+            {{ systemStatus.systemStatus }}
+          </ion-badge>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <div class="metric">
+                <h3>{{ systemStatus.performance.avgSpeedupFactor }}x</h3>
+                <p>Performance Speedup</p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="metric">
+                <h3>{{ systemStatus.activeOptimizations }}</h3>
+                <p>Active Optimizations</p>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- prime aligned compute Level Card -->
+    <ion-card class="prime aligned compute-card">
+      <ion-card-header>
+        <ion-card-subtitle>prime aligned compute Mathematics</ion-card-subtitle>
+        <ion-card-title>
+          Level {{ systemStatus.performance.consciousnessLevel }}/12
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-progress-bar
+          [value]="systemStatus.performance.consciousnessLevel / 12"
+          [color]="getConsciousnessLevelColor(systemStatus.performance.consciousnessLevel)">
+        </ion-progress-bar>
+        <p class="prime aligned compute-details">
+          {{ systemStatus.performance.complexityReduction }} complexity reduction active
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Infrastructure Status -->
+    <ion-card class="infrastructure-card">
+      <ion-card-header>
+        <ion-card-subtitle>Infrastructure Status</ion-card-subtitle>
+        <ion-card-title>Hybrid Architecture</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>PDVM (Parallel Data Virtual Machine)</ion-label>
+            <ion-badge [color]="systemStatus.infrastructure.pdvm === 'Online' ? 'success' : 'danger'" slot="end">
+              {{ systemStatus.infrastructure.pdvm }}
+            </ion-badge>
+          </ion-item>
+          <ion-item>
+            <ion-label>QVM (Quantum Virtual Machine)</ion-label>
+            <ion-badge [color]="systemStatus.infrastructure.qvm === 'Online' ? 'success' : 'danger'" slot="end">
+              {{ systemStatus.infrastructure.qvm }}
+            </ion-badge>
+          </ion-item>
+          <ion-item>
+            <ion-label>prime aligned compute Mathematics</ion-label>
+            <ion-badge [color]="systemStatus.infrastructure.consciousnessMath === 'Operational' ? 'success' : 'danger'" slot="end">
+              {{ systemStatus.infrastructure.consciousnessMath }}
+            </ion-badge>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- User Performance Stats -->
+  <div class="performance-section" *ngIf="dashboardData">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Your Performance Statistics</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <div class="stat-item">
+                <h2>{{ dashboardData.stats.totalOptimizations }}</h2>
+                <p>Total Optimizations</p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="stat-item">
+                <h2>{{ dashboardData.stats.avgSpeedup.toFixed(1) }}x</h2>
+                <p>Average Speedup</p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <div class="stat-item">
+                <h2>{{ dashboardData.stats.avgImprovement.toFixed(1) }}%</h2>
+                <p>Average Improvement</p>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="stat-item">
+                <h2>{{ dashboardData.stats.avgConsciousnessLevel.toFixed(1) }}</h2>
+                <p>prime aligned compute Level</p>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="actions-section">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Quick Actions</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button expand="block" routerLink="/optimize" color="primary">
+          <ion-icon name="flash" slot="start"></ion-icon>
+          New Optimization
+        </ion-button>
+        <ion-button expand="block" routerLink="/history" fill="outline" color="secondary">
+          <ion-icon name="time" slot="start"></ion-icon>
+          View History
+        </ion-button>
+        <ion-button expand="block" routerLink="/benchmark" fill="outline" color="tertiary">
+          <ion-icon name="speedometer" slot="icon-only"></ion-icon>
+          Run Benchmark
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

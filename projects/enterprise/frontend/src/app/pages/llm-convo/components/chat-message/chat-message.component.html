@@ -1,0 +1,13 @@
+<div class="chat-message" [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
+  <div class="message-content" [ngClass]="{'loading': message.isLoading}">
+    <div *ngIf="message.isLoading" class="loading-dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <div *ngIf="!message.isLoading">
+      <p [innerHTML]="formatMessage(message.text)"></p>
+      <div class="timestamp">{{ formatTimestamp(message.timestamp) }}</div>
+    </div>
+  </div>
+</div>

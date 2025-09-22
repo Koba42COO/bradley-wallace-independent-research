@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>LLM Conversation</ion-title>
+    <ion-buttons slot="end">
+      <app-theme-toggle></app-theme-toggle>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="message-list">
+    <app-chat-message *ngFor="let msg of messages$ | async" [message]="msg"></app-chat-message>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <app-chat-input (sendMessage)="onSendMessage($event)" [disabled]="(isLoading$ | async) ?? false"></app-chat-input>
+</ion-footer>

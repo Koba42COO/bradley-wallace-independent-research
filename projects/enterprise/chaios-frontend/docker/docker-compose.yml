@@ -1,0 +1,198 @@
+version: '3.8'
+
+# chAIos Platform Docker Compose
+# ===============================
+# Complete platform deployment with Express frontend and FastAPI backend
+
+services:
+  # chAIos Express Frontend Server
+  chaios-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.express
+    container_name: chaios-frontend
+    ports:
+      - "4200:4200"
+    environment:
+      - NODE_ENV=production
+      - PORT=4200
+      - HOST=0.0.0.0
+      - API_BASE_URL=http://chaios-backend:8000
+      - ENABLE_CLUSTERING=true
+      - ENABLE_COMPRESSION=true
+      - ENABLE_CACHING=true
+      - ENABLE_API_PROXY=true
+      - ENABLE_WEBSOCKETS=true
+      - ENABLE_HEALTH_CHECK=true
+      - ENABLE_METRICS=true
+      - CORS_ORIGIN=http://localhost:4200,http://localhost:8100
+      - RATE_LIMIT_MAX=1000
+      - RATE_LIMIT_WINDOW=900000
+    volumes:
+      - ./logs:/app/logs
+      - ./certs:/app/certs:ro
+    networks:
+      - chaios-network
+    depends_on:
+      - chaios-backend
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:4200/health', (res) => process.exit(res.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.chaios-frontend.rule=Host(`chaios.local`)"
+      - "traefik.http.services.chaios-frontend.loadbalancer.server.port=4200"
+
+  # chAIos FastAPI Backend
+  chaios-backend:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    container_name: chaios-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+      - ENVIRONMENT=production
+      - DEBUG=false
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - CORS_ORIGINS=http://localhost:4200,http://chaios-frontend:4200
+      - DATABASE_URL=postgresql://chaios:chaios_password@chaios-db:5432/chaios_db
+      - REDIS_URL=redis://chaios-redis:6379/0
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-your-super-secret-jwt-key-change-this-in-production}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY:-your-32-char-encryption-key-here}
+    volumes:
+      - ../data:/app/data
+      - ../logs:/app/logs
+      - ../models:/app/models
+    networks:
+      - chaios-network
+    depends_on:
+      - chaios-db
+      - chaios-redis
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # PostgreSQL Database
+  chaios-db:
+    image: postgres:15-alpine
+    container_name: chaios-db
+    environment:
+      - POSTGRES_DB=chaios_db
+      - POSTGRES_USER=chaios
+      - POSTGRES_PASSWORD=chaios_password
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    volumes:
+      - chaios_db_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d:ro
+    networks:
+      - chaios-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chaios -d chaios_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  chaios-redis:
+    image: redis:7-alpine
+    container_name: chaios-redis
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    volumes:
+      - chaios_redis_data:/data
+    networks:
+      - chaios-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # Nginx Reverse Proxy (Optional)
+  chaios-proxy:
+    image: nginx:alpine
+    container_name: chaios-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./certs:/etc/nginx/certs:ro
+      - ./logs/nginx:/var/log/nginx
+    networks:
+      - chaios-network
+    depends_on:
+      - chaios-frontend
+      - chaios-backend
+    restart: unless-stopped
+    profiles:
+      - proxy
+
+  # Monitoring with Prometheus (Optional)
+  chaios-prometheus:
+    image: prom/prometheus:latest
+    container_name: chaios-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - chaios_prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    networks:
+      - chaios-network
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+  # Grafana Dashboard (Optional)
+  chaios-grafana:
+    image: grafana/grafana:latest
+    container_name: chaios-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=chaios_admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - chaios_grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    networks:
+      - chaios-network
+    depends_on:
+      - chaios-prometheus
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+networks:
+  chaios-network:
+    driver: bridge
+    name: chaios-network
+
+volumes:
+  chaios_db_data:
+    name: chaios_db_data
+  chaios_redis_data:
+    name: chaios_redis_data
+  chaios_prometheus_data:
+    name: chaios_prometheus_data
+  chaios_grafana_data:
+    name: chaios_grafana_data

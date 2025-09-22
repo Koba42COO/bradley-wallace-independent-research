@@ -1,0 +1,10 @@
+{
+  "tier": "prototype",
+  "environment": "development",
+  "api_url": "http://localhost:3000/api",
+  "features": {
+    "basic_ui": true,
+    "api_endpoints": true,
+    "local_storage": true
+  }
+}

@@ -1,0 +1,152 @@
+Here's comprehensive integration information for implementing SquashPlot with Mad Max and BladeBit:
+
+## Mad Max Integration
+
+**Command Structure:**
+```bash
+./chia_plot -t <tmpdir> -2 <tmpdir2> -d <finaldir> -p <poolkey> -f <farmerkey> -r <threads> -u <buckets> -n <count>
+```
+
+**Key Parameters:**
+- `-t <tmpdir>`: Primary temp directory (~220GB space, handles 25% of writes)
+- `-2 <tmpdir2>`: Secondary temp directory (~110GB, ideally RAM drive, handles 75% of writes)
+- `-d <finaldir>`: Final plot destination
+- `-p <poolkey>`: Pool public key (from `chia keys show`)
+- `-f <farmerkey>`: Farmer public key (from `chia keys show`)
+- `-r <threads>`: Thread count (default: 4)
+- `-u <buckets>`: Bucket count (default: 256, affects memory usage)
+- `-n <count>`: Number of plots to create
+- `-c <contract>`: Pool contract address (for pool farming)
+
+**Integration Points:**
+- Check available disk space before plotting
+- Monitor temp directory usage during plotting
+- Handle process management and logging
+- Support for graceful termination (Ctrl-C)
+
+## BladeBit Integration
+
+**Multiple Modes Available:**
+
+### RAM Mode (ramplot)
+```bash
+chia plotters bladebit ramplot -d <destination> -f <farmer_key> -p <pool_key> -c <contract> -n <count> --compress <level>
+```
+- Requires: 416GB RAM minimum
+- Compression levels: C0-C7
+- Fastest plotting method
+
+### Disk Mode (diskplot)
+```bash
+chia plotters bladebit diskplot -t <temp_dir> -d <destination> -f <farmer_key> -p <pool_key> -c <contract> --cache <size> -n <count> --compress <level>
+```
+- Requires: 4GB+ RAM, 480GB temp space (390GB with --alternate)
+- Cache sizes: 32G, 64G, 128G
+- Write amplification factor of 1
+
+### CUDA GPU Mode (cudaplot)
+```bash
+chia plotters bladebit cudaplot -d <destination> -f <farmer_key> -p <pool_key> -c <contract> -n <count> --compress <level>
+```
+- Requires: NVIDIA GPU with CUDA support
+- Memory: 16GB+ RAM recommended
+- Compression: C1-C7 (C0 not available in GPU mode)
+
+**BladeBit Compression Levels:**
+- C0: ~109GB (uncompressed)
+- C1: ~88GB 
+- C2: ~86GB
+- C3: ~84GB
+- C4: ~82GB
+- C5: ~80GB
+- C6: ~78GB
+- C7: ~76GB
+
+## CLI Integration Format
+
+**Chia Plotters Command Structure:**
+```bash
+chia plotters <plotter> <mode> <options>
+```
+
+Where:
+- `<plotter>`: madmax, bladebit, chiapos
+- `<mode>`: ramplot, diskplot, cudaplot (for bladebit)
+- `<options>`: plotter-specific parameters
+
+## Key Configuration
+
+**Get Keys:**
+```bash
+chia keys show
+```
+
+**Pool Contract (for pool farming):**
+```bash
+chia plotnft show
+```
+
+## SquashPlot Integration Architecture
+
+**Wrapper Implementation:**
+```python
+class PlotterBackend:
+    def execute_madmax(self, config):
+        cmd = [
+            "./chia_plot",
+            "-t", config.tmp_dir,
+            "-2", config.tmp_dir2,
+            "-d", config.final_dir,
+            "-f", config.farmer_key,
+            "-p", config.pool_key,
+            "-r", str(config.threads),
+            "-u", str(config.buckets),
+            "-n", str(config.count)
+        ]
+        return subprocess.run(cmd)
+    
+    def execute_bladebit(self, mode, config):
+        cmd = [
+            "chia", "plotters", "bladebit", mode,
+            "-d", config.final_dir,
+            "-f", config.farmer_key,
+            "-p", config.pool_key,
+            "-n", str(config.count)
+        ]
+        
+        if mode == "diskplot":
+            cmd.extend(["-t", config.tmp_dir, "--cache", config.cache_size])
+        if config.compression > 0:
+            cmd.extend(["--compress", str(config.compression)])
+            
+        return subprocess.run(cmd)
+```
+
+## File System Requirements
+
+**Mad Max:**
+- Temp1: 220GB (can be HDD/SSD)
+- Temp2: 110GB (preferably RAM drive)
+- Final: Plot size storage
+- Combined peak: <256GB
+
+**BladeBit:**
+- RAM mode: 416GB RAM only
+- Disk mode: 480GB temp + cache memory
+- CUDA mode: GPU memory + 16GB+ RAM
+
+## Process Management
+
+**Status Monitoring:**
+- Parse stdout for progress information
+- Monitor temp directory disk usage
+- Track memory consumption
+- Handle error conditions and cleanup
+
+**Graceful Termination:**
+- SIGTERM for graceful shutdown
+- SIGKILL for forced termination
+- Cleanup temporary files
+- Preserve partial progress where possible
+
+This information provides the foundation for implementing SquashPlot as a unified interface that can leverage existing plotter backends while adding compression capabilities.

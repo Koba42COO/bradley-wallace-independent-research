@@ -1,0 +1,283 @@
+// chAIos Base Typography
+// ======================
+// Typography system following golden ratio principles
+
+// Font Loading
+// ============
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+// Typography Scale Classes
+// ========================
+.text-xs { font-size: $font-size-xs; }
+.text-sm { font-size: $font-size-sm; }
+.text-base { font-size: $font-size-base; }
+.text-lg { font-size: $font-size-lg; }
+.text-xl { font-size: $font-size-xl; }
+.text-2xl { font-size: $font-size-xxl; }
+.text-3xl { font-size: $font-size-3xl; }
+.text-4xl { font-size: $font-size-4xl; }
+
+// Font Weight Classes
+// ==================
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+
+// Font Family Classes
+// ==================
+.font-primary { font-family: $font-family-primary; }
+.font-mono { font-family: $font-family-secondary; }
+.font-math { font-family: $font-family-math; }
+
+// Line Height Classes
+// ==================
+.leading-tight { line-height: 1.2; }
+.leading-normal { line-height: 1.6; }
+.leading-relaxed { line-height: 1.8; }
+.leading-loose { line-height: 2.0; }
+
+// Text Alignment
+// ==============
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+// Text Transform
+// ==============
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+.normal-case { text-transform: none; }
+
+// Text Decoration
+// ===============
+.underline { text-decoration: underline; }
+.line-through { text-decoration: line-through; }
+.no-underline { text-decoration: none; }
+
+// Text Color Classes
+// ==================
+.text-primary { color: $color-primary-600; }
+.text-secondary { color: $color-secondary-600; }
+.text-tertiary { color: $color-tertiary-600; }
+.text-success { color: $color-success; }
+.text-warning { color: $color-warning; }
+.text-error { color: $color-error; }
+.text-info { color: $color-info; }
+
+.text-neutral-50 { color: $color-neutral-50; }
+.text-neutral-100 { color: $color-neutral-100; }
+.text-neutral-200 { color: $color-neutral-200; }
+.text-neutral-300 { color: $color-neutral-300; }
+.text-neutral-400 { color: $color-neutral-400; }
+.text-neutral-500 { color: $color-neutral-500; }
+.text-neutral-600 { color: $color-neutral-600; }
+.text-neutral-700 { color: $color-neutral-700; }
+.text-neutral-800 { color: $color-neutral-800; }
+.text-neutral-900 { color: $color-neutral-900; }
+
+// Typography Components
+// =====================
+.chaios-heading {
+  @include golden-typography(1.5);
+  font-weight: 600;
+  color: $color-neutral-900;
+  margin-bottom: golden-spacing(2);
+  
+  &--primary {
+    color: $color-primary-600;
+  }
+  
+  &--consciousness {
+    background: linear-gradient(45deg, $color-primary-500, $color-secondary-500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+.chaios-text {
+  @include golden-typography(1);
+  color: $color-neutral-700;
+  margin-bottom: golden-spacing(2);
+  
+  &--lead {
+    @include golden-typography(1.2);
+    font-weight: 500;
+    color: $color-neutral-600;
+  }
+  
+  &--small {
+    @include golden-typography(0.875);
+    color: $color-neutral-500;
+  }
+  
+  &--muted {
+    color: $color-neutral-400;
+  }
+}
+
+.chaios-code {
+  font-family: $font-family-secondary;
+  font-size: 0.9em;
+  background: rgba($color-neutral-100, 0.8);
+  padding: 2px 6px;
+  border-radius: $border-radius-sm;
+  color: $color-neutral-800;
+  
+  &--block {
+    display: block;
+    padding: golden-spacing(2);
+    margin: golden-spacing(2) 0;
+    border-radius: $border-radius-md;
+    background: $color-neutral-900;
+    color: $color-neutral-100;
+    overflow-x: auto;
+  }
+}
+
+.chaios-quote {
+  border-left: 4px solid $color-primary-500;
+  padding-left: golden-spacing(3);
+  margin: golden-spacing(3) 0;
+  font-style: italic;
+  color: $color-neutral-600;
+  
+  &__author {
+    font-style: normal;
+    font-weight: 600;
+    color: $color-neutral-800;
+    margin-top: golden-spacing(1);
+    
+    &::before {
+      content: '— ';
+    }
+  }
+}
+
+// Mathematical Typography
+// =======================
+.chaios-math {
+  font-family: $font-family-math;
+  
+  &--formula {
+    display: block;
+    text-align: center;
+    margin: golden-spacing(3) 0;
+    padding: golden-spacing(2);
+    background: rgba($color-primary-50, 0.5);
+    border-radius: $border-radius-md;
+    border: 1px solid rgba($color-primary-200, 0.5);
+  }
+  
+  &--inline {
+    font-size: 1.1em;
+    vertical-align: baseline;
+  }
+}
+
+// Special Typography Effects
+// ==========================
+.chaios-gradient-text {
+  background: linear-gradient(45deg, $color-primary-500, $color-tertiary-500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+.chaios-glow-text {
+  color: $color-primary-600;
+  text-shadow: 0 0 10px rgba($color-primary-500, 0.5);
+}
+
+.chaios-consciousness-text {
+  background: linear-gradient(
+    45deg,
+    $color-primary-500 0%,
+    $color-secondary-500 33%,
+    $color-tertiary-500 66%,
+    $color-primary-500 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: consciousness-text-flow 3s ease-in-out infinite;
+}
+
+@keyframes consciousness-text-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+// Responsive Typography
+// =====================
+@include mobile-only {
+  .text-4xl { font-size: $font-size-3xl; }
+  .text-3xl { font-size: $font-size-xxl; }
+  .text-2xl { font-size: $font-size-xl; }
+  
+  .chaios-heading {
+    font-size: $font-size-xl;
+  }
+}
+
+// Reading Experience
+// ==================
+.chaios-reading {
+  max-width: 65ch; // Optimal reading width
+  line-height: 1.7;
+  
+  p + p {
+    margin-top: golden-spacing(3);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: golden-spacing(4);
+    margin-bottom: golden-spacing(2);
+    
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  
+  ul, ol {
+    margin: golden-spacing(2) 0;
+    padding-left: golden-spacing(4);
+    
+    li {
+      margin-bottom: golden-spacing(1);
+    }
+  }
+}
+
+// Accessibility Enhancements
+// ===========================
+@media (prefers-reduced-motion: reduce) {
+  .chaios-consciousness-text {
+    animation: none;
+    background: $color-primary-600;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .chaios-gradient-text,
+  .chaios-consciousness-text {
+    -webkit-text-fill-color: currentColor;
+    background: none;
+  }
+  
+  .chaios-glow-text {
+    text-shadow: none;
+  }
+}

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: knowledge-system
+  name: knowledge-system
+  namespace: chaios-platform
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: knowledge-system
+  template:
+    metadata:
+      labels:
+        app: knowledge-system
+    spec:
+      containers:
+      - env:
+        - name: ENVIRONMENT
+          value: production
+        - name: KNOWLEDGE_DB_PATH
+          value: /data/knowledge.db
+        envFrom:
+        - configMapRef:
+            name: chaios-config
+        image: chaios/knowledge-system:latest
+        name: knowledge-system
+        ports:
+        - containerPort: 8003
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 4Gi
+          requests:
+            cpu: 1000m
+            memory: 2Gi
+        volumeMounts:
+        - mountPath: /data
+          name: knowledge-storage
+      volumes:
+      - emptyDir: {}
+        name: knowledge-storage

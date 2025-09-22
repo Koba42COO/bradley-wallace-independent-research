@@ -1,0 +1,192 @@
+.welcome-content {
+  --background: linear-gradient(135deg, var(--ion-color-primary-tint), var(--ion-color-secondary-tint));
+}
+
+.welcome-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.welcome-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  color: var(--ion-color-primary-contrast);
+}
+
+.hero-card {
+  background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+}
+
+.hero-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.hero-icon {
+  font-size: 2.5rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.hero-subtitle h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 16px 0;
+  opacity: 0.9;
+}
+
+.hero-subtitle p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.features-grid {
+  margin: 20px 0;
+}
+
+.feature-card {
+  height: 100%;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.feature-card ion-card-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.2rem;
+  color: var(--ion-color-primary);
+}
+
+.feature-card ion-icon {
+  font-size: 1.5rem;
+}
+
+.action-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 32px 0;
+}
+
+.primary-action {
+  --border-radius: 25px;
+  height: 56px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.secondary-action {
+  --border-radius: 25px;
+  height: 56px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  --border-width: 2px;
+  --border-color: var(--ion-color-primary);
+}
+
+.status-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.status-text h3 {
+  color: var(--ion-color-success);
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+
+.status-text p {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: var(--ion-color-dark);
+  font-family: 'Monaco', 'Menlo', monospace;
+}
+
+// Mobile optimizations
+@media (max-width: 768px) {
+  .welcome-container {
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .hero-title {
+    font-size: 1.6rem;
+  }
+  
+  .hero-subtitle h2 {
+    font-size: 1.2rem;
+  }
+  
+  .hero-subtitle p {
+    font-size: 1rem;
+  }
+  
+  .feature-card ion-card-title {
+    font-size: 1.1rem;
+  }
+}
+
+// Golden ratio proportions
+.hero-card {
+  aspect-ratio: 1.618;
+  max-height: 300px;
+}
+
+.feature-card {
+  min-height: 150px;
+}
+
+// Chiral harmonic animations
+.feature-card:nth-child(odd) {
+  animation: float-left 6s ease-in-out infinite;
+}
+
+.feature-card:nth-child(even) {
+  animation: float-right 6s ease-in-out infinite reverse;
+}
+
+@keyframes float-left {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes float-right {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-1deg); }
+}

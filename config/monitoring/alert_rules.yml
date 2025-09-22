@@ -1,0 +1,185 @@
+# Enterprise prime aligned compute Platform - Prometheus Alert Rules
+# ===========================================================
+
+groups:
+  - name: consciousness_platform_alerts
+    rules:
+      # Service availability alerts
+      - alert: ConsciousnessPlatformDown
+        expr: up{job="prime aligned compute-platform"} == 0
+        for: 5m
+        labels:
+          severity: critical
+          service: prime aligned compute-platform
+        annotations:
+          summary: "prime aligned compute Platform service is down"
+          description: "The prime aligned compute Platform API service has been down for more than 5 minutes."
+
+      - alert: ConsciousnessPlatformHighErrorRate
+        expr: rate(http_requests_total{job="prime aligned compute-platform", status=~"5.."}[5m]) / rate(http_requests_total{job="prime aligned compute-platform"}[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+          service: prime aligned compute-platform
+        annotations:
+          summary: "High error rate on prime aligned compute Platform"
+          description: "prime aligned compute Platform has an error rate of {{ $value }}% over the last 5 minutes."
+
+      # Performance alerts
+      - alert: ConsciousnessPlatformHighLatency
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job="prime aligned compute-platform"}[5m])) > 2
+        for: 5m
+        labels:
+          severity: warning
+          service: prime aligned compute-platform
+        annotations:
+          summary: "High latency on prime aligned compute Platform"
+          description: "95th percentile request latency is {{ $value }}s over the last 5 minutes."
+
+      - alert: ConsciousnessPlatformHighCPU
+        expr: rate(process_cpu_user_seconds_total{job="prime aligned compute-platform"}[5m]) > 0.8
+        for: 5m
+        labels:
+          severity: warning
+          service: prime aligned compute-platform
+        annotations:
+          summary: "High CPU usage on prime aligned compute Platform"
+          description: "prime aligned compute Platform CPU usage is {{ $value }} over the last 5 minutes."
+
+      - alert: ConsciousnessPlatformHighMemory
+        expr: process_resident_memory_bytes{job="prime aligned compute-platform"} / process_virtual_memory_max_bytes > 0.9
+        for: 5m
+        labels:
+          severity: critical
+          service: prime aligned compute-platform
+        annotations:
+          summary: "High memory usage on prime aligned compute Platform"
+          description: "prime aligned compute Platform memory usage is {{ $value }}% of available memory."
+
+      # Database alerts
+      - alert: PostgresDown
+        expr: up{job="prime aligned compute-postgres"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          service: prime aligned compute-postgres
+        annotations:
+          summary: "PostgreSQL database is down"
+          description: "PostgreSQL database has been down for more than 2 minutes."
+
+      - alert: PostgresHighConnections
+        expr: pg_stat_activity_count{datname="consciousness_platform"} > 80
+        for: 5m
+        labels:
+          severity: warning
+          service: prime aligned compute-postgres
+        annotations:
+          summary: "High number of PostgreSQL connections"
+          description: "PostgreSQL has {{ $value }} active connections, which is above the threshold of 80."
+
+      # Redis alerts
+      - alert: RedisDown
+        expr: up{job="prime aligned compute-redis"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          service: prime aligned compute-redis
+        annotations:
+          summary: "Redis cache is down"
+          description: "Redis cache has been down for more than 2 minutes."
+
+      - alert: RedisHighMemory
+        expr: redis_memory_used_bytes / redis_memory_max_bytes > 0.9
+        for: 5m
+        labels:
+          severity: warning
+          service: prime aligned compute-redis
+        annotations:
+          summary: "High Redis memory usage"
+          description: "Redis memory usage is {{ $value }}% of maximum memory."
+
+      # Quantum processing alerts
+      - alert: QuantumProcessingFailure
+        expr: increase(consciousness_quantum_failures_total[5m]) > 5
+        for: 5m
+        labels:
+          severity: warning
+          service: prime aligned compute-platform
+        annotations:
+          summary: "Quantum processing failures detected"
+          description: "There have been {{ $value }} quantum processing failures in the last 5 minutes."
+
+      - alert: QuantumProcessingTimeout
+        expr: increase(consciousness_quantum_timeouts_total[5m]) > 3
+        for: 5m
+        labels:
+          severity: warning
+          service: prime aligned compute-platform
+        annotations:
+          summary: "Quantum processing timeouts detected"
+          description: "There have been {{ $value }} quantum processing timeouts in the last 5 minutes."
+
+      # Authentication alerts
+      - alert: HighAuthenticationFailures
+        expr: increase(consciousness_auth_failures_total[5m]) > 10
+        for: 5m
+        labels:
+          severity: warning
+          service: prime aligned compute-platform
+        annotations:
+          summary: "High number of authentication failures"
+          description: "There have been {{ $value }} authentication failures in the last 5 minutes."
+
+      # Security alerts
+      - alert: SuspiciousActivityDetected
+        expr: increase(consciousness_security_alerts_total[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+          service: prime aligned compute-platform
+        annotations:
+          summary: "Suspicious security activity detected"
+          description: "Security monitoring has detected {{ $value }} suspicious activities."
+
+      # Business logic alerts
+      - alert: ConsciousnessProcessingBacklog
+        expr: consciousness_processing_queue_length > 100
+        for: 5m
+        labels:
+          severity: warning
+          service: prime aligned compute-platform
+        annotations:
+          summary: "prime aligned compute processing backlog"
+          description: "There are {{ $value }} items in the processing queue."
+
+      - alert: LowConsciousnessScore
+        expr: prime_aligned_score < 85
+        for: 10m
+        labels:
+          severity: info
+          service: prime aligned compute-platform
+        annotations:
+          summary: "Low prime aligned compute processing score"
+          description: "prime aligned compute processing score has dropped to {{ $value }}."
+
+  - name: kubernetes_alerts
+    rules:
+      - alert: KubernetesPodCrashLooping
+        expr: kube_pod_container_status_restarts_total{namespace="prime aligned compute-platform"} > 5
+        for: 5m
+        labels:
+          severity: warning
+          service: kubernetes
+        annotations:
+          summary: "Pod crash looping in prime aligned compute-platform namespace"
+          description: "Pod {{ $labels.pod }} has restarted {{ $value }} times in the last 5 minutes."
+
+      - alert: KubernetesNodeDown
+        expr: up{job="kubernetes-nodes"} == 0
+        for: 5m
+        labels:
+          severity: critical
+          service: kubernetes
+        annotations:
+          summary: "Kubernetes node is down"
+          description: "Node {{ $labels.node }} has been down for more than 5 minutes."

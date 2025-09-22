@@ -1,0 +1,130 @@
+<ion-app>
+  <!-- Side Menu -->
+  <ion-menu contentId="main-content" type="overlay" side="start" class="chaios-menu">
+    <ion-header>
+      <ion-toolbar color="primary" class="menu-header">
+        <ion-title class="menu-title">
+          <div class="title-content">
+            <span class="title-text">chAIos</span>
+            <small class="title-subtitle">prime aligned compute AI</small>
+          </div>
+        </ion-title>
+        <ion-buttons slot="end">
+          <ion-button 
+            fill="clear" 
+            [color]="getConnectionStatusColor()"
+            class="connection-status-btn"
+            (click)="showConnectionDetails()">
+            <ion-badge [color]="getConnectionStatusColor()" class="connection-badge">
+              <ion-icon 
+                [name]="getConnectionIcon()" 
+                class="connection-icon">
+              </ion-icon>
+              {{ getConnectionStatusText() }}
+            </ion-badge>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="menu-content">
+      <!-- User Profile Section -->
+      <div class="user-profile" *ngIf="isAuthenticated && currentUser">
+        <div class="profile-avatar">
+          <ion-icon name="person-outline" size="large"></ion-icon>
+        </div>
+        <div class="profile-info">
+          <h3>{{ currentUser.name || 'User' }}</h3>
+          <p>{{ currentUser.email }}</p>
+        </div>
+      </div>
+
+      <!-- Mathematical Constants Display -->
+      <div class="constants-display">
+        <div class="constant">
+          <span class="symbol">φ</span>
+          <span class="value">1.618034</span>
+          <span class="label">Golden Ratio</span>
+        </div>
+        <div class="constant">
+          <span class="symbol">σ</span>
+          <span class="value">0.381966</span>
+          <span class="label">Silver Ratio</span>
+        </div>
+      </div>
+
+      <!-- Navigation Menu -->
+      <ion-list lines="none" class="menu-list">
+        <ion-item 
+          *ngFor="let p of appPages; trackBy: trackByUrl" 
+          routerDirection="root" 
+          [routerLink]="[p.url]" 
+          routerLinkActive="active"
+          class="menu-item"
+          button
+          (click)="onMenuItemClick(p)"
+          [class.loading]="isNavigating">
+          <ion-icon 
+            aria-hidden="true" 
+            slot="start" 
+            [name]="p.icon"
+            class="menu-item-icon">
+          </ion-icon>
+          <ion-label class="menu-item-label">
+            {{ p.title }}
+            <ion-badge 
+              *ngIf="p.badge" 
+              [color]="p.badgeColor || 'primary'" 
+              class="menu-badge">
+              {{ p.badge }}
+            </ion-badge>
+          </ion-label>
+          <ion-icon 
+            *ngIf="isNavigating && selectedMenuItem === p.url"
+            name="ellipsis-horizontal"
+            slot="end"
+            class="loading-indicator">
+          </ion-icon>
+        </ion-item>
+      </ion-list>
+
+      <!-- Notifications -->
+      <div class="menu-section" *ngIf="isAuthenticated">
+        <ion-item button routerLink="/notifications" class="menu-item">
+          <ion-icon name="notifications-outline" slot="start"></ion-icon>
+          <ion-label>Notifications</ion-label>
+          <ion-badge slot="end" color="danger" *ngIf="unreadNotifications > 0">
+            {{ unreadNotifications }}
+          </ion-badge>
+        </ion-item>
+      </div>
+
+      <!-- Bottom Menu Items -->
+      <div class="menu-bottom">
+        <ion-item button routerLink="/help" class="menu-item">
+          <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+          <ion-label>Help & Support</ion-label>
+        </ion-item>
+
+        <ion-item button routerLink="/about" class="menu-item">
+          <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+          <ion-label>About chAIos</ion-label>
+        </ion-item>
+
+        <ion-item button (click)="logout()" class="menu-item logout-item" *ngIf="isAuthenticated">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          <ion-label>Logout</ion-label>
+        </ion-item>
+      </div>
+
+      <!-- Version Info -->
+      <div class="version-info">
+        <p>chAIos v1.0.0</p>
+        <p class="build-info">prime aligned compute AI Operating System</p>
+      </div>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Main Content -->
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-app>

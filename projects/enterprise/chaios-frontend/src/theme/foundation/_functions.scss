@@ -1,0 +1,169 @@
+// chAIos Foundation Functions
+// ===========================
+// Utility functions for mathematical calculations and design consistency
+
+// Golden Ratio Functions
+// ======================
+@function phi($multiplier: 1) {
+  @return 1.618034 * $multiplier;
+}
+
+@function sigma($multiplier: 1) {
+  @return 0.381966 * $multiplier;
+}
+
+// Spacing Functions (Golden Ratio Based)
+// ======================================
+@function spacing($multiplier: 1) {
+  @return 16px * $multiplier;
+}
+
+@function golden-spacing($level: 1) {
+  $base: 16px;
+  @if $level == 0 { @return $base * 0.25; }  // 4px
+  @if $level == 1 { @return $base * 0.5; }   // 8px
+  @if $level == 2 { @return $base; }         // 16px
+  @if $level == 3 { @return $base * 1.618; } // 26px
+  @if $level == 4 { @return $base * 2.618; } // 42px
+  @if $level == 5 { @return $base * 4.236; } // 68px
+  @return $base;
+}
+
+// Typography Functions
+// ===================
+@function font-size($scale: 1) {
+  @return 16px * $scale;
+}
+
+@function line-height($font-size) {
+  @return $font-size * 1.618; // Golden ratio line height
+}
+
+// Color Functions
+// ===============
+@function color-mix($color1, $color2, $weight: 50%) {
+  @return mix($color1, $color2, $weight);
+}
+
+@function color-alpha($color, $alpha: 0.5) {
+  @return rgba($color, $alpha);
+}
+
+@function color-lighten($color, $amount: 10%) {
+  @return lighten($color, $amount);
+}
+
+@function color-darken($color, $amount: 10%) {
+  @return darken($color, $amount);
+}
+
+// Consciousness Color Generator
+// ============================
+@function consciousness-color($hue: 120, $saturation: 50%, $lightness: 50%) {
+  @return hsl($hue, $saturation, $lightness);
+}
+
+// Quantum Color Shift
+// ===================
+@function quantum-shift($color, $degrees: 30) {
+  @return adjust-hue($color, $degrees);
+}
+
+// Mathematical Functions
+// ======================
+@function power($base, $exponent) {
+  $result: 1;
+  @for $i from 1 through $exponent {
+    $result: $result * $base;
+  }
+  @return $result;
+}
+
+@function fibonacci($n) {
+  @if $n <= 0 { @return 0; }
+  @if $n == 1 { @return 1; }
+  
+  $prev: 0;
+  $curr: 1;
+  
+  @for $i from 2 through $n {
+    $temp: $curr;
+    $curr: $prev + $curr;
+    $prev: $temp;
+  }
+  
+  @return $curr;
+}
+
+// Responsive Functions
+// ===================
+@function rem($pixels, $base: 16px) {
+  @return #{$pixels / $base}rem;
+}
+
+@function em($pixels, $context: 16px) {
+  @return #{$pixels / $context}em;
+}
+
+// Grid Functions
+// ==============
+@function grid-width($columns: 12, $column-width: 1fr, $gap: 1rem) {
+  @return calc(#{$columns} * #{$column-width} + #{$gap} * #{$columns - 1});
+}
+
+// Animation Functions
+// ==================
+@function ease-consciousness($t) {
+  // Custom easing based on golden ratio
+  @return cubic-bezier(0.618, 0, 0.382, 1);
+}
+
+// Validation Functions
+// ===================
+@function is-valid-color($color) {
+  @return type-of($color) == color;
+}
+
+@function is-valid-length($length) {
+  @return type-of($length) == number and not unitless($length);
+}
+
+// Utility Functions
+// ================
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  
+  @return $string;
+}
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+// Consciousness Mathematics
+// ========================
+@function consciousness-wave($amplitude: 1, $frequency: 1, $phase: 0) {
+  // Simulates consciousness wave patterns for animations
+  @return sin($frequency * $phase) * $amplitude;
+}
+
+@function harmonic-resonance($base-frequency: 440hz, $harmonic: 2) {
+  @return $base-frequency * $harmonic;
+}
+
+// Debug Functions
+// ===============
+@function debug-type($value) {
+  @return type-of($value);
+}
+
+@function debug-inspect($value) {
+  @return inspect($value);
+}

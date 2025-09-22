@@ -1,0 +1,258 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Admin Dashboard - koba42corp</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/llm-convo" fill="clear">
+        <ion-icon name="chatbubbles" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button (click)="router.navigate(['/home'])" fill="clear">
+        <ion-icon name="log-out" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="admin-content">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading admin dashboard...</p>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <div *ngIf="!loading" class="admin-dashboard">
+    <!-- Tab Navigation -->
+    <ion-segment [(ngModel)]="selectedTab" class="admin-tabs">
+      <ion-segment-button value="dashboard">
+        <ion-icon name="analytics"></ion-icon>
+        <ion-label>Dashboard</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="users">
+        <ion-icon name="people"></ion-icon>
+        <ion-label>Users</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="system">
+        <ion-icon name="server"></ion-icon>
+        <ion-label>System</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <!-- Dashboard Tab -->
+    <div *ngIf="selectedTab === 'dashboard'" class="tab-content">
+      <div class="stats-grid">
+        <!-- User Stats -->
+        <ion-card class="stat-card">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="people" color="primary"></ion-icon>
+              User Statistics
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="stat-item">
+              <span class="stat-label">Total Users</span>
+              <span class="stat-value">{{ systemStats?.users?.total || 0 }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Active Users</span>
+              <span class="stat-value">{{ systemStats?.users?.active || 0 }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">New Today</span>
+              <span class="stat-value">{{ systemStats?.users?.new_today || 0 }}</span>
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+        <!-- System Stats -->
+        <ion-card class="stat-card">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="hardware-chip" color="secondary"></ion-icon>
+              System Performance
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="stat-item">
+              <span class="stat-label">CPU Usage</span>
+              <ion-badge [color]="getStatusColor(systemStats?.system?.cpu_usage || 0)">
+                {{ systemStats?.system?.cpu_usage || 0 }}%
+              </ion-badge>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Memory Usage</span>
+              <ion-badge [color]="getStatusColor(systemStats?.system?.memory_usage || 0)">
+                {{ systemStats?.system?.memory_usage || 0 }}%
+              </ion-badge>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Uptime</span>
+              <span class="stat-value">{{ formatUptime(systemStats?.system?.uptime || 0) }}</span>
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+        <!-- prime aligned compute Stats -->
+        <ion-card class="stat-card">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="brain" color="tertiary"></ion-icon>
+              prime aligned compute Platform
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="stat-item">
+              <span class="stat-label">Processing Requests</span>
+              <span class="stat-value">{{ systemStats?.prime aligned compute?.processing_requests || 0 }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Success Rate</span>
+              <ion-badge color="success">{{ systemStats?.prime aligned compute?.success_rate || 0 }}%</ion-badge>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">prime aligned compute Score</span>
+              <ion-badge color="warning">{{ systemStats?.prime aligned compute?.prime_aligned_score || 0 }}</ion-badge>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <!-- Users Tab -->
+    <div *ngIf="selectedTab === 'users'" class="tab-content">
+      <div class="users-header">
+        <h2>User Management</h2>
+        <ion-button (click)="openUserModal()" color="primary">
+          <ion-icon name="person-add" slot="start"></ion-icon>
+          Add User
+        </ion-button>
+      </div>
+
+      <div class="users-list">
+        <ion-card *ngFor="let user of users" class="user-card">
+          <ion-card-content>
+            <div class="user-info">
+              <div class="user-details">
+                <h3>{{ user.full_name }}</h3>
+                <p>{{ user.email }}</p>
+                <ion-badge [color]="getRoleColor(user.role)">{{ user.role }}</ion-badge>
+              </div>
+              <div class="user-actions">
+                <ion-button fill="clear" color="danger" (click)="deleteUser(user.id)">
+                  <ion-icon name="trash" slot="icon-only"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+            <div class="user-meta">
+              <small>Created: {{ user.created_at | date:'short' }}</small>
+              <small>Last Login: {{ user.last_login | date:'short' }}</small>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <!-- System Tab -->
+    <div *ngIf="selectedTab === 'system'" class="tab-content">
+      <h2>System Monitoring</h2>
+      
+      <div class="system-grid">
+        <ion-card class="system-card">
+          <ion-card-header>
+            <ion-card-title>API Performance</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="metric-row">
+              <span>Response Time</span>
+              <span>{{ systemStats?.performance?.api_response_time || 0 }}ms</span>
+            </div>
+            <div class="metric-row">
+              <span>Cache Hit Rate</span>
+              <span>{{ systemStats?.performance?.cache_hit_rate || 0 }}%</span>
+            </div>
+            <div class="metric-row">
+              <span>WebSocket Connections</span>
+              <span>{{ systemStats?.performance?.websocket_connections || 0 }}</span>
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="system-card">
+          <ion-card-header>
+            <ion-card-title>Quick Actions</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button expand="block" routerLink="/llm-convo" color="primary">
+              <ion-icon name="chatbubbles" slot="start"></ion-icon>
+              Test prime aligned compute Chat
+            </ion-button>
+            <ion-button expand="block" href="http://localhost:8000/docs" target="_blank" color="secondary">
+              <ion-icon name="document-text" slot="start"></ion-icon>
+              API Documentation
+            </ion-button>
+            <ion-button expand="block" href="http://localhost:8000/health" target="_blank" color="tertiary">
+              <ion-icon name="pulse" slot="start"></ion-icon>
+              System Health Check
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Creation Modal -->
+  <ion-modal [isOpen]="showUserModal" (didDismiss)="closeUserModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Create New User</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeUserModal()">
+              <ion-icon name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content class="ion-padding">
+        <form [formGroup]="userForm" (ngSubmit)="createUser()">
+          <ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input formControlName="username"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" formControlName="email"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="floating">Full Name</ion-label>
+            <ion-input formControlName="full_name"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label>Role</ion-label>
+            <ion-select formControlName="role">
+              <ion-select-option value="user">User</ion-select-option>
+              <ion-select-option value="researcher">Researcher</ion-select-option>
+              <ion-select-option value="admin">Admin</ion-select-option>
+            </ion-select>
+          </ion-item>
+          
+          <ion-button expand="block" type="submit" [disabled]="!userForm.valid" class="create-user-btn">
+            Create User
+          </ion-button>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

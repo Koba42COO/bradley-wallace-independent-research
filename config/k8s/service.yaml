@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prime aligned compute-platform-service
+  namespace: prime aligned compute-platform
+  labels:
+    app: prime aligned compute-platform
+spec:
+  type: LoadBalancer
+  selector:
+    app: prime aligned compute-platform
+  ports:
+  - name: api
+    port: 8000
+    targetPort: 8000
+    protocol: TCP
+  - name: web
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  - name: https
+    port: 8443
+    targetPort: 8443
+    protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prime aligned compute-platform-internal
+  namespace: prime aligned compute-platform
+  labels:
+    app: prime aligned compute-platform
+spec:
+  type: ClusterIP
+  selector:
+    app: prime aligned compute-platform
+  ports:
+  - name: api-internal
+    port: 8000
+    targetPort: 8000
+    protocol: TCP
+  - name: web-internal
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+---
+# Database Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: prime aligned compute-postgres
+  namespace: prime aligned compute-platform
+  labels:
+    app: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+  - port: 5432
+    targetPort: 5432
+    protocol: TCP
+  clusterIP: None  # Headless service for stateful set
+
+---
+# Redis Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: prime aligned compute-redis
+  namespace: prime aligned compute-platform
+  labels:
+    app: redis
+spec:
+  selector:
+    app: redis
+  ports:
+  - port: 6379
+    targetPort: 6379
+    protocol: TCP
+  clusterIP: None  # Headless service for stateful set

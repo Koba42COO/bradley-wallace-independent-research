@@ -1,0 +1,80 @@
+# chAIos Protected Production Deployment
+# =====================================
+# Secure, obfuscated container deployment
+# Intellectual property fully protected
+
+version: '3.8'
+
+services:
+  chaios-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.protected
+    container_name: chaios-protected-api
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=WARNING
+      - PROTECTION_LEVEL=ENTERPRISE
+    volumes:
+      - ./logs:/var/log/chaios
+      - ./protected_data:/opt/chaios/data
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - chaios-network
+
+  chaios-monitor:
+    image: nginx:alpine
+    container_name: chaios-protected-monitor
+    ports:
+      - "8080:80"
+    volumes:
+      - ./monitoring/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./monitoring/dashboard:/usr/share/nginx/html:ro
+    depends_on:
+      - chaios-api
+    networks:
+      - chaios-network
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+
+  chaios-backup:
+    image: alpine:latest
+    container_name: chaios-protected-backup
+    volumes:
+      - ./protected_data:/backup/source:ro
+      - ./backups:/backup/destination
+    command: sh -c "tar -czf /backup/destination/chaios_backup_$(date +%Y%m%d_%H%M%S).tar.gz -C /backup/source . && echo 'Backup completed'"
+    networks:
+      - chaios-network
+
+networks:
+  chaios-network:
+    driver: bridge
+    internal: true
+
+volumes:
+  protected_data:
+    driver: local
+  chaios_logs:
+    driver: local
+
+# Security hardening
+secrets:
+  encryption_key:
+    file: ./secrets/encryption_key.txt
+  api_keys:
+    file: ./secrets/api_keys.json

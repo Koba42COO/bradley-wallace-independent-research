@@ -1,0 +1,10 @@
+ion-content {
+  --background: var(--ion-color-light-tint);
+}
+
+.message-list {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

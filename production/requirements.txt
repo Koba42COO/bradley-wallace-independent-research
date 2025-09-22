@@ -1,0 +1,11 @@
+# SquashPlot Enhanced Production Requirements
+# Core dependencies for production deployment
+
+# System monitoring and resource management
+psutil>=5.8.0
+
+# Argument parsing and CLI
+argparse
+
+# Standard library dependencies (bundled with Python)
+# subprocess, os, time, logging, signal, pathlib, shutil

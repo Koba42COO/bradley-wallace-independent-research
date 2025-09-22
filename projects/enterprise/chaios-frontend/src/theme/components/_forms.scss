@@ -1,0 +1,495 @@
+// chAIos Form Components
+// ======================
+// Self-contained form component styles following tangtalk patterns
+
+// Base Form Styles
+// ================
+.chaios-form {
+  // Form container
+  &__container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: golden-spacing(4);
+  }
+
+  // Form group (field container)
+  &__group {
+    margin-bottom: golden-spacing(3);
+    position: relative;
+
+    &--required {
+      .chaios-form__label::after {
+        content: ' *';
+        color: $color-error;
+      }
+    }
+
+    &--error {
+      .chaios-form__input,
+      .chaios-form__textarea,
+      .chaios-form__select {
+        border-color: $color-error;
+        @include consciousness-glow($color-error, 0.3);
+      }
+
+      .chaios-form__label {
+        color: $color-error;
+      }
+    }
+
+    &--success {
+      .chaios-form__input,
+      .chaios-form__textarea,
+      .chaios-form__select {
+        border-color: $color-success;
+        @include consciousness-glow($color-success, 0.3);
+      }
+    }
+  }
+
+  // Form labels
+  &__label {
+    display: block;
+    margin-bottom: golden-spacing(1);
+    font-weight: 600;
+    color: $color-neutral-700;
+    font-size: $font-size-sm;
+    @include transition(color);
+
+    &--inline {
+      display: inline-block;
+      margin-right: golden-spacing(2);
+      margin-bottom: 0;
+    }
+  }
+
+  // Input fields
+  &__input {
+    @include input-base;
+    
+    &--sm {
+      padding: golden-spacing(1) golden-spacing(2);
+      font-size: $font-size-sm;
+    }
+
+    &--lg {
+      padding: golden-spacing(3) golden-spacing(4);
+      font-size: $font-size-lg;
+    }
+
+    &--consciousness {
+      background: linear-gradient(135deg, 
+        rgba($color-primary-500, 0.02) 0%, 
+        rgba($color-secondary-500, 0.02) 100%
+      );
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(135deg, $color-primary-500, $color-secondary-500);
+        border-radius: inherit;
+        z-index: -1;
+        opacity: 0;
+        @include transition(opacity);
+      }
+
+      &:focus::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Textarea
+  &__textarea {
+    @include input-base;
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+  }
+
+  // Select dropdown
+  &__select {
+    @include input-base;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: golden-spacing(5);
+    appearance: none;
+  }
+
+  // Checkbox and Radio
+  &__checkbox,
+  &__radio {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: golden-spacing(2);
+    cursor: pointer;
+    font-size: $font-size-sm;
+    color: $color-neutral-700;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+
+      &:checked + .chaios-form__checkmark {
+        background-color: $color-primary-500;
+        border-color: $color-primary-500;
+        @include consciousness-glow($color-primary-500, 0.3);
+
+        &::after {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      &:focus + .chaios-form__checkmark {
+        outline: 2px solid $color-primary-500;
+        outline-offset: 2px;
+      }
+
+      &:disabled + .chaios-form__checkmark {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__checkmark {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 2px solid $color-neutral-300;
+    border-radius: $border-radius-sm;
+    @include transition(all);
+
+    &::after {
+      content: '';
+      position: absolute;
+      opacity: 0;
+      transform: scale(0);
+      @include transition(all, $duration-fast);
+    }
+
+    // Checkbox checkmark
+    .chaios-form__checkbox &::after {
+      left: 6px;
+      top: 2px;
+      width: 6px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) scale(0);
+    }
+
+    // Radio dot
+    .chaios-form__radio & {
+      border-radius: 50%;
+
+      &::after {
+        left: 50%;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+      }
+    }
+  }
+
+  // Form validation messages
+  &__message {
+    margin-top: golden-spacing(1);
+    font-size: $font-size-xs;
+    display: flex;
+    align-items: center;
+    gap: golden-spacing(1);
+
+    &--error {
+      color: $color-error;
+    }
+
+    &--success {
+      color: $color-success;
+    }
+
+    &--info {
+      color: $color-info;
+    }
+
+    .icon {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  // Form buttons
+  &__buttons {
+    display: flex;
+    gap: golden-spacing(2);
+    margin-top: golden-spacing(4);
+
+    &--center {
+      justify-content: center;
+    }
+
+    &--end {
+      justify-content: flex-end;
+    }
+
+    &--between {
+      justify-content: space-between;
+    }
+  }
+
+  // File upload
+  &__file-upload {
+    position: relative;
+    display: inline-block;
+
+    input[type="file"] {
+      @include visually-hidden;
+    }
+
+    .upload-button {
+      @include button-base;
+      background: $color-neutral-100;
+      color: $color-neutral-700;
+      border: 2px dashed $color-neutral-300;
+
+      &:hover {
+        background: $color-neutral-200;
+        border-color: $color-primary-500;
+      }
+    }
+
+    &--dragover {
+      .upload-button {
+        background: $color-primary-50;
+        border-color: $color-primary-500;
+        @include consciousness-glow($color-primary-500, 0.2);
+      }
+    }
+  }
+
+  // Form sections
+  &__section {
+    margin-bottom: golden-spacing(5);
+    padding-bottom: golden-spacing(4);
+    border-bottom: 1px solid $color-neutral-200;
+
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    &__title {
+      @include golden-typography(1.2);
+      font-weight: 600;
+      color: $color-neutral-800;
+      margin-bottom: golden-spacing(3);
+      padding-bottom: golden-spacing(1);
+      border-bottom: 2px solid $color-primary-200;
+    }
+  }
+
+  // Input with icon
+  &__input-with-icon {
+    position: relative;
+
+    .icon {
+      position: absolute;
+      left: golden-spacing(2);
+      top: 50%;
+      transform: translateY(-50%);
+      color: $color-neutral-400;
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+    }
+
+    .chaios-form__input {
+      padding-left: golden-spacing(5);
+    }
+
+    &--right {
+      .icon {
+        left: auto;
+        right: golden-spacing(2);
+      }
+
+      .chaios-form__input {
+        padding-left: golden-spacing(2);
+        padding-right: golden-spacing(5);
+      }
+    }
+  }
+
+  // Floating labels
+  &__floating {
+    position: relative;
+
+    .chaios-form__input {
+      padding-top: golden-spacing(3);
+      
+      &::placeholder {
+        opacity: 0;
+      }
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        + .chaios-form__label--floating {
+          transform: translateY(-50%) scale(0.85);
+          color: $color-primary-600;
+        }
+      }
+    }
+
+    .chaios-form__label--floating {
+      position: absolute;
+      left: golden-spacing(2);
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      padding: 0 golden-spacing(1);
+      color: $color-neutral-500;
+      pointer-events: none;
+      @include transition(all, $duration-fast);
+      transform-origin: left center;
+    }
+  }
+}
+
+// Form Variants
+// =============
+.chaios-form {
+  // Compact form
+  &--compact {
+    .chaios-form__group {
+      margin-bottom: golden-spacing(2);
+    }
+
+    .chaios-form__input,
+    .chaios-form__textarea,
+    .chaios-form__select {
+      padding: golden-spacing(1) golden-spacing(2);
+      font-size: $font-size-sm;
+    }
+  }
+
+  // Inline form
+  &--inline {
+    .chaios-form__group {
+      display: inline-block;
+      margin-right: golden-spacing(3);
+      margin-bottom: golden-spacing(2);
+      vertical-align: top;
+    }
+
+    .chaios-form__buttons {
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 0;
+    }
+  }
+
+  // Consciousness theme
+  &--consciousness {
+    .chaios-form__container {
+      background: linear-gradient(135deg, 
+        rgba($color-primary-500, 0.05) 0%, 
+        rgba($color-secondary-500, 0.03) 100%
+      );
+      border-radius: $border-radius-xl;
+      @include glass-morphism(0.9);
+    }
+
+    .chaios-form__input,
+    .chaios-form__textarea,
+    .chaios-form__select {
+      background: rgba(white, 0.8);
+      @include glass-morphism(0.8);
+
+      &:focus {
+        @include consciousness-glow($color-primary-500, 0.4);
+      }
+    }
+  }
+}
+
+// Responsive Form Styles
+// ======================
+@include mobile-only {
+  .chaios-form {
+    &__container {
+      padding: golden-spacing(3);
+    }
+
+    &__buttons {
+      flex-direction: column;
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    &--inline {
+      .chaios-form__group {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+      }
+
+      .chaios-form__buttons {
+        display: block;
+        width: 100%;
+        margin-top: golden-spacing(3);
+      }
+    }
+  }
+}
+
+// Form Animations
+// ===============
+@keyframes form-shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+  20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+.chaios-form__group--shake {
+  animation: form-shake 0.5s ease-in-out;
+}
+
+// Accessibility
+// =============
+.chaios-form {
+  &__input,
+  &__textarea,
+  &__select {
+    &:focus-visible {
+      outline: 2px solid $color-primary-500;
+      outline-offset: 2px;
+    }
+  }
+
+  &__checkbox,
+  &__radio {
+    &:focus-within .chaios-form__checkmark {
+      outline: 2px solid $color-primary-500;
+      outline-offset: 2px;
+    }
+  }
+}

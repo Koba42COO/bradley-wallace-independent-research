@@ -1,0 +1,19 @@
+groups:
+- name: chaios-alerts
+  rules:
+  - alert: HighResponseTime
+    annotations:
+      description: Response time is {{ $value }}s for {{ $labels.service }}
+      summary: High response time detected
+    expr: http_request_duration_seconds{quantile="0.5"} > 1
+    for: 5m
+    labels:
+      severity: warning
+  - alert: ServiceDown
+    annotations:
+      description: '{{ $labels.job }} service is down'
+      summary: Service is down
+    expr: up == 0
+    for: 5m
+    labels:
+      severity: critical

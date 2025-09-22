@@ -1,0 +1,44 @@
+config:
+  environment: production
+  logLevel: INFO
+image:
+  pullPolicy: IfNotPresent
+  repository: chaios
+  tag: latest
+ingress:
+  enabled: true
+  host: app.chaios.ai
+  tls: true
+monitoring:
+  enabled: true
+  grafana:
+    enabled: true
+  prometheus:
+    enabled: true
+replicaCount:
+  api-gateway: 3
+  cudnt-accelerator: 1
+  frontend: 3
+  knowledge-system: 2
+  polymath-brain: 2
+resources:
+  api-gateway:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+  cudnt-accelerator:
+    requests:
+      cpu: 2000m
+      memory: 4Gi
+  knowledge-system:
+    requests:
+      cpu: 1000m
+      memory: 2Gi
+  polymath-brain:
+    requests:
+      cpu: 1500m
+      memory: 3Gi
+secrets:
+  dbPassword: change-me-in-production
+  grafanaPassword: change-me-in-production
+  jwtSecretKey: change-me-in-production

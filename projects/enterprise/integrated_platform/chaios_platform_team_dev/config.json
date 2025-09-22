@@ -1,0 +1,11 @@
+{
+  "tier": "team_dev",
+  "environment": "development",
+  "api_url": "http://localhost:3000/api",
+  "features": {
+    "component_library": true,
+    "database_integration": true,
+    "docker_deployment": true,
+    "basic_monitoring": true
+  }
+}

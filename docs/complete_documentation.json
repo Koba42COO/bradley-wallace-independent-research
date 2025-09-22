@@ -1,0 +1,722 @@
+{
+  "metadata": {
+    "generated_at": "2025-09-18T07:28:47.741091",
+    "version": "1.0.0",
+    "platform": "chAIos Polymath Brain Platform"
+  },
+  "sections": {
+    "api_reference": {
+      "endpoints": {
+        "gateway": {
+          "base_url": "http://localhost:8000",
+          "endpoints": [
+            {
+              "path": "/health",
+              "method": "GET",
+              "description": "Health check"
+            },
+            {
+              "path": "/status",
+              "method": "GET",
+              "description": "System status"
+            },
+            {
+              "path": "/metrics",
+              "method": "GET",
+              "description": "Performance metrics"
+            },
+            {
+              "path": "/search",
+              "method": "GET",
+              "description": "Unified search"
+            },
+            {
+              "path": "/query",
+              "method": "POST",
+              "description": "Polymath query"
+            }
+          ]
+        },
+        "knowledge": {
+          "base_url": "http://localhost:8000/knowledge",
+          "endpoints": [
+            {
+              "path": "/search",
+              "method": "GET",
+              "description": "Knowledge search"
+            },
+            {
+              "path": "/stats",
+              "method": "GET",
+              "description": "Knowledge statistics"
+            },
+            {
+              "path": "/add",
+              "method": "POST",
+              "description": "Add knowledge"
+            }
+          ]
+        },
+        "ai": {
+          "base_url": "http://localhost:8000/ai",
+          "endpoints": [
+            {
+              "path": "/process",
+              "method": "POST",
+              "description": "AI processing"
+            },
+            {
+              "path": "/models",
+              "method": "GET",
+              "description": "Available models"
+            }
+          ]
+        }
+      },
+      "services": {
+        "knowledge_rag": {
+          "description": "Retrieval-Augmented Generation for knowledge queries",
+          "methods": [
+            "retrieve",
+            "generate",
+            "analyze"
+          ],
+          "parameters": [
+            "query",
+            "top_k",
+            "context"
+          ]
+        },
+        "polymath_brain": {
+          "description": "Advanced polymath reasoning and learning",
+          "methods": [
+            "query",
+            "learn",
+            "expand"
+          ],
+          "parameters": [
+            "query",
+            "domain",
+            "depth"
+          ]
+        },
+        "cudnt_accelerator": {
+          "description": "High-performance GPU acceleration",
+          "methods": [
+            "accelerate",
+            "optimize",
+            "benchmark"
+          ],
+          "parameters": [
+            "data",
+            "model",
+            "config"
+          ]
+        }
+      },
+      "data_models": {
+        "QueryRequest": {
+          "query": "str - The search query",
+          "domain": "Optional[str] - Knowledge domain filter",
+          "limit": "Optional[int] - Result limit (default: 10)"
+        },
+        "KnowledgeDocument": {
+          "id": "str - Unique document identifier",
+          "title": "str - Document title",
+          "content": "str - Document content",
+          "domain": "str - Knowledge domain",
+          "score": "float - Relevance score"
+        },
+        "SystemStatus": {
+          "status": "str - System health status",
+          "version": "str - Platform version",
+          "services": "Dict[str, Any] - Service status information"
+        }
+      }
+    },
+    "user_guide": {
+      "getting_started": {
+        "installation": {
+          "prerequisites": [
+            "Python 3.9+",
+            "Node.js 16+ (for frontend)",
+            "Docker (optional)",
+            "4GB RAM minimum"
+          ],
+          "steps": [
+            "Clone the repository",
+            "Install Python dependencies: pip install -r requirements.txt",
+            "Install Node.js dependencies: cd frontend && npm install",
+            "Run the platform: python final_product_launcher.py start"
+          ]
+        },
+        "first_query": {
+          "description": "Make your first polymath query",
+          "steps": [
+            "Open http://localhost:3000 in your browser",
+            "Navigate to the Query section",
+            "Enter: \"How can quantum computing improve AI?\"",
+            "Click Submit to see interdisciplinary analysis"
+          ]
+        }
+      },
+      "features": {
+        "polymath_queries": {
+          "description": "Advanced queries that draw from multiple knowledge domains",
+          "capabilities": [
+            "Cross-domain analysis",
+            "Analogical reasoning",
+            "prime aligned compute-enhanced responses",
+            "Multi-disciplinary insights"
+          ]
+        },
+        "knowledge_expansion": {
+          "description": "Continuous learning and knowledge growth",
+          "capabilities": [
+            "Automated content discovery",
+            "Cross-domain connection mapping",
+            "Self-directed learning patterns",
+            "Knowledge quality enhancement"
+          ]
+        },
+        "educational_pathways": {
+          "description": "Personalized learning journeys",
+          "capabilities": [
+            "Adaptive difficulty progression",
+            "Multi-domain curriculum",
+            "Progress tracking",
+            "Customized learning paths"
+          ]
+        }
+      },
+      "tutorials": {
+        "basic_search": {
+          "title": "Basic Knowledge Search",
+          "steps": [
+            "Navigate to the Search page",
+            "Enter your query in the search box",
+            "Select knowledge domains (optional)",
+            "Review interdisciplinary results"
+          ]
+        },
+        "advanced_query": {
+          "title": "Advanced Polymath Query",
+          "steps": [
+            "Go to the Query page",
+            "Enter a complex interdisciplinary question",
+            "Specify context and constraints",
+            "Analyze multi-domain insights and connections"
+          ]
+        },
+        "learning_path": {
+          "title": "Creating Learning Pathways",
+          "steps": [
+            "Access the Learning section",
+            "Define your learning objectives",
+            "Select knowledge domains",
+            "Follow personalized curriculum"
+          ]
+        }
+      },
+      "faq": {
+        "general": [
+          {
+            "question": "What is chAIos?",
+            "answer": "chAIos is a prime aligned compute-enhanced AI platform that combines quantum computing, advanced ML, and polymath-level reasoning across multiple knowledge domains."
+          },
+          {
+            "question": "How does it differ from other AI systems?",
+            "answer": "Unlike traditional AI, chAIos uses prime aligned compute mathematics, cross-domain reasoning, and self-directed learning to provide more holistic and insightful responses."
+          }
+        ],
+        "technical": [
+          {
+            "question": "What programming languages are supported?",
+            "answer": "The platform is primarily built with Python, with web interfaces using TypeScript/JavaScript and infrastructure using shell scripts and Docker."
+          },
+          {
+            "question": "Can I add my own knowledge?",
+            "answer": "Yes, you can integrate custom knowledge sources through the API or by extending the knowledge expansion modules."
+          }
+        ]
+      }
+    },
+    "developer_guide": {
+      "architecture": {
+        "overview": {
+          "description": "chAIos follows a microservices architecture with modular components",
+          "components": [
+            "API Gateway - Request routing and service orchestration",
+            "Knowledge Systems - RAG, polymath brain, and expansion modules",
+            "AI/ML Services - CUDNT acceleration and quantum computing",
+            "Educational Systems - Learning pathways and prime aligned compute enhancement",
+            "Web Scraping - Automated knowledge acquisition",
+            "Frontend - React/Ionic dashboard interface"
+          ]
+        },
+        "data_flow": {
+          "user_request": "API Gateway \u2192 Service Router \u2192 Knowledge Systems \u2192 Response",
+          "knowledge_expansion": "Web Scrapers \u2192 Knowledge Processors \u2192 Database \u2192 Cross-domain Mapping",
+          "learning": "User Interaction \u2192 Learning Pathways \u2192 Progress Tracking \u2192 Adaptation"
+        }
+      },
+      "api_integration": {
+        "authentication": {
+          "description": "JWT-based authentication system",
+          "endpoints": [
+            "POST /auth/login - User authentication",
+            "POST /auth/verify - Token verification",
+            "POST /auth/refresh - Token refresh"
+          ]
+        },
+        "service_discovery": {
+          "description": "Automatic service registration and health monitoring",
+          "health_checks": "Each service exposes /health endpoint",
+          "circuit_breaker": "Automatic failover for unhealthy services"
+        },
+        "rate_limiting": {
+          "description": "Configurable rate limiting by service and user",
+          "algorithms": [
+            "Token bucket",
+            "Leaky bucket"
+          ],
+          "configuration": "Set via service configuration files"
+        }
+      },
+      "extending_platform": {
+        "adding_services": {
+          "steps": [
+            "Create service class inheriting from base service",
+            "Implement required methods (start, stop, health)",
+            "Add service configuration",
+            "Register with service registry"
+          ],
+          "example": "\nfrom service_base import BaseService\n\nclass MyService(BaseService):\n    def __init__(self, config):\n        super().__init__(config)\n\n    def start(self):\n        # Service startup logic\n        pass\n\n    def health_check(self):\n        # Health check logic\n        return True\n                "
+        },
+        "knowledge_expansion": {
+          "steps": [
+            "Create knowledge processor class",
+            "Implement content extraction and processing",
+            "Add cross-domain mapping logic",
+            "Register with knowledge system"
+          ]
+        },
+        "ai_model_integration": {
+          "steps": [
+            "Wrap model in standardized interface",
+            "Implement preprocessing and postprocessing",
+            "Add model validation and monitoring",
+            "Register with AI service registry"
+          ]
+        }
+      },
+      "best_practices": {
+        "code_quality": [
+          "Follow PEP 8 style guidelines",
+          "Use type hints for function parameters",
+          "Write comprehensive docstrings",
+          "Implement proper error handling",
+          "Add unit tests for all modules"
+        ],
+        "performance": [
+          "Use async/await for I/O operations",
+          "Implement caching for expensive operations",
+          "Profile code to identify bottlenecks",
+          "Use appropriate data structures",
+          "Monitor memory usage and leaks"
+        ],
+        "security": [
+          "Validate all user inputs",
+          "Use parameterized queries for database access",
+          "Implement proper authentication and authorization",
+          "Keep dependencies updated",
+          "Use environment variables for sensitive data"
+        ],
+        "deployment": [
+          "Use Docker for containerization",
+          "Implement health checks for all services",
+          "Use environment-specific configurations",
+          "Implement proper logging and monitoring",
+          "Plan for scalability from the start"
+        ]
+      }
+    },
+    "architecture": {
+      "system_overview": {
+        "description": "chAIos is a prime aligned compute-enhanced AI platform with modular microservices architecture",
+        "core_principles": [
+          "Modularity - Each component is independently deployable",
+          "Scalability - Horizontal scaling for all services",
+          "Resilience - Circuit breakers and automatic failover",
+          "Observability - Comprehensive monitoring and logging"
+        ],
+        "technology_stack": {
+          "backend": [
+            "Python",
+            "FastAPI",
+            "SQLAlchemy",
+            "Redis"
+          ],
+          "frontend": [
+            "Angular",
+            "Ionic",
+            "TypeScript",
+            "SCSS"
+          ],
+          "ai_ml": [
+            "TensorFlow",
+            "PyTorch",
+            "CUDNT",
+            "NumPy"
+          ],
+          "infrastructure": [
+            "Docker",
+            "Kubernetes",
+            "Nginx",
+            "PostgreSQL"
+          ]
+        }
+      },
+      "component_details": {
+        "api_gateway": {
+          "purpose": "Central request routing and service orchestration",
+          "technologies": [
+            "FastAPI",
+            "httpx",
+            "Redis"
+          ],
+          "responsibilities": [
+            "Request routing and load balancing",
+            "Authentication and authorization",
+            "Rate limiting and circuit breaking",
+            "Response aggregation and caching"
+          ]
+        },
+        "knowledge_system": {
+          "purpose": "Intelligent knowledge retrieval and synthesis",
+          "components": [
+            "RAG",
+            "Polymath Brain",
+            "Cross-domain Mapper"
+          ],
+          "technologies": [
+            "Transformers",
+            "FAISS",
+            "NetworkX"
+          ],
+          "capabilities": [
+            "Multi-source knowledge integration",
+            "Interdisciplinary reasoning",
+            "prime aligned compute-enhanced responses",
+            "Continuous knowledge expansion"
+          ]
+        },
+        "ai_accelerator": {
+          "purpose": "High-performance AI computation and acceleration",
+          "components": [
+            "CUDNT",
+            "Quantum Simulator",
+            "GPU Optimizer"
+          ],
+          "technologies": [
+            "CUDA",
+            "OpenCL",
+            "Qiskit"
+          ],
+          "capabilities": [
+            "GPU acceleration for ML workloads",
+            "Quantum algorithm simulation",
+            "Performance optimization",
+            "Energy-efficient computing"
+          ]
+        }
+      },
+      "data_flow": {
+        "user_query_flow": [
+          "User submits query via frontend",
+          "API Gateway receives and authenticates request",
+          "Request routed to appropriate knowledge service",
+          "Knowledge service processes query with cross-domain analysis",
+          "Response aggregated and returned to user"
+        ],
+        "knowledge_expansion_flow": [
+          "Web scrapers discover new content",
+          "Content processed and stored in knowledge base",
+          "Cross-domain mapper identifies connections",
+          "Polymath brain learns new patterns",
+          "Knowledge quality continuously improved"
+        ],
+        "learning_flow": [
+          "User interacts with learning pathways",
+          "Progress tracked and analyzed",
+          "Personalization algorithms adapt content",
+          "prime aligned compute enhancement improves retention",
+          "Feedback loop optimizes learning experience"
+        ]
+      },
+      "deployment_architecture": {
+        "development": {
+          "description": "Local development environment",
+          "components": [
+            "Local Python services",
+            "SQLite database",
+            "Local Redis"
+          ],
+          "deployment": "Direct Python execution with hot reload"
+        },
+        "staging": {
+          "description": "Pre-production testing environment",
+          "components": [
+            "Docker containers",
+            "PostgreSQL",
+            "Redis cluster"
+          ],
+          "deployment": "Docker Compose with monitoring"
+        },
+        "production": {
+          "description": "Full production deployment",
+          "components": [
+            "Kubernetes pods",
+            "Managed databases",
+            "Load balancers"
+          ],
+          "deployment": "Kubernetes with auto-scaling and monitoring"
+        }
+      }
+    },
+    "deployment": {
+      "prerequisites": {
+        "system_requirements": {
+          "os": [
+            "Linux (Ubuntu 20.04+)",
+            "macOS (10.15+)",
+            "Windows 10+ (WSL)"
+          ],
+          "cpu": "4+ cores recommended",
+          "ram": "8GB minimum, 16GB recommended",
+          "storage": "20GB available space",
+          "network": "Stable internet connection for knowledge expansion"
+        },
+        "software_dependencies": {
+          "python": "Python 3.9 or higher",
+          "nodejs": "Node.js 16+ (for frontend)",
+          "docker": "Docker 20+ (optional but recommended)",
+          "git": "Git for version control"
+        }
+      },
+      "installation": {
+        "quick_start": [
+          "git clone <repository-url>",
+          "cd chaios-platform",
+          "pip install -r requirements.txt",
+          "python final_product_launcher.py start"
+        ],
+        "full_installation": [
+          "Clone the repository",
+          "Install Python dependencies",
+          "Install Node.js dependencies for frontend",
+          "Configure environment variables",
+          "Initialize database",
+          "Start services"
+        ],
+        "docker_installation": [
+          "Ensure Docker and Docker Compose are installed",
+          "docker-compose up -d",
+          "Wait for services to initialize",
+          "Access platform at http://localhost:8000"
+        ]
+      },
+      "configuration": {
+        "environment_variables": {
+          "ENVIRONMENT": "development/staging/production",
+          "DATABASE_URL": "Database connection string",
+          "REDIS_URL": "Redis connection string",
+          "JWT_SECRET_KEY": "JWT signing key",
+          "API_PORT": "API service port (default: 8000)"
+        },
+        "service_configuration": {
+          "config/platform_config.json": "Main platform configuration",
+          "config/development_config.json": "Environment-specific settings",
+          "config/secrets.json": "Sensitive configuration (not in version control)"
+        },
+        "feature_flags": {
+          "knowledge_expansion": "Enable/disable automatic knowledge growth",
+          "polymath_training": "Enable/disable advanced reasoning",
+          "quantum_acceleration": "Enable/disable quantum computing features"
+        }
+      },
+      "environments": {
+        "development": {
+          "purpose": "Local development and testing",
+          "database": "SQLite (file-based)",
+          "cache": "Local Redis or memory",
+          "monitoring": "Basic logging only",
+          "scaling": "Single instance per service"
+        },
+        "staging": {
+          "purpose": "Pre-production testing and validation",
+          "database": "PostgreSQL in Docker",
+          "cache": "Redis cluster",
+          "monitoring": "Prometheus + Grafana",
+          "scaling": "Multiple instances with load balancing"
+        },
+        "production": {
+          "purpose": "Live production environment",
+          "database": "Managed PostgreSQL/RDS",
+          "cache": "Managed Redis/ElastiCache",
+          "monitoring": "Full observability stack",
+          "scaling": "Auto-scaling Kubernetes deployment"
+        }
+      },
+      "troubleshooting": {
+        "common_issues": [
+          {
+            "issue": "Service fails to start",
+            "symptoms": "Port already in use, missing dependencies",
+            "solutions": [
+              "Check port availability: lsof -i :PORT",
+              "Verify dependencies: pip list",
+              "Check logs: tail -f logs/service.log"
+            ]
+          },
+          {
+            "issue": "Database connection errors",
+            "symptoms": "Connection refused, authentication failed",
+            "solutions": [
+              "Verify database is running",
+              "Check connection string format",
+              "Validate credentials and permissions"
+            ]
+          },
+          {
+            "issue": "High memory usage",
+            "symptoms": "System slowdown, out of memory errors",
+            "solutions": [
+              "Monitor memory usage: htop or top",
+              "Adjust worker processes in config",
+              "Implement memory profiling"
+            ]
+          }
+        ],
+        "logs_and_monitoring": {
+          "log_files": [
+            "logs/api_gateway.log",
+            "logs/knowledge_system.log",
+            "logs/polymath_brain.log"
+          ],
+          "monitoring_endpoints": [
+            "http://localhost:8000/metrics",
+            "http://localhost:9090 (Prometheus)",
+            "http://localhost:3001 (Grafana)"
+          ]
+        }
+      }
+    },
+    "troubleshooting": {
+      "common_issues": {
+        "service_startup_failures": {
+          "causes": [
+            "Port already in use",
+            "Missing dependencies",
+            "Configuration errors",
+            "Insufficient permissions"
+          ],
+          "solutions": [
+            "Check port availability: netstat -tlnp | grep PORT",
+            "Install missing packages: pip install -r requirements.txt",
+            "Validate configuration files",
+            "Run with appropriate user permissions"
+          ]
+        },
+        "database_connection_issues": {
+          "causes": [
+            "Database server not running",
+            "Incorrect connection parameters",
+            "Network connectivity problems",
+            "Authentication failures"
+          ],
+          "solutions": [
+            "Start database service: sudo systemctl start postgresql",
+            "Verify connection string in configuration",
+            "Test network connectivity: ping database_host",
+            "Check database user credentials and permissions"
+          ]
+        },
+        "memory_and_performance_issues": {
+          "causes": [
+            "Insufficient RAM",
+            "Memory leaks in application code",
+            "High concurrent connections",
+            "Inefficient algorithms"
+          ],
+          "solutions": [
+            "Monitor memory usage: htop or ps aux --sort=-%mem",
+            "Implement memory profiling: memory_profiler",
+            "Adjust connection pool settings",
+            "Optimize algorithms and data structures"
+          ]
+        }
+      },
+      "performance_issues": {
+        "slow_query_responses": {
+          "diagnosis": [
+            "Check database query performance",
+            "Monitor API response times",
+            "Analyze service logs for bottlenecks"
+          ],
+          "optimization": [
+            "Add database indexes on frequently queried columns",
+            "Implement caching for expensive operations",
+            "Optimize database queries and reduce N+1 queries"
+          ]
+        },
+        "high_cpu_usage": {
+          "diagnosis": [
+            "Profile CPU usage by service",
+            "Check for infinite loops or recursive functions",
+            "Monitor background task performance"
+          ],
+          "optimization": [
+            "Implement asynchronous processing for I/O operations",
+            "Use multiprocessing for CPU-intensive tasks",
+            "Optimize algorithms and reduce computational complexity"
+          ]
+        }
+      },
+      "debugging_tools": {
+        "python_debugging": {
+          "pdb": "Python debugger - import pdb; pdb.set_trace()",
+          "logging": "Structured logging with different levels",
+          "profiling": "cProfile for performance analysis"
+        },
+        "system_monitoring": {
+          "htop": "Interactive process viewer",
+          "iotop": "I/O monitoring",
+          "nmon": "System performance monitoring"
+        },
+        "network_debugging": {
+          "curl": "Test API endpoints",
+          "netstat": "Network connection monitoring",
+          "tcpdump": "Network packet analysis"
+        }
+      },
+      "support_resources": {
+        "documentation": [
+          "API Reference: docs/api/",
+          "User Guide: docs/user/",
+          "Developer Guide: docs/developer/"
+        ],
+        "community_support": [
+          "GitHub Issues: Report bugs and request features",
+          "Discussion Forum: Community support and Q&A",
+          "Stack Overflow: Technical questions and solutions"
+        ],
+        "professional_services": [
+          "Enterprise Support: 24/7 technical assistance",
+          "Consulting Services: Architecture review and optimization",
+          "Training Programs: Platform usage and development courses"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "dashboard": {
+    "title": "chAIos Platform Overview",
+    "tags": [
+      "chaios",
+      "platform"
+    ],
+    "timezone": "browser",
+    "panels": [
+      {
+        "title": "API Response Time",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "http_request_duration_seconds{quantile=\"0.95\"}",
+            "legendFormat": "{{ service }}"
+          }
+        ]
+      },
+      {
+        "title": "Service Health",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "up",
+            "legendFormat": "{{ job }}"
+          }
+        ]
+      }
+    ]
+  }
+}
