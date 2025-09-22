@@ -1,18 +1,17 @@
-<<<<<<< HEAD
-# 🧠 SquashPlot - Advanced Chia Compression Technology
+# 🧠 SquashPlot Beta - Chia Plotting Optimization Tool
 
 <div align="center">
 
-![SquashPlot Logo](https://img.shields.io/badge/SquashPlot-Advanced_Compression-blue?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDMTMuMSAyIDE0IDIuOSAxNCA0VjE2QzE0IDE3LjEgMTMuMSAxOCA5LjUgMThIMTUuNUMxNy4xIDE4IDE4IDE3LjEgMTggMTZWNFMxNy4xIDMgMTUuNSAzSDEyQzEwLjkgMyA5LjUgMyA5LjUgNFYxNkM5LjUgMTYuNSAxMC4xIDE3IDExLjUgMTdIMTUuNUMxNi45IDE3IDE3LjUgMTYuNSAxNy41IDE2VjRDMTcuNSAyLjkgMTYuOSAyIDE1LjUgMkgxMloiIGZpbGw9IiMzQjgxRjYiLz4KPHBhdGggZD0iTTEyIDJDMTMuMSAyIDE0IDIuOSAxNCA0VjE2QzE0IDE3LjEgMTMuMSAxOCA5LjUgMThIMTUuNUMxNy4xIDE4IDE4IDE3LjEgMTggMTZWNFMxNy4xIDMgMTUuNSAzSDEyQzEwLjkgMyA5LjUgMyA5LjUgNFYxNkM5LjUgMTYuNSAxMC4xIDE3IDExLjUgMTdIMTUuNUMxNi45IDE3IDE3LjUgMTYuNSAxNy41IDE2VjRDMTcuNSAyLjkgMTYuOSAyIDE1LjUgMkgxMloiIGZpbGw9IiMzQjgxRjYiLz4KPC9zdmc+)
+![SquashPlot Logo](https://img.shields.io/badge/SquashPlot-Beta-blue?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDMTMuMSAyIDE0IDIuOSAxNCA0VjE2QzE0IDE3LjEgMTMuMSAxOCA5LjUgMThIMTUuNUMxNy4xIDE4IDE4IDE3LjEgMTggMTZWNFMxNy4xIDMgMTUuNSAzSDEyQzEwLjkgMyA5LjUgMyA5LjUgNFYxNkM5LjUgMTYuNSAxMC4xIDE3IDExLjUgMTdIMTUuNUMxNi45IDE3IDE3LjUgMTYuNSAxNy41IDE2VjRDMTcuNSAyLjkgMTYuOSAyIDE1LjUgMkgxMloiIGZpbGw9IiMzQjgxRjYiLz4KPHBhdGggZD0iTTEyIDJDMTMuMSAyIDE0IDIuOSAxNCA0VjE2QzE0IDE3LjEgMTMuMSAxOCA5LjUgMThIMTUuNUMxNy4xIDE4IDE4IDE3LjEgMTggMTZWNFMxNy4xIDMgMTUuNSAzSDEyQzEwLjkgMyA5LjUgMyA5LjUgNFYxNkM5LjUgMTYuNSAxMC4xIDE3IDExLjUgMTdIMTUuNUMxNi45IDE3IDE3LjUgMTYuNSAxNy41IDE2VjRDMTcuNSAyLjkgMTYuOSAyIDE1LjUgMkgxMloiIGZpbGw9IiMzQjgxRjYiLz4KPC9zdmc+)
 
-**Revolutionary Chia Plot Compression Technology**
+**Chia Plotting Optimization Tool - Beta Version**
 
 [🚀 Deploy on Replit](https://replit.com/github/squashplot/squashplot) • [📖 Documentation](https://github.com/squashplot/squashplot/wiki) • [🌐 Live Demo](https://squashplot.replit.dev) • [💬 Discord](https://discord.gg/squashplot)
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Replit](https://img.shields.io/badge/Deploy-Replit-orange.svg)](https://replit.com/github/squashplot/squashplot)
-[![Stars](https://img.shields.io/github/stars/squashplot/squashplot?style=social)](https://github.com/squashplot/squashplot)
+[![Beta](https://img.shields.io/badge/Status-Beta-yellow.svg)](https://github.com/squashplot/squashplot)
 
 </div>
 
@@ -20,24 +19,25 @@
 
 ## 📊 **Overview**
 
-**SquashPlot** is a cutting-edge compression technology specifically designed for Chia blockchain farming. It revolutionizes plot storage by achieving industry-leading compression ratios while maintaining 100% farming compatibility.
+**SquashPlot Beta** is an experimental Chia blockchain farming optimization tool. This beta version provides plotting capabilities with web interface management and research frameworks for Chia farming optimization.
 
-### 🎯 **Key Features**
+### 🎯 **Beta Features**
 
 <div align="center">
 
-| Feature | Basic (FREE) | Pro (Enhanced) |
-|---------|-------------|----------------|
-| **Compression Ratio** | 42% | Up to 70% |
-| **Processing Speed** | 2x faster | Up to 2x faster |
-| **Farming Compatibility** | ✅ 100% | ✅ 100% |
-| **Web Interface** | ✅ Professional | ✅ Professional |
-| **CLI Tools** | ✅ Complete | ✅ Complete |
-| **Advanced Algorithms** | ✅ Multi-stage | ✅ Enhanced |
-| **Research Frameworks** | ❌ | ✅ 600+ files |
-| **AI/ML Integration** | ❌ | ✅ Advanced |
+| Feature | Status | Notes |
+|---------|--------|--------|
+| **Plotting Engine** | ✅ Beta | Chia plotting capabilities |
+| **Web Interface** | ✅ Beta | Dashboard and management |
+| **CLI Tools** | ✅ Beta | Command-line utilities |
+| **Wallet Integration** | ✅ Beta | Chia wallet support |
+| **Research Frameworks** | ✅ Beta | Experimental algorithms |
+| **Performance Monitoring** | ✅ Beta | Metrics and analytics |
+| **GPU Support** | 🚧 Experimental | F2 optimization |
 
 </div>
+
+> **⚠️ Beta Notice**: This is experimental software. Features may change or be removed.
 
 ---
 
@@ -88,59 +88,53 @@ python compression_validator.py --size 100
 
 ---
 
-## 🎛️ **How It Works**
+## 🎛️ **Beta Architecture**
 
-### **Multi-Stage Compression Pipeline**
+### **Plotting Pipeline**
 
 ```mermaid
 graph TD
-    A[Input Plot File] --> B[Data Analysis]
-    B --> C[Algorithm Selection]
-    C --> D[Zlib Compression]
-    D --> E[Bz2 Compression]
-    E --> F[Lzma Compression]
-    F --> G[Metadata Addition]
-    G --> H[Integrity Verification]
-    H --> I[Compressed Output]
+    A[Plotting Request] --> B[Resource Allocation]
+    B --> C[Plot Generation]
+    C --> D[Verification]
+    D --> E[Storage]
+    E --> F[Web Interface]
 ```
 
-### **Advanced Features**
+### **Beta Features**
 
-- **🔬 Adaptive Algorithms**: Automatic algorithm selection based on data patterns
-- **🧠 prime aligned compute Mathematics**: Advanced pattern recognition (Pro version)
-- **⚡ GPU Optimization**: Hardware-accelerated compression
-- **🔐 Data Integrity**: SHA256 verification ensures perfect fidelity
-- **📊 Real-time Analytics**: Performance monitoring and optimization
-- **🔗 Wallet Integration**: Seamless connection with Chia wallets
+- **🔬 Experimental Algorithms**: Research-grade plotting optimization
+- **🧠 Advanced Mathematics**: Pattern recognition frameworks
+- **⚡ GPU Support**: Hardware acceleration (experimental)
+- **🔐 Data Integrity**: SHA256 verification for plot validation
+- **📊 Real-time Monitoring**: Performance metrics and analytics
+- **🔗 Wallet Integration**: Chia wallet connectivity
 
 ---
 
-## 📈 **Performance**
+## 📈 **Beta Performance**
 
-### **Compression Benchmarks**
+### **Current Capabilities**
 
 <div align="center">
 
-| Plot Size | Basic Version | Pro Version | Improvement |
-|-----------|---------------|-------------|-------------|
-| **K-30** | 42% ratio | Up to 70% | +67% |
-| **K-32** | 42% ratio | Up to 70% | +67% |
-| **K-34** | 42% ratio | Up to 70% | +67% |
+| Feature | Status | Notes |
+|---------|--------|-------|
+| **K-Size Support** | ✅ K-30, K-32, K-34 | Standard Chia plot sizes |
+| **Platform Support** | ✅ Windows, Linux, macOS | Cross-platform compatibility |
+| **Wallet Integration** | ✅ Chia, Sage, Goby | Multiple wallet support |
+| **GPU Acceleration** | 🚧 Experimental | F2 optimization |
 
 </div>
 
-### **Speed Improvements**
+### **Beta Status**
 
-- **Basic**: 2x faster than standard Chia plotting
-- **Pro**: Up to 2x faster with enhanced algorithms
-- **Memory Usage**: 8GB typical (245x more efficient than Bladebit)
+- **Stability**: Experimental - expect bugs and changes
+- **Performance**: Baseline Chia plotting capabilities
+- **Memory Usage**: Standard requirements (8GB+ recommended)
+- **Compatibility**: Chia farming compatible (beta testing)
 
-### **Compatibility**
-
-- ✅ **100% Chia Farming Compatible**
-- ✅ **All K-sizes supported** (K-30 through K-34)
-- ✅ **Cross-platform** (Windows, Linux, macOS)
-- ✅ **Wallet Integration** (Chia, Sage, Goby)
+> **⚠️ Beta Limitations**: Performance metrics are being established during testing phase.
 
 ---
 
@@ -185,15 +179,15 @@ The SquashPlot web interface provides:
 - **🔗 Integration Systems**: 125+ API and integration tools
 - **🛠️ Utility Scripts**: 461+ helper and utility functions
 
-### **Technical Whitepaper**
+### **Technical Documentation**
 
-📖 **[Read the Technical Whitepaper](SQUASHPLOT_TECHNICAL_WHITEPAPER.md)**
+📖 **[Read the Technical Documentation](SQUASHPLOT_TECHNICAL_WHITEPAPER.md)**
 
 Covers:
-- Advanced compression algorithms
-- prime aligned compute mathematics integration
-- Performance optimization techniques
-- Security and validation frameworks
+- Experimental plotting algorithms
+- Advanced mathematical frameworks
+- Performance analysis techniques
+- Research and validation methods
 
 ---
 
@@ -252,13 +246,13 @@ python squashplot.py -t /tmp/plot1 -d /plots -f <farmer_key> -p <pool_key> --com
 python squashplot.py -t /tmp/plot1 -d /plots -f <farmer_key> -p <pool_key> -c <pool_contract>
 ```
 
-### **Compression Mode**
+### **Research Mode**
 ```bash
-# Compress existing plot files
-python squashplot.py --mode compress --input plot.dat --output plot.squash --compress 4
+# Run experimental algorithms
+python squashplot.py --mode research --input data.json --output analysis.json
 
-# Batch compression
-python squashplot.py --mode compress --input plots/ --output compressed/ --compress 3
+# Benchmark plotting performance
+python squashplot.py --mode benchmark --iterations 10
 ```
 
 ### **Web Interface**
@@ -293,10 +287,10 @@ chia keys show
 ## 🎯 **Use Cases**
 
 ### **For Chia Farmers**
-- **💾 Storage Optimization**: Reduce plot storage by 42-70%
-- **⚡ Performance**: Faster plotting and farming
-- **💰 Cost Savings**: Lower infrastructure costs
-- **🔧 Easy Management**: Professional web interface
+- **🔬 Research Tool**: Experimental plotting optimization
+- **⚡ Performance Testing**: Plotting performance analysis
+- **🔧 Web Management**: Dashboard for plot monitoring
+- **🧪 Beta Testing**: Help improve Chia farming tools
 
 ### **For Developers**
 - **🔬 Research Framework**: Advanced algorithms and research
@@ -474,7 +468,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## 🙏 **Acknowledgments**
+## 🙏 **Beta Acknowledgments**
 
 ### **Open Source Libraries**
 - **NumPy** - Scientific computing
@@ -483,15 +477,14 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - **Pytest** - Testing framework
 
 ### **Research Contributions**
-- **Christopher Wallace** - prime aligned compute mathematics
-- **Mathematical Research Team** - Advanced algorithms
-- **Quantum Computing Group** - Quantum frameworks
-- **AI/ML Research Team** - Machine learning integrations
+- **Mathematical Research Team** - Algorithm development
+- **Chia Community** - Farming ecosystem insights
+- **Beta Testers** - Valuable feedback and testing
 
 ### **Community**
 - **Chia Network** - Blockchain farming ecosystem
 - **Open Source Community** - Libraries and frameworks
-- **Beta Testers** - Valuable feedback and testing
+- **Research Community** - Algorithm contributions
 
 ---
 
@@ -511,7 +504,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## 🎉 **Ready to Revolutionize Chia Farming?**
+## 🎉 **Join the Beta Testing Program**
 
 <div align="center">
 
@@ -519,51 +512,43 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 [![Run on Replit](https://replit.com/badge/github/squashplot/squashplot)](https://replit.com/github/squashplot/squashplot)
 
-**Free • Fast • Powerful • Revolutionary**
+**Experimental • Research • Community • Beta**
 
 ---
 
-### **📧 Stay Connected**
+### **📧 Beta Community**
 
 - 🌟 **Star** this repository for updates
-- 🔔 **Watch** for new releases
-- 🍴 **Fork** to contribute
-- 📣 **Share** with the community
+- 🐛 **Report** beta issues and feedback
+- 🍴 **Fork** to contribute improvements
+- 📣 **Share** your beta testing experience
 
 ---
 
-**Built with ❤️ by the SquashPlot Development Team**
+**Built with ❤️ by the SquashPlot Beta Team**
 
-**Revolutionizing Chia farming, one compressed plot at a time!** 🧠💎🌟
+**Advancing Chia farming through experimental research and community collaboration!** 🧠🌱🚀
 
 </div>
 
 ---
 
-## 📈 **Roadmap**
+## 📈 **Beta Roadmap**
 
-### **Phase 1: Core Features** ✅
-- Basic compression engine
-- Web interface
-- Wallet integration
-- Documentation
+### **Current Beta Phase** ✅
+- Experimental plotting engine
+- Web interface and monitoring
+- Research framework integration
+- Community beta testing
 
-### **Phase 2: Advanced Features** 🚧
-- prime aligned compute mathematics
-- Quantum computing integration
-- AI/ML enhancements
-- Enterprise features
-
-### **Phase 3: Ecosystem** 🔮
-- Mobile applications
-- Cloud deployment
-- Multi-user management
-- Advanced analytics
+### **Future Development** 🔮
+- Performance optimizations
+- Additional research algorithms
+- Enhanced user experience
+- Production stability improvements
 
 ---
 
-*For the latest updates, star this repository and join our Discord community!*"
-=======
-# squashplot
-chia plot precompression
->>>>>>> 8e7d59fa569ee7a8809dd8b436801731ddabeae9
+*For the latest beta updates, star this repository and join our Discord community!*
+
+> **⚠️ Beta Software Notice**: This is experimental software for research and testing purposes. Use at your own risk.
