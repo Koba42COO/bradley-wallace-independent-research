@@ -3,12 +3,12 @@
 SquashPlot - Advanced Chia Plot Compression Tool
 ===============================================
 
-Revolutionary Chia plotting solution featuring:
-- prime aligned compute-Enhanced Compression Technology
-- Wallace Transform with Golden Ratio Optimization
-- CUDNT Complexity Reduction (O(n²) → O(n^1.44))
+Professional Chia plotting solution featuring:
+- Advanced Multi-Stage Compression (Zstandard, Brotli, LZ4)
+- Chia Blockchain Integration
 - Professional Web Dashboard
-- Mad Max/BladeBit Compatible Interface
+- Mad Max/BladeBit Compatible CLI
+- GPU Optimization & Resource Management
 """
 
 import os
@@ -23,7 +23,7 @@ def main():
     """Main entry point"""
     print("🗜️ SquashPlot - Advanced Chia Plot Compression")
     print("=" * 60)
-    print("🧠 prime aligned compute Enhancement | ⚡ Golden Ratio Optimization | 🔗 Chia Integration")
+    print("🔧 Multi-Stage Compression | 🌱 Chia Integration | 📊 Professional Dashboard")
     print("=" * 60)
 
     parser = argparse.ArgumentParser(description="SquashPlot - Advanced Chia Plot Compression Tool")
@@ -57,29 +57,19 @@ def start_web_interface(port=5000):
     print()
 
     try:
-        # Import and start SquashPlot dashboard
-        from squashplot_dashboard import SquashPlotDashboard
-        from squashplot_chia_system import ChiaFarmingManager
-        import webbrowser
+        # Import and start SquashPlot web server
+        from src.web_server import app
 
-        print("✅ SquashPlot Platform started successfully!")
-        print("🌐 Open your browser to access the SquashPlot Dashboard")
-        print("💡 Click 'Run' in Replit to start the server")
+        print("✅ SquashPlot Web Server started successfully!")
+        print(f"🌐 Dashboard available at: http://localhost:{port}")
+        print("📊 Access the web interface to manage Chia plotting operations")
         print()
 
-        # Try to open web interface automatically
-        try:
-            webbrowser.open(f"http://localhost:{port}")
-        except:
-            pass
-
-        # Initialize farming manager and start dashboard
-        farming_manager = ChiaFarmingManager()
-        dashboard = SquashPlotDashboard(farming_manager)
-        dashboard.run(host='0.0.0.0', port=port, debug=False)
+        # Start the web server
+        app.run(host='127.0.0.1', port=port, debug=True)
 
     except Exception as e:
-        print(f"❌ Failed to start SquashPlot dashboard: {e}")
+        print(f"❌ Failed to start SquashPlot web server: {e}")
         print("💡 Make sure the port is available and dependencies are installed")
         print("🔧 Falling back to basic SquashPlot CLI mode...")
         start_cli_interface()
@@ -90,12 +80,13 @@ def start_cli_interface():
     print()
 
     try:
-        # Import and run SquashPlot CLI
+        # Import and run SquashPlot CLI from our existing system
         from squashplot import main as squashplot_main
         squashplot_main()
-    except ImportError:
-        print("❌ SquashPlot CLI module not found")
+    except ImportError as e:
+        print(f"❌ SquashPlot CLI module not found: {e}")
         print("💡 Use the web interface to access SquashPlot features")
+        print("🔧 Or run: python -m squashplot")
 
 def run_demo():
     """Run interactive SquashPlot demo"""
@@ -104,33 +95,44 @@ def run_demo():
 
     try:
         # Import SquashPlot demo functionality
-        from squashplot import SquashPlotCompressor, WhitelistManager
-        
-        print("🧠 Testing prime aligned compute-Enhanced Compression...")
+        from squashplot import SquashPlotCompressor
+
+        print("🔧 Testing Multi-Stage Compression Engine...")
         compressor = SquashPlotCompressor(pro_enabled=False)
         print("✅ Basic compression engine operational")
-        
-        print("\n🚀 Testing Pro Features Access...")
-        whitelist = WhitelistManager()
-        print("✅ Pro version management available")
-        
-        print("\n📊 Testing Wallace Transform...")
-        # Test the mathematical framework
-        import math
-        phi = (1 + math.sqrt(5)) / 2
-        alpha = 79/21
-        beta = phi**3
-        print(f"   φ = {phi:.6f}")
-        print(f"   α = {alpha:.4f}")
-        print(f"   β = {beta:.3f}")
-        print("✅ Mathematical framework operational")
+
+        print("\n🧪 Testing Chia Integration...")
+        from chia_resources.chia_resource_query import ChiaResourceQuery
+        chia_query = ChiaResourceQuery()
+        stats = chia_query.get_database_stats()
+        print(f"✅ Chia resources database: {stats['total_resources']} resources available")
+
+        print("\n📊 Testing Compression Algorithms...")
+        # Test available compression algorithms
+        test_algorithms = ["zlib", "bz2", "lzma"]
+        for algo in test_algorithms:
+            try:
+                if algo == "zlib":
+                    import zlib
+                    result = zlib.compress(b"test data")
+                elif algo == "bz2":
+                    import bz2
+                    result = bz2.compress(b"test data")
+                elif algo == "lzma":
+                    import lzma
+                    result = lzma.compress(b"test data")
+                print(f"   ✅ {algo}: Available")
+            except ImportError:
+                print(f"   ⚠️ {algo}: Not available")
 
         print("\n🚀 All SquashPlot systems operational!")
         print("💡 Use the web interface for full functionality")
+        print("🔗 Start with: python main.py --web")
 
     except ImportError as e:
         print(f"⚠️ Some SquashPlot modules need configuration: {e}")
         print("💡 Use the web interface to set up and configure SquashPlot")
+        print("🔧 Make sure all dependencies are installed: pip install -r requirements.txt")
 
 if __name__ == "__main__":
     main()
