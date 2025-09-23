@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SquashPlot Dashboard - Andy's Enhanced Interface</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="icon" href="/static/favicon.ico">
+    <style>
+        /* Andy's Enhanced Design System */
+        :root {
+            --primary-color: #2e7d3e;
+            --secondary-color: #5cb85c;
+            --accent-color: #f0ad4e;
+            --danger-color: #ff6b6b;
+            --success-color: #51cf66;
+            --warning-color: #ffd43b;
+            --info-color: #74c0fc;
+            --dark-bg: #1a4d3a;
+            --light-bg: #f8f9fa;
+            --text-primary: #2d3436;
+            --text-secondary: #636e72;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a4d3a 0%, #2e7d3e 50%, #f0ad4e 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Header with Andy's Server Status */
+        .dashboard-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-left h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .header-left .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Andy's Server Status Integration */
+        .server-status-widget {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--danger-color);
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .status-indicator.online {
+            background: var(--success-color);
+            animation: none;
+        }
+
+        .status-indicator.checking {
+            background: var(--warning-color);
+            animation: spin 1s linear infinite;
+        }
+
+        .status-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .refresh-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: background 0.2s ease;
+            color: var(--text-secondary);
+        }
+
+        .refresh-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* CLI Integration Section */
+        .cli-section {
+            grid-column: span 2;
+        }
+
+        .cli-commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .cli-command-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .cli-command-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 62, 0.3);
+        }
+
+        .cli-command-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .cli-command-desc {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .custom-cli-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .custom-cli-form input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
+            margin-bottom: 12px;
+        }
+
+        .custom-cli-form button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .custom-cli-form button:hover {
+            background: #e69c3a;
+            transform: translateY(-2px);
+        }
+
+        /* System Monitoring */
+        .system-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 15px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cli-section {
+                grid-column: span 1;
+            }
+
+            .header-left h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading States */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Andy's Enhanced Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>SquashPlot Dashboard</h1>
+                    <div class="subtitle">Advanced Chia Compression with Andy's CLI Integration</div>
+                </div>
+
+                <!-- Andy's Server Status Widget -->
+                <div class="server-status-widget" id="serverStatusWidget">
+                    <div class="status-indicator checking" id="statusIndicator"></div>
+                    <span class="status-text" id="statusText">Checking server...</span>
+                    <button class="refresh-btn" onclick="checkServerStatus()" title="Refresh server status">
+                        🔄
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-grid">
+            <!-- System Overview -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, var(--info-color), var(--primary-color));">
+                        📊
+                    </div>
+                    <h3 class="card-title">System Overview</h3>
+                </div>
+                <div class="system-metrics" id="systemMetrics">
+                    <div class="metric-card">
+                        <div class="metric-value" id="cpuUsage">--</div>
+                        <div class="metric-label">CPU Usage</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="memoryUsage">--</div>
+                        <div class="metric-label">Memory</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="diskUsage">--</div>
+                        <div class="metric-label">Disk</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compression Stats -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, var(--success-color), var(--secondary-color));">
+                        🗜️
+                    </div>
+                    <h3 class="card-title">Compression Stats</h3>
+                </div>
+                <div class="system-metrics">
+                    <div class="metric-card">
+                        <div class="metric-value" id="totalPlots">--</div>
+                        <div class="metric-label">Total Plots</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="spaceSaved">--</div>
+                        <div class="metric-label">Space Saved</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="compressionRatio">--</div>
+                        <div class="metric-label">Avg Ratio</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Andy's CLI Integration -->
+            <div class="dashboard-card cli-section">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color));">
+                        💻
+                    </div>
+                    <h3 class="card-title">CLI Commands - Andy's Templates</h3>
+                </div>
+
+                <div class="cli-commands-grid">
+                    <button class="cli-command-card" onclick="executeCLICommand('python main.py --web')">
+                        <div class="cli-command-title">Start Web Interface</div>
+                        <div class="cli-command-desc">Launch the SquashPlot web dashboard</div>
+                    </button>
+
+                    <button class="cli-command-card" onclick="executeCLICommand('python main.py --cli')">
+                        <div class="cli-command-title">Start CLI Mode</div>
+                        <div class="cli-command-desc">Run SquashPlot in command-line mode</div>
+                    </button>
+
+                    <button class="cli-command-card" onclick="executeCLICommand('python main.py --demo')">
+                        <div class="cli-command-title">Run Demo</div>
+                        <div class="cli-command-desc">Execute interactive demonstration</div>
+                    </button>
+
+                    <button class="cli-command-card" onclick="executeCLICommand('python check_server.py')">
+                        <div class="cli-command-title">Check Server</div>
+                        <div class="cli-command-desc">Andy's server monitoring utility</div>
+                    </button>
+
+                    <button class="cli-command-card" onclick="executeCLICommand('python squashplot.py -t /tmp/plot1 -d /plots -f YOUR_FARMER_KEY -p YOUR_POOL_KEY')">
+                        <div class="cli-command-title">Basic Plotting</div>
+                        <div class="cli-command-desc">Mad Max style Chia plotting</div>
+                    </button>
+
+                    <button class="cli-command-card" onclick="executeCLICommand('python squashplot.py --compress 3 -t /tmp/plot1 -d /plots -f YOUR_FARMER_KEY -p YOUR_POOL_KEY')">
+                        <div class="cli-command-title">Plotting + Compression</div>
+                        <div class="cli-command-desc">Create compressed plots directly</div>
+                    </button>
+                </div>
+
+                <!-- Custom CLI Command -->
+                <div class="custom-cli-form">
+                    <h4 style="margin-bottom: 15px; color: white;">Custom Command</h4>
+                    <input type="text" id="customCommand" placeholder="Enter custom CLI command..." />
+                    <button onclick="executeCustomCommand()">Execute Command</button>
+                </div>
+
+                <!-- CLI Output -->
+                <div id="cliOutput" style="margin-top: 20px; display: none;">
+                    <h4 style="color: white; margin-bottom: 10px;">Command Output</h4>
+                    <pre id="outputContent" style="background: rgba(0,0,0,0.3); color: #e0e0e0; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.85rem; white-space: pre-wrap; max-height: 200px; overflow-y: auto;"></pre>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, var(--warning-color), var(--accent-color));">
+                        📈
+                    </div>
+                    <h3 class="card-title">Recent Activity</h3>
+                </div>
+                <div id="recentActivity">
+                    <div style="text-align: center; color: var(--text-secondary); padding: 20px;">
+                        No recent activity
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, var(--danger-color), var(--warning-color));">
+                        ⚡
+                    </div>
+                    <h3 class="card-title">Quick Actions</h3>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <button class="cli-command-card" onclick="runBenchmark()" style="padding: 15px; margin: 0;">
+                        <div class="cli-command-title">Run Benchmark</div>
+                        <div class="cli-command-desc">Test compression performance</div>
+                    </button>
+
+                    <button class="cli-command-card" onclick="validateCompression()" style="padding: 15px; margin: 0;">
+                        <div class="cli-command-title">Validate Compression</div>
+                        <div class="cli-command-desc">Check data integrity</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Andy's Server Status Integration
+        let serverCheckInterval = null;
+        let systemMetricsInterval = null;
+
+        // Check server status using Andy's logic
+        async function checkServerStatus() {
+            const statusIndicator = document.getElementById('statusIndicator');
+            const statusText = document.getElementById('statusText');
+            const widget = document.getElementById('serverStatusWidget');
+
+            try {
+                widget.classList.add('loading');
+                statusIndicator.className = 'status-indicator checking';
+                statusText.textContent = 'Checking server...';
+
+                // Use Andy's check_server.py logic with 5-second timeout
+                const response = await fetch('/api/status', {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    signal: AbortSignal.timeout(5000)
+                });
+
+                if (response.ok) {
+                    statusIndicator.className = 'status-indicator online';
+                    statusText.textContent = `Online (${response.status})`;
+                } else {
+                    statusIndicator.className = 'status-indicator';
+                    statusText.textContent = `HTTP ${response.status}`;
+                }
+            } catch (error) {
+                if (error.name === 'TimeoutError') {
+                    statusIndicator.className = 'status-indicator';
+                    statusText.textContent = 'Timeout (5s)';
+                } else {
+                    statusIndicator.className = 'status-indicator';
+                    statusText.textContent = 'Offline';
+                }
+                console.log('Server check failed:', error.message);
+            } finally {
+                widget.classList.remove('loading');
+            }
+        }
+
+        // Execute CLI command using Andy's templates
+        async function executeCLICommand(command) {
+            const outputDiv = document.getElementById('cliOutput');
+            const outputContent = document.getElementById('outputContent');
+
+            outputDiv.style.display = 'block';
+            outputContent.textContent = `Executing: ${command}\n\nNote: This is a command template.\nFor full functionality, run this command in your local terminal.\n\nAndy's CLI Integration provides these professional command structures.`;
+
+            // Add to recent activity
+            addRecentActivity(`CLI Command: ${command.split(' ')[1] || 'custom'}`);
+
+            // Show CLI tab
+            document.querySelector('[onclick*="cli"]').click();
+        }
+
+        // Execute custom CLI command
+        function executeCustomCommand() {
+            const commandInput = document.getElementById('customCommand');
+            const command = commandInput.value.trim();
+
+            if (!command) {
+                alert('Please enter a command');
+                return;
+            }
+
+            executeCLICommand(command);
+            commandInput.value = '';
+        }
+
+        // Update system metrics
+        async function updateSystemMetrics() {
+            try {
+                const response = await fetch('/system-info');
+                const data = await response.json();
+
+                document.getElementById('cpuUsage').textContent = `${data.cpu.usage_percent}%`;
+                document.getElementById('memoryUsage').textContent = `${Math.round(data.memory.used_gb)}GB`;
+                document.getElementById('diskUsage').textContent = `${Math.round(data.disk.used_gb)}GB`;
+            } catch (error) {
+                console.log('Failed to update system metrics:', error);
+            }
+        }
+
+        // Add recent activity
+        function addRecentActivity(activity) {
+            const activityDiv = document.getElementById('recentActivity');
+            const timestamp = new Date().toLocaleTimeString();
+
+            activityDiv.innerHTML = `
+                <div style="padding: 10px; border-bottom: 1px solid #eee;">
+                    <div style="font-weight: 600; color: var(--primary-color);">${activity}</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">${timestamp}</div>
+                </div>
+                ${activityDiv.innerHTML}
+            `;
+
+            // Keep only last 5 activities
+            const activities = activityDiv.children;
+            while (activities.length > 5) {
+                activityDiv.removeChild(activities[activities.length - 1]);
+            }
+        }
+
+        // Quick action functions
+        async function runBenchmark() {
+            addRecentActivity('Running compression benchmark');
+            executeCLICommand('python squashplot_benchmark.py');
+        }
+
+        async function validateCompression() {
+            addRecentActivity('Validating compression integrity');
+            executeCLICommand('python compression_validator.py --size 10');
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start server monitoring (Andy's integration)
+            checkServerStatus();
+            serverCheckInterval = setInterval(checkServerStatus, 30000); // Every 30 seconds
+
+            // Start system metrics updates
+            updateSystemMetrics();
+            systemMetricsInterval = setInterval(updateSystemMetrics, 10000); // Every 10 seconds
+
+            // Add initial activity
+            addRecentActivity('Dashboard loaded - Andy\'s CLI integration active');
+
+            console.log('🧠 SquashPlot Dashboard initialized with Andy\'s enhancements');
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (serverCheckInterval) {
+                clearInterval(serverCheckInterval);
+            }
+            if (systemMetricsInterval) {
+                clearInterval(systemMetricsInterval);
+            }
+        });
+    </script>
+</body>
+</html>

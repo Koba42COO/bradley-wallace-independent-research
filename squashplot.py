@@ -1055,8 +1055,8 @@ class SquashPlotEngine:
                 'total_space_gb': total_space
             }
 
-                print(f"   ✅ Plot {i+1} completed in {plot_time:.1f} seconds")
-                print(f"   💾 Plot size: {plot_size_gb:.1f} GB")
+            print(f"   ✅ Plot {i+1} completed in {plot_time:.1f} seconds")
+            print(f"   💾 Plot size: {plot_size_gb:.1f} GB")
 
             total_time = time.time() - start_time
 

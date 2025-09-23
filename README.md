@@ -1,11 +1,12 @@
 # 🌱 SquashPlot Beta - Advanced Chia Plot Compression Tool
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)](https://flask.palletsprojects.com/)
+[![Replit](https://img.shields.io/badge/Run%20on-Replit-orange)](https://replit.com/@yourusername/squashplot)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.75+-green.svg)](https://fastapi.tiangolo.com/)
 [![Chia](https://img.shields.io/badge/Chia-Farming-orange.svg)](https://www.chia.net/)
+[![Andy's CLI](https://img.shields.io/badge/Andy's_CLI-Integrated-blueviolet)](https://github.com/Koba42COO)
 
-> **Professional Chia plotting solution featuring advanced multi-stage compression, real-time monitoring, and comprehensive farming management.**
+> **🧠 Andy's Enhanced SquashPlot: Professional Chia plotting with CLI integration, real-time monitoring, and Replit-optimized deployment.**
 
 ## 🚀 Features
 
@@ -33,6 +34,13 @@
 - **Analytics**: Performance insights and trends
 - **Automation**: Auto-claim, auto-compress, scheduling
 
+### 🤖 **Andy's CLI Integration**
+- **Server Monitoring**: Real-time status with `check_server.py` logic
+- **Professional Commands**: Mad Max/BladeBit compatible CLI structures
+- **Command Templates**: Pre-built commands for common operations
+- **Web CLI Interface**: Execute commands directly from dashboard
+- **Replit Optimization**: Cloud-ready with automatic port configuration
+
 ## 🛠️ Installation
 
 ### Prerequisites
@@ -43,32 +51,54 @@
 
 ### Quick Start
 
-1. **Clone the repository**
+#### 🚀 **Replit Deployment (Recommended - Andy's Optimization)**
+
+1. **Fork on Replit**
+   ```bash
+   # Click "Fork" on the Replit template
+   # Automatic setup with Andy's CLI integration
+   ```
+
+2. **Run the Application**
+   ```bash
+   # Replit will automatically start the server
+   # Access at: https://your-replit-name.replit.dev
+   ```
+
+3. **Features Available**
+   - ✅ Real-time server monitoring
+   - ✅ CLI command templates
+   - ✅ Professional web dashboard
+   - ✅ Andy's check_server integration
+
+#### 💻 **Local Development**
+
+1. **Clone and Setup**
    ```bash
    git clone https://github.com/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta.git
    cd 222hr-Hackathon-Entry-Squashplot-Beta
-   ```
-
-2. **Install dependencies**
-   ```bash
    pip install -r requirements.txt
    ```
 
-3. **Run SquashPlot**
+2. **Run SquashPlot (Andy's CLI)**
    ```bash
-   # Web Dashboard (Recommended)
+   # Enhanced Web Dashboard with CLI integration
    python main.py --web
-   
-   # Command Line Interface
+
+   # Professional CLI Mode
    python main.py --cli
-   
+
    # Interactive Demo
    python main.py --demo
+
+   # Server Status Check (Andy's utility)
+   python check_server.py
    ```
 
-4. **Access the Dashboard**
-   - Open your browser to `http://localhost:5000`
-   - Default port can be changed with `--port` flag
+3. **Access the Dashboard**
+   - **Replit**: `https://your-replit-name.replit.dev`
+   - **Local**: `http://localhost:8080`
+   - **API Docs**: `http://localhost:8080/docs`
 
 ## 📖 Usage
 

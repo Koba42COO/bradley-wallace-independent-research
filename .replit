@@ -1,41 +1,26 @@
-modules = ["web", "bash", "nix", "python-3.11"]
+[run]
+command = "python main.py --web"
 
-[nix]
-channel = "stable-25_05"
-packages = ["cairo", "cargo", "ffmpeg-full", "freetype", "ghostscript", "glibcLocales", "gobject-introspection", "gtk3", "libiconv", "libxcrypt", "openssl", "pkg-config", "qhull", "rustc", "tcl", "tk"]
+[interpreter]
+command = "python"
 
-[workflows]
-runButton = "Project"
+[env]
+PYTHONPATH = "."
 
-[[workflows.workflow]]
-name = "Project"
-mode = "parallel"
-author = "agent"
+[ports]
+"8080" = { public = true }
 
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "SquashPlot Beautiful UI"
+[files]
+"README.md" = true
+"REPLIT_README.md" = true
+"SQUASHPLOT_TECHNICAL_WHITEPAPER.md" = true
 
-[[workflows.workflow]]
-name = "SquashPlot Beautiful UI"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python src/web_server.py"
-waitForPort = 5000
-
-[workflows.workflow.metadata]
-outputType = "webview"
-
-[[ports]]
-localPort = 5000
-externalPort = 80
-
-[agent]
-expertMode = true
-integrations = ["python_log_in_with_replit:1.0.0"]
-
-[deployment]
-deploymentTarget = "autoscale"
-run = ["python", "production/src/squashplot_enhanced.py", "--check-tools"]
+[git]
+init.ignore = [
+  "*.pyc",
+  "__pycache__/",
+  ".env",
+  "node_modules/",
+  "plots/",
+  "*.log"
+]

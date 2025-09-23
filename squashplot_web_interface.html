@@ -50,6 +50,127 @@
             margin-bottom: 20px;
         }
 
+        .server-status {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff6b6b;
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.online {
+            background: #51cf66;
+        }
+
+        .status-indicator.checking {
+            background: #ffd43b;
+            animation: spin 1s linear infinite;
+        }
+
+        .status-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .status-btn:hover {
+            opacity: 1;
+        }
+
+        /* Andy's CLI Integration Styles */
+        .cli-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cli-section h4 {
+            color: #1a4d3a;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .cli-commands {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .cli-btn {
+            background: linear-gradient(135deg, #2e7d3e 0%, #5cb85c 100%);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .cli-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 125, 62, 0.3);
+        }
+
+        .cli-btn.primary {
+            background: linear-gradient(135deg, #1a4d3a 0%, #2e7d3e 100%);
+            padding: 12px 20px;
+        }
+
+        .cli-btn:active {
+            transform: translateY(0);
+        }
+
+        .cli-output {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cli-output h4 {
+            color: #1a4d3a;
+            margin-bottom: 15px;
+        }
+
+        .cli-output pre {
+            margin: 0;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         .version-toggle {
             display: flex;
             justify-content: center;
@@ -449,6 +570,13 @@
                 <button class="version-btn active" onclick="switchVersion('basic')">Basic (FREE)</button>
                 <button class="version-btn" onclick="switchVersion('pro')">Pro (Enhanced)</button>
             </div>
+
+            <!-- Andy's Server Status Integration -->
+            <div class="server-status" id="serverStatus">
+                <div class="status-indicator checking" id="statusIndicator"></div>
+                <span id="statusText">Checking server...</span>
+                <button class="status-btn" onclick="checkServerStatus()" title="Refresh server status">🔄</button>
+            </div>
         </div>
 
         <div class="value-props" id="value-props">
@@ -462,6 +590,7 @@
                     <button class="tab" onclick="switchTab('wallet')">Wallet Integration</button>
                     <button class="tab" onclick="switchTab('calculator')">ROI Calculator</button>
                     <button class="tab" onclick="switchTab('benchmark')">Performance</button>
+                    <button class="tab" onclick="switchTab('cli')">CLI Commands</button>
                 </div>
 
                 <div id="create-tab" class="tab-content active">
@@ -732,6 +861,58 @@
                         <!-- Table will be populated by JavaScript -->
                     </table>
                 </div>
+
+                <!-- Andy's CLI Integration -->
+                <div id="cli-tab" class="tab-content">
+                    <h3>Command Line Interface</h3>
+
+                    <div class="alert">
+                        <h4>Andy's Professional CLI Commands</h4>
+                        <div style="margin-top: 10px;">
+                            <div><strong>Enhanced Structure:</strong> Mad Max/BladeBit compatible command syntax</div>
+                            <div><strong>Multi-Mode Operation:</strong> Web, CLI, and Demo modes available</div>
+                            <div><strong>Resource Management:</strong> Intelligent CPU/memory allocation</div>
+                        </div>
+                    </div>
+
+                    <div class="cli-section">
+                        <h4>Quick Commands</h4>
+                        <div class="cli-commands">
+                            <button class="cli-btn" onclick="executeCLICommand('python main.py --web')">Start Web Interface</button>
+                            <button class="cli-btn" onclick="executeCLICommand('python main.py --cli')">Start CLI Mode</button>
+                            <button class="cli-btn" onclick="executeCLICommand('python main.py --demo')">Run Demo</button>
+                            <button class="cli-btn" onclick="executeCLICommand('python check_server.py')">Check Server Status</button>
+                        </div>
+                    </div>
+
+                    <div class="cli-section">
+                        <h4>Plotting Commands (Mad Max Style)</h4>
+                        <div class="cli-commands">
+                            <button class="cli-btn" onclick="executeCLICommand('python squashplot.py -t /tmp/plot1 -d /plots -f YOUR_FARMER_KEY -p YOUR_POOL_KEY')">
+                                Basic Plotting
+                            </button>
+                            <button class="cli-btn" onclick="executeCLICommand('python squashplot.py -t /tmp/plot1 -2 /tmp/plot2 -d /plots -f YOUR_FARMER_KEY -p YOUR_POOL_KEY -n 2')">
+                                Dual Temp Directories
+                            </button>
+                            <button class="cli-btn" onclick="executeCLICommand('python squashplot.py --compress 3 -t /tmp/plot1 -d /plots -f YOUR_FARMER_KEY -p YOUR_POOL_KEY')">
+                                With Compression
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="cli-section">
+                        <h4>Custom Command</h4>
+                        <div class="custom-cli">
+                            <input type="text" id="customCommand" placeholder="Enter CLI command..." style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                            <button class="cli-btn primary" onclick="executeCustomCommand()">Execute Command</button>
+                        </div>
+                    </div>
+
+                    <div class="cli-output" id="cliOutput">
+                        <h4>Command Output</h4>
+                        <pre id="outputContent" style="background: #f8f9fa; padding: 15px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.9rem; white-space: pre-wrap; max-height: 300px; overflow-y: auto;">Ready to execute commands...</pre>
+                    </div>
+                </div>
             </div>
 
             <div class="right-panel">
@@ -796,6 +977,9 @@
         let connectedWallet = null;
         let walletInfo = null;
 
+        // Andy's Server Status Integration
+        let serverCheckInterval = null;
+
         const versions = {
             basic: {
                 compression: '35%',
@@ -816,6 +1000,94 @@
                 timeMinutes: 45
             }
         };
+
+        // Andy's Server Status Integration - Check server status
+        async function checkServerStatus() {
+            const statusIndicator = document.getElementById('statusIndicator');
+            const statusText = document.getElementById('statusText');
+
+            try {
+                // Set checking state
+                statusIndicator.className = 'status-indicator checking';
+                statusText.textContent = 'Checking server...';
+
+                // Check server using Andy's check_server.py logic
+                const response = await fetch('/api/status', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    // 5 second timeout like in check_server.py
+                    signal: AbortSignal.timeout(5000)
+                });
+
+                if (response.ok) {
+                    // Server is online
+                    statusIndicator.className = 'status-indicator online';
+                    statusText.textContent = `Online (${response.status})`;
+                } else {
+                    // Server responded but with error status
+                    statusIndicator.className = 'status-indicator';
+                    statusText.textContent = `HTTP ${response.status}`;
+                }
+            } catch (error) {
+                if (error.name === 'TimeoutError') {
+                    statusIndicator.className = 'status-indicator';
+                    statusText.textContent = 'Timeout (5s)';
+                } else {
+                    // Server is offline or unreachable
+                    statusIndicator.className = 'status-indicator';
+                    statusText.textContent = 'Offline';
+                }
+                console.log('Server check failed:', error.message);
+            }
+        }
+
+        // Start automatic server checking
+        function startServerMonitoring() {
+            // Check immediately
+            checkServerStatus();
+
+            // Check every 30 seconds
+            serverCheckInterval = setInterval(checkServerStatus, 30000);
+        }
+
+        // Stop server monitoring
+        function stopServerMonitoring() {
+            if (serverCheckInterval) {
+                clearInterval(serverCheckInterval);
+                serverCheckInterval = null;
+            }
+        }
+
+        // Andy's CLI Integration - Execute predefined CLI commands
+        async function executeCLICommand(command) {
+            const outputContent = document.getElementById('outputContent');
+            outputContent.textContent = `Executing: ${command}\n\nPlease run this command in your terminal for full functionality.\n\nThis web interface provides command examples and templates.`;
+
+            // Show CLI tab
+            switchTab('cli');
+
+            // Copy command to custom input for easy modification
+            document.getElementById('customCommand').value = command;
+        }
+
+        // Execute custom CLI command
+        function executeCustomCommand() {
+            const commandInput = document.getElementById('customCommand');
+            const outputContent = document.getElementById('outputContent');
+            const command = commandInput.value.trim();
+
+            if (!command) {
+                outputContent.textContent = 'Please enter a command to execute.';
+                return;
+            }
+
+            outputContent.textContent = `Command: ${command}\n\nNote: CLI commands must be executed in your local terminal.\n\nThis web interface provides command templates and examples.\n\nAvailable commands based on Andy's improvements:\n• python main.py --web (Start web interface)\n• python main.py --cli (Start CLI mode)\n• python main.py --demo (Run demo)\n• python check_server.py (Check server status)\n• python squashplot.py [plotting options] (Mad Max style plotting)`;
+
+            // Show CLI tab
+            switchTab('cli');
+        }
 
         // Wallet connection functionality
         async function connectWallet(walletType) {
@@ -1267,6 +1539,9 @@
             updateUI();
             calculateROI();
             updateComparisonTable();
+
+            // Andy's Server Status Integration - Start monitoring
+            startServerMonitoring();
         });
     </script>
 </body>
