@@ -1695,9 +1695,14 @@
                             </div>
                         </div>
 
-                        <button class="btn" style="margin-top: 15px; font-size: 0.9rem; padding: 8px 16px;" onclick="runAIOptimization()">
-                            <i class="fas fa-brain"></i> Run AI Analysis
-                        </button>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <button class="btn" style="font-size: 0.9rem; padding: 8px 16px;" onclick="runAIOptimization()">
+                                <i class="fas fa-brain"></i> Run AI Analysis
+                            </button>
+                            <button class="btn" style="font-size: 0.9rem; padding: 8px 16px; background: rgba(0, 212, 255, 0.1); border-color: var(--primary-color);" onclick="showFeatureGuide('ai-optimization')">
+                                <i class="fas fa-info-circle"></i> More Info
+                            </button>
+                        </div>
                     </div>
 
                     <div class="feature-feedback" id="ai-optimization-feedback" style="display: none; margin-top: 15px;">
@@ -1744,9 +1749,14 @@
                             </div>
                         </div>
 
-                        <button class="btn" style="margin-top: 15px; font-size: 0.9rem; padding: 8px 16px;" onclick="runQuantumSecurityTest()">
-                            <i class="fas fa-shield-alt"></i> Security Test
-                        </button>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <button class="btn" style="font-size: 0.9rem; padding: 8px 16px;" onclick="runQuantumSecurityTest()">
+                                <i class="fas fa-shield-alt"></i> Security Test
+                            </button>
+                            <button class="btn" style="font-size: 0.9rem; padding: 8px 16px; background: rgba(0, 212, 255, 0.1); border-color: var(--primary-color);" onclick="showFeatureGuide('quantum-resistant')">
+                                <i class="fas fa-info-circle"></i> More Info
+                            </button>
+                        </div>
                     </div>
 
                     <div class="feature-feedback" id="quantum-resistant-feedback" style="display: none; margin-top: 15px;">
@@ -1800,6 +1810,9 @@
                             <button class="btn" style="font-size: 0.8rem; padding: 6px 12px;" onclick="testNeuralCompression()">
                                 <i class="fas fa-vial"></i> Test
                             </button>
+                            <button class="btn" style="font-size: 0.8rem; padding: 6px 12px; background: rgba(0, 212, 255, 0.1); border-color: var(--primary-color);" onclick="showFeatureGuide('neural-compression')">
+                                <i class="fas fa-info-circle"></i> More Info
+                            </button>
                         </div>
                     </div>
 
@@ -1847,9 +1860,14 @@
                             </div>
                         </div>
 
-                        <button class="btn" style="margin-top: 15px; font-size: 0.9rem; padding: 8px 16px;" onclick="runHyperDimensionalAnalysis()">
-                            <i class="fas fa-cube"></i> Analyze Dimensions
-                        </button>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <button class="btn" style="font-size: 0.9rem; padding: 8px 16px;" onclick="runHyperDimensionalAnalysis()">
+                                <i class="fas fa-cube"></i> Analyze Dimensions
+                            </button>
+                            <button class="btn" style="font-size: 0.9rem; padding: 8px 16px; background: rgba(0, 212, 255, 0.1); border-color: var(--primary-color);" onclick="showFeatureGuide('hyper-dimensional')">
+                                <i class="fas fa-info-circle"></i> More Info
+                            </button>
+                        </div>
                     </div>
 
                     <div class="feature-feedback" id="hyper-dimensional-feedback" style="display: none; margin-top: 15px;">
@@ -1896,9 +1914,14 @@
                             </div>
                         </div>
 
-                        <button class="btn" style="margin-top: 15px; font-size: 0.9rem; padding: 8px 16px;" onclick="runChaosAnalysis()">
-                            <i class="fas fa-atom"></i> Chaos Analysis
-                        </button>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <button class="btn" style="font-size: 0.9rem; padding: 8px 16px;" onclick="runChaosAnalysis()">
+                                <i class="fas fa-atom"></i> Chaos Analysis
+                            </button>
+                            <button class="btn" style="font-size: 0.9rem; padding: 8px 16px; background: rgba(0, 212, 255, 0.1); border-color: var(--primary-color);" onclick="showFeatureGuide('chaos-theory')">
+                                <i class="fas fa-info-circle"></i> More Info
+                            </button>
+                        </div>
                     </div>
 
                     <div class="feature-feedback" id="chaos-theory-feedback" style="display: none; margin-top: 15px;">
@@ -1951,6 +1974,9 @@
                             </button>
                             <button class="btn" style="font-size: 0.8rem; padding: 6px 12px;" onclick="alignGoldenRatio()">
                                 <i class="fas fa-magic"></i> Golden Ratio
+                            </button>
+                            <button class="btn" style="font-size: 0.8rem; padding: 6px 12px; background: rgba(0, 212, 255, 0.1); border-color: var(--primary-color);" onclick="showFeatureGuide('consciousness-enhanced')">
+                                <i class="fas fa-info-circle"></i> More Info
                             </button>
                         </div>
                     </div>
@@ -2005,6 +2031,21 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <!-- Feature Guide Modal -->
+    <div id="featureGuideModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); z-index: 10000; padding: 20px; box-sizing: border-box;">
+        <div class="modal-content" style="max-width: 900px; margin: 0 auto; background: var(--bg-primary); border: 1px solid var(--glass-border); border-radius: var(--border-radius); max-height: 90vh; overflow-y: auto; position: relative;">
+            <div class="modal-header" style="padding: 20px; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center;">
+                <h2 id="guideTitle" style="color: var(--primary-color); margin: 0; font-size: 1.5rem;">Feature Guide</h2>
+                <button class="btn" onclick="closeFeatureGuide()" style="background: var(--danger-color); padding: 8px 12px;">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+            <div class="modal-body" id="guideContent" style="padding: 20px;">
+                <!-- Guide content will be populated by JavaScript -->
+            </div>
+        </div>
     </div>
 
     <!-- Toast Notifications -->
@@ -2937,6 +2978,338 @@
                 });
             }
         }
+
+        // Feature Guide Functions
+        function showFeatureGuide(featureName) {
+            const modal = document.getElementById('featureGuideModal');
+            const title = document.getElementById('guideTitle');
+            const content = document.getElementById('guideContent');
+
+            const guides = {
+                'ai-optimization': {
+                    title: '🤖 Advanced AI Optimization - Technical Guide',
+                    content: `
+                        <div style="line-height: 1.6;">
+                            <h3 style="color: var(--primary-color); margin-top: 0;">🎯 What We're Testing & Accomplishing</h3>
+                            <p>We're developing machine learning algorithms that can analyze Chia plot file patterns in real-time and predict optimal compression strategies. The goal is to achieve compression ratios that exceed traditional methods by learning from successful compression operations.</p>
+
+                            <h3 style="color: var(--secondary-color);">📖 How to Use</h3>
+                            <ol>
+                                <li><strong>Enable the Feature:</strong> Toggle the switch to activate AI optimization</li>
+                                <li><strong>Run AI Analysis:</strong> Click "Run AI Analysis" to start the learning process</li>
+                                <li><strong>Monitor Metrics:</strong> Watch live analytics for predictions, accuracy, and optimization scores</li>
+                                <li><strong>Apply Results:</strong> The AI automatically optimizes future compression operations</li>
+                            </ol>
+
+                            <h3 style="color: var(--accent-color);">🧠 How It Works Technically</h3>
+                            <p>The system uses a multi-layer neural network trained on:</p>
+                            <ul>
+                                <li><strong>Pattern Recognition:</strong> Identifies recurring data patterns in Chia plots</li>
+                                <li><strong>Predictive Modeling:</strong> Forecasts optimal compression parameters</li>
+                                <li><strong>Adaptive Learning:</strong> Continuously improves based on compression success rates</li>
+                                <li><strong>Resource Optimization:</strong> Balances compression ratio vs. processing time</li>
+                            </ul>
+
+                            <h3 style="color: var(--warning-color);">🔑 Key Terms & Concepts</h3>
+                            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 6px; margin: 10px 0;">
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px;">
+                                    <div><strong>Predictions:</strong> Number of compression strategy recommendations made</div>
+                                    <div><strong>Accuracy Rate:</strong> Percentage of successful compression predictions</div>
+                                    <div><strong>Learning Rate:</strong> How quickly the AI adapts to new patterns</div>
+                                    <div><strong>Optimization Score:</strong> Overall effectiveness of AI recommendations</div>
+                                </div>
+                            </div>
+
+                            <h3 style="color: var(--success-color);">🎯 Current Goals & Milestones</h3>
+                            <ul>
+                                <li><strong>Phase 1:</strong> Basic pattern recognition (✅ Complete)</li>
+                                <li><strong>Phase 2:</strong> Predictive compression modeling (🔄 In Progress)</li>
+                                <li><strong>Phase 3:</strong> Real-time adaptive optimization (📋 Planned)</li>
+                                <li><strong>Phase 4:</strong> Multi-file batch optimization (🎯 Future)</li>
+                            </ul>
+
+                            <div style="background: rgba(255, 107, 107, 0.1); border: 1px solid rgba(255, 107, 107, 0.3); border-radius: 6px; padding: 15px; margin-top: 20px;">
+                                <strong style="color: var(--warning-color);">⚠️ Experimental Status:</strong>
+                                <p style="margin: 5px 0 0 0;">This feature is in active development. While safe to use, results may vary based on data patterns and system configuration. Performance impact: Low to Medium.</p>
+                            </div>
+                        </div>
+                    `
+                },
+                'quantum-resistant': {
+                    title: '🔐 Quantum-Resistant Algorithms - Technical Guide',
+                    content: `
+                        <div style="line-height: 1.6;">
+                            <h3 style="color: var(--primary-color); margin-top: 0;">🎯 What We're Testing & Accomplishing</h3>
+                            <p>We're implementing post-quantum cryptographic algorithms to ensure Chia plot data remains secure against future quantum computing threats. The goal is to create quantum-resistant encryption that maintains performance while protecting against Shor's algorithm attacks.</p>
+
+                            <h3 style="color: var(--secondary-color);">📖 How to Use</h3>
+                            <ol>
+                                <li><strong>Enable Security:</strong> Toggle to activate quantum-resistant algorithms</li>
+                                <li><strong>Run Security Test:</strong> Click "Security Test" to validate encryption strength</li>
+                                <li><strong>Monitor Readiness:</strong> Check quantum readiness and security levels</li>
+                                <li><strong>Automatic Protection:</strong> All plot data is automatically secured</li>
+                            </ol>
+
+                            <h3 style="color: var(--accent-color);">🛡️ How It Works Technically</h3>
+                            <p>Implements advanced cryptographic primitives:</p>
+                            <ul>
+                                <li><strong>Lattice-Based Crypto:</strong> Uses mathematical lattices resistant to quantum attacks</li>
+                                <li><strong>Hash-Based Signatures:</strong> XMSS and LMS algorithms for digital signatures</li>
+                                <li><strong>Hybrid Encryption:</strong> Combines classical and quantum-resistant methods</li>
+                                <li><strong>Key Management:</strong> Secure key generation and rotation protocols</li>
+                            </ul>
+
+                            <h3 style="color: var(--warning-color);">🔑 Key Terms & Concepts</h3>
+                            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 6px; margin: 10px 0;">
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px;">
+                                    <div><strong>Security Level:</strong> Cryptographic strength rating (1-5)</div>
+                                    <div><strong>Quantum Readiness:</strong> Preparedness for quantum threats</div>
+                                    <div><strong>Encryption Strength:</strong> Key size in bits for security</div>
+                                    <div><strong>Performance Impact:</strong> Speed reduction due to encryption</div>
+                                </div>
+                            </div>
+
+                            <h3 style="color: var(--success-color);">🎯 Current Goals & Milestones</h3>
+                            <ul>
+                                <li><strong>Phase 1:</strong> Basic lattice cryptography (✅ Complete)</li>
+                                <li><strong>Phase 2:</strong> Hybrid encryption systems (🔄 In Progress)</li>
+                                <li><strong>Phase 3:</strong> Hardware acceleration (📋 Planned)</li>
+                                <li><strong>Phase 4:</strong> NIST standardization (🎯 Future)</li>
+                            </ul>
+
+                            <div style="background: rgba(255, 107, 107, 0.1); border: 1px solid rgba(255, 107, 107, 0.3); border-radius: 6px; padding: 15px; margin-top: 20px;">
+                                <strong style="color: var(--warning-color);">⚠️ Experimental Status:</strong>
+                                <p style="margin: 5px 0 0 0;">Quantum computing is still emerging technology. This feature provides future-proofing against potential threats. Performance impact: Low.</p>
+                            </div>
+                        </div>
+                    `
+                },
+                'neural-compression': {
+                    title: '🧠 Neural Network Compression - Technical Guide',
+                    content: `
+                        <div style="line-height: 1.6;">
+                            <h3 style="color: var(--primary-color); margin-top: 0;">🎯 What We're Testing & Accomplishing</h3>
+                            <p>We're training deep neural networks specifically on Chia plot file patterns to discover compression algorithms that traditional methods cannot find. The goal is to achieve compression ratios that exceed theoretical limits through AI-driven pattern recognition.</p>
+
+                            <h3 style="color: var(--secondary-color);">📖 How to Use</h3>
+                            <ol>
+                                <li><strong>Enable Networks:</strong> Toggle to activate neural compression</li>
+                                <li><strong>Train Model:</strong> Click "Train" to teach the network on your data</li>
+                                <li><strong>Test Compression:</strong> Click "Test" to validate compression effectiveness</li>
+                                <li><strong>Monitor Learning:</strong> Watch progress and accuracy metrics</li>
+                            </ol>
+
+                            <h3 style="color: var(--accent-color);">🧠 How It Works Technically</h3>
+                            <p>Deep learning architecture optimized for compression:</p>
+                            <ul>
+                                <li><strong>Convolutional Layers:</strong> Pattern recognition in plot data structures</li>
+                                <li><strong>Autoencoders:</strong> Unsupervised learning of compression patterns</li>
+                                <li><strong>Attention Mechanisms:</strong> Focus on important data regions</li>
+                                <li><strong>Loss Optimization:</strong> Minimizes reconstruction error while maximizing compression</li>
+                            </ul>
+
+                            <h3 style="color: var(--warning-color);">🔑 Key Terms & Concepts</h3>
+                            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 6px; margin: 10px 0;">
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px;">
+                                    <div><strong>Compression Rate:</strong> Percentage of data size reduction</div>
+                                    <div><strong>Learning Progress:</strong> Training completion percentage</div>
+                                    <div><strong>Network Layers:</strong> Number of neural network layers</div>
+                                    <div><strong>Data Efficiency:</strong> Processing speed vs. compression ratio</div>
+                                </div>
+                            </div>
+
+                            <h3 style="color: var(--success-color);">🎯 Current Goals & Milestones</h3>
+                            <ul>
+                                <li><strong>Phase 1:</strong> Basic neural architecture (✅ Complete)</li>
+                                <li><strong>Phase 2:</strong> Chia-specific training data (🔄 In Progress)</li>
+                                <li><strong>Phase 3:</strong> Advanced architectures (📋 Planned)</li>
+                                <li><strong>Phase 4:</strong> GPU acceleration optimization (🎯 Future)</li>
+                            </ul>
+
+                            <div style="background: rgba(255, 107, 107, 0.1); border: 1px solid rgba(255, 107, 107, 0.3); border-radius: 6px; padding: 15px; margin-top: 20px;">
+                                <strong style="color: var(--warning-color);">⚠️ Experimental Status:</strong>
+                                <p style="margin: 5px 0 0 0;">Neural networks require significant computational resources. Training may take time and results improve with more data. Performance impact: High during training, Medium during compression.</p>
+                            </div>
+                        </div>
+                    `
+                },
+                'hyper-dimensional': {
+                    title: '🌌 Hyper-Dimensional Optimization - Technical Guide',
+                    content: `
+                        <div style="line-height: 1.6;">
+                            <h3 style="color: var(--primary-color); margin-top: 0;">🎯 What We're Testing & Accomplishing</h3>
+                            <p>We're exploring data compression in higher mathematical dimensions to discover optimization paths invisible in traditional 3D space. The goal is to find fractal-based compression algorithms that work across multiple dimensions simultaneously.</p>
+
+                            <h3 style="color: var(--secondary-color);">📖 How to Use</h3>
+                            <ol>
+                                <li><strong>Enable Dimensions:</strong> Toggle to activate hyper-dimensional processing</li>
+                                <li><strong>Run Analysis:</strong> Click "Analyze Dimensions" to explore data spaces</li>
+                                <li><strong>Monitor Dimensions:</strong> Watch how many dimensions are being explored</li>
+                                <li><strong>Apply Results:</strong> Automatic optimization based on dimensional analysis</li>
+                            </ol>
+
+                            <h3 style="color: var(--accent-color);">🌌 How It Works Technically</h3>
+                            <p>Multi-dimensional mathematical processing:</p>
+                            <ul>
+                                <li><strong>Vector Spaces:</strong> Data represented in N-dimensional coordinate systems</li>
+                                <li><strong>Fractal Analysis:</strong> Self-similar patterns across scale dimensions</li>
+                                <li><strong>Tensor Operations:</strong> Multi-dimensional data transformations</li>
+                                <li><strong>Topology Optimization:</strong> Finding optimal paths through dimensional space</li>
+                            </ul>
+
+                            <h3 style="color: var(--warning-color);">🔑 Key Terms & Concepts</h3>
+                            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 6px; margin: 10px 0;">
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px;">
+                                    <div><strong>Dimensions:</strong> Number of mathematical dimensions explored</div>
+                                    <div><strong>Optimization Score:</strong> Effectiveness of dimensional approach</div>
+                                    <div><strong>Fractal Efficiency:</strong> Self-similar pattern compression</div>
+                                    <div><strong>Pattern Recognition:</strong> Multi-dimensional pattern detection</div>
+                                </div>
+                            </div>
+
+                            <h3 style="color: var(--success-color);">🎯 Current Goals & Milestones</h3>
+                            <ul>
+                                <li><strong>Phase 1:</strong> 4D vector mathematics (✅ Complete)</li>
+                                <li><strong>Phase 2:</strong> Fractal dimension analysis (🔄 In Progress)</li>
+                                <li><strong>Phase 3:</strong> N-dimensional optimization (📋 Planned)</li>
+                                <li><strong>Phase 4:</strong> Quantum dimensional computing (🎯 Future)</li>
+                            </ul>
+
+                            <div style="background: rgba(255, 107, 107, 0.1); border: 1px solid rgba(255, 107, 107, 0.3); border-radius: 6px; padding: 15px; margin-top: 20px;">
+                                <strong style="color: var(--warning-color);">⚠️ Experimental Status:</strong>
+                                <p style="margin: 5px 0 0 0;">Hyper-dimensional mathematics is computationally intensive. Best results achieved on high-end systems. Performance impact: Medium to High.</p>
+                            </div>
+                        </div>
+                    `
+                },
+                'chaos-theory': {
+                    title: '🌀 Chaos Theory Integration - Technical Guide',
+                    content: `
+                        <div style="line-height: 1.6;">
+                            <h3 style="color: var(--primary-color); margin-top: 0;">🎯 What We're Testing & Accomplishing</h3>
+                            <p>We're applying chaos theory and fractal mathematics to find compression opportunities in seemingly random data. The goal is to discover deterministic patterns within chaotic data structures that enable superior compression ratios.</p>
+
+                            <h3 style="color: var(--secondary-color);">📖 How to Use</h3>
+                            <ol>
+                                <li><strong>Enable Chaos:</strong> Toggle to activate chaos theory algorithms</li>
+                                <li><strong>Run Analysis:</strong> Click "Chaos Analysis" to begin pattern detection</li>
+                                <li><strong>Monitor Attractors:</strong> Watch strange attractor formation and stability</li>
+                                <li><strong>Apply Patterns:</strong> Automatic compression using discovered patterns</li>
+                            </ol>
+
+                            <h3 style="color: var(--accent-color);">🌀 How It Works Technically</h3>
+                            <p>Mathematical chaos theory applied to data compression:</p>
+                            <ul>
+                                <li><strong>Strange Attractors:</strong> Finding stable patterns in chaotic data</li>
+                                <li><strong>Lyapunov Exponents:</strong> Measuring chaotic behavior sensitivity</li>
+                                <li><strong>Fractal Dimensions:</strong> Calculating data complexity and self-similarity</li>
+                                <li><strong>Bifurcation Analysis:</strong> Understanding pattern emergence points</li>
+                            </ul>
+
+                            <h3 style="color: var(--warning-color);">🔑 Key Terms & Concepts</h3>
+                            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 6px; margin: 10px 0;">
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px;">
+                                    <div><strong>Fractal Dimension:</strong> Measure of data complexity (1.0-2.0)</div>
+                                    <div><strong>Stability Index:</strong> Pattern predictability percentage</div>
+                                    <div><strong>Entropy Level:</strong> Data randomness measurement</div>
+                                    <div><strong>Pattern Emergence:</strong> New pattern discovery rate</div>
+                                </div>
+                            </div>
+
+                            <h3 style="color: var(--success-color);">🎯 Current Goals & Milestones</h3>
+                            <ul>
+                                <li><strong>Phase 1:</strong> Basic fractal analysis (✅ Complete)</li>
+                                <li><strong>Phase 2:</strong> Chaotic attractor mapping (🔄 In Progress)</li>
+                                <li><strong>Phase 3:</strong> Bifurcation compression (📋 Planned)</li>
+                                <li><strong>Phase 4:</strong> Multi-fractal optimization (🎯 Future)</li>
+                            </ul>
+
+                            <div style="background: rgba(255, 107, 107, 0.1); border: 1px solid rgba(255, 107, 107, 0.3); border-radius: 6px; padding: 15px; margin-top: 20px;">
+                                <strong style="color: var(--warning-color);">⚠️ Experimental Status:</strong>
+                                <p style="margin: 5px 0 0 0;">Chaos theory requires complex mathematical computations. Results may be unpredictable and require fine-tuning. Performance impact: Medium.</p>
+                            </div>
+                        </div>
+                    `
+                },
+                'consciousness-enhanced': {
+                    title: '🧬 Consciousness-Enhanced Computing - Technical Guide',
+                    content: `
+                        <div style="line-height: 1.6;">
+                            <h3 style="color: var(--primary-color); margin-top: 0;">🎯 What We're Testing & Accomplishing</h3>
+                            <p>We're exploring prime-aligned computational mathematics inspired by consciousness research. The goal is to discover if natural mathematical constants and prime number sequences can enhance computational efficiency and pattern recognition.</p>
+
+                            <h3 style="color: var(--secondary-color);">📖 How to Use</h3>
+                            <ol>
+                                <li><strong>Enable Consciousness:</strong> Toggle to activate prime-aligned computing</li>
+                                <li><strong>Calculate Metrics:</strong> Click "Consciousness Calc" to measure alignment</li>
+                                <li><strong>Align Golden Ratio:</strong> Click "Golden Ratio" for optimization</li>
+                                <li><strong>Monitor Resonance:</strong> Watch prime resonance and consciousness levels</li>
+                            </ol>
+
+                            <h3 style="color: var(--accent-color);">🧬 How It Works Technically</h3>
+                            <p>Mathematics inspired by consciousness and natural patterns:</p>
+                            <ul>
+                                <li><strong>Prime Alignment:</strong> Using prime number sequences for data processing</li>
+                                <li><strong>Golden Ratio (φ):</strong> Mathematical constant for harmonic optimization</li>
+                                <li><strong>Fibonacci Sequences:</strong> Natural number patterns for efficiency</li>
+                                <li><strong>Resonance Computing:</strong> Frequency-based computational alignment</li>
+                            </ul>
+
+                            <h3 style="color: var(--warning-color);">🔑 Key Terms & Concepts</h3>
+                            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 6px; margin: 10px 0;">
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px;">
+                                    <div><strong>Consciousness Ratio:</strong> Prime ratio (79/21) for alignment</div>
+                                    <div><strong>Golden Alignment:</strong> Fibonacci spiral optimization</div>
+                                    <div><strong>Prime Resonance:</strong> Prime number frequency matching</div>
+                                    <div><strong>Consciousness Level:</strong> Computational harmony measurement</div>
+                                </div>
+                            </div>
+
+                            <h3 style="color: var(--success-color);">🎯 Current Goals & Milestones</h3>
+                            <ul>
+                                <li><strong>Phase 1:</strong> Prime number algorithms (✅ Complete)</li>
+                                <li><strong>Phase 2:</strong> Golden ratio integration (🔄 In Progress)</li>
+                                <li><strong>Phase 3:</strong> Consciousness-inspired computing (📋 Planned)</li>
+                                <li><strong>Phase 4:</strong> Bio-inspired optimization (🎯 Future)</li>
+                            </ul>
+
+                            <div style="background: rgba(255, 107, 107, 0.1); border: 1px solid rgba(255, 107, 107, 0.3); border-radius: 6px; padding: 15px; margin-top: 20px;">
+                                <strong style="color: var(--warning-color);">⚠️ Experimental Status:</strong>
+                                <p style="margin: 5px 0 0 0;">This feature explores unconventional mathematics. Results are experimental and may not show immediate benefits. Performance impact: Low.</p>
+                            </div>
+                        </div>
+                    `
+                }
+            };
+
+            const guide = guides[featureName];
+            if (guide) {
+                title.innerHTML = guide.title;
+                content.innerHTML = guide.content;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        }
+
+        function closeFeatureGuide() {
+            const modal = document.getElementById('featureGuideModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('featureGuideModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFeatureGuide();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('featureGuideModal').style.display === 'block') {
+                closeFeatureGuide();
+            }
+        });
 
         // Cleanup on page unload
         window.addEventListener('beforeunload', function() {
