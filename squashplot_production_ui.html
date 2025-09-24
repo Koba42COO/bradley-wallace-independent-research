@@ -717,6 +717,17 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Content Sections */
+        .content-section {
+            display: block;
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+
+        .content-section.active {
+            /* No special styling needed for active sections in scroll navigation */
+        }
+
         /* Loading States */
         .loading {
             opacity: 0.6;
@@ -792,28 +803,28 @@
 
         <!-- Navigation Tabs -->
         <nav class="nav-tabs">
-            <button class="nav-tab active" onclick="switchTab('dashboard')">
+            <a href="#dashboard" class="nav-tab active" onclick="scrollToSection('dashboard')">
                 <i class="fas fa-tachometer-alt"></i>Dashboard
-            </button>
-            <button class="nav-tab" onclick="switchTab('plotting')">
+            </a>
+            <a href="#plotting" class="nav-tab" onclick="scrollToSection('plotting')">
                 <i class="fas fa-cogs"></i>Plotting
-            </button>
-            <button class="nav-tab" onclick="switchTab('wallet')">
+            </a>
+            <a href="#wallet" class="nav-tab" onclick="scrollToSection('wallet')">
                 <i class="fas fa-wallet"></i>Wallets
-            </button>
-            <button class="nav-tab" onclick="switchTab('calculator')">
+            </a>
+            <a href="#calculator" class="nav-tab" onclick="scrollToSection('calculator')">
                 <i class="fas fa-calculator"></i>ROI Calculator
-            </button>
-            <button class="nav-tab" onclick="switchTab('cli')">
+            </a>
+            <a href="#cli" class="nav-tab" onclick="scrollToSection('cli')">
                 <i class="fas fa-terminal"></i>CLI Commands
-            </button>
-            <button class="nav-tab" onclick="switchTab('settings')">
+            </a>
+            <a href="#settings" class="nav-tab" onclick="scrollToSection('settings')">
                 <i class="fas fa-cog"></i>Settings
-            </button>
+            </a>
         </nav>
 
-        <!-- Dashboard Tab -->
-        <div id="dashboard-tab" class="tab-content active">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active">
             <div class="dashboard-grid">
                 <!-- System Overview -->
                 <div class="dashboard-card">
@@ -901,8 +912,8 @@
             </div>
         </div>
 
-        <!-- Plotting Tab -->
-        <div id="plotting-tab" class="tab-content">
+        <!-- Plotting Section -->
+        <section id="plotting" class="content-section">
             <div class="dashboard-grid">
                 <div class="dashboard-card" style="grid-column: span 2;">
                     <div class="card-header">
@@ -997,8 +1008,8 @@
             </div>
         </div>
 
-        <!-- Wallet Tab -->
-        <div id="wallet-tab" class="tab-content">
+        <!-- Wallet Section -->
+        <section id="wallet" class="content-section">
             <div class="dashboard-card">
                 <div class="card-header">
                     <div class="card-icon" style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color));">
@@ -1041,8 +1052,8 @@
             </div>
         </div>
 
-        <!-- CLI Commands Tab - Andy's Integration -->
-        <div id="cli-tab" class="tab-content">
+        <!-- CLI Commands Section - Andy's Integration -->
+        <section id="cli" class="content-section">
             <div class="dashboard-card">
                 <div class="card-header">
                     <div class="card-icon" style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color));">
@@ -1108,8 +1119,8 @@
             </div>
         </div>
 
-        <!-- Calculator Tab -->
-        <div id="calculator-tab" class="tab-content">
+        <!-- Calculator Section -->
+        <section id="calculator" class="content-section">
             <div class="dashboard-card">
                 <div class="card-header">
                     <div class="card-icon" style="background: linear-gradient(135deg, var(--warning-color), var(--accent-color));">
@@ -1170,61 +1181,330 @@
             </div>
         </div>
 
-        <!-- Settings Tab -->
-        <div id="settings-tab" class="tab-content">
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <div class="card-icon" style="background: linear-gradient(135deg, var(--info-color), var(--secondary-color));">
-                        ⚙️
+        <!-- Settings Section -->
+        <section id="settings" class="content-section">
+            <div class="dashboard-grid">
+                <!-- General Settings -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, var(--info-color), var(--secondary-color));">
+                            ⚙️
+                        </div>
+                        <h3 class="card-title">General Settings</h3>
                     </div>
-                    <h3 class="card-title">Settings & Configuration</h3>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div class="form-group">
+                            <label for="app-theme">Interface Theme</label>
+                            <select id="app-theme">
+                                <option value="black-glass" selected>Black Glass</option>
+                                <option value="dark">Dark Mode</option>
+                                <option value="light">Light Mode</option>
+                                <option value="auto">Auto (System)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <select id="language">
+                                <option value="en" selected>English</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                                <option value="de">Deutsch</option>
+                                <option value="zh">中文</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timezone">Timezone</label>
+                            <select id="timezone">
+                                <option value="utc" selected>UTC</option>
+                                <option value="est">Eastern Time</option>
+                                <option value="pst">Pacific Time</option>
+                                <option value="gmt">GMT</option>
+                                <option value="auto">Auto Detect</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="auto-save">Auto-Save Interval</label>
+                            <select id="auto-save">
+                                <option value="30">30 seconds</option>
+                                <option value="60" selected>1 minute</option>
+                                <option value="300">5 minutes</option>
+                                <option value="600">10 minutes</option>
+                                <option value="off">Disabled</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                    <div class="form-group">
-                        <label for="default-compression">Default Compression Level</label>
-                        <select id="default-compression">
-                            <option value="1">Level 1 - Fast (20% savings)</option>
-                            <option value="2" selected>Level 2 - Balanced (25% savings)</option>
-                            <option value="3">Level 3 - Good (30% savings)</option>
-                            <option value="4">Level 4 - Strong (35% savings)</option>
-                            <option value="5">Level 5 - Maximum (40% savings)</option>
-                        </select>
+                <!-- Plotting Configuration -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
+                            🌾
+                        </div>
+                        <h3 class="card-title">Plotting Configuration</h3>
                     </div>
 
-                    <div class="form-group">
-                        <label for="default-plotter">Default Plotter</label>
-                        <select id="default-plotter">
-                            <option value="madmax">Mad Max</option>
-                            <option value="bladebit">BladeBit</option>
-                            <option value="drplotter">Dr. Plotter</option>
-                        </select>
-                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div class="form-group">
+                            <label for="default-plotter">Default Plotter</label>
+                            <select id="default-plotter">
+                                <option value="madmax">Mad Max</option>
+                                <option value="bladebit">BladeBit</option>
+                                <option value="drplotter" selected>Dr. Plotter (AI)</option>
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="auto-compress">Auto-Compression</label>
-                        <select id="auto-compress">
-                            <option value="true" selected>Enabled</option>
-                            <option value="false">Disabled</option>
-                        </select>
-                    </div>
+                        <div class="form-group">
+                            <label for="default-k-size">Default K-Size</label>
+                            <select id="default-k-size">
+                                <option value="30">K-30 (19.3 GB)</option>
+                                <option value="31">K-31 (38.6 GB)</option>
+                                <option value="32" selected>K-32 (77.3 GB)</option>
+                                <option value="33">K-33 (154.6 GB)</option>
+                                <option value="34">K-34 (309.2 GB)</option>
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="notification-level">Notifications</label>
-                        <select id="notification-level">
-                            <option value="all">All Events</option>
-                            <option value="important" selected>Important Only</option>
-                            <option value="errors">Errors Only</option>
-                            <option value="none">None</option>
-                        </select>
+                        <div class="form-group">
+                            <label for="default-compression">Default Compression Level</label>
+                            <select id="default-compression">
+                                <option value="0">Level 0 - None (0% savings)</option>
+                                <option value="1">Level 1 - Fast (20% savings)</option>
+                                <option value="2" selected>Level 2 - Balanced (25% savings)</option>
+                                <option value="3">Level 3 - Good (30% savings)</option>
+                                <option value="4">Level 4 - Strong (35% savings)</option>
+                                <option value="5">Level 5 - Maximum (40% savings)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="max-parallel-plots">Max Parallel Plots</label>
+                            <select id="max-parallel-plots">
+                                <option value="1">1 Plot</option>
+                                <option value="2" selected>2 Plots</option>
+                                <option value="4">4 Plots</option>
+                                <option value="8">8 Plots</option>
+                                <option value="auto">Auto (Based on CPU)</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
-                <button class="btn" onclick="saveSettings()" style="margin-top: 20px;">
-                    <i class="fas fa-save"></i> Save Settings
-                </button>
+                <!-- Storage & Performance -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, var(--success-color), var(--secondary-color));">
+                            💾
+                        </div>
+                        <h3 class="card-title">Storage & Performance</h3>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div class="form-group">
+                            <label for="temp-dir">Default Temp Directory</label>
+                            <input type="text" id="temp-dir" value="/tmp/squashplot" placeholder="Temporary plot creation directory">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="final-dir">Default Final Directory</label>
+                            <input type="text" id="final-dir" value="./plots" placeholder="Final plot storage directory">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gpu-acceleration">GPU Acceleration</label>
+                            <select id="gpu-acceleration">
+                                <option value="auto" selected>Auto Detect</option>
+                                <option value="enabled">Force Enabled</option>
+                                <option value="disabled">Disabled</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="memory-management">Memory Management</label>
+                            <select id="memory-management">
+                                <option value="auto" selected>Auto</option>
+                                <option value="conservative">Conservative</option>
+                                <option value="aggressive">Aggressive</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Plotter Settings -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, var(--accent-color), var(--warning-color));">
+                            🧑‍🔬
+                        </div>
+                        <h3 class="card-title">Dr. Plotter AI Settings</h3>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div class="form-group">
+                            <label for="ai-optimization">AI Optimization Level</label>
+                            <select id="ai-optimization">
+                                <option value="conservative">Conservative (Stable)</option>
+                                <option value="balanced" selected>Balanced (Recommended)</option>
+                                <option value="aggressive">Aggressive (Max Performance)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="real-time-monitoring">Real-time Monitoring</label>
+                            <select id="real-time-monitoring">
+                                <option value="true" selected>Enabled</option>
+                                <option value="false">Disabled</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="intelligence-level">Intelligence Level</label>
+                            <select id="intelligence-level">
+                                <option value="basic">Basic</option>
+                                <option value="advanced" selected>Advanced</option>
+                                <option value="expert">Expert</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cudnt-boost">CUDNT Boost</label>
+                            <select id="cudnt-boost">
+                                <option value="auto" selected>Auto</option>
+                                <option value="maximum">Maximum</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications & Alerts -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, var(--warning-color), var(--danger-color));">
+                            🔔
+                        </div>
+                        <h3 class="card-title">Notifications & Alerts</h3>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div class="form-group">
+                            <label for="notification-level">Notification Level</label>
+                            <select id="notification-level">
+                                <option value="all">All Events</option>
+                                <option value="important" selected>Important Only</option>
+                                <option value="errors">Errors Only</option>
+                                <option value="none">None</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email-notifications">Email Notifications</label>
+                            <select id="email-notifications">
+                                <option value="false">Disabled</option>
+                                <option value="errors">Errors Only</option>
+                                <option value="important" selected>Important Events</option>
+                                <option value="all">All Events</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sound-alerts">Sound Alerts</label>
+                            <select id="sound-alerts">
+                                <option value="true" selected>Enabled</option>
+                                <option value="false">Disabled</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alert-frequency">Alert Frequency</label>
+                            <select id="alert-frequency">
+                                <option value="immediate" selected>Immediate</option>
+                                <option value="5min">Every 5 minutes</option>
+                                <option value="15min">Every 15 minutes</option>
+                                <option value="hourly">Hourly</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Settings -->
+                <div class="dashboard-card" style="grid-column: span 2;">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, var(--danger-color), var(--primary-color));">
+                            ⚡
+                        </div>
+                        <h3 class="card-title">Advanced Settings</h3>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div class="form-group">
+                            <label for="api-endpoint">API Endpoint</label>
+                            <input type="text" id="api-endpoint" value="http://localhost:8080" placeholder="Custom API endpoint">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="log-level">Log Level</label>
+                            <select id="log-level">
+                                <option value="error">Error</option>
+                                <option value="warning">Warning</option>
+                                <option value="info" selected>Info</option>
+                                <option value="debug">Debug</option>
+                                <option value="trace">Trace</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="backup-frequency">Auto Backup</label>
+                            <select id="backup-frequency">
+                                <option value="off">Disabled</option>
+                                <option value="daily" selected>Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experimental-features">Experimental Features</label>
+                            <select id="experimental-features">
+                                <option value="false" selected>Disabled</option>
+                                <option value="true">Enabled</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--glass-border);">
+                        <h4 style="color: white; margin-bottom: 15px;">Import/Export Configuration</h4>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn" onclick="exportSettings()">
+                                <i class="fas fa-download"></i> Export Settings
+                            </button>
+                            <button class="btn btn-pro" onclick="importSettings()">
+                                <i class="fas fa-upload"></i> Import Settings
+                            </button>
+                            <button class="btn" style="background: var(--danger-color);" onclick="resetSettings()">
+                                <i class="fas fa-undo"></i> Reset to Defaults
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Save Settings -->
+                <div class="dashboard-card" style="grid-column: span 2;">
+                    <div style="text-align: center;">
+                        <button class="btn" onclick="saveSettings()" style="font-size: 1.2rem; padding: 15px 30px;">
+                            <i class="fas fa-save"></i> Save All Settings
+                        </button>
+                        <p style="margin-top: 10px; color: var(--text-secondary); font-size: 0.9rem;">
+                            Changes will take effect immediately. Some settings may require a restart.
+                        </p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 
     <!-- Toast Notifications -->
@@ -1232,7 +1512,7 @@
 
     <script>
         // Global state
-        let currentTab = 'dashboard';
+        let currentSection = 'dashboard';
         let selectedPlotter = 'madmax';
         let plotting = false;
         let connectedWallet = null;
@@ -1252,9 +1532,13 @@
             updateSystemMetrics();
             systemMetricsInterval = setInterval(updateSystemMetrics, 10000);
 
+            // Add scroll event listener for navigation updates
+            window.addEventListener('scroll', updateActiveNavigation);
+
             // Initialize UI
             updateValueProps();
             calculateROI();
+            loadSettings(); // Load saved settings
 
             // Add initial activity
             addRecentActivity('Dashboard loaded - Production UI active');
@@ -1294,18 +1578,51 @@
             }
         }
 
-        // Tab switching
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.nav-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
+        // Smooth scrolling navigation
+        function scrollToSection(sectionName) {
+            const section = document.getElementById(sectionName);
+            if (section) {
+                // Update active navigation
+                document.querySelectorAll('.nav-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                event.target.classList.add('active');
 
-            document.getElementById(tabName + '-tab').classList.add('active');
-            event.target.classList.add('active');
-            currentTab = tabName;
+                // Smooth scroll to section
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                currentSection = sectionName;
+            }
+        }
+
+        // Handle scroll events to update active navigation
+        function updateActiveNavigation() {
+            const sections = ['dashboard', 'plotting', 'wallet', 'calculator', 'cli', 'settings'];
+            const scrollPosition = window.scrollY + 100; // Offset for header
+
+            for (const sectionId of sections) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    const sectionTop = window.scrollY + rect.top;
+                    const sectionBottom = sectionTop + rect.height;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        document.querySelectorAll('.nav-tab').forEach(tab => {
+                            tab.classList.remove('active');
+                        });
+                        const activeTab = document.querySelector(`a[href="#${sectionId}"]`);
+                        if (activeTab) {
+                            activeTab.classList.add('active');
+                        }
+                        currentSection = sectionId;
+                        break;
+                    }
+                }
+            }
         }
 
         // Plotter selection with Dr. Plotter
@@ -1454,18 +1771,141 @@
             showToast('Validation started', 'info');
         }
 
-        // Settings
+        // Settings management
         function saveSettings() {
             const settings = {
-                defaultCompression: document.getElementById('default-compression').value,
+                // General settings
+                appTheme: document.getElementById('app-theme').value,
+                language: document.getElementById('language').value,
+                timezone: document.getElementById('timezone').value,
+                autoSave: document.getElementById('auto-save').value,
+
+                // Plotting configuration
                 defaultPlotter: document.getElementById('default-plotter').value,
-                autoCompress: document.getElementById('auto-compress').value,
-                notificationLevel: document.getElementById('notification-level').value
+                defaultKSize: document.getElementById('default-k-size').value,
+                defaultCompression: document.getElementById('default-compression').value,
+                maxParallelPlots: document.getElementById('max-parallel-plots').value,
+
+                // Storage & Performance
+                tempDir: document.getElementById('temp-dir').value,
+                finalDir: document.getElementById('final-dir').value,
+                gpuAcceleration: document.getElementById('gpu-acceleration').value,
+                memoryManagement: document.getElementById('memory-management').value,
+
+                // Dr. Plotter AI Settings
+                aiOptimization: document.getElementById('ai-optimization').value,
+                realTimeMonitoring: document.getElementById('real-time-monitoring').value,
+                intelligenceLevel: document.getElementById('intelligence-level').value,
+                cudntBoost: document.getElementById('cudnt-boost').value,
+
+                // Notifications & Alerts
+                notificationLevel: document.getElementById('notification-level').value,
+                emailNotifications: document.getElementById('email-notifications').value,
+                soundAlerts: document.getElementById('sound-alerts').value,
+                alertFrequency: document.getElementById('alert-frequency').value,
+
+                // Advanced Settings
+                apiEndpoint: document.getElementById('api-endpoint').value,
+                logLevel: document.getElementById('log-level').value,
+                backupFrequency: document.getElementById('backup-frequency').value,
+                experimentalFeatures: document.getElementById('experimental-features').value
             };
 
             localStorage.setItem('squashplot_settings', JSON.stringify(settings));
-            showToast('Settings saved successfully', 'success');
-            addRecentActivity('Settings updated');
+            showToast('All settings saved successfully!', 'success');
+            addRecentActivity('Settings updated - all configurations saved');
+
+            // Apply theme immediately
+            applyTheme(settings.appTheme);
+        }
+
+        function loadSettings() {
+            const savedSettings = localStorage.getItem('squashplot_settings');
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+
+                // Apply all settings to form elements
+                Object.keys(settings).forEach(key => {
+                    const element = document.getElementById(key);
+                    if (element) {
+                        element.value = settings[key];
+                    }
+                });
+
+                // Apply theme
+                if (settings.appTheme) {
+                    applyTheme(settings.appTheme);
+                }
+
+                console.log('Settings loaded from localStorage');
+            }
+        }
+
+        function applyTheme(theme) {
+            // For now, just log the theme change
+            // In a full implementation, this would change CSS variables
+            console.log('Applying theme:', theme);
+        }
+
+        function exportSettings() {
+            const settings = localStorage.getItem('squashplot_settings');
+            if (!settings) {
+                showToast('No settings to export', 'warning');
+                return;
+            }
+
+            const dataStr = JSON.stringify(JSON.parse(settings), null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = 'squashplot_settings.json';
+            link.click();
+
+            showToast('Settings exported successfully', 'success');
+            addRecentActivity('Settings exported to file');
+        }
+
+        function importSettings() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const settings = JSON.parse(e.target.result);
+                            localStorage.setItem('squashplot_settings', JSON.stringify(settings));
+
+                            // Reload the page to apply settings
+                            showToast('Settings imported successfully! Reloading...', 'success');
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1500);
+                        } catch (error) {
+                            showToast('Invalid settings file', 'error');
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+
+            input.click();
+        }
+
+        function resetSettings() {
+            if (confirm('Are you sure you want to reset all settings to defaults? This cannot be undone.')) {
+                localStorage.removeItem('squashplot_settings');
+                showToast('Settings reset to defaults! Reloading...', 'warning');
+                addRecentActivity('Settings reset to defaults');
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
+            }
         }
 
         // Value propositions update
