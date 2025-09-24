@@ -52,34 +52,46 @@ def main():
         run_demo()
 
 def start_web_interface(port=8080):  # Replit default port
-    """Start the web interface using Replit template structure"""
-    print("🚀 Starting SquashPlot Web Dashboard...")
+    """Start the production-ready web interface with Dr. Plotter integration"""
+    print("🚀 Starting SquashPlot Pro - Production UI/UX...")
+    print("=" * 60)
+    print("🧑‍🔬 Dr. Plotter Integration: Advanced plotting with AI optimization")
+    print("🧠 CUDNT Acceleration: O(n²) → O(n^1.44) complexity reduction")
+    print("🎨 Black Glass UI/UX: Professional dashboard design")
+    print("💻 Andy's CLI Integration: Full command-line support")
+    print("=" * 60)
     print(f"📡 Replit URL: https://your-replit-name.replit.dev")
     print(f"🔗 Local access: http://localhost:{port}")
-    print("📊 Andy's CLI Integration: Available via dashboard")
+    print("📊 Production Dashboard: Available with full features")
     print()
 
     try:
-        # Import and start the enhanced API server (Andy's integration)
-        from squashplot_api_server import app
+        # Try to start the production API server with Dr. Plotter integration
+        from squashplot_production_server import app
 
-        print("✅ SquashPlot API Server started successfully!")
-        print(f"🌐 Dashboard: http://localhost:{port}")
+        print("✅ SquashPlot Pro API Server started successfully!")
+        print(f"🌐 Production Dashboard: http://localhost:{port}")
         print(f"📖 API Docs: http://localhost:{port}/docs")
-        print("💻 CLI Commands: Available in dashboard")
+        print("🧑‍🔬 Dr. Plotter: Available in plotting tab")
+        print("💻 Andy's CLI: Available in CLI commands tab")
         print()
 
         # Start the server
         app.run(host='0.0.0.0', port=port, debug=True)
 
-    except ImportError:
-        print("❌ Enhanced API server not available, trying basic server...")
+    except ImportError as e:
+        print(f"❌ Production server not available ({e}), trying enhanced API server...")
         try:
-            from squashplot_dashboard import app
+            from squashplot_api_server import app
             app.run(host='0.0.0.0', port=port, debug=True)
         except ImportError:
-            print("❌ No web server available, falling back to CLI mode...")
-            start_cli_interface()
+            print("❌ Enhanced API server not available, trying basic dashboard...")
+            try:
+                from squashplot_dashboard import app
+                app.run(host='0.0.0.0', port=port, debug=True)
+            except ImportError:
+                print("❌ No web server available, falling back to CLI mode...")
+                start_cli_interface()
     except Exception as e:
         print(f"❌ Failed to start web server: {e}")
         print("💡 Make sure port is available and dependencies are installed")

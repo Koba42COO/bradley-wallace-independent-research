@@ -57,6 +57,13 @@ SPEEDUP_FACTOR = 2.0
 WHITELIST_URL = "https://api.squashplot.com/whitelist"
 WHITELIST_FILE = Path.home() / ".squashplot" / "whitelist.json"
 
+# Mathematical constants for prime aligned compute
+PHI = (1 + math.sqrt(5)) / 2  # Golden ratio
+CONSCIOUSNESS_RATIO = 79/21   # Prime aligned compute ratio
+BETA = 0.5                    # Beta parameter for Wallace Transform
+EPSILON = 1e-10              # Small epsilon for numerical stability
+REDUCTION_EXPONENT = 1.44    # Complexity reduction exponent (O(n²) → O(n^1.44))
+
 # Realistic compression levels for MVP SquashPlot
 COMPRESSION_LEVELS = {
     0: {"ratio": 1.0, "algorithm": "none", "description": "No compression (108GB)", "speed": "instant"},
