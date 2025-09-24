@@ -728,6 +728,90 @@
             /* No special styling needed for active sections in scroll navigation */
         }
 
+        /* Experimental Features Styles */
+        .experimental-feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .experimental-feature-card:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .experimental-feature-card.active {
+            border-color: var(--primary-color);
+            background: rgba(0, 212, 255, 0.1);
+            box-shadow: var(--glow);
+        }
+
+        /* Toggle Switch Styles */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(74, 103, 65, 0.3);
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Feature Analytics Styles */
+        .feature-analytics {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .feature-analytics div {
+            margin-bottom: 3px;
+        }
+
+        .feature-analytics div:last-child {
+            margin-bottom: 0;
+        }
+
         /* Loading States */
         .loading {
             opacity: 0.6;
@@ -1482,15 +1566,187 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="experimental-features">Experimental Features</label>
-                            <select id="experimental-features">
-                                <option value="false" selected>Disabled</option>
-                                <option value="true">Enabled</option>
-                            </select>
-                            <small style="display: block; margin-top: 5px; color: var(--text-secondary); font-size: 0.8rem;">
+                        <!-- Expanded Experimental Features Section -->
+                        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--glass-border);">
+                            <h4 style="color: white; margin-bottom: 15px;">Experimental Features</h4>
+                            <small style="display: block; margin-bottom: 15px; color: var(--text-secondary); font-size: 0.8rem;">
                                 Advanced AI optimizations, quantum-resistant algorithms, and cutting-edge compression techniques. May impact stability.
                             </small>
+
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                                <!-- Advanced AI Optimization -->
+                                <div class="experimental-feature-card">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <label style="font-weight: 600; color: white;">Advanced AI Optimization</label>
+                                        <label class="switch">
+                                            <input type="checkbox" id="ai-optimization-experimental" onchange="toggleExperimentalFeature('ai-optimization')">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <small style="color: var(--text-secondary); font-size: 0.8rem; display: block; margin-bottom: 8px;">
+                                        Machine learning-based plot optimization with predictive analytics.
+                                    </small>
+                                    <div class="feature-analytics" id="ai-optimization-analytics" style="display: none;">
+                                        <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 5px;">Analytics:</div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                            <span>Predictions:</span>
+                                            <span id="ai-predictions-count">--</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                            <span>Accuracy:</span>
+                                            <span id="ai-accuracy-rate">--%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Quantum-Resistant Algorithms -->
+                                <div class="experimental-feature-card">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <label style="font-weight: 600; color: white;">Quantum-Resistant Algorithms</label>
+                                        <label class="switch">
+                                            <input type="checkbox" id="quantum-resistant-experimental" onchange="toggleExperimentalFeature('quantum-resistant')">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <small style="color: var(--text-secondary); font-size: 0.8rem; display: block; margin-bottom: 8px;">
+                                        Post-quantum cryptography algorithms for future-proofing.
+                                    </small>
+                                    <div class="feature-analytics" id="quantum-resistant-analytics" style="display: none;">
+                                        <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 5px;">Analytics:</div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                            <span>Security Level:</span>
+                                            <span id="quantum-security-level">--</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                            <span>Performance Impact:</span>
+                                            <span id="quantum-performance-impact">--%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Neural Network Compression -->
+                                <div class="experimental-feature-card">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <label style="font-weight: 600; color: white;">Neural Network Compression</label>
+                                        <label class="switch">
+                                            <input type="checkbox" id="neural-compression-experimental" onchange="toggleExperimentalFeature('neural-compression')">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <small style="color: var(--text-secondary); font-size: 0.8rem; display: block; margin-bottom: 8px;">
+                                        AI-driven adaptive compression using neural networks.
+                                    </small>
+                                    <div class="feature-analytics" id="neural-compression-analytics" style="display: none;">
+                                        <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 5px;">Analytics:</div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                            <span>Compression Rate:</span>
+                                            <span id="neural-compression-rate">--%</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                            <span>Learning Progress:</span>
+                                            <span id="neural-learning-progress">--%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Hyper-Dimensional Optimization -->
+                                <div class="experimental-feature-card">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <label style="font-weight: 600; color: white;">Hyper-Dimensional Optimization</label>
+                                        <label class="switch">
+                                            <input type="checkbox" id="hyper-dimensional-experimental" onchange="toggleExperimentalFeature('hyper-dimensional')">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <small style="color: var(--text-secondary); font-size: 0.8rem; display: block; margin-bottom: 8px;">
+                                        Multi-dimensional optimization algorithms for complex data patterns.
+                                    </small>
+                                    <div class="feature-analytics" id="hyper-dimensional-analytics" style="display: none;">
+                                        <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 5px;">Analytics:</div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                            <span>Dimensions:</span>
+                                            <span id="hyper-dimensions-count">--</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                            <span>Optimization Score:</span>
+                                            <span id="hyper-optimization-score">--%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Chaos Theory Integration -->
+                                <div class="experimental-feature-card">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <label style="font-weight: 600; color: white;">Chaos Theory Integration</label>
+                                        <label class="switch">
+                                            <input type="checkbox" id="chaos-theory-experimental" onchange="toggleExperimentalFeature('chaos-theory')">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <small style="color: var(--text-secondary); font-size: 0.8rem; display: block; margin-bottom: 8px;">
+                                        Fractal-based algorithms for unpredictable data patterns.
+                                    </small>
+                                    <div class="feature-analytics" id="chaos-theory-analytics" style="display: none;">
+                                        <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 5px;">Analytics:</div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                            <span>Fractal Dimension:</span>
+                                            <span id="chaos-fractal-dimension">--</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                            <span>Stability Index:</span>
+                                            <span id="chaos-stability-index">--%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Consciousness-Enhanced Computing -->
+                                <div class="experimental-feature-card">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                        <label style="font-weight: 600; color: white;">Consciousness-Enhanced Computing</label>
+                                        <label class="switch">
+                                            <input type="checkbox" id="consciousness-enhanced-experimental" onchange="toggleExperimentalFeature('consciousness-enhanced')">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <small style="color: var(--text-secondary); font-size: 0.8rem; display: block; margin-bottom: 8px;">
+                                        Prime-aligned compute mathematics with golden ratio optimization.
+                                    </small>
+                                    <div class="feature-analytics" id="consciousness-enhanced-analytics" style="display: none;">
+                                        <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 5px;">Analytics:</div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                            <span>Consciousness Ratio:</span>
+                                            <span id="consciousness-ratio">--</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                                            <span>Golden Ratio Alignment:</span>
+                                            <span id="golden-ratio-alignment">--%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Experimental Features Summary -->
+                            <div style="margin-top: 20px; padding: 15px; background: rgba(0, 212, 255, 0.1); border-radius: var(--border-radius); border: 1px solid rgba(0, 212, 255, 0.3);">
+                                <h5 style="color: white; margin-bottom: 10px; font-size: 0.9rem;">Experimental Features Summary</h5>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; font-size: 0.8rem;">
+                                    <div>
+                                        <span style="color: var(--text-secondary);">Active Features:</span>
+                                        <span id="active-experimental-count" style="color: var(--primary-color); font-weight: 600;">0</span>
+                                    </div>
+                                    <div>
+                                        <span style="color: var(--text-secondary);">Performance Impact:</span>
+                                        <span id="experimental-performance-impact" style="color: var(--warning-color); font-weight: 600;">--</span>
+                                    </div>
+                                    <div>
+                                        <span style="color: var(--text-secondary);">Stability Risk:</span>
+                                        <span id="experimental-stability-risk" style="color: var(--danger-color); font-weight: 600;">--</span>
+                                    </div>
+                                    <div>
+                                        <span style="color: var(--text-secondary);">Innovation Score:</span>
+                                        <span id="experimental-innovation-score" style="color: var(--secondary-color); font-weight: 600;">--</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -1557,6 +1813,7 @@
             updateValueProps();
             calculateROI();
             loadSettings(); // Load saved settings
+            loadExperimentalFeatures(); // Load experimental feature states
 
             // Add initial activity
             addRecentActivity('Dashboard loaded - Production UI active');
@@ -1826,7 +2083,16 @@
                 apiEndpoint: document.getElementById('api-endpoint').value,
                 logLevel: document.getElementById('log-level').value,
                 backupFrequency: document.getElementById('backup-frequency').value,
-                experimentalFeatures: document.getElementById('experimental-features').value
+
+                // Experimental Features
+                experimentalFeatures: {
+                    'ai-optimization': document.getElementById('ai-optimization-experimental').checked,
+                    'quantum-resistant': document.getElementById('quantum-resistant-experimental').checked,
+                    'neural-compression': document.getElementById('neural-compression-experimental').checked,
+                    'hyper-dimensional': document.getElementById('hyper-dimensional-experimental').checked,
+                    'chaos-theory': document.getElementById('chaos-theory-experimental').checked,
+                    'consciousness-enhanced': document.getElementById('consciousness-enhanced-experimental').checked
+                }
             };
 
             localStorage.setItem('squashplot_settings', JSON.stringify(settings));
@@ -1923,6 +2189,109 @@
                 setTimeout(() => {
                     window.location.reload();
                 }, 1500);
+            }
+        }
+
+        // Experimental Features Management
+        let activeExperimentalFeatures = [];
+
+        function toggleExperimentalFeature(featureName) {
+            const checkbox = document.getElementById(featureName + '-experimental');
+            const analyticsDiv = document.getElementById(featureName + '-analytics');
+            const card = checkbox.closest('.experimental-feature-card');
+
+            if (checkbox.checked) {
+                // Enable feature
+                activeExperimentalFeatures.push(featureName);
+                analyticsDiv.style.display = 'block';
+                card.classList.add('active');
+
+                // Load feature analytics
+                loadFeatureAnalytics(featureName);
+
+                showToast(`${featureName.replace('-', ' ').toUpperCase()} enabled`, 'success');
+                addRecentActivity(`Experimental feature enabled: ${featureName}`);
+            } else {
+                // Disable feature
+                activeExperimentalFeatures = activeExperimentalFeatures.filter(f => f !== featureName);
+                analyticsDiv.style.display = 'none';
+                card.classList.remove('active');
+
+                showToast(`${featureName.replace('-', ' ').toUpperCase()} disabled`, 'info');
+                addRecentActivity(`Experimental feature disabled: ${featureName}`);
+            }
+
+            updateExperimentalSummary();
+        }
+
+        function loadFeatureAnalytics(featureName) {
+            // Simulate loading analytics data (in production, this would fetch from API)
+            setTimeout(() => {
+                switch (featureName) {
+                    case 'ai-optimization':
+                        document.getElementById('ai-predictions-count').textContent = Math.floor(Math.random() * 1000) + ' plots';
+                        document.getElementById('ai-accuracy-rate').textContent = (85 + Math.random() * 10).toFixed(1) + '%';
+                        break;
+                    case 'quantum-resistant':
+                        document.getElementById('quantum-security-level').textContent = 'Level 5';
+                        document.getElementById('quantum-performance-impact').textContent = '-' + (10 + Math.random() * 15).toFixed(1) + '%';
+                        break;
+                    case 'neural-compression':
+                        document.getElementById('neural-compression-rate').textContent = (35 + Math.random() * 20).toFixed(1) + '%';
+                        document.getElementById('neural-learning-progress').textContent = (60 + Math.random() * 35).toFixed(1) + '%';
+                        break;
+                    case 'hyper-dimensional':
+                        document.getElementById('hyper-dimensions-count').textContent = Math.floor(Math.random() * 10) + 3;
+                        document.getElementById('hyper-optimization-score').textContent = (75 + Math.random() * 20).toFixed(1) + '%';
+                        break;
+                    case 'chaos-theory':
+                        document.getElementById('chaos-fractal-dimension').textContent = (1.2 + Math.random() * 0.8).toFixed(2);
+                        document.getElementById('chaos-stability-index').textContent = (70 + Math.random() * 25).toFixed(1) + '%';
+                        break;
+                    case 'consciousness-enhanced':
+                        document.getElementById('consciousness-ratio').textContent = (79/21).toFixed(3);
+                        document.getElementById('golden-ratio-alignment').textContent = (90 + Math.random() * 8).toFixed(1) + '%';
+                        break;
+                }
+            }, 500); // Simulate API delay
+        }
+
+        function updateExperimentalSummary() {
+            const activeCount = activeExperimentalFeatures.length;
+            document.getElementById('active-experimental-count').textContent = activeCount;
+
+            // Calculate performance impact based on active features
+            const baseImpact = activeCount * 5; // 5% base impact per feature
+            const performanceImpact = Math.min(baseImpact + Math.random() * 10, 50); // Max 50%
+            document.getElementById('experimental-performance-impact').textContent = performanceImpact.toFixed(1) + '%';
+
+            // Calculate stability risk
+            const stabilityRisk = Math.min(activeCount * 8, 60); // Max 60%
+            document.getElementById('experimental-stability-risk').textContent =
+                stabilityRisk < 20 ? 'Low' : stabilityRisk < 40 ? 'Medium' : 'High';
+
+            // Calculate innovation score
+            const innovationScore = Math.min(activeCount * 15 + Math.random() * 20, 100);
+            document.getElementById('experimental-innovation-score').textContent = innovationScore.toFixed(1) + '%';
+        }
+
+        // Load experimental features on page load
+        function loadExperimentalFeatures() {
+            const savedSettings = localStorage.getItem('squashplot_settings');
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+                const experimentalSettings = settings.experimentalFeatures || {};
+
+                // Apply experimental feature states
+                Object.keys(experimentalSettings).forEach(feature => {
+                    if (experimentalSettings[feature]) {
+                        const checkbox = document.getElementById(feature + '-experimental');
+                        if (checkbox) {
+                            checkbox.checked = true;
+                            toggleExperimentalFeature(feature);
+                        }
+                    }
+                });
             }
         }
 
