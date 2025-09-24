@@ -1,0 +1,774 @@
+/* ========== GORGEOUS SMOKEY GLASS DESIGN RESTORATION ========== */
+
+/* Beautiful Animated Background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    background: linear-gradient(135deg, #1a4d3a 0%, #2e7d3e 30%, #5cb85c 70%, #f0ad4e 100%) !important;
+    min-height: 100vh;
+    color: #1c3b2e !important;
+    line-height: 1.6;
+    animation: gradientShift 12s ease-in-out infinite;
+    position: relative;
+}
+
+/* Stunning Gradient Animation */
+@keyframes gradientShift {
+    0%, 100% { 
+        background: linear-gradient(135deg, #1a4d3a 0%, #2e7d3e 30%, #5cb85c 70%, #f0ad4e 100%); 
+    }
+    25% { 
+        background: linear-gradient(135deg, #2e7d3e 0%, #5cb85c 20%, #f0ad4e 60%, #d9534f 100%); 
+    }
+    50% { 
+        background: linear-gradient(135deg, #5cb85c 0%, #f0ad4e 30%, #d9534f 70%, #1a4d3a 100%); 
+    }
+    75% { 
+        background: linear-gradient(135deg, #f0ad4e 0%, #d9534f 20%, #1a4d3a 60%, #2e7d3e 100%); 
+    }
+}
+
+/* Apple-Standard Header with Premium Styling */
+.header {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    border: none !important;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.1) !important;
+    color: #1d1d1f !important;
+    padding: 24px 32px !important;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05),
+                0 8px 24px rgba(0, 0, 0, 0.04) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
+    pointer-events: none;
+}
+
+.brand-title {
+    font-size: 2.2rem !important;
+    margin-bottom: 0;
+    font-weight: 700 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif !important;
+    color: #1d1d1f !important;
+    letter-spacing: -0.02em !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+    text-shadow: none !important;
+}
+
+/* Apple-Style Beta Badge */
+.beta-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #007AFF, #5856D6) !important;
+    color: white !important;
+    padding: 4px 12px !important;
+    border-radius: 12px !important;
+    font-size: 0.7em !important;
+    font-weight: 600 !important;
+    margin-left: 12px !important;
+    text-shadow: none !important;
+    letter-spacing: 0.02em !important;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.25) !important;
+}
+
+/* Apple-Standard Glass Cards */
+.card {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 0.5px solid rgba(0, 0, 0, 0.06) !important;
+    border-radius: 18px !important;
+    padding: 24px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06),
+                0 1px 3px rgba(0, 0, 0, 0.05),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset !important;
+    transition: all 0.25s ease-out !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08),
+                0 4px 12px rgba(0, 0, 0, 0.06),
+                0 0 0 1px rgba(255, 255, 255, 0.7) inset !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+/* Apple Card Headers */
+.card h3,
+.card-header h3 {
+    color: #1d1d1f !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 1.3rem !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 16px !important;
+}
+
+/* Beautiful Authentication Cards */
+.user-dashboard-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85)) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 2px solid rgba(92, 184, 92, 0.3) !important;
+    box-shadow: 0 16px 48px rgba(46, 125, 62, 0.2), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Chat Card with Special Glass Effect */
+.chat-card {
+    background: linear-gradient(135deg, rgba(240, 173, 78, 0.1), rgba(255, 255, 255, 0.9)) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 2px solid rgba(240, 173, 78, 0.3) !important;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-messages {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(92, 184, 92, 0.2) !important;
+    border-radius: 16px !important;
+    padding: 1.5rem !important;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+.chat-message {
+    background: rgba(92, 184, 92, 0.08) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(92, 184, 92, 0.2) !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    margin-bottom: 1rem;
+    border-left: 4px solid #5cb85c !important;
+    transition: all 0.3s ease;
+}
+
+.chat-message:hover {
+    background: rgba(92, 184, 92, 0.12) !important;
+    transform: translateX(4px);
+}
+
+/* Pool Coordination with Green Glass */
+.pool-card {
+    background: linear-gradient(135deg, rgba(46, 125, 62, 0.1), rgba(255, 255, 255, 0.9)) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 2px solid rgba(46, 125, 62, 0.3) !important;
+}
+
+.current-pools {
+    background: rgba(46, 125, 62, 0.1) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(92, 184, 92, 0.3) !important;
+    border-radius: 16px !important;
+    padding: 1.5rem !important;
+}
+
+.pool-item {
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(92, 184, 92, 0.2) !important;
+    border-radius: 12px !important;
+    padding: 1.25rem !important;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.pool-item:hover {
+    background: rgba(255, 255, 255, 0.8) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(92, 184, 92, 0.15) !important;
+}
+
+/* Analytics Card with Gold Glass */
+.analytics-card {
+    background: linear-gradient(135deg, rgba(240, 173, 78, 0.1), rgba(255, 255, 255, 0.9)) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 2px solid rgba(240, 173, 78, 0.3) !important;
+}
+
+.analytics-stat {
+    background: rgba(240, 173, 78, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(240, 173, 78, 0.3) !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    transition: all 0.3s ease;
+}
+
+.analytics-stat:hover {
+    background: rgba(240, 173, 78, 0.15) !important;
+    transform: scale(1.05);
+}
+
+/* ROI Card with Orange Glass */
+.roi-card {
+    background: linear-gradient(135deg, rgba(213, 133, 18, 0.1), rgba(255, 255, 255, 0.9)) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 2px solid rgba(213, 133, 18, 0.3) !important;
+}
+
+.roi-metric {
+    background: rgba(213, 133, 18, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(240, 173, 78, 0.3) !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.roi-metric:hover {
+    background: rgba(240, 173, 78, 0.15) !important;
+    transform: scale(1.08);
+}
+
+/* AI Insights with Premium Glass */
+.insights-card {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(255, 255, 255, 0.9)) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 2px solid rgba(34, 197, 94, 0.3) !important;
+}
+
+.insight-item {
+    background: rgba(34, 197, 94, 0.08) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(92, 184, 92, 0.2) !important;
+    border-radius: 12px !important;
+    padding: 1.25rem !important;
+    border-left: 4px solid #22c55e !important;
+    transition: all 0.3s ease;
+}
+
+.insight-item:hover {
+    background: rgba(34, 197, 94, 0.12) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(34, 197, 94, 0.15) !important;
+}
+
+/* Apple-Standard Buttons */
+.btn-primary {
+    background: #007AFF !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 24px !important;
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif !important;
+    cursor: pointer;
+    transition: all 0.2s ease-out !important;
+    box-shadow: 0 3px 12px rgba(0, 122, 255, 0.25),
+                0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: -0.01em !important;
+    min-height: 44px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary:hover {
+    background: #0056CC !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 20px rgba(0, 122, 255, 0.3),
+                0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+.btn-primary:active {
+    background: #004999 !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2),
+                0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    color: #007AFF !important;
+    border: 1.5px solid rgba(0, 122, 255, 0.2) !important;
+    padding: 12px 24px !important;
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif !important;
+    cursor: pointer;
+    transition: all 0.2s ease-out !important;
+    letter-spacing: -0.01em !important;
+    min-height: 44px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset !important;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(0, 122, 255, 0.4) !important;
+    color: #0056CC !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 3px 12px rgba(0, 122, 255, 0.15),
+                0 1px 3px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.7) inset !important;
+}
+
+.btn-secondary:active {
+    background: rgba(255, 255, 255, 0.85) !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset !important;
+}
+
+/* Apple-Standard Input Fields with Enhanced Color Differentiation */
+#chat-input,
+.form-group input,
+.form-group select {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(15px) saturate(180%) !important;
+    border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 14px !important;
+    padding: 14px 18px !important;
+    color: #1d1d1f !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif !important;
+    transition: all 0.2s ease-out !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05),
+                0 0 0 1px rgba(255, 255, 255, 0.4) inset !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* Enhanced Focus States with Apple Color System */
+#chat-input:focus,
+.form-group input:focus,
+.form-group select:focus {
+    outline: none !important;
+    border-color: #007AFF !important;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15),
+                0 2px 8px rgba(0, 0, 0, 0.08),
+                0 0 0 1px rgba(255, 255, 255, 0.6) inset !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Different Input Types Color Coding */
+.form-group input[type="email"] {
+    border-left: 3px solid #FF9500 !important;
+}
+
+.form-group input[type="number"] {
+    border-left: 3px solid #34C759 !important;
+}
+
+.form-group select {
+    border-left: 3px solid #5856D6 !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+    background-size: 16px !important;
+    padding-right: 40px !important;
+}
+
+#chat-input {
+    border-left: 3px solid #007AFF !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    min-height: 44px !important;
+}
+
+/* Placeholder Styling */
+#chat-input::placeholder,
+.form-group input::placeholder,
+.form-group select::placeholder {
+    color: #8E8E93 !important;
+    font-weight: 400 !important;
+}
+
+/* Beautiful Modal Glass */
+.modal {
+    backdrop-filter: blur(8px) !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(25px) !important;
+    border: 2px solid rgba(92, 184, 92, 0.3) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Enhanced Footer */
+.footer {
+    background: rgba(26, 77, 58, 0.85) !important;
+    backdrop-filter: blur(20px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin-top: 3rem;
+}
+
+/* Main Content Layout */
+.main-content {
+    padding: 2rem !important;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 2rem !important;
+    margin-bottom: 2rem;
+}
+
+/* Floating Animation for Cards */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+}
+
+.card:nth-child(even) {
+    animation: float 6s ease-in-out infinite;
+}
+
+.card:nth-child(odd) {
+    animation: float 6s ease-in-out infinite 3s;
+}
+
+/* Price Ticker Glass */
+.price-ticker {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(92, 184, 92, 0.2) !important;
+    border-radius: 12px !important;
+    padding: 0.75rem 1.25rem !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Apple-Standard User Profile */
+.user-profile {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 0.5px solid rgba(0, 0, 0, 0.06) !important;
+    border-radius: 16px !important;
+    padding: 8px 16px !important;
+    transition: all 0.2s ease-out !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset !important;
+}
+
+.user-profile:hover {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08),
+                0 1px 3px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.7) inset !important;
+}
+
+/* Apple Typography for User Info */
+.user-name {
+    color: #1d1d1f !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: -0.01em !important;
+}
+
+.user-farm {
+    color: #8E8E93 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: -0.005em !important;
+}
+
+/* Enhanced Mobile Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 0 !important;
+        background-attachment: fixed !important;
+    }
+    
+    .header {
+        padding: 2rem 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+        border-radius: 16px !important;
+        margin: 0 1rem 1.5rem 1rem !important;
+    }
+    
+    .brand-title {
+        font-size: 2.2rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem !important;
+        padding: 0 1rem !important;
+    }
+    
+    .main-content {
+        padding: 0.5rem 0 !important;
+        max-width: 100% !important;
+    }
+    
+    .card {
+        margin-bottom: 1.25rem !important;
+        padding: 1.5rem 1.25rem !important;
+        border-radius: 16px !important;
+    }
+    
+    /* Mobile Navigation */
+    .user-profile {
+        padding: 0.6rem 1rem !important;
+        border-radius: 12px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .price-ticker {
+        padding: 0.6rem 1rem !important;
+        border-radius: 10px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Chat Optimizations */
+    .chat-card {
+        min-height: 350px !important;
+        padding: 1.25rem !important;
+    }
+    
+    .chat-messages {
+        max-height: 200px !important;
+        padding: 1rem !important;
+        border-radius: 12px !important;
+    }
+    
+    .chat-message {
+        padding: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+        border-radius: 10px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    #chat-input {
+        padding: 0.75rem 1rem !important;
+        border-radius: 10px !important;
+        font-size: 1rem !important;
+    }
+    
+    /* Form Optimizations */
+    .form-group input,
+    .form-group select {
+        padding: 0.75rem 1rem !important;
+        border-radius: 10px !important;
+        font-size: 1rem !important;
+    }
+    
+    /* Button Optimizations */
+    .btn-primary {
+        padding: 0.75rem 1.5rem !important;
+        border-radius: 10px !important;
+        font-size: 1rem !important;
+        min-height: 44px !important;
+    }
+    
+    .btn-secondary {
+        padding: 0.75rem 1.5rem !important;
+        border-radius: 10px !important;
+        font-size: 1rem !important;
+        min-height: 44px !important;
+    }
+    
+    /* Pool and Analytics Optimizations */
+    .pool-item {
+        padding: 1rem !important;
+        margin-bottom: 0.75rem !important;
+        border-radius: 10px !important;
+    }
+    
+    .analytics-stat {
+        padding: 1.25rem 1rem !important;
+        border-radius: 10px !important;
+        text-align: center !important;
+    }
+    
+    .roi-metric {
+        padding: 1.25rem 1rem !important;
+        border-radius: 10px !important;
+    }
+    
+    .insight-item {
+        padding: 1rem !important;
+        border-radius: 10px !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Tablet Responsive Design */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 2rem !important;
+        padding: 0 1.5rem !important;
+    }
+    
+    .header {
+        padding: 3rem 2rem !important;
+        margin: 0 1.5rem 2rem 1.5rem !important;
+    }
+    
+    .card {
+        padding: 1.75rem !important;
+    }
+}
+
+/* Small Mobile Screens */
+@media (max-width: 480px) {
+    .header {
+        padding: 1.5rem 1rem !important;
+        margin: 0 0.5rem 1rem 0.5rem !important;
+        border-radius: 14px !important;
+    }
+    
+    .brand-title {
+        font-size: 1.8rem !important;
+    }
+    
+    .dashboard-grid {
+        padding: 0 0.5rem !important;
+        gap: 1rem !important;
+    }
+    
+    .card {
+        padding: 1.25rem 1rem !important;
+        border-radius: 14px !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .chat-card {
+        min-height: 300px !important;
+        padding: 1rem !important;
+    }
+    
+    .chat-messages {
+        max-height: 150px !important;
+        padding: 0.75rem !important;
+    }
+}
+
+/* Touch-friendly enhancements */
+@media (hover: none) {
+    .card:active {
+        transform: scale(0.98) !important;
+    }
+    
+    .btn-primary:active {
+        transform: scale(0.98) !important;
+        background: linear-gradient(135deg, #1a4d3a, #2e7d3e) !important;
+    }
+    
+    .btn-secondary:active {
+        transform: scale(0.98) !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+    }
+    
+    .pool-item:active,
+    .analytics-stat:active,
+    .roi-metric:active,
+    .insight-item:active {
+        transform: scale(0.98) !important;
+    }
+}
+
+/* Landscape orientation optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+    }
+    
+    .header {
+        padding: 1.5rem !important;
+    }
+    
+    .brand-title {
+        font-size: 2rem !important;
+    }
+}
+
+/* Performance Chart Styles */
+#performanceChart {
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Progress Bars */
+.progress-bar {
+    background: rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 8px !important;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #2e7d3e, #5cb85c, #f0ad4e) !important;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(92, 184, 92, 0.3) !important;
+}
+
+/* Theme Toggle */
+#theme-toggle {
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(92, 184, 92, 0.2) !important;
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+#theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.95) !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 4px 12px rgba(92, 184, 92, 0.2) !important;
+}

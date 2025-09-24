@@ -5,8 +5,10 @@ SquashPlot - Advanced Chia Plot Compression Tool
 
 Professional Chia plotting solution featuring:
 - Advanced Multi-Stage Compression (Zstandard, Brotli, LZ4)
-- Chia Blockchain Integration
-- Professional Web Dashboard
+- prime aligned compute-Enhanced Compression Technology
+- Wallace Transform with Golden Ratio Optimization
+- CUDNT Complexity Reduction (O(n²) → O(n^1.44))
+- Black Glass UI/UX Professional Web Dashboard
 - Mad Max/BladeBit Compatible CLI
 - GPU Optimization & Resource Management
 """
@@ -23,7 +25,7 @@ def main():
     """Main entry point"""
     print("🗜️ SquashPlot - Advanced Chia Plot Compression")
     print("=" * 60)
-    print("🔧 Multi-Stage Compression | 🌱 Chia Integration | 📊 Professional Dashboard")
+    print("🧠 prime aligned compute Enhancement | ⚡ Golden Ratio Optimization | 🎨 Black Glass UI/UX")
     print("=" * 60)
 
     parser = argparse.ArgumentParser(description="SquashPlot - Advanced Chia Plot Compression Tool")
