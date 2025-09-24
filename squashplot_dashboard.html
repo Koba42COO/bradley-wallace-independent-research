@@ -7,22 +7,27 @@
     <link rel="stylesheet" href="/static/css/dashboard.css">
     <link rel="icon" href="/static/favicon.ico">
     <style>
-        /* Andy's Enhanced Design System */
+        /* Black Glass Design System - Sophisticated Dark Theme */
         :root {
-            --primary-color: #2e7d3e;
-            --secondary-color: #5cb85c;
-            --accent-color: #f0ad4e;
-            --danger-color: #ff6b6b;
-            --success-color: #51cf66;
-            --warning-color: #ffd43b;
-            --info-color: #74c0fc;
-            --dark-bg: #1a4d3a;
-            --light-bg: #f8f9fa;
-            --text-primary: #2d3436;
-            --text-secondary: #636e72;
-            --border-radius: 12px;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --primary-color: #00d4ff;
+            --secondary-color: #00ff88;
+            --accent-color: #ff6b6b;
+            --danger-color: #ff4757;
+            --success-color: #2ecc71;
+            --warning-color: #ffa502;
+            --info-color: #3742fa;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --glass-bg: rgba(13, 13, 13, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #808080;
+            --border-radius: 16px;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.4);
+            --glow: 0 0 20px rgba(0, 212, 255, 0.3);
+            --glow-secondary: 0 0 20px rgba(0, 255, 136, 0.3);
         }
 
         * {
@@ -33,10 +38,34 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1a4d3a 0%, #2e7d3e 50%, #f0ad4e 100%);
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 50%, #1a1a1a 100%);
+            background-attachment: fixed;
             min-height: 100vh;
             color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Add subtle animated background particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
         }
 
         .dashboard-container {
@@ -46,10 +75,11 @@
             min-height: 100vh;
         }
 
-        /* Header with Andy's Server Status */
+        /* Header with Andy's Server Status - Black Glass Theme */
         .dashboard-header {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: var(--border-radius);
             padding: 30px;
             margin-bottom: 30px;
@@ -66,6 +96,24 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            box-shadow: var(--glow);
+        }
+
+        .dashboard-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.03) 0%, transparent 70%);
+            animation: shimmer 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
         }
 
         .header-content {
@@ -83,24 +131,46 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
+            text-shadow: var(--glow);
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
         }
 
         .header-left .subtitle {
             font-size: 1.1rem;
             color: var(--text-secondary);
             font-weight: 400;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        /* Andy's Server Status Integration */
+        /* Andy's Server Status Integration - Black Glass Theme */
         .server-status-widget {
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
             border-radius: 25px;
             padding: 12px 20px;
             display: flex;
             align-items: center;
             gap: 12px;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .server-status-widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: sweep 3s ease-in-out infinite;
+        }
+
+        @keyframes sweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .status-indicator {
@@ -151,18 +221,37 @@
         }
 
         .dashboard-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border-radius: var(--border-radius);
             padding: 25px;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--glass-border);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .dashboard-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .dashboard-card:hover::before {
+            opacity: 1;
         }
 
         .card-header {
@@ -201,20 +290,40 @@
         }
 
         .cli-command-card {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            color: var(--text-primary);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             cursor: pointer;
             transition: all 0.3s ease;
-            border: none;
+            border: 1px solid var(--glass-border);
             text-align: left;
             font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cli-command-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
         .cli-command-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(46, 125, 62, 0.3);
+            box-shadow: var(--glow);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .cli-command-card:hover::before {
+            transform: scaleX(1);
         }
 
         .cli-command-title {
@@ -230,37 +339,68 @@
         }
 
         .custom-cli-form {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             margin-top: 20px;
+            border: 1px solid var(--glass-border);
         }
 
         .custom-cli-form input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.9);
+            padding: 12px 16px;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.05);
             color: var(--text-primary);
             font-family: 'Courier New', monospace;
             margin-bottom: 12px;
-        }
-
-        .custom-cli-form button {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
             transition: all 0.3s ease;
         }
 
+        .custom-cli-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: var(--glow);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .custom-cli-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .custom-cli-form button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .custom-cli-form button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
         .custom-cli-form button:hover {
-            background: #e69c3a;
             transform: translateY(-2px);
+            box-shadow: var(--glow);
+        }
+
+        .custom-cli-form button:hover::before {
+            left: 100%;
         }
 
         /* System Monitoring */
@@ -271,16 +411,25 @@
         }
 
         .metric-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
             padding: 15px;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             text-align: center;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: var(--glow);
         }
 
         .metric-value {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
 
         .metric-label {
@@ -288,6 +437,7 @@
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         /* Animations */

@@ -138,14 +138,134 @@ class ServerStatus(BaseModel):
 
 @app.get("/", response_class=HTMLResponse)
 async def root():
-    """Serve the main SquashPlot web interface"""
-    try:
-        return FileResponse("squashplot_web_interface.html", media_type="text/html")
-    except FileNotFoundError:
-        return HTMLResponse("""
-        <h1>SquashPlot API Server</h1>
-        <p>Web interface not found. API docs available at <a href="/docs">/docs</a></p>
-        """)
+    """Serve the interface selection landing page"""
+    return HTMLResponse("""
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SquashPlot - Choose Your Interface</title>
+        <style>
+            body {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                background: linear-gradient(135deg, #1a4d3a 0%, #2e7d3e 50%, #f0ad4e 100%);
+                min-height: 100vh;
+                margin: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+            }
+            .container {
+                text-align: center;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(20px);
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+                max-width: 600px;
+                width: 90%;
+            }
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 10px;
+                background: linear-gradient(135deg, white, #f0ad4e);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .subtitle {
+                font-size: 1.2rem;
+                opacity: 0.9;
+                margin-bottom: 30px;
+            }
+            .interface-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                margin-top: 30px;
+            }
+            .interface-card {
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 15px;
+                padding: 25px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                text-decoration: none;
+                color: white;
+                display: block;
+            }
+            .interface-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+                background: rgba(255, 255, 255, 0.15);
+            }
+            .interface-title {
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            .interface-desc {
+                font-size: 0.9rem;
+                opacity: 0.8;
+                line-height: 1.4;
+            }
+            .status {
+                margin-top: 20px;
+                padding: 10px;
+                background: rgba(0, 255, 0, 0.1);
+                border-radius: 10px;
+                font-size: 0.9rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🧠 SquashPlot</h1>
+            <div class="subtitle">Advanced Chia Plot Compression with Andy's Enhancements</div>
+
+            <div class="interface-grid">
+                <a href="/dashboard" class="interface-card">
+                    <div class="interface-title">🎨 Enhanced Dashboard</div>
+                    <div class="interface-desc">
+                        Andy's professional UI with real-time monitoring,
+                        CLI integration, and modern design system
+                    </div>
+                </a>
+
+                <a href="/original" class="interface-card">
+                    <div class="interface-title">📊 Original Interface</div>
+                    <div class="interface-desc">
+                        Classic SquashPlot interface with compression tools
+                        and farming calculators
+                    </div>
+                </a>
+
+                <a href="/docs" class="interface-card">
+                    <div class="interface-title">📖 API Documentation</div>
+                    <div class="interface-desc">
+                        Interactive API docs for developers and integrations
+                        with FastAPI/Swagger UI
+                    </div>
+                </a>
+
+                <a href="/health" class="interface-card">
+                    <div class="interface-title">🔍 System Status</div>
+                    <div class="interface-desc">
+                        Real-time system health, API status, and monitoring
+                        information
+                    </div>
+                </a>
+            </div>
+
+            <div class="status">
+                ✅ Server Online | 🔐 Authentication Ready | 🎯 CLI Integration Active
+            </div>
+        </div>
+    </body>
+    </html>
+    """)
 
 @app.get("/health")
 async def health_check():
@@ -283,6 +403,32 @@ async def websocket_endpoint(websocket: WebSocket):
 async def api_status():
     """Simple API status for frontend checks"""
     return {"status": "online", "version": Config.VERSION, "timestamp": datetime.now().isoformat()}
+
+@app.get("/dashboard", response_class=HTMLResponse)
+async def dashboard():
+    """Serve the enhanced SquashPlot dashboard"""
+    try:
+        with open("squashplot_dashboard.html", "r") as f:
+            return f.read()
+    except FileNotFoundError:
+        return HTMLResponse("""
+        <h1>Dashboard Not Found</h1>
+        <p>The dashboard file is not available. Please check if squashplot_dashboard.html exists.</p>
+        <a href="/">Back to main interface</a>
+        """)
+
+@app.get("/original", response_class=HTMLResponse)
+async def original_interface():
+    """Serve the original SquashPlot interface"""
+    try:
+        with open("squashplot_web_interface.html", "r") as f:
+            return f.read()
+    except FileNotFoundError:
+        return HTMLResponse("""
+        <h1>Original Interface Not Found</h1>
+        <p>The original interface file is not available.</p>
+        <a href="/">Back to main interface</a>
+        """)
 
 # Replit-specific optimizations
 if Config.REPLIT_MODE:
