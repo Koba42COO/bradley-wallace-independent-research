@@ -1,0 +1,475 @@
+{% extends 'base.html' %}
+{% block title %}SquashPlot Beta - Help & Documentation{% endblock %}
+{% block head %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .help-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .help-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .help-section h2 {
+            color: #1f2937;
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .help-section h3 {
+            color: #374151;
+            margin: 20px 0 12px 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .help-item {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .help-item h4 {
+            margin: 0 0 8px 0;
+            color: #1f2937;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .help-item p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status-online {
+            background: rgba(34, 197, 94, 0.2);
+            color: #16a34a;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-offline {
+            background: rgba(239, 68, 68, 0.2);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .system-info {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-label {
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .info-value {
+            color: #6b7280;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<div data-section="help">
+    <div class="enterprise-layout">
+        <!-- Fixed Header -->
+        <header class="enterprise-header">
+            <div class="connection-status">
+                <div class="tool-indicators">
+                    <div id="madmax-status" class="tool-status offline">
+                        <div class="status-dot"></div>
+                        MadMax
+                    </div>
+                    <div id="bladebit-status" class="tool-status offline">
+                        <div class="status-dot"></div>
+                        BladeBit
+                    </div>
+                    <div id="chia-status" class="tool-status offline">
+                        <div class="status-dot"></div>
+                        Chia
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-ticker">
+                <span id="xch-price">Loading XCH price...</span>
+            </div>
+
+            <div class="user-profile">
+                <span id="user-info">Demo User</span>
+                <div class="user-avatar">👤</div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="enterprise-sidebar">
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Operations</div>
+                    <a href="/dashboard" class="nav-item">
+                        <span class="nav-icon">📊</span>Dashboard
+                    </a>
+                    <a href="/jobs" class="nav-item">
+                        <span class="nav-icon">⚡</span>Plotting Jobs
+                    </a>
+                    <a href="/storage" class="nav-item">
+                        <span class="nav-icon">💾</span>Storage
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Farming</div>
+                    <a href="/rewards" class="nav-item">
+                        <span class="nav-icon">💰</span>Rewards
+                    </a>
+                    <a href="/pools" class="nav-item">
+                        <span class="nav-icon">🏊</span>Pools
+                    </a>
+                    <a href="/analytics" class="nav-item">
+                        <span class="nav-icon">📈</span>Analytics
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">System</div>
+                    <a href="/settings" class="nav-item">
+                        <span class="nav-icon">⚙</span>Settings
+                    </a>
+                    <a href="/help" class="nav-item active">
+                        <span class="nav-icon">❓</span>Help
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Help & Documentation</h1>
+                <p>Everything you need to know about using SquashPlot effectively</p>
+            </div>
+
+            <div class="help-content">
+                <!-- System Status -->
+                <div class="help-section">
+                    <h2>🖥️ System Status</h2>
+                    <div class="system-info">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">SquashPlot Version:</span>
+                                <span class="info-value" id="version">1.0.0</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Platform:</span>
+                                <span class="info-value" id="platform">Loading...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Python Version:</span>
+                                <span class="info-value" id="python-version">Loading...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Memory Usage:</span>
+                                <span class="info-value" id="memory-usage">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Tool Status</h3>
+                    <div class="tool-indicators" id="tool-status-display">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Getting Started -->
+                <div class="help-section">
+                    <h2>🚀 Getting Started</h2>
+
+                    <h3>Quick Setup</h3>
+                    <div class="help-grid">
+                        <div class="help-item">
+                            <h4>1. System Requirements</h4>
+                            <p>Ensure you have Python 3.8+, sufficient disk space, and Chia blockchain software installed.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>2. First Plot</h4>
+                            <p>Use the Dashboard to create your first compressed plot with optimized settings.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>3. Monitor Progress</h4>
+                            <p>Track plotting progress and farming rewards in real-time through the web interface.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>4. Optimize Settings</h4>
+                            <p>Fine-tune compression levels and system resources in the Settings page.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Overview -->
+                <div class="help-section">
+                    <h2>✨ Key Features</h2>
+
+                    <h3>Compression Technology</h3>
+                    <div class="help-grid">
+                        <div class="help-item">
+                            <h4>Multi-Stage Compression</h4>
+                            <p>Combines LZ4, Zstandard, and Brotli for optimal space savings while maintaining farming compatibility.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>Real-time Optimization</h4>
+                            <p>Automatically adjusts compression parameters based on your system's capabilities.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>Farming Compatible</h4>
+                            <p>All compressed plots remain fully compatible with Chia farming protocols.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>Pro Features</h4>
+                            <p>Advanced compression algorithms available with Pro license (35% space savings).</p>
+                        </div>
+                    </div>
+
+                    <h3>System Integration</h3>
+                    <div class="help-grid">
+                        <div class="help-item">
+                            <h4>MadMax Support</h4>
+                            <p>Native integration with MadMax plotter for maximum plotting speed.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>BladeBit Support</h4>
+                            <p>Advanced compression support with BladeBit plotter integration.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>Resource Monitoring</h4>
+                            <p>Real-time monitoring of CPU, memory, and disk usage during plotting.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>Job Queue Management</h4>
+                            <p>Manage multiple plotting jobs with intelligent queue prioritization.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="help-section">
+                    <h2>❓ Frequently Asked Questions</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-question">What compression levels are available?</div>
+                        <div class="faq-answer">SquashPlot offers 5 compression levels: No Compression (0%), Basic (20%), Standard (25%), High (30%), and Ultra (35% - Pro only). All levels maintain full Chia farming compatibility.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">How much space can I save with compression?</div>
+                        <div class="faq-answer">Depending on your chosen level, you can save 20-35% of your plot storage space. For a standard 108GB plot, this means saving 21.6GB to 37.8GB per plot.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Is compression farming-compatible?</div>
+                        <div class="faq-answer">Yes! All SquashPlot compressed plots are fully compatible with Chia farming. The compression is transparent to the Chia farming process.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">What are the system requirements?</div>
+                        <div class="faq-answer">Minimum: Python 3.8+, 8GB RAM, 256GB storage. Recommended: Python 3.9+, 16GB RAM, 1TB+ NVMe storage for optimal performance.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">How do I upgrade to Pro features?</div>
+                        <div class="faq-answer">Pro features including 35% compression and advanced algorithms are available through our whitelist system. Contact support for access.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Can I monitor plotting progress?</div>
+                        <div class="faq-answer">Yes! SquashPlot provides real-time progress monitoring, estimated completion times, and detailed statistics for all plotting jobs.</div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="help-section">
+                    <h2>📞 Support & Contact</h2>
+
+                    <div class="contact-info">
+                        <h3>Need Help?</h3>
+                        <p>Our support team is here to assist you with any questions or issues.</p>
+                        <p>📧 Email: support@squashplot.com</p>
+                        <p>💬 Discord: https://discord.gg/squashplot</p>
+                        <p>📚 Docs: https://docs.squashplot.com</p>
+                    </div>
+
+                    <h3>Additional Resources</h3>
+                    <div class="help-grid">
+                        <div class="help-item">
+                            <h4>📖 Documentation</h4>
+                            <p>Comprehensive guides, tutorials, and API reference.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>🎥 Video Tutorials</h4>
+                            <p>Step-by-step video guides for setup and optimization.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>🏘️ Community Forum</h4>
+                            <p>Connect with other users and share experiences.</p>
+                        </div>
+                        <div class="help-item">
+                            <h4>📰 Blog & Updates</h4>
+                            <p>Latest news, tips, and performance optimizations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Scripts -->
+    <script src="/static/js/dashboard.js"></script>
+    <script src="/static/js/auth-features.js"></script>
+    <script src="/static/js/wallet-connect.js"></script>
+
+    <!-- Help-specific JavaScript -->
+    <script>
+        // Load system information
+        async function loadSystemInfo() {
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+
+                document.getElementById('version').textContent = data.squashplot_version;
+                document.getElementById('platform').textContent = data.resources.platform;
+                document.getElementById('python-version').textContent = data.resources.python_version;
+                document.getElementById('memory-usage').textContent = `${data.resources.memory_percent}%`;
+
+                // Update tool statuses
+                const toolContainer = document.getElementById('tool-status-display');
+                const tools = data.tools;
+
+                toolContainer.innerHTML = '';
+
+                Object.entries(tools).forEach(([tool, available]) => {
+                    if (tool !== 'compression_supported') {
+                        const statusDiv = document.createElement('div');
+                        statusDiv.className = `status-indicator ${available ? 'status-online' : 'status-offline'}`;
+                        statusDiv.innerHTML = `
+                            <span class="status-dot"></span>
+                            ${tool.charAt(0).toUpperCase() + tool.slice(1).replace('_available', '')}
+                        `;
+                        toolContainer.appendChild(statusDiv);
+                    }
+                });
+
+            } catch (error) {
+                console.error('Failed to load system info:', error);
+            }
+        }
+
+        // Safe DOM functions
+        function safeGetElement(id) {
+            return document.getElementById(id);
+        }
+
+        function updateToolStatus(toolName, status) {
+            const element = safeGetElement(`${toolName.toLowerCase()}-status`);
+            if (element) {
+                element.className = `tool-status ${status}`;
+                const dot = element.querySelector('.status-dot');
+                if (dot) {
+                    dot.style.backgroundColor = status === 'online' ? '#16a34a' : '#dc2626';
+                }
+            }
+        }
+
+        function updatePriceTicker() {
+            const tickerElement = safeGetElement('xch-price');
+            if (tickerElement) {
+                const mockPrice = (Math.random() * 0.5 + 0.2).toFixed(4);
+                tickerElement.textContent = `XCH $${mockPrice}`;
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSystemInfo();
+
+            // Update tool statuses
+            updateToolStatus('madmax', 'offline');
+            updateToolStatus('bladebit', 'offline');
+            updateToolStatus('chia', 'offline');
+
+            updatePriceTicker();
+            setInterval(updatePriceTicker, 30000);
+        });
+    </script>
+{% endblock %}

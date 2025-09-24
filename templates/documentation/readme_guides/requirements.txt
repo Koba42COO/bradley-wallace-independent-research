@@ -8,20 +8,11 @@ psutil>=5.8.0
 # Compression libraries
 # Note: zlib, bz2, lzma are built into Python 3.6+
 
-# Andy's Enhanced Authentication & Database System (Latest Update)
-Flask==2.3.3
-Flask-CORS==4.0.0
-Flask-SQLAlchemy==3.0.5
-Flask-Login>=0.6.3
-Flask-Dance>=7.0.0
-PyMySQL>=1.1.0
-PyJWT>=2.9.0
-Werkzeug==2.3.7
-SQLAlchemy==2.0.21
-
 # Andy's Enhanced API Server (FastAPI + Flask)
 fastapi>=0.75.0
 uvicorn[standard]>=0.17.0
+flask>=2.0.0
+flask-cors>=3.0.0
 python-multipart>=0.0.5
 pydantic>=1.8.0
 websockets>=10.0

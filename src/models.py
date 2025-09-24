@@ -22,6 +22,10 @@ class User(UserMixin, db.Model):
     last_name = db.Column(db.String, nullable=True)
     profile_image_url = db.Column(db.String, nullable=True)
     
+    # Local auth fields
+    username = db.Column(db.String, unique=True, nullable=True)
+    password_hash = db.Column(db.String, nullable=True)
+    
     # Farming profile data
     farm_name = db.Column(db.String, nullable=True)
     total_plots = db.Column(db.Integer, default=0)
@@ -45,9 +49,25 @@ class User(UserMixin, db.Model):
             return f"{self.first_name} {self.last_name}"
         elif self.first_name:
             return self.first_name
+        elif self.username:
+            return self.username
         elif self.email:
             return self.email.split('@')[0]
         return f"User {self.id[:8]}"
+
+    # Authentication helpers
+    def set_password(self, raw_password: str) -> None:
+        """Hash and store the user's password using strong salted hashing."""
+        from werkzeug.security import generate_password_hash
+        # PBKDF2:sha256 with random salt; industry standard in Werkzeug
+        self.password_hash = generate_password_hash(raw_password)
+
+    def check_password(self, raw_password: str) -> bool:
+        """Verify a provided password against the stored salted hash."""
+        if not self.password_hash:
+            return False
+        from werkzeug.security import check_password_hash
+        return check_password_hash(self.password_hash, raw_password)
 
 # OAuth token storage (Required for Replit Auth)
 class OAuth(OAuthConsumerMixin, db.Model):

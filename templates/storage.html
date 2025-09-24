@@ -1,0 +1,379 @@
+{% extends 'base.html' %}
+{% block title %}SquashPlot Beta - Storage Management{% endblock %}
+{% block head %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+{% block content %}
+<div data-section="storage">
+    <div class="enterprise-layout">
+        <!-- Enterprise Sidebar Navigation -->
+        <aside class="enterprise-sidebar">
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Operations</div>
+                    <a href="/dashboard" class="nav-item">
+                        <span class="nav-icon">📊</span>Dashboard
+                    </a>
+                    <a href="/jobs" class="nav-item">
+                        <span class="nav-icon">⚡</span>Plotting Jobs
+                    </a>
+                    <a href="/storage" class="nav-item active">
+                        <span class="nav-icon">💾</span>Storage
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Farming</div>
+                    <a href="/rewards" class="nav-item">
+                        <span class="nav-icon">💰</span>Rewards
+                    </a>
+                    <a href="/pools" class="nav-item">
+                        <span class="nav-icon">🏊</span>Pools
+                    </a>
+                    <a href="/analytics" class="nav-item">
+                        <span class="nav-icon">📈</span>Analytics
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">System</div>
+                    <a href="/settings" class="nav-item">
+                        <span class="nav-icon">⚙</span>Settings
+                    </a>
+                    <a href="/help" class="nav-item">
+                        <span class="nav-icon">❓</span>Help
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Enterprise Header with Storage KPIs -->
+        <header class="enterprise-header compact">
+            <!-- Status Bar -->
+            <div class="header-status">
+                <div id="connection-status" class="status-indicator online">
+                    <span class="status-dot online"></span>
+                    <span>Connected</span>
+                </div>
+                
+                <div class="price-ticker">
+                    <div class="price-item">
+                        <span class="price-label">XCH</span>
+                        <span id="xch-price" class="price-value">$--</span>
+                        <span id="price-change" class="price-change">--</span>
+                    </div>
+                    <div class="price-divider"></div>
+                    <div class="price-item">
+                        <span class="price-label">Netspace</span>
+                        <span id="netspace" class="price-value">-- EiB</span>
+                    </div>
+                </div>
+                
+                <div id="user-profile" class="user-profile">
+                    <div class="user-avatar">
+                        <img id="user-avatar" src="" alt="User" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="avatar-fallback">U</div>
+                    </div>
+                    <div class="user-info">
+                        <span id="user-name" class="user-name">Loading...</span>
+                        <span id="user-farm" class="user-farm">--</span>
+                    </div>
+                    <div class="user-menu-toggle">⚙</div>
+                </div>
+            </div>
+
+            <!-- Section Bar -->
+            <div class="section-bar">
+                <h1 class="section-title">
+                    <span class="section-icon">💾</span>
+                    Storage Management
+                </h1>
+                <div class="section-actions">
+                    <button class="btn-secondary">Scan Drives</button>
+                    <button class="btn-primary">Add Storage</button>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="enterprise-main">
+            <!-- Storage Action Bar -->
+            <div class="action-bar">
+                <div class="action-group">
+                    <button id="add-drive-btn" class="btn-primary">Add Drive</button>
+                    <button id="optimize-storage-btn" class="btn-secondary">Optimize Layout</button>
+                </div>
+                
+                <div class="action-divider"></div>
+                
+                <div class="action-group">
+                    <label>View:</label>
+                    <select id="storage-view" class="form-control">
+                        <option value="overview">Overview</option>
+                        <option value="drives">Drives</option>
+                        <option value="plots">Plots</option>
+                        <option value="health">Health</option>
+                    </select>
+                </div>
+                
+                <div class="action-divider"></div>
+                
+                <div class="action-group">
+                    <button id="scan-drives-btn" class="btn-ghost">Scan Drives</button>
+                    <button id="cleanup-btn" class="btn-ghost">Cleanup</button>
+                    <button id="export-layout-btn" class="btn-ghost">Export Layout</button>
+                </div>
+            </div>
+
+            <!-- Storage Overview -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Storage Overview</h3>
+                    <div class="card-actions">
+                        <button class="icon-btn" title="Refresh storage">⟲</button>
+                        <button class="btn-secondary">Health Check</button>
+                    </div>
+                </div>
+                
+                <div class="storage-overview">
+                    <div class="storage-chart-container">
+                        <canvas id="storageChart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <div class="storage-summary">
+                        <div class="summary-item">
+                            <div class="summary-label">Total Capacity</div>
+                            <div class="summary-value">87.2 TB</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Used Space</div>
+                            <div class="summary-value">58.4 TB</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Available</div>
+                            <div class="summary-value">28.8 TB</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Plots</div>
+                            <div class="summary-value">1,247</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drive Management -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Drive Management</h3>
+                    <button class="btn-secondary">Add Drive Path</button>
+                </div>
+                
+                <div class="drive-table">
+                    <div class="drive-table-header">
+                        <div class="drive-col-name">Drive</div>
+                        <div class="drive-col-type">Type</div>
+                        <div class="drive-col-capacity">Capacity</div>
+                        <div class="drive-col-used">Used</div>
+                        <div class="drive-col-plots">Plots</div>
+                        <div class="drive-col-health">Health</div>
+                        <div class="drive-col-actions">Actions</div>
+                    </div>
+                    
+                    <div class="drive-list">
+                        <div class="drive-row">
+                            <div class="drive-col-name">
+                                <strong>/mnt/plots1</strong>
+                                <small>Samsung 990 Pro 4TB</small>
+                            </div>
+                            <div class="drive-col-type">
+                                <span class="drive-type nvme">NVMe</span>
+                            </div>
+                            <div class="drive-col-capacity">4.0 TB</div>
+                            <div class="drive-col-used">
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 78%"></div>
+                                </div>
+                                <span>78%</span>
+                            </div>
+                            <div class="drive-col-plots">87</div>
+                            <div class="drive-col-health">
+                                <span class="health-status excellent">Excellent</span>
+                            </div>
+                            <div class="drive-col-actions">
+                                <button class="btn-ghost btn-sm">Details</button>
+                                <button class="btn-ghost btn-sm">Remove</button>
+                            </div>
+                        </div>
+                        
+                        <div class="drive-row">
+                            <div class="drive-col-name">
+                                <strong>/mnt/plots2</strong>
+                                <small>WD Black 8TB</small>
+                            </div>
+                            <div class="drive-col-type">
+                                <span class="drive-type hdd">HDD</span>
+                            </div>
+                            <div class="drive-col-capacity">8.0 TB</div>
+                            <div class="drive-col-used">
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 92%"></div>
+                                </div>
+                                <span>92%</span>
+                            </div>
+                            <div class="drive-col-plots">167</div>
+                            <div class="drive-col-health">
+                                <span class="health-status good">Good</span>
+                            </div>
+                            <div class="drive-col-actions">
+                                <button class="btn-ghost btn-sm">Details</button>
+                                <button class="btn-ghost btn-sm">Remove</button>
+                            </div>
+                        </div>
+                        
+                        <div class="drive-row">
+                            <div class="drive-col-name">
+                                <strong>/mnt/plots3</strong>
+                                <small>Seagate Exos 16TB</small>
+                            </div>
+                            <div class="drive-col-type">
+                                <span class="drive-type hdd">HDD</span>
+                            </div>
+                            <div class="drive-col-capacity">16.0 TB</div>
+                            <div class="drive-col-used">
+                                <div class="usage-bar">
+                                    <div class="usage-fill" style="width: 45%"></div>
+                                </div>
+                                <span>45%</span>
+                            </div>
+                            <div class="drive-col-plots">142</div>
+                            <div class="drive-col-health">
+                                <span class="health-status excellent">Excellent</span>
+                            </div>
+                            <div class="drive-col-actions">
+                                <button class="btn-ghost btn-sm">Details</button>
+                                <button class="btn-ghost btn-sm">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Capacity Planning -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Capacity Planning</h3>
+                    <button class="btn-secondary">Generate Report</button>
+                </div>
+                
+                <div class="capacity-planning">
+                    <div class="capacity-chart">
+                        <canvas id="capacityChart" width="400" height="150"></canvas>
+                    </div>
+                    
+                    <div class="capacity-recommendations">
+                        <h4>Recommendations</h4>
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">⚠️</div>
+                            <div class="recommendation-text">
+                                <strong>Storage Almost Full</strong>
+                                <p>Consider adding 8-16TB of additional storage within 30 days</p>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">💡</div>
+                            <div class="recommendation-text">
+                                <strong>Optimization Opportunity</strong>
+                                <p>Increase compression level to Level 7 for 15% space savings</p>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon">🔧</div>
+                            <div class="recommendation-text">
+                                <strong>Drive Health</strong>
+                                <p>Monitor /mnt/plots2 - showing early wear indicators</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Enterprise Insights Panel -->
+        <aside class="enterprise-insights">
+            <div class="insights-section">
+                <h3 class="insights-title">Storage Metrics</h3>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">28.8TB</div>
+                    <div class="insight-description">Available space remaining</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">23.4TB</div>
+                    <div class="insight-description">Space saved through compression</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">87%</div>
+                    <div class="insight-description">Storage efficiency vs standard plots</div>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3 class="insights-title">Drive Health</h3>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">98.2%</div>
+                    <div class="insight-description">Overall drive health score</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">1</div>
+                    <div class="insight-description">Drive requiring attention</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-metric">45 days</div>
+                    <div class="insight-description">Estimated time until storage full</div>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3 class="insights-title">Recommendations</h3>
+                
+                <div class="insight-item">
+                    <div class="insight-description">Consider upgrading to 18TB drives for better cost efficiency</div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-description">Enable automatic cleanup of failed plots to free 2.3TB</div>
+                </div>
+            </div>
+
+            <div class="insights-section">
+                <h3 class="insights-title">Quick Actions</h3>
+                
+                <button class="btn-secondary" style="width: 100%; margin-bottom: var(--space-md);">
+                    Run Health Check
+                </button>
+                
+                <button class="btn-ghost" style="width: 100%; margin-bottom: var(--space-md);">
+                    Optimize Layout
+                </button>
+                
+                <button class="btn-ghost" style="width: 100%;">
+                    Capacity Report
+                </button>
+            </div>
+        </aside>
+    </div>
+    <!-- Scripts -->
+    <script src="/static/js/dashboard.js"></script>
+    <script src="/static/js/auth-features.js"></script>
+    <script src="/static/js/wallet-connect.js"></script>
+</div>
+{% endblock %}

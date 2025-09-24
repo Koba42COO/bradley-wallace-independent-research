@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Create account - SquashPlot{% endblock %}
+{% block content %}
+<div class="auth-container" style="min-height: calc(100vh - 200px); display: flex; align-items: center; justify-content: center; padding: 20px;">
+    <div class="auth-card" style="max-width: 420px; width: 100%; background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+        <div class="auth-header" style="text-align: center; margin-bottom: 32px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px;">
+                <span style="font-size: 32px;">🌱</span>
+                <h1 style="margin: 0; color: #111827; font-size: 28px; font-weight: 700;">SquashPlot</h1>
+            </div>
+            <h2 style="margin: 0; color: #6b7280; font-size: 18px; font-weight: 500;">Join the future of Chia farming</h2>
+        </div>
+        
+        {% if error %}
+        <div class="error-message" style="background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 14px;">
+            {{ error }}
+        </div>
+        {% endif %}
+        
+        <form method="POST" class="auth-form">
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="username" style="display: block; margin-bottom: 6px; color: #374151; font-weight: 500; font-size: 14px;">Username</label>
+                <input type="text" id="username" name="username" class="form-input" required 
+                       style="width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; transition: border-color 0.2s;"
+                       placeholder="Choose a username">
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="email" style="display: block; margin-bottom: 6px; color: #374151; font-weight: 500; font-size: 14px;">Email <span style="color: #9ca3af; font-weight: 400;">(optional)</span></label>
+                <input type="email" id="email" name="email" class="form-input" 
+                       style="width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; transition: border-color 0.2s;"
+                       placeholder="your@email.com">
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="password" style="display: block; margin-bottom: 6px; color: #374151; font-weight: 500; font-size: 14px;">Password</label>
+                <input type="password" id="password" name="password" class="form-input" required 
+                       style="width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; transition: border-color 0.2s;"
+                       placeholder="Create a strong password">
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 24px;">
+                <label for="confirm_password" style="display: block; margin-bottom: 6px; color: #374151; font-weight: 500; font-size: 14px;">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" class="form-input" required 
+                       style="width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; transition: border-color 0.2s;"
+                       placeholder="Confirm your password">
+            </div>
+            
+            <button type="submit" class="auth-button" 
+                    style="width: 100%; background: #111827; color: white; border: none; padding: 14px 20px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.2s;">
+                Create SquashPlot Account
+            </button>
+        </form>
+        
+        <div class="auth-footer" style="text-align: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e7eb;">
+            <p style="margin: 0; color: #6b7280; font-size: 14px;">
+                Already have an account? 
+                <a href="/login" style="color: #111827; text-decoration: none; font-weight: 600;">Sign in</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+.form-input:focus {
+    outline: none;
+    border-color: #111827;
+    box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.1);
+}
+
+.auth-button:hover {
+    background: #1f2937 !important;
+}
+
+.auth-button:active {
+    transform: translateY(1px);
+}
+</style>
+{% endblock %}
+
+

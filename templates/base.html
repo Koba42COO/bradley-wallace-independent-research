@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SquashPlot Beta{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/unified-design-system.css">
+    {% block head %}{% endblock %}
+    <style>
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; background: #111827; border-bottom: 1px solid #374151; position: sticky; top: 0; z-index: 200; }
+        .navbar .brand { color: #fff; font-weight: 700; letter-spacing: 0.3px; white-space: nowrap; flex-shrink: 0; }
+        .navbar .nav-links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; flex: 1; }
+        .navbar a { color: #e5e7eb; text-decoration: none; font-weight: 500; }
+        .navbar a.active { color: #60a5fa; }
+        .navbar .right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .profile { position: relative; padding: 6px 8px; }
+        .avatar { width: 34px; height: 34px; border-radius: 50%; background: #374151; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #e5e7eb; border: 1px solid #4b5563; }
+        .menu { display: none; position: absolute; right: 0; top: 46px; background: #111827; border: 1px solid #374151; border-radius: 8px; min-width: 180px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+        .menu a { display: block; padding: 10px 12px; color: #e5e7eb; }
+        .menu a:hover { background: #1f2937; }
+        .profile:hover .menu, .profile.menu-open .menu { display: block; }
+        /* Larger hover buffer below avatar to allow moving to menu */
+        .profile::after { content: ""; position: absolute; top: 34px; right: 0; width: 180px; height: 16px; }
+        footer { margin-top: 40px; padding: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; background: #f9fafb; }
+        .container { min-height: calc(100vh - 120px); }
+        
+        /* Responsive navbar text sizing */
+        @media (max-width: 1199px) {
+            .navbar a { font-size: 14px; }
+        }
+        @media (max-width: 991px) {
+            .navbar a { font-size: 13px; }
+        }
+        @media (max-width: 767px) {
+            .navbar a { font-size: 12px; }
+        }
+        @media (max-width: 575px) {
+            .navbar a { font-size: 11px; }
+        }
+        @media (max-width: 479px) {
+            .navbar a { font-size: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="left">
+            <a class="brand" href="/"><span class="title-icon">🌱</span>SquashPlot <span class="beta-badge">Beta</span></a>
+        </div>
+        <div class="nav-links">
+            <a href="/dashboard" class="{% if request.path.startswith('/dashboard') or request.path=='/' %}active{% endif %}">Dashboard</a>
+            <a href="/jobs" class="{% if request.path.startswith('/jobs') %}active{% endif %}">Jobs</a>
+            <a href="/storage" class="{% if request.path.startswith('/storage') %}active{% endif %}">Storage</a>
+            <a href="/rewards" class="{% if request.path.startswith('/rewards') %}active{% endif %}">Rewards</a>
+            <a href="/pools" class="{% if request.path.startswith('/pools') %}active{% endif %}">Pools</a>
+            <a href="/analytics" class="{% if request.path.startswith('/analytics') %}active{% endif %}">Analytics</a>
+            <a href="/settings" class="{% if request.path.startswith('/settings') %}active{% endif %}">Settings</a>
+        </div>
+        <div class="right">
+            <div class="profile">
+                <div class="avatar">{% if user and (user.profile_image_url) %}<img src="{{ user.profile_image_url }}" alt="" style="width:34px;height:34px;border-radius:50%">{% else %}👤{% endif %}</div>
+                <div class="menu">
+                    {% if user %}
+                        <a href="#">Signed in as {{ user.display_name if user.display_name else 'User' }}</a>
+                        <a href="/logout">Log out</a>
+                    {% else %}
+                        <a href="/login">Sign in</a>
+                        <a href="/signup">Create account</a>
+                        
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer style="background:#111827;color:#e5e7eb;text-align:center;border-top:1px solid #374151;">
+        <div>© {{ now().year if now else (datetime.utcnow().year if datetime else '') }} SquashPlot. All rights reserved.</div>
+    </footer>
+    <script>
+        // Add slight delay before closing menu to make selection easier
+        (function(){
+            var profile = document.querySelector('.profile');
+            if (!profile) return;
+            var hideTimer;
+            function openMenu(){
+                clearTimeout(hideTimer);
+                profile.classList.add('menu-open');
+            }
+            function scheduleClose(){
+                hideTimer = setTimeout(function(){ profile.classList.remove('menu-open'); }, 200);
+            }
+            profile.addEventListener('mouseenter', openMenu);
+            profile.addEventListener('mouseleave', scheduleClose);
+            var menu = profile.querySelector('.menu');
+            if (menu){
+                menu.addEventListener('mouseenter', openMenu);
+                menu.addEventListener('mouseleave', scheduleClose);
+            }
+        })();
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
+

@@ -1,0 +1,65 @@
+# rules.yaml - Architecture & build rules for Ionic/Angular MEAN project
+version: 1.0
+
+naming:
+  platform_folder: "src/app/platforms/{platform}"
+  platform_scss: "src/theme/variables-{platform}.scss"
+  env_files:
+    - environment.ts
+    - environment.{platform}.ts
+  modules:
+    platform_module: "{platform}.module.ts"
+
+structure:
+  client:
+    must_exist:
+      - src/app/core
+      - src/app/shared
+      - src/theme/_tokens.scss
+      - src/environments/environment.ts
+  server:
+    must_exist:
+      - server/src/api
+      - server/src/controllers
+      - server/src/models
+
+build_file_replacements:
+  angular_json:
+    - replace:
+        source: "src/environments/environment.ts"
+        with: "src/environments/environment.{platform}.ts"
+    - replace:
+        source: "src/theme/variables.scss"
+        with: "src/theme/variables-{platform}.scss"
+
+coding_guidelines:
+  components:
+    "presentational": "place in shared; cannot import platform modules"
+    "platform-specific": "place in src/app/platforms/{platform}; name with suffix .{platform}.component.ts"
+  services:
+    "platform-dependent-services": "have interface in core (IService); implementations in platforms; register via provider factories"
+
+scss:
+  tokens: "use _tokens.scss for raw design tokens; variables-*.scss should import _tokens and tweak mappings"
+  variables_file: "variables.scss must be file that is replaced at build time, not edited directly"
+
+runtime_detection:
+  allowed_methods:
+    - "Capacitor.getPlatform()"
+    - "Platform.is('hybrid') | Platform.is('ios')"
+  disallowed: "complex UI decision trees based solely on runtime device detection; prefer build-time swap for major differences"
+
+linting:
+  eslint:
+    config_path: ".eslintrc.json"
+  stylelint:
+    config_path: ".stylelintrc.json"
+
+ci_checks:
+  - "Verify file replacements exist for each target platform in angular.json"
+  - "Verify platform scss files exist"
+  - "Fail build if a platform-specific component is found outside src/app/platforms/*"
+
+notes:
+  - "Keep platform code minimal and small; default to core/shared."
+  - "Document any fileReplacement in team README."
