@@ -2006,6 +2006,9 @@
                         <button class="btn btn-pro" onclick="exportExperimentalData()">
                             <i class="fas fa-download"></i> Export Data
                         </button>
+                        <button class="btn" style="background: var(--info-color);" onclick="importExperimentalData()">
+                            <i class="fas fa-upload"></i> Import Data
+                        </button>
                         <button class="btn" style="background: var(--danger-color);" onclick="resetExperimentalFeatures()">
                             <i class="fas fa-undo"></i> Reset All
                         </button>
@@ -2843,28 +2846,182 @@
         }
 
         function exportExperimentalData() {
-            const data = {
+            const exportData = {
+                exportMetadata: {
+                    timestamp: new Date().toISOString(),
+                    version: "1.0.0",
+                    userAgent: navigator.userAgent,
+                    sessionId: Date.now().toString(36) + Math.random().toString(36).substr(2)
+                },
                 activeFeatures: activeExperimentalFeatures,
-                analytics: {},
-                timestamp: new Date().toISOString()
+                featureAnalytics: {},
+                feedbackOutputs: {},
+                performanceMetrics: {},
+                systemInfo: {},
+                recentActivities: [],
+                settings: {}
             };
 
-            // Collect analytics data
+            // Collect real analytics data from active features
             activeExperimentalFeatures.forEach(feature => {
-                data.analytics[feature] = {};
-                // Collect analytics values (simplified)
+                exportData.featureAnalytics[feature] = {};
+
+                // Collect specific metrics based on feature type
+                switch(feature) {
+                    case 'ai-optimization':
+                        exportData.featureAnalytics[feature] = {
+                            predictionsCount: document.getElementById('ai-predictions-count')?.textContent || '--',
+                            accuracyRate: document.getElementById('ai-accuracy-rate')?.textContent || '--',
+                            learningRate: document.getElementById('ai-learning-rate')?.textContent || '--',
+                            optimizationScore: document.getElementById('ai-optimization-score')?.textContent || '--',
+                            lastUpdated: new Date().toISOString()
+                        };
+                        break;
+                    case 'quantum-resistant':
+                        exportData.featureAnalytics[feature] = {
+                            securityLevel: document.getElementById('quantum-security-level')?.textContent || '--',
+                            performanceImpact: document.getElementById('quantum-performance-impact')?.textContent || '--',
+                            quantumReadiness: document.getElementById('quantum-readiness')?.textContent || '--',
+                            encryptionStrength: document.getElementById('quantum-encryption-strength')?.textContent || '--',
+                            lastUpdated: new Date().toISOString()
+                        };
+                        break;
+                    case 'neural-compression':
+                        exportData.featureAnalytics[feature] = {
+                            compressionRate: document.getElementById('neural-compression-rate')?.textContent || '--',
+                            learningProgress: document.getElementById('neural-learning-progress')?.textContent || '--',
+                            networkLayers: document.getElementById('neural-network-layers')?.textContent || '--',
+                            dataEfficiency: document.getElementById('neural-data-efficiency')?.textContent || '--',
+                            lastUpdated: new Date().toISOString()
+                        };
+                        break;
+                    case 'hyper-dimensional':
+                        exportData.featureAnalytics[feature] = {
+                            dimensionsCount: document.getElementById('hyper-dimensions-count')?.textContent || '--',
+                            optimizationScore: document.getElementById('hyper-optimization-score')?.textContent || '--',
+                            fractalEfficiency: document.getElementById('hyper-fractal-efficiency')?.textContent || '--',
+                            patternRecognition: document.getElementById('hyper-pattern-recognition')?.textContent || '--',
+                            lastUpdated: new Date().toISOString()
+                        };
+                        break;
+                    case 'chaos-theory':
+                        exportData.featureAnalytics[feature] = {
+                            fractalDimension: document.getElementById('chaos-fractal-dimension')?.textContent || '--',
+                            stabilityIndex: document.getElementById('chaos-stability-index')?.textContent || '--',
+                            entropyLevel: document.getElementById('chaos-entropy-level')?.textContent || '--',
+                            patternEmergence: document.getElementById('chaos-pattern-emergence')?.textContent || '--',
+                            lastUpdated: new Date().toISOString()
+                        };
+                        break;
+                    case 'consciousness-enhanced':
+                        exportData.featureAnalytics[feature] = {
+                            consciousnessRatio: document.getElementById('consciousness-ratio')?.textContent || '--',
+                            goldenRatioAlignment: document.getElementById('golden-ratio-alignment')?.textContent || '--',
+                            primeResonance: document.getElementById('prime-resonance')?.textContent || '--',
+                            consciousnessLevel: document.getElementById('consciousness-level')?.textContent || '--',
+                            lastUpdated: new Date().toISOString()
+                        };
+                        break;
+                }
             });
 
-            const dataStr = JSON.stringify(data, null, 2);
+            // Collect feedback outputs from text areas
+            const feedbackAreas = ['ai-optimization-output', 'quantum-resistant-output', 'neural-compression-output',
+                                 'hyper-dimensional-output', 'chaos-theory-output', 'consciousness-enhanced-output'];
+
+            feedbackAreas.forEach(areaId => {
+                const textarea = document.getElementById(areaId);
+                if (textarea && textarea.value.trim()) {
+                    const featureName = areaId.replace('-output', '').replace('-', '-');
+                    exportData.feedbackOutputs[featureName] = {
+                        content: textarea.value,
+                        timestamp: new Date().toISOString(),
+                        lines: textarea.value.split('\n').length
+                    };
+                }
+            });
+
+            // Collect performance metrics from summary
+            exportData.performanceMetrics = {
+                activeFeaturesCount: activeExperimentalFeatures.length,
+                performanceImpact: document.getElementById('experimental-performance-impact')?.textContent || '--',
+                stabilityRisk: document.getElementById('experimental-stability-risk')?.textContent || '--',
+                innovationScore: document.getElementById('experimental-innovation-score')?.textContent || '--',
+                lastCalculated: new Date().toISOString()
+            };
+
+            // Collect system information
+            exportData.systemInfo = {
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                platform: navigator.platform,
+                cookieEnabled: navigator.cookieEnabled,
+                screenResolution: `${screen.width}x${screen.height}`,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                memory: performance.memory ? {
+                    usedJSHeapSize: performance.memory.usedJSHeapSize,
+                    totalJSHeapSize: performance.memory.totalJSHeapSize,
+                    jsHeapSizeLimit: performance.memory.jsHeapSizeLimit
+                } : null
+            };
+
+            // Collect recent activities from localStorage or activity log
+            const savedActivities = localStorage.getItem('squashplot_activities');
+            if (savedActivities) {
+                try {
+                    exportData.recentActivities = JSON.parse(savedActivities);
+                } catch (e) {
+                    exportData.recentActivities = ['Unable to parse activity log'];
+                }
+            }
+
+            // Collect current settings
+            const savedSettings = localStorage.getItem('squashplot_settings');
+            if (savedSettings) {
+                try {
+                    exportData.settings = JSON.parse(savedSettings);
+                } catch (e) {
+                    exportData.settings = { error: 'Unable to parse settings' };
+                }
+            }
+
+            // Add experimental state backup
+            const experimentalBackup = localStorage.getItem('experimental_backup');
+            if (experimentalBackup) {
+                try {
+                    exportData.experimentalStateBackup = JSON.parse(experimentalBackup);
+                } catch (e) {
+                    exportData.experimentalStateBackup = null;
+                }
+            }
+
+            // Generate comprehensive data summary
+            exportData.summary = {
+                totalActiveFeatures: activeExperimentalFeatures.length,
+                dataPointsCollected: Object.keys(exportData.featureAnalytics).length,
+                feedbackOutputsCaptured: Object.keys(exportData.feedbackOutputs).length,
+                exportSize: JSON.stringify(exportData).length,
+                featuresWithAnalytics: Object.keys(exportData.featureAnalytics).filter(f => Object.keys(exportData.featureAnalytics[f]).length > 1)
+            };
+
+            const dataStr = JSON.stringify(exportData, null, 2);
             const dataBlob = new Blob([dataStr], { type: 'application/json' });
 
             const link = document.createElement('a');
             link.href = URL.createObjectURL(dataBlob);
-            link.download = 'experimental_features_data.json';
+            link.download = `experimental_features_data_${new Date().toISOString().split('T')[0]}_${Date.now()}.json`;
             link.click();
 
-            showToast('Experimental data exported', 'success');
-            addRecentActivity('Experimental data exported');
+            showToast(`Experimental data exported (${(dataStr.length / 1024).toFixed(1)} KB)`, 'success');
+            addRecentActivity(`Experimental data exported: ${activeExperimentalFeatures.length} features, ${(dataStr.length / 1024).toFixed(1)} KB`);
+
+            // Log export details
+            console.log('Experimental Data Export:', {
+                size: `${(dataStr.length / 1024).toFixed(1)} KB`,
+                features: activeExperimentalFeatures.length,
+                analyticsPoints: exportData.summary.dataPointsCollected,
+                feedbackEntries: exportData.summary.feedbackOutputsCaptured
+            });
         }
 
         function resetExperimentalFeatures() {
@@ -2957,6 +3114,108 @@
                 showToast('Experimental state loaded from backup', 'success');
                 addRecentActivity('Experimental state loaded from backup');
             }
+        }
+
+        function importExperimentalData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const importData = JSON.parse(e.target.result);
+
+                            // Validate import data structure
+                            if (!importData.exportMetadata || !importData.activeFeatures) {
+                                throw new Error('Invalid export file format');
+                            }
+
+                            // Confirm import
+                            if (confirm(`Import experimental data from ${new Date(importData.exportMetadata.timestamp).toLocaleString()}? This will restore ${importData.activeFeatures.length} features and their data.`)) {
+
+                                // Restore active features
+                                activeExperimentalFeatures.forEach(feature => {
+                                    const checkbox = document.getElementById(feature + '-experimental');
+                                    if (checkbox) {
+                                        checkbox.checked = false;
+                                        toggleExperimentalFeature(feature);
+                                    }
+                                });
+
+                                // Enable imported features
+                                importData.activeFeatures.forEach(feature => {
+                                    const checkbox = document.getElementById(feature + '-experimental');
+                                    if (checkbox) {
+                                        checkbox.checked = true;
+                                        toggleExperimentalFeature(feature);
+                                    }
+                                });
+
+                                // Restore analytics data if available
+                                if (importData.featureAnalytics) {
+                                    Object.keys(importData.featureAnalytics).forEach(feature => {
+                                        const analytics = importData.featureAnalytics[feature];
+                                        // Update DOM elements with imported analytics
+                                        Object.keys(analytics).forEach(metric => {
+                                            if (metric !== 'lastUpdated') {
+                                                const elementId = `${feature.replace('-', '-')}-${metric.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+                                                const element = document.getElementById(elementId);
+                                                if (element && analytics[metric] !== '--') {
+                                                    element.textContent = analytics[metric];
+                                                }
+                                            }
+                                        });
+                                    });
+                                }
+
+                                // Restore feedback outputs if available
+                                if (importData.feedbackOutputs) {
+                                    Object.keys(importData.feedbackOutputs).forEach(feature => {
+                                        const feedback = importData.feedbackOutputs[feature];
+                                        const textarea = document.getElementById(`${feature}-output`);
+                                        if (textarea && feedback.content) {
+                                            textarea.value = feedback.content;
+                                            // Show the feedback area
+                                            const feedbackDiv = document.getElementById(`${feature}-feedback`);
+                                            if (feedbackDiv) {
+                                                feedbackDiv.style.display = 'block';
+                                            }
+                                        }
+                                    });
+                                }
+
+                                // Update performance metrics
+                                if (importData.performanceMetrics) {
+                                    const metrics = importData.performanceMetrics;
+                                    if (metrics.performanceImpact && metrics.performanceImpact !== '--') {
+                                        document.getElementById('experimental-performance-impact').textContent = metrics.performanceImpact;
+                                    }
+                                    if (metrics.stabilityRisk && metrics.stabilityRisk !== '--') {
+                                        document.getElementById('experimental-stability-risk').textContent = metrics.stabilityRisk;
+                                    }
+                                    if (metrics.innovationScore && metrics.innovationScore !== '--') {
+                                        document.getElementById('experimental-innovation-score').textContent = metrics.innovationScore;
+                                    }
+                                }
+
+                                showToast(`Experimental data imported successfully (${importData.activeFeatures.length} features)`, 'success');
+                                addRecentActivity(`Experimental data imported: ${importData.activeFeatures.length} features from ${new Date(importData.exportMetadata.timestamp).toLocaleString()}`);
+
+                                // Update summary
+                                updateExperimentalSummary();
+                            }
+                        } catch (error) {
+                            showToast(`Import failed: ${error.message}`, 'error');
+                            console.error('Import error:', error);
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            input.click();
         }
 
         // Load experimental features on page load
