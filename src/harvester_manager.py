@@ -374,6 +374,12 @@ class HarvesterManager:
             if harvester.uptime_seconds > 2592000:  # 30 days
                 recommendations['maintenance_needed'].append(harvester.harvester_id)
 
+        # Add fun easter egg when harvesters need maintenance
+        offline_count = len(recommendations['offline_harvesters'])
+        if offline_count > 0:
+            logger.info("🧩 Harvester Riddle: {} harvesters offline... 'Plot and Replot were in a boat. Plot fell out... who's left?'".format(offline_count))
+            logger.info("🎯 Answer: Replot! (But we need those harvesters back online!)")
+
         return recommendations
 
     def export_harvester_report(self, output_file: str):
