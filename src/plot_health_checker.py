@@ -370,6 +370,11 @@ class PlotHealthChecker:
             else:
                 recommendations['unreadable'].append(status)
 
+        # Add fun easter egg for replot recommendations
+        if recommendations['critical_replot']:
+            logger.info("🧩 Replot Riddle: Plot and Replot were in a boat. Plot fell out... who's left?")
+            logger.info("🎯 Answer: Replot! (Critical replots needed: {})".format(len(recommendations['critical_replot'])))
+
         return recommendations
 
 # Convenience functions for easy use
