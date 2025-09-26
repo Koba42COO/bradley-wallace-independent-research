@@ -32,7 +32,13 @@ import jwt
 try:
     # Import our existing SquashPlot system
     from squashplot import SquashPlotCompressor
-    from chia_resources.chia_resource_query import ChiaResourceQuery
+    try:
+        from chia_resources.chia_resource_query import ChiaResourceQuery
+        CHIA_RESOURCES_AVAILABLE = True
+    except ImportError:
+        print("⚠️ Chia resources module not available")
+        CHIA_RESOURCES_AVAILABLE = False
+        ChiaResourceQuery = None
 
     # Try to import web components if available
     try:
@@ -196,7 +202,7 @@ if AUTH_AVAILABLE:
         AUTH_AVAILABLE = False
 
 # Initialize core SquashPlot components
-chia_query = ChiaResourceQuery()
+chia_query = ChiaResourceQuery() if CHIA_RESOURCES_AVAILABLE and ChiaResourceQuery else None
 compressor = SquashPlotCompressor(pro_enabled=False)
 
 # Make session permanent

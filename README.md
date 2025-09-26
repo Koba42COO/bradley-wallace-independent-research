@@ -208,6 +208,28 @@ export FARMER_KEY="your-farmer-key"
 export POOL_KEY="your-pool-key"
 ```
 
+### Database Options
+
+By default, the app uses SQLite for local development and will create `squashplot.db` in the project root.
+
+To use MySQL (compatible with MySQL Workbench):
+
+- Install MySQL locally and create a database (e.g., `squashplot`).
+- Set `DATABASE_URL` accordingly:
+  - `mysql+pymysql://username:password@localhost:3306/squashplot`
+- Restart the app; tables will auto-create on first run.
+
+Viewing the database locally:
+- SQLite: open `squashplot.db` with DB Browser for SQLite
+- MySQL: connect using MySQL Workbench with your local credentials
+
+### Authentication
+
+SquashPlot supports local username/password auth with salted hashing and JWT cookies, and OAuth (Replit) when configured.
+
+- Local auth routes: `/signup`, `/login`, `/logout`
+- OAuth route: `/auth/login` (requires Replit env configuration)
+
 ### Settings File
 Create `config.json` for advanced configuration:
 
