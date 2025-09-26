@@ -368,10 +368,10 @@
                 </div>
 
                 <div class="action-buttons">
-                    <button class="btn btn-primary" onclick="scanPlots()">
+                    <button class="btn btn-primary" onclick="scanPlots(this)">
                         <i class="fas fa-search"></i> Scan Plots
                     </button>
-                    <button class="btn btn-secondary" onclick="showPlotDetails()">
+                    <button class="btn btn-secondary" onclick="showPlotDetails(this)">
                         <i class="fas fa-list"></i> Details
                     </button>
                 </div>
@@ -410,7 +410,7 @@
                 </div>
 
                 <div class="action-buttons">
-                    <button class="btn btn-primary" onclick="checkHarvesters()">
+                    <button class="btn btn-primary" onclick="checkHarvesters(this)">
                         <i class="fas fa-sync"></i> Check Status
                     </button>
                     <button class="btn btn-secondary" onclick="addHarvester()">
@@ -732,8 +732,7 @@
         }
 
         // Action functions
-        async function scanPlots() {
-            const btn = event.target;
+        async function scanPlots(btn) {
             const originalText = btn.innerHTML;
             btn.innerHTML = '<div class="loading"></div> Scanning...';
             btn.disabled = true;
@@ -767,8 +766,7 @@
             }
         }
 
-        function checkHarvesters() {
-            const btn = event.target;
+        function checkHarvesters(btn) {
             const originalText = btn.innerHTML;
             btn.innerHTML = '<div class="loading"></div> Checking...';
             btn.disabled = true;
@@ -823,8 +821,7 @@
         });
 
         // Placeholder functions
-        async function showPlotDetails() {
-            const btn = event.target;
+        async function showPlotDetails(btn) {
             const originalText = btn.innerHTML;
             btn.innerHTML = '<div class="loading"></div> Loading...';
             btn.disabled = true;
