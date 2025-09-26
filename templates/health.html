@@ -732,22 +732,39 @@
         }
 
         // Action functions
-        function scanPlots() {
+        async function scanPlots() {
             const btn = event.target;
             const originalText = btn.innerHTML;
             btn.innerHTML = '<div class="loading"></div> Scanning...';
             btn.disabled = true;
 
-            // Simulate scanning
-            setTimeout(() => {
+            try {
+                // Call real plot scanning API
+                const response = await fetch('/api/plots/scan');
+                const data = await response.json();
+
+                if (data.success) {
+                    // Update with real data
+                    plotData.total = data.total_plots;
+                    plotData.healthy = data.healthy_plots;
+                    plotData.corrupt = data.corrupt_plots;
+                    plotData.outdated = data.outdated_plots;
+                    plotData.overallScore = data.overall_score;
+
+                    updatePlotHealth();
+                    updateAlerts();
+
+                    alert(`✅ Scan complete! Found ${data.total_plots} plot files (${data.total_size_gb} GB total)`);
+                } else {
+                    alert(`❌ Scan failed: ${data.error || 'Unknown error'}`);
+                }
+            } catch (error) {
+                console.error('Scan failed:', error);
+                alert('❌ Scan failed: Could not connect to scanning service');
+            } finally {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
-                // Update with new data
-                plotData.corrupt = 8;
-                plotData.overallScore = 85;
-                updatePlotHealth();
-                updateAlerts();
-            }, 3000);
+            }
         }
 
         function checkHarvesters() {
@@ -806,8 +823,113 @@
         });
 
         // Placeholder functions
-        function showPlotDetails() {
-            alert('Plot details view would open here');
+        async function showPlotDetails() {
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<div class="loading"></div> Loading...';
+            btn.disabled = true;
+
+            try {
+                // Call plot details API
+                const response = await fetch('/api/plots/details');
+                const data = await response.json();
+
+                if (data.details && data.details.length > 0) {
+                    // Create a modal or detailed view
+                    showPlotDetailsModal(data);
+                } else {
+                    alert(`📁 No plot files found.\n\n${data.summary?.message || 'Try running a plot scan first.'}`);
+                }
+            } catch (error) {
+                console.error('Details fetch failed:', error);
+                alert('❌ Could not load plot details');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        function showPlotDetailsModal(data) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.8); z-index: 2000; display: flex;
+                align-items: center; justify-content: center; padding: 20px;
+            `;
+
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: var(--secondary-bg); border-radius: 16px;
+                padding: 24px; max-width: 800px; width: 100%; max-height: 80vh;
+                overflow-y: auto; border: 1px solid var(--glass-border);
+            `;
+
+            const summary = data.summary;
+            const details = data.details;
+
+            content.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin: 0; color: var(--accent-color);">📊 Plot Details</h2>
+                    <button onclick="this.closest('div').parentElement.remove()"
+                            style="background: none; border: none; color: var(--text-secondary);
+                                   font-size: 24px; cursor: pointer; padding: 0;">×</button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                    <div style="text-align: center; padding: 12px; background: var(--card-bg); border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">${summary.total_plots}</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Total Plots</div>
+                    </div>
+                    <div style="text-align: center; padding: 12px; background: var(--card-bg); border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--success-color);">${summary.total_size_gb} GB</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Total Size</div>
+                    </div>
+                    <div style="text-align: center; padding: 12px; background: var(--card-bg); border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--warning-color);">${summary.avg_quality || 0}/100</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Avg Quality</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h3 style="margin-bottom: 12px; color: var(--text-primary);">📁 Individual Plot Files</h3>
+                    <div style="max-height: 400px; overflow-y: auto;">
+                        ${details.map(plot => `
+                            <div style="display: flex; justify-content: space-between; align-items: center;
+                                        padding: 12px; margin: 8px 0; background: var(--card-bg);
+                                        border-radius: 8px; border-left: 4px solid ${
+                                            plot.status === 'healthy' ? 'var(--success-color)' :
+                                            plot.status === 'warning' ? 'var(--warning-color)' : 'var(--danger-color)'
+                                        };">
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 600; margin-bottom: 4px; color: var(--text-primary);">${plot.filename}</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">
+                                        ${plot.size_gb} GB • K-${plot.k_size} • ${plot.directory}
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-weight: bold; margin-bottom: 4px; color: ${
+                                        plot.status === 'healthy' ? 'var(--success-color)' :
+                                        plot.status === 'warning' ? 'var(--warning-color)' : 'var(--danger-color)'
+                                    };">${plot.quality_score}/100</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: capitalize;">${plot.status}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px;">
+                    <button onclick="exportPlotReport()" class="btn btn-primary" style="flex: 1;">
+                        <i class="fas fa-download"></i> Export Report
+                    </button>
+                    <button onclick="this.closest('div').parentElement.remove()" class="btn btn-secondary" style="flex: 1;">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            `;
+
+            modal.appendChild(content);
+            document.body.appendChild(modal);
         }
 
         function startReplot() {
@@ -832,6 +954,10 @@
 
         function viewAnalytics() {
             alert('Analytics dashboard would open here');
+        }
+
+        function exportPlotReport() {
+            alert('📊 Generating plot health report...\n\nThis would export a detailed PDF/JSON report of your plot analysis.');
         }
     </script>
 </body>
