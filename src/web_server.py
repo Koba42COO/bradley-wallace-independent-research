@@ -40,6 +40,20 @@ try:
         CHIA_RESOURCES_AVAILABLE = False
         ChiaResourceQuery = None
 
+    # Import CUDNT Bridge components
+    try:
+        sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'chaios_llm_workspace', 'AISpecialTooling', 'python_engine'))
+        from bridge_api import CUDNTBridge, BridgeConfig
+        from vgpu_engine import VirtualGPUEngine
+        from cudnt_operations import CUDNTOperations
+        BRIDGE_AVAILABLE = True
+        print("✅ CUDNT Bridge components loaded successfully")
+    except ImportError as e:
+        print(f"⚠️ CUDNT Bridge not available: {e}")
+        BRIDGE_AVAILABLE = False
+        CUDNTBridge = None
+        BridgeConfig = None
+
     # Try to import web components if available
     try:
         from src.auth import init_auth, require_login
@@ -203,6 +217,41 @@ if AUTH_AVAILABLE:
 
 # Initialize core SquashPlot components
 chia_query = ChiaResourceQuery() if CHIA_RESOURCES_AVAILABLE and ChiaResourceQuery else None
+
+# Initialize CUDNT Bridge components
+bridge_manager = None
+if BRIDGE_AVAILABLE and CUDNTBridge and BridgeConfig:
+    try:
+        bridge_config = BridgeConfig(
+            backend_host=os.getenv('CUDNT_BACKEND_HOST', 'localhost'),
+            backend_port=int(os.getenv('CUDNT_BACKEND_PORT', '5000')),
+            max_reconnect_attempts=int(os.getenv('CUDNT_MAX_RECONNECTS', '10')),
+            reconnect_delay=float(os.getenv('CUDNT_RECONNECT_DELAY', '5.0')),
+            heartbeat_interval=float(os.getenv('CUDNT_HEARTBEAT_INTERVAL', '30.0'))
+        )
+
+        bridge_manager = CUDNTBridge(bridge_config)
+        print("✅ CUDNT Bridge Manager initialized successfully")
+
+        # Start bridge in background thread
+        def start_bridge_async():
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            try:
+                loop.run_until_complete(bridge_manager.start())
+            except Exception as e:
+                print(f"⚠️ Bridge startup failed: {e}")
+
+        bridge_thread = threading.Thread(target=start_bridge_async, daemon=True)
+        bridge_thread.start()
+        print("✅ CUDNT Bridge started in background thread")
+
+    except Exception as e:
+        print(f"⚠️ Bridge initialization failed: {e}")
+        bridge_manager = None
+        BRIDGE_AVAILABLE = False
+else:
+    print("⚠️ CUDNT Bridge components not available")
 compressor = SquashPlotCompressor(pro_enabled=False)
 
 # Make session permanent
@@ -1237,6 +1286,238 @@ def get_system_status():
         }
 
         return jsonify(status)
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# ===== CUDNT BRIDGE API ENDPOINTS =====
+
+@app.route('/api/bridge/status')
+def get_bridge_status():
+    """Get CUDNT Bridge status"""
+    try:
+        if not BRIDGE_AVAILABLE or not bridge_manager:
+            return jsonify({
+                'available': False,
+                'error': 'CUDNT Bridge not available'
+            }), 503
+
+        status = bridge_manager.get_system_status()
+        return jsonify({
+            'available': True,
+            'status': status,
+            'timestamp': time.time()
+        })
+
+    except Exception as e:
+        return jsonify({
+            'available': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/api/bridge/vgpu/create', methods=['POST'])
+def create_vgpu():
+    """Create a new virtual GPU"""
+    try:
+        if not BRIDGE_AVAILABLE or not bridge_manager:
+            return jsonify({'error': 'CUDNT Bridge not available'}), 503
+
+        data = request.get_json()
+        vgpu_id = data.get('vgpu_id', f'vgpu_{int(time.time())}')
+        config = data.get('config', {})
+
+        # Create VGPU asynchronously
+        async def create_async():
+            return await bridge_manager.create_vgpu(vgpu_id, config)
+
+        # Run in event loop
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        success = loop.run_until_complete(create_async())
+        loop.close()
+
+        if success:
+            return jsonify({
+                'success': True,
+                'vgpu_id': vgpu_id,
+                'message': f'VGPU {vgpu_id} created successfully'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': f'Failed to create VGPU {vgpu_id}'
+            }), 500
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/bridge/vgpu/<vgpu_id>/start', methods=['POST'])
+def start_vgpu(vgpu_id):
+    """Start a virtual GPU"""
+    try:
+        if not BRIDGE_AVAILABLE or not bridge_manager:
+            return jsonify({'error': 'CUDNT Bridge not available'}), 503
+
+        async def start_async():
+            return await bridge_manager.start_vgpu(vgpu_id)
+
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        success = loop.run_until_complete(start_async())
+        loop.close()
+
+        if success:
+            return jsonify({
+                'success': True,
+                'vgpu_id': vgpu_id,
+                'message': f'VGPU {vgpu_id} started successfully'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': f'Failed to start VGPU {vgpu_id}'
+            }), 500
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/bridge/vgpu/<vgpu_id>/stop', methods=['POST'])
+def stop_vgpu(vgpu_id):
+    """Stop a virtual GPU"""
+    try:
+        if not BRIDGE_AVAILABLE or not bridge_manager:
+            return jsonify({'error': 'CUDNT Bridge not available'}), 503
+
+        async def stop_async():
+            return await bridge_manager.stop_vgpu(vgpu_id)
+
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        success = loop.run_until_complete(stop_async())
+        loop.close()
+
+        if success:
+            return jsonify({
+                'success': True,
+                'vgpu_id': vgpu_id,
+                'message': f'VGPU {vgpu_id} stopped successfully'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': f'Failed to stop VGPU {vgpu_id}'
+            }), 500
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/bridge/vgpu/<vgpu_id>/delete', methods=['DELETE'])
+def delete_vgpu(vgpu_id):
+    """Delete a virtual GPU"""
+    try:
+        if not BRIDGE_AVAILABLE or not bridge_manager:
+            return jsonify({'error': 'CUDNT Bridge not available'}), 503
+
+        async def delete_async():
+            return await bridge_manager.delete_vgpu(vgpu_id)
+
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        success = loop.run_until_complete(delete_async())
+        loop.close()
+
+        if success:
+            return jsonify({
+                'success': True,
+                'vgpu_id': vgpu_id,
+                'message': f'VGPU {vgpu_id} deleted successfully'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': f'Failed to delete VGPU {vgpu_id}'
+            }), 500
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/bridge/job/submit', methods=['POST'])
+def submit_bridge_job():
+    """Submit a job to the CUDNT Bridge"""
+    try:
+        if not BRIDGE_AVAILABLE or not bridge_manager:
+            return jsonify({'error': 'CUDNT Bridge not available'}), 503
+
+        data = request.get_json()
+        job_data = {
+            'job_id': data.get('job_id', f'job_{int(time.time())}'),
+            'vgpu_id': data.get('vgpu_id'),
+            'operation_type': data.get('operation_type', 'matrix_multiply'),
+            'data': data.get('data', {}),
+            'priority': data.get('priority', 'medium'),
+            'estimated_duration': data.get('estimated_duration', 1.0)
+        }
+
+        async def submit_async():
+            return await bridge_manager.submit_job(job_data)
+
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        success = loop.run_until_complete(submit_async())
+        loop.close()
+
+        if success:
+            return jsonify({
+                'success': True,
+                'job_id': job_data['job_id'],
+                'message': f'Job {job_data["job_id"]} submitted successfully'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': f'Failed to submit job {job_data["job_id"]}'
+            }), 500
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/bridge/optimization', methods=['POST'])
+def run_bridge_optimization():
+    """Run CUDNT optimization via bridge"""
+    try:
+        data = request.get_json()
+        matrix_data = data.get('matrix', [])
+        target_data = data.get('target', None)
+        optimization_id = data.get('optimization_id', f'opt_{int(time.time())}')
+
+        if not matrix_data:
+            return jsonify({'error': 'Matrix data required'}), 400
+
+        # Import and run optimization
+        import subprocess
+        import json
+
+        # Prepare command line arguments
+        matrix_json = json.dumps(matrix_data)
+        target_json = json.dumps(target_data) if target_data else 'null'
+
+        # Run the optimization bridge script
+        result = subprocess.run([
+            sys.executable, 'cudnt_optimization_bridge.py',
+            matrix_json, target_json, optimization_id
+        ], capture_output=True, text=True, cwd=os.path.dirname(__file__))
+
+        if result.returncode == 0:
+            try:
+                optimization_result = json.loads(result.stdout.strip())
+                return jsonify(optimization_result)
+            except json.JSONDecodeError:
+                return jsonify({'error': 'Invalid optimization result format'}), 500
+        else:
+            return jsonify({
+                'error': result.stderr.strip(),
+                'success': False
+            }), 500
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500

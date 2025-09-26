@@ -861,6 +861,147 @@
         .toast.warning {
             border-left: 4px solid var(--warning-color);
         }
+
+        /* CUDNT BRIDGE STYLES */
+        .bridge-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .bridge-stat {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 212, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .bridge-stat .stat-icon {
+            font-size: 24px;
+        }
+
+        .bridge-stat .stat-info {
+            text-align: left;
+        }
+
+        .bridge-stat .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .bridge-stat .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .bridge-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .bridge-actions button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .bridge-actions .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .bridge-actions .btn-primary:hover {
+            background: linear-gradient(135deg, #00a4cc, #00cc77);
+            transform: translateY(-1px);
+            box-shadow: var(--glow);
+        }
+
+        .bridge-actions .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+        }
+
+        .bridge-actions .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .bridge-actions .btn-accent {
+            background: linear-gradient(135deg, var(--accent-color), #ff4757);
+            color: white;
+        }
+
+        .bridge-actions .btn-accent:hover {
+            background: linear-gradient(135deg, #ff4757, #ff3742);
+            transform: translateY(-1px);
+        }
+
+        .bridge-actions .btn-warning {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .bridge-actions .btn-warning:hover {
+            background: linear-gradient(135deg, #e55a2b, #e8851a);
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .bridge-info {
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .bridge-info small {
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        /* Bridge status indicator */
+        #bridge-status {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        #bridge-status.online {
+            background-color: var(--success-color);
+            box-shadow: 0 0 6px rgba(46, 204, 113, 0.4);
+        }
+
+        #bridge-status.offline {
+            background-color: var(--danger-color);
+            box-shadow: 0 0 6px rgba(255, 71, 87, 0.4);
+        }
+
+        #bridge-status.simulation {
+            background-color: #ffa500;
+            box-shadow: 0 0 6px rgba(255, 165, 0, 0.4);
+        }
     </style>
 </head>
 <body>
@@ -994,6 +1135,68 @@
                             <div class="cli-command-title">Validate Compression</div>
                             <div class="cli-command-desc">Check data integrity</div>
                         </button>
+                    </div>
+                </div>
+
+                <!-- CUDNT Bridge Section -->
+                <div class="dashboard-card" id="bridge-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color));">
+                            🌉
+                        </div>
+                        <h3 class="card-title">
+                            <span class="status-indicator" id="bridge-status" title="Bridge Status">●</span>
+                            CUDNT Bridge
+                        </h3>
+                        <div class="card-actions">
+                            <button class="btn-secondary" onclick="updateBridgeStatus()" title="Refresh Bridge Status" style="padding: 5px 10px; font-size: 12px;">⟲</button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="bridge-stats">
+                            <div class="bridge-stat">
+                                <div class="stat-icon">🎮</div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="bridge-vgpus">0</div>
+                                    <div class="stat-label">Virtual GPUs</div>
+                                </div>
+                            </div>
+
+                            <div class="bridge-stat">
+                                <div class="stat-icon">⚡</div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="bridge-utilization">0%</div>
+                                    <div class="stat-label">Utilization</div>
+                                </div>
+                            </div>
+
+                            <div class="bridge-stat">
+                                <div class="stat-icon">🔥</div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="bridge-jobs">0</div>
+                                    <div class="stat-label">Jobs Completed</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bridge-actions">
+                            <button class="btn-primary" onclick="startBridge()" style="padding: 8px 12px; font-size: 12px;">Start Bridge</button>
+                            <button class="btn-secondary" onclick="stopBridge()" style="padding: 8px 12px; font-size: 12px;">Stop Bridge</button>
+                            <button class="btn-warning" onclick="validateComplexity()" style="padding: 8px 12px; font-size: 12px;">⚡ Validate Complexity</button>
+                            <button class="btn-primary" onclick="createVGPU()" style="padding: 8px 12px; font-size: 12px;">Create VGPU</button>
+                            <button class="btn-secondary" onclick="startVGPU()" style="padding: 8px 12px; font-size: 12px;">Start VGPU</button>
+                            <button class="btn-secondary" onclick="stopVGPU()" style="padding: 8px 12px; font-size: 12px;">Stop VGPU</button>
+                            <button class="btn-secondary" onclick="submitBridgeJob()" style="padding: 8px 12px; font-size: 12px;">Submit Job</button>
+                            <button class="btn-accent" onclick="runOptimization()" style="padding: 8px 12px; font-size: 12px;">Run Optimization</button>
+                        </div>
+
+                        <div class="bridge-info">
+                            <small>Advanced CUDNT Bridge for distributed GPU computing with <em>experimental</em> O(n²) → <em>up to</em> O(n^1.44) optimization</small>
+                            <div id="bridge-mode-indicator" style="margin-top: 5px; font-size: 11px; color: #888;"></div>
+                            <div style="margin-top: 3px; font-size: 10px; color: #ff6b35; font-style: italic;">
+                                ⚠️ Performance claims are theoretical and hardware-dependent. Validate empirically.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -4157,6 +4360,337 @@
             if (systemMetricsInterval) {
                 clearInterval(systemMetricsInterval);
             }
+        });
+
+        // ===== CUDNT BRIDGE FUNCTIONS =====
+        let bridgeStatusInterval;
+
+        // Validate Complexity Reduction
+        async function validateComplexity() {
+            try {
+                const testSize = prompt("Enter test size (default: 100):", "100");
+                if (!testSize) return;
+
+                const iterations = prompt("Enter number of iterations (default: 10):", "10");
+                if (!iterations) return;
+
+                const response = await fetch('/api/bridge/validate-complexity', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        test_size: parseInt(testSize),
+                        iterations: parseInt(iterations),
+                        operation: 'matrix_multiply'
+                    })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    // Show validation results in a modal or alert
+                    const validation = result.validation_results;
+                    const analysis = validation.performance_analysis;
+
+                    let message = `🔬 COMPLEXITY VALIDATION RESULTS\n\n`;
+                    message += `Test Parameters:\n`;
+                    message += `- Size: ${validation.test_parameters.test_size}\n`;
+                    message += `- Iterations: ${validation.test_parameters.iterations}\n\n`;
+
+                    message += `Baseline Performance (O(n²)):\n`;
+                    message += `- Average Time: ${validation.baseline_performance.average_time}s\n\n`;
+
+                    message += `Optimized Performance (O(n^1.44)):\n`;
+                    message += `- Average Time: ${validation.optimized_performance.average_time}s\n\n`;
+
+                    message += `Analysis:\n`;
+                    message += `- Speedup Factor: ${analysis.speedup_factor}x\n`;
+                    message += `- Theoretical Reduction: ${analysis.complexity_reduction_ratio}\n\n`;
+
+                    message += `⚠️ IMPORTANT DISCLAIMERS:\n`;
+                    result.disclaimers.forEach(disclaimer => {
+                        message += `- ${disclaimer}\n`;
+                    });
+                    message += `\n📋 RECOMMENDATIONS:\n`;
+                    result.recommendations.forEach(rec => {
+                        message += `- ${rec}\n`;
+                    });
+
+                    // Show in a scrollable modal or use alert for now
+                    if (confirm(message + '\n\nClick OK to show detailed results in console')) {
+                        console.log('Detailed Validation Results:', result);
+                    }
+                } else {
+                    showToast(`Validation failed: ${result.detail}`, 'error');
+                }
+            } catch (error) {
+                showToast(`Error during validation: ${error.message}`, 'error');
+            }
+        }
+
+        // Start Bridge
+        async function startBridge() {
+            try {
+                const response = await fetch('/api/bridge/start', {
+                    method: 'POST'
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    showToast(`Bridge started successfully!`, 'success');
+                    updateBridgeStatus();
+                } else {
+                    showToast(`Failed to start bridge: ${result.detail}`, 'error');
+                }
+            } catch (error) {
+                showToast(`Error starting bridge: ${error.message}`, 'error');
+            }
+        }
+
+        // Stop Bridge
+        async function stopBridge() {
+            try {
+                const response = await fetch('/api/bridge/stop', {
+                    method: 'POST'
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    showToast(`Bridge stopped successfully!`, 'success');
+                    updateBridgeStatus();
+                } else {
+                    showToast(`Failed to stop bridge: ${result.detail}`, 'error');
+                }
+            } catch (error) {
+                showToast(`Error stopping bridge: ${error.message}`, 'error');
+            }
+        }
+
+        // Bridge status monitoring
+        async function updateBridgeStatus() {
+            try {
+                const response = await fetch('/api/bridge/status');
+                const data = await response.json();
+
+                const bridgeCard = document.getElementById('bridge-card');
+                const bridgeStatus = document.getElementById('bridge-status');
+                const bridgeVgpus = document.getElementById('bridge-vgpus');
+                const bridgeJobs = document.getElementById('bridge-jobs');
+                const bridgeUtilization = document.getElementById('bridge-utilization');
+
+                if (bridgeCard && bridgeStatus && data.available) {
+                    // Update status indicator
+                    let statusClass, statusTitle;
+                    if (data.status.connection_status === 'connected') {
+                        statusClass = 'online';
+                        statusTitle = 'Bridge: Connected to real backend';
+                    } else if (data.status.connection_status === 'simulation_mode') {
+                        statusClass = 'simulation';
+                        statusTitle = 'Bridge: Simulation Mode - Live monitoring active';
+                    } else {
+                        statusClass = 'offline';
+                        statusTitle = 'Bridge: Disconnected';
+                    }
+
+                    bridgeStatus.className = `status-indicator ${statusClass}`;
+                    bridgeStatus.title = statusTitle;
+
+                    // Update mode indicator
+                    const modeIndicator = document.getElementById('bridge-mode-indicator');
+                    if (modeIndicator) {
+                        if (data.status.connection_status === 'connected') {
+                            modeIndicator.textContent = 'Real backend connection active';
+                            modeIndicator.style.color = '#00ff00';
+                        } else if (data.status.connection_status === 'simulation_mode') {
+                            modeIndicator.textContent = 'Live monitoring with simulation - full functionality available';
+                            modeIndicator.style.color = '#ffa500';
+                        } else {
+                            modeIndicator.textContent = 'No active connection - click Start Bridge for live functionality';
+                            modeIndicator.style.color = '#ff4444';
+                        }
+                    }
+
+                    // Update VGPU count
+                    if (bridgeVgpus) {
+                        bridgeVgpus.textContent = data.status.total_vgpus || 0;
+                    }
+
+                    // Update jobs completed
+                    if (bridgeJobs) {
+                        bridgeJobs.textContent = data.status.jobs_completed || 0;
+                    }
+
+                    // Update utilization
+                    if (bridgeUtilization) {
+                        const util = Math.round((data.status.avg_utilization || 0) * 100);
+                        bridgeUtilization.textContent = `${util}%`;
+                    }
+
+                    // Show card if hidden
+                    bridgeCard.style.display = 'block';
+
+                } else if (bridgeCard) {
+                    // Hide card if bridge not available
+                    bridgeCard.style.display = 'none';
+                }
+
+            } catch (error) {
+                console.warn('Bridge status update failed:', error);
+                const bridgeCard = document.getElementById('bridge-card');
+                if (bridgeCard) {
+                    bridgeCard.style.display = 'none';
+                }
+            }
+        }
+
+        // Create VGPU
+        async function createVGPU() {
+            const vgpuId = prompt('Enter VGPU ID:');
+            if (!vgpuId) return;
+
+            const cores = prompt('Enter assigned cores (default: 2):', '2') || '2';
+            const memory = prompt('Enter memory limit in MB (default: 1024):', '1024') || '1024';
+
+            try {
+                const response = await fetch('/api/bridge/vgpu/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        vgpu_id: vgpuId,
+                        config: {
+                            assigned_cores: parseInt(cores),
+                            memory_limit: parseInt(memory) * 1024 * 1024 // Convert to bytes
+                        }
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast(`VGPU ${vgpuId} created successfully!`, 'success');
+                    updateBridgeStatus();
+                } else {
+                    showToast(`Failed to create VGPU: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showToast(`Error creating VGPU: ${error.message}`, 'error');
+            }
+        }
+
+        // Start VGPU
+        async function startVGPU() {
+            const vgpuId = prompt('Enter VGPU ID to start:');
+            if (!vgpuId) return;
+
+            try {
+                const response = await fetch(`/api/bridge/vgpu/${vgpuId}/start`, {
+                    method: 'POST'
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast(`VGPU ${vgpuId} started successfully!`, 'success');
+                    updateBridgeStatus();
+                } else {
+                    showToast(`Failed to start VGPU: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showToast(`Error starting VGPU: ${error.message}`, 'error');
+            }
+        }
+
+        // Stop VGPU
+        async function stopVGPU() {
+            const vgpuId = prompt('Enter VGPU ID to stop:');
+            if (!vgpuId) return;
+
+            try {
+                const response = await fetch(`/api/bridge/vgpu/${vgpuId}/stop`, {
+                    method: 'POST'
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast(`VGPU ${vgpuId} stopped successfully!`, 'success');
+                    updateBridgeStatus();
+                } else {
+                    showToast(`Failed to stop VGPU: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showToast(`Error stopping VGPU: ${error.message}`, 'error');
+            }
+        }
+
+        // Submit bridge job
+        async function submitBridgeJob() {
+            const vgpuId = prompt('Enter VGPU ID for job:');
+            if (!vgpuId) return;
+
+            const operation = prompt('Enter operation (matrix_multiply, vector_add, convolution):', 'matrix_multiply');
+            const priority = prompt('Enter priority (low, medium, high):', 'medium');
+
+            try {
+                const response = await fetch('/api/bridge/job/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        vgpu_id: vgpuId,
+                        operation_type: operation,
+                        priority: priority,
+                        data: {
+                            matrix_size: [100, 100], // Example data
+                            iterations: 10
+                        }
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showToast(`Job ${result.job_id} submitted successfully!`, 'success');
+                    updateBridgeStatus();
+                } else {
+                    showToast(`Failed to submit job: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showToast(`Error submitting job: ${error.message}`, 'error');
+            }
+        }
+
+        // Run CUDNT optimization
+        async function runOptimization() {
+            const matrixSize = prompt('Enter matrix size (e.g., 50 for 50x50):', '50');
+            if (!matrixSize) return;
+
+            const size = parseInt(matrixSize);
+            const matrix = Array.from({length: size}, () =>
+                Array.from({length: size}, () => Math.random())
+            );
+
+            try {
+                const response = await fetch('/api/bridge/optimization', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        matrix: matrix,
+                        optimization_id: `opt_${Date.now()}`
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success !== false) {
+                    showToast(`Optimization completed! Speedup: ${result.speedup_factor?.toFixed(1)}x`, 'success');
+                } else {
+                    showToast(`Optimization failed: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showToast(`Error running optimization: ${error.message}`, 'error');
+            }
+        }
+
+        // Initialize bridge monitoring when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start bridge status updates
+            updateBridgeStatus();
+            bridgeStatusInterval = setInterval(updateBridgeStatus, 10000); // Update every 10 seconds
         });
     </script>
 </body>
