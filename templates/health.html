@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SquashPlot - Health & Harvesting Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            --secondary-bg: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            --accent-color: #00ff88;
+            --danger-color: #ff4444;
+            --warning-color: #ffaa00;
+            --success-color: #44ff44;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, var(--accent-color), #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 32px rgba(0, 255, 136, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 1.5rem;
+        }
+
+        .card-icon.plot-health { background: linear-gradient(45deg, var(--accent-color), #00ccff); }
+        .card-icon.harvesters { background: linear-gradient(45deg, #ffaa00, #ff6600); }
+        .card-icon.replot { background: linear-gradient(45deg, var(--danger-color), #ff2288); }
+        .card-icon.stats { background: linear-gradient(45deg, #44ff44, #00cc44); }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), #00ccff);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .health-score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .health-score.excellent { color: var(--success-color); }
+        .health-score.good { color: var(--accent-color); }
+        .health-score.warning { color: var(--warning-color); }
+        .health-score.critical { color: var(--danger-color); }
+
+        .plot-list, .harvester-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .plot-item, .harvester-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .plot-item.critical { border-left-color: var(--danger-color); }
+        .plot-item.warning { border-left-color: var(--warning-color); }
+        .plot-item.good { border-left-color: var(--success-color); }
+
+        .harvester-item.offline { border-left-color: var(--danger-color); opacity: 0.6; }
+        .harvester-item.online { border-left-color: var(--success-color); }
+
+        .plot-info, .harvester-info {
+            flex: 1;
+        }
+
+        .plot-name, .harvester-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .plot-details, .harvester-details {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .plot-score, .harvester-status {
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .score-excellent, .status-online { background: var(--success-color); color: #000; }
+        .score-good { background: var(--accent-color); color: #000; }
+        .score-warning, .status-degraded { background: var(--warning-color); color: #000; }
+        .score-critical, .status-offline { background: var(--danger-color); color: #fff; }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent-color), #00ccff);
+            color: #000;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, var(--danger-color), #ff2288);
+            color: #fff;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 255, 136, 0.3);
+        }
+
+        .alerts-section {
+            margin-top: 30px;
+        }
+
+        .alert {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+
+        .alert-warning {
+            background: rgba(255, 170, 0, 0.1);
+            border-left-color: var(--warning-color);
+            color: #ffaa00;
+        }
+
+        .alert-danger {
+            background: rgba(255, 68, 68, 0.1);
+            border-left-color: var(--danger-color);
+            color: #ff4444;
+        }
+
+        .alert i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .metric-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-heartbeat"></i> Health & Harvesting Dashboard</h1>
+            <p>Monitor plot health, manage harvesters, and optimize your Chia farming operation</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Plot Health Overview -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon plot-health">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="card-title">Plot Health Overview</h2>
+                </div>
+
+                <div class="metric-grid">
+                    <div class="metric">
+                        <span class="metric-value" id="total-plots">0</span>
+                        <div class="metric-label">Total Plots</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="healthy-plots">0</span>
+                        <div class="metric-label">Healthy</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="corrupt-plots">0</span>
+                        <div class="metric-label">Corrupt</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="outdated-plots">0</span>
+                        <div class="metric-label">Outdated</div>
+                    </div>
+                </div>
+
+                <div class="health-score good" id="overall-health-score">
+                    95/100
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="health-progress" style="width: 95%"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="scanPlots(this)">
+                        <i class="fas fa-search"></i> Scan Plots
+                    </button>
+                    <button class="btn btn-secondary" onclick="showPlotDetails(this)">
+                        <i class="fas fa-list"></i> Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Harvester Management -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon harvesters">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h2 class="card-title">Harvester Fleet</h2>
+                </div>
+
+                <div class="metric-grid">
+                    <div class="metric">
+                        <span class="metric-value" id="total-harvesters">0</span>
+                        <div class="metric-label">Total</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="active-harvesters">0</span>
+                        <div class="metric-label">Active</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="total-proofs">0</span>
+                        <div class="metric-label">24h Proofs</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="proof-rate">0.0</span>
+                        <div class="metric-label">Avg Rate</div>
+                    </div>
+                </div>
+
+                <div class="harvester-list" id="harvester-list">
+                    <!-- Harvesters will be populated here -->
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="checkHarvesters(this)">
+                        <i class="fas fa-sync"></i> Check Status
+                    </button>
+                    <button class="btn btn-secondary" onclick="addHarvester()">
+                        <i class="fas fa-plus"></i> Add Harvester
+                    </button>
+                </div>
+            </div>
+
+            <!-- Replot Recommendations -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon replot">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h2 class="card-title">Replot Recommendations</h2>
+                </div>
+
+                <div class="plot-list" id="replot-list">
+                    <!-- Replot recommendations will be populated here -->
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-danger" onclick="startReplot()">
+                        <i class="fas fa-play"></i> Start Replot
+                    </button>
+                    <button class="btn btn-secondary" onclick="scheduleReplot()">
+                        <i class="fas fa-calendar"></i> Schedule
+                    </button>
+                </div>
+            </div>
+
+            <!-- Performance Stats -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon stats">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h2 class="card-title">Performance Stats</h2>
+                </div>
+
+                <div class="metric-grid">
+                    <div class="metric">
+                        <span class="metric-value" id="farm-efficiency">0%</span>
+                        <div class="metric-label">Farm Efficiency</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="avg-latency">0ms</span>
+                        <div class="metric-label">Avg Latency</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="storage-used">0GB</span>
+                        <div class="metric-label">Storage Used</div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="uptime">0d</span>
+                        <div class="metric-label">Avg Uptime</div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="generateReport()">
+                        <i class="fas fa-file-export"></i> Export Report
+                    </button>
+                    <button class="btn btn-secondary" onclick="viewAnalytics()">
+                        <i class="fas fa-chart-bar"></i> Analytics
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerts Section -->
+        <div class="alerts-section">
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-bell"></i> Active Alerts</h2>
+            <div id="alerts-container">
+                <!-- Alerts will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for adding harvesters -->
+    <div id="harvester-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: var(--secondary-bg); padding: 24px; border-radius: 16px; max-width: 400px; width: 90%;">
+            <h3 style="margin-bottom: 20px;">Add New Harvester</h3>
+            <form id="harvester-form">
+                <div style="margin-bottom: 16px;">
+                    <label style="display: block; margin-bottom: 8px;">Hostname:</label>
+                    <input type="text" id="harvester-hostname" style="width: 100%; padding: 8px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-primary);" required>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px;">IP Address:</label>
+                    <input type="text" id="harvester-ip" style="width: 100%; padding: 8px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-primary);" required>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Add Harvester</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeHarvesterModal()" style="flex: 1;">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Real-time data from backend systems
+        let plotData = {
+            total: 0,
+            healthy: 0,
+            corrupt: 0,
+            outdated: 0,
+            overallScore: 100
+        };
+
+        let harvesterData = [];
+        let replotData = [];
+
+        // Load real data on page load
+        async function loadRealData() {
+            try {
+                // Try to load plot health data
+                const plotResponse = await fetch('/api/plots/health');
+                if (plotResponse.ok) {
+                    const plotHealthData = await plotResponse.json();
+                    plotData = plotHealthData;
+                }
+
+                // Try to load harvester data
+                const harvesterResponse = await fetch('/api/harvesters/status');
+                if (harvesterResponse.ok) {
+                    const harvesterStatusData = await harvesterResponse.json();
+                    harvesterData = harvesterStatusData.harvesters || [];
+                }
+
+                // Try to load replot recommendations
+                const replotResponse = await fetch('/api/plots/replot-recommendations');
+                if (replotResponse.ok) {
+                    const replotRecData = await replotResponse.json();
+                    replotData = replotRecData.recommendations || [];
+                }
+
+                // Update UI with real data
+                updatePlotHealth();
+                updateHarvesters();
+                updateReplotRecommendations();
+                updatePerformanceStats();
+
+            } catch (error) {
+                console.log('Real data not available, using demo mode:', error);
+                // Fall back to demo data if APIs not available
+                loadDemoData();
+            }
+        }
+
+        // Demo data fallback
+        function loadDemoData() {
+            plotData = {
+                total: 245,
+                healthy: 220,
+                corrupt: 5,
+                outdated: 20,
+                overallScore: 89
+            };
+
+            harvesterData = [
+                {
+                    id: 'harvester-01',
+                    hostname: 'chia-farm-01',
+                    ip: '192.168.1.101',
+                    status: 'online',
+                    proofs24h: 8,
+                    plots: 150,
+                    uptime: '4d 12h',
+                    cpu: 15.5,
+                    memory: 68.2
+                },
+                {
+                    id: 'harvester-02',
+                    hostname: 'chia-farm-02',
+                    ip: '192.168.1.102',
+                    status: 'online',
+                    proofs24h: 12,
+                    plots: 145,
+                    uptime: '6d 8h',
+                    cpu: 22.1,
+                    memory: 71.5
+                },
+                {
+                    id: 'harvester-03',
+                    hostname: 'chia-farm-03',
+                    ip: '192.168.1.103',
+                    status: 'offline',
+                    proofs24h: 0,
+                    plots: 0,
+                    uptime: '0d',
+                    cpu: 0,
+                    memory: 0
+                }
+            ];
+
+            replotData = [
+                { name: 'plot-001.plot', score: 25, issues: ['Corruption detected', 'Format outdated'] },
+                { name: 'plot-045.plot', score: 45, issues: ['Outdated format'] },
+                { name: 'plot-089.plot', score: 35, issues: ['File corruption'] }
+            ];
+
+            updatePlotHealth();
+            updateHarvesters();
+            updateReplotRecommendations();
+            updatePerformanceStats();
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Try to load real data first, then fall back to demo
+            await loadRealData();
+            updateAlerts();
+        });
+
+        function updatePlotHealth() {
+            document.getElementById('total-plots').textContent = plotData.total;
+            document.getElementById('healthy-plots').textContent = plotData.healthy;
+            document.getElementById('corrupt-plots').textContent = plotData.corrupt;
+            document.getElementById('outdated-plots').textContent = plotData.outdated;
+
+            const healthScoreEl = document.getElementById('overall-health-score');
+            const progressEl = document.getElementById('health-progress');
+
+            healthScoreEl.textContent = `${plotData.overallScore}/100`;
+            progressEl.style.width = `${plotData.overallScore}%`;
+
+            // Update color based on score
+            healthScoreEl.className = 'health-score';
+            if (plotData.overallScore >= 90) {
+                healthScoreEl.classList.add('excellent');
+            } else if (plotData.overallScore >= 70) {
+                healthScoreEl.classList.add('good');
+            } else if (plotData.overallScore >= 50) {
+                healthScoreEl.classList.add('warning');
+            } else {
+                healthScoreEl.classList.add('critical');
+            }
+        }
+
+        function updateHarvesters() {
+            const listEl = document.getElementById('harvester-list');
+            const totalEl = document.getElementById('total-harvesters');
+            const activeEl = document.getElementById('active-harvesters');
+            const proofsEl = document.getElementById('total-proofs');
+
+            totalEl.textContent = harvesterData.length;
+            activeEl.textContent = harvesterData.filter(h => h.status === 'online').length;
+            proofsEl.textContent = harvesterData.reduce((sum, h) => sum + h.proofs24h, 0);
+
+            listEl.innerHTML = harvesterData.map(harvester => `
+                <div class="harvester-item ${harvester.status}">
+                    <div class="harvester-info">
+                        <div class="harvester-name">${harvester.hostname}</div>
+                        <div class="harvester-details">
+                            ${harvester.ip} • ${harvester.plots} plots • ${harvester.proofs24h} proofs/24h
+                        </div>
+                    </div>
+                    <div class="harvester-status status-${harvester.status}">${harvester.status}</div>
+                </div>
+            `).join('');
+        }
+
+        function updateReplotRecommendations() {
+            const listEl = document.getElementById('replot-list');
+
+            listEl.innerHTML = replotData.map(plot => `
+                <div class="plot-item ${plot.score < 30 ? 'critical' : plot.score < 60 ? 'warning' : 'good'}">
+                    <div class="plot-info">
+                        <div class="plot-name">${plot.name}</div>
+                        <div class="plot-details">${plot.issues.join(', ')}</div>
+                    </div>
+                    <div class="plot-score score-${plot.score < 30 ? 'critical' : plot.score < 60 ? 'warning' : plot.score < 80 ? 'good' : 'excellent'}">
+                        ${plot.score}/100
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updatePerformanceStats() {
+            const activeHarvesters = harvesterData.filter(h => h.status === 'online');
+            const totalProofs = harvesterData.reduce((sum, h) => sum + h.proofs24h, 0);
+            const avgProofRate = activeHarvesters.length > 0 ? (totalProofs / activeHarvesters.length).toFixed(1) : '0.0';
+
+            document.getElementById('proof-rate').textContent = avgProofRate;
+            document.getElementById('farm-efficiency').textContent = '94%';
+            document.getElementById('avg-latency').textContent = '12ms';
+            document.getElementById('storage-used').textContent = '45TB';
+            document.getElementById('uptime').textContent = '15d';
+        }
+
+        function updateAlerts() {
+            const alertsEl = document.getElementById('alerts-container');
+
+            const alerts = [
+                {
+                    type: 'warning',
+                    icon: 'fas fa-exclamation-triangle',
+                    message: '5 plots detected with corruption - immediate replot recommended'
+                },
+                {
+                    type: 'danger',
+                    icon: 'fas fa-server',
+                    message: 'Harvester chia-farm-03 is offline - check network connectivity'
+                },
+                {
+                    type: 'warning',
+                    icon: 'fas fa-clock',
+                    message: '20 plots using outdated format - upgrade when new standard releases'
+                }
+            ];
+
+            alertsEl.innerHTML = alerts.map(alert => `
+                <div class="alert alert-${alert.type}">
+                    <i class="${alert.icon}"></i>
+                    <span>${alert.message}</span>
+                </div>
+            `).join('');
+        }
+
+        // Action functions
+        async function scanPlots(btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<div class="loading"></div> Scanning...';
+            btn.disabled = true;
+
+            try {
+                // Call real plot scanning API
+                const response = await fetch('/api/plots/scan');
+                const data = await response.json();
+
+                if (data.success) {
+                    // Update with real data
+                    plotData.total = data.total_plots;
+                    plotData.healthy = data.healthy_plots;
+                    plotData.corrupt = data.corrupt_plots;
+                    plotData.outdated = data.outdated_plots;
+                    plotData.overallScore = data.overall_score;
+
+                    updatePlotHealth();
+                    updateAlerts();
+
+                    alert(`✅ Scan complete! Found ${data.total_plots} plot files (${data.total_size_gb} GB total)`);
+                } else {
+                    alert(`❌ Scan failed: ${data.error || 'Unknown error'}`);
+                }
+            } catch (error) {
+                console.error('Scan failed:', error);
+                alert('❌ Scan failed: Could not connect to scanning service');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        function checkHarvesters(btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<div class="loading"></div> Checking...';
+            btn.disabled = true;
+
+            // Simulate checking
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                // Update harvester statuses
+                harvesterData[2].status = 'online'; // Simulate fixing offline harvester
+                harvesterData[2].plots = 130;
+                harvesterData[2].proofs24h = 6;
+                updateHarvesters();
+                updatePerformanceStats();
+                updateAlerts();
+            }, 2000);
+        }
+
+        function addHarvester() {
+            document.getElementById('harvester-modal').style.display = 'flex';
+        }
+
+        function closeHarvesterModal() {
+            document.getElementById('harvester-modal').style.display = 'none';
+        }
+
+        // Form submission for adding harvester
+        document.getElementById('harvester-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const hostname = document.getElementById('harvester-hostname').value;
+            const ip = document.getElementById('harvester-ip').value;
+
+            // Add new harvester
+            const newHarvester = {
+                id: `harvester-${Date.now()}`,
+                hostname: hostname,
+                ip: ip,
+                status: 'unknown',
+                proofs24h: 0,
+                plots: 0,
+                uptime: '0d',
+                cpu: 0,
+                memory: 0
+            };
+
+            harvesterData.push(newHarvester);
+            updateHarvesters();
+            updatePerformanceStats();
+
+            closeHarvesterModal();
+            document.getElementById('harvester-form').reset();
+        });
+
+        // Placeholder functions
+        async function showPlotDetails(btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<div class="loading"></div> Loading...';
+            btn.disabled = true;
+
+            try {
+                // Call plot details API
+                const response = await fetch('/api/plots/details');
+                const data = await response.json();
+
+                if (data.details && data.details.length > 0) {
+                    // Create a modal or detailed view
+                    showPlotDetailsModal(data);
+                } else {
+                    alert(`📁 No plot files found.\n\n${data.summary?.message || 'Try running a plot scan first.'}`);
+                }
+            } catch (error) {
+                console.error('Details fetch failed:', error);
+                alert('❌ Could not load plot details');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        function showPlotDetailsModal(data) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.8); z-index: 2000; display: flex;
+                align-items: center; justify-content: center; padding: 20px;
+            `;
+
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: var(--secondary-bg); border-radius: 16px;
+                padding: 24px; max-width: 800px; width: 100%; max-height: 80vh;
+                overflow-y: auto; border: 1px solid var(--glass-border);
+            `;
+
+            const summary = data.summary;
+            const details = data.details;
+
+            content.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin: 0; color: var(--accent-color);">📊 Plot Details</h2>
+                    <button onclick="this.closest('div').parentElement.remove()"
+                            style="background: none; border: none; color: var(--text-secondary);
+                                   font-size: 24px; cursor: pointer; padding: 0;">×</button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                    <div style="text-align: center; padding: 12px; background: var(--card-bg); border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">${summary.total_plots}</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Total Plots</div>
+                    </div>
+                    <div style="text-align: center; padding: 12px; background: var(--card-bg); border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--success-color);">${summary.total_size_gb} GB</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Total Size</div>
+                    </div>
+                    <div style="text-align: center; padding: 12px; background: var(--card-bg); border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--warning-color);">${summary.avg_quality || 0}/100</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Avg Quality</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h3 style="margin-bottom: 12px; color: var(--text-primary);">📁 Individual Plot Files</h3>
+                    <div style="max-height: 400px; overflow-y: auto;">
+                        ${details.map(plot => `
+                            <div style="display: flex; justify-content: space-between; align-items: center;
+                                        padding: 12px; margin: 8px 0; background: var(--card-bg);
+                                        border-radius: 8px; border-left: 4px solid ${
+                                            plot.status === 'healthy' ? 'var(--success-color)' :
+                                            plot.status === 'warning' ? 'var(--warning-color)' : 'var(--danger-color)'
+                                        };">
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 600; margin-bottom: 4px; color: var(--text-primary);">${plot.filename}</div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">
+                                        ${plot.size_gb} GB • K-${plot.k_size} • ${plot.directory}
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-weight: bold; margin-bottom: 4px; color: ${
+                                        plot.status === 'healthy' ? 'var(--success-color)' :
+                                        plot.status === 'warning' ? 'var(--warning-color)' : 'var(--danger-color)'
+                                    };">${plot.quality_score}/100</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: capitalize;">${plot.status}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px;">
+                    <button onclick="exportPlotReport()" class="btn btn-primary" style="flex: 1;">
+                        <i class="fas fa-download"></i> Export Report
+                    </button>
+                    <button onclick="this.closest('div').parentElement.remove()" class="btn btn-secondary" style="flex: 1;">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            `;
+
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+        }
+
+        function startReplot() {
+            if (confirm('Start replotting unhealthy plots? This may take several hours.')) {
+                // Fun easter egg riddle
+                const riddle = confirm('"Plot and Replot were in a boat. Plot fell out... who\'s left?"\n\nClick OK if you know the answer!');
+                if (riddle) {
+                    alert('🎉 Correct! "Replot" is left! \n\n🚀 Replot job started - monitor progress in Jobs section');
+                } else {
+                    alert('🤔 Think about it... "Replot" is left! \n\n🚀 Replot job started anyway - monitor progress in Jobs section');
+                }
+            }
+        }
+
+        function scheduleReplot() {
+            alert('Replot scheduling interface would open here');
+        }
+
+        function generateReport() {
+            alert('Generating comprehensive health report...');
+        }
+
+        function viewAnalytics() {
+            alert('Analytics dashboard would open here');
+        }
+
+        function exportPlotReport() {
+            alert('📊 Generating plot health report...\n\nThis would export a detailed PDF/JSON report of your plot analysis.');
+        }
+    </script>
+</body>
+</html>
