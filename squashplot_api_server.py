@@ -274,13 +274,21 @@ async def root():
                     </div>
                 </a>
 
-                <a href="/cudnt-performance" class="interface-card">
-                    <div class="interface-title">🚀 CUDNT Performance Engine</div>
-                    <div class="interface-desc">
-                        Universal GPU acceleration with O(n²) → O(n^1.44) complexity
-                        reduction and quantum simulation
-                    </div>
-                </a>
+                        <a href="/cudnt-performance" class="interface-card">
+                            <div class="interface-title">🚀 CUDNT Performance Engine</div>
+                            <div class="interface-desc">
+                                Universal GPU acceleration with O(n²) → O(n^1.44) complexity
+                                reduction and quantum simulation
+                            </div>
+                        </a>
+
+                        <a href="/comprehensive-ai-ml" class="interface-card">
+                            <div class="interface-title">🤖 Comprehensive AI/ML Platform</div>
+                            <div class="interface-desc">
+                                Virtual GPU management, intelligence orchestration, compute jobs,
+                                and advanced AI/ML capabilities
+                            </div>
+                        </a>
             </div>
 
             <div class="status">
@@ -761,6 +769,74 @@ async def cudnt_performance_interface():
         <p>The CUDNT performance interface template is not available.</p>
         <a href="/">Back to main interface</a>
         """)
+
+# Comprehensive AI/ML Platform Interface
+@app.get("/comprehensive-ai-ml", response_class=HTMLResponse)
+async def comprehensive_ai_ml_interface():
+    """Serve the Comprehensive AI/ML Platform interface"""
+    try:
+        with open("templates/comprehensive_ai_ml.html", "r") as f:
+            return HTMLResponse(f.read())
+    except FileNotFoundError:
+        return HTMLResponse("""
+        <h1>Comprehensive AI/ML Platform Not Found</h1>
+        <p>The comprehensive AI/ML platform interface template is not available.</p>
+        <a href="/">Back to main interface</a>
+        """)
+
+# Virtual GPU Management Endpoints
+@app.get("/api/vgpus")
+def get_virtual_gpus():
+    """Get list of virtual GPUs"""
+    return [
+        {"id": 1, "name": "CUDNT-V100-01", "status": "active", "utilization": 94, "memory": 85, "temperature": 67},
+        {"id": 2, "name": "CUDNT-V100-02", "status": "active", "utilization": 87, "memory": 92, "temperature": 71},
+        {"id": 3, "name": "CUDNT-V100-03", "status": "idle", "utilization": 12, "memory": 34, "temperature": 45},
+        {"id": 4, "name": "CUDNT-V100-04", "status": "active", "utilization": 98, "memory": 89, "temperature": 73},
+        {"id": 5, "name": "CUDNT-V100-05", "status": "active", "utilization": 91, "memory": 76, "temperature": 69},
+        {"id": 6, "name": "CUDNT-V100-06", "status": "offline", "utilization": 0, "memory": 0, "temperature": 0}
+    ]
+
+@app.post("/api/vgpus/provision")
+def provision_virtual_gpu(request_data: dict):
+    """Provision new virtual GPUs"""
+    count = request_data.get("count", 1)
+    model = request_data.get("model", "CUDNT-V100")
+
+    return {
+        "provisioned_gpus": count,
+        "model": model,
+        "status": "provisioned",
+        "message": f"Successfully provisioned {count} {model} GPUs"
+    }
+
+# Compute Jobs Endpoints
+@app.get("/api/jobs")
+def get_compute_jobs():
+    """Get list of compute jobs"""
+    return [
+        {"id": 1, "name": "Consciousness Matrix Training", "type": "ML Training", "status": "running", "progress": 67, "eta": "2h 34m"},
+        {"id": 2, "name": "Quantum State Analysis", "type": "Quantum Computing", "status": "running", "progress": 89, "eta": "45m"},
+        {"id": 3, "name": "Neural Network Optimization", "type": "AI Research", "status": "completed", "progress": 100, "eta": "0m"},
+        {"id": 4, "name": "Fractal Transform Processing", "type": "Mathematics", "status": "running", "progress": 34, "eta": "5h 12m"},
+        {"id": 5, "name": "Chaos Theory Simulation", "type": "Research", "status": "failed", "progress": 0, "eta": "--"}
+    ]
+
+@app.post("/api/jobs/submit")
+def submit_compute_job(request_data: dict):
+    """Submit a new compute job"""
+    name = request_data.get("name", "New Job")
+    job_type = request_data.get("type", "general")
+    priority = request_data.get("priority", "normal")
+
+    return {
+        "job_id": f"job_{int(time.time())}",
+        "name": name,
+        "type": job_type,
+        "priority": priority,
+        "status": "queued",
+        "message": f"Job '{name}' submitted successfully"
+    }
 
 @app.post("/api/llm/query")
 def llm_query(request_data: dict):
