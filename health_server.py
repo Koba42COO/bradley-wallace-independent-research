@@ -228,7 +228,7 @@ def scan_plots():
             "/mnt/hdd/plots",
             "/mnt/ssd/plots",
             "/home/user/.chia/mainnet/plot",
-            "/Users/coo-koba42/.chia/mainnet/plot",  # User's specific path
+            "/path/to/chia/plots",  # User's Chia plot directory
             "/tmp/plots",  # Test directory
             str(Path.home() / ".chia" / "mainnet" / "plot"),  # Generic chia path
         ]

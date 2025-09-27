@@ -49,7 +49,9 @@ import multiprocessing as mp
 import threading
 
 # Add paths to access all advanced systems
-sys.path.append('/Users/coo-koba42/dev')
+# Add project root to path for imports
+project_root = Path(__file__).parent
+sys.path.insert(0, str(project_root))
 
 # Import ALL available advanced systems
 try:
