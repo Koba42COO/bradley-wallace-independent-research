@@ -406,7 +406,7 @@ async def api_status():
 
 # AI Research Integration Endpoints
 @app.get("/ai-research/status")
-async def ai_research_status():
+def ai_research_status():
     """AI Research Platform status"""
     return {
         "ml_training": {"status": "available", "active_jobs": 0},
