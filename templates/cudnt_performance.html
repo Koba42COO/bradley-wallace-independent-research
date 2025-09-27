@@ -99,11 +99,19 @@
             position: relative;
         }
 
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
         .performance-chart canvas {
-            max-height: 300px !important;
-            max-width: 100% !important;
-            height: 300px !important;
             width: 100% !important;
+            height: 100% !important;
+            max-width: 800px !important;
+            max-height: 300px !important;
+            display: block !important;
         }
 
         .chart-title {
@@ -356,7 +364,9 @@
         <!-- Performance Chart -->
         <div class="performance-chart">
             <div class="chart-title">CUDNT Performance Benchmark Results</div>
-            <canvas id="performanceChart" width="400" height="200"></canvas>
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
         </div>
 
         <!-- Control Panels -->
@@ -487,7 +497,16 @@
             }
 
             initializeChart() {
-                const ctx = document.getElementById('performanceChart').getContext('2d');
+                const canvas = document.getElementById('performanceChart');
+                // Force exact canvas dimensions
+                canvas.width = 800;
+                canvas.height = 300;
+                canvas.style.width = '800px';
+                canvas.style.height = '300px';
+                canvas.style.maxWidth = '800px';
+                canvas.style.maxHeight = '300px';
+
+                const ctx = canvas.getContext('2d');
                 this.performanceChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -501,9 +520,10 @@
                         }]
                     },
                     options: {
-                        responsive: true,
+                        responsive: false,
                         maintainAspectRatio: false,
-                        aspectRatio: 2,
+                        width: 800,
+                        height: 300,
                         plugins: {
                             legend: {
                                 display: true,
@@ -734,8 +754,29 @@
             }
         }
 
+        // Prevent canvas resizing
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('performanceChart');
+            if (canvas) {
+                canvas.width = 800;
+                canvas.height = 300;
+                canvas.style.width = '800px';
+                canvas.style.height = '300px';
+            }
+        });
+
         // Initialize the interface
         document.addEventListener('DOMContentLoaded', () => {
+            // Force canvas size immediately
+            const canvas = document.getElementById('performanceChart');
+            if (canvas) {
+                canvas.width = 800;
+                canvas.height = 300;
+                canvas.style.width = '800px';
+                canvas.style.height = '300px';
+                canvas.style.maxWidth = '800px';
+                canvas.style.maxHeight = '300px';
+            }
             window.cudntInterface = new CUDNTPerformanceInterface();
 
             // Make functions globally available
