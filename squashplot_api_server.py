@@ -250,37 +250,37 @@ async def root():
                     </div>
                 </a>
 
-                        <a href="/health" class="interface-card">
-                            <div class="interface-title">🔍 System Status</div>
-                            <div class="interface-desc">
-                                Real-time system health, API status, and monitoring
-                                information
-                            </div>
-                        </a>
+                <a href="/health" class="interface-card">
+                    <div class="interface-title">🔍 System Status</div>
+                    <div class="interface-desc">
+                        Real-time system health, API status, and monitoring
+                        information
+                    </div>
+                </a>
 
-                        <a href="/ai-research" class="interface-card">
-                            <div class="interface-title">🧠 AI Research Platform</div>
-                            <div class="interface-desc">
-                                Dedicated AI/ML research tools with consciousness
-                                framework and quantum analysis
-                            </div>
-                        </a>
+                <a href="/ai-research" class="interface-card">
+                    <div class="interface-title">🧠 AI Research Platform</div>
+                    <div class="interface-desc">
+                        Dedicated AI/ML research tools with consciousness
+                        framework and quantum analysis
+                    </div>
+                </a>
 
-                        <a href="/llm-chat" class="interface-card">
-                            <div class="interface-title">💬 LLM Chat Interface</div>
-                            <div class="interface-desc">
-                                Interactive AI assistant with full project knowledge
-                                and advanced reasoning capabilities
-                            </div>
-                        </a>
+                <a href="/llm-chat" class="interface-card">
+                    <div class="interface-title">💬 LLM Chat Interface</div>
+                    <div class="interface-desc">
+                        Interactive AI assistant with full project knowledge
+                        and advanced reasoning capabilities
+                    </div>
+                </a>
 
-                        <a href="/cudnt-performance" class="interface-card">
-                            <div class="interface-title">🚀 CUDNT Performance Engine</div>
-                            <div class="interface-desc">
-                                Universal GPU acceleration with O(n²) → O(n^1.44) complexity
-                                reduction and quantum simulation
-                            </div>
-                        </a>
+                <a href="/cudnt-performance" class="interface-card">
+                    <div class="interface-title">🚀 CUDNT Performance Engine</div>
+                    <div class="interface-desc">
+                        Universal GPU acceleration with O(n²) → O(n^1.44) complexity
+                        reduction and quantum simulation
+                    </div>
+                </a>
             </div>
 
             <div class="status">
