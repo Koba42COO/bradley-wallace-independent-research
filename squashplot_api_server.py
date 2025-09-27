@@ -300,24 +300,43 @@ async def get_status():
 @app.get("/system-info")
 async def system_info():
     """Detailed system information"""
-    return {
+    cpu_usage = psutil.cpu_percent(interval=0.1)
+    memory = psutil.virtual_memory()
+    disk = psutil.disk_usage('/')
+
+    system_data = {
         "cpu": {
             "cores": psutil.cpu_count(),
-            "usage_percent": psutil.cpu_percent(interval=0.1)
+            "usage_percent": cpu_usage
         },
         "memory": {
-            "total_gb": round(psutil.virtual_memory().total / (1024**3), 2),
-            "used_gb": round(psutil.virtual_memory().used / (1024**3), 2),
-            "available_gb": round(psutil.virtual_memory().available / (1024**3), 2)
+            "total_gb": round(memory.total / (1024**3), 2),
+            "used_gb": round(memory.used / (1024**3), 2),
+            "available_gb": round(memory.available / (1024**3), 2),
+            "usage_percent": memory.percent
         },
         "disk": {
-            "total_gb": round(psutil.disk_usage('/').total / (1024**3), 2),
-            "used_gb": round(psutil.disk_usage('/').used / (1024**3), 2),
-            "free_gb": round(psutil.disk_usage('/').free / (1024**3), 2)
+            "total_gb": round(disk.total / (1024**3), 2),
+            "used_gb": round(disk.used / (1024**3), 2),
+            "free_gb": round(disk.free / (1024**3), 2),
+            "usage_percent": disk.percent
         },
         "replit_mode": Config.REPLIT_MODE,
         "timestamp": datetime.now().isoformat()
     }
+
+    # Broadcast system update to all WebSocket clients
+    await manager.broadcast(json.dumps({
+        "type": "system_update",
+        "data": {
+            "cpu": cpu_usage,
+            "memory": memory.percent,
+            "disk": disk.percent
+        },
+        "timestamp": datetime.now().isoformat()
+    }))
+
+    return system_data
 
 @app.get("/cli-commands")
 async def get_cli_commands():
