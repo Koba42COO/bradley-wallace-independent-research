@@ -100,18 +100,30 @@
         }
 
         .chart-container {
-            width: 100%;
-            height: 300px;
+            width: 800px !important;
+            height: 300px !important;
+            max-width: 800px !important;
+            max-height: 300px !important;
+            min-width: 800px !important;
+            min-height: 300px !important;
             position: relative;
             overflow: hidden;
+            border: 1px solid transparent;
+            box-sizing: border-box;
         }
 
         .performance-chart canvas {
-            width: 100% !important;
-            height: 100% !important;
+            width: 800px !important;
+            height: 300px !important;
             max-width: 800px !important;
             max-height: 300px !important;
+            min-width: 800px !important;
+            min-height: 300px !important;
             display: block !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            box-sizing: border-box !important;
         }
 
         .chart-title {
@@ -498,15 +510,31 @@
 
             initializeChart() {
                 const canvas = document.getElementById('performanceChart');
-                // Force exact canvas dimensions
+
+                // FORCE exact canvas dimensions - multiple enforcement layers
+                Object.defineProperty(canvas, 'width', { value: 800, writable: false });
+                Object.defineProperty(canvas, 'height', { value: 300, writable: false });
+
                 canvas.width = 800;
                 canvas.height = 300;
                 canvas.style.width = '800px';
                 canvas.style.height = '300px';
                 canvas.style.maxWidth = '800px';
                 canvas.style.maxHeight = '300px';
+                canvas.style.minWidth = '800px';
+                canvas.style.minHeight = '300px';
+                canvas.setAttribute('width', '800');
+                canvas.setAttribute('height', '300');
 
                 const ctx = canvas.getContext('2d');
+
+                // Override Chart.js resize method to prevent any resizing
+                const originalResize = Chart.prototype.resize;
+                Chart.prototype.resize = function() {
+                    // Do nothing - prevent any resizing
+                    return this;
+                };
+
                 this.performanceChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -754,29 +782,58 @@
             }
         }
 
-        // Prevent canvas resizing
-        window.addEventListener('resize', () => {
+        // AGGRESSIVE canvas size enforcement
+        function forceCanvasSize() {
             const canvas = document.getElementById('performanceChart');
             if (canvas) {
-                canvas.width = 800;
-                canvas.height = 300;
-                canvas.style.width = '800px';
-                canvas.style.height = '300px';
-            }
-        });
-
-        // Initialize the interface
-        document.addEventListener('DOMContentLoaded', () => {
-            // Force canvas size immediately
-            const canvas = document.getElementById('performanceChart');
-            if (canvas) {
+                // Multiple enforcement layers
                 canvas.width = 800;
                 canvas.height = 300;
                 canvas.style.width = '800px';
                 canvas.style.height = '300px';
                 canvas.style.maxWidth = '800px';
                 canvas.style.maxHeight = '300px';
+                canvas.style.minWidth = '800px';
+                canvas.style.minHeight = '300px';
+                canvas.setAttribute('width', '800');
+                canvas.setAttribute('height', '300');
+
+                // Prevent any future changes
+                Object.defineProperty(canvas, 'width', { value: 800, writable: false, configurable: false });
+                Object.defineProperty(canvas, 'height', { value: 300, writable: false, configurable: false });
             }
+        }
+
+        // Prevent canvas resizing - multiple event handlers
+        window.addEventListener('resize', forceCanvasSize);
+        window.addEventListener('load', forceCanvasSize);
+        document.addEventListener('DOMContentLoaded', forceCanvasSize);
+
+        // Mutation observer to prevent any DOM changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    forceCanvasSize();
+                }
+            });
+        });
+
+        // Periodic enforcement every 100ms
+        setInterval(forceCanvasSize, 100);
+
+        // Initialize the interface
+        document.addEventListener('DOMContentLoaded', () => {
+            // Force canvas size immediately and start monitoring
+            forceCanvasSize();
+
+            const canvas = document.getElementById('performanceChart');
+            if (canvas) {
+                observer.observe(canvas, {
+                    attributes: true,
+                    attributeFilter: ['style', 'width', 'height']
+                });
+            }
+
             window.cudntInterface = new CUDNTPerformanceInterface();
 
             // Make functions globally available
