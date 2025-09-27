@@ -1,0 +1,97 @@
+# Development Dependencies for Consciousness Mathematics Compression Engine
+# ============================================================================
+#
+# This file contains all development and testing dependencies following
+# industry best practices for scientific Python projects.
+
+# -----------------------------------------------------------------------------
+# CORE TESTING FRAMEWORK
+# -----------------------------------------------------------------------------
+pytest>=7.0.0               # Industry-standard testing framework
+pytest-cov>=3.0.0          # Code coverage integration
+pytest-xdist>=2.5.0        # Parallel test execution
+pytest-mock>=3.7.0         # Mocking utilities
+pytest-benchmark>=4.0.0    # Performance benchmarking
+pytest-asyncio>=0.18.0     # Async testing support
+hypothesis>=6.0.0          # Property-based testing
+
+# -----------------------------------------------------------------------------
+# CODE QUALITY & LINTING
+# -----------------------------------------------------------------------------
+black>=22.0.0              # Uncompromising code formatter
+flake8>=4.0.0             # PEP8 style and error checking
+pylint>=2.12.0            # Advanced linting and code analysis
+mypy>=0.950               # Static type checking
+radon>=5.1.0              # Cyclomatic complexity analysis
+pre-commit>=2.17.0        # Git hooks management
+
+# -----------------------------------------------------------------------------
+# SECURITY SCANNING
+# -----------------------------------------------------------------------------
+bandit>=1.7.0             # Python security vulnerability scanner
+safety>=2.2.0             # Dependency vulnerability checking
+semgrep>=0.115.0          # Semantic code analysis
+
+# -----------------------------------------------------------------------------
+# PERFORMANCE PROFILING
+# -----------------------------------------------------------------------------
+line-profiler>=3.5.0      # Line-by-line performance profiling
+memory-profiler>=0.60.0   # Memory usage profiling
+scalene>=1.5.0            # CPU/memory/GPU profiling combined
+psutil>=5.8.0             # System and process utilities
+
+# -----------------------------------------------------------------------------
+# DOCUMENTATION
+# -----------------------------------------------------------------------------
+sphinx>=4.5.0             # Documentation generator
+sphinx-rtd-theme>=1.0.0   # Read the Docs theme
+myst-parser>=0.17.0       # Markdown support for Sphinx
+nbsphinx>=0.8.0           # Jupyter notebook support
+sphinx-autodoc-typehints>=1.19.0  # Type hints in documentation
+
+# -----------------------------------------------------------------------------
+# DEPENDENCY MANAGEMENT
+# -----------------------------------------------------------------------------
+pip-tools>=6.8.0          # Requirements management
+pip-audit>=2.4.0          # Dependency vulnerability auditing
+
+# -----------------------------------------------------------------------------
+# BUILD & PACKAGING
+# -----------------------------------------------------------------------------
+setuptools>=61.0.0        # Enhanced setup tools
+wheel>=0.37.0            # Wheel building
+build>=0.8.0             # Modern build frontend
+twine>=4.0.0             # Package upload utility
+check-wheel-contents>=0.4.0  # Wheel validation
+
+# -----------------------------------------------------------------------------
+# MULTI-ENVIRONMENT TESTING
+# -----------------------------------------------------------------------------
+tox>=3.24.0              # Multi-environment testing
+
+# -----------------------------------------------------------------------------
+# CI/CD INTEGRATION
+# -----------------------------------------------------------------------------
+codecov>=2.1.0           # Code coverage reporting
+coveralls>=3.3.0         # Alternative coverage reporting
+
+# -----------------------------------------------------------------------------
+# DEVELOPMENT UTILITIES
+# -----------------------------------------------------------------------------
+jupyter>=1.0.0           # Interactive development
+ipykernel>=6.0.0         # Jupyter kernel
+matplotlib>=3.5.0        # Plotting and visualization
+pandas>=1.3.0            # Data analysis
+seaborn>=0.11.0          # Statistical visualization
+
+# -----------------------------------------------------------------------------
+# TYPE STUBS (for better type checking)
+# -----------------------------------------------------------------------------
+types-all>=1.0.0         # Type stubs for common libraries
+
+# -----------------------------------------------------------------------------
+# OPTIONAL: GPU/CUDA SUPPORT (if available)
+# -----------------------------------------------------------------------------
+# cupy>=10.0.0             # CUDA-accelerated computing
+# numba>=0.56.0            # JIT compilation
+# pyopencl>=2022.1.0       # OpenCL support

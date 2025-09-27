@@ -1,0 +1,142 @@
+# Pre-commit hooks configuration for Consciousness Compression Engine
+# Ensures code quality, formatting, and security standards
+#
+# Installation: pip install pre-commit && pre-commit install
+# Usage: pre-commit run --all-files
+
+repos:
+  # Code formatting
+  - repo: https://github.com/psf/black
+    rev: 22.12.0
+    hooks:
+      - id: black
+        language_version: python3
+        args: [--line-length=88]
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: ["--profile", "black", "--check-only", "--diff"]
+
+  # Code quality and linting
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        args: [--max-line-length=88, --extend-ignore=E203,W503]
+        exclude: ^(build/|dist/|\.eggs/|\.git/|\.mypy_cache/|\.pytest_cache/|\.tox/|\.venv/|htmlcov/)
+
+  - repo: https://github.com/pycqa/pylint
+    rev: 2.16.2
+    hooks:
+      - id: pylint
+        args: [--rcfile=.pylintrc]
+        exclude: ^(tests/|build/|dist/|\.eggs/|\.git/|\.mypy_cache/|\.pytest_cache/|\.tox/|\.venv/|htmlcov/)
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.0.1
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-all]
+        args: [--ignore-missing-imports, --strict-optional, --warn-redundant-casts]
+
+  # Security scanning
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: [-r, consciousness_compression, -c, .bandit.yml]
+        exclude: ^(tests/|build/|dist/|\.eggs/|\.git/|\.mypy_cache/|\.pytest_cache/|\.tox/|\.venv/|htmlcov/)
+
+  # Import sorting
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: ["--profile", "black"]
+
+  # YAML formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.3
+    hooks:
+      - id: prettier
+        types: [yaml]
+        exclude: ^.*\.github/.*$
+
+  # Trailing whitespace and end-of-file fixes
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^.*\.(md|rst)$
+      - id: end-of-file-fixer
+        exclude: ^.*\.(md|rst)$
+      - id: check-yaml
+      - id: check-added-large-files
+        args: [--maxkb=500]
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: check-ast
+      - id: check-docstring-first
+
+  # Scientific Python specific
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.4
+    hooks:
+      - id: codespell
+        args: [--skip="*.ipynb,*.csv,*.json", --ignore-words-list="nd,te,hist"]
+
+  # License header checking
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.5.1
+    hooks:
+      - id: insert-license
+        files: \.py$
+        args:
+          - --license-filepath
+          - LICENSE
+          - --comment-style
+          - "#"
+
+  # Dependency vulnerability checking
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    rev: v1.3.1
+    hooks:
+      - id: python-safety-dependencies-check
+
+  # Jupyter notebook formatting
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.7.0
+    hooks:
+      - id: nbqa-black
+      - id: nbqa-isort
+      - id: nbqa-flake8
+
+# Local hooks (run custom validation scripts)
+  - repo: local
+    hooks:
+      - id: validate-compression-engine
+        name: Validate Compression Engine
+        entry: python -c "
+import sys
+sys.path.insert(0, '.')
+from compression_engine import ConsciousnessCompressionEngine
+engine = ConsciousnessCompressionEngine()
+test_data = b'Pre-commit validation test'
+compressed, stats = engine.compress(test_data)
+decompressed, _ = engine.decompress(compressed)
+assert decompressed == test_data
+assert stats.lossless_verified
+print('✅ Compression engine validation passed')
+        "
+        language: system
+        pass_filenames: false
+        files: ^consciousness_compression/
+
+      - id: test-coverage-check
+        name: Test Coverage Check
+        entry: python -m pytest --cov=consciousness_compression --cov-fail-under=95 --cov-report=term-missing
+        language: system
+        pass_filenames: false
+        files: ^(tests/|consciousness_compression/)

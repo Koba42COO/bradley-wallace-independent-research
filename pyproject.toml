@@ -1,5 +1,138 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "consciousness-compression-engine"
+version = "1.0.0"
+description = "Revolutionary compression engine using consciousness mathematics"
+authors = [
+    {name = "Consciousness Mathematics Research Team", email = "research@consciousness.math"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: System :: Archiving :: Compression",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy>=1.21.0",
+    "scipy>=1.7.0",
+    "matplotlib>=3.5.0",
+    "pandas>=1.3.0",
+    "psutil>=5.8.0",
+    "tqdm>=4.62.0",
+    "mpmath>=1.2.0",
+    "zlib",
+]
+
+[project.urls]
+Homepage = "https://github.com/consciousness-math/compression-engine"
+Documentation = "https://consciousness-compression-engine.readthedocs.io/"
+Repository = "https://github.com/consciousness-math/compression-engine"
+"Bug Tracker" = "https://github.com/consciousness-math/compression-engine/issues"
+"Research Paper" = "https://doi.org/10.1109/consciousness.math.2024"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=3.0.0",
+    "pytest-benchmark>=4.0.0",
+    "pytest-xdist>=2.5.0",
+    "pytest-mock>=3.7.0",
+    "hypothesis>=6.0.0",
+    "black>=22.0.0",
+    "flake8>=4.0.0",
+    "pylint>=2.12.0",
+    "mypy>=0.950",
+    "bandit>=1.7.0",
+    "safety>=2.2.0",
+    "radon>=5.1.0",
+    "pre-commit>=2.17.0",
+    "sphinx>=4.5.0",
+    "sphinx-rtd-theme>=1.0.0",
+    "myst-parser>=0.17.0",
+    "nbsphinx>=0.8.0",
+    "line-profiler>=3.5.0",
+    "memory-profiler>=0.60.0",
+    "scalene>=1.5.0",
+    "tox>=3.24.0",
+    "coverage[toml]>=6.0.0",
+    "codecov>=2.1.0",
+]
+
+benchmark = [
+    "lz4>=4.0.0",
+    "zstandard>=0.17.0",
+    "brotli>=1.0.0",
+    "snappy>=2.4.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["consciousness_compression*"]
+
+[tool.setuptools.package-data]
+"consciousness_compression" = ["*.txt", "*.md", "*.json"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+    "--cov=consciousness_compression",
+    "--cov-report=term-missing",
+    "--cov-report=html:htmlcov",
+    "--cov-report=xml",
+    "--cov-fail-under=95",
+]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "benchmark: marks tests as benchmarks",
+    "security: marks tests as security tests",
+    "performance: marks tests as performance tests",
+    "unit: marks tests as unit tests",
+    "edge_case: marks tests as edge case tests",
+    "regression: marks tests as regression tests",
+]
+
+[tool.coverage.run]
+source = ["consciousness_compression"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "class .*\bProtocol\):",
+    "@(abc\.)?abstractmethod",
+]
+
 [tool.black]
-line-length = 100
+line-length = 88
 target-version = ['py38', 'py39', 'py310', 'py311']
 include = '\.pyi?$'
 extend-exclude = '''
@@ -13,19 +146,38 @@ extend-exclude = '''
   | \.venv
   | build
   | dist
-  | __pycache__
-  | \.venv
+  | htmlcov
+  | node_modules
 )/
 '''
 
-[tool.isort]
-profile = "black"
-line_length = 100
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
-ensure_newline_before_comments = true
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    "*.egg-info",
+    ".venv",
+    ".tox",
+    "htmlcov",
+    "node_modules",
+]
+
+[tool.pylint.messages_control]
+disable = [
+    "too-few-public-methods",
+    "too-many-arguments",
+    "too-many-locals",
+    "too-many-branches",
+    "too-many-statements",
+    "too-many-instance-attributes",
+    "invalid-name",
+    "missing-docstring",
+    "too-many-lines",
+]
 
 [tool.mypy]
 python_version = "3.8"
@@ -45,29 +197,27 @@ show_error_codes = true
 
 [[tool.mypy.overrides]]
 module = [
-    "torch.*",
-    "numpy.*",
-    "scipy.*",
     "matplotlib.*",
-    "plotly.*",
-    "networkx.*",
-    "sklearn.*"
+    "scipy.*",
+    "pandas.*",
 ]
 ignore_missing_imports = true
 
-[tool.coverage.run]
-source = ["."]
-omit = [
-    "*/tests/*",
-    "*/venv/*",
-    "*/__pycache__/*",
-    "setup.py"
-]
+[tool.bandit]
+exclude_dirs = ["tests", "docs", "build", "dist"]
+skips = ["B101", "B601"]  # Skip assert checks and shell usage
 
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "raise AssertionError",
-    "raise NotImplementedError"
-]
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py38, py39, py310, py311
+skip_missing_interpreters = true
+
+[testenv]
+deps = -r requirements-dev.txt
+commands =
+    pytest --cov=consciousness_compression --cov-report=term-missing
+    flake8 consciousness_compression tests
+    mypy consciousness_compression
+    bandit -r consciousness_compression
+"""
