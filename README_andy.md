@@ -1,12 +1,11 @@
 # 🌱 SquashPlot Beta - Advanced Chia Plot Compression Tool
 
-[![Replit](https://img.shields.io/badge/Run%20on-Replit-orange)](https://replit.com/@yourusername/squashplot)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.75+-green.svg)](https://fastapi.tiangolo.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)](https://flask.palletsprojects.com/)
 [![Chia](https://img.shields.io/badge/Chia-Farming-orange.svg)](https://www.chia.net/)
-[![Andy's CLI](https://img.shields.io/badge/Andy's_CLI-Integrated-blueviolet)](https://github.com/Koba42COO)
 
-> **🧠 Andy's Enhanced SquashPlot: Professional Chia plotting with CLI integration, real-time monitoring, and Replit-optimized deployment.**
+> **Professional Chia plotting solution featuring advanced multi-stage compression, real-time monitoring, and comprehensive farming management.**
 
 ## 🚀 Features
 
@@ -34,13 +33,6 @@
 - **Analytics**: Performance insights and trends
 - **Automation**: Auto-claim, auto-compress, scheduling
 
-### 🤖 **Andy's CLI Integration**
-- **Server Monitoring**: Real-time status with `check_server.py` logic
-- **Professional Commands**: Mad Max/BladeBit compatible CLI structures
-- **Command Templates**: Pre-built commands for common operations
-- **Web CLI Interface**: Execute commands directly from dashboard
-- **Replit Optimization**: Cloud-ready with automatic port configuration
-
 ## 🛠️ Installation
 
 ### Prerequisites
@@ -51,54 +43,32 @@
 
 ### Quick Start
 
-#### 🚀 **Replit Deployment (Recommended - Andy's Optimization)**
-
-1. **Fork on Replit**
-   ```bash
-   # Click "Fork" on the Replit template
-   # Automatic setup with Andy's CLI integration
-   ```
-
-2. **Run the Application**
-   ```bash
-   # Replit will automatically start the server
-   # Access at: https://your-replit-name.replit.dev
-   ```
-
-3. **Features Available**
-   - ✅ Real-time server monitoring
-   - ✅ CLI command templates
-   - ✅ Professional web dashboard
-   - ✅ Andy's check_server integration
-
-#### 💻 **Local Development**
-
-1. **Clone and Setup**
+1. **Clone the repository**
    ```bash
    git clone https://github.com/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta.git
    cd 222hr-Hackathon-Entry-Squashplot-Beta
+   ```
+
+2. **Install dependencies**
+   ```bash
    pip install -r requirements.txt
    ```
 
-2. **Run SquashPlot (Andy's CLI)**
+3. **Run SquashPlot**
    ```bash
-   # Enhanced Web Dashboard with CLI integration
+   # Web Dashboard (Recommended)
    python main.py --web
-
-   # Professional CLI Mode
+   
+   # Command Line Interface
    python main.py --cli
-
+   
    # Interactive Demo
    python main.py --demo
-
-   # Server Status Check (Andy's utility)
-   python check_server.py
    ```
 
-3. **Access the Dashboard**
-   - **Replit**: `https://your-replit-name.replit.dev`
-   - **Local**: `http://localhost:8080`
-   - **API Docs**: `http://localhost:8080/docs`
+4. **Access the Dashboard**
+   - Open your browser to `http://localhost:5000`
+   - Default port can be changed with `--port` flag
 
 ## 📖 Usage
 
@@ -207,6 +177,28 @@ export CHIA_ROOT="/path/to/chia"
 export FARMER_KEY="your-farmer-key"
 export POOL_KEY="your-pool-key"
 ```
+
+### Database Options
+
+By default, the app uses SQLite for local development and will create `squashplot.db` in the project root.
+
+To use MySQL (compatible with MySQL Workbench):
+
+- Install MySQL locally and create a database (e.g., `squashplot`).
+- Set `DATABASE_URL` accordingly:
+  - `mysql+pymysql://username:password@localhost:3306/squashplot`
+- Restart the app; tables will auto-create on first run.
+
+Viewing the database locally:
+- SQLite: open `squashplot.db` with DB Browser for SQLite
+- MySQL: connect using MySQL Workbench with your local credentials
+
+### Authentication
+
+SquashPlot supports local username/password auth with salted hashing and JWT cookies, and OAuth (Replit) when configured.
+
+- Local auth routes: `/signup`, `/login`, `/logout`
+- OAuth route: `/auth/login` (requires Replit env configuration)
 
 ### Settings File
 Create `config.json` for advanced configuration:

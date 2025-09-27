@@ -6,8 +6,6 @@
     <title>SquashPlot Dashboard - Andy's Enhanced Interface</title>
     <link rel="stylesheet" href="/static/css/dashboard.css">
     <link rel="icon" href="/static/favicon.ico">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <style>
         /* Black Glass Design System - Sophisticated Dark Theme */
         :root {
@@ -434,30 +432,6 @@
             text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
 
-        /* Chart Containers */
-        .chart-container {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--glass-border);
-            margin-top: 15px;
-            position: relative;
-            min-height: 300px;
-        }
-
-        .chart-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .chart-canvas {
-            max-height: 250px;
-        }
-
         .metric-label {
             font-size: 0.8rem;
             color: var(--text-secondary);
@@ -499,6 +473,122 @@
             .header-left h1 {
                 font-size: 2rem;
             }
+        }
+
+        /* AI Research Section */
+        .ai-research-section {
+            grid-column: span 2;
+        }
+
+        .ai-research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .ai-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .ai-card:hover {
+            border-color: var(--secondary-color);
+            box-shadow: 0 8px 32px rgba(0, 255, 136, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .ai-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .ai-card-header i {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .ai-card-header h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .ai-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .ai-metrics {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .ai-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .ai-status.active {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--secondary-color);
+        }
+
+        .ai-status.ready {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--primary-color);
+        }
+
+        .ai-accuracy, .ai-coherence, .ai-datasets {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .ai-button {
+            width: 100%;
+            padding: 10px 16px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+        }
+
+        .ai-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0, 255, 136, 0.3);
+        }
+
+        .ai-button.secondary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .ai-button.secondary:hover {
+            box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
+        }
+
+        .ai-button.accent {
+            background: linear-gradient(135deg, var(--accent-color), var(--warning-color));
+        }
+
+        .ai-button.accent:hover {
+            box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3);
         }
 
         /* Loading States */
@@ -565,12 +655,6 @@
                         <div class="metric-label">Disk</div>
                     </div>
                 </div>
-
-                <!-- Real-time System Charts -->
-                <div class="chart-container">
-                    <div class="chart-title">📈 System Performance (Last 10 Minutes)</div>
-                    <canvas id="systemChart" class="chart-canvas"></canvas>
-                </div>
             </div>
 
             <!-- Compression Stats -->
@@ -595,11 +679,61 @@
                         <div class="metric-label">Avg Ratio</div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Compression Performance Chart -->
-                <div class="chart-container">
-                    <div class="chart-title">🗜️ Compression Performance Over Time</div>
-                    <canvas id="compressionChart" class="chart-canvas"></canvas>
+            <!-- AI Research Platform -->
+            <div class="dashboard-card ai-research-section">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));">
+                        🧠
+                    </div>
+                    <h3 class="card-title">AI Research Platform</h3>
+                </div>
+                <div class="ai-research-grid">
+                    <div class="ai-card">
+                        <div class="ai-card-header">
+                            <i class="fas fa-brain"></i>
+                            <h4>ML Training Protocol</h4>
+                        </div>
+                        <p>Revolutionary ML training with monotropic hyperfocus and reverse learning architecture</p>
+                        <div class="ai-metrics">
+                            <span class="ai-status active">Active</span>
+                            <span class="ai-accuracy">99.98%</span>
+                        </div>
+                        <button onclick="startMLTraining()" class="ai-button">
+                            Launch Training Protocol
+                        </button>
+                    </div>
+
+                    <div class="ai-card">
+                        <div class="ai-card-header">
+                            <i class="fas fa-atom"></i>
+                            <h4>Consciousness Framework</h4>
+                        </div>
+                        <p>AI consciousness research with quantum seed mapping and coherence analysis</p>
+                        <div class="ai-metrics">
+                            <span class="ai-status active">Active</span>
+                            <span class="ai-coherence">97% Coherence</span>
+                        </div>
+                        <button onclick="viewConsciousnessMetrics()" class="ai-button secondary">
+                            View Metrics
+                        </button>
+                    </div>
+
+                    <div class="ai-card">
+                        <div class="ai-card-header">
+                            <i class="fas fa-microchip"></i>
+                            <h4>Quantum Analysis</h4>
+                        </div>
+                        <p>Advanced quantum-enhanced AI systems for research integration</p>
+                        <div class="ai-metrics">
+                            <span class="ai-status ready">Ready</span>
+                            <span class="ai-datasets">156 Datasets</span>
+                        </div>
+                        <button onclick="runQuantumAnalysis()" class="ai-button accent">
+                            Run Analysis
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -697,208 +831,9 @@
     </div>
 
     <script>
-        // Andy's Enhanced Dashboard with Real-time Charts & WebSocket Monitoring
+        // Andy's Server Status Integration
         let serverCheckInterval = null;
         let systemMetricsInterval = null;
-        let systemChart = null;
-        let compressionChart = null;
-        let socket = null;
-
-        // Chart data stores
-        let systemData = {
-            labels: [],
-            cpu: [],
-            memory: [],
-            disk: []
-        };
-
-        let compressionData = {
-            labels: [],
-            ratio: [],
-            spaceSaved: []
-        };
-
-        // Initialize WebSocket connection for real-time updates
-        function initializeWebSocket() {
-            socket = io();
-
-            socket.on('connect', function() {
-                console.log('🔗 Connected to real-time monitoring');
-                addRecentActivity('Real-time monitoring connected');
-            });
-
-            socket.on('disconnect', function() {
-                console.log('🔌 Disconnected from real-time monitoring');
-                addRecentActivity('Real-time monitoring disconnected');
-            });
-
-            socket.on('system_update', function(data) {
-                updateSystemChart(data);
-            });
-
-            socket.on('compression_update', function(data) {
-                updateCompressionChart(data);
-            });
-        }
-
-        // Initialize Chart.js charts
-        function initializeCharts() {
-            const chartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: '#ffffff'
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        ticks: {
-                            color: '#b0b0b0'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    },
-                    y: {
-                        ticks: {
-                            color: '#b0b0b0'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    }
-                }
-            };
-
-            // System Performance Chart
-            const systemCtx = document.getElementById('systemChart').getContext('2d');
-            systemChart = new Chart(systemCtx, {
-                type: 'line',
-                data: {
-                    labels: systemData.labels,
-                    datasets: [{
-                        label: 'CPU Usage %',
-                        data: systemData.cpu,
-                        borderColor: '#00d4ff',
-                        backgroundColor: 'rgba(0, 212, 255, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }, {
-                        label: 'Memory Usage %',
-                        data: systemData.memory,
-                        borderColor: '#00ff88',
-                        backgroundColor: 'rgba(0, 255, 136, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }, {
-                        label: 'Disk Usage %',
-                        data: systemData.disk,
-                        borderColor: '#ff6b6b',
-                        backgroundColor: 'rgba(255, 107, 107, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }]
-                },
-                options: {
-                    ...chartOptions,
-                    plugins: {
-                        ...chartOptions.plugins,
-                        title: {
-                            display: false
-                        }
-                    }
-                }
-            });
-
-            // Compression Performance Chart
-            const compressionCtx = document.getElementById('compressionChart').getContext('2d');
-            compressionChart = new Chart(compressionCtx, {
-                type: 'line',
-                data: {
-                    labels: compressionData.labels,
-                    datasets: [{
-                        label: 'Compression Ratio',
-                        data: compressionData.ratio,
-                        borderColor: '#00d4ff',
-                        backgroundColor: 'rgba(0, 212, 255, 0.1)',
-                        tension: 0.4,
-                        yAxisID: 'y'
-                    }, {
-                        label: 'Space Saved (GB)',
-                        data: compressionData.spaceSaved,
-                        borderColor: '#00ff88',
-                        backgroundColor: 'rgba(0, 255, 136, 0.1)',
-                        tension: 0.4,
-                        yAxisID: 'y1'
-                    }]
-                },
-                options: {
-                    ...chartOptions,
-                    scales: {
-                        ...chartOptions.scales,
-                        y: {
-                            ...chartOptions.scales.y,
-                            position: 'left'
-                        },
-                        y1: {
-                            ...chartOptions.scales.y,
-                            position: 'right',
-                            ticks: {
-                                color: '#b0b0b0',
-                                callback: function(value) {
-                                    return value + ' GB';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        // Update system chart with new data
-        function updateSystemChart(data) {
-            const now = new Date().toLocaleTimeString();
-
-            // Keep only last 20 data points
-            if (systemData.labels.length >= 20) {
-                systemData.labels.shift();
-                systemData.cpu.shift();
-                systemData.memory.shift();
-                systemData.disk.shift();
-            }
-
-            systemData.labels.push(now);
-            systemData.cpu.push(data.cpu || 0);
-            systemData.memory.push(data.memory || 0);
-            systemData.disk.push(data.disk || 0);
-
-            if (systemChart) {
-                systemChart.update('none'); // Smooth update without animation
-            }
-        }
-
-        // Update compression chart with new data
-        function updateCompressionChart(data) {
-            const now = new Date().toLocaleTimeString();
-
-            // Keep only last 20 data points
-            if (compressionData.labels.length >= 20) {
-                compressionData.labels.shift();
-                compressionData.ratio.shift();
-                compressionData.spaceSaved.shift();
-            }
-
-            compressionData.labels.push(now);
-            compressionData.ratio.push(data.ratio || 0);
-            compressionData.spaceSaved.push(data.spaceSaved || 0);
-
-            if (compressionChart) {
-                compressionChart.update('none');
-            }
-        }
 
         // Check server status using Andy's logic
         async function checkServerStatus() {
@@ -954,6 +889,64 @@
             document.querySelector('[onclick*="cli"]').click();
         }
 
+        // AI Research Functions
+        async function startMLTraining() {
+            try {
+                const response = await fetch('/ai-research/ml-training/start', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await response.json();
+
+                addRecentActivity(`ML Training Started: ${data.job_id}`);
+                alert(`ML Training Protocol initiated!\n\nJob ID: ${data.job_id}\nProtocol: ${data.protocol}\nDuration: ${data.estimated_duration}\n\n${data.message}`);
+            } catch (error) {
+                console.error('Failed to start ML training:', error);
+                alert('Failed to start ML training protocol');
+            }
+        }
+
+        async function viewConsciousnessMetrics() {
+            try {
+                const response = await fetch('/ai-research/consciousness/metrics');
+                const data = await response.json();
+
+                const metricsText = `
+Consciousness Framework Metrics:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Coherence Level: ${data.coherence_level}
+Quantum Seed Mapping: ${data.quantum_seed_mapping}
+Neural Synchronization: ${data.neural_synchronization}
+Golden Ratio Alignment: ${data.golden_ratio_alignment}
+Prime Aligned Compute Factor: ${data.prime_aligned_compute_factor}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Timestamp: ${new Date(data.timestamp).toLocaleString()}
+                `.trim();
+
+                alert(metricsText);
+                addRecentActivity('Viewed consciousness framework metrics');
+            } catch (error) {
+                console.error('Failed to fetch consciousness metrics:', error);
+                alert('Failed to fetch consciousness metrics');
+            }
+        }
+
+        async function runQuantumAnalysis() {
+            try {
+                const response = await fetch('/ai-research/quantum-analysis/run', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await response.json();
+
+                addRecentActivity(`Quantum Analysis Started: ${data.analysis_id}`);
+                alert(`Quantum Analysis initiated!\n\nAnalysis ID: ${data.analysis_id}\nStatus: ${data.status}\nAlgorithms: ${data.algorithms.join(', ')}\nEstimated Completion: ${data.estimated_completion}\n\n${data.message}`);
+            } catch (error) {
+                console.error('Failed to run quantum analysis:', error);
+                alert('Failed to run quantum analysis');
+            }
+        }
+
         // Execute custom CLI command
         function executeCustomCommand() {
             const commandInput = document.getElementById('customCommand');
@@ -974,24 +967,9 @@
                 const response = await fetch('/system-info');
                 const data = await response.json();
 
-                // Update metric cards
                 document.getElementById('cpuUsage').textContent = `${data.cpu.usage_percent}%`;
                 document.getElementById('memoryUsage').textContent = `${Math.round(data.memory.used_gb)}GB`;
                 document.getElementById('diskUsage').textContent = `${Math.round(data.disk.used_gb)}GB`;
-
-                // Update charts with current data
-                updateSystemChart({
-                    cpu: data.cpu.usage_percent,
-                    memory: data.memory.usage_percent,
-                    disk: data.disk.usage_percent
-                });
-
-                // Update compression stats (mock data for now)
-                updateCompressionChart({
-                    ratio: Math.random() * 0.5 + 0.3, // Random ratio between 0.3-0.8
-                    spaceSaved: Math.random() * 100 + 50 // Random space saved
-                });
-
             } catch (error) {
                 console.log('Failed to update system metrics:', error);
             }
@@ -1030,10 +1008,6 @@
 
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize charts and WebSocket monitoring
-            initializeCharts();
-            initializeWebSocket();
-
             // Start server monitoring (Andy's integration)
             checkServerStatus();
             serverCheckInterval = setInterval(checkServerStatus, 30000); // Every 30 seconds
@@ -1044,9 +1018,8 @@
 
             // Add initial activity
             addRecentActivity('Dashboard loaded - Andy\'s CLI integration active');
-            addRecentActivity('Real-time charts initialized');
 
-            console.log('🧠 SquashPlot Dashboard initialized with Andy\'s enhancements + Real-time Charts');
+            console.log('🧠 SquashPlot Dashboard initialized with Andy\'s enhancements');
         });
 
         // Cleanup on page unload

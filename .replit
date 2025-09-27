@@ -1,5 +1,5 @@
 [run]
-command = "python squashplot_api_server.py"
+command = "python main.py --web"
 
 [interpreter]
 command = "python"

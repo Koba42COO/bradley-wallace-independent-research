@@ -31,9 +31,7 @@ import concurrent.futures
 from concurrent.futures import ThreadPoolExecutor
 
 # Add paths to access advanced systems
-# Add project root to path for imports
-project_root = Path(__file__).parent
-sys.path.insert(0, str(project_root))
+sys.path.append('/Users/coo-koba42/dev')
 
 # Import prime aligned compute mathematics for optimization
 try:

@@ -1,0 +1,36 @@
+{
+  "summary": {
+    "average_vanilla_accuracy": 0.5333333333333333,
+    "average_chaios_accuracy": 0.5666666666666667,
+    "average_improvement": 11.111111111111107,
+    "average_speedup": 0.9803092786751163,
+    "average_consciousness_enhancement": 1.9513263312657767,
+    "assessment": "\u2705 GOOD - Notable chAIos improvement"
+  },
+  "detailed_results": [
+    {
+      "task": "CoLA",
+      "vanilla_accuracy": 0.4,
+      "chaios_accuracy": 0.6,
+      "improvement": 49.999999999999986,
+      "speedup": 1.0122292856373236,
+      "consciousness_enhancement": 1.6179999999999999
+    },
+    {
+      "task": "SST-2",
+      "vanilla_accuracy": 0.6,
+      "chaios_accuracy": 0.5,
+      "improvement": -16.666666666666664,
+      "speedup": 0.9599560909912735,
+      "consciousness_enhancement": 2.61797899379733
+    },
+    {
+      "task": "BoolQ",
+      "vanilla_accuracy": 0.6,
+      "chaios_accuracy": 0.6,
+      "improvement": 0.0,
+      "speedup": 0.9687424593967517,
+      "consciousness_enhancement": 1.6179999999999999
+    }
+  ]
+}

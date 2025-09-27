@@ -29,9 +29,7 @@ from datetime import datetime
 import threading
 
 # Add paths to access EIMF and CHAIOS systems
-# Add project root to path for imports
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
+sys.path.append('/Users/coo-koba42/dev')
 
 # Import advanced EIMF systems
 try:

@@ -1,0 +1,469 @@
+2025-09-20 16:19:31,414 - squashplot - INFO - SquashPlot initialized with middle optimization
+2025-09-20 16:19:31,422 - squashplot_dashboard - INFO - Starting SquashPlot Dashboard on 0.0.0.0:5000
+2025-09-20 16:19:31,434 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.31.106.66:5000
+2025-09-20 16:19:31,434 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-20 16:19:31,678 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:19:31] "GET / HTTP/1.1" 200 -
+2025-09-20 16:19:31,803 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:19:31] "GET /static/dashboard.css HTTP/1.1" 200 -
+2025-09-20 16:19:31,911 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:19:31] "GET /static/dashboard.js HTTP/1.1" 200 -
+2025-09-20 16:19:34,426 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:19:34,426 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:19:34,426 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:19:34,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:19:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:19:39,460 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:19:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:19:44,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:19:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:19:49,448 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:19:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:19:54,432 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:19:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:19:59,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:19:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:20:04,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:20:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:20:09,433 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:20:09,433 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:20:09,433 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:20:09,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:20:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:20:14,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:20:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:20:19,431 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:20:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:20:24,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:20:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:20:29,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:20:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:20:34,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:20:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:20:39,461 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:20:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:20:44,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:20:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:20:44,439 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:20:44,439 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:20:44,439 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:20:49,457 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:20:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:20:54,465 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:20:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:20:59,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:20:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:21:04,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:21:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:21:09,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:21:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:21:14,452 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:21:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:21:19,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:21:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:21:19,447 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:21:19,447 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:21:19,447 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:21:24,440 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:21:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:21:29,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:21:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:21:34,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:21:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:21:39,441 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:21:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:21:44,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:21:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:21:49,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:21:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:21:54,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:21:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:21:54,452 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:21:54,452 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:21:54,452 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:21:59,441 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:21:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:22:04,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:22:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:22:09,442 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:22:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:22:14,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:22:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:22:19,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:22:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:22:24,441 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:22:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:22:29,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:22:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:22:29,459 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:22:29,459 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:22:29,459 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:22:34,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:22:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:22:39,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:22:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:22:44,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:22:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:22:49,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:22:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:22:54,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:22:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:22:59,431 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:22:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:23:04,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:23:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:23:04,466 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:23:04,466 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:23:04,466 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:23:09,454 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:23:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:23:14,440 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:23:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:23:19,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:23:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:23:24,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:23:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:23:29,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:23:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:23:34,431 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:23:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:23:39,472 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:23:39,472 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:23:39,472 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:23:39,474 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:23:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:23:44,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:23:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:23:49,464 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:23:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:23:54,451 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:23:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:23:59,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:23:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:24:04,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:24:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:24:09,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:24:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:24:14,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:24:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:24:14,477 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:24:14,477 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:24:14,477 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:24:19,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:24:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:24:24,441 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:24:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:24:29,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:24:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:24:34,451 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:24:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:24:39,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:24:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:24:44,430 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:24:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:24:49,448 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:24:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:24:49,483 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:24:49,483 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:24:49,483 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:24:54,432 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:24:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:24:59,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:24:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:04,442 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:25:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:09,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:25:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:14,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:25:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:19,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:25:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:24,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:25:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:24,488 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:25:24,488 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:25:24,489 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:25:29,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:25:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:34,450 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:25:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:39,439 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:25:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:44,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:25:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:49,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:25:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:54,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:25:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:59,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:25:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:25:59,498 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:25:59,501 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:25:59,501 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:26:04,441 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:26:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:26:09,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:26:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:26:14,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:26:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:26:19,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:26:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:26:24,432 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:26:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:26:29,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:26:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:26:34,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:26:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:26:34,509 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:26:34,510 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:26:34,510 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:26:39,439 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:26:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:26:44,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:26:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:26:49,442 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:26:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:26:54,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:26:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:26:59,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:26:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:27:04,442 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:27:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:27:09,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:27:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:27:09,516 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:27:09,516 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:27:09,516 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:27:14,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:27:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:27:19,447 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:27:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:27:24,430 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:27:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:27:29,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:27:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:27:34,439 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:27:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:27:39,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:27:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:27:44,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:27:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:27:44,525 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:27:44,526 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:27:44,526 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:27:49,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:27:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:27:54,431 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:27:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:27:59,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:27:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:28:04,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:28:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:28:09,439 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:28:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:28:14,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:28:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:28:19,442 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:28:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:28:19,537 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:28:19,537 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:28:19,537 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:28:24,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:28:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:28:29,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:28:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:28:34,453 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:28:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:28:39,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:28:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:28:44,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:28:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:28:49,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:28:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:28:54,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:28:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:28:54,552 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:28:54,552 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:28:54,552 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:28:59,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:28:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:29:04,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:29:06,760 - squashplot_dashboard - INFO - Alert added: Optimization mode changed to MIDDLE (info)
+2025-09-20 16:29:06,761 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:06] "POST /api/optimize HTTP/1.1" 200 -
+2025-09-20 16:29:07,985 - squashplot_dashboard - INFO - Alert added: Optimization mode changed to COST (info)
+2025-09-20 16:29:07,986 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:07] "POST /api/optimize HTTP/1.1" 200 -
+2025-09-20 16:29:08,857 - squashplot_dashboard - INFO - Alert added: Optimization mode changed to SPEED (info)
+2025-09-20 16:29:08,858 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:08] "POST /api/optimize HTTP/1.1" 200 -
+2025-09-20 16:29:09,432 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:29:09,562 - squashplot_dashboard - INFO - Alert added: Optimization mode changed to MIDDLE (info)
+2025-09-20 16:29:09,563 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:09] "POST /api/optimize HTTP/1.1" 200 -
+2025-09-20 16:29:10,291 - squashplot_dashboard - INFO - Alert added: Optimization mode changed to COST (info)
+2025-09-20 16:29:10,291 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:10] "POST /api/optimize HTTP/1.1" 200 -
+2025-09-20 16:29:14,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:29:19,442 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:29:24,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:29:29,431 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:29:29,558 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:29:29,558 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:29:29,558 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:29:34,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:29:39,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:29:44,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:29:49,441 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:29:54,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:29:59,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:29:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:30:04,450 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:30:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:30:04,567 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:30:04,567 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:30:04,567 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:30:09,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:30:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:30:14,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:30:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:30:19,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:30:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:30:24,432 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:30:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:30:29,439 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:30:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:30:34,446 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:30:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:30:39,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:30:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:30:39,573 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:30:39,574 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:30:39,574 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:30:44,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:30:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:30:49,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:30:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:30:54,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:30:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:30:59,440 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:30:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:31:04,441 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:31:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:31:09,432 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:31:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:31:14,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:31:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:31:14,581 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:31:14,581 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:31:14,582 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:31:19,439 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:31:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:31:24,431 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:31:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:31:29,432 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:31:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:31:34,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:31:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:31:39,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:31:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:31:44,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:31:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:31:49,447 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:31:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:31:49,589 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:31:49,589 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:31:49,589 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:31:54,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:31:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:31:59,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:31:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:04,441 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:32:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:09,431 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:32:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:14,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:32:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:19,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:32:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:24,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:32:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:24,594 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:32:24,595 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:32:24,595 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:32:29,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:32:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:34,440 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:32:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:39,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:32:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:44,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:32:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:49,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:32:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:54,432 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:32:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:59,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:32:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:32:59,603 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:32:59,603 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:32:59,603 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:33:04,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:33:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:33:09,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:33:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:33:14,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:33:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:33:19,440 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:33:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:33:24,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:33:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:33:29,441 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:33:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:33:34,447 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:33:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:33:34,608 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:33:34,608 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:33:34,608 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:33:39,439 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:33:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:33:44,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:33:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:33:49,441 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:33:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:33:54,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:33:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:33:59,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:33:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:34:04,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:34:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:34:09,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:34:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:34:09,614 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:34:09,614 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:34:09,614 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:34:14,442 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:34:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:34:19,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:34:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:34:24,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:34:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:34:29,430 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:34:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:34:34,451 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:34:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:34:39,439 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:34:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:34:44,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:34:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:34:44,621 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:34:44,621 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:34:44,622 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:34:49,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:34:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:34:54,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:34:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:34:59,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:34:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:35:04,446 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:35:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:35:09,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:35:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:35:14,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:35:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:35:19,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:35:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:35:19,631 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:35:19,631 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:35:19,631 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:35:24,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:35:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:35:29,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:35:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:35:34,448 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:35:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:35:39,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:35:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:35:44,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:35:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:35:49,448 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:35:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:35:54,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:35:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:35:54,643 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:35:54,643 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:35:54,643 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:35:59,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:35:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:36:04,447 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:36:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:36:09,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:36:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:36:14,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:36:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:36:19,446 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:36:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:36:24,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:36:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:36:29,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:36:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:36:29,649 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:36:29,649 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:36:29,649 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:36:34,456 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:36:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:36:39,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:36:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:36:44,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:36:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:36:49,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:36:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:36:54,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:36:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:36:59,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:36:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:37:04,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:37:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:37:04,655 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:37:04,655 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:37:04,655 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:37:09,439 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:37:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:37:14,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:37:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:37:19,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:37:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:37:24,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:37:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:37:29,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:37:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:37:34,447 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:37:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:37:39,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:37:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:37:39,662 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:37:39,663 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:37:39,664 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:37:44,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:37:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:37:49,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:37:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:37:54,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:37:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:37:59,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:37:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:38:04,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:38:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:38:09,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:38:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:38:14,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:38:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:38:14,670 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:38:14,670 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:38:14,670 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:38:19,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:38:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:38:24,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:38:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:38:29,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:38:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:38:34,450 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:38:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:38:39,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:38:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:38:44,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:38:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:38:49,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:38:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:38:49,676 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:38:49,676 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:38:49,676 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:38:54,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:38:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:38:59,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:38:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:04,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:39:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:09,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:39:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:14,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:39:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:19,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:39:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:24,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:39:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:24,682 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:39:24,682 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:39:24,683 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:39:29,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:39:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:34,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:39:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:39,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:39:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:44,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:39:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:49,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:39:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:54,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:39:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:59,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:39:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:39:59,689 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:39:59,689 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:39:59,689 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:40:04,446 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:40:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:40:09,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:40:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:40:14,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:40:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:40:19,447 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:40:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:40:24,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:40:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:40:29,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:40:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:40:34,447 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:40:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:40:34,696 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:40:34,696 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:40:34,696 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:40:39,447 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:40:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:40:44,439 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:40:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:40:49,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:40:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:40:54,440 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:40:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:40:59,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:40:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:41:04,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:41:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:41:09,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:41:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:41:09,702 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:41:09,702 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:41:09,703 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:41:14,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:41:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:41:19,446 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:41:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:41:24,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:41:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:41:29,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:41:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:41:34,445 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:41:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:41:39,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:41:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:41:44,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:41:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:41:44,711 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:41:44,712 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:41:44,712 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:41:49,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:41:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:41:54,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:41:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:41:59,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:41:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:42:04,442 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:42:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:42:09,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:42:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:42:14,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:42:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:42:19,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:42:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:42:19,718 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:42:19,719 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:42:19,719 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:42:24,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:42:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:42:29,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:42:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:42:34,446 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:42:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:42:39,442 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:42:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:42:44,433 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:42:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:42:49,457 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:42:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:42:54,447 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:42:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:42:54,726 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:42:54,726 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:42:54,726 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:42:59,434 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:42:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:43:04,452 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:43:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:43:09,432 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:43:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:43:14,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:43:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:43:19,440 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:43:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:43:24,432 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:43:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:43:29,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:43:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:43:29,732 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:43:29,732 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:43:29,732 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:43:34,443 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:43:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:43:39,439 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:43:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:43:44,435 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:43:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:43:49,444 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:43:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:43:54,773 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:43:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:43:59,442 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:43:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:44:04,447 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:44:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:44:04,740 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:44:04,740 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:44:04,740 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:44:09,440 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:44:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:44:14,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:44:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:44:19,455 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:44:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:44:24,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:44:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:44:29,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:44:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:44:34,450 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:44:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:44:39,455 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:44:39] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:44:39,748 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:44:39,749 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:44:39,749 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:44:44,441 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:44:44] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:44:49,454 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:44:49] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:44:54,440 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:44:54] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:44:59,439 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:44:59] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:45:04,447 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:45:04] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:45:09,436 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:45:09] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:45:14,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:45:14] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:45:14,755 - squashplot_dashboard - INFO - Alert added: Critical disk space on /mnt/nixmodules (>95%) (critical)
+2025-09-20 16:45:14,755 - squashplot_dashboard - INFO - Alert added: Critical disk space on /etc/nixmodules (>95%) (critical)
+2025-09-20 16:45:14,755 - squashplot_dashboard - INFO - Alert added: No plots found - farming not active (warning)
+2025-09-20 16:45:19,452 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:45:19] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:45:24,437 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:45:24] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:45:29,438 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:45:29] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:45:34,461 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:45:34] "GET /api/dashboard HTTP/1.1" 200 -
+2025-09-20 16:45:39,441 - werkzeug - INFO - 172.31.106.66 - - [20/Sep/2025 16:45:39] "GET /api/dashboard HTTP/1.1" 200 -

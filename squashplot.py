@@ -30,14 +30,6 @@ import subprocess
 import numpy as np
 import math
 
-# Consciousness Mathematics Compression Engine
-try:
-    from compression_engine import ConsciousnessCompressionEngine, ConsciousnessCompressionConfig
-    CONSCIOUSNESS_AVAILABLE = True
-except ImportError:
-    CONSCIOUSNESS_AVAILABLE = False
-    print("⚠️ Consciousness compression engine not available, using standard algorithms")
-
 # Modern compression algorithms for MVP
 try:
     import zstandard as zstd
@@ -376,20 +368,6 @@ class SquashPlotCompressor:
         # Initialize CUDNT accelerator for prime aligned compute mathematics
         self.cudnt_accelerator = CUDNTAccelerator()
 
-        # Initialize consciousness compression engine
-        if CONSCIOUSNESS_AVAILABLE:
-            consciousness_config = ConsciousnessCompressionConfig(
-                mode="balanced" if not pro_enabled else "max_compression",
-                consciousness_threshold=2.0 if not pro_enabled else 5.0,
-                enable_gpu_acceleration=True,
-                memory_limit_mb=4096 if pro_enabled else 2048
-            )
-            self.consciousness_engine = ConsciousnessCompressionEngine(consciousness_config)
-            self.consciousness_available = True
-        else:
-            self.consciousness_engine = None
-            self.consciousness_available = False
-
         # Initialize plotter backend
         self.plotter_backend = PlotterBackend()
         
@@ -399,7 +377,6 @@ class SquashPlotCompressor:
         print(f"   ⚡ Speed Factor: {self.speedup_factor:.1f}x")
         print(f"   🧠 prime aligned compute Enhancement: ENABLED")
         print(f"   ⚡ CUDNT Acceleration: ENABLED")
-        print(f"   🧠 Consciousness Mathematics: {'ENABLED' if self.consciousness_available else 'NOT AVAILABLE'}")
         print(f"   📐 Mathematical Constants: φ = {PHI:.10f}")
         print(f"   🔧 Plotter Integration: ENABLED")
 
@@ -473,36 +450,6 @@ class SquashPlotCompressor:
 
     def _compress_data(self, data: bytes) -> bytes:
         """Apply compression algorithm"""
-
-        # Use consciousness compression engine if available (highest priority)
-        if self.consciousness_available and self.consciousness_engine:
-            print("   🧠 Using Consciousness Mathematics Compression Engine...")
-            try:
-                compressed, stats = self.consciousness_engine.compress(data)
-
-                # Store consciousness metadata
-                self._compression_metadata = {
-                    'original_size': stats.original_size,
-                    'compressed_size': stats.compressed_size,
-                    'compression_ratio': stats.compression_ratio,
-                    'compression_factor': stats.compression_factor,
-                    'patterns_found': stats.patterns_found,
-                    'consciousness_level': stats.consciousness_level,
-                    'algorithm': 'consciousness_mathematics',
-                    'lossless_verified': stats.lossless_verified,
-                    'complexity_reduction': stats.complexity_reduction,
-                    'performance_score': stats.performance_score
-                }
-
-                print(f"   🎯 Consciousness Level: {stats.consciousness_level:.2f}")
-                print(f"   🔍 Patterns Found: {stats.patterns_found:,}")
-                print(f"   📊 Compression Factor: {stats.compression_factor:.2f}x")
-
-                return compressed
-
-            except Exception as e:
-                print(f"   ⚠️ Consciousness compression failed: {e}")
-                print("   🔄 Falling back to standard algorithms...")
 
         if self.pro_enabled:
             # Pro version: Advanced multi-stage with prime aligned compute enhancement
