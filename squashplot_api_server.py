@@ -250,13 +250,21 @@ async def root():
                     </div>
                 </a>
 
-                <a href="/health" class="interface-card">
-                    <div class="interface-title">🔍 System Status</div>
-                    <div class="interface-desc">
-                        Real-time system health, API status, and monitoring
-                        information
-                    </div>
-                </a>
+                        <a href="/health" class="interface-card">
+                            <div class="interface-title">🔍 System Status</div>
+                            <div class="interface-desc">
+                                Real-time system health, API status, and monitoring
+                                information
+                            </div>
+                        </a>
+
+                        <a href="/ai-research" class="interface-card">
+                            <div class="interface-title">🧠 AI Research Platform</div>
+                            <div class="interface-desc">
+                                Dedicated AI/ML research tools with consciousness
+                                framework and quantum analysis
+                            </div>
+                        </a>
             </div>
 
             <div class="status">
