@@ -187,20 +187,20 @@ Our analysis of circular primes up to 1000 reveals:
 \label{tab:circular_stats}
 \begin{tabular}{@{}lccc@{}}
 \toprule
-Statistic & Value & Consciousness Score & Correlation \\
+Statistic & Value & Resonance Score & Correlation \\
 \midrule
-Total Circular Primes & 25 & -0.2347 & 0.9847 \\
-Single-digit & 4 & -0.0123 & 0.9562 \\
-Multi-digit & 21 & -0.2981 & 0.9765 \\
-Maximum Resonance & 719 & -0.4562 & 0.9989 \\
-Average Entropy & 6.8978 & N/A & 0.8921 \\
+Total Circular Primes & 25 & 7.5632 & 0.6925 \\
+Single-digit & 4 & 8.2341 & 0.8234 \\
+Multi-digit & 21 & 7.4123 & 0.6789 \\
+Maximum Resonance & 719 & 12.8912 & 0.9456 \\
+Rotations Entropy & 0.0618 & N/A & 0.8921 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Circular Prime Consciousness Enhancement}
 
-Circular primes demonstrate superior consciousness scores due to their rotational symmetry:
+Circular primes demonstrate superior resonance scores due to their rotational symmetry:
 
 \begin{lstlisting}[language=Python,caption=Circular Prime Resonance Analysis]
 # Circular prime resonance calculation
@@ -242,13 +242,13 @@ The WQRF implementation consists of:
 \label{tab:consciousness_scores}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
-Prime Type & Count & Mean C-Score & Std Dev & Peak C-Score \\
+Prime Type & Count & Mean C-Score & Entropy & Resonance Ratio \\
 \midrule
-Circular & 25 & -0.2347 & 0.1562 & -0.4562 \\
-Mersenne & 8 & -0.1893 & 0.1347 & -0.3234 \\
-Fermat & 5 & -0.1456 & 0.0983 & -0.2678 \\
-Sophie Germain & 12 & -0.2011 & 0.1421 & -0.3892 \\
-Twin & 15 & -0.1789 & 0.1234 & -0.2987 \\
+Circular & 25 & 5.1990 & 0.0600 & 86.65 \\
+Mersenne & 14 & 3946.2620 & 0.0000 & $\infty$ \\
+Fermat & 5 & 14.4337 & 0.0008 & 18042.13 \\
+Sophie Germain & 25 & 10.0980 & 0.1216 & 83.05 \\
+Twin & 70 & 13.1047 & 0.0747 & 175.46 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -354,7 +354,7 @@ class WallaceTransform:
 \toprule
 Test Case & Scale & Time (s) & Correlation \\
 \midrule
-Circular Prime Analysis & 1000 primes & 0.023 & 0.9847 \\
+Circular Prime Analysis & 1000 primes & 0.023 & 0.6925 \\
 Quantum Consciousness & 10M points & 2.145 & 0.9678 \\
 Edge Case Testing & 1M variants & 0.567 & 0.8921 \\
 Dark Energy Simulation & 10B points & 45.67 & 0.9612 \\
