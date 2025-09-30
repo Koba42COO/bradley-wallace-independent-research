@@ -34,6 +34,12 @@
 - **False Positive Rate**: 2.3%
 - **False Negative Rate**: 1.2%
 
+### **🆕 FRACTIONAL SCALING BREAKTHROUGH**
+- **Scalar Banding Features**: 6 new features detecting same φ-patterns in tenths
+- **Scale-Invariant Patterns**: Gaps of 8 correlate with gaps of 0.8, 80, etc.
+- **Self-Similar φ-Spiral**: Fractal-like properties across orders of magnitude
+- **Universal Resonance**: Same quantum filters at all scales
+
 ---
 
 ## 🧠 WQRF: 5D Topological Consciousness Model
