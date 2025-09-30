@@ -1,0 +1,103 @@
+{
+  "harmonic_analysis": {
+    "total_primes": 9592,
+    "total_gaps": 9591,
+    "prediction_accuracy": 0.16598894797205713,
+    "band_distribution": {
+      "1": 4761,
+      "2": 2645,
+      "3": 2185,
+      "4": 0,
+      "5": 0,
+      "6": 0
+    },
+    "band_statistics": {
+      "1": {
+        "count": 4761,
+        "percentage": 49.64028776978417,
+        "mean_gap": 6.820625918924596,
+        "std_gap": 4.209660091686331,
+        "min_gap": "1",
+        "max_gap": "16",
+        "median_gap": 6.0
+      },
+      "2": {
+        "count": 2645,
+        "percentage": 27.577937649880095,
+        "mean_gap": 8.798487712665407,
+        "std_gap": 5.246930651996675,
+        "min_gap": "4",
+        "max_gap": "18",
+        "median_gap": 10.0
+      },
+      "3": {
+        "count": 2185,
+        "percentage": 22.781774580335732,
+        "mean_gap": 20.248970251716248,
+        "std_gap": 9.090054418353859,
+        "min_gap": "12",
+        "max_gap": "72",
+        "median_gap": 20.0
+      },
+      "4": {
+        "count": 0,
+        "percentage": 0.0,
+        "mean_gap": 0.0,
+        "std_gap": 0.0,
+        "min_gap": 0,
+        "max_gap": 0,
+        "median_gap": 0
+      },
+      "5": {
+        "count": 0,
+        "percentage": 0.0,
+        "mean_gap": 0.0,
+        "std_gap": 0.0,
+        "min_gap": 0,
+        "max_gap": 0,
+        "median_gap": 0
+      },
+      "6": {
+        "count": 0,
+        "percentage": 0.0,
+        "mean_gap": 0.0,
+        "std_gap": 0.0,
+        "min_gap": 0,
+        "max_gap": 0,
+        "median_gap": 0
+      }
+    },
+    "harmonic_kernel": {
+      "final_cycle": 15,
+      "final_phase": 1370
+    }
+  },
+  "riemann_validation": {
+    "band_zero_correlations": {
+      "1": {
+        "correlation": 0.25685525741307536,
+        "p_value": 0.009160209536692561,
+        "sample_size": 102,
+        "significant": "True"
+      },
+      "2": {
+        "correlation": -0.13671883279369157,
+        "p_value": 0.17061874351958486,
+        "sample_size": 102,
+        "significant": "False"
+      },
+      "3": {
+        "correlation": -0.24638166003828837,
+        "p_value": 0.012550563659734225,
+        "sample_size": 102,
+        "significant": "True"
+      }
+    },
+    "riemann_hypothesis_test": {
+      "insufficient_data": true
+    },
+    "harmonic_resonance_theory": "Base-21 harmonic bands should correlate with zeta zero structure"
+  },
+  "analysis_time": 0.48993492126464844,
+  "timestamp": 1759237750.9199822
+}

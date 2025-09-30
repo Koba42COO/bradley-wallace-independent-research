@@ -22,10 +22,10 @@ class ComprehensiveEducationalEcosystem:
 
         # Import working systems
         try:
-            from simple_working_scraper import SimpleWorkingScraper
+            from web_scraper_knowledge_system import WebScraperKnowledgeSystem
             from working_learning_system import WorkingLearningSystem
             from consciousness_enhanced_learning import ConsciousnessEnhancedLearning
-            self.scraper = SimpleWorkingScraper()
+            self.scraper = WebScraperKnowledgeSystem()
             self.learning_system = WorkingLearningSystem()
             self.consciousness_learning = ConsciousnessEnhancedLearning()
         except ImportError as e:
@@ -564,11 +564,11 @@ class ComprehensiveEducationalEcosystem:
         print(f"   📋 Learning objectives: {learning.get('learning_objectives', {}).get('total_objectives', 0)}")
 
         # prime aligned compute Enhancement
-        prime aligned compute = results['consciousness_enhancement']
+        consciousness_enhancement = results['consciousness_enhancement']
         print(f"\n🧠 prime aligned compute Enhancement:")
-        print(f"   🎯 Enhanced topics: {len(prime aligned compute.get('enhanced_topics', []))}")
-        print(f"   ⚡ Enhancement factor: {prime aligned compute.get('prime_aligned_metrics', {}).get('average_enhancement', 0):.3f}")
-        print(f"   📈 Effectiveness: {prime aligned compute.get('prime_aligned_metrics', {}).get('enhancement_effectiveness', 0):.1%}")
+        print(f"   🎯 Enhanced topics: {len(consciousness_enhancement.get('enhanced_topics', []))}")
+        print(f"   ⚡ Enhancement factor: {consciousness_enhancement.get('prime_aligned_metrics', {}).get('average_enhancement', 0):.3f}")
+        print(f"   📈 Effectiveness: {consciousness_enhancement.get('prime_aligned_metrics', {}).get('enhancement_effectiveness', 0):.1%}")
 
         # Interactive Learning
         interactive = results['interactive_learning']
@@ -601,7 +601,7 @@ class ComprehensiveEducationalEcosystem:
 
         print(f"\n🎉 COMPREHENSIVE EDUCATIONAL ECOSYSTEM COMPLETE!")
         print(f"📚 Real content: {content.get('final_count', 0)} items from {content.get('sources_covered', 0)} sources")
-        print(f"🧠 prime aligned compute enhancement: {prime aligned compute.get('prime_aligned_metrics', {}).get('average_enhancement', 0):.3f}x")
+        print(f"🧠 prime aligned compute enhancement: {consciousness_enhancement.get('prime_aligned_metrics', {}).get('average_enhancement', 0):.3f}x")
         print(f"🎓 Learning paths: {len(learning.get('available_paths', []))} personalized curricula")
         print(f"⚡ Live system: {live.get('active_sessions', 0)} active learning sessions")
         print(f"🌟 System health: {results.get('system_health', 'unknown')}")

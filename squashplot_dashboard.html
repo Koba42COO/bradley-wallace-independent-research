@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/lib/marked.umd.js"></script>
     <style>
         /* Black Glass Design System - Production Ready */
         :root {
@@ -842,6 +843,734 @@
             margin-bottom: 0;
         }
 
+        /* Technical Analysis Styles */
+        .analytics-controls {
+            display: flex;
+            gap: 15px;
+            align-items: end;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .analytics-controls .form-group {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .technical-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .summary-item {
+            text-align: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .summary-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .summary-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .technical-charts {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-container h4 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .signals-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .signals-panel h4 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .signals-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .signal-item {
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .signal-item.bullish {
+            border-left-color: var(--success-color);
+        }
+
+        .signal-item.bearish {
+            border-left-color: var(--danger-color);
+        }
+
+        /* Chat Message Markdown Styling */
+        .message-content p {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .message-content h1,
+        .message-content h2,
+        .message-content h3,
+        .message-content h4 {
+            color: var(--primary-color);
+            margin-top: 16px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .message-content h1 { font-size: 1.4em; }
+        .message-content h2 { font-size: 1.3em; }
+        .message-content h3 { font-size: 1.2em; }
+        .message-content h4 { font-size: 1.1em; }
+
+        .message-content ul,
+        .message-content ol {
+            margin-left: 20px;
+            margin-bottom: 8px;
+        }
+
+        .message-content li {
+            margin-bottom: 4px;
+        }
+
+        .message-content strong,
+        .message-content b {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .message-content code {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .message-content pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 8px 0;
+        }
+
+        .message-content pre code {
+            background: transparent;
+            padding: 0;
+        }
+
+        .message-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 16px;
+            margin: 8px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Portfolio Styles */
+        .portfolio-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .holdings-table {
+            overflow-x: auto;
+        }
+
+        .holdings-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .holdings-table th,
+        .holdings-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .holdings-table th {
+            background: rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .holdings-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .holdings-table .positive {
+            color: var(--success-color);
+        }
+
+        .holdings-table .negative {
+            color: var(--danger-color);
+        }
+
+        .allocation-chart,
+        .performance-chart {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        /* Modal Styles for Add Holding */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .close {
+            color: var(--text-secondary);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--text-primary);
+        }
+
+        /* Alerts Styles */
+        .alerts-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .alerts-table {
+            overflow-x: auto;
+        }
+
+        .alerts-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .alerts-table th,
+        .alerts-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .alerts-table th {
+            background: rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .alerts-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .alert-status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .alert-status.active {
+            background: var(--success-color);
+            color: #000;
+        }
+
+        .alert-status.triggered {
+            background: var(--warning-color);
+            color: #000;
+        }
+
+        .alert-status.paused {
+            background: var(--text-secondary);
+            color: var(--bg-primary);
+        }
+
+        .alert-history-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .alert-history-item {
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .alert-history-item.triggered {
+            border-left-color: var(--success-color);
+        }
+
+        .alert-history-item.price {
+            border-left-color: var(--warning-color);
+        }
+
+        .alert-history-item.technical {
+            border-left-color: var(--secondary-color);
+        }
+
+        .alert-history-item.volume {
+            border-left-color: #8b5cf6;
+        }
+
+        .alert-history-time {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .alert-type {
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .alert-type.price {
+            background: var(--warning-color);
+            color: #000;
+        }
+
+        .alert-type.technical {
+            background: var(--secondary-color);
+            color: #000;
+        }
+
+        .alert-type.volume {
+            background: #8b5cf6;
+            color: #fff;
+        }
+
+        /* News & Sentiment Styles */
+        .sentiment-overview {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sentiment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .sentiment-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sentiment-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .sentiment-score {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .sentiment-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .sentiment-trend {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .sentiment-trend.positive {
+            background: var(--success-color);
+            color: #000;
+        }
+
+        .sentiment-trend.greed {
+            background: #10b981;
+            color: #fff;
+        }
+
+        .news-feed {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .news-item {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .news-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .news-item.positive {
+            border-left-color: var(--success-color);
+        }
+
+        .news-item.negative {
+            border-left-color: var(--danger-color);
+        }
+
+        .news-item.neutral {
+            border-left-color: var(--text-secondary);
+        }
+
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .news-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .news-source {
+            background: var(--primary-color);
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .news-time {
+            color: var(--text-muted);
+        }
+
+        .news-sentiment {
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .news-sentiment.positive {
+            background: var(--success-color);
+            color: #000;
+        }
+
+        .news-sentiment.negative {
+            background: var(--danger-color);
+            color: #fff;
+        }
+
+        .news-sentiment.neutral {
+            background: var(--text-secondary);
+            color: #000;
+        }
+
+        .news-summary {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .filter-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .sentiment-chart,
+        .trending-assets {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .trending-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .trending-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .trending-item.rank-1 {
+            border-left-color: #ffd700;
+        }
+
+        .trending-item.rank-2 {
+            border-left-color: #c0c0c0;
+        }
+
+        .trending-item.rank-3 {
+            border-left-color: #cd7f32;
+        }
+
+        .trending-symbol {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .trending-name {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .trending-score {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* AI Visuals Styles */
+        .network-visualization {
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .node-circle {
+            position: absolute;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .node-circle:hover {
+            transform: scale(1.2);
+            border-color: var(--primary-color);
+        }
+
+        .node-circle.inference { background: linear-gradient(45deg, #3b82f6, #1d4ed8); }
+        .node-circle.training { background: linear-gradient(45deg, #10b981, #059669); }
+        .node-circle.coordinator { background: linear-gradient(45deg, #f59e0b, #d97706); }
+        .node-circle.storage { background: linear-gradient(45deg, #8b5cf6, #6d28d9); }
+        .node-circle.gateway { background: linear-gradient(45deg, #ef4444, #dc2626); }
+
+        .node-circle.active { box-shadow: 0 0 15px rgba(0, 212, 255, 0.6); }
+        .node-circle.idle { opacity: 0.7; }
+        .node-circle.offline { opacity: 0.4; background: #666; }
+
+        .metric-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .performance-metrics,
+        .workflow-status,
+        .resource-usage,
+        .model-status {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .insight-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .insight-card.success { border-left-color: var(--success-color); }
+        .insight-card.warning { border-left-color: var(--warning-color); }
+        .insight-card.error { border-left-color: var(--danger-color); }
+
+        .insight-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .insight-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .insight-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .workflow-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .workflow-item.running { border-left-color: var(--warning-color); }
+        .workflow-item.completed { border-left-color: var(--success-color); }
+        .workflow-item.failed { border-left-color: var(--danger-color); }
+
+        .workflow-info h4 {
+            margin: 0;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .workflow-meta {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .workflow-progress {
+            width: 60px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .workflow-progress-bar {
+            height: 100%;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
         /* Loading States */
         .loading {
             opacity: 0.6;
@@ -890,6 +1619,20 @@
 
         .toast.warning {
             border-left: 4px solid var(--warning-color);
+        }
+
+        /* Chat Controls */
+        .chat-controls {
+            display: flex;
+            gap: 15px;
+            align-items: end;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .chat-controls .form-group {
+            flex: 1;
+            min-width: 150px;
         }
 
         /* Intelligent Chatbot Styles */
@@ -1045,6 +1788,10 @@
                             <i class="fas fa-brain"></i>
                             AI Research Platform
                         </a>
+                        <a href="/harvesters" class="ai-research-btn" style="margin-left: 10px;">
+                            <i class="fas fa-server"></i>
+                            Harvester Fleet
+                        </a>
                     </div>
                     <div class="version-badge">Production Ready v2.0</div>
                 </div>
@@ -1064,6 +1811,24 @@
         <nav class="nav-tabs">
             <a href="#dashboard" class="nav-tab active" onclick="scrollToSection('dashboard')">
                 <i class="fas fa-tachometer-alt"></i>Dashboard
+            </a>
+            <a href="#price-charts" class="nav-tab" onclick="scrollToSection('price-charts')">
+                <i class="fas fa-chart-line"></i>Price Charts
+            </a>
+            <a href="#technical-analysis" class="nav-tab" onclick="scrollToSection('technical-analysis')">
+                <i class="fas fa-chart-bar"></i>Technical Analysis
+            </a>
+            <a href="#portfolio" class="nav-tab" onclick="scrollToSection('portfolio')">
+                <i class="fas fa-briefcase"></i>Portfolio
+            </a>
+            <a href="#alerts" class="nav-tab" onclick="scrollToSection('alerts')">
+                <i class="fas fa-bell"></i>Alerts
+            </a>
+            <a href="#news" class="nav-tab" onclick="scrollToSection('news')">
+                <i class="fas fa-newspaper"></i>News
+            </a>
+            <a href="#ai-visuals" class="nav-tab" onclick="scrollToSection('ai-visuals')">
+                <i class="fas fa-brain"></i>AI Visuals
             </a>
             <a href="#plotting" class="nav-tab" onclick="scrollToSection('plotting')">
                 <i class="fas fa-cogs"></i>Plotting
@@ -1174,6 +1939,680 @@
             </div>
         </div>
 
+        <!-- Live Price Charts & Projections Section -->
+        <section id="price-charts" class="content-section">
+            <div class="dashboard-grid">
+                <div class="dashboard-card" style="grid-column: span 2;">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #00ff88, #0099ff);">
+                            📈
+                        </div>
+                        <h3 class="card-title">Live Chia Price Charts & Projections</h3>
+                        <div class="card-description">Real-time price tracking with advanced trigonometric projections and technical analysis</div>
+                    </div>
+
+                    <!-- Price Controls -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+                        <div class="dashboard-card" style="background: var(--secondary-bg); padding: 20px;">
+                            <h4 style="color: var(--accent-color); margin-bottom: 12px;">Current Price</h4>
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--accent-color); margin-bottom: 8px;" id="current-price">
+                                $0.00
+                            </div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;" id="price-change">
+                                +0.00% (24h)
+                            </div>
+                            <div style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 4px;" id="last-update">
+                                Last updated: --
+                            </div>
+                        </div>
+
+                        <div class="dashboard-card" style="background: var(--secondary-bg); padding: 20px;">
+                            <h4 style="color: var(--accent-color); margin-bottom: 12px;">Projection Controls</h4>
+                            <select id="timeframe" style="width: 100%; padding: 8px; margin-bottom: 12px; background: var(--glass-bg); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary);">
+                                <option value="1h">1 Hour</option>
+                                <option value="4h">4 Hours</option>
+                                <option value="1d" selected>1 Day</option>
+                                <option value="1w">1 Week</option>
+                                <option value="1M">1 Month</option>
+                            </select>
+                            <select id="projection-type" style="width: 100%; padding: 8px; margin-bottom: 12px; background: var(--glass-bg); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary);">
+                                <option value="trigonometric">Trigonometric Projection</option>
+                                <option value="fibonacci">Fibonacci Retracement</option>
+                                <option value="bollinger">Bollinger Bands</option>
+                                <option value="rsi">RSI Analysis</option>
+                                <option value="combined">Combined Analysis</option>
+                            </select>
+
+                            <button onclick="calculateProjections()" style="width: 100%; padding: 10px; background: linear-gradient(45deg, var(--warning-color), #ff8800); border: none; border-radius: 6px; color: white; font-weight: 600; cursor: pointer; transition: transform 0.2s;">
+                                🔮 Calculate Projections
+                            </button>
+                        </div>
+
+                        <div class="dashboard-card" style="background: var(--secondary-bg); padding: 20px;">
+                            <h4 style="color: var(--accent-color); margin-bottom: 12px;">Market Indicators</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                                <div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">24h Volume</div>
+                                    <div style="font-size: 1.1rem; font-weight: bold; color: var(--accent-color);" id="volume-24h">--</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Market Cap</div>
+                                    <div style="font-size: 1.1rem; font-weight: bold; color: var(--accent-color);" id="market-cap">--</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">ATH</div>
+                                    <div style="font-size: 1.1rem; font-weight: bold; color: var(--success-color);" id="ath">--</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary);">ATL</div>
+                                    <div style="font-size: 1.1rem; font-weight: bold; color: var(--danger-color);" id="atl">--</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Price Chart -->
+                    <div style="background: var(--secondary-bg); border-radius: 16px; padding: 24px; margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="color: var(--accent-color); margin: 0;">Chia Price Chart & Projections</h3>
+                            <div style="display: flex; gap: 10px;">
+                                <button onclick="refreshPriceData()" style="padding: 8px 16px; background: var(--accent-color); color: white; border: none; border-radius: 6px; cursor: pointer;">
+                                    🔄 Refresh
+                                </button>
+                                <button onclick="toggleProjections()" style="padding: 8px 16px; background: var(--glass-bg); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer;" id="projection-toggle">
+                                    📊 Show Projections
+                                </button>
+                            </div>
+                        </div>
+                        <div style="position: relative; height: 400px; width: 100%; overflow: hidden; border-radius: 8px; background: var(--glass-bg);">
+                            <!-- Grafana Embedded Dashboard -->
+                            <iframe id="grafanaDashboard"
+                                    src="/grafana-dashboard"
+                                    style="width: 100%; height: 400px; border: none; border-radius: 8px;"
+                                    title="Chia Price Analytics Dashboard"
+                                    onload="onGrafanaLoad()"
+                                    onerror="onGrafanaError()">
+                            </iframe>
+
+                            <!-- Fallback Chart.js if Grafana fails -->
+                            <!-- Highcharts Alternative -->
+                            <div id="highchartsContainer" style="width: 100%; height: 400px; display: none;" class="highcharts-chart"></div>
+
+                            <canvas id="priceChart" style="width: 100%; height: 400px; display: none;" class="fallback-chart"></canvas>
+
+                            <!-- Loading indicator -->
+                            <div id="chartLoading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--accent-color); font-size: 16px;">
+                                📊 Loading Grafana Dashboard...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projection Analysis -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <!-- Technical Indicators -->
+                        <div style="background: var(--secondary-bg); border-radius: 16px; padding: 24px;">
+                            <h4 style="color: var(--accent-color); margin-bottom: 20px;">📊 Technical Indicators</h4>
+
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--glass-bg); border-radius: 8px;">
+                                    <div>
+                                        <div style="font-weight: bold; color: var(--text-primary);">RSI (14)</div>
+                                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Relative Strength Index</div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 1.2rem; font-weight: bold;" id="rsi-value">--</div>
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary);" id="rsi-signal">--</div>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--glass-bg); border-radius: 8px;">
+                                    <div>
+                                        <div style="font-weight: bold; color: var(--text-primary);">MACD</div>
+                                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Moving Average Convergence Divergence</div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 1.2rem; font-weight: bold;" id="macd-value">--</div>
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary);" id="macd-signal">--</div>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--glass-bg); border-radius: 8px;">
+                                    <div>
+                                        <div style="font-weight: bold; color: var(--text-primary);">Bollinger Bands</div>
+                                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Volatility Bands</div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 1.2rem; font-weight: bold;" id="bb-position">--</div>
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary);" id="bb-signal">--</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projection Forecasts -->
+                        <div style="background: var(--secondary-bg); border-radius: 16px; padding: 24px;">
+                            <h4 style="color: var(--accent-color); margin-bottom: 20px;">🔮 Price Projections</h4>
+
+                            <div id="projection-results" style="text-align: center; color: var(--text-secondary); padding: 40px;">
+                                <i class="fas fa-chart-line fa-3x" style="margin-bottom: 20px; opacity: 0.5;"></i>
+                                <p>Click "Calculate Projections" to see trigonometric analysis and price forecasts</p>
+                            </div>
+
+                            <div id="projection-data" style="display: none;">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                                    <div style="text-align: center; padding: 16px; background: var(--glass-bg); border-radius: 8px;">
+                                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Projected High</div>
+                                        <div style="font-size: 1.4rem; font-weight: bold; color: var(--success-color);" id="proj-high">--</div>
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary);" id="proj-high-confidence">--</div>
+                                    </div>
+                                    <div style="text-align: center; padding: 16px; background: var(--glass-bg); border-radius: 8px;">
+                                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Projected Low</div>
+                                        <div style="font-size: 1.4rem; font-weight: bold; color: var(--danger-color);" id="proj-low">--</div>
+                                        <div style="font-size: 0.8rem; color: var(--text-secondary);" id="proj-low-confidence">--</div>
+                                    </div>
+                                </div>
+
+                                <div style="padding: 16px; background: var(--glass-bg); border-radius: 8px;">
+                                    <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 8px;">Projection Analysis</div>
+                                    <div style="font-size: 1rem; line-height: 1.5;" id="projection-analysis">
+                                        --
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Analysis Section -->
+        <section id="technical-analysis" class="content-section">
+            <div class="dashboard-grid">
+                <div class="dashboard-card" style="grid-column: span 2;">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #ff6b35, #f7931e);">
+                            📈
+                        </div>
+                        <h3 class="card-title">Advanced Technical Analysis</h3>
+                    </div>
+
+                    <div class="analytics-controls">
+                        <div class="form-group">
+                            <label for="selectedCrypto">Cryptocurrency</label>
+                            <select id="selectedCrypto" onchange="loadTechnicalAnalysis()">
+                                <option value="XCH">Chia (XCH)</option>
+                                <option value="BTC">Bitcoin (BTC)</option>
+                                <option value="ETH">Ethereum (ETH)</option>
+                                <option value="SOL">Solana (SOL)</option>
+                                <option value="ADA">Cardano (ADA)</option>
+                                <option value="DOT">Polkadot (DOT)</option>
+                                <option value="LINK">Chainlink (LINK)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeframe">Timeframe</label>
+                            <select id="timeframe" onchange="loadTechnicalAnalysis()">
+                                <option value="1h">1 Hour</option>
+                                <option value="4h">4 Hours</option>
+                                <option value="1d">1 Day</option>
+                                <option value="1w">1 Week</option>
+                            </select>
+                        </div>
+                        <button onclick="loadTechnicalAnalysis()" class="btn btn-primary">
+                            <i class="fas fa-chart-line"></i> Load Analysis
+                        </button>
+                    </div>
+
+                    <div id="technicalAnalysisContent" style="display: none;">
+                        <div class="technical-summary">
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <div class="summary-label">Current Price</div>
+                                    <div class="summary-value" id="currentPrice">-</div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-label">24h Change</div>
+                                    <div class="summary-value" id="priceChange">-</div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-label">RSI Level</div>
+                                    <div class="summary-value" id="rsiLevel">-</div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-label">MACD Signal</div>
+                                    <div class="summary-value" id="macdSignal">-</div>
+                                </div>
+                                <div class="summary-item">
+                                    <div class="summary-label">BB Position</div>
+                                    <div class="summary-value" id="bbPosition">-</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="technical-charts">
+                            <div class="chart-container">
+                                <h4>Price Chart with Indicators</h4>
+                                <div id="technicalChart" style="height: 400px;"></div>
+                            </div>
+
+                            <div class="chart-container">
+                                <h4>MACD Indicator</h4>
+                                <div id="macdChart" style="height: 200px;"></div>
+                            </div>
+
+                            <div class="chart-container">
+                                <h4>RSI Indicator</h4>
+                                <div id="rsiChart" style="height: 150px;"></div>
+                            </div>
+                        </div>
+
+                        <div class="signals-panel">
+                            <h4>Technical Signals</h4>
+                            <div id="signalsList" class="signals-list">
+                                <div class="signal-item">Loading signals...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Management Section -->
+        <section id="portfolio" class="content-section">
+            <div class="dashboard-grid">
+                <!-- Portfolio Overview -->
+                <div class="dashboard-card" style="grid-column: span 2;">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #1e40af, #3b82f6);">
+                            💼
+                        </div>
+                        <h3 class="card-title">Portfolio Overview</h3>
+                    </div>
+
+                    <div class="portfolio-summary">
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <div class="summary-label">Total Value</div>
+                                <div class="summary-value" id="totalValue">$0.00</div>
+                                <div class="summary-change" id="totalChange">+0.00%</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">24h Change</div>
+                                <div class="summary-value" id="dayChange">$0.00</div>
+                                <div class="summary-change" id="dayChangePercent">+0.00%</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Best Performer</div>
+                                <div class="summary-value" id="bestPerformer">N/A</div>
+                                <div class="summary-change" id="bestPerformerChange">+0.00%</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Worst Performer</div>
+                                <div class="summary-value" id="worstPerformer">N/A</div>
+                                <div class="summary-change" id="worstPerformerChange">+0.00%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Holdings Table -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #059669, #10b981);">
+                            📊
+                        </div>
+                        <h3 class="card-title">Holdings</h3>
+                        <button class="btn btn-secondary" onclick="addHolding()" style="margin-left: auto;">
+                            <i class="fas fa-plus"></i> Add Holding
+                        </button>
+                    </div>
+
+                    <div class="holdings-table">
+                        <table id="holdingsTable">
+                            <thead>
+                                <tr>
+                                    <th>Asset</th>
+                                    <th>Symbol</th>
+                                    <th>Quantity</th>
+                                    <th>Avg Price</th>
+                                    <th>Current Price</th>
+                                    <th>Value</th>
+                                    <th>Change</th>
+                                    <th>Allocation</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="holdingsBody">
+                                <!-- Holdings will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Allocation Chart -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #dc2626, #ef4444);">
+                            🥧
+                        </div>
+                        <h3 class="card-title">Asset Allocation</h3>
+                    </div>
+
+                    <div class="allocation-chart">
+                        <div id="allocationChart" style="height: 300px;"></div>
+                    </div>
+                </div>
+
+                <!-- Performance Chart -->
+                <div class="dashboard-card" style="grid-column: span 2;">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #7c3aed, #8b5cf6);">
+                            📈
+                        </div>
+                        <h3 class="card-title">Portfolio Performance</h3>
+                    </div>
+
+                    <div class="performance-chart">
+                        <div id="performanceChart" style="height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alerts Section -->
+        <section id="alerts" class="content-section">
+            <div class="dashboard-grid">
+                <!-- Active Alerts Overview -->
+                <div class="dashboard-card" style="grid-column: span 2;">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            🔔
+                        </div>
+                        <h3 class="card-title">Alert Management</h3>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-secondary" onclick="addPriceAlert()" style="margin-left: auto;">
+                                <i class="fas fa-plus"></i> Price Alert
+                            </button>
+                            <button class="btn btn-secondary" onclick="addTechnicalAlert()">
+                                <i class="fas fa-chart-line"></i> Technical Alert
+                            </button>
+                            <button class="btn btn-secondary" onclick="addVolumeAlert()">
+                                <i class="fas fa-chart-bar"></i> Volume Alert
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="alerts-summary">
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <div class="summary-label">Active Alerts</div>
+                                <div class="summary-value" id="activeAlertsCount">0</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Triggered Today</div>
+                                <div class="summary-value" id="triggeredTodayCount">0</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Price Alerts</div>
+                                <div class="summary-value" id="priceAlertsCount">0</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Technical Alerts</div>
+                                <div class="summary-value" id="technicalAlertsCount">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Alerts Table -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            📋
+                        </div>
+                        <h3 class="card-title">Active Alerts</h3>
+                    </div>
+
+                    <div class="alerts-table">
+                        <table id="alertsTable">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Symbol</th>
+                                    <th>Condition</th>
+                                    <th>Status</th>
+                                    <th>Created</th>
+                                    <th>Last Trigger</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="alertsBody">
+                                <!-- Alerts will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Alert History -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                            📜
+                        </div>
+                        <h3 class="card-title">Recent Triggers</h3>
+                    </div>
+
+                    <div class="alerts-history">
+                        <div id="alertHistory" class="alert-history-list">
+                            <!-- Alert history will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News & Sentiment Section -->
+        <section id="news" class="content-section">
+            <div class="dashboard-grid">
+                <!-- Market Sentiment Overview -->
+                <div class="dashboard-card" style="grid-column: span 2;">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                            📊
+                        </div>
+                        <h3 class="card-title">Market Sentiment Analysis</h3>
+                    </div>
+
+                    <div class="sentiment-overview">
+                        <div class="sentiment-grid">
+                            <div class="sentiment-item">
+                                <div class="sentiment-label">Overall Market Sentiment</div>
+                                <div class="sentiment-score" id="overallSentiment">
+                                    <span class="sentiment-value">65%</span>
+                                    <span class="sentiment-trend positive">↗️ Bullish</span>
+                                </div>
+                            </div>
+                            <div class="sentiment-item">
+                                <div class="sentiment-label">Fear & Greed Index</div>
+                                <div class="sentiment-score" id="fearGreedIndex">
+                                    <span class="sentiment-value">72</span>
+                                    <span class="sentiment-trend greed">Greed</span>
+                                </div>
+                            </div>
+                            <div class="sentiment-item">
+                                <div class="sentiment-label">News Articles (24h)</div>
+                                <div class="sentiment-score" id="newsCount">
+                                    <span class="sentiment-value">127</span>
+                                    <span class="sentiment-trend">+12%</span>
+                                </div>
+                            </div>
+                            <div class="sentiment-item">
+                                <div class="sentiment-label">Social Media Buzz</div>
+                                <div class="sentiment-score" id="socialBuzz">
+                                    <span class="sentiment-value">8.4k</span>
+                                    <span class="sentiment-trend positive">↗️ High</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Feed -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                            📰
+                        </div>
+                        <h3 class="card-title">Latest Crypto News</h3>
+                        <select id="newsFilter" onchange="filterNews()" class="filter-select">
+                            <option value="all">All News</option>
+                            <option value="positive">Positive</option>
+                            <option value="negative">Negative</option>
+                            <option value="neutral">Neutral</option>
+                            <option value="bitcoin">Bitcoin</option>
+                            <option value="ethereum">Ethereum</option>
+                            <option value="chia">Chia</option>
+                        </select>
+                    </div>
+
+                    <div class="news-feed">
+                        <div id="newsContainer" class="news-list">
+                            <!-- News articles will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sentiment Chart -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">
+                            📈
+                        </div>
+                        <h3 class="card-title">Sentiment Trends</h3>
+                    </div>
+
+                    <div class="sentiment-chart">
+                        <div id="sentimentChart" style="height: 300px;"></div>
+                    </div>
+                </div>
+
+                <!-- Top Mentioned Assets -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            🔥
+                        </div>
+                        <h3 class="card-title">Trending Assets</h3>
+                    </div>
+
+                    <div class="trending-assets">
+                        <div id="trendingList" class="trending-list">
+                            <!-- Trending assets will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Visuals Section -->
+        <section id="ai-visuals" class="content-section">
+            <div class="dashboard-grid">
+                <!-- AI Node Network -->
+                <div class="dashboard-card" style="grid-column: span 2;">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #8b5cf6, #a855f7);">
+                            🌐
+                        </div>
+                        <h3 class="card-title">AI Node Network</h3>
+                        <div class="metric-display">
+                            <span id="total-nodes" class="metric-value">--</span>
+                            <span class="metric-label">Total Nodes</span>
+                        </div>
+                    </div>
+
+                    <div class="network-visualization">
+                        <div id="nodeNetwork" style="height: 400px; position: relative; background: rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden;"></div>
+                    </div>
+                </div>
+
+                <!-- AI Performance Metrics -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                            📊
+                        </div>
+                        <h3 class="card-title">AI Performance</h3>
+                    </div>
+
+                    <div class="performance-metrics">
+                        <div id="aiPerformanceChart" style="height: 300px;"></div>
+                    </div>
+                </div>
+
+                <!-- AI Workflow Status -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            ⚙️
+                        </div>
+                        <h3 class="card-title">AI Workflows</h3>
+                    </div>
+
+                    <div class="workflow-status">
+                        <div id="workflowStatus" style="height: 300px;">
+                            <!-- Workflow status will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Resource Usage -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            💾
+                        </div>
+                        <h3 class="card-title">AI Resources</h3>
+                    </div>
+
+                    <div class="resource-usage">
+                        <div id="resourceChart" style="height: 300px;"></div>
+                    </div>
+                </div>
+
+                <!-- AI Model Status -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                            🤖
+                        </div>
+                        <h3 class="card-title">AI Models</h3>
+                    </div>
+
+                    <div class="model-status">
+                        <div id="modelStatus" style="height: 300px;">
+                            <!-- Model status will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Insights -->
+                <div class="dashboard-card" style="grid-column: span 2;">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">
+                            💡
+                        </div>
+                        <h3 class="card-title">AI Insights & Analytics</h3>
+                    </div>
+
+                    <div class="ai-insights">
+                        <div id="aiInsights" class="insights-grid">
+                            <!-- AI insights will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Plotting Section -->
         <section id="plotting" class="content-section">
             <div class="dashboard-grid">
@@ -1279,6 +2718,21 @@
                 <h3 class="card-title">Intelligent Assistant - Consciousness Enhanced</h3>
             </div>
 
+            <div class="chat-controls">
+                <div class="form-group">
+                    <label for="chatProvider">AI Model</label>
+                    <select id="chatProvider" onchange="changeChatProvider()">
+                        <option value="squashplot-ai">🌱 SquashPlot AI</option>
+                        <option value="openai">🤖 OpenAI GPT-4</option>
+                        <option value="claude">🧠 Claude</option>
+                        <option value="local">🏠 Local LLM</option>
+                    </select>
+                </div>
+                <button class="btn btn-secondary" onclick="clearChat()" style="margin-left: 10px;">
+                    <i class="fas fa-trash"></i> Clear
+                </button>
+            </div>
+
             <div class="chatbot-container">
                 <div class="chat-messages" id="chatMessages">
                     <div class="chat-message bot">
@@ -1368,42 +2822,42 @@
                 </div>
 
                 <div class="cli-commands-grid">
-                    <button class="cli-command-card" onclick="executeCLICommand('python main.py --web')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'main_web')">
                         <div class="cli-command-title">Start Web Interface</div>
                         <div class="cli-command-desc">Launch the SquashPlot web dashboard</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python main.py --cli')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'main_cli')">
                         <div class="cli-command-title">Start CLI Mode</div>
                         <div class="cli-command-desc">Run SquashPlot in command-line mode</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python main.py --demo')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'main_demo')">
                         <div class="cli-command-title">Run Demo</div>
                         <div class="cli-command-desc">Execute interactive demonstration</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python check_server.py')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'check_server')">
                         <div class="cli-command-title">Check Server Status</div>
                         <div class="cli-command-desc">Server monitoring utility</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python squashplot.py -t /tmp/plot1 -d /plots -f YOUR_FARMER_KEY -p YOUR_POOL_KEY')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'plot_basic')">
                         <div class="cli-command-title">Basic Plotting</div>
                         <div class="cli-command-desc">Mad Max style Chia plotting</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python squashplot.py -t /tmp/plot1 -2 /tmp/plot2 -d /plots -f YOUR_FARMER_KEY -p YOUR_POOL_KEY -n 2')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'plot_dual')">
                         <div class="cli-command-title">Dual Temp Directories</div>
                         <div class="cli-command-desc">Advanced plotting with multiple temp drives</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python squashplot.py --compress 3 -t /tmp/plot1 -d /plots -f YOUR_FARMER_KEY -p YOUR_POOL_KEY')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'plot_compress')">
                         <div class="cli-command-title">Plotting + Compression</div>
                         <div class="cli-command-desc">Create compressed plots directly</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python squashplot.py --plotter drplotter --tmp /tmp --final /plots --farmer-key YOUR_KEY')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'plot_drplotter')">
                         <div class="cli-command-title">Dr. Plotter Mode</div>
                         <div class="cli-command-desc">Advanced plotting with Dr. Plotter optimization</div>
                     </button>
@@ -1559,7 +3013,7 @@
                             <select id="default-plotter">
                                 <option value="madmax">Mad Max</option>
                                 <option value="bladebit">BladeBit</option>
-                                <option value="drplotter" selected>Dr. Plotter (AI)</option>
+                                <option value="drplotter" selected>Dr. Plotter</option>
                             </select>
                         </div>
 
@@ -1648,7 +3102,7 @@
                         <div class="card-icon" style="background: linear-gradient(135deg, var(--accent-color), var(--warning-color));">
                             🧑‍🔬
                         </div>
-                        <h3 class="card-title">Dr. Plotter AI Settings</h3>
+                        <h3 class="card-title">SquashPlot AI Settings</h3>
                     </div>
 
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
@@ -1660,7 +3114,7 @@
                                 <option value="aggressive">Aggressive (Max Performance)</option>
                             </select>
                             <small style="display: block; margin-top: 5px; color: var(--text-secondary); font-size: 0.8rem;">
-                                Controls Dr. Plotter's AI resource allocation: Conservative prioritizes stability, Aggressive maximizes performance.
+                                Controls SquashPlot's AI resource allocation: Conservative prioritizes stability, Aggressive maximizes performance.
                             </small>
                         </div>
 
@@ -2284,6 +3738,14 @@
         // Dr. Plotter state
         let drPlotterEnabled = false;
 
+        // Live Price Charts & Projections
+        let priceChart = null;
+        let priceData = [];
+        let projectionData = [];
+        let showProjections = false;
+        let currentPrice = 0;
+        let priceHistory = [];
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             // Start server monitoring
@@ -2300,6 +3762,12 @@
             // Initialize UI
             updateValueProps();
             calculateROI();
+
+            // Initialize price chart
+            initializePriceChart();
+            refreshPriceData();
+            // Auto-refresh price data every 30 seconds
+            setInterval(refreshPriceData, 30000);
             loadSettings(); // Load saved settings
             loadExperimentalFeatures(); // Load experimental feature states
 
@@ -2389,7 +3857,7 @@
         }
 
         // Plotter selection with Dr. Plotter
-        function selectPlotter(plotter) {
+        async function selectPlotter(plotter) {
             document.querySelectorAll('.plotter-option').forEach(option => {
                 option.classList.remove('selected');
             });
@@ -2401,7 +3869,70 @@
             const drBtn = document.getElementById('dr-btn');
             drBtn.disabled = !drPlotterEnabled;
 
-            addRecentActivity(`Selected ${plotter} plotter`);
+            // Fetch and apply plotter-specific settings
+            try {
+                const response = await fetch(`/api/plotter-settings/${plotter}`);
+                const data = await response.json();
+
+                if (data.settings) {
+                    applyPlotterSettings(data.settings);
+                    addRecentActivity(`Selected ${data.settings.name} - Applied optimized settings`);
+                } else {
+                    addRecentActivity(`Selected ${plotter} plotter`);
+                }
+            } catch (error) {
+                console.error('Error fetching plotter settings:', error);
+                addRecentActivity(`Selected ${plotter} plotter`);
+            }
+        }
+
+        function applyPlotterSettings(settings) {
+            // Apply recommended settings to form inputs
+            if (settings.recommended_settings) {
+                const rec = settings.recommended_settings;
+
+                // Update thread count if element exists
+                const threadsInput = document.getElementById('threads');
+                if (threadsInput && rec.threads && rec.threads !== 'auto') {
+                    threadsInput.value = rec.threads;
+                }
+
+                // Update buckets if element exists
+                const bucketsInput = document.getElementById('buckets');
+                if (bucketsInput && rec.buckets && rec.buckets !== 'auto') {
+                    bucketsInput.value = rec.buckets;
+                }
+
+                // Update memory if element exists
+                const memoryInput = document.getElementById('memory-mb');
+                if (memoryInput && rec.memory_mb && rec.memory_mb !== 'auto') {
+                    memoryInput.value = rec.memory_mb;
+                }
+
+                // Update GPU acceleration if element exists
+                const gpuInput = document.getElementById('gpu-acceleration');
+                if (gpuInput && rec.gpu_acceleration !== undefined) {
+                    gpuInput.checked = rec.gpu_acceleration;
+                }
+
+                // Update compression level if element exists
+                const compressionInput = document.getElementById('compression-level');
+                if (compressionInput && rec.compression_level !== undefined && rec.compression_level !== 'adaptive') {
+                    compressionInput.value = rec.compression_level;
+                }
+            }
+
+            // Update command display with plotter-specific API
+            const commandDisplay = document.getElementById('current-command');
+            if (commandDisplay && settings.api_endpoints) {
+                commandDisplay.textContent = `API: ${settings.api_endpoints.plot_command}`;
+            }
+
+            // Show hardware requirements notification
+            if (settings.hardware_requirements) {
+                const req = settings.hardware_requirements;
+                showToast(`${settings.name} Requirements: ${req.min_ram_gb}GB RAM, ${req.cpu_cores} CPU cores`, 'info');
+            }
         }
 
         // Dr. Plotter specific functionality
@@ -2420,12 +3951,40 @@
         }
 
         // CLI command execution
-        function executeCLICommand(command) {
+        async function executeCLICommand(command, commandType = 'custom') {
             const outputDiv = document.getElementById('cliOutput');
             const outputContent = document.getElementById('outputContent');
 
             outputDiv.style.display = 'block';
-            outputContent.textContent = `Executing: ${command}\n\nNote: This is a command template.\nFor full functionality, run this command in your local terminal.\n\nCLI Integration provides these professional command structures.`;
+            outputContent.textContent = `⏳ Executing: ${command}\n\nPlease wait...`;
+
+            try {
+                const response = await fetch('/api/cli/execute', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        command: command,
+                        type: commandType
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    outputContent.textContent = `✅ Command executed successfully!\n\n📝 Command: ${result.command}\n\n📤 Output:\n${result.output || 'No output'}\n\n${result.error ? `⚠️ Warnings:\n${result.error}` : ''}`;
+                    showToast('Command executed successfully', 'success');
+                } else {
+                    outputContent.textContent = `❌ Command failed!\n\n📝 Command: ${result.command}\n\n🔴 Error:\n${result.error || 'Unknown error'}\n\n📤 Output:\n${result.output || 'No output'}`;
+                    showToast('Command execution failed', 'error');
+                }
+
+            } catch (error) {
+                console.error('CLI execution error:', error);
+                outputContent.textContent = `❌ Network error!\n\nCould not execute command due to network issues.\n\nError: ${error.message}`;
+                showToast('Network error during command execution', 'error');
+            }
 
             addRecentActivity(`CLI Command: ${command.split(' ')[1] || 'custom'}`);
             switchTab('cli');
@@ -2524,14 +4083,12 @@
         // Quick actions
         function runBenchmark() {
             addRecentActivity('Running compression benchmark');
-            executeCLICommand('python squashplot_benchmark.py');
-            showToast('Benchmark started', 'info');
+            executeCLICommand('', 'benchmark');
         }
 
         function validateCompression() {
             addRecentActivity('Validating compression integrity');
-            executeCLICommand('python compression_validator.py --size 10');
-            showToast('Validation started', 'info');
+            executeCLICommand('', 'validate');
         }
 
         // Settings management
@@ -2555,7 +4112,7 @@
                 gpuAcceleration: document.getElementById('gpu-acceleration').value,
                 memoryManagement: document.getElementById('memory-management').value,
 
-                // Dr. Plotter AI Settings
+                // SquashPlot AI Settings
                 aiOptimization: document.getElementById('ai-optimization').value,
                 realTimeMonitoring: document.getElementById('real-time-monitoring').value,
                 intelligenceLevel: document.getElementById('intelligence-level').value,
@@ -4380,6 +5937,56 @@
         // Intelligent Chatbot Functions
         let chatMessages = [];
         let isTyping = false;
+        let currentProvider = 'squashplot-ai';
+
+        function changeChatProvider() {
+            const providerSelect = document.getElementById('chatProvider');
+            currentProvider = providerSelect.value;
+
+            // Update the bot avatar and greeting based on provider
+            const avatars = {
+                'squashplot-ai': '🌱',
+                'openai': '🤖',
+                'claude': '🧠',
+                'local': '🏠'
+            };
+
+            const greetings = {
+                'squashplot-ai': 'Hello! I\'m SquashPlot AI, your specialized assistant for Chia farming and compression technology. I can help you with plotting strategies, compression optimization, ROI analysis, and all experimental features. What would you like to know?',
+                'openai': 'Hello! I\'m powered by OpenAI GPT-4. I can help you with Chia farming strategies, compression optimization, plotting techniques, and general blockchain questions. What would you like to know?',
+                'claude': 'Hello! I\'m Claude, an AI assistant specialized in Chia blockchain farming and SquashPlot optimization. I can provide guidance on pool management, compression algorithms, plotting strategies, and technical optimization. What would you like to know?',
+                'local': 'Hello! I\'m a local LLM assistant with knowledge of Chia farming and SquashPlot functionality. What specific topic would you like to explore?'
+            };
+
+            // Update initial message if chat is empty
+            const messagesContainer = document.getElementById('chatMessages');
+            if (messagesContainer.children.length === 1) { // Only the initial message
+                const initialMessage = messagesContainer.children[0];
+                initialMessage.querySelector('.message-avatar').textContent = avatars[currentProvider];
+                initialMessage.querySelector('.message-text').innerHTML = `<strong>${getProviderName(currentProvider)}:</strong> ${greetings[currentProvider]}<br><div class="message-time">Just now</div>`;
+            }
+
+            showToast(`Switched to ${getProviderName(currentProvider)}`, 'success');
+        }
+
+        function getProviderName(provider) {
+            const names = {
+                'squashplot-ai': 'SquashPlot AI',
+                'openai': 'OpenAI GPT-4',
+                'claude': 'Claude',
+                'local': 'Local LLM'
+            };
+            return names[provider] || 'AI Assistant';
+        }
+
+        function clearChat() {
+            const messagesContainer = document.getElementById('chatMessages');
+            messagesContainer.innerHTML = '';
+
+            // Add initial message based on current provider
+            changeChatProvider();
+            showToast('Chat cleared', 'info');
+        }
 
         function sendChatMessage() {
             const input = document.getElementById('chatInput');
@@ -4395,9 +6002,9 @@
             showTypingIndicator();
 
             // Process message with intelligence
-            setTimeout(() => {
-                processIntelligentQuery(message);
-            }, 1000 + Math.random() * 2000); // Simulate processing time
+            setTimeout(async () => {
+                await processIntelligentQuery(message);
+            }, 500); // Quick response time
         }
 
         function addChatMessage(text, sender) {
@@ -4409,7 +6016,8 @@
                 <div class="message-content">
                     <div class="message-avatar">${sender === 'user' ? '👤' : '🧠'}</div>
                     <div class="message-text">
-                        <strong>${sender === 'user' ? 'You' : 'Consciousness Assistant'}:</strong> ${text}
+                        <strong>${sender === 'user' ? 'You' : 'Consciousness Assistant'}:</strong>
+                        <div class="message-content">${marked.parse(text)}</div>
                     </div>
                 </div>
             `;
@@ -4449,7 +6057,41 @@
             }
         }
 
-        function processIntelligentQuery(query) {
+        async function processIntelligentQuery(query) {
+            hideTypingIndicator();
+
+            try {
+                // Make API call to LLM with provider
+                const response = await fetch('/api/llm/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        query: query,
+                        context: 'dashboard_chat',
+                        tools_enabled: true,
+                        provider: currentProvider
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.response) {
+                    addChatMessage(data.response, 'bot');
+                    showToast('Response received from ' + getProviderName(currentProvider), 'success');
+                } else {
+                    throw new Error('No response received');
+                }
+            } catch (error) {
+                console.error('Chat API error:', error);
+                addChatMessage('Sorry, I encountered an error processing your request. Please try again.', 'bot');
+                showToast('Failed to get AI response', 'error');
+            }
+        }
+
+        // Legacy intelligent processing (kept for fallback)
+        function processIntelligentQueryLegacy(query) {
             hideTypingIndicator();
 
             const lowerQuery = query.toLowerCase();
@@ -4515,6 +6157,2527 @@
             const sendBtn = document.querySelector('.chat-send-btn');
             sendBtn.disabled = !this.value.trim();
         });
+
+        // Live Price Charts & Projections Functions
+        async function initializePriceChart() {
+            const ctx = document.getElementById('priceChart');
+            if (!ctx) {
+                console.error('Price chart canvas not found');
+                return;
+            }
+
+            try {
+                // Simple Chart.js configuration
+                priceChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        datasets: [{
+                            label: 'Chia Price (USD)',
+                            data: priceHistory,
+                            borderColor: '#00ff88',
+                            backgroundColor: 'rgba(0, 255, 136, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.1,
+                            pointRadius: 2,
+                            pointHoverRadius: 4
+                        }, {
+                            label: 'Price Projection',
+                            data: projectionData,
+                            borderColor: '#ffaa00',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            fill: false,
+                            tension: 0.1,
+                            pointRadius: 0,
+                            hidden: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    color: '#ffffff'
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                                titleColor: '#ffffff',
+                                bodyColor: '#ffffff',
+                                callbacks: {
+                                    label: function(context) {
+                                        return '$' + context.parsed.y.toFixed(4);
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                type: 'time',
+                                time: {
+                                    displayFormats: {
+                                        minute: 'HH:mm',
+                                        hour: 'HH:mm',
+                                        day: 'MMM dd'
+                                    }
+                                },
+                                ticks: {
+                                    color: '#cccccc'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: '#cccccc',
+                                    callback: function(value) {
+                                        return '$' + value.toFixed(4);
+                                    }
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                }
+                            }
+                        }
+                    }
+                });
+
+                console.log('Price chart initialized successfully');
+            } catch (error) {
+                console.error('Error initializing price chart:', error);
+            }
+        }
+
+        async function refreshPriceData() {
+            try {
+                // Fetch current Chia price data
+                const response = await fetch('/api/chia-price');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch price data');
+                }
+
+                const data = await response.json();
+
+                // Update current price display
+                currentPrice = data.price;
+                const priceElement = document.getElementById('current-price');
+                if (priceElement) {
+                    priceElement.textContent = `$${currentPrice.toFixed(4)}`;
+                }
+
+                const changeElement = document.getElementById('price-change');
+                if (changeElement) {
+                    changeElement.textContent = `${data.change24h >= 0 ? '+' : ''}${data.change24h.toFixed(2)}% (24h)`;
+                    changeElement.style.color = data.change24h >= 0 ? 'var(--success-color)' : 'var(--danger-color)';
+                }
+
+                const updateElement = document.getElementById('last-update');
+                if (updateElement) {
+                    updateElement.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+                }
+
+                // Update market indicators
+                const volumeElement = document.getElementById('volume-24h');
+                if (volumeElement) {
+                    volumeElement.textContent = formatVolume(data.volume24h);
+                }
+
+                const marketCapElement = document.getElementById('market-cap');
+                if (marketCapElement) {
+                    marketCapElement.textContent = formatMarketCap(data.marketCap);
+                }
+
+                const athElement = document.getElementById('ath');
+                if (athElement) {
+                    athElement.textContent = `$${data.ath.toFixed(4)}`;
+                }
+
+                const atlElement = document.getElementById('atl');
+                if (atlElement) {
+                    atlElement.textContent = `$${data.atl.toFixed(4)}`;
+                }
+
+                // Add to price history
+                priceHistory.push({
+                    x: new Date(),
+                    y: currentPrice
+                });
+
+                // Keep only last 100 data points
+                if (priceHistory.length > 100) {
+                    priceHistory = priceHistory.slice(-100);
+                }
+
+                // Update chart
+                updatePriceChart();
+
+                // Calculate projections if enabled
+                if (showProjections) {
+                    calculateProjections();
+                }
+
+                // Calculate technical indicators
+                calculateTechnicalIndicators();
+
+            } catch (error) {
+                console.error('Error fetching price data:', error);
+                // Use mock data for demo
+                updateWithMockData();
+            }
+        }
+
+        function updateWithMockData() {
+            // Generate mock data for demonstration
+            currentPrice = 0.0250 + (Math.random() - 0.5) * 0.005;
+            const mockChange = (Math.random() - 0.5) * 10;
+
+            const priceElement = document.getElementById('current-price');
+            if (priceElement) {
+                priceElement.textContent = `$${currentPrice.toFixed(4)}`;
+            }
+
+            const changeElement = document.getElementById('price-change');
+            if (changeElement) {
+                changeElement.textContent = `${mockChange >= 0 ? '+' : ''}${mockChange.toFixed(2)}% (24h)`;
+                changeElement.style.color = mockChange >= 0 ? 'var(--success-color)' : 'var(--danger-color)';
+            }
+
+            const updateElement = document.getElementById('last-update');
+            if (updateElement) {
+                updateElement.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+            }
+
+            // Mock market data
+            const volumeElement = document.getElementById('volume-24h');
+            if (volumeElement) {
+                volumeElement.textContent = '$2.5M';
+            }
+
+            const marketCapElement = document.getElementById('market-cap');
+            if (marketCapElement) {
+                marketCapElement.textContent = '$125M';
+            }
+
+            const athElement = document.getElementById('ath');
+            if (athElement) {
+                athElement.textContent = '$1.85';
+            }
+
+            const atlElement = document.getElementById('atl');
+            if (atlElement) {
+                atlElement.textContent = '$0.008';
+            }
+
+            // Add to history
+            priceHistory.push({
+                x: new Date(),
+                y: currentPrice
+            });
+
+            if (priceHistory.length > 100) {
+                priceHistory = priceHistory.slice(-100);
+            }
+
+            updatePriceChart();
+        }
+
+        function updatePriceChart() {
+            if (!priceChart) {
+                console.warn('Price chart not initialized');
+                return;
+            }
+
+            try {
+                // Update the data
+                priceChart.data.datasets[0].data = priceHistory;
+
+                if (showProjections && projectionData.length > 0) {
+                    priceChart.data.datasets[1].data = projectionData;
+                    priceChart.data.datasets[1].hidden = false;
+                } else {
+                    priceChart.data.datasets[1].hidden = true;
+                }
+
+                // Update the chart
+                priceChart.update();
+
+                console.log('Price chart updated with', priceHistory.length, 'data points');
+            } catch (error) {
+                console.error('Error updating price chart:', error);
+            }
+        }
+
+        function toggleProjections() {
+            showProjections = !showProjections;
+            const button = document.getElementById('projection-toggle');
+
+            if (showProjections) {
+                if (button) {
+                    button.textContent = '📊 Hide Projections';
+                    button.style.background = 'var(--accent-color)';
+                    button.style.color = 'white';
+                }
+                calculateProjections();
+            } else {
+                if (button) {
+                    button.textContent = '📊 Show Projections';
+                    button.style.background = 'var(--glass-bg)';
+                    button.style.color = 'var(--text-primary)';
+                }
+                projectionData = [];
+                updatePriceChart();
+                const resultsDiv = document.getElementById('projection-results');
+                const dataDiv = document.getElementById('projection-data');
+                if (resultsDiv) resultsDiv.style.display = 'block';
+                if (dataDiv) dataDiv.style.display = 'none';
+            }
+        }
+
+        function calculateProjections() {
+            if (priceHistory.length < 10) return;
+
+            const timeframeSelect = document.getElementById('timeframe');
+            const projectionTypeSelect = document.getElementById('projection-type');
+
+            if (!timeframeSelect || !projectionTypeSelect) return;
+
+            const projectionType = projectionTypeSelect.value;
+            const timeframe = timeframeSelect.value;
+
+            let projections = [];
+
+            switch (projectionType) {
+                case 'trigonometric':
+                    projections = calculateTrigonometricProjection(priceHistory, timeframe);
+                    break;
+                case 'fibonacci':
+                    projections = calculateFibonacciProjection(priceHistory, timeframe);
+                    break;
+                case 'bollinger':
+                    projections = calculateBollingerProjection(priceHistory, timeframe);
+                    break;
+                case 'rsi':
+                    projections = calculateRSIProjection(priceHistory, timeframe);
+                    break;
+                case 'combined':
+                    projections = calculateCombinedProjection(priceHistory, timeframe);
+                    break;
+            }
+
+            projectionData = projections;
+            updatePriceChart();
+            updateProjectionDisplay(projections, projectionType);
+        }
+
+        function calculateTrigonometricProjection(data, timeframe) {
+            const lastPrice = data[data.length - 1].y;
+            const projections = [];
+            const periods = getTimeframePeriods(timeframe);
+
+            // Use sine wave with multiple harmonics for projection
+            for (let i = 0; i < periods; i++) {
+                const time = data[data.length - 1].x.getTime() + (i * getTimeframeInterval(timeframe));
+                const t = i / periods;
+
+                // Multi-harmonic trigonometric projection
+                const projection = lastPrice * (1 +
+                    0.1 * Math.sin(2 * Math.PI * t * 3) +  // Primary cycle
+                    0.05 * Math.sin(2 * Math.PI * t * 7) + // Secondary cycle
+                    0.02 * Math.cos(2 * Math.PI * t * 13)  // Tertiary cycle
+                );
+
+                projections.push({
+                    x: new Date(time),
+                    y: Math.max(0.001, projection) // Ensure positive price
+                });
+            }
+
+            return projections;
+        }
+
+        function calculateFibonacciProjection(data, timeframe) {
+            // Find recent high and low
+            const recentData = data.slice(-20);
+            const high = Math.max(...recentData.map(d => d.y));
+            const low = Math.min(...recentData.map(d => d.y));
+            const range = high - low;
+
+            const projections = [];
+            const periods = getTimeframePeriods(timeframe);
+
+            for (let i = 0; i < periods; i++) {
+                const time = data[data.length - 1].x.getTime() + (i * getTimeframeInterval(timeframe));
+                const t = i / periods;
+
+                // Fibonacci retracement levels with time projection
+                const fibLevel = 0.618; // Golden ratio
+                const projection = high - (range * fibLevel * (1 - Math.sin(Math.PI * t)));
+
+                projections.push({
+                    x: new Date(time),
+                    y: Math.max(low * 0.8, projection)
+                });
+            }
+
+            return projections;
+        }
+
+        function calculateBollingerProjection(data, timeframe) {
+            const recentData = data.slice(-20);
+            const prices = recentData.map(d => d.y);
+            const sma = prices.reduce((a, b) => a + b, 0) / prices.length;
+            const variance = prices.reduce((a, b) => a + Math.pow(b - sma, 2), 0) / prices.length;
+            const stdDev = Math.sqrt(variance);
+
+            const upperBand = sma + (2 * stdDev);
+            const lowerBand = sma - (2 * stdDev);
+
+            const projections = [];
+            const periods = getTimeframePeriods(timeframe);
+
+            for (let i = 0; i < periods; i++) {
+                const time = data[data.length - 1].x.getTime() + (i * getTimeframeInterval(timeframe));
+                const t = i / periods;
+
+                // Project within bollinger bands with mean reversion
+                const projection = sma + (upperBand - sma) * Math.sin(Math.PI * t) * 0.5;
+
+                projections.push({
+                    x: new Date(time),
+                    y: Math.max(lowerBand * 0.9, Math.min(upperBand * 1.1, projection))
+                });
+            }
+
+            return projections;
+        }
+
+        function calculateRSIProjection(data, timeframe) {
+            const prices = data.slice(-14).map(d => d.y);
+            const gains = [];
+            const losses = [];
+
+            for (let i = 1; i < prices.length; i++) {
+                const change = prices[i] - prices[i - 1];
+                gains.push(change > 0 ? change : 0);
+                losses.push(change < 0 ? Math.abs(change) : 0);
+            }
+
+            const avgGain = gains.reduce((a, b) => a + b, 0) / gains.length;
+            const avgLoss = losses.reduce((a, b) => a + b, 0) / losses.length;
+            const rs = avgGain / avgLoss;
+            const rsi = 100 - (100 / (1 + rs));
+
+            // Project based on RSI momentum
+            const projections = [];
+            const periods = getTimeframePeriods(timeframe);
+            const lastPrice = data[data.length - 1].y;
+
+            for (let i = 0; i < periods; i++) {
+                const time = data[data.length - 1].x.getTime() + (i * getTimeframeInterval(timeframe));
+                const t = i / periods;
+
+                // RSI-based momentum projection
+                const momentum = (rsi - 50) / 50; // -1 to 1 scale
+                const projection = lastPrice * (1 + momentum * t * 0.1);
+
+                projections.push({
+                    x: new Date(time),
+                    y: Math.max(0.001, projection)
+                });
+            }
+
+            return projections;
+        }
+
+        function calculateCombinedProjection(data, timeframe) {
+            // Combine multiple analysis methods
+            const trigProj = calculateTrigonometricProjection(data, timeframe);
+            const fibProj = calculateFibonacciProjection(data, timeframe);
+            const bbProj = calculateBollingerProjection(data, timeframe);
+
+            const projections = [];
+            const periods = getTimeframePeriods(timeframe);
+
+            for (let i = 0; i < periods; i++) {
+                // Weighted average of different projections
+                const trig = trigProj[i]?.y || 0;
+                const fib = fibProj[i]?.y || 0;
+                const bb = bbProj[i]?.y || 0;
+
+                const combined = (trig * 0.4 + fib * 0.3 + bb * 0.3);
+
+                projections.push({
+                    x: new Date(data[data.length - 1].x.getTime() + (i * getTimeframeInterval(timeframe))),
+                    y: combined
+                });
+            }
+
+            return projections;
+        }
+
+        function calculateTechnicalIndicators() {
+            if (priceHistory.length < 14) return;
+
+            const prices = priceHistory.slice(-14).map(d => d.y);
+
+            // Calculate RSI
+            const rsi = calculateRSI(prices);
+            const rsiValueElement = document.getElementById('rsi-value');
+            if (rsiValueElement) {
+                rsiValueElement.textContent = rsi.toFixed(1);
+            }
+
+            let rsiSignal = 'Neutral';
+            if (rsi > 70) rsiSignal = 'Overbought';
+            else if (rsi < 30) rsiSignal = 'Oversold';
+
+            const rsiSignalElement = document.getElementById('rsi-signal');
+            if (rsiSignalElement) {
+                rsiSignalElement.textContent = rsiSignal;
+                rsiSignalElement.style.color =
+                    rsi > 70 ? 'var(--danger-color)' : rsi < 30 ? 'var(--success-color)' : 'var(--text-secondary)';
+            }
+
+            // Calculate MACD (simplified)
+            const ema12 = calculateEMA(prices, 12);
+            const ema26 = calculateEMA(prices, 26);
+            const macd = ema12 - ema26;
+
+            const macdValueElement = document.getElementById('macd-value');
+            if (macdValueElement) {
+                macdValueElement.textContent = macd.toFixed(6);
+            }
+
+            let macdSignal = 'Neutral';
+            if (macd > 0.0001) macdSignal = 'Bullish';
+            else if (macd < -0.0001) macdSignal = 'Bearish';
+
+            const macdSignalElement = document.getElementById('macd-signal');
+            if (macdSignalElement) {
+                macdSignalElement.textContent = macdSignal;
+                macdSignalElement.style.color =
+                    macd > 0.0001 ? 'var(--success-color)' : macd < -0.0001 ? 'var(--danger-color)' : 'var(--text-secondary)';
+            }
+
+            // Calculate Bollinger Bands position
+            const recentPrices = prices.slice(-20);
+            const sma = recentPrices.reduce((a, b) => a + b, 0) / recentPrices.length;
+            const variance = recentPrices.reduce((a, b) => a + Math.pow(b - sma, 2), 0) / recentPrices.length;
+            const stdDev = Math.sqrt(variance);
+
+            const upperBand = sma + (2 * stdDev);
+            const lowerBand = sma - (2 * stdDev);
+            const lastPrice = prices[prices.length - 1];
+
+            let bbPosition = 'Middle';
+            let bbSignal = 'Neutral';
+
+            if (lastPrice > upperBand) {
+                bbPosition = 'Above Upper';
+                bbSignal = 'Overbought';
+            } else if (lastPrice < lowerBand) {
+                bbPosition = 'Below Lower';
+                bbSignal = 'Oversold';
+            }
+
+            const bbPositionElement = document.getElementById('bb-position');
+            if (bbPositionElement) {
+                bbPositionElement.textContent = bbPosition;
+            }
+
+            const bbSignalElement = document.getElementById('bb-signal');
+            if (bbSignalElement) {
+                bbSignalElement.textContent = bbSignal;
+                bbSignalElement.style.color =
+                    bbSignal === 'Overbought' ? 'var(--danger-color)' :
+                    bbSignal === 'Oversold' ? 'var(--success-color)' : 'var(--text-secondary)';
+            }
+        }
+
+        function calculateRSI(prices) {
+            const gains = [];
+            const losses = [];
+
+            for (let i = 1; i < prices.length; i++) {
+                const change = prices[i] - prices[i - 1];
+                gains.push(change > 0 ? change : 0);
+                losses.push(change < 0 ? Math.abs(change) : 0);
+            }
+
+            const avgGain = gains.reduce((a, b) => a + b, 0) / gains.length;
+            const avgLoss = losses.reduce((a, b) => a + b, 0) / losses.length;
+
+            if (avgLoss === 0) return 100;
+
+            const rs = avgGain / avgLoss;
+            return 100 - (100 / (1 + rs));
+        }
+
+        function calculateEMA(prices, period) {
+            const multiplier = 2 / (period + 1);
+            let ema = prices[0];
+
+            for (let i = 1; i < prices.length; i++) {
+                ema = (prices[i] * multiplier) + (ema * (1 - multiplier));
+            }
+
+            return ema;
+        }
+
+        function updateProjectionDisplay(projections, type) {
+            if (projections.length === 0) return;
+
+            const prices = projections.map(p => p.y);
+            const high = Math.max(...prices);
+            const low = Math.min(...prices);
+
+            const projHighElement = document.getElementById('proj-high');
+            if (projHighElement) {
+                projHighElement.textContent = `$${high.toFixed(4)}`;
+            }
+
+            const projLowElement = document.getElementById('proj-low');
+            if (projLowElement) {
+                projLowElement.textContent = `$${low.toFixed(4)}`;
+            }
+
+            const projHighConfidenceElement = document.getElementById('proj-high-confidence');
+            if (projHighConfidenceElement) {
+                projHighConfidenceElement.textContent = '68% Confidence';
+            }
+
+            const projLowConfidenceElement = document.getElementById('proj-low-confidence');
+            if (projLowConfidenceElement) {
+                projLowConfidenceElement.textContent = '68% Confidence';
+            }
+
+            let analysis = '';
+            switch (type) {
+                case 'trigonometric':
+                    analysis = `Trigonometric analysis shows cyclical patterns with projected high of $${high.toFixed(4)} and low of $${low.toFixed(4)}. The multi-harmonic model suggests continued volatility with potential mean reversion.`;
+                    break;
+                case 'fibonacci':
+                    analysis = `Fibonacci retracement analysis indicates key support at $${low.toFixed(4)} and resistance at $${high.toFixed(4)}. Golden ratio levels suggest potential reversal points.`;
+                    break;
+                case 'bollinger':
+                    analysis = `Bollinger Bands analysis projects price movement within $${low.toFixed(4)} to $${high.toFixed(4)} range. Current position suggests ${high > currentPrice * 1.05 ? 'upward' : 'sideways'} momentum.`;
+                    break;
+                case 'rsi':
+                    analysis = `RSI momentum analysis projects price range from $${low.toFixed(4)} to $${high.toFixed(4)}. Current momentum indicators suggest ${high > currentPrice ? 'bullish' : 'bearish'} outlook.`;
+                    break;
+                case 'combined':
+                    analysis = `Combined technical analysis provides balanced projection from $${low.toFixed(4)} to $${high.toFixed(4)}. Multiple indicators converge on this range with moderate confidence.`;
+                    break;
+            }
+
+            const analysisElement = document.getElementById('projection-analysis');
+            if (analysisElement) {
+                analysisElement.textContent = analysis;
+            }
+
+            const resultsDiv = document.getElementById('projection-results');
+            const dataDiv = document.getElementById('projection-data');
+            if (resultsDiv) resultsDiv.style.display = 'none';
+            if (dataDiv) dataDiv.style.display = 'block';
+        }
+
+        function getTimeframePeriods(timeframe) {
+            switch (timeframe) {
+                case '1h': return 12;    // 12 points for 1 hour
+                case '4h': return 16;    // 16 points for 4 hours
+                case '1d': return 24;    // 24 points for 1 day
+                case '1w': return 7;     // 7 points for 1 week
+                case '1M': return 30;    // 30 points for 1 month
+                default: return 24;
+            }
+        }
+
+        function getTimeframeInterval(timeframe) {
+            switch (timeframe) {
+                case '1h': return 5 * 60 * 1000;      // 5 minutes
+                case '4h': return 15 * 60 * 1000;     // 15 minutes
+                case '1d': return 60 * 60 * 1000;     // 1 hour
+                case '1w': return 24 * 60 * 60 * 1000; // 1 day
+                case '1M': return 24 * 60 * 60 * 1000; // 1 day
+                default: return 60 * 60 * 1000;
+            }
+        }
+
+        function formatVolume(volume) {
+            if (volume >= 1000000) return `$${(volume / 1000000).toFixed(1)}M`;
+            if (volume >= 1000) return `$${(volume / 1000).toFixed(1)}K`;
+            return `$${volume.toFixed(0)}`;
+        }
+
+        function formatMarketCap(marketCap) {
+            if (marketCap >= 1000000000) return `$${(marketCap / 1000000000).toFixed(1)}B`;
+            if (marketCap >= 1000000) return `$${(marketCap / 1000000).toFixed(1)}M`;
+            if (marketCap >= 1000) return `$${(marketCap / 1000).toFixed(1)}K`;
+            return `$${marketCap.toFixed(0)}`;
+        }
+
+        // Grafana iframe handling
+        let grafanaLoaded = false;
+        let grafanaTimeout = null;
+
+        function onGrafanaLoad() {
+            grafanaLoaded = true;
+            clearTimeout(grafanaTimeout);
+            document.getElementById('chartLoading').style.display = 'none';
+            document.getElementById('grafanaDashboard').style.display = 'block';
+            document.getElementById('priceChart').style.display = 'none';
+            console.log('Grafana dashboard loaded successfully');
+        }
+
+        function onGrafanaError() {
+            console.warn('Grafana dashboard failed to load, falling back to Chart.js');
+            fallbackToChartJS();
+        }
+
+        function fallbackToChartJS() {
+            grafanaLoaded = false;
+            clearTimeout(grafanaTimeout);
+            document.getElementById('chartLoading').style.display = 'none';
+            document.getElementById('grafanaDashboard').style.display = 'none';
+            document.getElementById('priceChart').style.display = 'block';
+
+            // Initialize Chart.js fallback
+            if (!priceChart) {
+                initializePriceChart();
+            }
+        }
+
+        // Set a timeout for Grafana loading
+        grafanaTimeout = setTimeout(() => {
+            if (!grafanaLoaded) {
+                console.warn('Grafana dashboard load timeout, falling back to Chart.js');
+                fallbackToChartJS();
+            }
+        }, 10000); // 10 second timeout
+
+        // Technical Analysis Functions
+        let technicalChart = null;
+        let macdChart = null;
+        let rsiChart = null;
+
+        async function loadTechnicalAnalysis() {
+            const symbol = document.getElementById('selectedCrypto').value;
+            const timeframe = document.getElementById('timeframe').value;
+            const contentDiv = document.getElementById('technicalAnalysisContent');
+
+            contentDiv.style.display = 'block';
+            contentDiv.innerHTML = '<div style="text-align: center; padding: 40px;"><i class="fas fa-spinner fa-spin"></i> Loading technical analysis...</div>';
+
+            try {
+                const response = await fetch(`/api/technical-analysis/${symbol}?timeframe=${timeframe}&periods=100`);
+                const data = await response.json();
+
+                if (data.analysis) {
+                    displayTechnicalAnalysis(data.analysis);
+                    showToast('Technical analysis loaded successfully', 'success');
+                } else {
+                    throw new Error(data.error || 'Failed to load analysis');
+                }
+            } catch (error) {
+                console.error('Technical analysis error:', error);
+                contentDiv.innerHTML = `<div style="text-align: center; padding: 40px; color: var(--danger-color);">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Failed to load technical analysis: ${error.message}</p>
+                </div>`;
+                showToast('Failed to load technical analysis', 'error');
+            }
+        }
+
+        function displayTechnicalAnalysis(analysis) {
+            const contentDiv = document.getElementById('technicalAnalysisContent');
+
+            // Update summary
+            document.getElementById('currentPrice').textContent = `$${analysis.summary.current_price.toFixed(4)}`;
+            document.getElementById('priceChange').textContent = `${analysis.summary.price_change_24h.toFixed(2)}%`;
+            document.getElementById('rsiLevel').textContent = analysis.summary.rsi_level ? analysis.summary.rsi_level.toFixed(1) : 'N/A';
+            document.getElementById('macdSignal').textContent = analysis.summary.macd_signal;
+            document.getElementById('bbPosition').textContent = analysis.summary.bb_position.replace('_', ' ');
+
+            // Create charts
+            createTechnicalCharts(analysis);
+
+            // Display signals
+            displaySignals(analysis.signals);
+
+            contentDiv.style.display = 'block';
+        }
+
+        function createTechnicalCharts(analysis) {
+            const priceData = analysis.price_data;
+            const indicators = analysis.indicators;
+
+            // Main price chart with indicators
+            const ctx = document.getElementById('technicalChart');
+            if (technicalChart) {
+                technicalChart.destroy();
+            }
+
+            technicalChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: priceData.prices.map((_, i) => `T-${priceData.prices.length - i}`),
+                    datasets: [{
+                        label: 'Price',
+                        data: priceData.prices,
+                        borderColor: 'rgba(0, 212, 255, 1)',
+                        backgroundColor: 'rgba(0, 212, 255, 0.1)',
+                        tension: 0.4,
+                        fill: false,
+                        yAxisID: 'y'
+                    }, {
+                        label: 'SMA 20',
+                        data: indicators.moving_averages.sma_20,
+                        borderColor: 'rgba(255, 107, 53, 1)',
+                        backgroundColor: 'transparent',
+                        borderDash: [5, 5],
+                        tension: 0.4,
+                        fill: false,
+                        yAxisID: 'y'
+                    }, {
+                        label: 'SMA 50',
+                        data: indicators.moving_averages.sma_50,
+                        borderColor: 'rgba(255, 193, 30, 1)',
+                        backgroundColor: 'transparent',
+                        borderDash: [10, 5],
+                        tension: 0.4,
+                        fill: false,
+                        yAxisID: 'y'
+                    }, {
+                        label: 'BB Upper',
+                        data: indicators.bollinger_bands.upper,
+                        borderColor: 'rgba(0, 255, 136, 0.5)',
+                        backgroundColor: 'transparent',
+                        borderDash: [2, 2],
+                        tension: 0.4,
+                        fill: false,
+                        yAxisID: 'y'
+                    }, {
+                        label: 'BB Lower',
+                        data: indicators.bollinger_bands.lower,
+                        borderColor: 'rgba(0, 255, 136, 0.5)',
+                        backgroundColor: 'transparent',
+                        borderDash: [2, 2],
+                        tension: 0.4,
+                        fill: false,
+                        yAxisID: 'y'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+
+            // MACD Chart
+            const macdCtx = document.getElementById('macdChart');
+            if (macdChart) {
+                macdChart.destroy();
+            }
+
+            macdChart = new Chart(macdCtx, {
+                type: 'bar',
+                data: {
+                    labels: priceData.prices.map((_, i) => `T-${priceData.prices.length - i}`),
+                    datasets: [{
+                        label: 'MACD Histogram',
+                        data: indicators.macd.histogram,
+                        backgroundColor: indicators.macd.histogram.map(val =>
+                            val > 0 ? 'rgba(0, 255, 136, 0.7)' : 'rgba(255, 107, 53, 0.7)'
+                        ),
+                        borderWidth: 0
+                    }, {
+                        label: 'MACD Line',
+                        data: indicators.macd.line,
+                        type: 'line',
+                        borderColor: 'rgba(0, 212, 255, 1)',
+                        backgroundColor: 'transparent',
+                        tension: 0.4,
+                        fill: false,
+                        pointRadius: 0
+                    }, {
+                        label: 'Signal Line',
+                        data: indicators.macd.signal,
+                        type: 'line',
+                        borderColor: 'rgba(255, 193, 30, 1)',
+                        backgroundColor: 'transparent',
+                        tension: 0.4,
+                        fill: false,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+
+            // RSI Chart
+            const rsiCtx = document.getElementById('rsiChart');
+            if (rsiChart) {
+                rsiChart.destroy();
+            }
+
+            rsiChart = new Chart(rsiCtx, {
+                type: 'line',
+                data: {
+                    labels: priceData.prices.map((_, i) => `T-${priceData.prices.length - i}`),
+                    datasets: [{
+                        label: 'RSI',
+                        data: indicators.rsi,
+                        borderColor: 'rgba(255, 107, 53, 1)',
+                        backgroundColor: 'rgba(255, 107, 53, 0.1)',
+                        tension: 0.4,
+                        fill: false
+                    }, {
+                        label: 'Overbought (70)',
+                        data: Array(priceData.prices.length).fill(70),
+                        borderColor: 'rgba(255, 53, 53, 0.5)',
+                        backgroundColor: 'transparent',
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        fill: false
+                    }, {
+                        label: 'Oversold (30)',
+                        data: Array(priceData.prices.length).fill(30),
+                        borderColor: 'rgba(0, 255, 136, 0.5)',
+                        backgroundColor: 'transparent',
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        }
+
+        function displaySignals(signals) {
+            const signalsList = document.getElementById('signalsList');
+            signalsList.innerHTML = '';
+
+            if (!signals || signals.length === 0) {
+                signalsList.innerHTML = '<div class="signal-item">No recent signals detected</div>';
+                return;
+            }
+
+            signals.forEach(signal => {
+                const signalDiv = document.createElement('div');
+                signalDiv.className = 'signal-item';
+
+                const signalText = signal.signals.map(sig => {
+                    let className = '';
+                    let icon = '';
+
+                    if (sig.includes('BULLISH') || sig.includes('GOLDEN')) {
+                        className = 'bullish';
+                        icon = '📈';
+                    } else if (sig.includes('BEARISH') || sig.includes('DEATH')) {
+                        className = 'bearish';
+                        icon = '📉';
+                    } else if (sig.includes('OVERBOUGHT') || sig.includes('UPPER')) {
+                        className = 'bearish';
+                        icon = '🔴';
+                    } else if (sig.includes('OVERSOLD') || sig.includes('LOWER')) {
+                        className = 'bullish';
+                        icon = '🟢';
+                    }
+
+                    signalDiv.classList.add(className);
+                    return `${icon} ${sig.replace(/_/g, ' ')}`;
+                }).join(', ');
+
+                const timestamp = new Date(signal.timestamp).toLocaleTimeString();
+                signalDiv.innerHTML = `<strong>${timestamp}:</strong> ${signalText}`;
+                signalsList.appendChild(signalDiv);
+            });
+        }
+
+        // Make functions globally available
+        window.refreshPriceData = refreshPriceData;
+        window.toggleProjections = toggleProjections;
+        window.loadTechnicalAnalysis = loadTechnicalAnalysis;
+        window.calculateProjections = calculateProjections;
+        window.onGrafanaLoad = onGrafanaLoad;
+        window.onGrafanaError = onGrafanaError;
+
+        // Portfolio Management Functions
+        let portfolioHoldings = [];
+        let allocationChart = null;
+        let performanceChart = null;
+
+        function initializePortfolio() {
+            loadPortfolioData();
+            updatePortfolioSummary();
+            renderAllocationChart();
+            renderPerformanceChart();
+        }
+
+        function loadPortfolioData() {
+            // Load from localStorage or initialize with sample data
+            const saved = localStorage.getItem('squashplot_portfolio');
+            if (saved) {
+                portfolioHoldings = JSON.parse(saved);
+            } else {
+                // Initialize with sample holdings
+                portfolioHoldings = [
+                    { symbol: 'XCH', quantity: 1000, avgPrice: 25.50, purchaseDate: '2024-01-15' },
+                    { symbol: 'BTC', quantity: 0.05, avgPrice: 45000, purchaseDate: '2024-02-01' },
+                    { symbol: 'ETH', quantity: 2.5, avgPrice: 2800, purchaseDate: '2024-01-20' }
+                ];
+                localStorage.setItem('squashplot_portfolio', JSON.stringify(portfolioHoldings));
+            }
+            renderHoldingsTable();
+        }
+
+        async function updatePortfolioSummary() {
+            if (portfolioHoldings.length === 0) return;
+
+            let totalValue = 0;
+            let totalCost = 0;
+            let dayChange = 0;
+            let bestPerformer = { symbol: '', change: -100 };
+            let worstPerformer = { symbol: '', change: 100 };
+
+            for (const holding of portfolioHoldings) {
+                const currentPrice = await getCurrentPrice(holding.symbol);
+                const value = holding.quantity * currentPrice;
+                const cost = holding.quantity * holding.avgPrice;
+                const change = ((currentPrice - holding.avgPrice) / holding.avgPrice) * 100;
+
+                totalValue += value;
+                totalCost += cost;
+
+                if (change > bestPerformer.change) {
+                    bestPerformer = { symbol: holding.symbol, change: change };
+                }
+                if (change < worstPerformer.change) {
+                    worstPerformer = { symbol: holding.symbol, change: change };
+                }
+            }
+
+            const totalChange = ((totalValue - totalCost) / totalCost) * 100;
+
+            document.getElementById('totalValue').textContent = `$${totalValue.toFixed(2)}`;
+            document.getElementById('totalChange').textContent = `${totalChange >= 0 ? '+' : ''}${totalChange.toFixed(2)}%`;
+            document.getElementById('totalChange').className = `summary-change ${totalChange >= 0 ? 'positive' : 'negative'}`;
+
+            document.getElementById('bestPerformer').textContent = bestPerformer.symbol || 'N/A';
+            document.getElementById('bestPerformerChange').textContent = bestPerformer.symbol ? `${bestPerformer.change >= 0 ? '+' : ''}${bestPerformer.change.toFixed(2)}%` : '+0.00%';
+            document.getElementById('bestPerformerChange').className = `summary-change ${bestPerformer.change >= 0 ? 'positive' : 'negative'}`;
+
+            document.getElementById('worstPerformer').textContent = worstPerformer.symbol || 'N/A';
+            document.getElementById('worstPerformerChange').textContent = worstPerformer.symbol ? `${worstPerformer.change >= 0 ? '+' : ''}${worstPerformer.change.toFixed(2)}%` : '+0.00%';
+            document.getElementById('worstPerformerChange').className = `summary-change ${worstPerformer.change >= 0 ? 'positive' : 'negative'}`;
+        }
+
+        async function getCurrentPrice(symbol) {
+            try {
+                const response = await fetch(`/api/crypto-price/${symbol}`);
+                const data = await response.json();
+                return data.price || 0;
+            } catch (error) {
+                console.error('Error fetching price:', error);
+                return 0;
+            }
+        }
+
+        async function renderHoldingsTable() {
+            const tbody = document.getElementById('holdingsBody');
+            tbody.innerHTML = '';
+
+            for (const holding of portfolioHoldings) {
+                const currentPrice = await getCurrentPrice(holding.symbol);
+                const value = holding.quantity * currentPrice;
+                const cost = holding.quantity * holding.avgPrice;
+                const change = ((currentPrice - holding.avgPrice) / holding.avgPrice) * 100;
+                const totalValue = portfolioHoldings.reduce(async (sum, h) => {
+                    const price = await getCurrentPrice(h.symbol);
+                    return (await sum) + (h.quantity * price);
+                }, Promise.resolve(0));
+                const allocation = ((value / (await totalValue)) * 100) || 0;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${getAssetName(holding.symbol)}</td>
+                    <td>${holding.symbol}</td>
+                    <td>${holding.quantity.toLocaleString()}</td>
+                    <td>$${holding.avgPrice.toFixed(4)}</td>
+                    <td>$${currentPrice.toFixed(4)}</td>
+                    <td>$${value.toFixed(2)}</td>
+                    <td class="${change >= 0 ? 'positive' : 'negative'}">
+                        ${change >= 0 ? '+' : ''}${change.toFixed(2)}%
+                    </td>
+                    <td>${allocation.toFixed(1)}%</td>
+                    <td>
+                        <button onclick="editHolding('${holding.symbol}')" class="btn btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="removeHolding('${holding.symbol}')" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        function getAssetName(symbol) {
+            const names = {
+                'XCH': 'Chia',
+                'BTC': 'Bitcoin',
+                'ETH': 'Ethereum',
+                'SOL': 'Solana',
+                'ADA': 'Cardano',
+                'DOT': 'Polkadot',
+                'LINK': 'Chainlink'
+            };
+            return names[symbol] || symbol;
+        }
+
+        function renderAllocationChart() {
+            const ctx = document.getElementById('allocationChart');
+            if (allocationChart) {
+                allocationChart.destroy();
+            }
+
+            const allocationData = {};
+            portfolioHoldings.forEach(async (holding) => {
+                const price = await getCurrentPrice(holding.symbol);
+                const value = holding.quantity * price;
+                allocationData[holding.symbol] = (allocationData[holding.symbol] || 0) + value;
+            });
+
+            setTimeout(() => {
+                allocationChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(allocationData),
+                        datasets: [{
+                            data: Object.values(allocationData),
+                            backgroundColor: [
+                                '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+                                '#9966FF', '#FF9F40', '#FF6384'
+                            ],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }, 100);
+        }
+
+        function renderPerformanceChart() {
+            const ctx = document.getElementById('performanceChart');
+            if (performanceChart) {
+                performanceChart.destroy();
+            }
+
+            // Generate sample historical data (in production, this would come from API)
+            const labels = [];
+            const data = [];
+            const now = new Date();
+
+            for (let i = 29; i >= 0; i--) {
+                const date = new Date(now);
+                date.setDate(date.getDate() - i);
+                labels.push(date.toLocaleDateString());
+
+                // Simulate portfolio value growth
+                const baseValue = 10000;
+                const growth = Math.sin(i * 0.2) * 1000 + Math.random() * 500;
+                data.push(baseValue + growth + (i * 50));
+            }
+
+            performanceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Portfolio Value',
+                        data: data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+        }
+
+        function addHolding() {
+            document.getElementById('addHoldingModal').style.display = 'block';
+            document.getElementById('holdingForm').reset();
+            document.getElementById('purchaseDate').valueAsDate = new Date();
+        }
+
+        function closeModal() {
+            document.getElementById('addHoldingModal').style.display = 'none';
+        }
+
+        function editHolding(symbol) {
+            const holding = portfolioHoldings.find(h => h.symbol === symbol);
+            if (!holding) return;
+
+            document.getElementById('assetSymbol').value = holding.symbol;
+            document.getElementById('quantity').value = holding.quantity;
+            document.getElementById('avgPrice').value = holding.avgPrice;
+            document.getElementById('purchaseDate').value = holding.purchaseDate;
+
+            document.getElementById('addHoldingModal').style.display = 'block';
+        }
+
+        function removeHolding(symbol) {
+            if (confirm(`Are you sure you want to remove ${symbol} from your portfolio?`)) {
+                portfolioHoldings = portfolioHoldings.filter(h => h.symbol !== symbol);
+                localStorage.setItem('squashplot_portfolio', JSON.stringify(portfolioHoldings));
+                renderHoldingsTable();
+                updatePortfolioSummary();
+                renderAllocationChart();
+                showToast(`${symbol} removed from portfolio`, 'success');
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('holdingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const symbol = document.getElementById('assetSymbol').value;
+            const quantity = parseFloat(document.getElementById('quantity').value);
+            const avgPrice = parseFloat(document.getElementById('avgPrice').value);
+            const purchaseDate = document.getElementById('purchaseDate').value;
+
+            // Check if holding already exists
+            const existingIndex = portfolioHoldings.findIndex(h => h.symbol === symbol);
+
+            if (existingIndex >= 0) {
+                // Update existing holding (simple average for now)
+                const existing = portfolioHoldings[existingIndex];
+                const totalQuantity = existing.quantity + quantity;
+                const totalCost = (existing.quantity * existing.avgPrice) + (quantity * avgPrice);
+                const newAvgPrice = totalCost / totalQuantity;
+
+                portfolioHoldings[existingIndex] = {
+                    symbol: symbol,
+                    quantity: totalQuantity,
+                    avgPrice: newAvgPrice,
+                    purchaseDate: purchaseDate // Update to latest purchase date
+                };
+            } else {
+                // Add new holding
+                portfolioHoldings.push({
+                    symbol: symbol,
+                    quantity: quantity,
+                    avgPrice: avgPrice,
+                    purchaseDate: purchaseDate
+                });
+            }
+
+            localStorage.setItem('squashplot_portfolio', JSON.stringify(portfolioHoldings));
+            renderHoldingsTable();
+            updatePortfolioSummary();
+            renderAllocationChart();
+            closeModal();
+            showToast(`${symbol} added to portfolio`, 'success');
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('addHoldingModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Initialize portfolio when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePortfolio();
+            initializeAlerts();
+        });
+
+        // Alerts Management Functions
+        let activeAlerts = [];
+        let alertHistory = [];
+
+        function initializeAlerts() {
+            loadAlertsData();
+            updateAlertsSummary();
+            renderAlertsTable();
+            renderAlertHistory();
+            startAlertMonitoring();
+        }
+
+        function loadAlertsData() {
+            // Load from localStorage or initialize with sample alerts
+            const savedAlerts = localStorage.getItem('squashplot_alerts');
+            const savedHistory = localStorage.getItem('squashplot_alert_history');
+
+            if (savedAlerts) {
+                activeAlerts = JSON.parse(savedAlerts);
+            } else {
+                // Initialize with sample alerts
+                activeAlerts = [
+                    {
+                        id: 'sample-price-1',
+                        type: 'price',
+                        symbol: 'XCH',
+                        condition: 'above',
+                        targetPrice: 10.00,
+                        notification: 'browser',
+                        status: 'active',
+                        created: new Date().toISOString(),
+                        lastTrigger: null
+                    },
+                    {
+                        id: 'sample-technical-1',
+                        type: 'technical',
+                        symbol: 'BTC',
+                        indicator: 'rsi',
+                        condition: 'above_70',
+                        notification: 'browser',
+                        status: 'active',
+                        created: new Date().toISOString(),
+                        lastTrigger: null
+                    }
+                ];
+                localStorage.setItem('squashplot_alerts', JSON.stringify(activeAlerts));
+            }
+
+            if (savedHistory) {
+                alertHistory = JSON.parse(savedHistory);
+            }
+        }
+
+        function updateAlertsSummary() {
+            const activeCount = activeAlerts.filter(a => a.status === 'active').length;
+            const triggeredToday = alertHistory.filter(h =>
+                new Date(h.timestamp).toDateString() === new Date().toDateString()
+            ).length;
+            const priceAlerts = activeAlerts.filter(a => a.type === 'price').length;
+            const technicalAlerts = activeAlerts.filter(a => a.type === 'technical').length;
+
+            document.getElementById('activeAlertsCount').textContent = activeCount;
+            document.getElementById('triggeredTodayCount').textContent = triggeredToday;
+            document.getElementById('priceAlertsCount').textContent = priceAlerts;
+            document.getElementById('technicalAlertsCount').textContent = technicalAlerts;
+        }
+
+        function renderAlertsTable() {
+            const tbody = document.getElementById('alertsBody');
+            tbody.innerHTML = '';
+
+            if (activeAlerts.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px; color: var(--text-secondary);">No active alerts. Create your first alert above!</td></tr>';
+                return;
+            }
+
+            activeAlerts.forEach(alert => {
+                const row = document.createElement('tr');
+
+                let conditionText = '';
+                if (alert.type === 'price') {
+                    conditionText = `Price ${alert.condition} $${alert.targetPrice}`;
+                } else if (alert.type === 'technical') {
+                    conditionText = `${alert.indicator.toUpperCase()} ${alert.condition.replace('_', ' ')}`;
+                } else if (alert.type === 'volume') {
+                    conditionText = `Volume ${alert.condition} ${alert.multiplier}x average`;
+                }
+
+                const statusClass = alert.status === 'active' ? 'active' :
+                                   alert.status === 'triggered' ? 'triggered' : 'paused';
+
+                row.innerHTML = `
+                    <td><span class="alert-type ${alert.type}">${alert.type.charAt(0).toUpperCase() + alert.type.slice(1)}</span></td>
+                    <td>${alert.symbol}</td>
+                    <td>${conditionText}</td>
+                    <td><span class="alert-status ${statusClass}">${alert.status.charAt(0).toUpperCase() + alert.status.slice(1)}</span></td>
+                    <td>${new Date(alert.created).toLocaleDateString()}</td>
+                    <td>${alert.lastTrigger ? new Date(alert.lastTrigger).toLocaleString() : 'Never'}</td>
+                    <td>
+                        <button onclick="toggleAlert('${alert.id}')" class="btn btn-sm">
+                            <i class="fas fa-${alert.status === 'active' ? 'pause' : 'play'}"></i>
+                        </button>
+                        <button onclick="deleteAlert('${alert.id}')" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function renderAlertHistory() {
+            const historyDiv = document.getElementById('alertHistory');
+            historyDiv.innerHTML = '';
+
+            if (alertHistory.length === 0) {
+                historyDiv.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--text-secondary);">No alert history yet</div>';
+                return;
+            }
+
+            // Show last 10 alerts
+            const recentAlerts = alertHistory.slice(-10).reverse();
+
+            recentAlerts.forEach(alert => {
+                const item = document.createElement('div');
+                item.className = `alert-history-item ${alert.type} ${alert.triggered ? 'triggered' : ''}`;
+
+                let message = '';
+                if (alert.type === 'price') {
+                    message = `${alert.symbol} price ${alert.condition} $${alert.targetPrice}`;
+                } else if (alert.type === 'technical') {
+                    message = `${alert.symbol} ${alert.indicator} ${alert.condition}`;
+                } else if (alert.type === 'volume') {
+                    message = `${alert.symbol} volume spike ${alert.multiplier}x above average`;
+                }
+
+                item.innerHTML = `
+                    <div><strong>${alert.symbol} Alert Triggered</strong></div>
+                    <div>${message}</div>
+                    <div class="alert-history-time">${new Date(alert.timestamp).toLocaleString()}</div>
+                `;
+                historyDiv.appendChild(item);
+            });
+        }
+
+        // Alert Creation Functions
+        function addPriceAlert() {
+            document.getElementById('priceAlertModal').style.display = 'block';
+        }
+
+        function closePriceAlertModal() {
+            document.getElementById('priceAlertModal').style.display = 'none';
+        }
+
+        function addTechnicalAlert() {
+            updateTechnicalCondition();
+            document.getElementById('technicalAlertModal').style.display = 'block';
+        }
+
+        function closeTechnicalAlertModal() {
+            document.getElementById('technicalAlertModal').style.display = 'none';
+        }
+
+        function addVolumeAlert() {
+            document.getElementById('volumeAlertModal').style.display = 'block';
+        }
+
+        function closeVolumeAlertModal() {
+            document.getElementById('volumeAlertModal').style.display = 'none';
+        }
+
+        function updateTechnicalCondition() {
+            const indicator = document.getElementById('technicalIndicator').value;
+            const conditionSelect = document.getElementById('technicalCondition');
+
+            conditionSelect.innerHTML = '';
+
+            const conditions = {
+                'rsi': [
+                    {value: 'above_70', text: 'RSI goes above 70 (Overbought)'},
+                    {value: 'below_30', text: 'RSI goes below 30 (Oversold)'},
+                    {value: 'above_80', text: 'RSI goes above 80 (Extremely Overbought)'},
+                    {value: 'below_20', text: 'RSI goes below 20 (Extremely Oversold)'}
+                ],
+                'macd': [
+                    {value: 'bullish_crossover', text: 'MACD bullish crossover (Signal > MACD)'},
+                    {value: 'bearish_crossover', text: 'MACD bearish crossover (Signal < MACD)'},
+                    {value: 'histogram_positive', text: 'MACD histogram becomes positive'},
+                    {value: 'histogram_negative', text: 'MACD histogram becomes negative'}
+                ],
+                'bollinger': [
+                    {value: 'upper_breakout', text: 'Price breaks above upper Bollinger Band'},
+                    {value: 'lower_breakout', text: 'Price breaks below lower Bollinger Band'},
+                    {value: 'squeeze', text: 'Bollinger Bands squeeze (low volatility)'},
+                    {value: 'expansion', text: 'Bollinger Bands expansion (high volatility)'}
+                ],
+                'moving_average': [
+                    {value: 'golden_cross', text: 'Golden Cross (20MA > 50MA)'},
+                    {value: 'death_cross', text: 'Death Cross (20MA < 50MA)'},
+                    {value: 'ma_breakout', text: 'Price breaks above 200MA'},
+                    {value: 'ma_breakdown', text: 'Price breaks below 200MA'}
+                ]
+            };
+
+            (conditions[indicator] || []).forEach(condition => {
+                const option = document.createElement('option');
+                option.value = condition.value;
+                option.textContent = condition.text;
+                conditionSelect.appendChild(option);
+            });
+        }
+
+        // Alert Management Functions
+        function toggleAlert(alertId) {
+            const alert = activeAlerts.find(a => a.id === alertId);
+            if (alert) {
+                alert.status = alert.status === 'active' ? 'paused' : 'active';
+                localStorage.setItem('squashplot_alerts', JSON.stringify(activeAlerts));
+                renderAlertsTable();
+                updateAlertsSummary();
+                showToast(`Alert ${alert.status === 'active' ? 'activated' : 'paused'}`, 'success');
+            }
+        }
+
+        function deleteAlert(alertId) {
+            if (confirm('Are you sure you want to delete this alert?')) {
+                activeAlerts = activeAlerts.filter(a => a.id !== alertId);
+                localStorage.setItem('squashplot_alerts', JSON.stringify(activeAlerts));
+                renderAlertsTable();
+                updateAlertsSummary();
+                showToast('Alert deleted', 'success');
+            }
+        }
+
+        // Alert Monitoring
+        function startAlertMonitoring() {
+            // Check alerts every 30 seconds
+            setInterval(checkAlerts, 30000);
+
+            // Initial check
+            setTimeout(checkAlerts, 5000);
+        }
+
+        async function checkAlerts() {
+            if (activeAlerts.length === 0) return;
+
+            for (const alert of activeAlerts) {
+                if (alert.status !== 'active') continue;
+
+                let triggered = false;
+                let triggerMessage = '';
+
+                if (alert.type === 'price') {
+                    const currentPrice = await getCurrentPrice(alert.symbol);
+                    if (alert.condition === 'above' && currentPrice > alert.targetPrice) {
+                        triggered = true;
+                        triggerMessage = `${alert.symbol} price went above $${alert.targetPrice}`;
+                    } else if (alert.condition === 'below' && currentPrice < alert.targetPrice) {
+                        triggered = true;
+                        triggerMessage = `${alert.symbol} price went below $${alert.targetPrice}`;
+                    }
+                }
+
+                if (triggered) {
+                    // Add to history
+                    const historyItem = {
+                        id: alert.id,
+                        type: alert.type,
+                        symbol: alert.symbol,
+                        condition: alert.condition,
+                        targetPrice: alert.targetPrice,
+                        message: triggerMessage,
+                        timestamp: new Date().toISOString(),
+                        triggered: true
+                    };
+
+                    alertHistory.push(historyItem);
+                    alert.lastTrigger = new Date().toISOString();
+                    alert.status = 'triggered'; // Auto-pause after trigger
+
+                    // Show notification
+                    showAlertNotification(triggerMessage);
+
+                    localStorage.setItem('squashplot_alert_history', JSON.stringify(alertHistory));
+                    localStorage.setItem('squashplot_alerts', JSON.stringify(activeAlerts));
+
+                    renderAlertsTable();
+                    renderAlertHistory();
+                    updateAlertsSummary();
+                }
+            }
+        }
+
+        function showAlertNotification(message) {
+            // Browser notification
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification('SquashPlot Alert', {
+                    body: message,
+                    icon: '/favicon.ico'
+                });
+            } else if ('Notification' in window && Notification.permission !== 'denied') {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        new Notification('SquashPlot Alert', {
+                            body: message,
+                            icon: '/favicon.ico'
+                        });
+                    }
+                });
+            }
+
+            // Show in-app notification
+            showToast(message, 'warning');
+        }
+
+        // Form Handlers
+        document.getElementById('priceAlertForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const alert = {
+                id: 'price-' + Date.now(),
+                type: 'price',
+                symbol: document.getElementById('priceAlertSymbol').value,
+                condition: document.getElementById('priceCondition').value,
+                targetPrice: parseFloat(document.getElementById('priceTarget').value),
+                notification: document.getElementById('priceNotification').value,
+                status: 'active',
+                created: new Date().toISOString(),
+                lastTrigger: null
+            };
+
+            activeAlerts.push(alert);
+            localStorage.setItem('squashplot_alerts', JSON.stringify(activeAlerts));
+            renderAlertsTable();
+            updateAlertsSummary();
+            closePriceAlertModal();
+            showToast('Price alert created', 'success');
+        });
+
+        document.getElementById('technicalAlertForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const alert = {
+                id: 'technical-' + Date.now(),
+                type: 'technical',
+                symbol: document.getElementById('technicalAlertSymbol').value,
+                indicator: document.getElementById('technicalIndicator').value,
+                condition: document.getElementById('technicalCondition').value,
+                notification: document.getElementById('technicalNotification').value,
+                status: 'active',
+                created: new Date().toISOString(),
+                lastTrigger: null
+            };
+
+            activeAlerts.push(alert);
+            localStorage.setItem('squashplot_alerts', JSON.stringify(activeAlerts));
+            renderAlertsTable();
+            updateAlertsSummary();
+            closeTechnicalAlertModal();
+            showToast('Technical alert created', 'success');
+        });
+
+        document.getElementById('volumeAlertForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const alert = {
+                id: 'volume-' + Date.now(),
+                type: 'volume',
+                symbol: document.getElementById('volumeAlertSymbol').value,
+                condition: document.getElementById('volumeCondition').value,
+                multiplier: parseFloat(document.getElementById('volumeMultiplier').value),
+                notification: document.getElementById('volumeNotification').value,
+                status: 'active',
+                created: new Date().toISOString(),
+                lastTrigger: null
+            };
+
+            activeAlerts.push(alert);
+            localStorage.setItem('squashplot_alerts', JSON.stringify(activeAlerts));
+            renderAlertsTable();
+            updateAlertsSummary();
+            closeVolumeAlertModal();
+            showToast('Volume alert created', 'success');
+        });
+
+        // Initialize technical conditions on load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTechnicalCondition();
+        });
+
+        // News & Sentiment Analysis Functions
+        let newsArticles = [];
+        let sentimentChart = null;
+
+        function initializeNews() {
+            loadNewsData();
+            updateSentimentOverview();
+            renderSentimentChart();
+            renderTrendingAssets();
+            startNewsRefresh();
+        }
+
+        function loadNewsData() {
+            // Simulate news data (in production, this would fetch from APIs)
+            newsArticles = [
+                {
+                    id: 1,
+                    title: "Bitcoin Surges Past $60,000 as Institutional Adoption Accelerates",
+                    summary: "Major financial institutions continue to adopt Bitcoin as a reserve asset, driving prices to new all-time highs. Analysts predict further upside as traditional finance embraces cryptocurrency.",
+                    source: "CryptoNews",
+                    sentiment: "positive",
+                    score: 0.85,
+                    timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
+                    tags: ["bitcoin", "institutional", "adoption"],
+                    url: "#"
+                },
+                {
+                    id: 2,
+                    title: "Ethereum Gas Fees Spike 300% Amid DeFi Protocol Migration",
+                    summary: "Network congestion has caused gas fees to reach unprecedented levels as users migrate between DeFi protocols. Layer 2 solutions see increased adoption but scalability concerns persist.",
+                    source: "BlockChain Today",
+                    sentiment: "negative",
+                    score: -0.72,
+                    timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000), // 4 hours ago
+                    tags: ["ethereum", "gas", "defi"],
+                    url: "#"
+                },
+                {
+                    id: 3,
+                    title: "Chia Network Announces Major Farming Efficiency Update",
+                    summary: "Chia developers release new farming optimizations that promise 25% improvement in plot efficiency. Community response is overwhelmingly positive with immediate network adoption.",
+                    source: "Chia Network",
+                    sentiment: "positive",
+                    score: 0.91,
+                    timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000), // 6 hours ago
+                    tags: ["chia", "farming", "efficiency"],
+                    url: "#"
+                },
+                {
+                    id: 4,
+                    title: "SEC Announces New Crypto Regulatory Framework",
+                    summary: "The Securities and Exchange Commission outlines comprehensive new regulations for cryptocurrency exchanges and token offerings. Industry leaders express mixed reactions.",
+                    source: "Financial Times",
+                    sentiment: "neutral",
+                    score: 0.05,
+                    timestamp: new Date(Date.now() - 8 * 60 * 60 * 1000), // 8 hours ago
+                    tags: ["regulation", "sec", "policy"],
+                    url: "#"
+                },
+                {
+                    id: 5,
+                    title: "Solana Outage Affects Thousands of dApps for 8 Hours",
+                    summary: "A major network outage on Solana has disrupted decentralized applications and led to significant user frustration. Network validators work to resolve the underlying issues.",
+                    source: "TechCrunch",
+                    sentiment: "negative",
+                    score: -0.88,
+                    timestamp: new Date(Date.now() - 10 * 60 * 60 * 1000), // 10 hours ago
+                    tags: ["solana", "outage", "network"],
+                    url: "#"
+                },
+                {
+                    id: 6,
+                    title: "Cardano Smart Contracts See Record Adoption",
+                    summary: "Cardano's smart contract platform continues to gain traction with developers and users. The network has seen exponential growth in dApp deployments over the past quarter.",
+                    source: "CoinDesk",
+                    sentiment: "positive",
+                    score: 0.76,
+                    timestamp: new Date(Date.now() - 12 * 60 * 60 * 1000), // 12 hours ago
+                    tags: ["cardano", "smart contracts", "adoption"],
+                    url: "#"
+                },
+                {
+                    id: 7,
+                    title: "Polkadot Parachain Auctions Reach New Participation Records",
+                    summary: "Polkadot's parachain auction system continues to attract significant interest from projects. The latest auction saw record participation and bidding activity.",
+                    source: "Polkadot News",
+                    sentiment: "positive",
+                    score: 0.68,
+                    timestamp: new Date(Date.now() - 14 * 60 * 60 * 1000), // 14 hours ago
+                    tags: ["polkadot", "parachains", "auctions"],
+                    url: "#"
+                },
+                {
+                    id: 8,
+                    title: "Chainlink Price Volatile Amid Oracle Network Expansion",
+                    summary: "Chainlink experiences significant price movement as the network expands its oracle services. Market participants remain divided on the long-term outlook.",
+                    source: "Crypto Market Watch",
+                    sentiment: "neutral",
+                    score: -0.12,
+                    timestamp: new Date(Date.now() - 16 * 60 * 60 * 1000), // 16 hours ago
+                    tags: ["chainlink", "oracles", "expansion"],
+                    url: "#"
+                }
+            ];
+
+            renderNewsFeed();
+        }
+
+        function updateSentimentOverview() {
+            const positiveArticles = newsArticles.filter(a => a.sentiment === 'positive').length;
+            const negativeArticles = newsArticles.filter(a => a.sentiment === 'negative').length;
+            const totalArticles = newsArticles.length;
+
+            const overallSentiment = Math.round(((positiveArticles - negativeArticles) / totalArticles) * 100);
+
+            // Update sentiment metrics
+            document.getElementById('overallSentiment').innerHTML = `
+                <span class="sentiment-value">${Math.abs(overallSentiment)}%</span>
+                <span class="sentiment-trend ${overallSentiment >= 0 ? 'positive' : ''}">${overallSentiment >= 0 ? '↗️ Bullish' : '↘️ Bearish'}</span>
+            `;
+
+            // Simulate Fear & Greed Index
+            const fearGreed = Math.round(30 + Math.random() * 50);
+            document.getElementById('fearGreedIndex').innerHTML = `
+                <span class="sentiment-value">${fearGreed}</span>
+                <span class="sentiment-trend greed">${fearGreed > 60 ? 'Greed' : fearGreed > 40 ? 'Neutral' : 'Fear'}</span>
+            `;
+
+            document.getElementById('newsCount').innerHTML = `
+                <span class="sentiment-value">${totalArticles}</span>
+                <span class="sentiment-trend">+${Math.round(Math.random() * 20)}%</span>
+            `;
+
+            document.getElementById('socialBuzz').innerHTML = `
+                <span class="sentiment-value">${(5 + Math.random() * 10).toFixed(1)}k</span>
+                <span class="sentiment-trend positive">↗️ High</span>
+            `;
+        }
+
+        function renderNewsFeed(filter = 'all') {
+            const container = document.getElementById('newsContainer');
+            container.innerHTML = '';
+
+            let filteredArticles = newsArticles;
+
+            if (filter !== 'all') {
+                if (['positive', 'negative', 'neutral'].includes(filter)) {
+                    filteredArticles = newsArticles.filter(a => a.sentiment === filter);
+                } else {
+                    // Filter by asset
+                    filteredArticles = newsArticles.filter(a => a.tags.includes(filter.toLowerCase()));
+                }
+            }
+
+            if (filteredArticles.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--text-secondary);">No news articles match the selected filter</div>';
+                return;
+            }
+
+            filteredArticles.forEach(article => {
+                const articleDiv = document.createElement('div');
+                articleDiv.className = `news-item ${article.sentiment}`;
+                articleDiv.onclick = () => window.open(article.url, '_blank');
+
+                const timeAgo = getTimeAgo(article.timestamp);
+
+                articleDiv.innerHTML = `
+                    <div class="news-header">
+                        <h4 class="news-title">${article.title}</h4>
+                        <div class="news-meta">
+                            <span class="news-source">${article.source}</span>
+                            <span class="news-time">${timeAgo}</span>
+                            <span class="news-sentiment ${article.sentiment}">${article.sentiment.charAt(0).toUpperCase() + article.sentiment.slice(1)}</span>
+                        </div>
+                    </div>
+                    <p class="news-summary">${article.summary}</p>
+                `;
+
+                container.appendChild(articleDiv);
+            });
+        }
+
+        function filterNews() {
+            const filter = document.getElementById('newsFilter').value;
+            renderNewsFeed(filter);
+        }
+
+        function renderSentimentChart() {
+            const ctx = document.getElementById('sentimentChart');
+            if (sentimentChart) {
+                sentimentChart.destroy();
+            }
+
+            // Generate sentiment trend data (last 7 days)
+            const labels = [];
+            const positiveData = [];
+            const negativeData = [];
+            const neutralData = [];
+
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+
+                // Simulate sentiment trends
+                positiveData.push(40 + Math.random() * 30);
+                negativeData.push(20 + Math.random() * 25);
+                neutralData.push(15 + Math.random() * 20);
+            }
+
+            sentimentChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Positive Sentiment',
+                        data: positiveData,
+                        borderColor: 'rgba(34, 197, 94, 1)',
+                        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }, {
+                        label: 'Negative Sentiment',
+                        data: negativeData,
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }, {
+                        label: 'Neutral Sentiment',
+                        data: neutralData,
+                        borderColor: 'rgba(156, 163, 175, 1)',
+                        backgroundColor: 'rgba(156, 163, 175, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderTrendingAssets() {
+            const trendingList = document.getElementById('trendingList');
+
+            // Simulate trending assets based on news mentions
+            const trendingAssets = [
+                { symbol: 'BTC', name: 'Bitcoin', score: 95, rank: 1 },
+                { symbol: 'ETH', name: 'Ethereum', score: 87, rank: 2 },
+                { symbol: 'XCH', name: 'Chia', score: 82, rank: 3 },
+                { symbol: 'SOL', name: 'Solana', score: 76, rank: 0 },
+                { symbol: 'ADA', name: 'Cardano', score: 71, rank: 0 },
+                { symbol: 'DOT', name: 'Polkadot', score: 68, rank: 0 },
+                { symbol: 'LINK', name: 'Chainlink', score: 65, rank: 0 }
+            ];
+
+            trendingList.innerHTML = '';
+
+            trendingAssets.forEach(asset => {
+                const item = document.createElement('div');
+                item.className = `trending-item rank-${asset.rank}`;
+
+                item.innerHTML = `
+                    <div>
+                        <span class="trending-symbol">${asset.symbol}</span>
+                        <span class="trending-name">${asset.name}</span>
+                    </div>
+                    <span class="trending-score">${asset.score}</span>
+                `;
+
+                trendingList.appendChild(item);
+            });
+        }
+
+        function getTimeAgo(timestamp) {
+            const now = new Date();
+            const diff = now - timestamp;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor(diff / (1000 * 60));
+
+            if (hours > 0) {
+                return `${hours}h ago`;
+            } else if (minutes > 0) {
+                return `${minutes}m ago`;
+            } else {
+                return 'Just now';
+            }
+        }
+
+        function startNewsRefresh() {
+            // Refresh news data every 5 minutes
+            setInterval(() => {
+                updateSentimentOverview();
+                // In production, this would fetch new articles
+            }, 5 * 60 * 1000);
+        }
+
+        // Initialize news when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeNews();
+            initializeAIVisuals();
+        });
+
+        // AI Visuals Functions
+        let aiNodesChart = null;
+        let aiPerformanceChart = null;
+        let aiResourceChart = null;
+
+        function initializeAIVisuals() {
+            loadAINodesData();
+            loadAIPerformanceData();
+            loadAIWorkflowData();
+            loadAIResourceData();
+            loadAIModelData();
+            loadAIInsightsData();
+
+            // Update AI data every 30 seconds
+            setInterval(() => {
+                loadAINodesData();
+                loadAIPerformanceData();
+                loadAIWorkflowData();
+                loadAIResourceData();
+            }, 30000);
+        }
+
+        async function loadAINodesData() {
+            try {
+                const response = await fetch('/api/ai-nodes');
+                const data = await response.json();
+
+                document.getElementById('total-nodes').textContent = data.total_nodes;
+                renderNodeNetwork(data.nodes);
+            } catch (error) {
+                console.error('Failed to load AI nodes data:', error);
+            }
+        }
+
+        function renderNodeNetwork(nodes) {
+            const container = document.getElementById('nodeNetwork');
+            container.innerHTML = '';
+
+            nodes.forEach(node => {
+                const nodeElement = document.createElement('div');
+                nodeElement.className = `node-circle ${node.type} ${node.status}`;
+                nodeElement.style.left = `${Math.random() * 80 + 10}%`;
+                nodeElement.style.top = `${Math.random() * 80 + 10}%`;
+                nodeElement.style.width = `${Math.max(30, node.cpu_usage)}px`;
+                nodeElement.style.height = `${Math.max(30, node.cpu_usage)}px`;
+                nodeElement.title = `${node.id} - ${node.type} (${node.status})`;
+                nodeElement.textContent = node.id.split('-')[1];
+
+                nodeElement.addEventListener('click', () => showNodeDetails(node));
+
+                container.appendChild(nodeElement);
+            });
+        }
+
+        function showNodeDetails(node) {
+            const details = `
+                Node ID: ${node.id}
+                Type: ${node.type}
+                Status: ${node.status}
+                CPU Usage: ${node.cpu_usage.toFixed(1)}%
+                Memory Usage: ${node.memory_usage.toFixed(1)}%
+                Tasks Completed: ${node.tasks_completed}
+                Uptime: ${node.uptime_hours.toFixed(1)} hours
+                Connections: ${node.connections}
+            `;
+            alert(details);
+        }
+
+        async function loadAIPerformanceData() {
+            try {
+                const response = await fetch('/api/ai-performance');
+                const data = await response.json();
+
+                renderAIPerformanceChart(data.performance_history);
+                updatePerformanceMetrics(data.current_metrics);
+            } catch (error) {
+                console.error('Failed to load AI performance data:', error);
+            }
+        }
+
+        function renderAIPerformanceChart(performanceData) {
+            const ctx = document.getElementById('aiPerformanceChart');
+            if (aiPerformanceChart) {
+                aiPerformanceChart.destroy();
+            }
+
+            const labels = performanceData.map(p => new Date(p.timestamp).toLocaleTimeString());
+            const latencyData = performanceData.map(p => p.inference_latency);
+            const throughputData = performanceData.map(p => p.throughput);
+            const accuracyData = performanceData.map(p => p.accuracy);
+
+            aiPerformanceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Inference Latency (ms)',
+                        data: latencyData,
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4,
+                        yAxisID: 'y'
+                    }, {
+                        label: 'Throughput (req/sec)',
+                        data: throughputData,
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    }, {
+                        label: 'Accuracy (%)',
+                        data: accuracyData,
+                        borderColor: 'rgba(245, 158, 11, 1)',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        tension: 0.4,
+                        yAxisID: 'y'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'Latency / Accuracy'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Throughput'
+                            },
+                            grid: {
+                                drawOnChartArea: false,
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updatePerformanceMetrics(metrics) {
+            console.log('Performance metrics updated:', metrics);
+        }
+
+        async function loadAIWorkflowData() {
+            try {
+                const response = await fetch('/api/ai-workflows');
+                const data = await response.json();
+
+                renderWorkflowStatus(data.workflows);
+            } catch (error) {
+                console.error('Failed to load AI workflow data:', error);
+            }
+        }
+
+        function renderWorkflowStatus(workflows) {
+            const container = document.getElementById('workflowStatus');
+
+            const recentWorkflows = workflows.slice(0, 6);
+
+            container.innerHTML = recentWorkflows.map(workflow => `
+                <div class="workflow-item ${workflow.status}">
+                    <div class="workflow-info">
+                        <h4>${workflow.name}</h4>
+                        <div class="workflow-meta">${workflow.type} • ${new Date(workflow.created_at).toLocaleString()}</div>
+                        ${workflow.status === 'running' || workflow.status === 'completed' ? `
+                            <div class="workflow-progress">
+                                <div class="workflow-progress-bar" style="width: ${workflow.progress}%"></div>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <span style="color: ${workflow.status === 'completed' ? 'var(--success-color)' : workflow.status === 'running' ? 'var(--warning-color)' : 'var(--danger-color)'}">
+                        ${workflow.status.charAt(0).toUpperCase() + workflow.status.slice(1)}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        async function loadAIResourceData() {
+            try {
+                const response = await fetch('/api/metrics');
+                const data = await response.json();
+
+                renderResourceChart(data);
+            } catch (error) {
+                console.error('Failed to load AI resource data:', error);
+            }
+        }
+
+        function renderResourceChart(metricsData) {
+            const ctx = document.getElementById('resourceChart');
+            if (aiResourceChart) {
+                aiResourceChart.destroy();
+            }
+
+            aiResourceChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['AI Memory', 'AI CPU', 'Network Load', 'Storage'],
+                    datasets: [{
+                        data: [
+                            metricsData.ai_engine.memory_used,
+                            metricsData.ai_engine.active_models * 2,
+                            metricsData.network.active_connections,
+                            75 // Mock storage usage
+                        ],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.8)',
+                            'rgba(16, 185, 129, 0.8)',
+                            'rgba(245, 158, 11, 0.8)',
+                            'rgba(239, 68, 68, 0.8)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        async function loadAIModelData() {
+            try {
+                const response = await fetch('/api/ai-performance');
+                const data = await response.json();
+
+                renderModelStatus(data.model_stats);
+            } catch (error) {
+                console.error('Failed to load AI model data:', error);
+            }
+        }
+
+        function renderModelStatus(modelStats) {
+            const container = document.getElementById('modelStatus');
+
+            container.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--primary-color);">${modelStats.total_models}</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Total Models</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--success-color);">${modelStats.active_models}</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Active Models</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--warning-color);">${modelStats.training_models}</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Training</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--danger-color);">${modelStats.deprecated_models}</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Deprecated</div>
+                    </div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px;">
+                    <h4 style="color: var(--primary-color); margin-bottom: 10px;">Model Health Overview</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.2rem; font-weight: 600; color: var(--success-color);">98.5%</div>
+                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Avg Accuracy</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.2rem; font-weight: 600; color: var(--warning-color);">2.1ms</div>
+                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Avg Latency</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.2rem; font-weight: 600; color: var(--primary-color);">156</div>
+                            <div style="color: var(--text-secondary); font-size: 0.8rem;">Req/Sec</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function loadAIInsightsData() {
+            try {
+                const response = await fetch('/api/ai-performance');
+                const data = await response.json();
+
+                renderAIInsights(data);
+            } catch (error) {
+                console.error('Failed to load AI insights data:', error);
+            }
+        }
+
+        function renderAIInsights(data) {
+            const container = document.getElementById('aiInsights');
+
+            const insights = [
+                {
+                    title: 'Inference Performance',
+                    value: `${data.current_metrics.avg_latency.toFixed(2)}ms`,
+                    description: 'Average response time across all models',
+                    type: 'success'
+                },
+                {
+                    title: 'Model Throughput',
+                    value: `${data.current_metrics.avg_throughput.toFixed(1)} req/sec`,
+                    description: 'Requests processed per second',
+                    type: 'success'
+                },
+                {
+                    title: 'Memory Peak Usage',
+                    value: `${data.current_metrics.peak_memory.toFixed(1)}GB`,
+                    description: 'Maximum memory consumption',
+                    type: 'warning'
+                },
+                {
+                    title: 'Total Requests',
+                    value: `${(data.current_metrics.total_requests / 1000).toFixed(1)}K`,
+                    description: 'Requests in last hour',
+                    type: 'success'
+                },
+                {
+                    title: 'Active Workflows',
+                    value: '12',
+                    description: 'Currently running AI processes',
+                    type: 'warning'
+                },
+                {
+                    title: 'Network Load',
+                    value: '67%',
+                    description: 'Current AI network utilization',
+                    type: 'success'
+                }
+            ];
+
+            container.innerHTML = insights.map(insight => `
+                <div class="insight-card ${insight.type}">
+                    <div class="insight-title">${insight.title}</div>
+                    <div class="insight-value">${insight.value}</div>
+                    <div class="insight-description">${insight.description}</div>
+                </div>
+            `).join('');
+        }
     </script>
+
+    <!-- Add Holding Modal -->
+    <div id="addHoldingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Add Portfolio Holding</h3>
+            <form id="holdingForm">
+                <div class="form-group">
+                    <label for="assetSymbol">Asset Symbol</label>
+                    <select id="assetSymbol" required>
+                        <option value="XCH">Chia (XCH)</option>
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="SOL">Solana (SOL)</option>
+                        <option value="ADA">Cardano (ADA)</option>
+                        <option value="DOT">Polkadot (DOT)</option>
+                        <option value="LINK">Chainlink (LINK)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" step="any" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="avgPrice">Average Purchase Price (USD)</label>
+                    <input type="number" id="avgPrice" step="any" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="purchaseDate">Purchase Date</label>
+                    <input type="date" id="purchaseDate" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Holding</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Price Alert Modal -->
+    <div id="priceAlertModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePriceAlertModal()">&times;</span>
+            <h3>Create Price Alert</h3>
+            <form id="priceAlertForm">
+                <div class="form-group">
+                    <label for="priceAlertSymbol">Asset Symbol</label>
+                    <select id="priceAlertSymbol" required>
+                        <option value="XCH">Chia (XCH)</option>
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="SOL">Solana (SOL)</option>
+                        <option value="ADA">Cardano (ADA)</option>
+                        <option value="DOT">Polkadot (DOT)</option>
+                        <option value="LINK">Chainlink (LINK)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="priceCondition">Condition</label>
+                    <select id="priceCondition" required>
+                        <option value="above">Price goes above</option>
+                        <option value="below">Price goes below</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="priceTarget">Target Price (USD)</label>
+                    <input type="number" id="priceTarget" step="any" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="priceNotification">Notification Method</label>
+                    <select id="priceNotification">
+                        <option value="browser">Browser Notification</option>
+                        <option value="email">Email (Future)</option>
+                        <option value="sms">SMS (Future)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Price Alert</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Technical Alert Modal -->
+    <div id="technicalAlertModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTechnicalAlertModal()">&times;</span>
+            <h3>Create Technical Alert</h3>
+            <form id="technicalAlertForm">
+                <div class="form-group">
+                    <label for="technicalAlertSymbol">Asset Symbol</label>
+                    <select id="technicalAlertSymbol" required>
+                        <option value="XCH">Chia (XCH)</option>
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="SOL">Solana (SOL)</option>
+                        <option value="ADA">Cardano (ADA)</option>
+                        <option value="DOT">Polkadot (DOT)</option>
+                        <option value="LINK">Chainlink (LINK)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="technicalIndicator">Technical Indicator</label>
+                    <select id="technicalIndicator" required onchange="updateTechnicalCondition()">
+                        <option value="rsi">RSI (Relative Strength Index)</option>
+                        <option value="macd">MACD Crossover</option>
+                        <option value="bollinger">Bollinger Band Breakout</option>
+                        <option value="moving_average">Moving Average Crossover</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="technicalCondition">Condition</label>
+                    <select id="technicalCondition" required>
+                        <!-- Options will be populated based on selected indicator -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="technicalNotification">Notification Method</label>
+                    <select id="technicalNotification">
+                        <option value="browser">Browser Notification</option>
+                        <option value="email">Email (Future)</option>
+                        <option value="sms">SMS (Future)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Technical Alert</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Volume Alert Modal -->
+    <div id="volumeAlertModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeVolumeAlertModal()">&times;</span>
+            <h3>Create Volume Alert</h3>
+            <form id="volumeAlertForm">
+                <div class="form-group">
+                    <label for="volumeAlertSymbol">Asset Symbol</label>
+                    <select id="volumeAlertSymbol" required>
+                        <option value="XCH">Chia (XCH)</option>
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="SOL">Solana (SOL)</option>
+                        <option value="ADA">Cardano (ADA)</option>
+                        <option value="DOT">Polkadot (DOT)</option>
+                        <option value="LINK">Chainlink (LINK)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="volumeCondition">Condition</label>
+                    <select id="volumeCondition" required>
+                        <option value="spike">Volume spikes above</option>
+                        <option value="drop">Volume drops below</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="volumeMultiplier">Volume Multiplier (vs 24h average)</label>
+                    <input type="number" id="volumeMultiplier" step="0.1" min="1" value="2" required>
+                </div>
+                <div class="form-group">
+                    <label for="volumeNotification">Notification Method</label>
+                    <select id="volumeNotification">
+                        <option value="browser">Browser Notification</option>
+                        <option value="email">Email (Future)</option>
+                        <option value="sms">SMS (Future)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Volume Alert</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

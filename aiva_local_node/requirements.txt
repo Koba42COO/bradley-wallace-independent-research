@@ -1,0 +1,35 @@
+# Core ML Libraries
+torch>=2.1.0
+torchvision
+torchaudio
+transformers>=4.35.0
+accelerate>=0.24.0
+sentence-transformers>=2.2.0
+
+# Inference Server
+vllm>=0.3.0
+
+# Vector Database
+chromadb>=0.4.0
+
+# API Framework
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.0.0
+
+# Utilities
+numpy>=1.24.0
+pandas>=2.0.0
+python-dotenv>=1.0.0
+requests>=2.31.0
+aiofiles>=23.0.0
+python-multipart>=0.0.6
+
+# Development
+pytest>=7.4.0
+black>=23.0.0
+isort>=5.12.0
+flake8>=6.0.0
+
+# Optional: GPU monitoring
+pynvml>=11.5.0

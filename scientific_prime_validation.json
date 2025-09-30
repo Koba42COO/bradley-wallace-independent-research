@@ -1,0 +1,101 @@
+{
+  "validation_results": {
+    "harmonic_family": {
+      "mean_accuracy": 0.014075642238500783,
+      "std_accuracy": 0.0012764885634839265,
+      "mean_improvement": -0.03352353384726541,
+      "std_improvement": 0.001416571084734673,
+      "improvement_significant": "False",
+      "fold_accuracies": [
+        0.014590932777488274,
+        0.01251303441084463,
+        0.013034410844629822,
+        0.01616266944734098,
+        0.014077163712200209
+      ],
+      "fold_improvements": [
+        -0.03282959874934862,
+        -0.034659714256371585,
+        -0.035097771892331105,
+        -0.03114606093176136,
+        -0.033884523406514405
+      ]
+    },
+    "phi_scaling": {
+      "mean_accuracy": 0.04181004292185983,
+      "std_accuracy": 0.004317160999487685,
+      "mean_improvement": -0.005789133163906368,
+      "std_improvement": 0.003983998645478156,
+      "improvement_significant": "False",
+      "fold_accuracies": [
+        0.041688379364252216,
+        0.0370177267987487,
+        0.04953076120959333,
+        0.03858185610010428,
+        0.04223149113660062
+      ],
+      "fold_improvements": [
+        -0.005732152162584679,
+        -0.010155021868467513,
+        0.001398578472632403,
+        -0.008726874278998063,
+        -0.005730195982113988
+      ]
+    },
+    "hybrid": {
+      "mean_accuracy": 0.021061380052719063,
+      "std_accuracy": 0.0017002744500518958,
+      "mean_improvement": -0.026537796033047133,
+      "std_improvement": 0.0017857732538894666,
+      "improvement_significant": "False",
+      "fold_accuracies": [
+        0.02136529442417926,
+        0.018769551616266946,
+        0.020333680917622523,
+        0.023983315954118872,
+        0.020855057351407715
+      ],
+      "fold_improvements": [
+        -0.026055237102657634,
+        -0.028403197050949267,
+        -0.027798501819338402,
+        -0.023325414424983468,
+        -0.027106629767306895
+      ]
+    },
+    "baselines": {
+      "logarithmic": {
+        "mean_accuracy": 0.04796168711871461,
+        "std_accuracy": 0.0032316645878495195
+      },
+      "constant": {
+        "mean_accuracy": 0.024710526044097743,
+        "std_accuracy": 0.0027693389731599546
+      },
+      "linear": {
+        "mean_accuracy": 0.04358234242830463,
+        "std_accuracy": 0.0032717636933426806
+      },
+      "random": {
+        "mean_accuracy": 0.04139288743648527,
+        "std_accuracy": 0.004018769788111329
+      }
+    },
+    "assessment": {
+      "best_model": "phi_scaling",
+      "best_baseline": "logarithmic",
+      "best_model_accuracy": 0.04181004292185983,
+      "best_baseline_accuracy": 0.04796168711871461,
+      "real_improvement": "False",
+      "improvement_magnitude": -0.00615164419685478
+    }
+  },
+  "validation_time": 0.07455801963806152,
+  "timestamp": 1759239848.6204622,
+  "methodology": {
+    "cross_validation_folds": 5,
+    "test_metric": "accuracy_within_1_unit",
+    "data_split": "random_kfold",
+    "no_test_data_contamination": true
+  }
+}

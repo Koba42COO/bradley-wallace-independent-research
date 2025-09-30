@@ -1,0 +1,115 @@
+{
+  "timestamp": 1759152603.377326,
+  "benchmark_type": "GLUE_SuperGLUE",
+  "system": "chAIos Unique Intelligence Orchestrator",
+  "results": [
+    {
+      "task": "CoLA",
+      "baseline_score": 0.25,
+      "enhanced_score": 0.25,
+      "improvement_pct": 0.0,
+      "processing_time": 0.2061551809310913,
+      "systems_engaged": 2,
+      "confidence": 0.65
+    },
+    {
+      "task": "SST-2",
+      "baseline_score": 0.5,
+      "enhanced_score": 0.75,
+      "improvement_pct": 50.0,
+      "processing_time": 0.20716673135757446,
+      "systems_engaged": 2,
+      "confidence": 0.65
+    },
+    {
+      "task": "MRPC",
+      "baseline_score": 0.75,
+      "enhanced_score": 0.5,
+      "improvement_pct": -33.33333333333333,
+      "processing_time": 0.20940393209457397,
+      "systems_engaged": 2,
+      "confidence": 0.65
+    },
+    {
+      "task": "STS-B",
+      "baseline_score": 0.0,
+      "enhanced_score": 0.0,
+      "improvement_pct": 0,
+      "processing_time": 0.20794707536697388,
+      "systems_engaged": 3,
+      "confidence": 0.7
+    },
+    {
+      "task": "QQP",
+      "baseline_score": 0.5,
+      "enhanced_score": 0.25,
+      "improvement_pct": -50.0,
+      "processing_time": 0.2091444730758667,
+      "systems_engaged": 2,
+      "confidence": 0.65
+    },
+    {
+      "task": "MNLI",
+      "baseline_score": 0.0,
+      "enhanced_score": 0.0,
+      "improvement_pct": 0,
+      "processing_time": 0.21028226613998413,
+      "systems_engaged": 2,
+      "confidence": 0.65
+    },
+    {
+      "task": "QNLI",
+      "baseline_score": 0.5,
+      "enhanced_score": 0.0,
+      "improvement_pct": -100.0,
+      "processing_time": 0.209100604057312,
+      "systems_engaged": 2,
+      "confidence": 0.65
+    },
+    {
+      "task": "RTE",
+      "baseline_score": 0.5,
+      "enhanced_score": 0.25,
+      "improvement_pct": -50.0,
+      "processing_time": 0.20827370882034302,
+      "systems_engaged": 2,
+      "confidence": 0.65
+    },
+    {
+      "task": "WNLI",
+      "baseline_score": 0.25,
+      "enhanced_score": 1.0,
+      "improvement_pct": 300.0,
+      "processing_time": 0.20841723680496216,
+      "systems_engaged": 2,
+      "confidence": 0.65
+    },
+    {
+      "task": "BoolQ",
+      "baseline_score": 0.5,
+      "enhanced_score": 0.75,
+      "improvement_pct": 50.0,
+      "processing_time": 0.20751821994781494,
+      "systems_engaged": 2,
+      "confidence": 0.65
+    },
+    {
+      "task": "CB",
+      "baseline_score": 0.0,
+      "enhanced_score": 0.0,
+      "improvement_pct": 0,
+      "processing_time": 0.2082983652750651,
+      "systems_engaged": 3,
+      "confidence": 0.7
+    },
+    {
+      "task": "COPA",
+      "baseline_score": 0.0,
+      "enhanced_score": 0.0,
+      "improvement_pct": 0,
+      "processing_time": 0.21043086051940918,
+      "systems_engaged": 3,
+      "confidence": 0.7
+    }
+  ]
+}

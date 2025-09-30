@@ -1,0 +1,201 @@
+{
+  "name": "aiva-local-assistant",
+  "displayName": "AIVA Local Assistant",
+  "description": "AI assistant powered by your local AIVA node - full privacy and control",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "AI",
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onCommand:aiva.chat.open",
+    "onCommand:aiva.code.complete",
+    "onCommand:aiva.code.explain",
+    "onCommand:aiva.code.refactor",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:python",
+    "onLanguage:java",
+    "onLanguage:cpp",
+    "onLanguage:csharp",
+    "onLanguage:go",
+    "onLanguage:rust",
+    "onLanguage:php"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiva.chat.open",
+        "title": "AIVA: Open Chat",
+        "category": "AIVA"
+      },
+      {
+        "command": "aiva.code.complete",
+        "title": "AIVA: Complete Code",
+        "category": "AIVA"
+      },
+      {
+        "command": "aiva.code.explain",
+        "title": "AIVA: Explain Code",
+        "category": "AIVA"
+      },
+      {
+        "command": "aiva.code.refactor",
+        "title": "AIVA: Refactor Code",
+        "category": "AIVA"
+      },
+      {
+        "command": "aiva.code.optimize",
+        "title": "AIVA: Optimize Code",
+        "category": "AIVA"
+      },
+      {
+        "command": "aiva.code.debug",
+        "title": "AIVA: Debug Code",
+        "category": "AIVA"
+      },
+      {
+        "command": "aiva.project.analyze",
+        "title": "AIVA: Analyze Project",
+        "category": "AIVA"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "aiva.code.complete",
+        "key": "ctrl+shift+a",
+        "mac": "cmd+shift+a",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "aiva.chat.open",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "aiva.code.explain",
+          "when": "editorHasSelection",
+          "group": "aiva@1"
+        },
+        {
+          "command": "aiva.code.refactor",
+          "when": "editorHasSelection",
+          "group": "aiva@2"
+        },
+        {
+          "command": "aiva.code.debug",
+          "when": "editorHasSelection",
+          "group": "aiva@3"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "aiva.project.analyze",
+          "group": "aiva@1"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AIVA Local Assistant",
+      "properties": {
+        "aiva.server.url": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "URL of your local AIVA inference server"
+        },
+        "aiva.server.apiPath": {
+          "type": "string",
+          "default": "/v1/chat/completions",
+          "description": "API path for chat completions"
+        },
+        "aiva.model.name": {
+          "type": "string",
+          "default": "mixtral-8x7b-instruct",
+          "description": "Model name to use for inference"
+        },
+        "aiva.completion.maxTokens": {
+          "type": "number",
+          "default": 512,
+          "description": "Maximum tokens for code completion"
+        },
+        "aiva.chat.maxTokens": {
+          "type": "number",
+          "default": 1024,
+          "description": "Maximum tokens for chat responses"
+        },
+        "aiva.temperature": {
+          "type": "number",
+          "default": 0.7,
+          "minimum": 0.0,
+          "maximum": 2.0,
+          "description": "Sampling temperature (0.0 = deterministic, 2.0 = very random)"
+        },
+        "aiva.enableInlineSuggestions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic inline code suggestions"
+        },
+        "aiva.enableContextAwareness": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include project context in AI requests"
+        },
+        "aiva.logLevel": {
+          "type": "string",
+          "enum": ["error", "warn", "info", "debug"],
+          "default": "info",
+          "description": "Logging level for the extension"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4",
+    "@vscode/test-electron": "^2.2.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "vscode-languageclient": "^8.1.0"
+  },
+  "extensionDependencies": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/aiva-local-assistant"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/aiva-local-assistant/issues"
+  },
+  "homepage": "https://github.com/your-org/aiva-local-assistant#readme",
+  "keywords": [
+    "ai",
+    "assistant",
+    "local",
+    "privacy",
+    "coding",
+    "autocomplete",
+    "chat",
+    "llm",
+    "openai-compatible"
+  ]
+}

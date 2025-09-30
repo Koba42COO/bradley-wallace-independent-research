@@ -1,0 +1,18 @@
+{
+  "import_timestamp": "2025-09-29T23:01:21.262923",
+  "source_path": "/Users/coo-koba42/dev/Claude data dump -8-29-25",
+  "statistics": {
+    "users_imported": 1,
+    "projects_imported": 0,
+    "conversations_imported": 68,
+    "messages_imported": 0,
+    "errors": [
+      "Failed to import projects: 'content'"
+    ]
+  },
+  "categories": [],
+  "users_count": 1,
+  "projects_count": 0,
+  "conversations_count": 68,
+  "total_messages": 0
+}

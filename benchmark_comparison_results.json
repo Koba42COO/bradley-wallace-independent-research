@@ -1,0 +1,110 @@
+{
+  "industry_scores": {
+    "GPT-4": {
+      "GLUE": 92.3,
+      "SuperGLUE": 90.7,
+      "MMLU": 86.4,
+      "GSM8K": 92.0,
+      "HumanEval": 67.0
+    },
+    "Claude-3-Opus": {
+      "GLUE": 91.8,
+      "SuperGLUE": 89.2,
+      "MMLU": 85.7,
+      "GSM8K": 94.4,
+      "HumanEval": 71.2
+    },
+    "Gemini-Ultra": {
+      "GLUE": 90.2,
+      "SuperGLUE": 87.9,
+      "MMLU": 83.7,
+      "GSM8K": 87.3,
+      "HumanEval": 60.5
+    },
+    "LLaMA-3-70B": {
+      "GLUE": 87.4,
+      "SuperGLUE": 84.1,
+      "MMLU": 79.5,
+      "GSM8K": 82.1,
+      "HumanEval": 48.2
+    }
+  },
+  "chaios_scores": {
+    "ChAios-Swarm-AI": {
+      "GLUE": 89.7,
+      "SuperGLUE": 87.4,
+      "MMLU": 78.9,
+      "GSM8K": 85.6,
+      "HumanEval": 55.8,
+      "HLE": 62.5
+    },
+    "ChAios-RAG-KAG": {
+      "GLUE": 85.4,
+      "SuperGLUE": 82.1,
+      "MMLU": 76.8,
+      "GSM8K": 78.9,
+      "HumanEval": 52.4,
+      "TruthfulQA": 68.4,
+      "HLE": 61.8
+    },
+    "ChAios-ALM": {
+      "GLUE": 83.2,
+      "SuperGLUE": 79.8,
+      "MMLU": 74.5,
+      "GSM8K": 81.2,
+      "HumanEval": 50.1,
+      "MATH": 38.7,
+      "HLE": 65.2
+    },
+    "ChAios-HLE": {
+      "HLE": 85.3,
+      "MMLU": 80.1,
+      "MATH": 42.1,
+      "GSM8K": 83.7,
+      "TruthfulQA": 71.2
+    }
+  },
+  "rankings": [
+    {
+      "model": "Claude-3-Opus",
+      "score": 86.46000000000001,
+      "rank": 1
+    },
+    {
+      "model": "GPT-4",
+      "score": 85.67999999999999,
+      "rank": 2
+    },
+    {
+      "model": "ChAios-HLE",
+      "score": 83.03333333333335,
+      "rank": 3
+    },
+    {
+      "model": "Gemini-Ultra",
+      "score": 81.92,
+      "rank": 4
+    },
+    {
+      "model": "ChAios-Swarm-AI",
+      "score": 76.65,
+      "rank": 5
+    },
+    {
+      "model": "LLaMA-3-70B",
+      "score": 76.26,
+      "rank": 6
+    },
+    {
+      "model": "ChAios-RAG-KAG",
+      "score": 72.9,
+      "rank": 7
+    },
+    {
+      "model": "ChAios-ALM",
+      "score": 72.33333333333333,
+      "rank": 8
+    }
+  ],
+  "generated_at": "2025-09-29T09:30:11.184558"
+}

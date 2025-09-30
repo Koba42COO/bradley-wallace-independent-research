@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SquashPlot - Health & Harvesting Dashboard</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.1/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <style>
         :root {
             --primary-bg: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
@@ -62,6 +65,113 @@
         .header p {
             color: var(--text-secondary);
             font-size: 1.1rem;
+        }
+
+        /* Farm Size Analysis Section */
+        .farm-comparison {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 204, 255, 0.1));
+            border: 2px solid var(--accent-color);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            backdrop-filter: blur(20px);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .farm-type {
+            background: var(--secondary-bg);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .farm-type h3 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .metric {
+            background: var(--glass-bg);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .strategy-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .strategy-list li {
+            background: var(--glass-bg);
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            font-size: 0.95rem;
+        }
+
+        .cost-analysis {
+            background: var(--secondary-bg);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 20px;
+        }
+
+        .cost-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .cost-item {
+            text-align: center;
+            padding: 12px;
+            background: var(--glass-bg);
+            border-radius: 8px;
+        }
+
+        .cost-amount {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .cost-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
         }
 
         .dashboard-grid {
@@ -329,6 +439,262 @@
             <h1><i class="fas fa-heartbeat"></i> Health & Harvesting Dashboard</h1>
             <p>Monitor plot health, manage harvesters, and optimize your Chia farming operation</p>
         </div>
+
+        <!-- Chia Farm Size Analysis -->
+        <div class="farm-comparison">
+            <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 20px; background: linear-gradient(45deg, var(--accent-color), #00ccff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                🏗️ Small Farm vs Large Farm Analysis
+            </h2>
+            <p style="text-align: center; color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 30px;">
+                Comprehensive analysis of Chia plotting and farming strategies for different farm sizes
+            </p>
+
+            <div class="comparison-grid">
+                <!-- Small Farm Analysis -->
+                <div class="farm-type">
+                    <h3><i class="fas fa-home"></i> Small Farm (1-10TB)</h3>
+
+                    <div class="metric-grid">
+                        <div class="metric">
+                            <span class="metric-value">1-10</span>
+                            <div class="metric-label">TB Storage</div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">$500-2K</span>
+                            <div class="metric-label">Initial Investment</div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">4-8hrs</span>
+                            <div class="metric-label">Plot Time (k32)</div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">Low</span>
+                            <div class="metric-label">Maintenance</div>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--accent-color); margin: 20px 0 12px 0;">💡 Key Strategies:</h4>
+                    <ul class="strategy-list">
+                        <li><strong>Single Machine Setup:</strong> Use one powerful workstation for both plotting and farming</li>
+                        <li><strong>Sequential Plotting:</strong> Create plots one at a time to avoid resource conflicts</li>
+                        <li><strong>Cost Optimization:</strong> Focus on energy-efficient hardware and bulk storage purchases</li>
+                        <li><strong>Manual Monitoring:</strong> Regular health checks and plot integrity verification</li>
+                        <li><strong>Flexible Scaling:</strong> Easy to start small and expand gradually</li>
+                    </ul>
+
+                    <div class="cost-analysis">
+                        <h4 style="color: var(--accent-color); margin-bottom: 16px;">💰 Cost Breakdown:</h4>
+                        <div class="cost-breakdown">
+                            <div class="cost-item">
+                                <div class="cost-amount">$300</div>
+                                <div class="cost-label">HDD Storage (8TB)</div>
+                            </div>
+                            <div class="cost-item">
+                                <div class="cost-amount">$400</div>
+                                <div class="cost-label">Gaming PC/Plotter</div>
+                            </div>
+                            <div class="cost-item">
+                                <div class="cost-amount">$50/mo</div>
+                                <div class="cost-label">Electricity</div>
+                            </div>
+                            <div class="cost-item">
+                                <div class="cost-amount">$200</div>
+                                <div class="cost-label">Chia Software</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Large Farm Analysis -->
+                <div class="farm-type">
+                    <h3><i class="fas fa-building"></i> Large Farm (100TB+)</h3>
+
+                    <div class="metric-grid">
+                        <div class="metric">
+                            <span class="metric-value">100-1000+</span>
+                            <div class="metric-label">TB Storage</div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">$10K-100K+</span>
+                            <div class="metric-label">Initial Investment</div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">24/7</span>
+                            <div class="metric-label">Operation</div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">High</span>
+                            <div class="metric-label">Automation</div>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--accent-color); margin: 20px 0 12px 0;">🚀 Advanced Strategies:</h4>
+                    <ul class="strategy-list">
+                        <li><strong>Distributed Architecture:</strong> Dedicated plotters, farmers, and harvesters on separate machines</li>
+                        <li><strong>Parallel Plotting:</strong> Multiple plotters running simultaneously with job scheduling</li>
+                        <li><strong>Enterprise Storage:</strong> RAID arrays, NAS systems, and automated backup solutions</li>
+                        <li><strong>Monitoring Automation:</strong> 24/7 health monitoring with alerting and auto-recovery</li>
+                        <li><strong>Pool Integration:</strong> Join farming pools for consistent, predictable rewards</li>
+                        <li><strong>Power Optimization:</strong> Industrial UPS systems and smart power management</li>
+                    </ul>
+
+                    <div class="cost-analysis">
+                        <h4 style="color: var(--accent-color); margin-bottom: 16px;">💰 Cost Breakdown (per 100TB):</h4>
+                        <div class="cost-breakdown">
+                            <div class="cost-item">
+                                <div class="cost-amount">$5,000</div>
+                                <div class="cost-label">Enterprise Storage</div>
+                            </div>
+                            <div class="cost-item">
+                                <div class="cost-amount">$3,000</div>
+                                <div class="cost-label">Plotting Rigs (x3)</div>
+                            </div>
+                            <div class="cost-item">
+                                <div class="cost-amount">$200/mo</div>
+                                <div class="cost-label">Electricity</div>
+                            </div>
+                            <div class="cost-item">
+                                <div class="cost-amount">$500/mo</div>
+                                <div class="cost-label">Maintenance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Optimization Strategies Section -->
+            <div style="margin-top: 40px; background: var(--secondary-bg); border-radius: 16px; padding: 24px;">
+                <h3 style="color: var(--accent-color); margin-bottom: 20px;">🎯 Optimization Strategies by Farm Size</h3>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <div>
+                        <h4 style="color: var(--warning-color); margin-bottom: 12px;">🏠 Small Farm Optimization</h4>
+                        <ul style="color: var(--text-secondary); line-height: 1.6;">
+                            <li><strong>Hardware Selection:</strong> RTX 30-series GPU + Ryzen 5 CPU + fast NVMe SSD</li>
+                            <li><strong>Plotting Strategy:</strong> MadMax plotter with RAM disk for temp files</li>
+                            <li><strong>Storage Strategy:</strong> Start with external HDDs, upgrade to SSDs as farm grows</li>
+                            <li><strong>Energy Management:</strong> Schedule plotting during off-peak hours</li>
+                            <li><strong>Risk Management:</strong> Regular backups and plot integrity checks</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 style="color: var(--success-color); margin-bottom: 12px;">🏢 Large Farm Optimization</h4>
+                        <ul style="color: var(--text-secondary); line-height: 1.6;">
+                            <li><strong>Hardware Scaling:</strong> Dedicated GPU farm (RTX 40-series) + CPU plotters</li>
+                            <li><strong>Network Architecture:</strong> 10GbE networking with dedicated farming VLAN</li>
+                            <li><strong>Storage Architecture:</strong> ZFS RAID-Z with hot spares and snapshots</li>
+                            <li><strong>Automation:</strong> Ansible for configuration management and monitoring</li>
+                            <li><strong>Cost Efficiency:</strong> Bulk hardware purchases and custom firmware optimization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hardware Optimization Calculator -->
+        <div class="farm-comparison" style="margin-top: 30px;">
+            <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 20px; background: linear-gradient(45deg, var(--accent-color), #00ccff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                🖥️ Hardware Optimization Calculator
+            </h2>
+            <p style="text-align: center; color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 30px;">
+                Get personalized hardware recommendations based on your farm size and budget
+            </p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                <!-- Input Section -->
+                <div class="farm-type" style="background: var(--secondary-bg);">
+                    <h3 style="color: var(--accent-color); margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+                        <i class="fas fa-sliders-h"></i> Farm Configuration
+                    </h3>
+
+                    <div style="space-y: 16px;">
+                        <div style="margin-bottom: 16px;">
+                            <label style="display: block; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;">Target Farm Size (TB)</label>
+                            <input type="number" id="target-tb" value="100" min="1" max="10000" style="width: 100%; padding: 12px; background: var(--glass-bg); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary);">
+                        </div>
+
+                        <div style="margin-bottom: 16px;">
+                            <label style="display: block; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;">Budget ($USD)</label>
+                            <input type="number" id="budget-usd" value="10000" min="500" max="1000000" style="width: 100%; padding: 12px; background: var(--glass-bg); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary);">
+                        </div>
+
+                        <div style="margin-bottom: 16px;">
+                            <label style="display: block; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;">Electricity Cost ($/kWh)</label>
+                            <input type="number" id="electricity-cost" value="0.12" min="0.05" max="0.50" step="0.01" style="width: 100%; padding: 12px; background: var(--glass-bg); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary);">
+                        </div>
+
+                        <div style="margin-bottom: 16px;">
+                            <label style="display: block; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500;">Plot Size (k)</label>
+                            <select id="plot-size" style="width: 100%; padding: 12px; background: var(--glass-bg); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary);">
+                                <option value="32">k32 (101.4 GiB)</option>
+                                <option value="33">k33 (208.8 GiB)</option>
+                                <option value="34">k34 (429.8 GiB)</option>
+                            </select>
+                        </div>
+
+                        <button onclick="calculateOptimization()" style="width: 100%; padding: 14px; background: linear-gradient(45deg, var(--accent-color), #00ccff); border: none; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; transition: transform 0.2s;">
+                            <i class="fas fa-calculator mr-2"></i>Calculate Optimization
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div class="farm-type" style="background: var(--secondary-bg);">
+                    <h3 style="color: var(--accent-color); margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+                        <i class="fas fa-chart-pie"></i> Optimization Results
+                    </h3>
+
+                    <div id="optimization-results">
+                        <div style="text-align: center; color: var(--text-secondary); padding: 40px;">
+                            <i class="fas fa-calculator fa-3x" style="margin-bottom: 20px; opacity: 0.5;"></i>
+                            <p>Enter your farm configuration and click "Calculate Optimization" to see personalized recommendations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Energy & Cost Analysis -->
+            <div style="background: var(--secondary-bg); border-radius: 16px; padding: 24px; margin-top: 20px;">
+                <h3 style="color: var(--accent-color); margin-bottom: 20px;">⚡ Energy & Cost Analysis</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: var(--glass-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--warning-color); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-bolt"></i> Power Consumption
+                        </h4>
+                        <div id="power-analysis" style="color: var(--text-secondary);">
+                            <p>Plotting: <span id="plotting-power">--</span> W</p>
+                            <p>Farming: <span id="farming-power">--</span> W</p>
+                            <p>Monthly Cost: <span id="monthly-power-cost">--</span></p>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--glass-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--success-color); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-coins"></i> ROI Projection
+                        </h4>
+                        <div id="roi-analysis" style="color: var(--text-secondary);">
+                            <p>Daily Earnings: <span id="daily-earnings">--</span></p>
+                            <p>Monthly Profit: <span id="monthly-profit">--</span></p>
+                            <p>Breakeven: <span id="breakeven-time">--</span></p>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--glass-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--danger-color); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-shield-alt"></i> Risk Assessment
+                        </h4>
+                        <div id="risk-analysis" style="color: var(--text-secondary);">
+                            <p>Hardware Redundancy: <span id="hardware-redundancy">--</span></p>
+                            <p>Data Loss Risk: <span id="data-loss-risk">--</span></p>
+                            <p>Recovery Time: <span id="recovery-time">--</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="dashboard-grid">
             <!-- Plot Health Overview -->
@@ -956,6 +1322,156 @@
         function exportPlotReport() {
             alert('📊 Generating plot health report...\n\nThis would export a detailed PDF/JSON report of your plot analysis.');
         }
+
+        // Hardware Optimization Calculator
+        function calculateOptimization() {
+            const targetTB = parseFloat(document.getElementById('target-tb').value);
+            const budgetUSD = parseFloat(document.getElementById('budget-usd').value);
+            const electricityCost = parseFloat(document.getElementById('electricity-cost').value);
+            const plotSizeK = parseInt(document.getElementById('plot-size').value);
+
+            // Plot size in GiB
+            const plotSizesGiB = { 32: 101.4, 33: 208.8, 34: 429.8 };
+            const plotSizeGiB = plotSizesGiB[plotSizeK];
+
+            // Calculate number of plots needed
+            const plotsNeeded = Math.ceil((targetTB * 1000) / plotSizeGiB);
+
+            // Hardware recommendations based on research
+            let hardwareRec = '';
+            let totalCost = 0;
+            let plottingPower = 0;
+            let farmingPower = 0;
+
+            if (targetTB <= 10) { // Small Farm
+                hardwareRec = `
+                    <h4 style="color: var(--success-color); margin-bottom: 16px;">🏠 Small Farm Setup (1-10TB)</h4>
+                    <div style="background: var(--glass-bg); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                        <strong>Recommended Hardware:</strong>
+                        <ul style="margin-top: 8px; color: var(--text-secondary);">
+                            <li>• CPU: Ryzen 5 5600X ($150)</li>
+                            <li>• GPU: RTX 3060 ($400)</li>
+                            <li>• RAM: 64GB DDR4 ($200)</li>
+                            <li>• Storage: 2TB NVMe SSD + HDDs ($300)</li>
+                            <li>• PSU: 750W 80+ Gold ($100)</li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--glass-bg); padding: 16px; border-radius: 8px;">
+                        <strong>Strategy:</strong> Single workstation for both plotting and farming
+                        <br><strong>Plotting:</strong> MadMax (sequential, 4-8 hours per plot)
+                        <br><strong>Parallel Plots:</strong> 1-2 simultaneous
+                    </div>
+                `;
+                totalCost = 1150;
+                plottingPower = 350;
+                farmingPower = 150;
+            } else if (targetTB <= 100) { // Medium Farm
+                hardwareRec = `
+                    <h4 style="color: var(--warning-color); margin-bottom: 16px;">🏢 Medium Farm Setup (10-100TB)</h4>
+                    <div style="background: var(--glass-bg); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                        <strong>Recommended Hardware:</strong>
+                        <ul style="margin-top: 8px; color: var(--text-secondary);">
+                            <li>• Plotter: RTX 3070 Ti ($600)</li>
+                            <li>• Farmer: Ryzen 7 5800X ($300)</li>
+                            <li>• RAM: 128GB DDR4 ($400)</li>
+                            <li>• Storage: 4TB NVMe SSD + HDD array ($600)</li>
+                            <li>• PSU: 1000W 80+ Gold ($150)</li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--glass-bg); padding: 16px; border-radius: 8px;">
+                        <strong>Strategy:</strong> Dedicated plotter/farmer setup
+                        <br><strong>Plotting:</strong> Bladebit (GPU-accelerated)
+                        <br><strong>Parallel Plots:</strong> 3-5 simultaneous
+                    </div>
+                `;
+                totalCost = 2050;
+                plottingPower = 450;
+                farmingPower = 200;
+            } else { // Large Farm
+                hardwareRec = `
+                    <h4 style="color: var(--danger-color); margin-bottom: 16px;">🏗️ Large Farm Setup (100TB+)</h4>
+                    <div style="background: var(--glass-bg); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                        <strong>Recommended Hardware (per 100TB):</strong>
+                        <ul style="margin-top: 8px; color: var(--text-secondary);">
+                            <li>• Plotters: 4x RTX 40-series GPUs ($4,000)</li>
+                            <li>• Farmer: Threadripper 3990X ($5,500)</li>
+                            <li>• RAM: 256GB DDR4 ($800)</li>
+                            <li>• Storage: Enterprise SSD array ($5,000)</li>
+                            <li>• Network: 10GbE infrastructure ($500)</li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--glass-bg); padding: 16px; border-radius: 8px;">
+                        <strong>Strategy:</strong> Distributed architecture with job scheduling
+                        <br><strong>Plotting:</strong> 24/7 parallel plotting
+                        <br><strong>Parallel Plots:</strong> 10-50+ simultaneous
+                        <br><strong>Automation:</strong> Required for efficiency
+                    </div>
+                `;
+                totalCost = Math.ceil(targetTB / 100) * 15500;
+                plottingPower = Math.ceil(targetTB / 100) * 800;
+                farmingPower = Math.ceil(targetTB / 100) * 400;
+            }
+
+            // Calculate ROI projections (rough estimates)
+            const dailyEarnings = (plotsNeeded * 0.00000001 * 17280); // Approximate daily XCH earnings
+            const monthlyEarnings = dailyEarnings * 30;
+            const monthlyPowerCost = ((plottingPower + farmingPower) * 24 * electricityCost) / 1000 * 30;
+            const monthlyProfit = monthlyEarnings - monthlyPowerCost - (totalCost * 0.02); // 2% monthly depreciation
+            const breakevenMonths = Math.ceil(totalCost / monthlyProfit);
+
+            // Update results
+            document.getElementById('optimization-results').innerHTML = `
+                <div style="background: var(--glass-bg); padding: 20px; border-radius: 12px; margin-bottom: 16px;">
+                    <h4 style="color: var(--accent-color); margin-bottom: 16px;">📊 Farm Analysis Summary</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 20px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">${plotsNeeded.toLocaleString()}</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">Plots Needed</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">${plotSizeK}</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">Plot Size (k)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">${(plotSizeGiB * plotsNeeded / 1000).toFixed(1)}TB</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">Total Space</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">${totalCost.toLocaleString()}</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">Est. Cost ($)</div>
+                        </div>
+                    </div>
+                    ${hardwareRec}
+                </div>
+            `;
+
+            // Update power analysis
+            document.getElementById('plotting-power').textContent = `${plottingPower}W`;
+            document.getElementById('farming-power').textContent = `${farmingPower}W`;
+            document.getElementById('monthly-power-cost').textContent = `$${monthlyPowerCost.toFixed(2)}`;
+
+            // Update ROI analysis
+            document.getElementById('daily-earnings').textContent = `$${dailyEarnings.toFixed(4)}`;
+            document.getElementById('monthly-profit').textContent = `$${monthlyProfit.toFixed(2)}`;
+            document.getElementById('breakeven-time').textContent = `${breakevenMonths} months`;
+
+            // Update risk assessment
+            const redundancy = targetTB > 100 ? 'High (RAID-Z + Hot Spare)' : targetTB > 10 ? 'Medium (RAID-1)' : 'Low (Basic Backup)';
+            const dataLossRisk = targetTB > 100 ? 'Very Low' : targetTB > 10 ? 'Low' : 'Medium';
+            const recoveryTime = targetTB > 100 ? '1-2 hours' : targetTB > 10 ? '4-8 hours' : '1-2 days';
+
+            document.getElementById('hardware-redundancy').textContent = redundancy;
+            document.getElementById('data-loss-risk').textContent = dataLossRisk;
+            document.getElementById('recovery-time').textContent = recoveryTime;
+
+            // Add success animation
+            const button = document.querySelector('button[onclick="calculateOptimization()"]');
+            button.style.transform = 'scale(1.05)';
+            setTimeout(() => button.style.transform = 'scale(1)', 200);
+        }
+
+        // Make function globally available
+        window.calculateOptimization = calculateOptimization;
     </script>
 </body>
 </html>

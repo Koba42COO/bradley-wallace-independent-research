@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Self-Hosted P2P Client</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .status.connected {
+            background: rgba(72, 187, 120, 0.2);
+            border: 1px solid #48bb78;
+        }
+
+        .status.disconnected {
+            background: rgba(229, 62, 62, 0.2);
+            border: 1px solid #e53e3e;
+        }
+
+        .status.connecting {
+            background: rgba(237, 137, 54, 0.2);
+            border: 1px solid #ed8936;
+        }
+
+        .form-group {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .message-list {
+            max-height: 300px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .message {
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .message.sent {
+            background: rgba(72, 187, 120, 0.2);
+            text-align: right;
+        }
+
+        .message.received {
+            background: rgba(66, 153, 225, 0.2);
+        }
+
+        .peer-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .peer {
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .peer.connected {
+            background: rgba(72, 187, 120, 0.3);
+        }
+
+        .stats {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 WebRTC Self-Hosted P2P</h1>
+
+        <div class="info">
+            <h3>🎯 Self-Hosted WebRTC Demo</h3>
+            <p>This client connects to your self-hosted STUN/TURN and signaling servers for <span class="highlight">true peer-to-peer communication</span> without any external dependencies.</p>
+            <p><strong>No external relays, no third-party servers - just direct peer connections!</strong></p>
+        </div>
+
+        <div id="status" class="status disconnected">Disconnected</div>
+
+        <div class="form-group">
+            <label for="roomId">Room ID:</label>
+            <input type="text" id="roomId" placeholder="Enter room ID" value="tangtalk_demo">
+        </div>
+
+        <div class="form-group">
+            <label for="signalingUrl">Signaling Server URL:</label>
+            <input type="text" id="signalingUrl" placeholder="ws://localhost:8080/ws" value="ws://localhost:8080/ws">
+        </div>
+
+        <div class="form-group">
+            <label for="stunServer">STUN Server:</label>
+            <input type="text" id="stunServer" placeholder="stun:localhost:3478" value="stun:localhost:3478">
+        </div>
+
+        <div class="form-group">
+            <label for="turnServer">TURN Server:</label>
+            <input type="text" id="turnServer" placeholder="turn:localhost:3479" value="turn:localhost:3479">
+        </div>
+
+        <button id="joinBtn" onclick="joinRoom()">Join Room</button>
+        <button id="leaveBtn" onclick="leaveRoom()" disabled>Leave Room</button>
+
+        <div class="form-group">
+            <label for="messageInput">Message:</label>
+            <input type="text" id="messageInput" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Send Message</button>
+        </div>
+
+        <div class="peer-list" id="peerList"></div>
+
+        <div class="message-list" id="messageList"></div>
+
+        <div class="stats" id="stats"></div>
+    </div>
+
+    <script>
+        class WebRTCClient {
+            constructor() {
+                this.peerId = 'web_client_' + Math.random().toString(36).substr(2, 9);
+                this.roomId = null;
+                this.ws = null;
+                this.peers = new Map();
+                this.dataChannels = new Map();
+                this.isConnected = false;
+
+                // DOM elements
+                this.statusEl = document.getElementById('status');
+                this.peerListEl = document.getElementById('peerList');
+                this.messageListEl = document.getElementById('messageList');
+                this.statsEl = document.getElementById('stats');
+
+                this.updateStatus('Disconnected');
+                this.updateStats();
+            }
+
+            updateStatus(message, type = 'disconnected') {
+                this.statusEl.textContent = message;
+                this.statusEl.className = `status ${type}`;
+            }
+
+            updateStats() {
+                const stats = {
+                    peerId: this.peerId,
+                    roomId: this.roomId,
+                    connectedPeers: Array.from(this.peers.keys()).length,
+                    dataChannels: Array.from(this.dataChannels.keys()).length,
+                    websocketConnected: this.ws && this.ws.readyState === WebSocket.OPEN
+                };
+                this.statsEl.textContent = JSON.stringify(stats, null, 2);
+            }
+
+            updatePeerList() {
+                this.peerListEl.innerHTML = '';
+                for (const [peerId, peer] of this.peers) {
+                    const peerEl = document.createElement('div');
+                    peerEl.className = `peer ${peer.connected ? 'connected' : ''}`;
+                    peerEl.textContent = peerId;
+                    this.peerListEl.appendChild(peerEl);
+                }
+                this.updateStats();
+            }
+
+            addMessage(message, type = 'received') {
+                const messageEl = document.createElement('div');
+                messageEl.className = `message ${type}`;
+                messageEl.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+                this.messageListEl.appendChild(messageEl);
+                this.messageListEl.scrollTop = this.messageListEl.scrollHeight;
+            }
+
+            async joinRoom(roomId, signalingUrl, stunServer, turnServer) {
+                this.roomId = roomId;
+
+                try {
+                    this.updateStatus('Connecting...', 'connecting');
+
+                    // Connect to signaling server
+                    this.ws = new WebSocket(`${signalingUrl}/${this.peerId}`);
+
+                    this.ws.onopen = () => {
+                        this.addMessage('Connected to signaling server');
+                        // Send join message
+                        this.ws.send(JSON.stringify({
+                            type: 'join',
+                            room_id: roomId
+                        }));
+                    };
+
+                    this.ws.onmessage = (event) => {
+                        this.handleSignalingMessage(JSON.parse(event.data));
+                    };
+
+                    this.ws.onclose = () => {
+                        this.updateStatus('Disconnected', 'disconnected');
+                        this.isConnected = false;
+                        this.addMessage('Disconnected from signaling server');
+                    };
+
+                    this.ws.onerror = (error) => {
+                        console.error('WebSocket error:', error);
+                        this.updateStatus('Connection failed', 'disconnected');
+                    };
+
+                    // Configure ICE servers
+                    this.iceServers = [
+                        { urls: stunServer },
+                        {
+                            urls: turnServer,
+                            username: 'peer_default',
+                            credential: 'default_password_2024'
+                        }
+                    ];
+
+                } catch (error) {
+                    console.error('Join room error:', error);
+                    this.updateStatus('Failed to join room', 'disconnected');
+                }
+            }
+
+            handleSignalingMessage(message) {
+                const messageType = message.type;
+
+                switch (messageType) {
+                    case 'joined':
+                        this.isConnected = true;
+                        this.updateStatus(`Connected to room: ${this.roomId}`, 'connected');
+                        this.addMessage(`Joined room ${this.roomId}`);
+                        document.getElementById('joinBtn').disabled = true;
+                        document.getElementById('leaveBtn').disabled = false;
+                        break;
+
+                    case 'error':
+                        this.updateStatus(message.message, 'disconnected');
+                        this.addMessage(`Error: ${message.message}`);
+                        break;
+
+                    case 'room_state':
+                        // Handle existing peers
+                        message.peers.forEach(peer => {
+                            this.peers.set(peer.peer_id, { connected: false, pc: null });
+                        });
+                        this.updatePeerList();
+                        break;
+
+                    case 'peer_joined':
+                        this.peers.set(message.peer_id, { connected: false, pc: null });
+                        this.updatePeerList();
+                        this.addMessage(`Peer joined: ${message.peer_id}`);
+                        break;
+
+                    case 'peer_left':
+                        this.peers.delete(message.peer_id);
+                        this.updatePeerList();
+                        this.addMessage(`Peer left: ${message.peer_id}`);
+                        break;
+
+                    case 'offer':
+                        this.handleOffer(message.from_peer, message.data);
+                        break;
+
+                    case 'answer':
+                        this.handleAnswer(message.from_peer, message.data);
+                        break;
+
+                    case 'ice_candidate':
+                        this.handleIceCandidate(message.from_peer, message.data);
+                        break;
+                }
+            }
+
+            async createPeerConnection(peerId) {
+                const pc = new RTCPeerConnection({ iceServers: this.iceServers });
+
+                // Create data channel
+                const dataChannel = pc.createDataChannel('chat');
+                this.setupDataChannel(peerId, dataChannel);
+
+                pc.onicecandidate = (event) => {
+                    if (event.candidate) {
+                        this.sendSignalingMessage({
+                            type: 'ice_candidate',
+                            to_peer: peerId,
+                            data: {
+                                candidate: event.candidate.candidate,
+                                sdpMid: event.candidate.sdpMid,
+                                sdpMLineIndex: event.candidate.sdpMLineIndex
+                            }
+                        });
+                    }
+                };
+
+                pc.onconnectionstatechange = () => {
+                    console.log(`Connection state with ${peerId}:`, pc.connectionState);
+                    if (pc.connectionState === 'connected') {
+                        const peer = this.peers.get(peerId);
+                        if (peer) {
+                            peer.connected = true;
+                            this.updatePeerList();
+                            this.addMessage(`Connected to peer: ${peerId}`);
+                        }
+                    }
+                };
+
+                pc.ondatachannel = (event) => {
+                    this.setupDataChannel(peerId, event.channel);
+                };
+
+                this.peers.set(peerId, { connected: false, pc });
+                return pc;
+            }
+
+            setupDataChannel(peerId, dataChannel) {
+                dataChannel.onopen = () => {
+                    console.log(`Data channel opened with ${peerId}`);
+                    this.dataChannels.set(peerId, dataChannel);
+                };
+
+                dataChannel.onmessage = (event) => {
+                    this.addMessage(`${peerId}: ${event.data}`, 'received');
+                };
+
+                dataChannel.onclose = () => {
+                    console.log(`Data channel closed with ${peerId}`);
+                    this.dataChannels.delete(peerId);
+                };
+            }
+
+            async handleOffer(fromPeer, offerData) {
+                const pc = await this.createPeerConnection(fromPeer);
+                await pc.setRemoteDescription(new RTCSessionDescription(offerData));
+
+                const answer = await pc.createAnswer();
+                await pc.setLocalDescription(answer);
+
+                this.sendSignalingMessage({
+                    type: 'answer',
+                    to_peer: fromPeer,
+                    data: {
+                        sdp: answer.sdp,
+                        type: answer.type
+                    }
+                });
+            }
+
+            async handleAnswer(fromPeer, answerData) {
+                const peer = this.peers.get(fromPeer);
+                if (peer && peer.pc) {
+                    await peer.pc.setRemoteDescription(new RTCSessionDescription(answerData));
+                }
+            }
+
+            async handleIceCandidate(fromPeer, candidateData) {
+                const peer = this.peers.get(fromPeer);
+                if (peer && peer.pc) {
+                    await peer.pc.addIceCandidate(new RTCIceCandidate(candidateData));
+                }
+            }
+
+            sendSignalingMessage(message) {
+                if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+                    this.ws.send(JSON.stringify(message));
+                }
+            }
+
+            async sendMessageToPeer(peerId, message) {
+                const dataChannel = this.dataChannels.get(peerId);
+                if (dataChannel && dataChannel.readyState === 'open') {
+                    dataChannel.send(message);
+                    this.addMessage(`You: ${message}`, 'sent');
+                } else {
+                    this.addMessage(`Cannot send to ${peerId}: data channel not ready`);
+                }
+            }
+
+            async broadcastMessage(message) {
+                for (const [peerId] of this.peers) {
+                    await this.sendMessageToPeer(peerId, message);
+                }
+            }
+
+            async leaveRoom() {
+                // Close all peer connections
+                for (const [peerId, peer] of this.peers) {
+                    if (peer.pc) {
+                        peer.pc.close();
+                    }
+                }
+
+                // Close data channels
+                for (const dataChannel of this.dataChannels.values()) {
+                    dataChannel.close();
+                }
+
+                // Close WebSocket
+                if (this.ws) {
+                    this.ws.close();
+                }
+
+                this.peers.clear();
+                this.dataChannels.clear();
+                this.isConnected = false;
+                this.roomId = null;
+
+                document.getElementById('joinBtn').disabled = false;
+                document.getElementById('leaveBtn').disabled = true;
+
+                this.updatePeerList();
+                this.updateStatus('Disconnected', 'disconnected');
+                this.addMessage('Left room');
+            }
+        }
+
+        // Global client instance
+        let client = null;
+
+        function joinRoom() {
+            const roomId = document.getElementById('roomId').value;
+            const signalingUrl = document.getElementById('signalingUrl').value;
+            const stunServer = document.getElementById('stunServer').value;
+            const turnServer = document.getElementById('turnServer').value;
+
+            if (!roomId || !signalingUrl) {
+                alert('Please enter room ID and signaling server URL');
+                return;
+            }
+
+            client = new WebRTCClient();
+            client.joinRoom(roomId, signalingUrl, stunServer, turnServer);
+        }
+
+        function leaveRoom() {
+            if (client) {
+                client.leaveRoom();
+            }
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+
+            if (!message) return;
+
+            if (client && client.isConnected) {
+                // Send to all connected peers
+                client.broadcastMessage(message);
+                messageInput.value = '';
+            } else {
+                alert('Not connected to a room');
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('WebRTC Self-Hosted P2P Client loaded');
+        });
+    </script>
+</body>
+</html>

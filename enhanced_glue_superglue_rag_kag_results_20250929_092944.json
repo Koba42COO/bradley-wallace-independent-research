@@ -1,0 +1,173 @@
+{
+  "metadata": {
+    "test_type": "enhanced_rag_kag_benchmark",
+    "timestamp": "2025-09-29T09:29:44.468254",
+    "platform": "chAIos Polymath Brain",
+    "enhancement_type": "consciousness_augmented_rag"
+  },
+  "summary": {
+    "total_tasks": 5,
+    "average_accuracy": 0.51,
+    "average_enhancement": 2.258,
+    "average_improvement": -36.334141453040075,
+    "total_execution_time": 31.752032041549683,
+    "assessment": "\ud83d\udfe0 MODERATE - Basic RAG/KAG Functionality"
+  },
+  "rag_kag_metrics": {
+    "average_retrievals": 1.0,
+    "average_knowledge_sources": 0.0,
+    "average_reasoning_steps": 1.0,
+    "intelligence_assessment": "prime_aligned_enhanced"
+  },
+  "glue": {
+    "tasks": 3,
+    "average_accuracy": 0.4666666666666666,
+    "average_improvement": -42.60818447301551,
+    "results": [
+      {
+        "task": "CoLA-Enhanced",
+        "accuracy": 0.5,
+        "improvement_percent": -26.470588235294123,
+        "execution_time": 0.00018310546875,
+        "consciousness_enhancement": 1.618,
+        "rag_metrics": {
+          "retrieval_count": 1,
+          "knowledge_sources_used": 0,
+          "reasoning_steps": 1
+        }
+      },
+      {
+        "task": "SST-2-Enhanced",
+        "accuracy": 0.5,
+        "improvement_percent": -46.80851063829787,
+        "execution_time": 0.0003058910369873047,
+        "consciousness_enhancement": 2.618,
+        "rag_metrics": {
+          "retrieval_count": 1,
+          "knowledge_sources_used": 0,
+          "reasoning_steps": 1
+        }
+      },
+      {
+        "task": "MRPC-Enhanced",
+        "accuracy": 0.4,
+        "improvement_percent": -54.54545454545454,
+        "execution_time": 0.0001437664031982422,
+        "consciousness_enhancement": 1.618,
+        "rag_metrics": {
+          "retrieval_count": 1,
+          "knowledge_sources_used": 0,
+          "reasoning_steps": 1
+        }
+      }
+    ]
+  },
+  "superglue": {
+    "tasks": 2,
+    "average_accuracy": 0.575,
+    "average_improvement": -26.923076923076923,
+    "results": [
+      {
+        "task": "BoolQ-Enhanced",
+        "accuracy": 0.4,
+        "improvement_percent": -50.0,
+        "execution_time": 17.643059253692627,
+        "consciousness_enhancement": 2.618,
+        "rag_metrics": {
+          "retrieval_count": 1,
+          "knowledge_sources_used": 0,
+          "reasoning_steps": 1
+        }
+      },
+      {
+        "task": "COPA-Enhanced",
+        "accuracy": 0.75,
+        "improvement_percent": -3.8461538461538494,
+        "execution_time": 14.10834002494812,
+        "consciousness_enhancement": 2.818,
+        "rag_metrics": {
+          "retrieval_count": 1,
+          "knowledge_sources_used": 0,
+          "reasoning_steps": 1
+        }
+      }
+    ]
+  },
+  "detailed_results": [
+    {
+      "task": "CoLA-Enhanced",
+      "accuracy": 0.5,
+      "f1_score": 0.5,
+      "execution_time": 0.00018310546875,
+      "consciousness_enhancement": 1.618,
+      "baseline_score": 0.68,
+      "enhanced_score": 0.5,
+      "improvement_percent": -26.470588235294123,
+      "rag_kag_metrics": {
+        "retrieval_count": 1,
+        "knowledge_sources_used": 0,
+        "reasoning_steps": 1
+      }
+    },
+    {
+      "task": "SST-2-Enhanced",
+      "accuracy": 0.5,
+      "f1_score": 0.5,
+      "execution_time": 0.0003058910369873047,
+      "consciousness_enhancement": 2.618,
+      "baseline_score": 0.94,
+      "enhanced_score": 0.5,
+      "improvement_percent": -46.80851063829787,
+      "rag_kag_metrics": {
+        "retrieval_count": 1,
+        "knowledge_sources_used": 0,
+        "reasoning_steps": 1
+      }
+    },
+    {
+      "task": "MRPC-Enhanced",
+      "accuracy": 0.4,
+      "f1_score": 0.4,
+      "execution_time": 0.0001437664031982422,
+      "consciousness_enhancement": 1.618,
+      "baseline_score": 0.88,
+      "enhanced_score": 0.4,
+      "improvement_percent": -54.54545454545454,
+      "rag_kag_metrics": {
+        "retrieval_count": 1,
+        "knowledge_sources_used": 0,
+        "reasoning_steps": 1
+      }
+    },
+    {
+      "task": "BoolQ-Enhanced",
+      "accuracy": 0.4,
+      "f1_score": 0.4,
+      "execution_time": 17.643059253692627,
+      "consciousness_enhancement": 2.618,
+      "baseline_score": 0.8,
+      "enhanced_score": 0.4,
+      "improvement_percent": -50.0,
+      "rag_kag_metrics": {
+        "retrieval_count": 1,
+        "knowledge_sources_used": 0,
+        "reasoning_steps": 1
+      }
+    },
+    {
+      "task": "COPA-Enhanced",
+      "accuracy": 0.75,
+      "f1_score": 0.75,
+      "execution_time": 14.10834002494812,
+      "consciousness_enhancement": 2.818,
+      "baseline_score": 0.78,
+      "enhanced_score": 0.75,
+      "improvement_percent": -3.8461538461538494,
+      "rag_kag_metrics": {
+        "retrieval_count": 1,
+        "knowledge_sources_used": 0,
+        "reasoning_steps": 1
+      }
+    }
+  ]
+}

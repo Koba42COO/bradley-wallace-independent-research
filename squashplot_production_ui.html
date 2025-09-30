@@ -1528,42 +1528,42 @@
                 </div>
 
                 <div class="cli-commands-grid">
-                    <button class="cli-command-card" onclick="executeCLICommand('python main.py --web')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'main_web')">
                         <div class="cli-command-title">Start Web Interface</div>
                         <div class="cli-command-desc">Launch the SquashPlot web dashboard</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python main.py --cli')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'main_cli')">
                         <div class="cli-command-title">Start CLI Mode</div>
                         <div class="cli-command-desc">Run SquashPlot in command-line mode</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python main.py --demo')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'main_demo')">
                         <div class="cli-command-title">Run Demo</div>
                         <div class="cli-command-desc">Execute interactive demonstration</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python check_server.py')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'check_server')">
                         <div class="cli-command-title">Check Server Status</div>
-                        <div class="cli-command-desc">Andy's server monitoring utility</div>
+                        <div class="cli-command-desc">Server monitoring utility</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python squashplot.py -t /tmp/plot1 -d /plots -f YOUR_FARMER_KEY -p YOUR_POOL_KEY')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'plot_basic')">
                         <div class="cli-command-title">Basic Plotting</div>
                         <div class="cli-command-desc">Mad Max style Chia plotting</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python squashplot.py -t /tmp/plot1 -2 /tmp/plot2 -d /plots -f YOUR_FARMER_KEY -p YOUR_POOL_KEY -n 2')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'plot_dual')">
                         <div class="cli-command-title">Dual Temp Directories</div>
                         <div class="cli-command-desc">Advanced plotting with multiple temp drives</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python squashplot.py --compress 3 -t /tmp/plot1 -d /plots -f YOUR_FARMER_KEY -p YOUR_POOL_KEY')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'plot_compress')">
                         <div class="cli-command-title">Plotting + Compression</div>
                         <div class="cli-command-desc">Create compressed plots directly</div>
                     </button>
 
-                    <button class="cli-command-card" onclick="executeCLICommand('python squashplot.py --plotter drplotter --tmp /tmp --final /plots --farmer-key YOUR_KEY')">
+                    <button class="cli-command-card" onclick="executeCLICommand('', 'plot_drplotter')">
                         <div class="cli-command-title">Dr. Plotter Mode</div>
                         <div class="cli-command-desc">Advanced plotting with Dr. Plotter optimization</div>
                     </button>
@@ -1929,7 +1929,7 @@
                             <select id="default-plotter">
                                 <option value="madmax">Mad Max</option>
                                 <option value="bladebit">BladeBit</option>
-                                <option value="drplotter" selected>Dr. Plotter (AI)</option>
+                                <option value="drplotter" selected>Dr. Plotter</option>
                             </select>
                         </div>
 
@@ -2018,7 +2018,7 @@
                         <div class="card-icon" style="background: linear-gradient(135deg, var(--accent-color), var(--warning-color));">
                             🧑‍🔬
                         </div>
-                        <h3 class="card-title">Dr. Plotter AI Settings</h3>
+                        <h3 class="card-title">Dr. Plotter Settings</h3>
                     </div>
 
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
@@ -2030,7 +2030,7 @@
                                 <option value="aggressive">Aggressive (Max Performance)</option>
                             </select>
                             <small style="display: block; margin-top: 5px; color: var(--text-secondary); font-size: 0.8rem;">
-                                Controls Dr. Plotter's AI resource allocation: Conservative prioritizes stability, Aggressive maximizes performance.
+                                Controls Dr. Plotter's resource allocation: Conservative prioritizes stability, Aggressive maximizes performance.
                             </small>
                         </div>
 
@@ -3022,7 +3022,7 @@
         }
 
         // Plotter selection with Dr. Plotter
-        function selectPlotter(plotter) {
+        async function selectPlotter(plotter) {
             document.querySelectorAll('.plotter-option').forEach(option => {
                 option.classList.remove('selected');
             });
@@ -3034,7 +3034,70 @@
             const drBtn = document.getElementById('dr-btn');
             drBtn.disabled = !drPlotterEnabled;
 
-            addRecentActivity(`Selected ${plotter} plotter`);
+            // Fetch and apply plotter-specific settings
+            try {
+                const response = await fetch(`/api/plotter-settings/${plotter}`);
+                const data = await response.json();
+
+                if (data.settings) {
+                    applyPlotterSettings(data.settings);
+                    addRecentActivity(`Selected ${data.settings.name} - Applied optimized settings`);
+                } else {
+                    addRecentActivity(`Selected ${plotter} plotter`);
+                }
+            } catch (error) {
+                console.error('Error fetching plotter settings:', error);
+                addRecentActivity(`Selected ${plotter} plotter`);
+            }
+        }
+
+        function applyPlotterSettings(settings) {
+            // Apply recommended settings to form inputs
+            if (settings.recommended_settings) {
+                const rec = settings.recommended_settings;
+
+                // Update thread count if element exists
+                const threadsInput = document.getElementById('threads');
+                if (threadsInput && rec.threads && rec.threads !== 'auto') {
+                    threadsInput.value = rec.threads;
+                }
+
+                // Update buckets if element exists
+                const bucketsInput = document.getElementById('buckets');
+                if (bucketsInput && rec.buckets && rec.buckets !== 'auto') {
+                    bucketsInput.value = rec.buckets;
+                }
+
+                // Update memory if element exists
+                const memoryInput = document.getElementById('memory-mb');
+                if (memoryInput && rec.memory_mb && rec.memory_mb !== 'auto') {
+                    memoryInput.value = rec.memory_mb;
+                }
+
+                // Update GPU acceleration if element exists
+                const gpuInput = document.getElementById('gpu-acceleration');
+                if (gpuInput && rec.gpu_acceleration !== undefined) {
+                    gpuInput.checked = rec.gpu_acceleration;
+                }
+
+                // Update compression level if element exists
+                const compressionInput = document.getElementById('compression-level');
+                if (compressionInput && rec.compression_level !== undefined && rec.compression_level !== 'adaptive') {
+                    compressionInput.value = rec.compression_level;
+                }
+            }
+
+            // Update command display with plotter-specific API
+            const commandDisplay = document.getElementById('current-command');
+            if (commandDisplay && settings.api_endpoints) {
+                commandDisplay.textContent = `API: ${settings.api_endpoints.plot_command}`;
+            }
+
+            // Show hardware requirements notification
+            if (settings.hardware_requirements) {
+                const req = settings.hardware_requirements;
+                showToast(`${settings.name} Requirements: ${req.min_ram_gb}GB RAM, ${req.cpu_cores} CPU cores`, 'info');
+            }
         }
 
         // Dr. Plotter specific functionality
@@ -3053,12 +3116,40 @@
         }
 
         // CLI command execution
-        function executeCLICommand(command) {
+        async function executeCLICommand(command, commandType = 'custom') {
             const outputDiv = document.getElementById('cliOutput');
             const outputContent = document.getElementById('outputContent');
 
             outputDiv.style.display = 'block';
-            outputContent.textContent = `Executing: ${command}\n\nNote: This is a command template.\nFor full functionality, run this command in your local terminal.\n\nAndy's CLI Integration provides these professional command structures.`;
+            outputContent.textContent = `⏳ Executing: ${command}\n\nPlease wait...`;
+
+            try {
+                const response = await fetch('/api/cli/execute', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        command: command,
+                        type: commandType
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    outputContent.textContent = `✅ Command executed successfully!\n\n📝 Command: ${result.command}\n\n📤 Output:\n${result.output || 'No output'}\n\n${result.error ? `⚠️ Warnings:\n${result.error}` : ''}`;
+                    showToast('Command executed successfully', 'success');
+                } else {
+                    outputContent.textContent = `❌ Command failed!\n\n📝 Command: ${result.command}\n\n🔴 Error:\n${result.error || 'Unknown error'}\n\n📤 Output:\n${result.output || 'No output'}`;
+                    showToast('Command execution failed', 'error');
+                }
+
+            } catch (error) {
+                console.error('CLI execution error:', error);
+                outputContent.textContent = `❌ Network error!\n\nCould not execute command due to network issues.\n\nError: ${error.message}`;
+                showToast('Network error during command execution', 'error');
+            }
 
             addRecentActivity(`CLI Command: ${command.split(' ')[1] || 'custom'}`);
             switchTab('cli');
@@ -3157,14 +3248,12 @@
         // Quick actions
         function runBenchmark() {
             addRecentActivity('Running compression benchmark');
-            executeCLICommand('python squashplot_benchmark.py');
-            showToast('Benchmark started', 'info');
+            executeCLICommand('', 'benchmark');
         }
 
         function validateCompression() {
             addRecentActivity('Validating compression integrity');
-            executeCLICommand('python compression_validator.py --size 10');
-            showToast('Validation started', 'info');
+            executeCLICommand('', 'validate');
         }
 
         // Settings management
@@ -3188,7 +3277,7 @@
                 gpuAcceleration: document.getElementById('gpu-acceleration').value,
                 memoryManagement: document.getElementById('memory-management').value,
 
-                // Dr. Plotter AI Settings
+                // Dr. Plotter Settings
                 aiOptimization: document.getElementById('ai-optimization').value,
                 realTimeMonitoring: document.getElementById('real-time-monitoring').value,
                 intelligenceLevel: document.getElementById('intelligence-level').value,
@@ -6302,7 +6391,7 @@
                 plotting: "What's the best plotting strategy for maximizing farming rewards? Should I use Mad Max, BladeBit, or Dr. Plotter?",
                 pool: "How do I set up pool farming with SquashPlot? What are the benefits compared to solo farming?",
                 optimization: "How can I optimize my farming setup? What settings should I adjust for better performance?",
-                drplotter: "Tell me about Dr. Plotter. How does AI optimization work, and what are the benefits?",
+                drplotter: "Tell me about Dr. Plotter. How does optimization work, and what are the benefits?",
                 troubleshooting: "I'm having issues with plotting/compression. Can you help me troubleshoot?",
                 chia: "What is Chia blockchain? How does it work compared to Bitcoin?",
                 farming: "How does Chia farming work? What is the difference between solo and pool farming?",
@@ -6427,14 +6516,14 @@
                 farming: "🚜 CHIA FARMING COMPLETE GUIDE: Farming is the process of scanning plot files to find proof-of-space solutions that can create blocks. Process: 1) Create plots using plotters (Mad Max, BladeBit, Dr. Plotter), 2) Store plots on HDD/SSD storage, 3) Run farmer software that scans plots every few seconds, 4) When proof found, combine with VDF timing proof, 5) Submit to network for potential block reward. Rewards: ~2 XCH per block globally, distributed proportionally to space committed. Solo farming: 100% rewards but high variance (could win 10 XCH one day, 0 the next). Pool farming: Consistent daily payouts but ~1% fee. Optimization: More plots = higher chances, but quality > quantity.",
                 plots: "📊 PLOT FILES TECHNICAL GUIDE: Plot files are cryptographic proofs-of-space containing 101.4 GiB of data (k=32 standard). Structure: 7 tables with mathematical proofs. Creation phases: 1) Forward propagation (4 hours): Creates sorted tables of cryptographic hashes, 2) Backpropagation (2 hours): Sorts and compresses tables, 3) Compression (4 hours): Memory-intensive compression using 128GB+ RAM, 4) Write (2 hours): Final plot written to disk. Compression options: None (101.4 GiB), Light (~95 GiB), Heavy (~85 GiB). Quality factors: Randomness quality, compression efficiency, file system optimization. Maintenance: Plots degrade over time, periodic recreation recommended.",
                 compression: "🗜️ SQUASHPLOT COMPRESSION ADVANCED GUIDE: Multi-stage compression engine with CUDNT acceleration achieving O(n²) → O(n^1.44) complexity reduction. Core technologies: 1) CUDNT: Prime-aligned mathematics with Wallace Transform W_φ(x) = α log^φ(x + ε) + β, 2) Multi-algorithm pipeline: LZ4 (speed) → Zstandard (balance) → Brotli (maximum), 3) AI optimization: ML-driven parameter selection, 4) Experimental features: Neural networks, quantum resistance, chaos theory integration. Benefits: 2.5x-5x speedup, 30-50% memory reduction, 99.9%+ accuracy. Compression levels: Fast (minimal), Balanced (optimal), Maximum (experimental). Memory requirements: 16GB minimum, 64GB+ recommended.",
-                plotting: "⚡ PLOTTING STRATEGIES COMPLETE ANALYSIS: Three main plotters with different strengths: 1) Mad Max (C++/CUDA): Fastest plotting (~4-6 hours k=32), GPU-accelerated, requires strong GPU and 256GB+ RAM, 2) BladeBit (Rust/CUDA): Memory efficient (~6-8 hours), works on lower-end hardware, disk-based algorithm, 3) Dr. Plotter (AI-optimized): Adaptive system (~5-7 hours), learns from performance, optimizes RAM/CPU/GPU usage, continuous improvement. Selection criteria: Hardware constraints, time preferences, automation needs. Advanced: Parallel plotting, SSD staging, temperature monitoring, power optimization. Output: All plotters create identical Chia-compatible plot files.",
+                plotting: "⚡ PLOTTING STRATEGIES COMPLETE ANALYSIS: Three main plotters with different strengths: 1) Mad Max (C++/CUDA): Fastest plotting (~4-6 hours k=32), GPU-accelerated, requires strong GPU and 256GB+ RAM, 2) BladeBit (Rust/CUDA): Memory efficient (~6-8 hours), works on lower-end hardware, disk-based algorithm, 3) Dr. Plotter: Advanced optimization system (~5-7 hours), adaptive resource allocation, optimizes RAM/CPU/GPU usage, continuous improvement. Selection criteria: Hardware constraints, time preferences, automation needs. Advanced: Parallel plotting, SSD staging, temperature monitoring, power optimization. Output: All plotters create identical Chia-compatible plot files.",
                 hardware: "💻 HARDWARE OPTIMIZATION GUIDE: Chia farming hardware requirements and recommendations: STORAGE: HDDs for long-term storage (capacity prioritized), SSDs for temporary plotting (speed critical), NVMe for staging. CPU: Multi-core processors for farming scans (more cores = faster scans), Intel/AMD both work. RAM: 128GB+ for k=32 plotting (Phase 3), 16GB+ for farming. GPU: Optional for Mad Max acceleration, CUDA-compatible preferred. POWER: Efficient PSUs, consider electricity costs ($0.12/kWh average). COOLING: Temperature monitoring critical, prevent thermal throttling. COST ANALYSIS: Hardware cost ÷ (Daily XCH rewards × 365 days) = ROI timeline.",
                 pool: "🏊 POOL FARMING COMPLETE PROTOCOL GUIDE: Pool farming combines multiple farmers' storage to increase winning chances and reduce reward variance. PROTOCOLS: 1) OG Pools (CHIP-4): Uses singleton smart coins, pool public key required (96 hex characters), 2) NFT Pools (CHIP-7): Uses smart contracts, contract address required (62 characters). SETUP: Enter pool credentials in farmer config, restart farmer. BENEFITS: Consistent daily payouts (0.01-0.15 XCH/day), shared risk, reduced variance. TRADE-OFFS: ~1% pool fee, less control, pool dependency. PAYOUTS: Daily/weekly based on pool policy. MONITORING: Pool space contribution, payout history, pool health. MIGRATION: NFT pools allow easy switching without replotting.",
-                optimization: "⚙️ SYSTEM OPTIMIZATION COMPREHENSIVE GUIDE: Maximize Chia farming performance and efficiency: HARDWARE: SSD staging for plotting, HDD arrays for storage, maximize RAM allocation. SOFTWARE: Enable CUDNT acceleration (2.5x-5x speedup), use Dr. Plotter AI optimization, keep software updated. SYSTEM: Disable antivirus during plotting, optimize disk I/O, monitor temperatures, use RAID configurations. NETWORK: Stable internet for pool farming, port forwarding for solo farming. MONITORING: Track plotting progress, farming efficiency, hardware health, power consumption. MAINTENANCE: Regular plot health checks, filesystem optimization, backup configurations. ADVANCED: Power scheduling, thermal management, automated optimization scripts.",
+                optimization: "⚙️ SYSTEM OPTIMIZATION COMPREHENSIVE GUIDE: Maximize Chia farming performance and efficiency: HARDWARE: SSD staging for plotting, HDD arrays for storage, maximize RAM allocation. SOFTWARE: Enable CUDNT acceleration (2.5x-5x speedup), use Dr. Plotter optimization, keep software updated. SYSTEM: Disable antivirus during plotting, optimize disk I/O, monitor temperatures, use RAID configurations. NETWORK: Stable internet for pool farming, port forwarding for solo farming. MONITORING: Track plotting progress, farming efficiency, hardware health, power consumption. MAINTENANCE: Regular plot health checks, filesystem optimization, backup configurations. ADVANCED: Power scheduling, thermal management, automated optimization scripts.",
                 roi: "💰 ROI ANALYSIS & PROFITABILITY GUIDE: Calculate Chia farming return on investment: COMPONENTS: Hardware costs, electricity costs (~$0.12/kWh), pool fees (1%), maintenance costs. CALCULATION: (Daily XCH earnings × 365) ÷ Hardware cost = Annual ROI %. BREAK-EVEN: Hardware cost ÷ Annual earnings = Months to recover investment. FACTORS: Plot count, farming efficiency, electricity rates, XCH price volatility. SCENARIOS: 1TiB farm = ~$0.015/day earnings, 100TiB farm = ~$1.50/day, 1PiB farm = ~$15/day. CONSIDERATIONS: Reward halving every 3 years, netspace growth impact, hardware depreciation. STRATEGY: Start small, scale based on results, diversify income sources.",
                 security: "🔒 SECURITY BEST PRACTICES GUIDE: Protect your Chia farming operation: WALLET SECURITY: Use hardware wallets (Ledger/Trezor) for large holdings, backup 24-word mnemonic securely, separate farming/spending keys. PLOT PROTECTION: Encrypt storage drives, backup plot files, secure physical access. NETWORK SECURITY: Use firewalls, keep software updated, avoid public WiFi. POOL SECURITY: Research pool reputation, verify payout addresses, monitor pool health. QUANTUM PROTECTION: Experimental quantum-resistant algorithms protect against future threats. RECOVERY: Plot files can be recreated from seed, wallet funds require secure backup. AUDITING: Regular security scans, log monitoring, unusual activity detection.",
                 troubleshooting: "🔧 TROUBLESHOOTING COMPLETE DIAGNOSTIC GUIDE: Common Chia farming issues and systematic solutions: PLOTTING ISSUES: 1) Out of memory: Increase RAM allocation or use BladeBit, 2) Disk full: Clear temp space, check final destination, 3) GPU errors: Update drivers, check CUDA compatibility, 4) Phase failures: Check logs, verify hardware stability. FARMING ISSUES: 1) No rewards: Verify plot integrity, check wallet sync, confirm pool connection, 2) Low efficiency: Optimize CPU usage, check plot quality, monitor system load. NETWORK ISSUES: 1) Connection problems: Check firewall, verify pool URLs, test internet stability. LOG ANALYSIS: Check ~/.chia/mainnet/log/debug.log for detailed error messages. SYSTEM MONITORING: CPU/GPU temperatures, disk I/O, memory usage, network latency.",
-                drplotter: "🧑‍🔬 DR. PLOTTER AI OPTIMIZATION SYSTEM: SquashPlot's intelligent plotting optimization engine. ARCHITECTURE: 1) Real-time system monitoring, 2) Machine learning parameter optimization, 3) Adaptive resource allocation, 4) Performance prediction models. FEATURES: Hardware detection, memory management, CPU/GPU balancing, thermal optimization. BENEFITS: 15-30% faster plotting, improved hardware utilization, automatic adaptation. HOW IT WORKS: Analyzes system during plotting, adjusts thread counts, memory allocation, I/O patterns, learns from successful plots. DEVELOPMENT: Phase 2 active with reinforcement learning integration. MONITORING: Live performance metrics, optimization recommendations, system health indicators.",
+                drplotter: "🧑‍🔬 DR. PLOTTER OPTIMIZATION SYSTEM: SquashPlot's intelligent plotting optimization engine. ARCHITECTURE: 1) Real-time system monitoring, 2) Adaptive parameter optimization, 3) Dynamic resource allocation, 4) Performance prediction models. FEATURES: Hardware detection, memory management, CPU/GPU balancing, thermal optimization. BENEFITS: 15-30% faster plotting, improved hardware utilization, automatic adaptation. HOW IT WORKS: Analyzes system during plotting, adjusts thread counts, memory allocation, I/O patterns, optimizes based on successful plots. DEVELOPMENT: Phase 2 active with continuous improvement integration. MONITORING: Live performance metrics, optimization recommendations, system health indicators.",
                 solo: "🎯 SOLO FARMING STRATEGY GUIDE: Maximum control farming without pool dependencies. PROBABILITY: Your earnings = (Your space ÷ Total netspace) × Block rewards. With 1TiB in 45EiB netspace: ~0.0000022 chance per block. REALISTIC EARNINGS: 100TiB = ~0.00022 XCH per block = ~0.004 XCH/day average. VARIANCE: Could earn 0 XCH for weeks, then 4 XCH in one day. ADVANTAGES: 100% of rewards, no fees, full control, privacy. DISADVANTAGES: High variance, requires patience, more plots for meaningful income. STRATEGY: Build gradually, diversify hardware, monitor closely. COMPARISON: Solo suits long-term holders, pools suit consistent income needs.",
                 wallet: "👛 CHIA WALLET MANAGEMENT GUIDE: Secure storage and management of XCH tokens. TYPES: 1) GUI Wallet: User-friendly desktop application, 2) CLI Wallet: Command-line interface for advanced users, 3) Hardware Wallets: Cold storage (Ledger, Trezor), 4) Web Wallets: Convenient but less secure. SETUP: Install Chia software, create wallet (generates 24-word seed), sync blockchain (initial sync takes hours). SECURITY: Backup seed phrase offline, use strong passwords, enable 2FA. MANAGEMENT: Multiple wallets for farming vs spending, cold storage for large amounts. INTEGRATION: Wallet connects to farmer for automatic reward claiming. MONITORING: Transaction history, balance tracking, farming rewards.",
                 netspace: "🌐 CHIA NETSPACE ANALYSIS: Total farmed storage capacity in the network. CURRENT: ~45 EiB (45 billion GiB), growing ~10-20% monthly. IMPACT: Your farming probability = (Your plots ÷ Netspace). GROWTH PATTERNS: Exponential early adoption, now linear growth. COMPETITION: More netspace = lower individual earnings. STRATEGY: Balance plot creation with netspace expansion. PROJECTIONS: Netspace could reach 100+ EiB in 2025. INDIVIDUAL IMPACT: With constant netspace, earnings remain stable; with growth, earnings decrease proportionally. MONITORING: Track netspace charts, adjust farming strategy accordingly.",

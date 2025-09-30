@@ -1,0 +1,117 @@
+{
+  "harmonic_analysis": {
+    "family_counts": {
+      "small_gaps": 7856,
+      "medium_gaps": 514,
+      "large_gaps": 1221
+    },
+    "family_percentages": {
+      "small_gaps": 81.91012407465333,
+      "medium_gaps": 5.35919090814305,
+      "large_gaps": 12.730685017203628
+    },
+    "band_families": {
+      "small_gaps": {
+        "name": "Small Gap Family",
+        "gap_range": [
+          1,
+          16
+        ],
+        "mean_gap": 6.8,
+        "percentage": 49.6,
+        "harmonic_bands": [
+          1,
+          4
+        ],
+        "description": "Twin primes and small prime pairs"
+      },
+      "medium_gaps": {
+        "name": "Medium Gap Family",
+        "gap_range": [
+          4,
+          18
+        ],
+        "mean_gap": 8.8,
+        "percentage": 27.6,
+        "harmonic_bands": [
+          2,
+          5
+        ],
+        "description": "Standard prime spacing patterns"
+      },
+      "large_gaps": {
+        "name": "Large Gap Family",
+        "gap_range": [
+          12,
+          72
+        ],
+        "mean_gap": 20.2,
+        "percentage": 22.8,
+        "harmonic_bands": [
+          3,
+          6
+        ],
+        "description": "Prime deserts and large composite regions"
+      }
+    }
+  },
+  "scalar_analysis": {
+    "band_counts": {
+      "tight": 5153,
+      "normal": 4406,
+      "loose": 32,
+      "outlier": 0
+    },
+    "band_percentages": {
+      "tight": 53.72745282035242,
+      "normal": 45.93890105307059,
+      "loose": 0.33364612657699927,
+      "outlier": 0.0
+    },
+    "correlation": 0.9898246152504199,
+    "p_value": 0.0,
+    "avg_deviation": 2.320595313570582,
+    "phi_expectations": "[0.         1.1215357  1.1215357  ... 3.72566094 4.67671974 1.1215357 ]",
+    "wallace_scores": "[1.02790530e-24 8.94206507e-01 8.94206507e-01 ... 6.23828103e+00\n 9.01210830e+00 8.94206507e-01]",
+    "deviations": "[1.02790530e-24 2.27329190e-01 2.27329190e-01 ... 2.51262009e+00\n 4.33538856e+00 2.27329190e-01]"
+  },
+  "hybrid_analysis": {
+    "family_phi_analysis": {
+      "small_gaps": {
+        "gap_count": 7856,
+        "avg_gap": 7.39065682281059,
+        "phi_deviation_avg": 1.6648131205001935,
+        "phi_deviation_std": 1.1516491766706318,
+        "correlation_with_phi": 0.9956825442520364
+      },
+      "medium_gaps": {
+        "gap_count": 514,
+        "avg_gap": 18.0,
+        "phi_deviation_avg": 4.335388559425881,
+        "phi_deviation_std": 0.0,
+        "correlation_with_phi": NaN
+      },
+      "large_gaps": {
+        "gap_count": 1221,
+        "avg_gap": 26.76167076167076,
+        "phi_deviation_avg": 5.691783831499613,
+        "phi_deviation_std": 0.9235658610640514,
+        "correlation_with_phi": 0.9915514822379157
+      }
+    },
+    "hybrid_insights": {
+      "harmonic_scalar_correlation": 0.1274685049337324,
+      "pattern_consistency": {
+        "harmonic_dominant": "small_gaps",
+        "scalar_dominant": "tight",
+        "pattern_alignment": true,
+        "consistency_score": 0.7
+      }
+    }
+  },
+  "metadata": {
+    "total_primes": 9592,
+    "total_gaps": 9591,
+    "analysis_timestamp": 1759238850.111893
+  }
+}
