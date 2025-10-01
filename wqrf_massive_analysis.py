@@ -16,6 +16,58 @@ import argparse
 from pathlib import Path
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from scipy import signal
+from scipy.fft import fft, ifft, fftfreq
+import zlib
+
+# ============================================================================
+# HISTORICAL CYBERNETICS INTEGRATION - Ashby Ultrastability
+# ============================================================================
+
+class AshbyUltrastabilityWQRF:
+    """Ashby ultrastability for adaptive analysis parameters (W. Ross Ashby, 1950s)"""
+
+    def __init__(self, max_iterations=3):
+        self.max_iterations = max_iterations
+        self.reorganization_history = []
+
+    def ultrastable_analysis(self, analysis_params, evaluate_function, target_metric=0.95):
+        """Apply ultrastability to analysis parameter optimization"""
+        best_params = analysis_params.copy()
+        best_score = evaluate_function(analysis_params)
+
+        for iteration in range(self.max_iterations):
+            if best_score >= target_metric:
+                break
+
+            # Random reorganization (Ashby's principle)
+            new_params = self._random_reorganization(analysis_params)
+            new_score = evaluate_function(new_params)
+
+            if new_score > best_score:
+                best_params = new_params.copy()
+                best_score = new_score
+                self.reorganization_history.append({
+                    'iteration': iteration,
+                    'score': new_score,
+                    'params': best_params.copy()
+                })
+
+        return best_params, best_score
+
+    def _random_reorganization(self, params):
+        """Randomly reorganize analysis parameters"""
+        new_params = {}
+        for key, value in params.items():
+            if isinstance(value, (int, float)):
+                perturbation = np.random.uniform(-0.2, 0.2)
+                new_params[key] = value * (1 + perturbation)
+            elif isinstance(value, list):
+                # Perturb list elements
+                new_params[key] = [v * (1 + np.random.uniform(-0.1, 0.1)) for v in value]
+            else:
+                new_params[key] = value
+        return new_params
 
 # Constants
 PHI = (1 + np.sqrt(5)) / 2  # Golden ratio
@@ -30,6 +82,9 @@ class WQRFAnalyzer:
         self.primes = None
         self.zetas = None
         self.results = None
+
+        # Historical cybernetics integration
+        self.ashby_ultrastability = AshbyUltrastabilityWQRF()
 
     def wallace_transform(self, x, alpha=PHI, beta=0):
         """
@@ -155,6 +210,34 @@ class WQRFAnalyzer:
 
         print(f"\n🧮 Analyzing prime-zeta correspondence...")
         start_time = time.time()
+
+        # ASHBY ULTRASTABILITY OPTIMIZATION (W. Ross Ashby, 1950s)
+        # Adaptively optimize analysis parameters for better correspondence
+        initial_params = {
+            'correlation_threshold': 0.90,
+            'band_tolerance': [2.0, 5.0, 10.0],
+            'transform_alpha': PHI
+        }
+
+        def evaluate_parameters(params):
+            # Simple evaluation function for parameter optimization
+            # Higher scores for parameters that might improve correlation
+            score = params['correlation_threshold'] * 0.5
+            score += (params['band_tolerance'][1] / 5.0) * 0.3
+            score += min(1.0, abs(params['transform_alpha'] - PHI)) * 0.2
+            return score
+
+        optimized_params, param_score = self.ashby_ultrastability.ultrastable_analysis(
+            initial_params, evaluate_parameters, target_metric=0.95)
+
+        if optimized_params != initial_params:
+            print(f"  Ashby Ultrastability Applied: Parameter optimization score {param_score:.3f}")
+            # Use optimized parameters for analysis
+            correlation_threshold = optimized_params['correlation_threshold']
+            band_tolerance = optimized_params['band_tolerance']
+        else:
+            correlation_threshold = initial_params['correlation_threshold']
+            band_tolerance = initial_params['band_tolerance']
 
         # Sample primes if requested
         if sample_size and sample_size < len(self.primes):

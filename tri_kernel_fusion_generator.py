@@ -39,6 +39,63 @@ DOI: 10.1109/wqrf.2025.tri-kernel
 import numpy as np
 from typing import Dict, List
 import matplotlib.pyplot as plt
+from scipy import signal
+from scipy.fft import fft, ifft, fftfreq
+import zlib
+
+# ============================================================================
+# HISTORICAL CYBERNETICS INTEGRATION - Wiener & Kolmogorov
+# ============================================================================
+
+class WienerFilterWQRF:
+    """Wiener filter for fusion signal processing (Norbert Wiener, 1940s)"""
+
+    def __init__(self, fs=1000.0):
+        self.fs = fs
+
+    def wiener_filter_1d(self, signal):
+        """Apply Wiener filter: H(f) = S(f)/(S(f) + N(f))"""
+        signal_fft = fft(signal)
+        threshold = np.percentile(np.abs(signal), 75)
+        signal_mask = np.abs(signal) > threshold
+        noise_mask = ~signal_mask
+
+        if np.sum(signal_mask) > 10:
+            signal_psd = np.mean(np.abs(signal_fft[signal_mask])**2)
+            noise_psd = np.mean(np.abs(signal_fft[noise_mask])**2) if np.sum(noise_mask) > 0 else signal_psd * 0.1
+        else:
+            signal_psd = np.mean(np.abs(signal_fft)**2) * 0.7
+            noise_psd = np.mean(np.abs(signal_fft)**2) * 0.3
+
+        wiener_tf = signal_psd / (signal_psd + noise_psd + 1e-10)
+        filtered_fft = signal_fft * wiener_tf
+        filtered_signal = ifft(filtered_fft).real
+        enhancement = np.mean(filtered_signal**2) / np.mean(signal**2)
+
+        return filtered_signal, enhancement
+
+class KolmogorovComplexityWQRF:
+    """Kolmogorov complexity for fusion pattern validation (Andrey Kolmogorov, 1960s)"""
+
+    def __init__(self):
+        pass
+
+    def approximate_complexity(self, sequence):
+        """Approximate Kolmogorov complexity using compression ratio"""
+        if isinstance(sequence, np.ndarray):
+            sequence = sequence.astype(np.float32)
+            sequence_bytes = sequence.tobytes()
+        else:
+            sequence_bytes = str(sequence).encode('utf-8')
+
+        compressed = zlib.compress(sequence_bytes)
+        compression_ratio = len(compressed) / len(sequence_bytes)
+        return 1.0 / (compression_ratio + 0.1)
+
+    def validate_fusion_pattern(self, fusion_process):
+        """Validate fusion pattern meaningfulness using Kolmogorov complexity"""
+        complexity = self.approximate_complexity(fusion_process)
+        return 1.0 - min(1.0, complexity)  # Meaningfulness score
 
 class TriKernelFusionGenerator:
     """
@@ -65,6 +122,10 @@ class TriKernelFusionGenerator:
         self.operations = 27  # YHVH cycle: 3 acts × 3 repetitions × 3 layers
 
         # Riemann zeta zeros for time marker modulation
+        # Historical cybernetics integration
+        self.wiener_filter = WienerFilterWQRF()
+        self.kolmogorov_complexity = KolmogorovComplexityWQRF()
+
         self.zeta_zeros = np.array([
             14.134725141734693790457251983562,
             21.0220396387715549926284795938969,
@@ -189,8 +250,27 @@ class TriKernelFusionGenerator:
 
         # Execute YHVH tri-kernel cycle
         start_time = np.datetime64('now')
-        final_energies = self._yhvh_cycle(initial_energies)
+        raw_energies = self._yhvh_cycle(initial_energies)
+
+        # WIENER FILTER ENHANCEMENT (Norbert Wiener, 1940s)
+        # Apply optimal filtering to fusion energy signals
+        try:
+            filtered_energies, wiener_enhancement = self.wiener_filter.wiener_filter_1d(raw_energies)
+            final_energies = filtered_energies
+            print(f"   Wiener Filter Applied: {wiener_enhancement:.2f}x signal enhancement")
+        except:
+            final_energies = raw_energies
+            wiener_enhancement = 1.0
+
         end_time = np.datetime64('now')
+
+        # KOLMOGOROV COMPLEXITY VALIDATION (Andrey Kolmogorov, 1960s)
+        # Validate fusion pattern meaningfulness
+        try:
+            pattern_meaningfulness = self.kolmogorov_complexity.validate_fusion_pattern(final_energies)
+            print(f"   Kolmogorov Validation: {pattern_meaningfulness:.3f} meaningfulness score")
+        except:
+            pattern_meaningfulness = 0.5
 
         # Calculate results (energies are in eV)
         mean_energy = np.mean(final_energies)

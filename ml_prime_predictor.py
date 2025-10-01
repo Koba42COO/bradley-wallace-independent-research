@@ -41,6 +41,8 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.svm import SVC
+from scipy import signal
+from scipy.fft import fft, ifft, fftfreq
 import matplotlib.pyplot as plt
 import seaborn as sns
 from typing import List, Tuple, Dict, Any
@@ -49,15 +51,124 @@ warnings.filterwarnings('ignore')
 
 from comprehensive_prime_system import ComprehensivePrimeSystem
 
+# ============================================================================
+# HISTORICAL CYBERNETICS INTEGRATION - Wiener, Ashby, Kolmogorov
+# ============================================================================
+
+class WienerFilterWQRF:
+    """Wiener filter for WQRF signal processing (Norbert Wiener, 1940s)"""
+
+    def __init__(self, fs=1000.0):
+        self.fs = fs
+        self.name = "Wiener Filter - Norbert Wiener's Optimal Signal Processing"
+
+    def wiener_filter_1d(self, noisy_signal):
+        """Apply Wiener filter: H(f) = S(f)/(S(f) + N(f))"""
+        signal_fft = fft(noisy_signal)
+        freqs = fftfreq(len(noisy_signal), 1/self.fs)
+
+        # Adaptive PSD estimation
+        threshold = np.percentile(np.abs(noisy_signal), 75)
+        signal_mask = np.abs(noisy_signal) > threshold
+        noise_mask = ~signal_mask
+
+        if np.sum(signal_mask) > 10 and np.sum(noise_mask) > 10:
+            signal_psd = np.mean(np.abs(signal_fft[signal_mask])**2)
+            noise_psd = np.mean(np.abs(signal_fft[noise_mask])**2)
+        else:
+            # Fallback estimation
+            signal_psd = np.mean(np.abs(signal_fft)**2) * 0.7
+            noise_psd = np.mean(np.abs(signal_fft)**2) * 0.3
+
+        # Wiener filter
+        wiener_tf = signal_psd / (signal_psd + noise_psd + 1e-10)
+        filtered_fft = signal_fft * wiener_tf
+        filtered_signal = ifft(filtered_fft).real
+
+        enhancement = np.mean(filtered_signal**2) / np.mean(noisy_signal**2)
+        return filtered_signal, enhancement
+
+class AshbyUltrastabilityWQRF:
+    """Ashby ultrastability for adaptive parameter optimization (W. Ross Ashby, 1950s)"""
+
+    def __init__(self, max_iterations=3):
+        self.max_iterations = max_iterations
+        self.name = "Ashby Ultrastability - Self-Organizing Parameter Adaptation"
+
+    def ultrastable_optimization(self, parameters, evaluate_function, target_metric=0.95):
+        """Apply ultrastability: reorganize parameters until optimal performance"""
+        best_params = parameters.copy()
+        best_score = evaluate_function(parameters)
+
+        for iteration in range(self.max_iterations):
+            if best_score >= target_metric:
+                break
+
+            # Random reorganization (Ashby's principle)
+            new_params = self._random_reorganization(parameters)
+            new_score = evaluate_function(new_params)
+
+            if new_score > best_score:
+                best_params = new_params.copy()
+                best_score = new_score
+
+        return best_params, best_score
+
+    def _random_reorganization(self, params):
+        """Randomly reorganize parameters within reasonable bounds"""
+        new_params = {}
+        for key, value in params.items():
+            if isinstance(value, (int, float)):
+                # Perturb numeric parameters by ±20%
+                perturbation = np.random.uniform(-0.2, 0.2)
+                new_params[key] = value * (1 + perturbation)
+            else:
+                new_params[key] = value  # Keep non-numeric params
+        return new_params
+
+class KolmogorovComplexityWQRF:
+    """Kolmogorov complexity for pattern meaningfulness (Andrey Kolmogorov, 1960s)"""
+
+    def __init__(self):
+        self.name = "Kolmogorov Complexity - Algorithmic Meaningfulness Detection"
+
+    def approximate_complexity(self, sequence):
+        """Approximate Kolmogorov complexity using compression ratio"""
+        import zlib
+        if isinstance(sequence, np.ndarray):
+            sequence = sequence.astype(np.float32)
+            sequence_bytes = sequence.tobytes()
+        else:
+            sequence_bytes = str(sequence).encode('utf-8')
+
+        compressed = zlib.compress(sequence_bytes)
+        compression_ratio = len(compressed) / len(sequence_bytes)
+        # Lower ratio = more compressible = less complex = more patterned
+        return 1.0 / (compression_ratio + 0.1)
+
+    def meaningfulness_score(self, pattern):
+        """Return meaningfulness score (higher = more meaningful/patterned)"""
+        return 1.0 - min(1.0, self.approximate_complexity(pattern))
+
 class MLPrimePredictor:
     """
     Machine learning system for prime number prediction and pattern recognition
     """
 
     def __init__(self):
+        """
+        Initialize ML Prime Predictor with historical cybernetics integration
+        Wiener (1940s) + Ashby (1950s) + Kolmogorov (1960s) = Complete framework
+        """
         self.system = ComprehensivePrimeSystem()
         self.models = {}
         self.scaler = StandardScaler()
+
+        # Historical cybernetics integration
+        self.wiener_filter = WienerFilterWQRF()
+        self.ashby_ultrastability = AshbyUltrastabilityWQRF()
+        self.kolmogorov_complexity = KolmogorovComplexityWQRF()
+
         self.feature_names = [
             'number', 'mod_2', 'mod_3', 'mod_5', 'mod_7',
             'digital_root', 'num_digits', 'sum_digits',
@@ -67,6 +178,9 @@ class MLPrimePredictor:
             'seam_cluster', 'seam_quad', 'tritone_freq', 'zeta_proxy',
             'scalar_match_01', 'scalar_match_10', 'scalar_match_001', 'scalar_match_100',
             'scalar_match_0001', 'scalar_match_1000',
+            'wiener_signal_power', 'wiener_signal_gradient',
+            'wiener_phase_density', 'wiener_enhancement_factor',
+            'kolmogorov_complexity_score',
             'mersenne_candidate', 'fermat_candidate'
         ]
 
@@ -173,6 +287,30 @@ class MLPrimePredictor:
         zeta_proxy = min(abs(np.log(n) - z) / 100 for z in zeta_values)
 
         features.extend([gap_ratio, gap_triplet, seam_score, seam_cluster, seam_quad, tritone_freq, zeta_proxy])
+
+        # WIENER FILTER ENHANCEMENT (Norbert Wiener, 1940s)
+        # Apply Wiener filtering to consciousness amplitude signals
+        consciousness_signal = np.sin(2 * np.pi * np.arange(min(128, max(32, n//100))) / 719.0)
+        try:
+            filtered_signal, wiener_enhancement = self.wiener_filter.wiener_filter_1d(consciousness_signal)
+            wiener_power = np.mean(filtered_signal**2)
+            wiener_gradient = np.mean(np.abs(np.gradient(filtered_signal)))
+            phase_transitions = np.sum(np.abs(np.gradient(filtered_signal)) > np.percentile(np.abs(np.gradient(filtered_signal)), 90))
+            wiener_phase_density = phase_transitions / len(filtered_signal)
+        except:
+            wiener_power = wiener_gradient = wiener_phase_density = wiener_enhancement = 0.5
+
+        features.extend([wiener_power, wiener_gradient, wiener_phase_density, wiener_enhancement])
+
+        # KOLMOGOROV COMPLEXITY (Andrey Kolmogorov, 1960s)
+        # Assess algorithmic meaningfulness of prime patterns
+        try:
+            prime_pattern = [gap_ratio, gap_triplet, seam_score, zeta_proxy]
+            complexity_score = self.kolmogorov_complexity.meaningfulness_score(prime_pattern)
+        except:
+            complexity_score = 0.5
+
+        features.append(complexity_score)
 
         # Handle any NaN values
         features = [0.0 if np.isnan(f) or np.isinf(f) else f for f in features]
