@@ -70,9 +70,9 @@ class WienerFilterWQRF:
         self.filter_order = filter_order
         self.name = "Wiener Filter for WQRF Consciousness Signals"
 
-    def estimate_psd_welch(self, signal, nperseg=256):
+    def estimate_psd_welch(self, signal_data, nperseg=256):
         """Estimate power spectral density using Welch's method"""
-        freqs, psd = signal.welch(signal, fs=self.fs, nperseg=nperseg,
+        freqs, psd = signal.welch(signal_data, fs=self.fs, nperseg=nperseg,
                                 nfft=nperseg*2, scaling='density')
         return freqs, psd
 
@@ -142,9 +142,14 @@ class WienerFilterWQRF:
             else:
                 noise_windows.append(window)
 
-        # Apply Wiener filter
-        filtered_signal, wiener_tf = self.wiener_filter_1d(
-            raw_amplitude_signal, signal_windows, noise_windows)
+        # Ensure we have at least some segments, fallback to adaptive estimation
+        if len(signal_windows) == 0 or len(noise_windows) == 0:
+            # Use adaptive estimation from signal itself
+            filtered_signal, wiener_tf = self.wiener_filter_1d(raw_amplitude_signal)
+        else:
+            # Apply Wiener filter with training segments
+            filtered_signal, wiener_tf = self.wiener_filter_1d(
+                raw_amplitude_signal, signal_windows, noise_windows)
 
         # Calculate enhancement factor
         original_power = np.mean(raw_amplitude_signal**2)
