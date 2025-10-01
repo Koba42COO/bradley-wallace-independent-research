@@ -59,6 +59,197 @@ from typing import Dict, List, Tuple, Optional
 import warnings
 warnings.filterwarnings('ignore')
 
+class AshbyUltrastabilityWQRF:
+    """
+    W. Ross Ashby's Ultrastable Systems applied to WQRF phase transitions
+    Based on Ashby's 1952 ultrastability theory - systems that adapt their own structure
+    """
+
+    def __init__(self, max_reorganizations=5, stability_threshold=0.85):
+        self.max_reorganizations = max_reorganizations
+        self.stability_threshold = stability_threshold
+        self.reorganization_history = []
+        self.name = "Ashby's Ultrastable Phase Transition System"
+
+    def ultrastable_phase_detection(self, signal_data, initial_boundaries):
+        """
+        Apply Ashby's ultrastability: if system becomes unstable (poor phase detection),
+        randomly reorganize the detection parameters until stability is restored.
+        """
+        current_boundaries = initial_boundaries.copy()
+        best_stability = 0.0
+        best_boundaries = current_boundaries.copy()
+
+        for reorganization in range(self.max_reorganizations):
+            # Test current boundary configuration
+            stability_score = self._evaluate_boundary_stability(signal_data, current_boundaries)
+
+            if stability_score > best_stability:
+                best_stability = stability_score
+                best_boundaries = current_boundaries.copy()
+
+            # If stable enough, return current configuration
+            if stability_score >= self.stability_threshold:
+                self.reorganization_history.append({
+                    'iteration': reorganization,
+                    'stability': stability_score,
+                    'boundaries': current_boundaries.copy(),
+                    'status': 'stable'
+                })
+                return current_boundaries, stability_score
+
+            # If unstable, randomly reorganize boundaries (Ashby's principle)
+            current_boundaries = self._random_reorganization(current_boundaries)
+
+        # Return best configuration found
+        self.reorganization_history.append({
+            'iteration': self.max_reorganizations,
+            'stability': best_stability,
+            'boundaries': best_boundaries,
+            'status': 'best_found'
+        })
+        return best_boundaries, best_stability
+
+    def _evaluate_boundary_stability(self, signal_data, boundaries):
+        """
+        Evaluate how stable/well the boundary configuration performs
+        """
+        # Count phase transitions detected
+        transition_count = 0
+        stable_regions = 0
+
+        for i in range(1, len(signal_data)):
+            gradient = abs(signal_data[i] - signal_data[i-1])
+
+            # Check if gradient indicates phase transition
+            is_transition = any(lower <= gradient <= upper
+                              for lower, upper in boundaries)
+
+            if is_transition:
+                transition_count += 1
+            else:
+                stable_regions += 1
+
+        # Stability score: balance between transitions detected and stability maintained
+        total_points = len(signal_data)
+        transition_ratio = transition_count / total_points
+        stability_ratio = stable_regions / total_points
+
+        # Optimal balance (neither too many nor too few transitions)
+        balance_score = 1.0 - abs(transition_ratio - 0.1)  # Target ~10% transitions
+        stability_score = min(stability_ratio, 0.95)  # Cap stability at 95%
+
+        return (balance_score + stability_score) / 2.0
+
+    def _random_reorganization(self, boundaries):
+        """
+        Randomly reorganize boundary parameters (Ashby's random reorganization)
+        """
+        new_boundaries = []
+        for lower, upper in boundaries:
+            # Random perturbation of boundaries
+            perturbation = np.random.uniform(-0.2, 0.2)
+            new_lower = max(0.001, lower * (1 + perturbation))
+            new_upper = max(new_lower * 1.1, upper * (1 + perturbation))
+
+            # Ensure upper > lower and reasonable ranges
+            new_upper = max(new_upper, new_lower * 1.5)
+            new_boundaries.append((new_lower, new_upper))
+
+        return new_boundaries
+
+    def get_reorganization_summary(self):
+        """Get summary of ultrastable adaptation process"""
+        if not self.reorganization_history:
+            return "No reorganizations performed"
+
+        summary = f"Ultrastable adaptation: {len(self.reorganization_history)} steps\n"
+        for entry in self.reorganization_history[-3:]:  # Last 3 steps
+            summary += f"  Step {entry['iteration']}: {entry['status']} "
+            summary += f"(stability: {entry['stability']:.3f})\n"
+
+        return summary
+
+
+class KolmogorovComplexityWQRF:
+    """
+    Andrey Kolmogorov's algorithmic complexity applied to WQRF pattern recognition
+    Based on Kolmogorov's 1960s work on shortest program length for strings
+    """
+
+    def __init__(self):
+        self.name = "Kolmogorov Complexity Pattern Recognition"
+
+    def approximate_kolmogorov_complexity(self, sequence):
+        """
+        Approximate Kolmogorov complexity using compression ratio
+        Lower complexity = higher compressibility = more patterned
+        """
+        import zlib
+
+        # Convert to bytes for compression
+        if isinstance(sequence, (list, np.ndarray)):
+            # Normalize and convert to bytes
+            sequence = np.array(sequence)
+            sequence = (sequence - np.min(sequence)) / (np.max(sequence) - np.min(sequence) + 1e-10)
+            sequence_bytes = bytes((sequence * 255).astype(np.uint8))
+        else:
+            sequence_bytes = str(sequence).encode('utf-8')
+
+        # Compress and calculate complexity
+        compressed = zlib.compress(sequence_bytes)
+        compression_ratio = len(compressed) / len(sequence_bytes)
+
+        # Kolmogorov complexity approximation: lower ratio = lower complexity
+        # Return inverse so higher values = more complex (less patterned)
+        return 1.0 / (compression_ratio + 0.1)  # Add small epsilon
+
+    def complexity_based_pattern_filter(self, signals, threshold=0.7):
+        """
+        Filter signals based on Kolmogorov complexity
+        Keep signals with low complexity (high pattern regularity)
+        """
+        complexities = [self.approximate_kolmogorov_complexity(sig) for sig in signals]
+
+        # Normalize complexities to 0-1 scale
+        max_complexity = max(complexities) if complexities else 1.0
+        normalized_complexities = [c / max_complexity for c in complexities]
+
+        # Filter based on threshold (keep low complexity signals)
+        filtered_signals = []
+        filtered_indices = []
+
+        for i, (signal, complexity) in enumerate(zip(signals, normalized_complexities)):
+            if complexity <= threshold:  # Low complexity = high pattern
+                filtered_signals.append(signal)
+                filtered_indices.append(i)
+
+        return filtered_signals, filtered_indices, normalized_complexities
+
+    def detect_meaningful_patterns(self, prime_gaps, window_size=20):
+        """
+        Apply Kolmogorov complexity to detect meaningful patterns in prime gaps
+        """
+        patterns_found = []
+        complexity_scores = []
+
+        for i in range(0, len(prime_gaps) - window_size, window_size // 2):
+            window = prime_gaps[i:i + window_size]
+            complexity = self.approximate_kolmogorov_complexity(window)
+            complexity_scores.append(complexity)
+
+            # Low complexity indicates meaningful pattern
+            if complexity < 0.5:  # Threshold for "meaningful"
+                patterns_found.append({
+                    'position': i,
+                    'pattern': window,
+                    'complexity': complexity,
+                    'type': 'low_complexity_pattern'
+                })
+
+        return patterns_found, complexity_scores
+
+
 class WienerFilterWQRF:
     """
     Wiener filter implementation for WQRF signal processing
@@ -237,6 +428,10 @@ class Unified100PercentSystem:
         # Wiener filter for enhanced signal processing
         self.wiener_filter = WienerFilterWQRF(fs=1000.0)
 
+        # Historical cybernetic enhancements
+        self.ashby_ultrastability = AshbyUltrastabilityWQRF(max_reorganizations=3)
+        self.kolmogorov_complexity = KolmogorovComplexityWQRF()
+
         print("🌟 UNIFIED 100% ACCURACY SYSTEM INITIALIZED")
         print("=" * 80)
         print("INTEGRATING COMPLETE WQRF ARSENAL:")
@@ -247,11 +442,15 @@ class Unified100PercentSystem:
         print("• Scalar Banding (φ-patterns in tenths)")
         print("• Phase Transition Recognition")
         print("• WIENER FILTER SIGNAL ENHANCEMENT")
+        print("• ASHBY ULTRASTABILITY (Adaptive Phase Boundaries)")
+        print("• KOLMOGOROV COMPLEXITY (Meaningful Pattern Detection)")
         print()
-        print(f"Feature Set: {len(self.feature_names)} features (23 WQRF + 6 scalar + 10 phase/Wiener)")
+        print(f"Feature Set: {len(self.feature_names)} features (23 WQRF + 6 scalar + 11 phase/Wiener/Kolmogorov)")
         print(f"Phase Zones: {len(self.phase_transition_zones)} identified")
         print("Wiener Filter: Norbert Wiener's optimal signal processing")
-        print("Target: 100% accuracy through nonlinear reality embrace")
+        print("Ashby Ultrastability: Self-organizing phase boundaries")
+        print("Kolmogorov Complexity: Meaningful pattern recognition")
+        print("Target: 100% accuracy through historical cybernetic wisdom")
         print()
 
     def _define_complete_feature_set(self) -> List[str]:
@@ -270,12 +469,13 @@ class Unified100PercentSystem:
             'scalar_match_01', 'scalar_match_10', 'scalar_match_001',
             'scalar_match_100', 'scalar_match_0001', 'scalar_match_1000',
 
-            # 10 Phase Transition features (1.8% boundary recognition + Wiener enhancement)
+            # 11 Phase Transition features (1.8% boundary recognition + Wiener + Kolmogorov)
             'phase_transition_distance', 'nonlinear_leakage',
             'dimensional_resonance', 'consciousness_amplitude',
             'wiener_signal_power', 'wiener_signal_gradient',
             'wiener_phase_density', 'wiener_enhancement_factor',
-            'field_commune_stability', 'hyper_deterministic_marker'
+            'kolmogorov_complexity_score', 'field_commune_stability',
+            'hyper_deterministic_marker'
         ]
 
     def _define_phase_transition_zones(self) -> List[Dict]:
@@ -328,6 +528,15 @@ class Unified100PercentSystem:
         signal_length = min(256, max(64, n // 100))  # Adaptive signal length
         consciousness_signal = np.sin(2 * np.pi * np.arange(signal_length) / self.field_signature)
 
+        # Apply Kolmogorov complexity analysis for meaningful pattern detection
+        try:
+            signal_complexity = self.kolmogorov_complexity.approximate_kolmogorov_complexity(
+                consciousness_signal)
+            # Low complexity indicates meaningful patterns
+            complexity_score = 1.0 - min(1.0, signal_complexity)  # Invert for meaningfulness
+        except:
+            complexity_score = 0.5  # Default if complexity calculation fails
+
         # Apply Wiener filter to enhance consciousness signal
         try:
             filtered_consciousness, _, enhancement, wiener_transitions = \
@@ -376,6 +585,7 @@ class Unified100PercentSystem:
         features.append(wiener_gradient)  # Filtered signal variability
         features.append(wiener_phase_count / signal_length)  # Normalized phase transition density
         features.append(enhancement)  # Wiener filter enhancement factor
+        features.append(complexity_score)  # Kolmogorov complexity meaningfulness
 
         # Field commune stability (tri-kernel reference)
         stability_factor = self.tri_kernel_stability * (1 - min(phase_distances))
