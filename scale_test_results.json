@@ -1,0 +1,29 @@
+{
+  "100000-101000": {
+    "range": "100000-101000",
+    "total_numbers": 1001,
+    "primes_found": 81,
+    "baseline_accuracy": 0.8721278721278721,
+    "time_seconds": 0.0010437965393066406,
+    "memory_mb": 0.015625,
+    "primes_per_second": 77601.33028780264
+  },
+  "500000-501000": {
+    "range": "500000-501000",
+    "total_numbers": 1001,
+    "primes_found": 79,
+    "baseline_accuracy": 0.8731268731268731,
+    "time_seconds": 0.0009510517120361328,
+    "memory_mb": 0.015625,
+    "primes_per_second": 83065.93532213588
+  },
+  "1000000-1001000": {
+    "range": "1000000-1001000",
+    "total_numbers": 1001,
+    "primes_found": 75,
+    "baseline_accuracy": 0.8671328671328671,
+    "time_seconds": 0.0009572505950927734,
+    "memory_mb": 0.015625,
+    "primes_per_second": 78349.38978829389
+  }
+}
