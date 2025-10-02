@@ -281,41 +281,41 @@ class WQRFAnalyzer:
 
         phi_scalars = np.array(phi_scalars)
 
-        # Method 2: Define scalar bands around φ-relationships
-        # Bands represent acceptable scaling ranges
-        scalar_bands = {
-            'tight': (0.8, 1.2),    # Very close to φ-scaling
-            'normal': (0.5, 2.0),   # Moderate φ-scaling range
-            'loose': (0.2, 5.0),    # Wide φ-scaling range
-            'outlier': (0.0, float('inf'))  # Outside all bands
+        # Method 2: Define statistical bands based on Wallace score distribution
+        # Use standard deviations from mean for proper band classification
+        mean_score = np.mean(phi_scalars)
+        std_score = np.std(phi_scalars)
+
+        # Statistical bands: tight (1σ), normal (2σ), loose (3σ), outlier (>3σ)
+        band_thresholds = {
+            'tight': mean_score + 1 * std_score,      # Within 1σ (68% of data)
+            'normal': mean_score + 2 * std_score,     # Within 2σ (95% of data)
+            'loose': mean_score + 3 * std_score,      # Within 3σ (99.7% of data)
+            'outlier': float('inf')                   # Beyond 3σ
         }
 
-        # Classify each gap into bands based on scalar relationships
+        # Classify each gap into statistical bands
         bands = []
         differences = []
         predictions = []
 
         for i, score in enumerate(phi_scalars):
-            # Calculate how well this gap fits φ-scaling relationships
-            # Use distance from ideal φ-scaling as the metric
-            ideal_phi_scale = 1.0  # Reference scaling
-            deviation = abs(score - ideal_phi_scale)
-
             predictions.append(score)
 
-            # Classify into bands
-            if deviation <= 0.2:  # Within 20% of ideal scaling
+            # Calculate deviation from mean (normalized by std)
+            deviation = abs(score - mean_score) / std_score if std_score > 0 else 0
+
+            # Classify into statistical bands
+            if deviation <= 1.0:  # Within 1σ
                 bands.append('tight')
-                differences.append(deviation)
-            elif deviation <= 0.5:  # Within 50% of ideal scaling
+            elif deviation <= 2.0:  # Within 2σ
                 bands.append('normal')
-                differences.append(deviation)
-            elif deviation <= 1.0:  # Within 100% of ideal scaling
+            elif deviation <= 3.0:  # Within 3σ
                 bands.append('loose')
-                differences.append(deviation)
-            else:  # Outside scaling bands
+            else:  # Beyond 3σ
                 bands.append('outlier')
-                differences.append(deviation)
+
+            differences.append(deviation)
 
         predictions = np.array(predictions)
         differences = np.array(differences)
