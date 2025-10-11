@@ -1,6 +1,6 @@
 PY=python3
 
-.PHONY: install test api cli docker-build docker-run docs-serve daily
+.PHONY: install test api cli docker-build docker-run docs-serve daily papers paper-clean paper-list
 
 install:
 	$(PY) -m pip install --upgrade pip
@@ -28,4 +28,12 @@ docs-serve:
 daily:
 	$(PY) scripts/run_daily.py
 
+papers:
+	$(PY) scripts/build_papers.py --all
+
+paper-clean:
+	$(PY) scripts/build_papers.py --clean
+
+paper-list:
+	$(PY) scripts/build_papers.py --list
 

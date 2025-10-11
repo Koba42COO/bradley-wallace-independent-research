@@ -1,0 +1,124 @@
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{subcaption}
+
+% Page geometry
+\geometry{margin=1in}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    citecolor=blue,
+}
+
+% Code highlighting
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+    breaklines=true,
+    captionpos=b
+}
+
+% Title page info
+\title{\vspace{-2cm}}
+\author{
+    Bradley Wallace \\
+    \texttt{coo@koba42.com} \\
+    \vspace{0.5em}
+    Working in collaborations using VantaX Trikernal since late June \\
+    \vspace{0.5em}
+    \small{Thanks to Julia for her help in research}
+}
+\date{\today}
+
+% Headers and footers
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\pagestyle{fancy}
+
+% Abstract environment
+\newenvironment{researchabstract}{
+    \begin{center}
+        \large\bfseries Abstract
+    \end{center}
+    \vspace{0.5em}
+    \begin{quote}
+}{
+    \end{quote}
+    \vspace{1em}
+}
+
+% Keywords environment
+\newenvironment{keywords}{
+    \noindent\textbf{Keywords:}
+}{
+}
+
+\begin{document}
+
+% Title page
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% List of figures (if needed)
+% \listoffigures
+% \newpage
+
+% List of tables (if needed)
+% \listoftables
+% \newpage
+
+% Abstract placeholder - will be replaced by specific paper content
+\begin{researchabstract}
+[Abstract content will be inserted here]
+\end{researchabstract}
+
+% Keywords placeholder
+\begin{keywords}
+[Keywords will be inserted here]
+\end{keywords}
+
+% Main content placeholder
+\section{Introduction}
+[Introduction content will be inserted here]
+
+% Document content goes here
+
+% Bibliography
+\bibliographystyle{plain}
+\bibliography{references}
+
+% Appendices (if needed)
+% \appendix
+% \section{Additional Results}
+% [Appendix content]
+
+\end{document}
