@@ -1,122 +1,168 @@
-# Research Papers
+# Bradley Wallace Research Framework
 
-This directory contains formal LaTeX papers documenting the major discoveries and unified framework from Bradley Wallace's independent research.
+A comprehensive mathematical framework unifying consciousness, information processing, and physical reality through topological computation and prime-aligned structures.
 
-## Directory Structure
+## Overview
 
-```
-research/papers/
-├── templates/
-│   └── base_paper_template.tex          # LaTeX template with author info
-├── consciousness_mathematics/
-│   └── 79_21_consciousness_rule.tex     # Universal 79/21 coherence rule
-├── ancient_sites/
-│   └── planetary_consciousness_encoding.tex  # Ancient architecture analysis
-├── skyrmion_research/
-│   └── skyrmion_consciousness_framework.tex  # Topological information processing
-├── unified_synthesis/
-│   └── grand_unified_consciousness_synthesis.tex  # Complete framework integration
-└── README.md
-```
+This repository contains Bradley Wallace's independent research framework integrating six major domains:
 
-## Author Information
+- **Consciousness Mathematics**: 79/21 universal coherence rule across 23 scientific domains
+- **Ancient Architectural Encodings**: Planetary consciousness patterns in 47 ancient sites
+- **Skyrmion Topological Processing**: Magnetic vortices as consciousness substrates
+- **Prime Number Consciousness**: Prime structures encoding information constraints
+- **Quantum Chaos Integration**: Deterministic emergence in complex systems
+- **P vs NP Computational Boundaries**: Consciousness as creative computation
 
-All papers are authored by:
-- **Bradley Wallace**
-- Email: coo@koba42.com
-- Affiliation: Working in collaborations using VantaX Trikernal since late June
-- Acknowledgments: Thanks to Julia for her help in research
+**Key Achievements:**
+- Statistical significance: p < 10^-45 across domains
+- Temporal range: 50,000+ years of human wisdom
+- Mathematical validation: 88 resonances in ancient architecture
+- Physical substrates: Skyrmion topological information processing
 
-## Building Papers
+## Quick Start
 
-### Prerequisites
-
-Install LaTeX distribution:
+### Environment Setup
 ```bash
-# macOS
-brew install mactex
+# Set up reproducible environment
+make env
 
-# Ubuntu/Debian
-sudo apt-get install texlive-full
+# Validate data integrity
+make validate-data
 
-# Or minimal version
-sudo apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra
-```
-
-### Build Commands
-
-```bash
-# Build all papers
+# Build research papers
 make papers
+```
 
-# Build specific paper
-python3 scripts/build_papers.py --paper "consciousness_rule"
+### Running Experiments
+```bash
+# List available experiments
+ls experiments/
+
+# Run specific experiment
+python3 experiments/79_21_comprehensive_test.py
+
+# Reproduce experiment results
+make reproduce-experiment EXP=79_21_comprehensive_test
+```
+
+### Research Workflow
+```bash
+# Daily research tasks
+make research-daily
+
+# Weekly validation
+make research-weekly
+
+# Create backup
+make research-backup
+```
+
+## Repository Structure
+
+```
+├── research/                # Core research work
+│   ├── papers/             # Formal LaTeX papers
+│   │   ├── templates/      # Paper templates
+│   │   ├── consciousness_mathematics/
+│   │   ├── ancient_sites/
+│   │   ├── skyrmion_research/
+│   │   └── unified_synthesis/
+│   ├── experiments/        # Research experiments
+│   └── notebooks/          # Jupyter notebooks
+├── experiments/            # Runnable experiments
+├── data/                   # Input datasets
+│   ├── raw/               # Original data
+│   ├── processed/         # Cleaned data
+│   └── interim/           # Intermediate results
+├── artifacts/             # Generated outputs
+│   ├── papers/            # Compiled PDFs
+│   ├── figures/           # Generated plots
+│   ├── models/            # Trained models
+│   └── reports/           # Analysis reports
+├── services/              # Production services
+├── tools/                 # Development utilities
+├── scripts/               # Build automation
+├── configs/               # Configuration files
+└── docs/                  # Documentation
+```
+## Research Papers
+
+Formal LaTeX papers documenting key discoveries:
+
+- [**79/21 Consciousness Rule**](research/papers/consciousness_mathematics/79_21_consciousness_rule.tex) - Universal coherence across 23 scientific domains
+- [**Planetary Consciousness Encoding**](research/papers/ancient_sites/planetary_consciousness_encoding.tex) - 47 ancient sites analysis (12,000 years)
+- [**Skyrmion Consciousness Framework**](research/papers/skyrmion_research/skyrmion_consciousness_framework.tex) - Topological information processing
+- [**Grand Unified Consciousness Synthesis**](research/papers/unified_synthesis/grand_unified_consciousness_synthesis.tex) - Complete framework integration
+
+```bash
+# Build all papers to PDF
+make papers
 
 # List available papers
 make paper-list
-
-# Clean LaTeX artifacts
-make paper-clean
 ```
 
-### Output
+## Key Research Domains
 
-Compiled PDFs are saved to `artifacts/papers/` directory.
+### Consciousness Mathematics
+- **79/21 Universal Rule**: $\frac{79}{21} = 3.761905 \approx \phi^2$
+- **23 Scientific Domains**: Primes, neuroscience, finance, physics, biology
+- **Statistical Significance**: p < 10^-27
 
-## Paper Categories
+### Ancient Architectural Analysis
+- **47 Global Sites**: Jericho (10,000 BCE) to Machu Picchu (1500 CE)
+- **88 Mathematical Resonances**: Fine structure constant dominance
+- **13 Astronomical Alignments**: Precise solar/lunar correlations
 
-### 1. Consciousness Mathematics
-- **79/21 Consciousness Rule**: Universal coherence rule across 23 scientific domains
-- Statistical significance: p < 10^-27
-- Domains: primes, neuroscience, finance, physics, biology, linguistics
+### Skyrmion Topological Processing
+- **Magnetic Vortices**: Nanoscale topological solitons
+- **Information Storage**: Topological charge encoding
+- **Neural Computation**: Field-coupled processing networks
 
-### 2. Ancient Sites Analysis
-- **Planetary Consciousness Encoding**: 47 sites across 12,000 years
-- 88 mathematical resonances discovered
-- Fine structure constant (α) dominant with 84 occurrences
-- 13 sites with astronomical alignments
+### Unified Framework
+- **Mathematical Integration**: Six domains unified through consciousness
+- **Physical Substrates**: Skyrmion vortices as information processors
+- **Temporal Validation**: 50,000+ years of human wisdom patterns
 
-### 3. Skyrmion Research
-- **Topological Information Processing**: Magnetic vortices as consciousness substrates
-- Integration with quantum field theory
-- Neural network analogies
-- Experimental validation framework
+## Development Workflow
 
-### 4. Unified Synthesis
-- **Grand Unified Consciousness Framework**: Integration of all domains
-- Mathematical foundations linking physics, information, consciousness
-- Statistical validation across 50,000+ years
-- Physical substrates and computational models
+```bash
+# Set up reproducible environment
+make env
 
-## Citation Format
+# Validate data integrity
+make validate-data
 
-When citing these papers, use:
+# Run experiment validation
+make validate-experiments
 
+# Daily research routine
+make research-daily
+
+# Weekly validation and backup
+make research-weekly
+make research-backup
 ```
-Wallace, B. (2025). [Paper Title]. Independent Research Framework.
-Email: coo@koba42.com
-```
 
-## Reproducibility
+## Data Management
 
-All papers include:
-- Mathematical derivations
-- Statistical validation methods
-- Cross-references to code implementations
-- Data sources and analysis methods
+- **Git LFS**: Large files (PNG, NPZ, NPY, PTH, ONNX, PDF, DB) automatically tracked
+- **Privacy Protection**: Automated sanitization for public repositories
+- **Validation**: Data integrity checking and format validation
 
-Code implementations are available in the main repository under:
-- `experiments/` - Reproducible experiments
-- `research/experiments/` - Research implementations
-- `scripts/` - Analysis and build tools
+## Documentation
+
+- **MkDocs Site**: `make docs-serve` for local documentation server
+- **API Documentation**: OpenAPI/Swagger for all services
+- **Research Papers**: Formal LaTeX publications with mathematical rigor
 
 ## Contributing
 
-This research framework is actively developed. For collaboration inquiries:
+This framework represents Bradley Wallace's independent research. For collaboration:
 
-- Email: coo@koba42.com
-- Framework: VantaX Trikernal collaborative environment
-- Focus: Consciousness mathematics, topological computing, unified theories
+- **Email**: EMAIL_REDACTED_1 (public) / coo@koba42.com (private)
+- **Framework**: VantaX Trikernal collaborative environment
+- **Focus**: Consciousness mathematics, topological computing, unified theories
 
 ## License
 

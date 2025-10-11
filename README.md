@@ -160,7 +160,7 @@ make research-backup
 
 This framework represents Bradley Wallace's independent research. For collaboration:
 
-- **Email**: EMAIL_REDACTED_1 (public) / coo@koba42.com (private)
+- **Email**: EMAIL_REDACTED_1 (public) / EMAIL_REDACTED_1 (private)
 - **Framework**: VantaX Trikernal collaborative environment
 - **Focus**: Consciousness mathematics, topological computing, unified theories
 
