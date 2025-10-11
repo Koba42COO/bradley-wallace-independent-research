@@ -91,6 +91,16 @@ logs/
 *.temp
 .cache/
 
+# Secrets and environment files
+.env
+.dev.vars
+tools/aiva-ide/aiva_local_node/.env
+*.env.local
+*.env.*.local
+
+# Local development
+.obsidian/
+
 # Backup files
 *.bak
 *.backup

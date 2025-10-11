@@ -1,0 +1,154 @@
+{
+  "export_date": "2025-10-11T14:48:40.068219",
+  "total_entries": 3,
+  "bibliography_db": {
+    "7bb166c8-e5f4-4bb0-8a01-2ff187f74df3": {
+      "id": "7bb166c8-e5f4-4bb0-8a01-2ff187f74df3",
+      "citation_key": "Godel1931",
+      "entry_type": "article",
+      "fields": {
+        "author": "Kurt G\u00f6del",
+        "title": "On Formally Undecidable Propositions of Principia Mathematica and Related Systems",
+        "journal": "Monatshefte f\u00fcr Mathematik und Physik",
+        "volume": "38",
+        "pages": "173--198",
+        "year": "1931",
+        "doi": "10.1007/BF01700692"
+      },
+      "domain": "mathematics",
+      "topics": [
+        "logic",
+        "incompleteness",
+        "formal_systems"
+      ],
+      "research_context": "Foundation for fractal-harmonic reinterpretation of incompleteness theorems",
+      "added_date": "2025-10-11T14:48:40.068086",
+      "last_modified": "2025-10-11T14:48:40.068095",
+      "version": "1.0",
+      "quality_score": 5.0,
+      "checksum": "0339c2d00076937c815233063206838605f1b3e20d619aa7c662934957d792b4",
+      "validated": false,
+      "cross_referenced": [],
+      "citations_in_vault": [],
+      "related_entries": [],
+      "cross_references": [
+        {
+          "entry_id": "965d80eb-cebf-4a9a-8ada-24f263ca157f",
+          "type": "related",
+          "added_date": "2025-10-11T14:48:40.068178"
+        },
+        {
+          "entry_id": "debec77d-2bac-4b64-b6a3-74e2c3abb9d6",
+          "type": "related",
+          "added_date": "2025-10-11T14:48:40.068182"
+        }
+      ]
+    },
+    "965d80eb-cebf-4a9a-8ada-24f263ca157f": {
+      "id": "965d80eb-cebf-4a9a-8ada-24f263ca157f",
+      "citation_key": "Feigenbaum1978",
+      "entry_type": "article",
+      "fields": {
+        "author": "Mitchell J. Feigenbaum",
+        "title": "Quantitative Universality for a Class of Nonlinear Transformations",
+        "journal": "Journal of Statistical Physics",
+        "volume": "19",
+        "pages": "25--52",
+        "year": "1978",
+        "doi": "10.1007/BF01020332"
+      },
+      "domain": "mathematics",
+      "topics": [
+        "chaos_theory",
+        "bifurcation",
+        "universality"
+      ],
+      "research_context": "Chaotic dynamics reference for comparison with prime gap scaling",
+      "added_date": "2025-10-11T14:48:40.068140",
+      "last_modified": "2025-10-11T14:48:40.068142",
+      "version": "1.0",
+      "quality_score": 5.0,
+      "checksum": "56e24092aaf16253f60c0f1d50bebd4df1b2a7331298d3600313b3eef415ed63",
+      "validated": false,
+      "cross_referenced": [],
+      "citations_in_vault": [],
+      "related_entries": [],
+      "cross_references": [
+        {
+          "entry_id": "7bb166c8-e5f4-4bb0-8a01-2ff187f74df3",
+          "type": "related",
+          "added_date": "2025-10-11T14:48:40.068180"
+        }
+      ]
+    },
+    "debec77d-2bac-4b64-b6a3-74e2c3abb9d6": {
+      "id": "debec77d-2bac-4b64-b6a3-74e2c3abb9d6",
+      "citation_key": "Catalan1875",
+      "entry_type": "article",
+      "fields": {
+        "author": "Eug\u00e8ne Catalan",
+        "title": "Note sur une s\u00e9rie infinie",
+        "journal": "Journal de Math\u00e9matiques Pures et Appliqu\u00e9es",
+        "volume": "1",
+        "pages": "81--84",
+        "year": "1875"
+      },
+      "domain": "mathematics",
+      "topics": [
+        "number_theory",
+        "series",
+        "constants"
+      ],
+      "research_context": "Combinatorial series constant for comparison with prime gap resonances",
+      "added_date": "2025-10-11T14:48:40.068166",
+      "last_modified": "2025-10-11T14:48:40.068167",
+      "version": "1.0",
+      "quality_score": 4.5,
+      "checksum": "bf84839cb96cea1d203fb3ff429035e624b8fd8ecb20c18343355b9e322f8a96",
+      "validated": false,
+      "cross_referenced": [],
+      "citations_in_vault": [],
+      "related_entries": [],
+      "cross_references": [
+        {
+          "entry_id": "7bb166c8-e5f4-4bb0-8a01-2ff187f74df3",
+          "type": "related",
+          "added_date": "2025-10-11T14:48:40.068183"
+        }
+      ]
+    }
+  },
+  "citation_index": {
+    "Godel1931": "7bb166c8-e5f4-4bb0-8a01-2ff187f74df3",
+    "Feigenbaum1978": "965d80eb-cebf-4a9a-8ada-24f263ca157f",
+    "Catalan1875": "debec77d-2bac-4b64-b6a3-74e2c3abb9d6"
+  },
+  "domain_categories": {
+    "mathematics": [
+      "number_theory",
+      "topology",
+      "algebra",
+      "analysis",
+      "geometry"
+    ],
+    "physics": [
+      "quantum_physics",
+      "topological_field_theory",
+      "skyrmion_physics",
+      "quantum_chaos",
+      "magnetic_systems"
+    ],
+    "consciousness": [
+      "consciousness_mathematics",
+      "pac_framework",
+      "neural_models",
+      "quantum_consciousness"
+    ],
+    "computing": [
+      "quantum_computing",
+      "neuromorphic_systems",
+      "cryptography",
+      "algorithms"
+    ]
+  }
+}
