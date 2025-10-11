@@ -68,7 +68,7 @@ Once you have the keys, you can download the `sha256sums.asc` file and verify
 the file you want like so:
 
 ```ShellSession
-$ gpg -d sha256sums.asc | grep git-lfs-linux-amd64-v2.10.0.tar.gz | shasum -a 256 -c
+$ gpg -d sha256sums.asc | grep HOST_REDACTED_2334.gz | shasum -a 256 -c
 ```
 
 For the convenience of distributors, we also provide a wider variety of signed

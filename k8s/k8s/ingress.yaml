@@ -3,11 +3,11 @@ kind: Ingress
 metadata:
   name: wallace-research-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    HOST_REDACTED_30/rewrite-target: /
+    HOST_REDACTED_30/ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/rate-limit: "100"
-    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
+    HOST_REDACTED_30/rate-limit: "100"
+    HOST_REDACTED_30/rate-limit-window: "1m"
 spec:
   ingressClassName: nginx
   tls:

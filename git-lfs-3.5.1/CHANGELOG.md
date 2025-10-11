@@ -1739,7 +1739,7 @@ $ git push origin master
 remote: error: file a.psd is 1.2 gb; this exceeds github's file size limit of 100.00 mb
 to github.com:ttaylorr/demo.git
  ! [remote rejected] master -> master (pre-receive hook declined)
-error: failed to push some refs to 'git@github.com:ttaylorr/demo.git'
+error: failed to push some refs to 'EMAIL_REDACTED_10:ttaylorr/demo.git'
 
 $ git lfs migrate info
 *.psd   1.2 GB   27/27 files(s)  100%

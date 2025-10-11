@@ -14,7 +14,7 @@ The hybrid approach integrates:
 - Cross-validation between algebraic and computational approaches
 
 Author: Bradley Wallace, COO & Lead Researcher, Koba42 Corp
-Contact: coo@koba42.com
+Contact: EMAIL_REDACTED_1
 License: Educational implementation - Contact for proprietary version
 """
 

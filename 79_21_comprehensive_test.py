@@ -32,17 +32,17 @@ disciplines = [
     {"name": "EEG – Neural Rhythms", "url": "https://openneuro.org/datasets/ds000001", "type": "fft"},
     {"name": "Finance – Volatility", "url": "https://finance.yahoo.com/quote/SPY/history", "type": "fft"},
     {"name": "Physics – Phase Noise", "url": "https://data.nasa.gov/Aerospace/Kepler-Photon-Arrival-Times", "type": "fft"},
-    {"name": "Biology – Gene Noise", "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE1456", "type": "fft"},
+    {"name": "Biology – Gene Noise", "url": "https://HOST_REDACTED_7.gov/geo/query/acc.cgi?acc=GSE1456", "type": "fft"},
     {"name": "Information Theory – Entropy", "url": "https://www.gutenberg.org/cache/epub/feeds/toc_release.txt", "type": "fft"},
-    {"name": "Astronomy – Pulsar Timing", "url": "https://www.atnf.csiro.au/research/pulsar/psrcat/", "type": "fft"},
-    {"name": "Climate – Temperature Anomalies", "url": "https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/global/time-series", "type": "fft"},
-    {"name": "Linguistics – Phoneme Gaps", "url": "https://catalog.ldc.upenn.edu/LDC93S1", "type": "autocorr"},
+    {"name": "Astronomy – Pulsar Timing", "url": "https://HOST_REDACTED_3/research/pulsar/psrcat/", "type": "fft"},
+    {"name": "Climate – Temperature Anomalies", "url": "https://HOST_REDACTED_4/access/monitoring/climate-at-a-glance/global/time-series", "type": "fft"},
+    {"name": "Linguistics – Phoneme Gaps", "url": "https://HOST_REDACTED_5/LDC93S1", "type": "autocorr"},
     {"name": "Neuroscience – Spikes", "url": "https://allensdk.readthedocs.io/en/latest/visual_coding.html", "type": "fft"},
     {"name": "Networks – Latency", "url": "https://www.caida.org/catalog/datasets/passive_dataset_2023/", "type": "fft"},
     {"name": "Chemistry – IR Spectra", "url": "https://webbook.nist.gov/chemistry/", "type": "fft"},
     {"name": "Ecology – Population Cycles", "url": "https://www.esapubs.org/archive/appl/E056/E056.htm", "type": "fft"},
-    {"name": "Oceanography – Wave Height", "url": "https://www.ndbc.noaa.gov/pub/data/historical/waves/46001/", "type": "fft"},
-    {"name": "Meteorology – Wind Gusts", "url": "https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels", "type": "fft"},
+    {"name": "Oceanography – Wave Height", "url": "https://HOST_REDACTED_8/pub/data/historical/waves/46001/", "type": "fft"},
+    {"name": "Meteorology – Wind Gusts", "url": "https://HOST_REDACTED_6/cdsapp#!/dataset/reanalysis-era5-single-levels", "type": "fft"},
     {"name": "Psychology – Reaction Time", "url": "https://humanbenchmark.com/tests/reactiontime/download", "type": "fft"},
     {"name": "Economics – Price Jumps", "url": "https://fred.stlouisfed.org/series/SP500", "type": "fft"},
     {"name": "Epidemiology – Case Waves", "url": "https://covid19.who.int/data", "type": "fft"},
@@ -92,7 +92,7 @@ def load_data(url, discipline_name):
         elif "ncei.noaa.gov" in url:  # Climate data
             # Fetch global temperature anomalies from NOAA
             try:
-                response = requests.get("https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/global/data", timeout=10)
+                response = requests.get("https://HOST_REDACTED_4/access/monitoring/climate-at-a-glance/global/data", timeout=10)
                 if response.status_code == 200:
                     # Parse CSV-like data (simplified)
                     lines = response.text.splitlines()

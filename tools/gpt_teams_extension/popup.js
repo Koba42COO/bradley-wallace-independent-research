@@ -174,7 +174,7 @@ class GPTExporterPopup {
     }
 
     showPasteDialog() {
-        this.pasteDialog.style.display = 'flex';
+        HOST_REDACTED_19 = 'flex';
         this.conversationText.focus();
         // Auto-select placeholder text for easy replacement
         setTimeout(() => {
@@ -183,12 +183,12 @@ class GPTExporterPopup {
     }
 
     hidePasteDialog() {
-        this.pasteDialog.style.display = 'none';
+        HOST_REDACTED_19 = 'none';
         this.conversationText.value = '';
     }
 
     async processPastedConversation() {
-        const conversationText = this.conversationText.value.trim();
+        const conversationText = HOST_REDACTED_17();
 
         if (!conversationText) {
             this.showNotification('Please paste some conversation text first', 'warning');
@@ -376,9 +376,9 @@ class GPTExporterPopup {
 
             this.setStatus('connected', dryRun ? '🔍 Running Dry Run...' : '🚀 Starting Export...');
             this.showProgress(true);
-            this.startBtn.style.display = 'none';
-            this.dryRunBtn.style.display = 'none';
-            this.stopBtn.style.display = 'block';
+            HOST_REDACTED_16 = 'none';
+            HOST_REDACTED_15 = 'none';
+            HOST_REDACTED_22 = 'block';
 
             const response = await fetch(`${this.backendUrl}/start`, {
                 method: 'POST',
@@ -460,19 +460,19 @@ class GPTExporterPopup {
         const percentage = progress.total > 0 ?
             Math.round((progress.current / progress.total) * 100) : 0;
 
-        this.progressFill.style.width = `${percentage}%`;
+        HOST_REDACTED_21 = `${percentage}%`;
         this.progressText.textContent = progress.message ||
             `Processing: ${progress.current}/${progress.total}`;
     }
 
     showProgress(show) {
-        this.progress.style.display = show ? 'block' : 'none';
+        HOST_REDACTED_18 = show ? 'block' : 'none';
     }
 
     resetButtons() {
-        this.startBtn.style.display = 'block';
-        this.dryRunBtn.style.display = 'block';
-        this.stopBtn.style.display = 'none';
+        HOST_REDACTED_16 = 'block';
+        HOST_REDACTED_15 = 'block';
+        HOST_REDACTED_22 = 'none';
 
         if (this.progressInterval) {
             clearInterval(this.progressInterval);
@@ -491,7 +491,7 @@ class GPTExporterPopup {
         const settings = this.getSettings();
 
         try {
-            await chrome.storage.sync.set({
+            await HOST_REDACTED_14({
                 'gpt_exporter_settings': settings
             });
         } catch (error) {
@@ -501,7 +501,7 @@ class GPTExporterPopup {
 
     async loadSettings() {
         try {
-            const result = await chrome.storage.sync.get(['gpt_exporter_settings']);
+            const result = await HOST_REDACTED_20(['gpt_exporter_settings']);
             const settings = result.gpt_exporter_settings || {};
 
             this.limitInput.value = settings.limit || 100;

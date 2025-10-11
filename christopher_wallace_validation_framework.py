@@ -13,7 +13,7 @@ Dedicated to Christopher Wallace (1933-2004)
 Pioneer in Minimum Description Length, Wallace Trees, and Information Theory
 
 Author: Bradley Wallace, COO & Lead Researcher, Koba42 Corp
-Contact: coo@koba42.com
+Contact: EMAIL_REDACTED_1
 License: Educational and Research Use - Dedicated to Christopher Wallace's Legacy
 
 Research Timeline: February 24, 2025 - Present

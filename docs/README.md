@@ -402,7 +402,7 @@ This project is part of the Wallace Quantum Resonance Framework research suite, 
 ### Community
 - GitHub Issues: Bug reports and feature requests
 - GitHub Discussions: General questions and community support
-- Email: coo@koba42.com
+- Email: EMAIL_REDACTED_1
 
 ### Professional Support
 - Enterprise deployment assistance

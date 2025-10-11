@@ -7,7 +7,7 @@ Expanded testing of the hybrid framework with larger problem sizes
 and detailed analysis of breakthrough candidates.
 
 Author: Bradley Wallace, COO & Lead Researcher, Koba42 Corp
-Contact: coo@koba42.com
+Contact: EMAIL_REDACTED_1
 License: Educational implementation
 """
 

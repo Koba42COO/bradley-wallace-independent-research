@@ -8,18 +8,18 @@ class GPTArchiveBackground {
 
     init() {
         // Handle extension installation
-        chrome.runtime.onInstalled.addListener(() => {
+        HOST_REDACTED_24(() => {
             this.onInstalled();
         });
 
         // Handle messages from popup and content scripts
-        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        HOST_REDACTED_23((request, sender, sendResponse) => {
             this.handleMessage(request, sender, sendResponse);
             return true; // Keep channel open for async responses
         });
 
         // Handle tab updates
-        chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+        HOST_REDACTED_26((tabId, changeInfo, tab) => {
             if (changeInfo.status === 'complete' && tab.url?.includes('chatgpt.com')) {
                 this.injectContentScript(tabId);
             }
@@ -30,7 +30,7 @@ class GPTArchiveBackground {
 
     onInstalled() {
         // Set default settings
-        chrome.storage.sync.set({
+        HOST_REDACTED_14({
             'gpt_exporter_settings': {
                 limit: 100,
                 since: '2024-01-01',
@@ -179,7 +179,7 @@ class GPTArchiveBackground {
     }
 
     // Context menu handler
-    chrome.contextMenus.onClicked.addListener((info, tab) => {
+    HOST_REDACTED_25((info, tab) => {
         if (info.menuItemId === 'gpt-archive-export') {
             this.handleContextMenuExport(tab);
         }

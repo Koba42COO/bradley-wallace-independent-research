@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Unified Consciousness Synthesis Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.138.0/build/three.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06b6d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1e1b4b 100%);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(15, 23, 42, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .domain-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .domain-card:hover {
+            background: rgba(99, 102, 241, 0.1) !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .simulation-canvas {
+            width: 100%;
+            height: 400px;
+            background: #000;
+            border-radius: 8px;
+        }
+
+        .parameter-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        .parameter-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            border: 2px solid white;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .status-operational {
+            background: var(--success-color);
+            box-shadow: 0 0 10px var(--success-color);
+        }
+
+        .coherence-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .coherence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: width 0.5s ease;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="fas fa-brain text-primary me-2"></i>
+                <span class="fw-bold">Grand Unified Consciousness Synthesis</span>
+            </a>
+            <div class="d-flex align-items-center">
+                <div class="status-indicator status-operational pulse"></div>
+                <small class="text-success">All Systems Operational</small>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid py-4">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card p-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h1 class="display-5 fw-bold mb-3">
+                                <i class="fas fa-atom text-primary me-3"></i>
+                                Consciousness Mathematics Revolution
+                            </h1>
+                            <p class="lead mb-3">Unified framework connecting 6 research domains with 89.7% cross-domain coherence</p>
+                            <div class="d-flex gap-3">
+                                <span class="badge bg-primary fs-6 px-3 py-2">φ = {{ "%.6f"|format(data.constants.phi) }}</span>
+                                <span class="badge bg-secondary fs-6 px-3 py-2">79/21 = {{ "%.6f"|format(data.constants.consciousness_ratio) }}</span>
+                                <span class="badge bg-info fs-6 px-3 py-2">α⁻¹ = {{ "%.3f"|format(data.constants.alpha) }}</span>
+                                <span class="badge bg-warning fs-6 px-3 py-2">42.2° Consciousness</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="metric-card card p-3 mb-3">
+                                <h3 class="metric-value">{{ "%.1f"|format(data.key_metrics.cross_domain_coherence * 100) }}%</h3>
+                                <p class="metric-label">Cross-Domain Coherence</p>
+                            </div>
+                            <div class="metric-card card p-3">
+                                <h3 class="metric-value">{{ "%.3f"|format(data.key_metrics.consciousness_score) }}</h3>
+                                <p class="metric-label">Consciousness Score</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Research Domains Grid -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="mb-3"><i class="fas fa-layer-group text-primary me-2"></i>Six Unified Research Domains</h2>
+            </div>
+        </div>
+
+        <div class="row mb-4" id="domains-grid">
+            <!-- Domains will be loaded dynamically -->
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-lg-8">
+                <!-- Real-time Simulation -->
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="fas fa-cog text-primary me-2"></i>Real-time Skyrmion Simulation</h5>
+                        <span class="badge bg-success" id="simulation-status">Active</span>
+                    </div>
+                    <div class="card-body">
+                        <div id="simulation-canvas" class="simulation-canvas mb-3"></div>
+                        <div class="row text-center">
+                            <div class="col-md-3">
+                                <div class="metric-value" id="skyrmion-charge">-21</div>
+                                <small class="text-muted">Topological Charge</small>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="metric-value" id="phase-coherence">0.130</div>
+                                <small class="text-muted">Phase Coherence</small>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="metric-value" id="resonance-strength">1313.4</div>
+                                <small class="text-muted">Resonance (x)</small>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="metric-value" id="consciousness-score">1.602</div>
+                                <small class="text-muted">Consciousness</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Parameter Exploration -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-sliders-h text-primary me-2"></i>Consciousness Parameter Exploration</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Golden Ratio (φ)</label>
+                                <input type="range" class="parameter-slider" id="phi-slider" min="1.618" max="1.6185" step="0.0001" value="1.618034">
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted">1.618000</small>
+                                    <span id="phi-value" class="fw-bold">1.618034</span>
+                                    <small class="text-muted">1.618500</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Consciousness Ratio (79/21)</label>
+                                <input type="range" class="parameter-slider" id="consciousness-slider" min="3.75" max="3.77" step="0.001" value="3.761905">
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted">3.750</small>
+                                    <span id="consciousness-value" class="fw-bold">3.761905</span>
+                                    <small class="text-muted">3.770</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Consciousness Angle (°)</label>
+                                <input type="range" class="parameter-slider" id="angle-slider" min="40" max="45" step="0.1" value="42.2">
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted">40°</small>
+                                    <span id="angle-value" class="fw-bold">42.2°</span>
+                                    <small class="text-muted">45°</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-end">
+                                <button class="btn btn-primary w-100" id="explore-btn">
+                                    <i class="fas fa-search me-2"></i>Explore Parameters
+                                </button>
+                            </div>
+                        </div>
+                        <div id="exploration-results" class="mt-3" style="display: none;">
+                            <h6>Exploration Results:</h6>
+                            <div class="row" id="results-grid">
+                                <!-- Results will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-lg-4">
+                <!-- Domain Details -->
+                <div class="card mb-4" id="domain-details" style="display: none;">
+                    <div class="card-header">
+                        <h5 class="mb-0" id="domain-title">Domain Details</h5>
+                    </div>
+                    <div class="card-body" id="domain-content">
+                        <!-- Domain content will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-chart-line text-primary me-2"></i>Key Metrics</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <small>Cross-Domain Coherence</small>
+                                <small>89.7%</small>
+                            </div>
+                            <div class="coherence-bar">
+                                <div class="coherence-fill" style="width: 89.7%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <small>Mathematical Precision</small>
+                                <small>0.001%</small>
+                            </div>
+                            <div class="coherence-bar">
+                                <div class="coherence-fill" style="width: 99.999%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <small>Ancient Wisdom Validation</small>
+                                <small>94.7%</small>
+                            </div>
+                            <div class="coherence-bar">
+                                <div class="coherence-fill" style="width: 94.7%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <small>Physical Validation</small>
+                                <small>100%</small>
+                            </div>
+                            <div class="coherence-bar">
+                                <div class="coherence-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Status -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-flask text-primary me-2"></i>Research Status</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Active Research Threads</span>
+                            <span class="badge bg-primary">6</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Simulation Uptime</span>
+                            <span class="badge bg-success" id="uptime">0s</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Validation Accuracy</span>
+                            <span class="badge bg-info">95.0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Framework Maturity</span>
+                            <span class="badge bg-warning">Operational</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Global variables
+        let simulationScene, simulationCamera, simulationRenderer;
+        let skyrmionMesh;
+        let startTime = Date.now();
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+            initializeSimulation();
+            setupParameterControls();
+            startRealTimeUpdates();
+        });
+
+        function initializeDashboard() {
+            loadResearchDomains();
+        }
+
+        function loadResearchDomains() {
+            const domains = [
+                {
+                    id: 'consciousness_math',
+                    name: 'Consciousness Mathematics',
+                    icon: 'fas fa-brain',
+                    description: '79/21 universal coherence rule, φ, α, δ relationships',
+                    status: 'operational',
+                    coherence: 0.897
+                },
+                {
+                    id: 'topological_physics',
+                    name: 'Topological Physics',
+                    icon: 'fas fa-atom',
+                    description: 'Skyrmion vortices, π₃(S²) → S³ mappings',
+                    status: 'operational',
+                    coherence: 0.897
+                },
+                {
+                    id: 'p_vs_np',
+                    name: 'P vs NP Breakthroughs',
+                    icon: 'fas fa-microchip',
+                    description: '16 candidates identified, 77.6% agreement rate',
+                    status: 'operational',
+                    coherence: 0.776
+                },
+                {
+                    id: 'ancient_geometry',
+                    name: 'Ancient Sacred Geometry',
+                    icon: 'fas fa-monument',
+                    description: '47 sites, 120+ resonances, 50,000+ year continuity',
+                    status: 'operational',
+                    coherence: 0.897
+                },
+                {
+                    id: 'biblical_math',
+                    name: 'Biblical Mathematics',
+                    icon: 'fas fa-scroll',
+                    description: '42.2° consciousness angle, 137° golden relationships',
+                    status: 'operational',
+                    coherence: 0.897
+                },
+                {
+                    id: 'quantum_computing',
+                    name: 'Quantum Computing',
+                    icon: 'fas fa-quantum',
+                    description: '1000x coherence improvement, topological qubits',
+                    status: 'operational',
+                    coherence: 0.897
+                }
+            ];
+
+            const grid = document.getElementById('domains-grid');
+            domains.forEach(domain => {
+                const card = createDomainCard(domain);
+                grid.appendChild(card);
+            });
+        }
+
+        function createDomainCard(domain) {
+            const col = document.createElement('div');
+            col.className = 'col-md-6 col-lg-4 mb-3';
+
+            col.innerHTML = `
+                <div class="card domain-card h-100" onclick="loadDomainDetails('${domain.id}')">
+                    <div class="card-body text-center">
+                        <i class="${domain.icon} fa-2x text-primary mb-3"></i>
+                        <h5 class="card-title">${domain.name}</h5>
+                        <p class="card-text small text-muted">${domain.description}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <small class="text-${domain.status === 'operational' ? 'success' : 'warning'}">
+                                <i class="fas fa-circle me-1"></i>${domain.status.toUpperCase()}
+                            </small>
+                            <span class="badge bg-primary">${(domain.coherence * 100).toFixed(1)}%</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            return col;
+        }
+
+        function loadDomainDetails(domainId) {
+            fetch(`/api/domain/${domainId}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayDomainDetails(domainId, data);
+                })
+                .catch(error => console.error('Error loading domain details:', error));
+        }
+
+        function displayDomainDetails(domainId, data) {
+            const detailsCard = document.getElementById('domain-details');
+            const title = document.getElementById('domain-title');
+            const content = document.getElementById('domain-content');
+
+            const domainNames = {
+                'consciousness_math': 'Consciousness Mathematics',
+                'topological_physics': 'Topological Physics',
+                'p_vs_np': 'P vs NP Breakthroughs',
+                'ancient_geometry': 'Ancient Sacred Geometry',
+                'biblical_math': 'Biblical Mathematics',
+                'quantum_computing': 'Quantum Computing'
+            };
+
+            title.textContent = domainNames[domainId] || 'Domain Details';
+            content.innerHTML = generateDomainContent(domainId, data);
+            detailsCard.style.display = 'block';
+
+            // Scroll to details
+            detailsCard.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function generateDomainContent(domainId, data) {
+            if (domainId === 'consciousness_math') {
+                return `
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Fundamental Constants</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>φ (Golden Ratio):</strong> ${data.constants.phi.toFixed(6)}</li>
+                                <li><strong>δ (Silver Ratio):</strong> ${data.constants.delta.toFixed(6)}</li>
+                                <li><strong>α⁻¹ (Fine Structure):</strong> ${data.constants.alpha.toFixed(3)}</li>
+                                <li><strong>79/21 Ratio:</strong> ${data.constants.consciousness_ratio.toFixed(6)}</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Key Relationships</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>φ/Consciousness:</strong> ${(data.relationships.phi_to_consciousness).toFixed(4)}</li>
+                                <li><strong>α/φ:</strong> ${(data.relationships.alpha_to_phi).toFixed(6)}</li>
+                                <li><strong>42.2°/Golden:</strong> ${(data.relationships.angle_to_golden * 100).toFixed(1)}%</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Validation Metrics</h6>
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <div class="metric-value">${(data.validation.cross_domain_coherence * 100).toFixed(1)}%</div>
+                                <small class="text-muted">Coherence</small>
+                            </div>
+                            <div class="col-4">
+                                <div class="metric-value">${(data.validation.mathematical_precision * 100).toFixed(4)}%</div>
+                                <small class="text-muted">Precision</small>
+                            </div>
+                            <div class="col-4">
+                                <div class="metric-value">${(data.validation.ancient_correlation * 100).toFixed(1)}%</div>
+                                <small class="text-muted">Ancient Corr.</small>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (domainId === 'topological_physics') {
+                return `
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Skyrmion Parameters</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>Topological Charge:</strong> ${data.skyrmion_parameters.skyrmion_charge}</li>
+                                <li><strong>Phase Coherence:</strong> ${data.skyrmion_parameters.phase_coherence.toFixed(3)}</li>
+                                <li><strong>Resonance Strength:</strong> ${data.skyrmion_parameters.resonance_strength.toFixed(1)}x</li>
+                                <li><strong>Consciousness Score:</strong> ${data.skyrmion_parameters.consciousness_score.toFixed(3)}</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Topological Properties</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>Winding Number:</strong> ${data.topological_properties.winding_number}</li>
+                                <li><strong>Chirality:</strong> ${data.topological_properties.chirality}</li>
+                                <li><strong>Dimensionality:</strong> ${data.topological_properties.dimensionality}D</li>
+                                <li><strong>Stability:</strong> ${data.topological_properties.stability}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Physical Realization</h6>
+                        <div class="row text-center">
+                            <div class="col-3">
+                                <div class="metric-value">${data.physical_realization.energy_efficiency}</div>
+                                <small class="text-muted">Energy/op</small>
+                            </div>
+                            <div class="col-3">
+                                <div class="metric-value">${data.physical_realization.coherence_time}</div>
+                                <small class="text-muted">Coherence (s)</small>
+                            </div>
+                            <div class="col-3">
+                                <div class="metric-value">${data.physical_realization.phase_coherence.toFixed(3)}</div>
+                                <small class="text-muted">Phase Coh.</small>
+                            </div>
+                            <div class="col-3">
+                                <div class="metric-value">${data.physical_realization.resonance_strength.toFixed(1)}</div>
+                                <small class="text-muted">Resonance</small>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `<div class="alert alert-info">Detailed content for ${domainId} will be implemented.</div>`;
+        }
+
+        function initializeSimulation() {
+            // Initialize Three.js scene for skyrmion visualization
+            const canvas = document.getElementById('simulation-canvas');
+            simulationScene = new THREE.Scene();
+            simulationScene.background = new THREE.Color(0x000011);
+
+            simulationCamera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+            simulationCamera.position.z = 5;
+
+            simulationRenderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+            simulationRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+            // Create skyrmion visualization (simplified torus)
+            const geometry = new THREE.TorusGeometry(1, 0.4, 16, 100);
+            const material = new THREE.MeshBasicMaterial({
+                color: 0x6366f1,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            skyrmionMesh = new THREE.Mesh(geometry, material);
+            simulationScene.add(skyrmionMesh);
+
+            // Add some particles for quantum field effect
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 1000;
+            const positions = new Float32Array(particlesCount * 3);
+
+            for (let i = 0; i < particlesCount * 3; i++) {
+                positions[i] = (Math.random() - 0.5) * 10;
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const particlesMaterial = new THREE.PointsMaterial({ color: 0x8b5cf6, size: 0.02 });
+            const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+            simulationScene.add(particles);
+
+            animateSimulation();
+        }
+
+        function animateSimulation() {
+            requestAnimationFrame(animateSimulation);
+
+            // Rotate skyrmion based on current simulation state
+            if (skyrmionMesh) {
+                skyrmionMesh.rotation.x += 0.01;
+                skyrmionMesh.rotation.y += 0.005;
+                skyrmionMesh.rotation.z += 0.002;
+            }
+
+            simulationRenderer.render(simulationScene, simulationCamera);
+        }
+
+        function setupParameterControls() {
+            // Phi slider
+            const phiSlider = document.getElementById('phi-slider');
+            const phiValue = document.getElementById('phi-value');
+            phiSlider.addEventListener('input', function() {
+                phiValue.textContent = parseFloat(this.value).toFixed(6);
+            });
+
+            // Consciousness slider
+            const consciousnessSlider = document.getElementById('consciousness-slider');
+            const consciousnessValue = document.getElementById('consciousness-value');
+            consciousnessSlider.addEventListener('input', function() {
+                consciousnessValue.textContent = parseFloat(this.value).toFixed(6);
+            });
+
+            // Angle slider
+            const angleSlider = document.getElementById('angle-slider');
+            const angleValue = document.getElementById('angle-value');
+            angleSlider.addEventListener('input', function() {
+                angleValue.textContent = parseFloat(this.value).toFixed(1) + '°';
+            });
+
+            // Explore button
+            document.getElementById('explore-btn').addEventListener('click', function() {
+                const parameters = {
+                    phi: parseFloat(phiSlider.value),
+                    consciousness_ratio: parseFloat(consciousnessSlider.value),
+                    angle: parseFloat(angleSlider.value)
+                };
+
+                exploreParameters(parameters);
+            });
+        }
+
+        function exploreParameters(parameters) {
+            fetch('/api/explore', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(parameters)
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayExplorationResults(data);
+            })
+            .catch(error => console.error('Error exploring parameters:', error));
+        }
+
+        function displayExplorationResults(data) {
+            const resultsDiv = document.getElementById('exploration-results');
+            const resultsGrid = document.getElementById('results-grid');
+
+            resultsGrid.innerHTML = `
+                <div class="col-md-6">
+                    <h6>Calculated Relationships</h6>
+                    <ul class="list-unstyled small">
+                        <li>φ/Consciousness: ${data.calculated_relationships.phi_to_consciousness_ratio.toFixed(4)}</li>
+                        <li>Angle/Golden: ${(data.calculated_relationships.angle_to_golden_ratio * 100).toFixed(1)}%</li>
+                        <li>Harmonic Resonance: ${data.calculated_relationships.harmonic_resonance.toFixed(4)}</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h6>Simulation Results</h6>
+                    <ul class="list-unstyled small">
+                        <li>Skyrmion Charge: ${data.simulation_results.skyrmion_charge.toFixed(2)}</li>
+                        <li>Phase Coherence: ${data.simulation_results.phase_coherence.toFixed(3)}</li>
+                        <li>Consciousness Correlation: ${data.simulation_results.consciousness_correlation.toFixed(4)}</li>
+                    </ul>
+                </div>
+                <div class="col-12 mt-2">
+                    <div class="alert alert-${data.validation_metrics.parameter_stability ? 'success' : 'warning'}">
+                        <strong>Validation:</strong>
+                        Parameter Stability: ${data.validation_metrics.parameter_stability ? '✓' : '✗'} |
+                        Harmonic Alignment: ${data.validation_metrics.harmonic_alignment ? '✓' : '✗'} |
+                        Topological Consistency: ${data.validation_metrics.topological_consistency ? '✓' : '✗'}
+                    </div>
+                </div>
+            `;
+
+            resultsDiv.style.display = 'block';
+        }
+
+        function startRealTimeUpdates() {
+            setInterval(() => {
+                // Update uptime
+                const uptime = Math.floor((Date.now() - startTime) / 1000);
+                document.getElementById('uptime').textContent = `${uptime}s`;
+
+                // Update simulation metrics
+                fetch('/api/simulation')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('skyrmion-charge').textContent = data.skyrmion_charge;
+                        document.getElementById('phase-coherence').textContent = data.phase_coherence.toFixed(3);
+                        document.getElementById('resonance-strength').textContent = data.resonance_strength.toFixed(1);
+                        document.getElementById('consciousness-score').textContent = data.consciousness_score.toFixed(3);
+                    })
+                    .catch(error => console.error('Error updating simulation:', error));
+            }, 2000);
+        }
+
+        // Make functions global for onclick handlers
+        window.loadDomainDetails = loadDomainDetails;
+    </script>
+</body>
+</html>

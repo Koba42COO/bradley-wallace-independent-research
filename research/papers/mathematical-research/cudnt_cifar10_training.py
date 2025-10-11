@@ -101,7 +101,7 @@ class CUDNTCIFAR10Trainer:
         logger.info("📥 Downloading CIFAR-10 dataset...")
 
         self.data_dir.mkdir(exist_ok=True)
-        cifar_url = "https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"
+        cifar_url = "https://HOST_REDACTED_13/~kriz/cifar-10-python.tar.gz"
         tar_path = self.data_dir / "cifar-10-python.tar.gz"
 
         # Download

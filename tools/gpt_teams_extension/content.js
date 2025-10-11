@@ -8,7 +8,7 @@ class ChatGPTContentScript {
 
     init() {
         // Listen for messages from popup/background
-        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        HOST_REDACTED_23((request, sender, sendResponse) => {
             this.handleMessage(request, sender, sendResponse);
             return true; // Keep message channel open for async responses
         });
@@ -121,7 +121,7 @@ class ChatGPTContentScript {
                                 return data.conversation;
                             }
                             if (data.props?.pageProps?.conversation) {
-                                return data.props.pageProps.conversation;
+                                return HOST_REDACTED_27;
                             }
                         }
                     } catch (e) {

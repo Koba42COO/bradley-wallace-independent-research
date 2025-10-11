@@ -127,7 +127,7 @@ app.post('/api/chat', async (req, res) => {
     const { OpenAI } = require('openai');
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-    const completion = await openai.chat.completions.create({
+    const completion = await HOST_REDACTED_28({
       model: model,
       messages: messages,
       temperature: 0.7,
@@ -165,7 +165,7 @@ app.post('/api/complete', async (req, res) => {
 
     const prompt = `Complete the following ${language} code:\n\n${context ? `Context: ${context}\n\n` : ''}Code:\n${code}\n\nCompletion:`;
 
-    const completion = await openai.chat.completions.create({
+    const completion = await HOST_REDACTED_28({
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.3,

@@ -518,7 +518,7 @@ class GPTTeamsExporter:
                     });
 
                     return {
-                        id: window.location.pathname.split('/').pop(),
+                        id: HOST_REDACTED_29('/').pop(),
                         title: document.title || 'Untitled',
                         mapping: {},
                         messages: messages

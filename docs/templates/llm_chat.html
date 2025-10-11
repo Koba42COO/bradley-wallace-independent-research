@@ -472,7 +472,7 @@
             }
 
             updateSendButton() {
-                const hasText = this.messageInput.value.trim().length > 0;
+                const hasText = HOST_REDACTED_32().length > 0;
                 const notTyping = !this.isTyping;
                 this.sendButton.disabled = !hasText || !notTyping;
 
@@ -484,7 +484,7 @@
             }
 
             async sendMessage() {
-                const message = this.messageInput.value.trim();
+                const message = HOST_REDACTED_32();
                 if (!message || this.isTyping) return;
 
                 // Add user message
@@ -581,14 +581,14 @@
 
             showTyping() {
                 this.isTyping = true;
-                this.typingIndicator.style.display = 'block';
+                HOST_REDACTED_33 = 'block';
                 this.updateSendButton();
                 this.scrollToBottom();
             }
 
             hideTyping() {
                 this.isTyping = false;
-                this.typingIndicator.style.display = 'none';
+                HOST_REDACTED_33 = 'none';
                 this.updateSendButton();
             }
 

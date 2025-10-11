@@ -20,8 +20,8 @@ services:
       start_period: 40s
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.wqrf.rule=Host(`wqrf-api.localhost`)"
-      - "traefik.http.services.wqrf.loadbalancer.server.port=5001"
+      - "HOST_REDACTED_12.rule=Host(`wqrf-api.localhost`)"
+      - "HOST_REDACTED_11.loadbalancer.server.port=5001"
 
   # Optional: Add monitoring with Prometheus metrics
   wqrf-monitoring:

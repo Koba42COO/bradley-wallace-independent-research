@@ -594,7 +594,7 @@ class CUDNT_TensorFlow_API:
     # ===============================
 
     class Dense:
-        """Dense/Fully Connected layer - tf.keras.layers.Dense()"""
+        """Dense/Fully Connected layer - HOST_REDACTED_10()"""
         def __init__(self, units: int, activation: str = None, use_bias: bool = True):
             self.units = units
             self.activation = activation

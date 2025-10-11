@@ -50,10 +50,10 @@ logs/daily/YYYY-MM-DD/
 1. **Install the LaunchAgent:**
    ```bash
    # The plist file is already created at:
-   # ~/Library/LaunchAgents/com.pac.daily.plist
+   # ~/Library/LaunchAgents/HOST_REDACTED_31
 
    # Load the agent:
-   launchctl load ~/Library/LaunchAgents/com.pac.daily.plist
+   launchctl load ~/Library/LaunchAgents/HOST_REDACTED_31
    ```
 
 2. **Verify installation:**
@@ -68,7 +68,7 @@ logs/daily/YYYY-MM-DD/
 
 4. **Uninstall (if needed):**
    ```bash
-   launchctl unload ~/Library/LaunchAgents/com.pac.daily.plist
+   launchctl unload ~/Library/LaunchAgents/HOST_REDACTED_31
    ```
 
 The agent runs daily at 02:00 local time.
@@ -199,7 +199,7 @@ For production deployments, consider:
 ### File Locations
 - **Runner script**: `scripts/run_daily.py`
 - **Bench script**: `bench/micro_bench.py`
-- **macOS agent**: `~/Library/LaunchAgents/com.pac.daily.plist`
+- **macOS agent**: `~/Library/LaunchAgents/HOST_REDACTED_31`
 - **GitHub workflow**: `.github/workflows/daily.yml`
 
 ### Dependencies

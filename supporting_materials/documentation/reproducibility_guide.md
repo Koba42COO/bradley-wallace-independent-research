@@ -395,7 +395,7 @@ python -c "from wallace_framework_examples import WallaceFrameworkExamples; ex =
 
 ### Contact Information
 - **Researcher**: Bradley Wallace
-- **Email**: coo@koba42.com
+- **Email**: EMAIL_REDACTED_1
 - **Website**: https://vantaxsystems.com
 - **Repository**: https://github.com/Koba42COO/bradley-wallace-independent-research
 

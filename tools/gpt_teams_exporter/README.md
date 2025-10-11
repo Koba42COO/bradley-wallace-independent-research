@@ -27,7 +27,7 @@ cp configs/env.example .env
 
 3. Edit `.env` with your ChatGPT credentials:
 ```bash
-CHATGPT_EMAIL=your-email@example.com
+CHATGPT_EMAIL=EMAIL_REDACTED_6
 CHATGPT_PASSWORD=your-password-here
 ```
 
