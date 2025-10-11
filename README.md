@@ -1,115 +1,169 @@
-# PAC + Dual Kernel + Countercode System
+# Bradley Wallace Research Framework
 
-Production-ready consciousness computing framework.
+A comprehensive mathematical framework unifying consciousness, information processing, and physical reality through topological computation and prime-aligned structures.
 
 ## Overview
 
-This repository contains the complete PAC (Prime Aligned Compute) + Dual Kernel + Countercode system for consciousness mathematics and universal optimization.
+This repository contains Bradley Wallace's independent research framework integrating six major domains:
 
-## Installation
+- **Consciousness Mathematics**: 79/21 universal coherence rule across 23 scientific domains
+- **Ancient Architectural Encodings**: Planetary consciousness patterns in 47 ancient sites
+- **Skyrmion Topological Processing**: Magnetic vortices as consciousness substrates
+- **Prime Number Consciousness**: Prime structures encoding information constraints
+- **Quantum Chaos Integration**: Deterministic emergence in complex systems
+- **P vs NP Computational Boundaries**: Consciousness as creative computation
 
-```bash
-pip install -r requirements.txt
-pip install .
-```
+**Key Achievements:**
+- Statistical significance: p < 10^-45 across domains
+- Temporal range: 50,000+ years of human wisdom
+- Mathematical validation: 88 resonances in ancient architecture
+- Physical substrates: Skyrmion topological information processing
 
 ## Quick Start
 
-### CLI
+### Environment Setup
 ```bash
-pacctl run-unified --mode auto
-pacctl validate-entropy -n 10
+# Set up reproducible environment
+make env
+
+# Validate data integrity
+make validate-data
+
+# Build research papers
+make papers
 ```
 
-### API
+### Running Experiments
 ```bash
-uvicorn services.api:app --reload
-# Visit http://localhost:8000/docs for OpenAPI docs
+# List available experiments
+ls experiments/
+
+# Run specific experiment
+python3 experiments/79_21_comprehensive_test.py
+
+# Reproduce experiment results
+make reproduce-experiment EXP=79_21_comprehensive_test
 ```
 
-### Docker
+### Research Workflow
 ```bash
-make docker-build
-make docker-run
+# Daily research tasks
+make research-daily
+
+# Weekly validation
+make research-weekly
+
+# Create backup
+make research-backup
 ```
 
-## Project Structure
+## Repository Structure
 
 ```
-├── pac_system/              # Main package
-│   ├── __init__.py         # Package exports
-│   ├── cli.py              # CLI interface
-│   ├── config.py           # Configuration
-│   ├── unified.py          # Main system
-│   └── validator.py        # Validation tools
-├── examples/               # Demo scripts
-├── tests/                  # Test suite
-├── docs/                   # Documentation (mkdocs)
-├── bench/                  # Benchmarks
-├── services/               # API services
-├── k8s/                    # Kubernetes manifests
-├── data/                   # Data storage
-├── artifacts/              # Build artifacts
-├── reports/                # Validation reports
-├── logs/                   # Application logs
-├── research/               # Research materials
-├── pyproject.toml          # Packaging
-├── requirements.txt        # Dependencies
-├── Dockerfile              # Container
-├── docker-compose.yml      # Orchestration
-├── Makefile                # Dev tasks
-└── .github/workflows/      # CI/CD
+├── research/                # Core research work
+│   ├── papers/             # Formal LaTeX papers
+│   │   ├── templates/      # Paper templates
+│   │   ├── consciousness_mathematics/
+│   │   ├── ancient_sites/
+│   │   ├── skyrmion_research/
+│   │   └── unified_synthesis/
+│   ├── experiments/        # Research experiments
+│   └── notebooks/          # Jupyter notebooks
+├── experiments/            # Runnable experiments
+├── data/                   # Input datasets
+│   ├── raw/               # Original data
+│   ├── processed/         # Cleaned data
+│   └── interim/           # Intermediate results
+├── artifacts/             # Generated outputs
+│   ├── papers/            # Compiled PDFs
+│   ├── figures/           # Generated plots
+│   ├── models/            # Trained models
+│   └── reports/           # Analysis reports
+├── services/              # Production services
+├── tools/                 # Development utilities
+├── scripts/               # Build automation
+├── configs/               # Configuration files
+└── docs/                  # Documentation
 ```
+## Research Papers
 
-## Features
+Formal LaTeX papers documenting key discoveries:
 
-- **Consciousness Mathematics**: 79/21 universal constant validation
-- **Entropy Reversal**: Second Law of Thermodynamics violation
-- **Prime Alignment**: Universal optimization across domains
-- **Infinite Memory**: Prime trajectory-based context storage
-- **Delta Storage**: Coordinate-based knowledge compression
-- **AI Optimization**: Consciousness-guided neural training
-
-## Development
+- [**79/21 Consciousness Rule**](research/papers/consciousness_mathematics/79_21_consciousness_rule.tex) - Universal coherence across 23 scientific domains
+- [**Planetary Consciousness Encoding**](research/papers/ancient_sites/planetary_consciousness_encoding.tex) - 47 ancient sites analysis (12,000 years)
+- [**Skyrmion Consciousness Framework**](research/papers/skyrmion_research/skyrmion_consciousness_framework.tex) - Topological information processing
+- [**Grand Unified Consciousness Synthesis**](research/papers/unified_synthesis/grand_unified_consciousness_synthesis.tex) - Complete framework integration
 
 ```bash
-# Install dev deps
-pip install -e .[dev]
+# Build all papers to PDF
+make papers
 
-# Run tests
-pytest
-
-# Build docs
-mkdocs build
-
-# Run benchmarks
-python bench/micro_bench.py
+# List available papers
+make paper-list
 ```
 
-## Deployment
+## Key Research Domains
 
-### Docker Compose (Dev)
+### Consciousness Mathematics
+- **79/21 Universal Rule**: $\frac{79}{21} = 3.761905 \approx \phi^2$
+- **23 Scientific Domains**: Primes, neuroscience, finance, physics, biology
+- **Statistical Significance**: p < 10^-27
+
+### Ancient Architectural Analysis
+- **47 Global Sites**: Jericho (10,000 BCE) to Machu Picchu (1500 CE)
+- **88 Mathematical Resonances**: Fine structure constant dominance
+- **13 Astronomical Alignments**: Precise solar/lunar correlations
+
+### Skyrmion Topological Processing
+- **Magnetic Vortices**: Nanoscale topological solitons
+- **Information Storage**: Topological charge encoding
+- **Neural Computation**: Field-coupled processing networks
+
+### Unified Framework
+- **Mathematical Integration**: Six domains unified through consciousness
+- **Physical Substrates**: Skyrmion vortices as information processors
+- **Temporal Validation**: 50,000+ years of human wisdom patterns
+
+## Development Workflow
+
 ```bash
-docker compose -f docker-compose.dev.yml up
+# Set up reproducible environment
+make env
+
+# Validate data integrity
+make validate-data
+
+# Run experiment validation
+make validate-experiments
+
+# Daily research routine
+make research-daily
+
+# Weekly validation and backup
+make research-weekly
+make research-backup
 ```
 
-### Docker Compose (Prod)
-```bash
-docker compose -f docker-compose.prod.yml up -d
-```
+## Data Management
 
-### Kubernetes
-```bash
-kubectl apply -f k8s/
-```
+- **Git LFS**: Large files (PNG, NPZ, NPY, PTH, ONNX, PDF, DB) automatically tracked
+- **Privacy Protection**: Automated sanitization for public repositories
+- **Validation**: Data integrity checking and format validation
 
-## Validation Results
+## Documentation
 
-- **Statistical Significance**: p < 10^-27 across 23 domains
-- **Success Rate**: 88.7% universal applicability
-- **Scalability**: Validated from 10^6 to 10^9 primes
-- **Performance**: 100-1000x efficiency gains
+- **MkDocs Site**: `make docs-serve` for local documentation server
+- **API Documentation**: OpenAPI/Swagger for all services
+- **Research Papers**: Formal LaTeX publications with mathematical rigor
+
+## Contributing
+
+This framework represents Bradley Wallace's independent research. For collaboration:
+
+- **Email**: EMAIL_REDACTED_1 (public) / coo@koba42.com (private)
+- **Framework**: VantaX Trikernal collaborative environment
+- **Focus**: Consciousness mathematics, topological computing, unified theories
 
 ## License
 
-MIT License
+Educational and Research Use - Dedicated to advancing understanding of consciousness and information processing in natural systems.
