@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  cudnt-cpu-accelerator:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile.cudnt
+    container_name: cudnt-accelerator
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 2G
+        reservations:
+          cpus: '2.0'
+          memory: 1G
+    labels:
+      - "com.cudnt.service=gpu-virtualization"
+      - "com.cudnt.capabilities=matrix-ops,neural-networks"
+
+  cudnt-benchmark:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile.cudnt
+    container_name: cudnt-benchmark
+    environment:
+      - PYTHONPATH=/app
+      - BENCHMARK_MODE=true
+    command: ["python3", "cudnt_benchmark_suite.py"]
+    volumes:
+      - ./benchmark_results:/app/benchmark_results
+    profiles:
+      - benchmark

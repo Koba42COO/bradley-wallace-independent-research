@@ -1,0 +1,1 @@
+/Users/coo-koba42/dev/mathematical-research/open-research.sh

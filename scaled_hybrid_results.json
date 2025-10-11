@@ -1,0 +1,769 @@
+{
+  "timestamp": 1760203782.3447192,
+  "analysis_type": "scaled_hybrid_p_vs_np",
+  "all_results": {
+    "10": {
+      "results": {
+        "hybrid_analysis": [
+          "HybridComplexityResult(problem_size=10, computation_time=0.0002760887145996094, algebraic_solvability=1.0, algebraic_complexity=0.1, phase_coherence=0.25652507935498225, fractal_dimension=1.0, wallace_depth=3.321928094887362, hybrid_confidence=0.6043405092721903, algebraic_computational_gap=0.2717374603225089, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=10, computation_time=8.606910705566406e-05, algebraic_solvability=1.0, algebraic_complexity=0.1, phase_coherence=0.14833226429969643, fractal_dimension=1.0, wallace_depth=3.321928094887362, hybrid_confidence=0.5863083734296427, algebraic_computational_gap=0.3258338678501518, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=10, computation_time=7.176399230957031e-05, algebraic_solvability=1.0, algebraic_complexity=0.05, phase_coherence=0.38312923398765464, fractal_dimension=1.0, wallace_depth=3.321928094887362, hybrid_confidence=0.650441201710969, algebraic_computational_gap=0.2584353830061727, complexity_class='hybrid_uncertain', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=10, computation_time=6.29425048828125e-05, algebraic_solvability=1.0, algebraic_complexity=0.05, phase_coherence=0.4897968318399554, fractal_dimension=1.0, wallace_depth=3.321928094887362, hybrid_confidence=0.6682191346863524, algebraic_computational_gap=0.20510158408002227, complexity_class='hybrid_uncertain', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=10, computation_time=0.0009710788726806641, algebraic_solvability=0.0, algebraic_complexity=0.2, phase_coherence=0.3899246266827001, fractal_dimension=1.0, wallace_depth=3.321928094887362, hybrid_confidence=0.17657376716014328, algebraic_computational_gap=0.10503768665864993, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=10, computation_time=0.00027871131896972656, algebraic_solvability=1.0, algebraic_complexity=0.2, phase_coherence=0.04725880140681986, fractal_dimension=1.0, wallace_depth=3.321928094887362, hybrid_confidence=0.5194627962808299, algebraic_computational_gap=0.2763705992965901, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=10, computation_time=6.29425048828125e-05, algebraic_solvability=1.0, algebraic_complexity=0.5, phase_coherence=1.0, fractal_dimension=1.0, wallace_depth=0.0, hybrid_confidence=0.6666666666666667, algebraic_computational_gap=0.5, complexity_class='hybrid_NP_candidate', validation_score=0.0)"
+        ],
+        "algebraic_vs_computational": [],
+        "cross_validation_scores": [
+          {
+            "correlation": -0.7031418069592582,
+            "agreement_rate": 0.7142857142857143,
+            "avg_gap": 0.27750236874487083,
+            "validation_strength": 0.005571953663228046
+          }
+        ],
+        "hybrid_classifications": [],
+        "summary": {
+          "total_problems_analyzed": 7,
+          "hybrid_classification_distribution": {
+            "hybrid_P_candidate": 4,
+            "hybrid_uncertain": 2,
+            "hybrid_NP_candidate": 1
+          },
+          "average_hybrid_confidence": 0.5531446356009706,
+          "algebraic_computational_agreement": 0.7224976312551292,
+          "potential_breakthrough_candidates": [
+            {
+              "problem_size": 10,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.6043405092721903,
+              "gap": 0.2717374603225089,
+              "combined_score": 0.4401185541125537
+            },
+            {
+              "problem_size": 10,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.5863083734296427,
+              "gap": 0.3258338678501518,
+              "combined_score": 0.39526924836213106
+            },
+            {
+              "problem_size": 10,
+              "classification": "hybrid_uncertain",
+              "confidence": 0.650441201710969,
+              "gap": 0.2584353830061727,
+              "combined_score": 0.48234418062379947
+            },
+            {
+              "problem_size": 10,
+              "classification": "hybrid_uncertain",
+              "confidence": 0.6682191346863524,
+              "gap": 0.20510158408002227,
+              "combined_score": 0.5311663316495997
+            },
+            {
+              "problem_size": 10,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.17657376716014328,
+              "gap": 0.10503768665864993,
+              "combined_score": 0.15802686713303873
+            },
+            {
+              "problem_size": 10,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.5194627962808299,
+              "gap": 0.2763705992965901,
+              "combined_score": 0.37589855196041444
+            },
+            {
+              "problem_size": 10,
+              "classification": "hybrid_NP_candidate",
+              "confidence": 0.6666666666666667,
+              "gap": 0.5,
+              "combined_score": 0.33333333333333337
+            }
+          ],
+          "methodological_insights": [
+            "Hybrid approach successfully integrates algebraic and computational analysis",
+            "Achieved 72.2% agreement between approaches",
+            "Identified 7 potential breakthrough cases",
+            "Algebraic techniques enhance computational complexity analysis",
+            "Cross-validation provides robust complexity classification"
+          ],
+          "cross_validation_strength": 0.005571953663228046
+        }
+      },
+      "analysis_time": 0.003782987594604492,
+      "summary": {
+        "total_problems_analyzed": 7,
+        "hybrid_classification_distribution": {
+          "hybrid_P_candidate": 4,
+          "hybrid_uncertain": 2,
+          "hybrid_NP_candidate": 1
+        },
+        "average_hybrid_confidence": 0.5531446356009706,
+        "algebraic_computational_agreement": 0.7224976312551292,
+        "potential_breakthrough_candidates": [
+          {
+            "problem_size": 10,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.6043405092721903,
+            "gap": 0.2717374603225089,
+            "combined_score": 0.4401185541125537
+          },
+          {
+            "problem_size": 10,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.5863083734296427,
+            "gap": 0.3258338678501518,
+            "combined_score": 0.39526924836213106
+          },
+          {
+            "problem_size": 10,
+            "classification": "hybrid_uncertain",
+            "confidence": 0.650441201710969,
+            "gap": 0.2584353830061727,
+            "combined_score": 0.48234418062379947
+          },
+          {
+            "problem_size": 10,
+            "classification": "hybrid_uncertain",
+            "confidence": 0.6682191346863524,
+            "gap": 0.20510158408002227,
+            "combined_score": 0.5311663316495997
+          },
+          {
+            "problem_size": 10,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.17657376716014328,
+            "gap": 0.10503768665864993,
+            "combined_score": 0.15802686713303873
+          },
+          {
+            "problem_size": 10,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.5194627962808299,
+            "gap": 0.2763705992965901,
+            "combined_score": 0.37589855196041444
+          },
+          {
+            "problem_size": 10,
+            "classification": "hybrid_NP_candidate",
+            "confidence": 0.6666666666666667,
+            "gap": 0.5,
+            "combined_score": 0.33333333333333337
+          }
+        ],
+        "methodological_insights": [
+          "Hybrid approach successfully integrates algebraic and computational analysis",
+          "Achieved 72.2% agreement between approaches",
+          "Identified 7 potential breakthrough cases",
+          "Algebraic techniques enhance computational complexity analysis",
+          "Cross-validation provides robust complexity classification"
+        ],
+        "cross_validation_strength": 0.005571953663228046
+      }
+    },
+    "25": {
+      "results": {
+        "hybrid_analysis": [
+          "HybridComplexityResult(problem_size=25, computation_time=0.0003399848937988281, algebraic_solvability=1.0, algebraic_complexity=0.1, phase_coherence=0.23741314130038638, fractal_dimension=1.0, wallace_depth=4.643856189774724, hybrid_confidence=0.5460748489761176, algebraic_computational_gap=0.28129342934980683, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=25, computation_time=0.0001621246337890625, algebraic_solvability=1.0, algebraic_complexity=0.1, phase_coherence=0.17561267011846943, fractal_dimension=1.0, wallace_depth=4.643856189774724, hybrid_confidence=0.535774770445798, algebraic_computational_gap=0.3121936649407653, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=25, computation_time=0.0001270771026611328, algebraic_solvability=1.0, algebraic_complexity=0.125, phase_coherence=0.6039904356359215, fractal_dimension=1.0, wallace_depth=4.643856189774724, hybrid_confidence=0.5946710646987068, algebraic_computational_gap=0.07300478218203921, complexity_class='hybrid_uncertain', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=25, computation_time=0.00011873245239257812, algebraic_solvability=1.0, algebraic_complexity=0.125, phase_coherence=0.5872343572322231, fractal_dimension=1.0, wallace_depth=4.643856189774724, hybrid_confidence=0.591878384964757, algebraic_computational_gap=0.08138282138388853, complexity_class='hybrid_uncertain', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=15, computation_time=0.0013728141784667969, algebraic_solvability=1.0, algebraic_complexity=0.3, phase_coherence=0.28390224590463864, fractal_dimension=1.0, wallace_depth=3.9068905956085187, hybrid_confidence=0.48452993283375145, algebraic_computational_gap=0.058048877047680636, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=15, computation_time=0.002421140670776367, algebraic_solvability=1.0, algebraic_complexity=0.3, phase_coherence=0.3347833989024294, fractal_dimension=1.0, wallace_depth=3.9068905956085187, hybrid_confidence=0.4930101250000499, algebraic_computational_gap=0.03260830054878533, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=10, computation_time=0.00022292137145996094, algebraic_solvability=1.0, algebraic_complexity=0.5, phase_coherence=1.0, fractal_dimension=1.0, wallace_depth=0.0, hybrid_confidence=0.6666666666666667, algebraic_computational_gap=0.5, complexity_class='hybrid_NP_candidate', validation_score=0.0)"
+        ],
+        "algebraic_vs_computational": [],
+        "cross_validation_scores": [
+          {
+            "correlation": -0.9932976665593942,
+            "agreement_rate": 0.75,
+            "avg_gap": 0.18696867446412496,
+            "validation_strength": -0.12164883327969711
+          }
+        ],
+        "hybrid_classifications": [],
+        "summary": {
+          "total_problems_analyzed": 7,
+          "hybrid_classification_distribution": {
+            "hybrid_P_candidate": 4,
+            "hybrid_uncertain": 2,
+            "hybrid_NP_candidate": 1
+          },
+          "average_hybrid_confidence": 0.5589436847979782,
+          "algebraic_computational_agreement": 0.8087811606495763,
+          "potential_breakthrough_candidates": [
+            {
+              "problem_size": 25,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.5460748489761176,
+              "gap": 0.28129342934980683,
+              "combined_score": 0.3924675820259476
+            },
+            {
+              "problem_size": 25,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.535774770445798,
+              "gap": 0.3121936649407653,
+              "combined_score": 0.36850928127752713
+            },
+            {
+              "problem_size": 25,
+              "classification": "hybrid_uncertain",
+              "confidence": 0.5946710646987068,
+              "gap": 0.07300478218203921,
+              "combined_score": 0.5512572331504163
+            },
+            {
+              "problem_size": 25,
+              "classification": "hybrid_uncertain",
+              "confidence": 0.591878384964757,
+              "gap": 0.08138282138388853,
+              "combined_score": 0.5437096520801857
+            },
+            {
+              "problem_size": 25,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.48452993283375145,
+              "gap": 0.058048877047680636,
+              "combined_score": 0.45640351433676407
+            },
+            {
+              "problem_size": 25,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.4930101250000499,
+              "gap": 0.03260830054878533,
+              "combined_score": 0.47693390267045405
+            },
+            {
+              "problem_size": 25,
+              "classification": "hybrid_NP_candidate",
+              "confidence": 0.6666666666666667,
+              "gap": 0.5,
+              "combined_score": 0.33333333333333337
+            }
+          ],
+          "methodological_insights": [
+            "Hybrid approach successfully integrates algebraic and computational analysis",
+            "Achieved 80.9% agreement between approaches",
+            "Identified 7 potential breakthrough cases",
+            "Algebraic techniques enhance computational complexity analysis",
+            "Cross-validation provides robust complexity classification"
+          ],
+          "cross_validation_strength": -0.12164883327969711
+        }
+      },
+      "analysis_time": 0.008418798446655273,
+      "summary": {
+        "total_problems_analyzed": 7,
+        "hybrid_classification_distribution": {
+          "hybrid_P_candidate": 4,
+          "hybrid_uncertain": 2,
+          "hybrid_NP_candidate": 1
+        },
+        "average_hybrid_confidence": 0.5589436847979782,
+        "algebraic_computational_agreement": 0.8087811606495763,
+        "potential_breakthrough_candidates": [
+          {
+            "problem_size": 25,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.5460748489761176,
+            "gap": 0.28129342934980683,
+            "combined_score": 0.3924675820259476
+          },
+          {
+            "problem_size": 25,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.535774770445798,
+            "gap": 0.3121936649407653,
+            "combined_score": 0.36850928127752713
+          },
+          {
+            "problem_size": 25,
+            "classification": "hybrid_uncertain",
+            "confidence": 0.5946710646987068,
+            "gap": 0.07300478218203921,
+            "combined_score": 0.5512572331504163
+          },
+          {
+            "problem_size": 25,
+            "classification": "hybrid_uncertain",
+            "confidence": 0.591878384964757,
+            "gap": 0.08138282138388853,
+            "combined_score": 0.5437096520801857
+          },
+          {
+            "problem_size": 25,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.48452993283375145,
+            "gap": 0.058048877047680636,
+            "combined_score": 0.45640351433676407
+          },
+          {
+            "problem_size": 25,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.4930101250000499,
+            "gap": 0.03260830054878533,
+            "combined_score": 0.47693390267045405
+          },
+          {
+            "problem_size": 25,
+            "classification": "hybrid_NP_candidate",
+            "confidence": 0.6666666666666667,
+            "gap": 0.5,
+            "combined_score": 0.33333333333333337
+          }
+        ],
+        "methodological_insights": [
+          "Hybrid approach successfully integrates algebraic and computational analysis",
+          "Achieved 80.9% agreement between approaches",
+          "Identified 7 potential breakthrough cases",
+          "Algebraic techniques enhance computational complexity analysis",
+          "Cross-validation provides robust complexity classification"
+        ],
+        "cross_validation_strength": -0.12164883327969711
+      }
+    },
+    "50": {
+      "results": {
+        "hybrid_analysis": [
+          "HybridComplexityResult(problem_size=50, computation_time=0.0002758502960205078, algebraic_solvability=1.0, algebraic_complexity=0.1, phase_coherence=0.12701891644254615, fractal_dimension=1.0, wallace_depth=5.643856189774724, hybrid_confidence=0.48600914483314417, algebraic_computational_gap=0.33649054177872695, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=50, computation_time=0.00013589859008789062, algebraic_solvability=1.0, algebraic_complexity=0.1, phase_coherence=0.222062653277561, fractal_dimension=1.0, wallace_depth=5.643856189774724, hybrid_confidence=0.50184976763898, algebraic_computational_gap=0.28896867336121945, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=50, computation_time=0.00012683868408203125, algebraic_solvability=1.0, algebraic_complexity=0.25, phase_coherence=0.6118595358765735, fractal_dimension=1.0, wallace_depth=5.643856189774724, hybrid_confidence=0.4918159147388154, algebraic_computational_gap=0.055929767938286745, complexity_class='hybrid_uncertain', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=50, computation_time=0.0001220703125, algebraic_solvability=1.0, algebraic_complexity=0.25, phase_coherence=0.6163636332464253, fractal_dimension=1.0, wallace_depth=5.643856189774724, hybrid_confidence=0.4925665976337907, algebraic_computational_gap=0.058181816623212645, complexity_class='hybrid_uncertain', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=15, computation_time=0.0017850399017333984, algebraic_solvability=1.0, algebraic_complexity=0.3, phase_coherence=0.18931399051392345, fractal_dimension=1.0, wallace_depth=3.9068905956085187, hybrid_confidence=0.4687652236019656, algebraic_computational_gap=0.10534300474303832, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=15, computation_time=0.004492998123168945, algebraic_solvability=1.0, algebraic_complexity=0.3, phase_coherence=0.1474649047029594, fractal_dimension=1.0, wallace_depth=3.9068905956085187, hybrid_confidence=0.46179037596680494, algebraic_computational_gap=0.12626754764852027, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=10, computation_time=0.00010395050048828125, algebraic_solvability=1.0, algebraic_complexity=0.5, phase_coherence=1.0, fractal_dimension=1.0, wallace_depth=0.0, hybrid_confidence=0.6666666666666667, algebraic_computational_gap=0.5, complexity_class='hybrid_NP_candidate', validation_score=0.0)"
+        ],
+        "algebraic_vs_computational": [],
+        "cross_validation_scores": [
+          {
+            "correlation": -0.9884879315483561,
+            "agreement_rate": 0.75,
+            "avg_gap": 0.18489269992536145,
+            "validation_strength": -0.11924396577417806
+          }
+        ],
+        "hybrid_classifications": [],
+        "summary": {
+          "total_problems_analyzed": 7,
+          "hybrid_classification_distribution": {
+            "hybrid_P_candidate": 4,
+            "hybrid_uncertain": 2,
+            "hybrid_NP_candidate": 1
+          },
+          "average_hybrid_confidence": 0.509923384440024,
+          "algebraic_computational_agreement": 0.7898312354152851,
+          "potential_breakthrough_candidates": [
+            {
+              "problem_size": 50,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.48600914483314417,
+              "gap": 0.33649054177872695,
+              "combined_score": 0.32247166437882374
+            },
+            {
+              "problem_size": 50,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.50184976763898,
+              "gap": 0.28896867336121945,
+              "combined_score": 0.35683090605770773
+            },
+            {
+              "problem_size": 50,
+              "classification": "hybrid_uncertain",
+              "confidence": 0.4918159147388154,
+              "gap": 0.055929767938286745,
+              "combined_score": 0.46430876475911725
+            },
+            {
+              "problem_size": 50,
+              "classification": "hybrid_uncertain",
+              "confidence": 0.4925665976337907,
+              "gap": 0.058181816623212645,
+              "combined_score": 0.4639081781755417
+            },
+            {
+              "problem_size": 50,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.4687652236019656,
+              "gap": 0.10534300474303832,
+              "combined_score": 0.4193840864286923
+            },
+            {
+              "problem_size": 50,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.46179037596680494,
+              "gap": 0.12626754764852027,
+              "combined_score": 0.40348123766578836
+            },
+            {
+              "problem_size": 50,
+              "classification": "hybrid_NP_candidate",
+              "confidence": 0.6666666666666667,
+              "gap": 0.5,
+              "combined_score": 0.33333333333333337
+            }
+          ],
+          "methodological_insights": [
+            "Hybrid approach successfully integrates algebraic and computational analysis",
+            "Achieved 79.0% agreement between approaches",
+            "Identified 7 potential breakthrough cases",
+            "Algebraic techniques enhance computational complexity analysis",
+            "Cross-validation provides robust complexity classification"
+          ],
+          "cross_validation_strength": -0.11924396577417806
+        }
+      },
+      "analysis_time": 0.008183956146240234,
+      "summary": {
+        "total_problems_analyzed": 7,
+        "hybrid_classification_distribution": {
+          "hybrid_P_candidate": 4,
+          "hybrid_uncertain": 2,
+          "hybrid_NP_candidate": 1
+        },
+        "average_hybrid_confidence": 0.509923384440024,
+        "algebraic_computational_agreement": 0.7898312354152851,
+        "potential_breakthrough_candidates": [
+          {
+            "problem_size": 50,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.48600914483314417,
+            "gap": 0.33649054177872695,
+            "combined_score": 0.32247166437882374
+          },
+          {
+            "problem_size": 50,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.50184976763898,
+            "gap": 0.28896867336121945,
+            "combined_score": 0.35683090605770773
+          },
+          {
+            "problem_size": 50,
+            "classification": "hybrid_uncertain",
+            "confidence": 0.4918159147388154,
+            "gap": 0.055929767938286745,
+            "combined_score": 0.46430876475911725
+          },
+          {
+            "problem_size": 50,
+            "classification": "hybrid_uncertain",
+            "confidence": 0.4925665976337907,
+            "gap": 0.058181816623212645,
+            "combined_score": 0.4639081781755417
+          },
+          {
+            "problem_size": 50,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.4687652236019656,
+            "gap": 0.10534300474303832,
+            "combined_score": 0.4193840864286923
+          },
+          {
+            "problem_size": 50,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.46179037596680494,
+            "gap": 0.12626754764852027,
+            "combined_score": 0.40348123766578836
+          },
+          {
+            "problem_size": 50,
+            "classification": "hybrid_NP_candidate",
+            "confidence": 0.6666666666666667,
+            "gap": 0.5,
+            "combined_score": 0.33333333333333337
+          }
+        ],
+        "methodological_insights": [
+          "Hybrid approach successfully integrates algebraic and computational analysis",
+          "Achieved 79.0% agreement between approaches",
+          "Identified 7 potential breakthrough cases",
+          "Algebraic techniques enhance computational complexity analysis",
+          "Cross-validation provides robust complexity classification"
+        ],
+        "cross_validation_strength": -0.11924396577417806
+      }
+    },
+    "100": {
+      "results": {
+        "hybrid_analysis": [
+          "HybridComplexityResult(problem_size=100, computation_time=0.00015306472778320312, algebraic_solvability=1.0, algebraic_complexity=0.1, phase_coherence=0.06698921490435586, fractal_dimension=1.0, wallace_depth=6.643856189774724, hybrid_confidence=0.4343375279101125, algebraic_computational_gap=0.3665053925478221, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=100, computation_time=9.703636169433594e-05, algebraic_solvability=1.0, algebraic_complexity=0.1, phase_coherence=0.13060954857748946, fractal_dimension=1.0, wallace_depth=6.643856189774724, hybrid_confidence=0.44494091685563475, algebraic_computational_gap=0.3346952257112553, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=100, computation_time=8.7738037109375e-05, algebraic_solvability=0.0, algebraic_complexity=0.5, phase_coherence=0.6196959899804351, fractal_dimension=1.0, wallace_depth=6.643856189774724, hybrid_confidence=0.07645532375612567, algebraic_computational_gap=0.30984799499021753, complexity_class='hybrid_uncertain', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=100, computation_time=8.177757263183594e-05, algebraic_solvability=0.0, algebraic_complexity=0.5, phase_coherence=0.6246413513389311, fractal_dimension=1.0, wallace_depth=6.643856189774724, hybrid_confidence=0.07727955064920833, algebraic_computational_gap=0.31232067566946553, complexity_class='hybrid_uncertain', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=15, computation_time=0.0012726783752441406, algebraic_solvability=1.0, algebraic_complexity=0.3, phase_coherence=0.14394732653635864, fractal_dimension=1.0, wallace_depth=3.9068905956085187, hybrid_confidence=0.4612041129390381, algebraic_computational_gap=0.12802633673182068, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=15, computation_time=0.0003018379211425781, algebraic_solvability=1.0, algebraic_complexity=0.3, phase_coherence=0.3354420392879915, fractal_dimension=1.0, wallace_depth=3.9068905956085187, hybrid_confidence=0.4931198983976436, algebraic_computational_gap=0.03227898035600424, complexity_class='hybrid_P_candidate', validation_score=0.0)",
+          "HybridComplexityResult(problem_size=10, computation_time=6.29425048828125e-05, algebraic_solvability=1.0, algebraic_complexity=0.5, phase_coherence=1.0, fractal_dimension=1.0, wallace_depth=0.0, hybrid_confidence=0.6666666666666667, algebraic_computational_gap=0.5, complexity_class='hybrid_NP_candidate', validation_score=0.0)"
+        ],
+        "algebraic_vs_computational": [],
+        "cross_validation_scores": [
+          {
+            "correlation": -0.9963041118744966,
+            "agreement_rate": 0.0,
+            "avg_gap": 0.3308423222296901,
+            "validation_strength": -0.4981520559372483
+          }
+        ],
+        "hybrid_classifications": [],
+        "summary": {
+          "total_problems_analyzed": 7,
+          "hybrid_classification_distribution": {
+            "hybrid_P_candidate": 4,
+            "hybrid_uncertain": 2,
+            "hybrid_NP_candidate": 1
+          },
+          "average_hybrid_confidence": 0.37914342816777563,
+          "algebraic_computational_agreement": 0.7166179134276307,
+          "potential_breakthrough_candidates": [
+            {
+              "problem_size": 100,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.4343375279101125,
+              "gap": 0.3665053925478221,
+              "combined_score": 0.27515048174516604
+            },
+            {
+              "problem_size": 100,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.44494091685563475,
+              "gap": 0.3346952257112553,
+              "combined_score": 0.2960213162604652
+            },
+            {
+              "problem_size": 100,
+              "classification": "hybrid_uncertain",
+              "confidence": 0.07645532375612567,
+              "gap": 0.30984799499021753,
+              "combined_score": 0.05276579498396218
+            },
+            {
+              "problem_size": 100,
+              "classification": "hybrid_uncertain",
+              "confidence": 0.07727955064920833,
+              "gap": 0.31232067566946553,
+              "combined_score": 0.0531435491750149
+            },
+            {
+              "problem_size": 100,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.4612041129390381,
+              "gap": 0.12802633673182068,
+              "combined_score": 0.4021578398738042
+            },
+            {
+              "problem_size": 100,
+              "classification": "hybrid_P_candidate",
+              "confidence": 0.4931198983976436,
+              "gap": 0.03227898035600424,
+              "combined_score": 0.47720249088411126
+            },
+            {
+              "problem_size": 100,
+              "classification": "hybrid_NP_candidate",
+              "confidence": 0.6666666666666667,
+              "gap": 0.5,
+              "combined_score": 0.33333333333333337
+            }
+          ],
+          "methodological_insights": [
+            "Hybrid approach successfully integrates algebraic and computational analysis",
+            "Achieved 71.7% agreement between approaches",
+            "Identified 7 potential breakthrough cases",
+            "Algebraic techniques enhance computational complexity analysis",
+            "Cross-validation provides robust complexity classification"
+          ],
+          "cross_validation_strength": -0.4981520559372483
+        }
+      },
+      "analysis_time": 0.0030019283294677734,
+      "summary": {
+        "total_problems_analyzed": 7,
+        "hybrid_classification_distribution": {
+          "hybrid_P_candidate": 4,
+          "hybrid_uncertain": 2,
+          "hybrid_NP_candidate": 1
+        },
+        "average_hybrid_confidence": 0.37914342816777563,
+        "algebraic_computational_agreement": 0.7166179134276307,
+        "potential_breakthrough_candidates": [
+          {
+            "problem_size": 100,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.4343375279101125,
+            "gap": 0.3665053925478221,
+            "combined_score": 0.27515048174516604
+          },
+          {
+            "problem_size": 100,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.44494091685563475,
+            "gap": 0.3346952257112553,
+            "combined_score": 0.2960213162604652
+          },
+          {
+            "problem_size": 100,
+            "classification": "hybrid_uncertain",
+            "confidence": 0.07645532375612567,
+            "gap": 0.30984799499021753,
+            "combined_score": 0.05276579498396218
+          },
+          {
+            "problem_size": 100,
+            "classification": "hybrid_uncertain",
+            "confidence": 0.07727955064920833,
+            "gap": 0.31232067566946553,
+            "combined_score": 0.0531435491750149
+          },
+          {
+            "problem_size": 100,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.4612041129390381,
+            "gap": 0.12802633673182068,
+            "combined_score": 0.4021578398738042
+          },
+          {
+            "problem_size": 100,
+            "classification": "hybrid_P_candidate",
+            "confidence": 0.4931198983976436,
+            "gap": 0.03227898035600424,
+            "combined_score": 0.47720249088411126
+          },
+          {
+            "problem_size": 100,
+            "classification": "hybrid_NP_candidate",
+            "confidence": 0.6666666666666667,
+            "gap": 0.5,
+            "combined_score": 0.33333333333333337
+          }
+        ],
+        "methodological_insights": [
+          "Hybrid approach successfully integrates algebraic and computational analysis",
+          "Achieved 71.7% agreement between approaches",
+          "Identified 7 potential breakthrough cases",
+          "Algebraic techniques enhance computational complexity analysis",
+          "Cross-validation provides robust complexity classification"
+        ],
+        "cross_validation_strength": -0.4981520559372483
+      }
+    }
+  },
+  "statistical_analysis": {
+    "total_candidates": 28,
+    "size_distribution": {
+      "10": 7,
+      "25": 7,
+      "50": 7,
+      "100": 7
+    },
+    "confidence_stats": {
+      "mean": 0.5002887832516871,
+      "std": 0.15540140962505722,
+      "min": 0.07645532375612567,
+      "max": 0.6682191346863524,
+      "median": 0.4974848330183118
+    },
+    "gap_stats": {
+      "mean": 0.24056801481309467,
+      "std": 0.1507628326941155,
+      "min": 0.03227898035600424,
+      "max": 0.5,
+      "median": 0.2740540298095495
+    },
+    "classification_breakdown": {
+      "hybrid_P_candidate": 16,
+      "hybrid_uncertain": 8,
+      "hybrid_NP_candidate": 4
+    },
+    "scaling_analysis": {
+      "rate_scaling": 1.3544746852524381e-18,
+      "confidence_scaling": -0.002064337218061406,
+      "gap_scaling": 0.0004063312058387067
+    }
+  },
+  "top_candidates": [
+    {
+      "problem_size": 25,
+      "classification": "hybrid_uncertain",
+      "confidence": 0.5946710646987068,
+      "gap": 0.07300478218203921,
+      "combined_score": 0.5512572331504163
+    },
+    {
+      "problem_size": 25,
+      "classification": "hybrid_uncertain",
+      "confidence": 0.591878384964757,
+      "gap": 0.08138282138388853,
+      "combined_score": 0.5437096520801857
+    },
+    {
+      "problem_size": 10,
+      "classification": "hybrid_uncertain",
+      "confidence": 0.6682191346863524,
+      "gap": 0.20510158408002227,
+      "combined_score": 0.5311663316495997
+    },
+    {
+      "problem_size": 10,
+      "classification": "hybrid_uncertain",
+      "confidence": 0.650441201710969,
+      "gap": 0.2584353830061727,
+      "combined_score": 0.48234418062379947
+    },
+    {
+      "problem_size": 100,
+      "classification": "hybrid_P_candidate",
+      "confidence": 0.4931198983976436,
+      "gap": 0.03227898035600424,
+      "combined_score": 0.47720249088411126
+    },
+    {
+      "problem_size": 25,
+      "classification": "hybrid_P_candidate",
+      "confidence": 0.4930101250000499,
+      "gap": 0.03260830054878533,
+      "combined_score": 0.47693390267045405
+    },
+    {
+      "problem_size": 50,
+      "classification": "hybrid_uncertain",
+      "confidence": 0.4918159147388154,
+      "gap": 0.055929767938286745,
+      "combined_score": 0.46430876475911725
+    },
+    {
+      "problem_size": 50,
+      "classification": "hybrid_uncertain",
+      "confidence": 0.4925665976337907,
+      "gap": 0.058181816623212645,
+      "combined_score": 0.4639081781755417
+    },
+    {
+      "problem_size": 25,
+      "classification": "hybrid_P_candidate",
+      "confidence": 0.48452993283375145,
+      "gap": 0.058048877047680636,
+      "combined_score": 0.45640351433676407
+    },
+    {
+      "problem_size": 10,
+      "classification": "hybrid_P_candidate",
+      "confidence": 0.6043405092721903,
+      "gap": 0.2717374603225089,
+      "combined_score": 0.4401185541125537
+    }
+  ],
+  "summary": {
+    "total_candidates": 28,
+    "confidence_mean": 0.5002887832516871,
+    "gap_mean": 0.24056801481309467,
+    "scaling_trends": {
+      "rate_scaling": 1.3544746852524381e-18,
+      "confidence_scaling": -0.002064337218061406,
+      "gap_scaling": 0.0004063312058387067
+    }
+  }
+}

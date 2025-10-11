@@ -1,0 +1,165 @@
+{
+  "analysis_type": "10billion_scale_wallace_analysis",
+  "timestamp": "2025-10-03T18:07:10.255591",
+  "scale": "10^9",
+  "dataset": {
+    "primes_generated": 99449694,
+    "gaps_computed": 99449693,
+    "target_primes": 100000000
+  },
+  "performance": {
+    "total_time_seconds": 12850.45,
+    "generation_time_seconds": 11509.39,
+    "peak_memory_gb": 5.61,
+    "cpu_cores_used": 12
+  },
+  "fft_results": [
+    {
+      "detected_ratio": 1.000001100000605,
+      "target_name": "Unity",
+      "target_value": 1.0,
+      "magnitude": 904.2099389689702,
+      "distance": 1.1000006050476685e-06,
+      "match": "True"
+    },
+    {
+      "detected_ratio": 1.00000180000162,
+      "target_name": "Unity",
+      "target_value": 1.0,
+      "magnitude": 651.4644536608914,
+      "distance": 1.8000016199781754e-06,
+      "match": "True"
+    },
+    {
+      "detected_ratio": 1.00000160000128,
+      "target_name": "Unity",
+      "target_value": 1.0,
+      "magnitude": 632.6203326413861,
+      "distance": 1.6000012799111119e-06,
+      "match": "True"
+    },
+    {
+      "detected_ratio": 1.130213101112915,
+      "target_name": "Unity",
+      "target_value": 1.0,
+      "magnitude": 474.1957376621242,
+      "distance": 0.13021310111291506,
+      "match": "False"
+    },
+    {
+      "detected_ratio": 1.4602321062962584,
+      "target_name": "\u221a2",
+      "target_value": 1.4142135623730951,
+      "magnitude": 455.1043117633938,
+      "distance": 0.04601854392316329,
+      "match": "True"
+    },
+    {
+      "detected_ratio": 1.286603370903154,
+      "target_name": "\u221a2",
+      "target_value": 1.4142135623730951,
+      "magnitude": 454.7594202502935,
+      "distance": 0.12761019146994124,
+      "match": "False"
+    },
+    {
+      "detected_ratio": 1.439627500620814,
+      "target_name": "\u221a2",
+      "target_value": 1.4142135623730951,
+      "magnitude": 451.44982934218774,
+      "distance": 0.02541393824771876,
+      "match": "True"
+    },
+    {
+      "detected_ratio": 1.4617645473007392,
+      "target_name": "\u221a2",
+      "target_value": 1.4142135623730951,
+      "magnitude": 450.91878267424613,
+      "distance": 0.04755098492764409,
+      "match": "True"
+    }
+  ],
+  "bradley_results": {
+    "Unity": {
+      "ratio_value": 1.0,
+      "matches": 5010,
+      "total_checked": 99449688,
+      "match_rate": 0.005
+    },
+    "\u03c6": {
+      "ratio_value": 1.618033988749895,
+      "matches": 2793675,
+      "total_checked": 99449688,
+      "match_rate": 2.809
+    },
+    "\u221a2": {
+      "ratio_value": 1.4142135623730951,
+      "matches": 859844,
+      "total_checked": 99449688,
+      "match_rate": 0.865
+    },
+    "\u221a3": {
+      "ratio_value": 1.7320508075688772,
+      "matches": 4349061,
+      "total_checked": 99449688,
+      "match_rate": 4.373
+    },
+    "Pell": {
+      "ratio_value": 2.302775637731995,
+      "matches": 13881596,
+      "total_checked": 99449688,
+      "match_rate": 13.958
+    },
+    "Octave": {
+      "ratio_value": 2.0,
+      "matches": 8720261,
+      "total_checked": 99449688,
+      "match_rate": 8.769
+    },
+    "\u03c6\u00b7\u221a2": {
+      "ratio_value": 2.2882456112707374,
+      "matches": 13748598,
+      "total_checked": 99449688,
+      "match_rate": 13.825
+    },
+    "2\u03c6": {
+      "ratio_value": 3.23606797749979,
+      "matches": 24234302,
+      "total_checked": 99449688,
+      "match_rate": 24.368
+    }
+  },
+  "cross_validation": {
+    "consensus_ratios": [],
+    "fft_only_ratios": [
+      "\u221a2",
+      "Unity"
+    ],
+    "bradley_only_ratios": [
+      "2\u03c6",
+      "Octave",
+      "\u03c6\u00b7\u221a2",
+      "Pell"
+    ],
+    "total_consensus": 0
+  },
+  "harmonic_detection": {
+    "fft_detected_ratios": 2,
+    "bradley_detected_ratios": 4,
+    "consensus_detected_ratios": 0,
+    "high_performance_ratios": [
+      [
+        "2\u03c6",
+        24.368
+      ],
+      [
+        "Pell",
+        13.958
+      ],
+      [
+        "\u03c6\u00b7\u221a2",
+        13.825
+      ]
+    ]
+  }
+}

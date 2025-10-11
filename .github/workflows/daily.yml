@@ -1,0 +1,61 @@
+name: Daily PAC Validation
+
+on:
+  schedule:
+    # Run daily at 09:00 UTC (adjust timezone as needed)
+    - cron: '0 9 * * *'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  daily-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        # Note: Skip package installation due to Python version constraints
+        # pip install -e .
+
+    - name: Create logs directory
+      run: mkdir -p logs/daily
+
+    - name: Run daily validation
+      env:
+        PYTHONPATH: ${{ github.workspace }}
+      run: |
+        python scripts/run_daily.py
+
+    - name: Upload validation artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: daily-validation-${{ github.run_number }}
+        path: |
+          logs/daily/
+          artifacts/
+        retention-days: 30
+
+    - name: Check for critical failures
+      run: |
+        # Check if any critical errors occurred
+        if [ -f "logs/daily/$(date +%Y-%m-%d)/metrics.json" ]; then
+          HEALTH=$(jq -r '.overall_health' "logs/daily/$(date +%Y-%m-%d)/metrics.json")
+          if [ "$HEALTH" = "CRITICAL" ]; then
+            echo "🚨 Critical system issues detected!"
+            exit 1
+          fi
+        fi
+
+    - name: Notify on failures (optional)
+      if: failure()
+      run: |
+        echo "Daily validation failed - check artifacts for details"

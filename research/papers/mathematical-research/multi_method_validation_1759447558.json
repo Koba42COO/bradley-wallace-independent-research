@@ -1,0 +1,319 @@
+{
+  "results": {
+    "metadata": {
+      "prime_limit": 1000000,
+      "total_primes": 78498,
+      "total_gaps": 78497,
+      "timestamp": 1759447556.476786
+    },
+    "fft": {
+      "method": "fft",
+      "sample_size": 78497,
+      "peaks": [
+        {
+          "rank": 1,
+          "ratio": 1.0000127394215026,
+          "magnitude": 2689.8737052669353,
+          "frequency": 1.2739340356956318e-05,
+          "closest_known": "1.000",
+          "distance": 1.2739421502594439e-05,
+          "detected": "True"
+        },
+        {
+          "rank": 2,
+          "ratio": 1.0000254790052983,
+          "magnitude": 1689.118266095908,
+          "frequency": 2.5478680713912635e-05,
+          "closest_known": "1.000",
+          "distance": 2.547900529825675e-05,
+          "detected": "True"
+        },
+        {
+          "rank": 3,
+          "ratio": 1.0000382187513888,
+          "magnitude": 1205.3827795241102,
+          "frequency": 3.821802107086895e-05,
+          "closest_known": "1.000",
+          "distance": 3.8218751388763295e-05,
+          "detected": "True"
+        },
+        {
+          "rank": 4,
+          "ratio": 1.0000509586597761,
+          "magnitude": 1045.109204096808,
+          "frequency": 5.095736142782527e-05,
+          "closest_known": "1.000",
+          "distance": 5.095865977611247e-05,
+          "detected": "True"
+        },
+        {
+          "rank": 5,
+          "ratio": 1.0000636987304627,
+          "magnitude": 951.9963374824208,
+          "frequency": 6.36967017847816e-05,
+          "closest_known": "1.000",
+          "distance": 6.369873046274677e-05,
+          "detected": "True"
+        },
+        {
+          "rank": 6,
+          "ratio": 1.3608730267251896,
+          "magnitude": 783.9694115266605,
+          "frequency": 0.3081264252137024,
+          "closest_known": "1.414",
+          "distance": 0.05334053564790553,
+          "detected": "False"
+        },
+        {
+          "rank": 7,
+          "ratio": 1.0000764389634504,
+          "magnitude": 778.2598633202092,
+          "frequency": 7.64360421417379e-05,
+          "closest_known": "1.000",
+          "distance": 7.643896345044254e-05,
+          "detected": "True"
+        },
+        {
+          "rank": 8,
+          "ratio": 1.464934849044763,
+          "magnitude": 763.6444159608317,
+          "frequency": 0.3818107698383378,
+          "closest_known": "1.414",
+          "distance": 0.050721286671667754,
+          "detected": "False"
+        }
+      ],
+      "detected_ratios": [
+        "1.000",
+        "1.000",
+        "1.000",
+        "1.000",
+        "1.000",
+        "1.000"
+      ]
+    },
+    "autocorr": {
+      "method": "autocorr",
+      "sample_size": 50000,
+      "peaks": [
+        {
+          "rank": 1,
+          "lag": 10318,
+          "correlation": 527.8112736030937,
+          "ratio": 2.8061122936520513,
+          "closest_known": "1.847",
+          "distance": 0.39189873127895636,
+          "detected": "False"
+        },
+        {
+          "rank": 2,
+          "lag": 5230,
+          "correlation": 521.6378525288976,
+          "ratio": 1.6870813093472115,
+          "closest_known": "1.732",
+          "distance": 0.044969498221665516,
+          "detected": "True"
+        },
+        {
+          "rank": 3,
+          "lag": 3342,
+          "correlation": 506.55481261903327,
+          "ratio": 1.3968224801359452,
+          "closest_known": "1.414",
+          "distance": 0.017391082237149913,
+          "detected": "True"
+        },
+        {
+          "rank": 4,
+          "lag": 3230,
+          "correlation": 473.9695873261905,
+          "ratio": 1.38126535090563,
+          "closest_known": "1.414",
+          "distance": 0.03294821146746507,
+          "detected": "True"
+        },
+        {
+          "rank": 5,
+          "lag": 1734,
+          "correlation": 463.2850987404582,
+          "ratio": 1.1893417466480367,
+          "closest_known": "1.000",
+          "distance": 0.1893417466480367,
+          "detected": "False"
+        },
+        {
+          "rank": 6,
+          "lag": 17033,
+          "correlation": 458.5466060717835,
+          "ratio": 5.492041256576722,
+          "closest_known": "3.236",
+          "distance": 2.2559732790769322,
+          "detected": "False"
+        },
+        {
+          "rank": 7,
+          "lag": 6534,
+          "correlation": 453.6785614153524,
+          "ratio": 1.9220647522172776,
+          "closest_known": "2.000",
+          "distance": 0.07793524778272243,
+          "detected": "False"
+        },
+        {
+          "rank": 8,
+          "lag": 2097,
+          "correlation": 450.1423241287756,
+          "ratio": 1.2333080120487179,
+          "closest_known": "1.414",
+          "distance": 0.18090555032437727,
+          "detected": "False"
+        }
+      ],
+      "detected_ratios": [
+        "1.732",
+        "1.414",
+        "1.414"
+      ]
+    },
+    "bradley": {
+      "method": "bradley",
+      "k_range": [
+        -3,
+        4
+      ],
+      "tolerance": 0.2,
+      "total_matches": 47573,
+      "overall_percent": 7.575607985018536,
+      "k_results": {
+        "-3": {
+          "phi_k": 0.23606797749978967,
+          "matches": 11309,
+          "percent": 14.406920009681897,
+          "inverse_phi_k": 4.23606797749979
+        },
+        "-2": {
+          "phi_k": 0.38196601125010515,
+          "matches": 4176,
+          "percent": 5.3199485330649585,
+          "inverse_phi_k": 2.618033988749895
+        },
+        "-1": {
+          "phi_k": 0.6180339887498948,
+          "matches": 674,
+          "percent": 0.8586315400588558,
+          "inverse_phi_k": 1.618033988749895
+        },
+        "0": {
+          "phi_k": 1.0,
+          "matches": 44,
+          "percent": 0.05605309757060779,
+          "inverse_phi_k": 1.0
+        },
+        "1": {
+          "phi_k": 1.618033988749895,
+          "matches": 674,
+          "percent": 0.8586315400588558,
+          "inverse_phi_k": 0.6180339887498948
+        },
+        "2": {
+          "phi_k": 2.618033988749895,
+          "matches": 4176,
+          "percent": 5.3199485330649585,
+          "inverse_phi_k": 0.38196601125010515
+        },
+        "3": {
+          "phi_k": 4.23606797749979,
+          "matches": 11309,
+          "percent": 14.406920009681897,
+          "inverse_phi_k": 0.2360679774997897
+        },
+        "4": {
+          "phi_k": 6.854101966249686,
+          "matches": 15211,
+          "percent": 19.377810616966254,
+          "inverse_phi_k": 0.14589803375031543
+        }
+      },
+      "detected_ratios": [
+        "0.382",
+        "2.618"
+      ]
+    }
+  },
+  "validation_matrix": {
+    "1.000": {
+      "name": "Unity",
+      "physical": "Base unit, identity",
+      "fft": true,
+      "autocorr": false,
+      "bradley": false,
+      "confidence": 0.3333333333333333,
+      "methods_detected": 1
+    },
+    "1.414": {
+      "name": "\u221a2 (Octave)",
+      "physical": "Quantum uncertainty, musical fifths",
+      "fft": false,
+      "autocorr": true,
+      "bradley": false,
+      "confidence": 0.3333333333333333,
+      "methods_detected": 1
+    },
+    "1.618": {
+      "name": "\u03c6 (Golden)",
+      "physical": "Golden ratio, Fibonacci, growth patterns",
+      "fft": false,
+      "autocorr": false,
+      "bradley": false,
+      "confidence": 0.0,
+      "methods_detected": 0
+    },
+    "1.732": {
+      "name": "\u221a3 (Fifth)",
+      "physical": "Major sixth, crystal structures",
+      "fft": false,
+      "autocorr": true,
+      "bradley": false,
+      "confidence": 0.3333333333333333,
+      "methods_detected": 1
+    },
+    "1.847": {
+      "name": "Pell",
+      "physical": "Pell numbers, continued fractions",
+      "fft": false,
+      "autocorr": false,
+      "bradley": false,
+      "confidence": 0.0,
+      "methods_detected": 0
+    },
+    "2.000": {
+      "name": "Octave",
+      "physical": "Perfect octave, frequency doubling",
+      "fft": false,
+      "autocorr": false,
+      "bradley": false,
+      "confidence": 0.0,
+      "methods_detected": 0
+    },
+    "2.287": {
+      "name": "\u03c6\u00b7\u221a2",
+      "physical": "Combined golden-quantum ratio",
+      "fft": false,
+      "autocorr": false,
+      "bradley": false,
+      "confidence": 0.0,
+      "methods_detected": 0
+    },
+    "3.236": {
+      "name": "2\u03c6",
+      "physical": "Double golden ratio",
+      "fft": false,
+      "autocorr": false,
+      "bradley": false,
+      "confidence": 0.0,
+      "methods_detected": 0
+    }
+  },
+  "timestamp": 1759447558.2331789,
+  "computation_time": 1.7584588527679443
+}

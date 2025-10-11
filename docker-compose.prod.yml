@@ -1,0 +1,243 @@
+version: '3.8'
+
+services:
+  pac-system-api:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile
+    image: pac-system:latest
+    command: uvicorn services.api:app --host 0.0.0.0 --port 8080
+    ports:
+      - "8080:8080"
+    environment:
+      - PAC_PRIME_SCALE=50000
+      - PAC_WEIGHT=0.79
+    restart: unless-stopped
+    networks:
+      - wallace-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+  # WQRF - Wallace Quantum Resonance Framework API
+  wqrf-api:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile.wqrf
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001
+      - PYTHONPATH=/app
+    volumes:
+      - ../../artifacts/logs:/app/logs
+      - ../../artifacts/models:/app/models:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - wallace-network
+    depends_on:
+      - redis
+    labels:
+      - "com.wallace.service=wqrf"
+      - "com.wallace.capabilities=primality-testing,ml-analysis"
+
+  # AIVA IDE Backend
+  aiva-ide-server:
+    build:
+      context: ../../tools/aiva-ide/server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ../../tools/aiva-ide/server/logs:/app/logs
+      - ../..:/app/project:ro  # Mount project for file operations
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - wallace-network
+    depends_on:
+      - redis
+    labels:
+      - "com.wallace.service=aiva-ide"
+      - "com.wallace.capabilities=ai-chat,file-ops,realtime-collab"
+
+  # AIVA IDE Frontend
+  aiva-ide-client:
+    build:
+      context: ../../tools/aiva-ide/client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:3001/api
+      - REACT_APP_WS_URL=ws://localhost:3001
+    restart: unless-stopped
+    networks:
+      - wallace-network
+    depends_on:
+      - aiva-ide-server
+    labels:
+      - "com.wallace.service=aiva-ide-frontend"
+      - "com.wallace.capabilities=web-ui,realtime-editor"
+
+  # CUDNT CPU Accelerator
+  cudnt-accelerator:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile.cudnt
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - ../../artifacts/logs:/app/logs
+      - ../../artifacts/run-data/cudnt_cache:/app/cache
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 4G
+        reservations:
+          cpus: '2.0'
+          memory: 2G
+    networks:
+      - wallace-network
+    labels:
+      - "com.wallace.service=cudnt"
+      - "com.wallace.capabilities=matrix-ops,gpu-virtualization,ml-acceleration"
+
+  # Redis for caching and session management
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - wallace-network
+    command: redis-server --appendonly yes
+    labels:
+      - "com.wallace.service=redis"
+      - "com.wallace.capabilities=caching,sessions"
+
+  # PostgreSQL for data persistence
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=wallace_research
+      - POSTGRES_USER=wallace
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-wallace_research_2025}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+    networks:
+      - wallace-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wallace -d wallace_research"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.wallace.service=postgres"
+      - "com.wallace.capabilities=data-persistence,research-storage"
+
+  # Nginx reverse proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - nginx_logs:/var/log/nginx
+    restart: unless-stopped
+    networks:
+      - wallace-network
+    depends_on:
+      - aiva-ide-client
+      - aiva-ide-server
+      - wqrf-api
+      - pac-system-api
+    labels:
+      - "com.wallace.service=nginx"
+      - "com.wallace.capabilities=reverse-proxy,ssl-termination"
+
+  # Prometheus monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../../services/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+    restart: unless-stopped
+    networks:
+      - wallace-network
+    labels:
+      - "com.wallace.service=prometheus"
+      - "com.wallace.capabilities=monitoring,metrics-collection"
+
+  # Grafana for dashboards
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3002:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-wallace_2025}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ../../services/monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ../../services/monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    restart: unless-stopped
+    networks:
+      - wallace-network
+    depends_on:
+      - prometheus
+    labels:
+      - "com.wallace.service=grafana"
+      - "com.wallace.capabilities=dashboards,visualization"
+
+networks:
+  wallace-network:
+    driver: bridge
+    name: wallace-research-network
+
+volumes:
+  redis_data:
+    driver: local
+  postgres_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+  nginx_logs:
+    driver: local

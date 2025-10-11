@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Base Wallace Transform Tester</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #1e293b 75%, #0f172a 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #3b82f6;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.loading { background: #2196F3; color: white; }
+        .status.success { background: #4CAF50; color: white; }
+        .status.error { background: #f44336; color: white; }
+        .button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+        }
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        .matrix-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .matrix-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .matrix-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #8b5cf6;
+        }
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .matrix-table th,
+        .matrix-table td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .matrix-table th {
+            background: rgba(59, 130, 246, 0.1);
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        .matrix-value {
+            font-weight: bold;
+        }
+        .matrix-value.high { color: #10b981; }
+        .matrix-value.medium { color: #f59e0b; }
+        .matrix-value.low { color: #ef4444; }
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .insights {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .insight-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #8b5cf6;
+            margin-bottom: 1rem;
+        }
+        .highlight {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(34, 197, 94, 0.1));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .highlight-title {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        function MultiBaseTester() {
+            const [primes, setPrimes] = useState([]);
+            const [gaps, setGaps] = useState([]);
+            const [computing, setComputing] = useState(false);
+            const [progress, setProgress] = useState(0);
+            const [results, setResults] = useState(null);
+            const [insights, setInsights] = useState(null);
+            const chartRef = useRef(null);
+
+            // Logarithm bases to test
+            const LOG_BASES = [
+                { name: 'e', symbol: 'e', value: Math.E },
+                { name: 'π', symbol: 'π', value: Math.PI },
+                { name: 'φ', symbol: 'φ', value: (1 + Math.sqrt(5)) / 2 },
+                { name: 'γ', symbol: 'γ', value: 0.5772156649015329 },
+                { name: '√2', symbol: '√2', value: Math.sqrt(2) }
+            ];
+
+            // Scaling constants to test
+            const SCALING_CONSTANTS = [
+                { name: 'e', symbol: 'e', value: Math.E },
+                { name: 'π', symbol: 'π', value: Math.PI },
+                { name: 'φ', symbol: 'φ', value: (1 + Math.sqrt(5)) / 2 },
+                { name: 'γ', symbol: 'γ', value: 0.5772156649015329 },
+                { name: '√2', symbol: '√2', value: Math.sqrt(2) }
+            ];
+
+            const PHI = (1 + Math.sqrt(5)) / 2;
+            const EPSILON = 1e-12;
+
+            // Prime generation
+            const isPrime = (n) => {
+                if (n < 2) return false;
+                if (n === 2) return true;
+                if (n % 2 === 0) return false;
+                for (let i = 3; i <= Math.sqrt(n); i += 2) {
+                    if (n % i === 0) return false;
+                }
+                return true;
+            };
+
+            const generatePrimes = (limit) => {
+                const primes = [];
+                for (let i = 2; primes.length < limit; i++) {
+                    if (isPrime(i)) primes.push(i);
+                }
+                return primes;
+            };
+
+            // Multi-base Wallace Transform
+            const wallaceTransform = (x, logBase) => {
+                const logConversion = Math.log(logBase);
+                const logVal = Math.log(x + EPSILON) / logConversion;
+                return PHI * Math.pow(Math.abs(logVal), PHI) * Math.sign(logVal) + 1.0;
+            };
+
+            // Initialize data
+            useEffect(() => {
+                console.log('🔬 Initializing multi-base analysis data...');
+                try {
+                    const computed = generatePrimes(25000);
+                    const gapArray = [];
+                    for (let i = 1; i < computed.length; i++) {
+                        gapArray.push(computed[i] - computed[i-1]);
+                    }
+                    setPrimes(computed);
+                    setGaps(gapArray);
+                    console.log('✅ Data initialized:', computed.length, 'primes,', gapArray.length, 'gaps');
+                } catch (error) {
+                    console.error('❌ Error initializing data:', error);
+                }
+            }, []);
+
+            // Run multi-base analysis
+            const runMultiBaseAnalysis = async () => {
+                if (primes.length === 0 || gaps.length === 0) return;
+
+                setComputing(true);
+                setProgress(0);
+
+                const matrix = [];
+                const totalTests = LOG_BASES.length * SCALING_CONSTANTS.length;
+                let testCount = 0;
+
+                console.log('🚀 Starting multi-base matrix analysis...');
+
+                // Test all combinations
+                for (let logBase of LOG_BASES) {
+                    const row = { logBase, results: [] };
+
+                    for (let scalingConst of SCALING_CONSTANTS) {
+                        updateProgress((testCount / totalTests) * 100,
+                            `Testing ${logBase.symbol} logs × ${scalingConst.symbol}⁻²...`);
+
+                        const matchRate = testCombination(logBase.value, scalingConst.value);
+                        row.results.push({
+                            scalingConstant: scalingConst,
+                            matchRate: matchRate
+                        });
+
+                        testCount++;
+                        await new Promise(resolve => setTimeout(resolve, 1)); // Allow UI updates
+                    }
+
+                    matrix.push(row);
+                }
+
+                // Generate insights
+                const insights = analyzeMatrix(matrix);
+
+                setResults(matrix);
+                setInsights(insights);
+                setProgress(100);
+                setComputing(false);
+
+                console.log('✅ Multi-base analysis complete!');
+                createVisualization(matrix);
+            };
+
+            // Test single combination
+            const testCombination = (logBase, scalingConstant) => {
+                const testSize = Math.min(5000, gaps.length);
+                const scalingFactor = Math.pow(scalingConstant, -2);
+                let matches = 0;
+                const tolerance = 0.20;
+
+                for (let i = 0; i < testSize; i++) {
+                    const actualGap = gaps[i];
+                    const p = primes[i];
+                    const wt_p = wallaceTransform(p, logBase);
+                    const predicted = wt_p * scalingFactor;
+
+                    if (Math.abs(actualGap - predicted) / Math.max(actualGap, predicted) <= tolerance) {
+                        matches++;
+                    }
+                }
+
+                return parseFloat(((matches / testSize) * 100).toFixed(2));
+            };
+
+            // Analyze the results matrix
+            const analyzeMatrix = (matrix) => {
+                const insights = {
+                    selfReferential: false,
+                    diagonalStrength: [],
+                    bestOverall: { rate: 0, logBase: '', constant: '' },
+                    patterns: []
+                };
+
+                // Check diagonal (self-referential) strength
+                matrix.forEach((row, i) => {
+                    const diagonalResult = row.results[i];
+                    insights.diagonalStrength.push({
+                        logBase: row.logBase.symbol,
+                        scalingConstant: diagonalResult.scalingConstant.symbol,
+                        matchRate: diagonalResult.matchRate
+                    });
+
+                    if (diagonalResult.matchRate > insights.bestOverall.rate) {
+                        insights.bestOverall = {
+                            rate: diagonalResult.matchRate,
+                            logBase: row.logBase.symbol,
+                            constant: diagonalResult.scalingConstant.symbol
+                        };
+                    }
+                });
+
+                // Check if diagonal is consistently strongest
+                const avgDiagonal = insights.diagonalStrength.reduce((sum, item) => sum + item.matchRate, 0) / insights.diagonalStrength.length;
+                const avgOffDiagonal = [];
+
+                matrix.forEach((row, i) => {
+                    row.results.forEach((result, j) => {
+                        if (i !== j) avgOffDiagonal.push(result.matchRate);
+                    });
+                });
+
+                const avgOff = avgOffDiagonal.reduce((sum, rate) => sum + rate, 0) / avgOffDiagonal.length;
+
+                insights.selfReferential = avgDiagonal > avgOff + 2; // 2% threshold
+                insights.avgDiagonal = avgDiagonal.toFixed(2);
+                insights.avgOffDiagonal = avgOff.toFixed(2);
+
+                return insights;
+            };
+
+            // Create visualization
+            const createVisualization = (matrix) => {
+                if (!chartRef.current) return;
+
+                const ctx = chartRef.current.getContext('2d');
+
+                // Prepare data for heatmap
+                const labels = LOG_BASES.map(b => b.symbol);
+                const datasets = SCALING_CONSTANTS.map((const_, idx) => ({
+                    label: `${const_.symbol}⁻²`,
+                    data: matrix.map(row => row.results[idx].matchRate),
+                    backgroundColor: `rgba(${54 + idx * 40}, ${162 - idx * 20}, ${235 - idx * 30}, 0.8)`,
+                    borderColor: `rgba(${54 + idx * 40}, ${162 - idx * 20}, ${235 - idx * 30}, 1)`,
+                    borderWidth: 1
+                }));
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Multi-Base Wallace Transform Results',
+                                color: '#ffffff'
+                            },
+                            legend: {
+                                labels: {
+                                    color: '#ffffff'
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: '#ffffff' },
+                                title: {
+                                    display: true,
+                                    text: 'Logarithm Base',
+                                    color: '#ffffff'
+                                }
+                            },
+                            y: {
+                                ticks: { color: '#ffffff' },
+                                title: {
+                                    display: true,
+                                    text: 'Match Rate (%)',
+                                    color: '#ffffff'
+                                },
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            };
+
+            const updateProgress = (percent, message = '') => {
+                setProgress(percent);
+            };
+
+            return (
+                <div className="container">
+                    {/* Header */}
+                    <div className="header">
+                        <h1 className="title">🔬 Multi-Base Wallace Transform Tester</h1>
+                        <p className="subtitle">
+                            Testing self-referential scaling: Does log base determine scaling constant?
+                        </p>
+                    </div>
+
+                    {/* Theory */}
+                    <div className="card">
+                        <h2 className="section-title">🧠 The Self-Referential Hypothesis</h2>
+                        <p><strong>Question:</strong> Does using log_base(c) in the transform make c⁻² the strongest relationship?</p>
+                        <div className="highlight">
+                            <div className="highlight-title">Current Evidence</div>
+                            <p>You use natural log (base e) → e⁻² is strongest relationship</p>
+                            <p><strong>If true:</strong> This reveals fundamental self-referential mathematical structure</p>
+                            <p><strong>If false:</strong> e has special status in prime gap structure</p>
+                        </div>
+                    </div>
+
+                    {/* Controls */}
+                    <div className="card">
+                        <h2 className="section-title">🎛️ Analysis Controls</h2>
+                        <div style={{ marginBottom: '1rem' }}>
+                            <strong>Test Matrix:</strong> {LOG_BASES.length} log bases × {SCALING_CONSTANTS.length} scaling constants = {LOG_BASES.length * SCALING_CONSTANTS.length} combinations
+                        </div>
+                        <button
+                            className="button"
+                            onClick={runMultiBaseAnalysis}
+                            disabled={computing || primes.length === 0}
+                        >
+                            🚀 Run Multi-Base Analysis
+                        </button>
+                        {computing && (
+                            <div>
+                                <div className="progress-bar">
+                                    <div className="progress-fill" style={{ width: `${progress}%` }} />
+                                </div>
+                                <div>Progress: {progress.toFixed(1)}%</div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Results Matrix */}
+                    {results && (
+                        <div className="card">
+                            <h2 className="section-title">📊 Results Matrix</h2>
+                            <div className="matrix-container">
+                                {results.map((row, i) => (
+                                    <div key={i} className="matrix-card">
+                                        <div className="matrix-title">
+                                            Log Base: {row.logBase.symbol}
+                                        </div>
+                                        <table className="matrix-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Scaling<br/>Constant</th>
+                                                    <th>Match<br/>Rate</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {row.results.map((result, j) => (
+                                                    <tr key={j}>
+                                                        <td>{result.scalingConstant.symbol}⁻²</td>
+                                                        <td>
+                                                            <span className={`matrix-value ${
+                                                                result.matchRate > 20 ? 'high' :
+                                                                result.matchRate > 15 ? 'medium' : 'low'
+                                                            }`}>
+                                                                {result.matchRate}%
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Visualization */}
+                    {results && (
+                        <div className="card">
+                            <h2 className="section-title">📈 Results Visualization</h2>
+                            <div className="chart-container">
+                                <canvas ref={chartRef}></canvas>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Insights */}
+                    {insights && (
+                        <div className="insights">
+                            <div className="insight-title">🔍 Analysis Insights</div>
+
+                            <div className="highlight">
+                                <div className="highlight-title">Self-Referential Evidence</div>
+                                <p><strong>Diagonal Average:</strong> {insights.avgDiagonal}% (same base log + scaling)</p>
+                                <p><strong>Off-Diagonal Average:</strong> {insights.avgOffDiagonal}% (different bases)</p>
+                                <p><strong>Conclusion:</strong> {
+                                    insights.selfReferential
+                                        ? "✅ STRONG evidence for self-referential structure!"
+                                        : "❌ No strong self-referential pattern detected"
+                                }</p>
+                            </div>
+
+                            <div className="highlight">
+                                <div className="highlight-title">Best Overall Combination</div>
+                                <p><strong>{insights.bestOverall.logBase} logs × {insights.bestOverall.constant}⁻²:</strong> {insights.bestOverall.rate}% match rate</p>
+                            </div>
+
+                            <div className="highlight">
+                                <div className="highlight-title">Diagonal Strength (Self-Referential)</div>
+                                {insights.diagonalStrength.map((item, idx) => (
+                                    <div key={idx} style={{ margin: '0.5rem 0' }}>
+                                        <strong>{item.logBase} logs × {item.scalingConstant}⁻²:</strong> {item.matchRate}%
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Footer */}
+                    <div style={{ textAlign: 'center', marginTop: '3rem', fontSize: '0.875rem', color: '#64748b' }}>
+                        Multi-Base Wallace Transform Tester | Testing self-referential mathematical structures
+                        <br/>Dataset: {primes.length.toLocaleString()} primes | Analysis: {LOG_BASES.length × SCALING_CONSTANTS.length} combinations
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<MultiBaseTester />, document.getElementById('root'));
+    </script>
+</body>
+</html>

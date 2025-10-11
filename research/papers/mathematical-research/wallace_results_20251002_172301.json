@@ -1,0 +1,341 @@
+{
+  "timestamp": "2025-10-02T17:23:01.979210",
+  "analysis_type": "Advanced Wallace Transform Analysis",
+  "primes_count": 78498,
+  "max_prime": 999983,
+  "gaps_count": 78497,
+  "fft_peaks": [
+    {
+      "index": 8,
+      "frequency": 0.00011465406321260686,
+      "value": 0.00925553024896421,
+      "magnitude": 0.00925553024896421,
+      "rank": 1,
+      "ratio": 1.000114660636241,
+      "closest_ratio": {
+        "value": 1.0,
+        "name": "Unity",
+        "symbol": "1.000",
+        "physics": "Base unit, identity",
+        "freq": 1
+      },
+      "distance": 0.00011466063624099299,
+      "match": "True"
+    },
+    {
+      "index": 23,
+      "frequency": 0.0003057441685669516,
+      "value": 0.00759162848915375,
+      "magnitude": 0.00759162848915375,
+      "rank": 2,
+      "ratio": 1.000305790913079,
+      "closest_ratio": {
+        "value": 1.0,
+        "name": "Unity",
+        "symbol": "1.000",
+        "physics": "Base unit, identity",
+        "freq": 1
+      },
+      "distance": 0.0003057909130790293,
+      "match": "True"
+    },
+    {
+      "index": 17,
+      "frequency": 0.00022930812642521373,
+      "value": 0.005897949525325042,
+      "magnitude": 0.005897949525325042,
+      "rank": 3,
+      "ratio": 1.0002293344195434,
+      "closest_ratio": {
+        "value": 1.0,
+        "name": "Unity",
+        "symbol": "1.000",
+        "physics": "Base unit, identity",
+        "freq": 1
+      },
+      "distance": 0.00022933441954342548,
+      "match": "True"
+    },
+    {
+      "index": 19,
+      "frequency": 0.0002547868071391264,
+      "value": 0.005773960859081268,
+      "magnitude": 0.005773960859081268,
+      "rank": 4,
+      "ratio": 1.0002548192680545,
+      "closest_ratio": {
+        "value": 1.0,
+        "name": "Unity",
+        "symbol": "1.000",
+        "physics": "Base unit, identity",
+        "freq": 1
+      },
+      "distance": 0.00025481926805448474,
+      "match": "True"
+    },
+    {
+      "index": 14,
+      "frequency": 0.00019109010535434476,
+      "value": 0.005548035694928582,
+      "magnitude": 0.005548035694928582,
+      "rank": 5,
+      "ratio": 1.0001911083642316,
+      "closest_ratio": {
+        "value": 1.0,
+        "name": "Unity",
+        "symbol": "1.000",
+        "physics": "Base unit, identity",
+        "freq": 1
+      },
+      "distance": 0.00019110836423164024,
+      "match": "True"
+    },
+    {
+      "index": 28,
+      "frequency": 0.0003694408703517332,
+      "value": 0.005216858382830649,
+      "magnitude": 0.005216858382830649,
+      "rank": 6,
+      "ratio": 1.0003695091220348,
+      "closest_ratio": {
+        "value": 1.0,
+        "name": "Unity",
+        "symbol": "1.000",
+        "physics": "Base unit, identity",
+        "freq": 1
+      },
+      "distance": 0.0003695091220348168,
+      "match": "True"
+    },
+    {
+      "index": 21,
+      "frequency": 0.000280265487853039,
+      "value": 0.004812167733688309,
+      "magnitude": 0.004812167733688309,
+      "rank": 7,
+      "ratio": 1.0002803047658941,
+      "closest_ratio": {
+        "value": 1.0,
+        "name": "Unity",
+        "symbol": "1.000",
+        "physics": "Base unit, identity",
+        "freq": 1
+      },
+      "distance": 0.0002803047658941349,
+      "match": "True"
+    },
+    {
+      "index": 25,
+      "frequency": 0.00033122284928086427,
+      "value": 0.0044074184715598526,
+      "magnitude": 0.0044074184715598526,
+      "rank": 8,
+      "ratio": 1.0003312777096256,
+      "closest_ratio": {
+        "value": 1.0,
+        "name": "Unity",
+        "symbol": "1.000",
+        "physics": "Base unit, identity",
+        "freq": 1
+      },
+      "distance": 0.0003312777096255992,
+      "match": "True"
+    }
+  ],
+  "autocorr_peaks": [
+    {
+      "index": 4,
+      "frequency": "5",
+      "value": 1.649027291550734,
+      "magnitude": 1.649027291550734,
+      "rank": 1,
+      "ratio": 1.649027291550734,
+      "closest_ratio": {
+        "value": 1.618033988749895,
+        "name": "Golden Ratio",
+        "symbol": "\u03c6",
+        "physics": "Hydrogen line / 1973.2",
+        "freq": 719
+      },
+      "distance": 0.030993302800839118,
+      "match": "True"
+    },
+    {
+      "index": 10,
+      "frequency": "11",
+      "value": 1.6469663980053368,
+      "magnitude": 1.6469663980053368,
+      "rank": 2,
+      "ratio": 1.6469663980053368,
+      "closest_ratio": {
+        "value": 1.618033988749895,
+        "name": "Golden Ratio",
+        "symbol": "\u03c6",
+        "physics": "Hydrogen line / 1973.2",
+        "freq": 719
+      },
+      "distance": 0.028932409255441938,
+      "match": "True"
+    },
+    {
+      "index": 16,
+      "frequency": "17",
+      "value": 1.6452798004603997,
+      "magnitude": 1.6452798004603997,
+      "rank": 3,
+      "ratio": 1.6452798004603997,
+      "closest_ratio": {
+        "value": 1.618033988749895,
+        "name": "Golden Ratio",
+        "symbol": "\u03c6",
+        "physics": "Hydrogen line / 1973.2",
+        "freq": 719
+      },
+      "distance": 0.027245811710504775,
+      "match": "True"
+    },
+    {
+      "index": 7,
+      "frequency": "8",
+      "value": 1.6451755092496783,
+      "magnitude": 1.6451755092496783,
+      "rank": 4,
+      "ratio": 1.6451755092496783,
+      "closest_ratio": {
+        "value": 1.618033988749895,
+        "name": "Golden Ratio",
+        "symbol": "\u03c6",
+        "physics": "Hydrogen line / 1973.2",
+        "freq": 719
+      },
+      "distance": 0.027141520499783356,
+      "match": "True"
+    },
+    {
+      "index": 18,
+      "frequency": "19",
+      "value": 1.6424162929583375,
+      "magnitude": 1.6424162929583375,
+      "rank": 5,
+      "ratio": 1.6424162929583375,
+      "closest_ratio": {
+        "value": 1.618033988749895,
+        "name": "Golden Ratio",
+        "symbol": "\u03c6",
+        "physics": "Hydrogen line / 1973.2",
+        "freq": 719
+      },
+      "distance": 0.024382304208442562,
+      "match": "True"
+    },
+    {
+      "index": 26,
+      "frequency": "27",
+      "value": 1.6418932797522625,
+      "magnitude": 1.6418932797522625,
+      "rank": 6,
+      "ratio": 1.6418932797522625,
+      "closest_ratio": {
+        "value": 1.618033988749895,
+        "name": "Golden Ratio",
+        "symbol": "\u03c6",
+        "physics": "Hydrogen line / 1973.2",
+        "freq": 719
+      },
+      "distance": 0.02385929100236761,
+      "match": "True"
+    },
+    {
+      "index": 24,
+      "frequency": "25",
+      "value": 1.6413654245341267,
+      "magnitude": 1.6413654245341267,
+      "rank": 7,
+      "ratio": 1.6413654245341267,
+      "closest_ratio": {
+        "value": 1.618033988749895,
+        "name": "Golden Ratio",
+        "symbol": "\u03c6",
+        "physics": "Hydrogen line / 1973.2",
+        "freq": 719
+      },
+      "distance": 0.023331435784231802,
+      "match": "True"
+    },
+    {
+      "index": 12,
+      "frequency": "13",
+      "value": 1.6397204361002966,
+      "magnitude": 1.6397204361002966,
+      "rank": 8,
+      "ratio": 1.6397204361002966,
+      "closest_ratio": {
+        "value": 1.618033988749895,
+        "name": "Golden Ratio",
+        "symbol": "\u03c6",
+        "physics": "Hydrogen line / 1973.2",
+        "freq": 719
+      },
+      "distance": 0.021686447350401705,
+      "match": "True"
+    }
+  ],
+  "known_ratios": [
+    {
+      "value": 1.0,
+      "name": "Unity",
+      "symbol": "1.000",
+      "physics": "Base unit, identity",
+      "freq": 1
+    },
+    {
+      "value": 1.618033988749895,
+      "name": "Golden Ratio",
+      "symbol": "\u03c6",
+      "physics": "Hydrogen line / 1973.2",
+      "freq": 719
+    },
+    {
+      "value": 1.4142135623730951,
+      "name": "Octave Root",
+      "symbol": "\u221a2",
+      "physics": "String harmonics",
+      "freq": 414
+    },
+    {
+      "value": 1.7320508075688772,
+      "name": "Fifth Root",
+      "symbol": "\u221a3",
+      "physics": "Pythagorean comma",
+      "freq": 732
+    },
+    {
+      "value": 2.302775637731995,
+      "name": "Pell Number",
+      "symbol": "1.847",
+      "physics": "Continued fractions",
+      "freq": 847
+    },
+    {
+      "value": 2.0,
+      "name": "Octave",
+      "symbol": "2.000",
+      "physics": "Perfect octave",
+      "freq": 1000
+    },
+    {
+      "value": 2.2882456112707374,
+      "name": "\u03c6\u00b7\u221a2",
+      "symbol": "2.287",
+      "physics": "Combined harmonics",
+      "freq": 2287
+    },
+    {
+      "value": 3.23606797749979,
+      "name": "2\u03c6",
+      "symbol": "3.236",
+      "physics": "Double golden",
+      "freq": 3236
+    }
+  ]
+}

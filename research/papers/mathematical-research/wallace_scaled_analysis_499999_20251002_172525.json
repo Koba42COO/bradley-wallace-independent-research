@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "primes_count": 499999,
+    "max_prime": 100000000,
+    "gaps_count": 499998,
+    "analysis_timestamp": "2025-10-02T17:25:21.351781",
+    "analysis_type": "both"
+  },
+  "ratios_tested": [
+    {
+      "value": 1.0,
+      "name": "Unity",
+      "symbol": "1.000"
+    },
+    {
+      "value": 1.618033988749895,
+      "name": "Golden",
+      "symbol": "\u03c6"
+    },
+    {
+      "value": 1.4142135623730951,
+      "name": "Sqrt2",
+      "symbol": "\u221a2"
+    },
+    {
+      "value": 1.7320508075688772,
+      "name": "Sqrt3",
+      "symbol": "\u221a3"
+    },
+    {
+      "value": 2.302775637731995,
+      "name": "Pell",
+      "symbol": "1.847"
+    },
+    {
+      "value": 2.0,
+      "name": "Octave",
+      "symbol": "2.000"
+    },
+    {
+      "value": 2.2882456112707374,
+      "name": "PhiSqrt2",
+      "symbol": "2.287"
+    },
+    {
+      "value": 3.23606797749979,
+      "name": "2Phi",
+      "symbol": "3.236"
+    }
+  ],
+  "fft_analysis": {
+    "sample_size": 100000,
+    "frequency_range": [
+      1e-05,
+      0.49999000000000005
+    ],
+    "peaks": [
+      {
+        "index": 11,
+        "frequency": 0.00012000000000000002,
+        "value": 642.1311440025354,
+        "magnitude": 642.1311440025354,
+        "rank": 1,
+        "ratio": 1.000120007200288,
+        "closest_ratio": {
+          "value": 1.0,
+          "name": "Unity",
+          "symbol": "1.000"
+        },
+        "distance": 0.00012000720028804146,
+        "match": 

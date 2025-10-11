@@ -1,0 +1,55 @@
+{
+  "total_candidates": 28,
+  "p_candidates": 16,
+  "uncertain_candidates": 8,
+  "np_candidates": 4,
+  "top_candidates": [
+    {
+      "size": 10,
+      "hybrid_confidence": 0.6682191346863524,
+      "classification": "hybrid_uncertain",
+      "computational_gap": 0.20510158408002227
+    },
+    {
+      "size": 10,
+      "hybrid_confidence": 0.6666666666666667,
+      "classification": "hybrid_NP_candidate",
+      "computational_gap": 0.5
+    },
+    {
+      "size": 25,
+      "hybrid_confidence": 0.6666666666666667,
+      "classification": "hybrid_NP_candidate",
+      "computational_gap": 0.5
+    },
+    {
+      "size": 50,
+      "hybrid_confidence": 0.6666666666666667,
+      "classification": "hybrid_NP_candidate",
+      "computational_gap": 0.5
+    },
+    {
+      "size": 100,
+      "hybrid_confidence": 0.6666666666666667,
+      "classification": "hybrid_NP_candidate",
+      "computational_gap": 0.5
+    }
+  ],
+  "insights": {
+    "avg_p_confidence": 0.48113075572136543,
+    "avg_p_gap": 0.21135622430583412,
+    "size_distribution": {
+      "100": 4,
+      "25": 4,
+      "10": 4,
+      "50": 4
+    }
+  },
+  "recommendations": [
+    "consciousness_guided_algorithms",
+    "larger_scale_testing",
+    "hybrid_frameworks",
+    "neural_optimization",
+    "quantum_consciousness"
+  ]
+}

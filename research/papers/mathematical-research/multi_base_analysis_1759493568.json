@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "analysis_type": "multi_base_wallace_transform",
+    "timestamp": "2025-10-03T08:12:48.747946",
+    "primes_count": 25000,
+    "gaps_count": 24999,
+    "log_bases_tested": [
+      "e",
+      "\u03c0",
+      "\u03c6",
+      "\u03b3",
+      "\u221a2"
+    ],
+    "scaling_constants_tested": [
+      "e",
+      "\u03c0",
+      "\u03c6",
+      "\u03b3",
+      "\u221a2"
+    ],
+    "total_combinations": 25,
+    "computation_time": 0.25
+  },
+  "results_matrix": {
+    "e": {
+      "e": 21.02,
+      "\u03c0": 22.42,
+      "\u03c6": 7.86,
+      "\u03b3": 0.0,
+      "\u221a2": 3.9
+    },
+    "\u03c0": {
+      "e": 20.38,
+      "\u03c0": 19.92,
+      "\u03c6": 12.1,
+      "\u03b3": 0.0,
+      "\u221a2": 6.68
+    },
+    "\u03c6": {
+      "e": 5.5,
+      "\u03c0": 10.78,
+      "\u03c6": 0.02,
+      "\u03b3": 0.0,
+      "\u221a2": 0.0
+    },
+    "\u03b3": {
+      "e": 0.0,
+      "\u03c0": 0.0,
+      "\u03c6": 0.0,
+      "\u03b3": 0.0,
+      "\u221a2": 0.0
+    },
+    "\u221a2": {
+      "e": 0.46,
+      "\u03c0": 2.5,
+      "\u03c6": 0.0,
+      "\u03b3": 0.0,
+      "\u221a2": 0.0
+    }
+  },
+  "analysis": {
+    "diagonal_values": [
+      21.02,
+      19.92,
+      0.02,
+      0.0,
+      0.0
+    ],
+    "off_diagonal_values": [
+      22.42,
+      7.86,
+      0.0,
+      3.9,
+      20.38,
+      12.1,
+      0.0,
+      6.68,
+      5.5,
+      10.78,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.46,
+      2.5,
+      0.0,
+      0.0
+    ],
+    "avg_diagonal": 8.19,
+    "avg_off_diagonal": 4.63,
+    "max_diagonal": 21.02,
+    "max_overall": 22.42,
+    "best_combination": {
+      "rate": 22.42,
+      "log_base": "e",
+      "constant": "\u03c0"
+    },
+    "self_referential": 

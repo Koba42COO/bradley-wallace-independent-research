@@ -1,0 +1,8 @@
+site_name: PAC System Docs
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - API: api.md
+theme:
+  name: material
+

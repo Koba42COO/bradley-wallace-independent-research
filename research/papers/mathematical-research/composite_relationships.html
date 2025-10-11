@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Composite Relationships Explorer</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .composite-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 2px solid transparent;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+        .composite-card:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-2px);
+        }
+        .composite-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+        .composite-formula {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .result-display {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .result-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+        }
+        .result-details {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+        .slider-container {
+            margin: 1.5rem 0;
+        }
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(59, 130, 246, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+        .run-button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 1rem 0;
+        }
+        .run-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .run-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        .best-result {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(34, 197, 94, 0.1));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .best-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+        .optimization-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .opt-result {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 1rem;
+            border-radius: 0.25rem;
+            text-align: center;
+        }
+        .opt-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3b82f6;
+            margin-bottom: 0.25rem;
+        }
+        .opt-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        function CompositeRelationshipsExplorer() {
+            const [primes, setPrimes] = useState([]);
+            const [gaps, setGaps] = useState([]);
+            const [computing, setComputing] = useState(false);
+            const [progress, setProgress] = useState(0);
+            const [results, setResults] = useState(null);
+            const [bestResult, setBestResult] = useState(null);
+
+            // Interactive parameters
+            const [alpha, setAlpha] = useState(0.6); // Weight for e
+            const [beta, setBeta] = useState(0.4);  // Weight for π
+            const [gamma, setGamma] = useState(0.5); // For geometric combinations
+
+            // Wallace Transform
+            const WT = (x) => {
+                if (x <= 0) return 0;
+                const logVal = Math.log(x + 1e-12);
+                return ((1 + Math.sqrt(5)) / 2) * Math.pow(Math.abs(logVal), (1 + Math.sqrt(5)) / 2) * Math.sign(logVal) + 1.0;
+            };
+
+            // Prime generation
+            const isPrime = (n) => {
+                if (n < 2) return false;
+                if (n === 2) return true;
+                if (n % 2 === 0) return false;
+                for (let i = 3; i <= Math.sqrt(n); i += 2) {
+                    if (n % i === 0) return false;
+                }
+                return true;
+            };
+
+            const generatePrimes = (limit) => {
+                const primes = [];
+                for (let i = 2; primes.length < limit; i++) {
+                    if (isPrime(i)) primes.push(i);
+                }
+                return primes;
+            };
+
+            // Initialize data
+            useEffect(() => {
+                console.log('🔬 Initializing composite relationships data...');
+                try {
+                    const computed = generatePrimes(50000); // Medium scale for composite testing
+                    const gapArray = [];
+                    for (let i = 1; i < computed.length; i++) {
+                        gapArray.push(computed[i] - computed[i-1]);
+                    }
+                    setPrimes(computed);
+                    setGaps(gapArray);
+                    console.log('✅ Data initialized:', computed.length, 'primes,', gapArray.length, 'gaps');
+                } catch (error) {
+                    console.error('❌ Error initializing data:', error);
+                }
+            }, []);
+
+            // Test composite relationship
+            const testCompositeRelationship = (compositeFunction, name, formula) => {
+                if (gaps.length === 0 || primes.length === 0) return null;
+
+                const testSize = Math.min(10000, gaps.length);
+                let matches = 0;
+                const tolerance = 0.20;
+
+                for (let i = 0; i < testSize; i++) {
+                    const actualGap = gaps[i];
+                    const p = primes[i];
+                    const wt_p = WT(p);
+                    const predicted = wt_p * compositeFunction();
+
+                    if (Math.abs(actualGap - predicted) / Math.max(actualGap, predicted) <= tolerance) {
+                        matches++;
+                    }
+                }
+
+                const matchRate = parseFloat(((matches / testSize) * 100).toFixed(2));
+
+                return {
+                    name,
+                    formula,
+                    matches,
+                    total: testSize,
+                    matchRate,
+                    compositeFunction: compositeFunction.toString()
+                };
+            };
+
+            // Run all composite tests
+            const runCompositeAnalysis = async () => {
+                setComputing(true);
+                setProgress(0);
+
+                const compositeResults = [];
+
+                // Define composite relationships to test
+                const composites = [
+                    {
+                        name: "Linear Combination",
+                        formula: `${alpha.toFixed(2)}·e⁻² + ${(1-alpha).toFixed(2)}·π⁻²`,
+                        func: () => alpha * Math.pow(Math.E, -2) + (1 - alpha) * Math.pow(Math.PI, -2)
+                    },
+                    {
+                        name: "Weighted e and π",
+                        formula: `${alpha.toFixed(2)}·e⁻² + ${beta.toFixed(2)}·π⁻²`,
+                        func: () => alpha * Math.pow(Math.E, -2) + beta * Math.pow(Math.PI, -2)
+                    },
+                    {
+                        name: "Geometric Mean",
+                        formula: "(e·π)⁻²",
+                        func: () => Math.pow(Math.E * Math.PI, -2)
+                    },
+                    {
+                        name: "Weighted Geometric",
+                        formula: "(e^" + gamma.toFixed(2) + " · π^" + (1-gamma).toFixed(2) + ")⁻²",
+                        func: () => Math.pow(Math.pow(Math.E, gamma) * Math.pow(Math.PI, 1-gamma), -2)
+                    },
+                    {
+                        name: "Harmonic Mean",
+                        formula: "2/(1/e⁻² + 1/π⁻²)",
+                        func: () => 2 / (1/Math.pow(Math.E, -2) + 1/Math.pow(Math.PI, -2))
+                    },
+                    {
+                        name: "Pure e⁻²",
+                        formula: "e⁻²",
+                        func: () => Math.pow(Math.E, -2)
+                    },
+                    {
+                        name: "Pure π⁻²",
+                        formula: "π⁻²",
+                        func: () => Math.pow(Math.PI, -2)
+                    }
+                ];
+
+                for (let i = 0; i < composites.length; i++) {
+                    const composite = composites[i];
+                    console.log(`🧮 Testing ${composite.name}...`);
+                    setProgress(((i + 0.5) / composites.length) * 100);
+
+                    const result = testCompositeRelationship(composite.func, composite.name, composite.formula);
+                    if (result) {
+                        compositeResults.push(result);
+                    }
+
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                }
+
+                // Sort by match rate
+                compositeResults.sort((a, b) => b.matchRate - a.matchRate);
+
+                // Find best result
+                const best = compositeResults[0];
+                setBestResult(best);
+
+                setResults(compositeResults);
+                setProgress(100);
+                setComputing(false);
+
+                console.log('✅ Composite analysis complete!');
+            };
+
+            // Optimization function
+            const optimizeWeights = async () => {
+                setComputing(true);
+                setProgress(0);
+
+                let bestMatch = 0;
+                let bestAlpha = 0;
+                let bestBeta = 0;
+
+                // Grid search for optimal weights
+                const steps = 20;
+                for (let a = 0; a <= steps; a++) {
+                    for (let b = 0; b <= steps - a; b++) {
+                        const alpha_test = a / steps;
+                        const beta_test = b / steps;
+
+                        const testFunction = () => alpha_test * Math.pow(Math.E, -2) + beta_test * Math.pow(Math.PI, -2);
+
+                        const testSize = Math.min(5000, gaps.length);
+                        let matches = 0;
+                        const tolerance = 0.20;
+
+                        for (let i = 0; i < testSize; i++) {
+                            const actualGap = gaps[i];
+                            const p = primes[i];
+                            const wt_p = WT(p);
+                            const predicted = wt_p * testFunction();
+
+                            if (Math.abs(actualGap - predicted) / Math.max(actualGap, predicted) <= tolerance) {
+                                matches++;
+                            }
+                        }
+
+                        const matchRate = (matches / testSize) * 100;
+
+                        if (matchRate > bestMatch) {
+                            bestMatch = matchRate;
+                            bestAlpha = alpha_test;
+                            bestBeta = beta_test;
+                        }
+                    }
+
+                    setProgress((a / steps) * 100);
+                    await new Promise(resolve => setTimeout(resolve, 10));
+                }
+
+                // Update sliders with optimal values
+                setAlpha(bestAlpha);
+                setBeta(bestBeta);
+
+                // Test the optimal combination
+                const optimalResult = testCompositeRelationship(
+                    () => bestAlpha * Math.pow(Math.E, -2) + bestBeta * Math.pow(Math.PI, -2),
+                    "Optimized Linear",
+                    `${bestAlpha.toFixed(2)}·e⁻² + ${bestBeta.toFixed(2)}·π⁻²`
+                );
+
+                setBestResult(optimalResult);
+                setProgress(100);
+                setComputing(false);
+
+                console.log(`🎯 Optimization complete! Best: ${bestMatch.toFixed(2)}% at α=${bestAlpha.toFixed(2)}, β=${bestBeta.toFixed(2)}`);
+            };
+
+            // Real-time preview
+            const previewResult = useMemo(() => {
+                if (gaps.length === 0) return null;
+
+                const testSize = Math.min(1000, gaps.length);
+                let matches = 0;
+                const tolerance = 0.20;
+
+                const previewFunction = () => alpha * Math.pow(Math.E, -2) + beta * Math.pow(Math.PI, -2);
+
+                for (let i = 0; i < testSize; i++) {
+                    const actualGap = gaps[i];
+                    const p = primes[i];
+                    const wt_p = WT(p);
+                    const predicted = wt_p * previewFunction();
+
+                    if (Math.abs(actualGap - predicted) / Math.max(actualGap, predicted) <= tolerance) {
+                        matches++;
+                    }
+                }
+
+                return {
+                    formula: `${alpha.toFixed(2)}·e⁻² + ${beta.toFixed(2)}·π⁻²`,
+                    matchRate: parseFloat(((matches / testSize) * 100).toFixed(2))
+                };
+            }, [alpha, beta, gaps, primes]);
+
+            return (
+                <div className="container">
+                    {/* Header */}
+                    <div className="header">
+                        <h1 className="title">🧮 Composite Relationships Explorer</h1>
+                        <p className="subtitle">
+                            Testing combinations of e⁻² and π⁻² for breakthrough match rates
+                        </p>
+                        <p style={{ fontSize: '0.875rem', color: '#64748b', marginTop: '1rem' }}>
+                            Dataset: {primes.length.toLocaleString()} primes, {gaps.length.toLocaleString()} gaps
+                        </p>
+                    </div>
+
+                    {/* Interactive Controls */}
+                    <div className="card">
+                        <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+                            🎛️ Interactive Parameter Control
+                        </h3>
+
+                        <div className="slider-container">
+                            <div className="slider-label">
+                                <span>Weight for e⁻²: {alpha.toFixed(2)}</span>
+                                <span>Weight for π⁻²: {(1-alpha).toFixed(2)}</span>
+                            </div>
+                            <input
+                                type="range"
+                                min="0"
+                                max="1"
+                                step="0.01"
+                                value={alpha}
+                                onChange={(e) => setAlpha(parseFloat(e.target.value))}
+                                className="slider"
+                            />
+                        </div>
+
+                        <div className="slider-container">
+                            <div className="slider-label">
+                                <span>Independent e weight: {alpha.toFixed(2)}</span>
+                                <span>Independent π weight: {beta.toFixed(2)}</span>
+                            </div>
+                            <input
+                                type="range"
+                                min="0"
+                                max="1"
+                                step="0.01"
+                                value={beta}
+                                onChange={(e) => setBeta(parseFloat(e.target.value))}
+                                className="slider"
+                            />
+                        </div>
+
+                        <div className="slider-container">
+                            <div className="slider-label">
+                                <span>Geometric e exponent: {gamma.toFixed(2)}</span>
+                                <span>Geometric π exponent: {(1-gamma).toFixed(2)}</span>
+                            </div>
+                            <input
+                                type="range"
+                                min="0"
+                                max="1"
+                                step="0.01"
+                                value={gamma}
+                                onChange={(e) => setGamma(parseFloat(e.target.value))}
+                                className="slider"
+                            />
+                        </div>
+
+                        {/* Real-time Preview */}
+                        {previewResult && (
+                            <div className="result-display">
+                                <div style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+                                    🔄 Real-time Preview
+                                </div>
+                                <div className="composite-formula">{previewResult.formula}</div>
+                                <div className="result-number">{previewResult.matchRate}%</div>
+                                <div className="result-details">
+                                    Match rate with current parameters (quick sample)
+                                </div>
+                            </div>
+                        )}
+
+                        <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
+                            <button
+                                onClick={runCompositeAnalysis}
+                                disabled={computing || primes.length === 0}
+                                className="run-button"
+                            >
+                                🧮 Test All Composites
+                            </button>
+
+                            <button
+                                onClick={optimizeWeights}
+                                disabled={computing || primes.length === 0}
+                                className="run-button"
+                                style={{ background: 'linear-gradient(45deg, #10b981, #34d399)' }}
+                            >
+                                🎯 Optimize Weights
+                            </button>
+                        </div>
+
+                        {computing && (
+                            <div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem', color: '#94a3b8', marginTop: '1rem' }}>
+                                    <span>Progress</span>
+                                    <span>{progress.toFixed(1)}%</span>
+                                </div>
+                                <div className="progress-bar">
+                                    <div className="progress-fill" style={{ width: `${progress}%` }} />
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Best Result Highlight */}
+                    {bestResult && (
+                        <div className="best-result">
+                            <div className="best-title">🏆 Best Composite Relationship</div>
+                            <div className="composite-formula">{bestResult.formula}</div>
+                            <div className="result-number">{bestResult.matchRate}%</div>
+                            <div className="result-details">
+                                {bestResult.matches}/{bestResult.total} matches • {bestResult.name}
+                            </div>
+
+                            <div className="optimization-grid">
+                                <div className="opt-result">
+                                    <div className="opt-value">{bestResult.matchRate}%</div>
+                                    <div className="opt-label">Match Rate</div>
+                                </div>
+                                <div className="opt-result">
+                                    <div className="opt-value">{bestResult.matches}</div>
+                                    <div className="opt-label">Matches</div>
+                                </div>
+                                <div className="opt-result">
+                                    <div className="opt-value">{bestResult.total}</div>
+                                    <div className="opt-label">Total Tested</div>
+                                </div>
+                                <div className="opt-result">
+                                    <div className="opt-value">{((bestResult.matchRate - 21.19) / 21.19 * 100).toFixed(1)}%</div>
+                                    <div className="opt-label">Improvement vs e⁻²</div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Composite Results */}
+                    {results && (
+                        <div className="card">
+                            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+                                📊 Composite Relationship Results
+                            </h3>
+
+                            <div className="grid">
+                                {results.map((result, idx) => (
+                                    <div key={idx} className="composite-card">
+                                        <div className="composite-title">{result.name}</div>
+                                        <div className="composite-formula">{result.formula}</div>
+                                        <div className="result-display" style={{ margin: '1rem 0', padding: '1rem' }}>
+                                            <div className="result-number">{result.matchRate}%</div>
+                                            <div className="result-details">
+                                                {result.matches}/{result.total} matches
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Footer */}
+                    <div style={{ textAlign: 'center', marginTop: '2rem', fontSize: '0.875rem', color: '#64748b' }}>
+                        Composite Relationships Explorer | Testing e⁻² + π⁻² combinations for breakthrough discoveries
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<CompositeRelationshipsExplorer />, document.getElementById('root'));
+    </script>
+</body>
+</html>

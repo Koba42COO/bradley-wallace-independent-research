@@ -1,0 +1,263 @@
+{
+  "formula": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^k",
+  "k_range": [
+    -2,
+    3
+  ],
+  "tolerance": 0.2,
+  "total_primes": 664579,
+  "total_gaps": 664578,
+  "total_matches": 31811,
+  "overall_percent": 0.7977744272806703,
+  "k_results": {
+    "-2": {
+      "phi_k": 0.38196601125010515,
+      "matches": 27794,
+      "percent": 4.182202841502427,
+      "sample_matches": [
+        {
+          "prime": 19,
+          "actual_gap": 4,
+          "expected_gap": 3.7831632267037643,
+          "error": 0.054209193324058935,
+          "k": -2
+        },
+        {
+          "prime": 47,
+          "actual_gap": 6,
+          "expected_gap": 5.71043144859038,
+          "error": 0.048261425234936706,
+          "k": -2
+        },
+        {
+          "prime": 53,
+          "actual_gap": 6,
+          "expected_gap": 5.989492759317541,
+          "error": 0.00175120678040989,
+          "k": -2
+        },
+        {
+          "prime": 61,
+          "actual_gap": 6,
+          "expected_gap": 6.322709959086956,
+          "error": 0.051039816973283685,
+          "k": -2
+        },
+        {
+          "prime": 73,
+          "actual_gap": 6,
+          "expected_gap": 6.758718996500751,
+          "error": 0.11225781052497807,
+          "k": -2
+        },
+        {
+          "prime": 83,
+          "actual_gap": 6,
+          "expected_gap": 7.077426607671915,
+          "error": 0.15223423249687768,
+          "k": -2
+        },
+        {
+          "prime": 89,
+          "actual_gap": 8,
+          "expected_gap": 7.253122628381241,
+          "error": 0.09335967145234492,
+          "k": -2
+        },
+        {
+          "prime": 139,
+          "actual_gap": 10,
+          "expected_gap": 8.415044147224405,
+          "error": 0.1584955852775595,
+          "k": -2
+        },
+        {
+          "prime": 181,
+          "actual_gap": 10,
+          "expected_gap": 9.134763327929946,
+          "error": 0.08652366720700541,
+          "k": -2
+        },
+        {
+          "prime": 241,
+          "actual_gap": 10,
+          "expected_gap": 9.941138081800307,
+          "error": 0.0058861918199692555,
+          "k": -2
+        }
+      ]
+    },
+    "-1": {
+      "phi_k": 0.6180339887498948,
+      "matches": 3898,
+      "percent": 0.586537622370888,
+      "sample_matches": [
+        {
+          "prime": 2,
+          "actual_gap": 1,
+          "expected_gap": 0.9345950260921798,
+          "error": 0.06540497390782019,
+          "k": -1
+        },
+        {
+          "prime": 7,
+          "actual_gap": 4,
+          "expected_gap": 3.318313059459207,
+          "error": 0.1704217351351982,
+          "k": -1
+        },
+        {
+          "prime": 13,
+          "actual_gap": 4,
+          "expected_gap": 4.972903793481289,
+          "error": 0.19564098439962105,
+          "k": -1
+        },
+        {
+          "prime": 23,
+          "actual_gap": 6,
+          "expected_gap": 6.73583926810412,
+          "error": 0.10924240303483819,
+          "k": -1
+        },
+        {
+          "prime": 113,
+          "actual_gap": 14,
+          "expected_gap": 12.728906182435951,
+          "error": 0.0907924155402892,
+          "k": -1
+        },
+        {
+          "prime": 293,
+          "actual_gap": 14,
+          "expected_gap": 17.00009216929902,
+          "error": 0.17647505315982798,
+          "k": -1
+        },
+        {
+          "prime": 317,
+          "actual_gap": 14,
+          "expected_gap": 17.37437270824084,
+          "error": 0.19421551298023795,
+          "k": -1
+        },
+        {
+          "prime": 523,
+          "actual_gap": 18,
+          "expected_gap": 19.8282620597356,
+          "error": 0.09220485659447548,
+          "k": -1
+        },
+        {
+          "prime": 887,
+          "actual_gap": 20,
+          "expected_gap": 22.552190842806443,
+          "error": 0.11316819995874258,
+          "k": -1
+        },
+        {
+          "prime": 1129,
+          "actual_gap": 22,
+          "expected_gap": 23.841042050499162,
+          "error": 0.0772215428587198,
+          "k": -1
+        }
+      ]
+    },
+    "0": {
+      "phi_k": 1.0,
+      "matches": 119,
+      "percent": 0.017906099810706944,
+      "sample_matches": [
+        {
+          "prime": 1327,
+          "actual_gap": 34,
+          "expected_gap": 39.99749768357854,
+          "error": 0.14994682244936747,
+          "k": 0
+        },
+        {
+          "prime": 31397,
+          "actual_gap": 72,
+          "expected_gap": 71.65733419949112,
+          "error": 0.004759247229290035,
+          "k": 0
+        },
+        {
+          "prime": 34061,
+          "actual_gap": 62,
+          "expected_gap": 72.56359543186947,
+          "error": 0.1455770675226218,
+          "k": 0
+        },
+        {
+          "prime": 155921,
+          "actual_gap": 86,
+          "expected_gap": 90.28304899154323,
+          "error": 0.04744023423427377,
+          "k": 0
+        },
+        {
+          "prime": 188029,
+          "actual_gap": 78,
+          "expected_gap": 92.56597304035286,
+          "error": 0.15735774779791947,
+          "k": 0
+        },
+        {
+          "prime": 212701,
+          "actual_gap": 76,
+          "expected_gap": 94.08109011628127,
+          "error": 0.19218623098365054,
+          "k": 0
+        },
+        {
+          "prime": 265621,
+          "actual_gap": 82,
+          "expected_gap": 96.83529279695195,
+          "error": 0.15320130056361964,
+          "k": 0
+        },
+        {
+          "prime": 338033,
+          "actual_gap": 86,
+          "expected_gap": 99.85809281415214,
+          "error": 0.1387778639027656,
+          "k": 0
+        },
+        {
+          "prime": 360653,
+          "actual_gap": 96,
+          "expected_gap": 100.67635018795809,
+          "error": 0.04644934166989132,
+          "k": 0
+        },
+        {
+          "prime": 370261,
+          "actual_gap": 112,
+          "expected_gap": 101.00922061789122,
+          "error": 0.09813195876882842,
+          "k": 0
+        }
+      ]
+    },
+    "1": {
+      "phi_k": 1.618033988749895,
+      "matches": 0,
+      "percent": 0.0,
+      "sample_matches": []
+    },
+    "2": {
+      "phi_k": 2.618033988749895,
+      "matches": 0,
+      "percent": 0.0,
+      "sample_matches": []
+    },
+    "3": {
+      "phi_k": 4.23606797749979,
+      "matches": 0,
+      "percent": 0.0,
+      "sample_matches": []
+    }
+  }
+}

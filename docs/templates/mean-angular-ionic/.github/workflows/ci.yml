@@ -1,0 +1,26 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  client:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: cd docs/templates/mean-angular-ionic/client && npm ci || true
+      - run: cd docs/templates/mean-angular-ionic/client && npm run lint || true
+      - run: cd docs/templates/mean-angular-ionic/client && npm test --if-present || true
+      - run: cd docs/templates/mean-angular-ionic/client && npm run build || true
+  server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: cd docs/templates/mean-angular-ionic/server && npm ci || true
+      - run: cd docs/templates/mean-angular-ionic/server && npm run lint || true
+      - run: cd docs/templates/mean-angular-ionic/server && npm test --if-present || true
+
+

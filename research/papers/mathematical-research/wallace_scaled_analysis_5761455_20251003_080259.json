@@ -1,0 +1,436 @@
+{
+  "metadata": {
+    "primes_count": 5761455,
+    "max_prime": 100000000,
+    "gaps_count": 5761454,
+    "analysis_timestamp": "2025-10-03T08:02:55.735871",
+    "analysis_type": "both"
+  },
+  "ratios_tested": [
+    {
+      "value": 1.0,
+      "name": "Unity",
+      "symbol": "1.000"
+    },
+    {
+      "value": 1.618033988749895,
+      "name": "Golden",
+      "symbol": "\u03c6"
+    },
+    {
+      "value": 1.4142135623730951,
+      "name": "Sqrt2",
+      "symbol": "\u221a2"
+    },
+    {
+      "value": 1.7320508075688772,
+      "name": "Sqrt3",
+      "symbol": "\u221a3"
+    },
+    {
+      "value": 2.302775637731995,
+      "name": "Pell",
+      "symbol": "1.847"
+    },
+    {
+      "value": 2.0,
+      "name": "Octave",
+      "symbol": "2.000"
+    },
+    {
+      "value": 2.2882456112707374,
+      "name": "PhiSqrt2",
+      "symbol": "2.287"
+    },
+    {
+      "value": 3.23606797749979,
+      "name": "2Phi",
+      "symbol": "3.236"
+    }
+  ],
+  "fft_analysis": {
+    "sample_size": 100000,
+    "frequency_range": [
+      1e-05,
+      0.49999000000000005
+    ],
+    "peaks": [
+      {
+        "index": 11,
+        "frequency": 0.00012000000000000002,
+        "value": 642.1311440025354,
+        "magnitude": 642.1311440025354,
+        "rank": 1,
+        "ratio": 1.0000240002880023,
+        "primary_ratio": 1.000120007200288,
+        "harmonic_ratios": [
+          1.000060001800036,
+          1.0000400008000108,
+          1.0000300004500045,
+          1.0000240002880023
+        ],
+        "closest_ratio": {
+          "value": 1.0,
+          "name": "Unity",
+          "symbol": "1.000"
+        },
+        "distance": 2.4000288002312686e-05,
+        "match": true
+      },
+      {
+        "index": 333,
+        "frequency": 0.00334,
+        "value": 447.0416706100708,
+        "magnitude": 447.0416706100708,
+        "rank": 2,
+        "ratio": 1.000668223161688,
+        "primary_ratio": 1.0033455840151395,
+        "harmonic_ratios": [
+          1.0016713952265681,
+          1.001113953318951,
+          1.0008353487095507,
+          1.000668223161688
+        ],
+        "closest_ratio": {
+          "value": 1.0,
+          "name": "Unity",
+          "symbol": "1.000"
+        },
+        "distance": 0.0006682231616879086,
+        "match": true
+      },
+      {
+        "index": 645,
+        "frequency": 0.0064600000000000005,
+        "value": 597.2112377498556,
+        "magnitude": 597.2112377498556,
+        "rank": 3,
+        "ratio": 1.0012928349915644,
+        "primary_ratio": 1.00648091080368,
+        "harmonic_ratios": [
+          1.003235222070916,
+          1.0021556534205638,
+          1.0016163048148308,
+          1.0012928349915644
+        ],
+        "closest_ratio": {
+          "value": 1.0,
+          "name": "Unity",
+          "symbol": "1.000"
+        },
+        "distance": 0.0012928349915644066,
+        "match": true
+      },
+      {
+        "index": 960,
+        "frequency": 0.00961,
+        "value": 392.1695069526336,
+        "magnitude": 392.1695069526336,
+        "rank": 4,
+        "ratio": 1.001923848225907,
+        "primary_ratio": 1.0096563243233356,
+        "harmonic_ratios": [
+          1.004816562524392,
+          1.0032084694883634,
+          1.0024053883157213,
+          1.001923848225907
+        ],
+        "closest_ratio": {
+          "value": 1.0,
+          "name": "Unity",
+          "symbol": "1.000"
+        },
+        "distance": 0.0019238482259069656,
+        "match": true
+      },
+      {
+        "index": 1272,
+        "frequency": 0.012730000000000002,
+        "value": 426.25894004185085,
+        "magnitude": 426.25894004185085,
+        "rank": 5,
+        "ratio": 1.0025492438103296,
+        "primary_ratio": 1.0128113713692422,
+        "harmonic_ratios": [
+          1.006385299658755,
+          1.0042523490198993,
+          1.0031875695296244,
+          1.0025492438103296
+        ],
+        "closest_ratio": {
+          "value": 1.0,
+          "name": "Unity",
+          "symbol": "1.000"
+        },
+        "distance": 0.0025492438103296156,
+        "match": true
+      },
+      {
+        "index": 1599,
+        "frequency": 0.016,
+        "value": 426.0592624083679,
+        "magnitude": 426.0592624083679,
+        "rank": 6,
+        "ratio": 1.0032051254657053,
+        "primary_ratio": 1.016128685406095,
+        "harmonic_ratios": [
+          1.0080320855042735,
+          1.0053475808732542,
+          1.004008010677342,
+          1.0032051254657053
+        ],
+        "closest_ratio": {
+          "value": 1.0,
+          "name": "Unity",
+          "symbol": "1.000"
+        },
+        "distance": 0.003205125465705283,
+        "match": true
+      },
+      {
+        "index": 1911,
+        "frequency": 0.01912,
+        "value": 374.7426940189064,
+        "magnitude": 374.7426940189064,
+        "rank": 7,
+        "ratio": 1.0038313208166265,
+        "primary_ratio": 1.0193039577536436,
+        "harmonic_ratios": [
+          1.0096058427691688,
+          1.0063936862378629,
+          1.0047914424243316,
+          1.0038313208166265
+        ],
+        "closest_ratio": {
+          "value": 1.0,
+          "name": "Unity",
+          "symbol": "1.000"
+        },
+        "distance": 0.0038313208166265156,
+        "match": true
+      },
+      {
+        "index": 2230,
+        "frequency": 0.022310000000000003,
+        "value": 359.0240948579084,
+        "magnitude": 359.0240948579084,
+        "rank": 8,
+        "ratio": 1.0044719695445208,
+        "primary_ratio": 1.0225607291675138,
+        "harmonic_ratios": [
+          1.011217449002693,
+          1.0074643873461002,
+          1.0055930832114415,
+          1.0044719695445208
+        ],
+        "closest_ratio": {
+          "value": 1.0,
+          "name": "Unity",
+          "symbol": "1.000"
+        },
+        "distance": 0.004471969544520782,
+        "match": true
+      }
+    ]
+  },
+  "autocorr_analysis": {
+    "max_lag": 10000,
+    "sample_size": 100000,
+    "peaks": [
+      {
+        "index": 4,
+        "frequency": 4.0,
+        "value": 0.8813822017677291,
+        "magnitude": 0.8813822017677291,
+        "rank": 1,
+        "ratio": 1.4142135623730951,
+        "lag_distance": 0.534264097200273,
+        "correlation": 0.8813822017677291,
+        "closest_ratio": {
+          "value": 1.4142135623730951,
+          "name": "Sqrt2",
+          "symbol": "\u221a2"
+        },
+        "distance": 0.0,
+        "match": true
+      },
+      {
+        "index": 67,
+        "frequency": 67.0,
+        "value": 0.8823224546671732,
+        "magnitude": 0.8823224546671732,
+        "rank": 2,
+        "ratio": 2.0,
+        "lag_distance": 2.3147180559945326,
+        "correlation": 0.8823224546671732,
+        "closest_ratio": {
+          "value": 2.0,
+          "name": "Octave",
+          "symbol": "2.000"
+        },
+        "distance": 0.0,
+        "match": true
+      },
+      {
+        "index": 130,
+        "frequency": 130.0,
+        "value": 0.8820710542278264,
+        "magnitude": 0.8820710542278264,
+        "rank": 3,
+        "ratio": 3.23606797749979,
+        "lag_distance": 12.564099438045133,
+        "correlation": 0.8820710542278264,
+        "closest_ratio": {
+          "value": 3.23606797749979,
+          "name": "2Phi",
+          "symbol": "3.236"
+        },
+        "distance": 0.0,
+        "match": false
+      },
+      {
+        "index": 193,
+        "frequency": 193.0,
+        "value": 0.8815642126353687,
+        "magnitude": 0.8815642126353687,
+        "rank": 4,
+        "ratio": 3.23606797749979,
+        "lag_distance": 75.56409943804513,
+        "correlation": 0.8815642126353687,
+        "closest_ratio": {
+          "value": 3.23606797749979,
+          "name": "2Phi",
+          "symbol": "3.236"
+        },
+        "distance": 0.0,
+        "match": false
+      },
+      {
+        "index": 259,
+        "frequency": 259.0,
+        "value": 0.8812638324166833,
+        "magnitude": 0.8812638324166833,
+        "rank": 5,
+        "ratio": 3.23606797749979,
+        "lag_distance": 141.56409943804513,
+        "correlation": 0.8812638324166833,
+        "closest_ratio": {
+          "value": 3.23606797749979,
+          "name": "2Phi",
+          "symbol": "3.236"
+        },
+        "distance": 0.0,
+        "match": false
+      },
+      {
+        "index": 325,
+        "frequency": 325.0,
+        "value": 0.8808913975560239,
+        "magnitude": 0.8808913975560239,
+        "rank": 6,
+        "ratio": 3.23606797749979,
+        "lag_distance": 207.56409943804513,
+        "correlation": 0.8808913975560239,
+        "closest_ratio": {
+          "value": 3.23606797749979,
+          "name": "2Phi",
+          "symbol": "3.236"
+        },
+        "distance": 0.0,
+        "match": false
+      },
+      {
+        "index": 388,
+        "frequency": 388.0,
+        "value": 0.8805244857288256,
+        "magnitude": 0.8805244857288256,
+        "rank": 7,
+        "ratio": 3.23606797749979,
+        "lag_distance": 270.5640994380451,
+        "correlation": 0.8805244857288256,
+        "closest_ratio": {
+          "value": 3.23606797749979,
+          "name": "2Phi",
+          "symbol": "3.236"
+        },
+        "distance": 0.0,
+        "match": false
+      },
+      {
+        "index": 450,
+        "frequency": 450.0,
+        "value": 0.8801475009151212,
+        "magnitude": 0.8801475009151212,
+        "rank": 8,
+        "ratio": 3.23606797749979,
+        "lag_distance": 332.5640994380451,
+        "correlation": 0.8801475009151212,
+        "closest_ratio": {
+          "value": 3.23606797749979,
+          "name": "2Phi",
+          "symbol": "3.236"
+        },
+        "distance": 0.0,
+        "match": false
+      }
+    ]
+  },
+  "validation": {
+    "fft_matches": 8,
+    "autocorr_matches": 2,
+    "common_ratios": 0,
+    "consensus_ratios": [],
+    "unique_ratios_detected": 3,
+    "total_known_ratios": 8,
+    "method_summary": {
+      "1.000": {
+        "ratio": 1.0,
+        "fft_detected": true,
+        "autocorr_detected": false,
+        "both_methods": false
+      },
+      "\u03c6": {
+        "ratio": 1.618033988749895,
+        "fft_detected": false,
+        "autocorr_detected": false,
+        "both_methods": false
+      },
+      "\u221a2": {
+        "ratio": 1.4142135623730951,
+        "fft_detected": false,
+        "autocorr_detected": true,
+        "both_methods": false
+      },
+      "\u221a3": {
+        "ratio": 1.7320508075688772,
+        "fft_detected": false,
+        "autocorr_detected": false,
+        "both_methods": false
+      },
+      "1.847": {
+        "ratio": 2.302775637731995,
+        "fft_detected": false,
+        "autocorr_detected": false,
+        "both_methods": false
+      },
+      "2.000": {
+        "ratio": 2.0,
+        "fft_detected": false,
+        "autocorr_detected": true,
+        "both_methods": false
+      },
+      "2.287": {
+        "ratio": 2.2882456112707374,
+        "fft_detected": false,
+        "autocorr_detected": false,
+        "both_methods": false
+      },
+      "3.236": {
+        "ratio": 3.23606797749979,
+        "fft_detected": false,
+        "autocorr_detected": false,
+        "both_methods": false
+      }
+    }
+  }
+}

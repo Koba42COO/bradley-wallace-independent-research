@@ -1,0 +1,52 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wallace-research-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/rate-limit: "100"
+    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - wallace-research.com
+    - api.wallace-research.com
+    secretName: wallace-research-tls
+  rules:
+  - host: wallace-research.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: aiva-ide-client-service
+            port:
+              number: 3000
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: aiva-ide-server-service
+            port:
+              number: 3001
+  - host: api.wallace-research.com
+    http:
+      paths:
+      - path: /wqrf
+        pathType: Prefix
+        backend:
+          service:
+            name: wqrf-api-service
+            port:
+              number: 5001
+      - path: /cudnt
+        pathType: Prefix
+        backend:
+          service:
+            name: cudnt-accelerator-service
+            port:
+              number: 8080

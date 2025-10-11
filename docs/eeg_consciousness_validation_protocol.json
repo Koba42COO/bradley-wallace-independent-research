@@ -1,0 +1,17 @@
+{
+  "experiment_title": "EEG Validation of Consciousness Mathematics in Prime Gap Harmonics",
+  "experiment_lead": "Bradley Wallace",
+  "timestamp": "2025-10-08T08:03:46.361661",
+  "objectives": [
+    "Validate consciousness mathematics framework through neural correlates",
+    "Test \u03c6 and \u03b4 resonance patterns in brain activity during harmonic processing"
+  ],
+  "methodology": {
+    "participants": {
+      "target_n": 20
+    },
+    "equipment": {
+      "eeg_system": "64-channel BioSemi ActiveTwo system"
+    }
+  }
+}

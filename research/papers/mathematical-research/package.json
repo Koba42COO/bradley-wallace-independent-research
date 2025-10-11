@@ -1,0 +1,13 @@
+{
+  "name": "mathematical-research",
+  "version": "1.0.0",
+  "description": "Wallace Transform Ratio Matching Research Framework",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8080"
+  },
+  "keywords": ["mathematics", "prime-gaps", "wallace-transform", "ratio-analysis"],
+  "author": "Christopher Wallace",
+  "license": "MIT"
+}

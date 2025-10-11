@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wqrf-api
+  labels:
+    app: wqrf-api
+    component: wallace-research
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wqrf-api
+  template:
+    metadata:
+      labels:
+        app: wqrf-api
+        component: wallace-research
+    spec:
+      containers:
+      - name: wqrf-api
+        image: wallace-research/wqrf-api:latest
+        ports:
+        - containerPort: 5001
+          name: http
+        env:
+        - name: PORT
+          value: "5001"
+        - name: PYTHONPATH
+          value: "/app"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5001
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5001
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: models-volume
+          mountPath: /app/models
+          readOnly: true
+        - name: logs-volume
+          mountPath: /app/logs
+      volumes:
+      - name: models-volume
+        configMap:
+          name: wqrf-models
+      - name: logs-volume
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wqrf-api-service
+  labels:
+    app: wqrf-api
+    component: wallace-research
+spec:
+  selector:
+    app: wqrf-api
+  ports:
+  - port: 5001
+    targetPort: 5001
+    protocol: TCP
+  type: ClusterIP

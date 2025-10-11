@@ -1,0 +1,1274 @@
+{
+  "analysis_timestamp": "2025-10-02T17:44:09.404561",
+  "scales_tested": [
+    1000,
+    5000,
+    10000,
+    50000,
+    100000,
+    500000,
+    1000000
+  ],
+  "scale_results": {
+    "1000": {
+      "scale": 1000,
+      "total_gaps": 998,
+      "fft_peaks": [
+        {
+          "index": 13,
+          "frequency": 0.014028056112224447,
+          "value": 0.03934607924708573,
+          "magnitude": 0.03934607924708573,
+          "rank": 1,
+          "ratio": 1.0141269109977882,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.014126910997788178,
+          "match": true
+        },
+        {
+          "index": 31,
+          "frequency": 0.03206412825651302,
+          "value": 0.04085840355898076,
+          "magnitude": 0.04085840355898076,
+          "rank": 2,
+          "ratio": 1.0325837209756779,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.032583720975677855,
+          "match": true
+        },
+        {
+          "index": 54,
+          "frequency": 0.055110220440881756,
+          "value": 0.04488820250303951,
+          "magnitude": 0.04488820250303951,
+          "rank": 3,
+          "ratio": 1.056657073465805,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.05665707346580495,
+          "match": false
+        },
+        {
+          "index": 67,
+          "frequency": 0.06813627254509018,
+          "value": 0.04877874021246496,
+          "magnitude": 0.04877874021246496,
+          "rank": 4,
+          "ratio": 1.070511179822441,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.07051117982244093,
+          "match": false
+        },
+        {
+          "index": 81,
+          "frequency": 0.08216432865731463,
+          "value": 0.041248246852670555,
+          "magnitude": 0.041248246852670555,
+          "rank": 5,
+          "ratio": 1.0856341959819298,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.08563419598192978,
+          "match": false
+        },
+        {
+          "index": 94,
+          "frequency": 0.09519038076152304,
+          "value": 0.04185471211203701,
+          "magnitude": 0.04185471211203701,
+          "rank": 6,
+          "ratio": 1.0998682289460986,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.09986822894609859,
+          "match": false
+        },
+        {
+          "index": 107,
+          "frequency": 0.10821643286573146,
+          "value": 0.04455874436694107,
+          "magnitude": 0.04455874436694107,
+          "rank": 7,
+          "ratio": 1.1142888880272184,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.11428888802721837,
+          "match": false
+        },
+        {
+          "index": 122,
+          "frequency": 0.12324649298597193,
+          "value": 0.03496185423085542,
+          "magnitude": 0.03496185423085542,
+          "rank": 8,
+          "ratio": 1.1311632103836065,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.13116321038360645,
+          "match": false
+        }
+      ],
+      "detected_ratios": {
+        "1.000": {
+          "ratio": 1.0,
+          "detected": true,
+          "peak_count": 2
+        },
+        "\u03c6": {
+          "ratio": 1.618033988749895,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a2": {
+          "ratio": 1.4142135623730951,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a3": {
+          "ratio": 1.7320508075688772,
+          "detected": false,
+          "peak_count": 0
+        },
+        "1.847": {
+          "ratio": 2.302775637731995,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.000": {
+          "ratio": 2.0,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.287": {
+          "ratio": 2.2882456112707374,
+          "detected": false,
+          "peak_count": 0
+        },
+        "3.236": {
+          "ratio": 3.23606797749979,
+          "detected": false,
+          "peak_count": 0
+        }
+      },
+      "gap_stats": {
+        "min": 2.0,
+        "max": 99992093.0,
+        "mean": 100200.39779559118,
+        "std": 3163607.980462355
+      }
+    },
+    "5000": {
+      "scale": 5000,
+      "total_gaps": 4998,
+      "fft_peaks": [
+        {
+          "index": 4,
+          "frequency": 0.0010004001600640256,
+          "value": 0.017362242137312276,
+          "magnitude": 0.017362242137312276,
+          "rank": 1,
+          "ratio": 1.0010009007272127,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.0010009007272127057,
+          "match": true
+        },
+        {
+          "index": 35,
+          "frequency": 0.007202881152460985,
+          "value": 0.014119896605483708,
+          "magnitude": 0.014119896605483708,
+          "rank": 2,
+          "ratio": 1.007228884295934,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.007228884295934046,
+          "match": true
+        },
+        {
+          "index": 52,
+          "frequency": 0.010604241696678672,
+          "value": 0.015706585979593568,
+          "magnitude": 0.015706585979593568,
+          "rank": 3,
+          "ratio": 1.0106606659367139,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.010660665936713887,
+          "match": true
+        },
+        {
+          "index": 71,
+          "frequency": 0.01440576230492197,
+          "value": 0.014508284531423596,
+          "magnitude": 0.014508284531423596,
+          "rank": 4,
+          "ratio": 1.014510025360032,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.014510025360032097,
+          "match": true
+        },
+        {
+          "index": 93,
+          "frequency": 0.018807523009203683,
+          "value": 0.014595609084679356,
+          "magnitude": 0.014595609084679356,
+          "rank": 5,
+          "ratio": 1.018985498478407,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.018985498478407026,
+          "match": true
+        },
+        {
+          "index": 120,
+          "frequency": 0.024209683873549423,
+          "value": 0.01666614642894147,
+          "magnitude": 0.01666614642894147,
+          "rank": 6,
+          "ratio": 1.0245051175713435,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.02450511757134355,
+          "match": true
+        },
+        {
+          "index": 145,
+          "frequency": 0.02921168467386955,
+          "value": 0.015436162204286586,
+          "magnitude": 0.015436162204286586,
+          "rank": 7,
+          "ratio": 1.0296425309507777,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.029642530950777735,
+          "match": true
+        },
+        {
+          "index": 164,
+          "frequency": 0.03301320528211285,
+          "value": 0.016541406761074268,
+          "magnitude": 0.016541406761074268,
+          "rank": 8,
+          "ratio": 1.0335641876578694,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.03356418765786939,
+          "match": true
+        }
+      ],
+      "detected_ratios": {
+        "1.000": {
+          "ratio": 1.0,
+          "detected": true,
+          "peak_count": 8
+        },
+        "\u03c6": {
+          "ratio": 1.618033988749895,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a2": {
+          "ratio": 1.4142135623730951,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a3": {
+          "ratio": 1.7320508075688772,
+          "detected": false,
+          "peak_count": 0
+        },
+        "1.847": {
+          "ratio": 2.302775637731995,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.000": {
+          "ratio": 2.0,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.287": {
+          "ratio": 2.2882456112707374,
+          "detected": false,
+          "peak_count": 0
+        },
+        "3.236": {
+          "ratio": 3.23606797749979,
+          "detected": false,
+          "peak_count": 0
+        }
+      },
+      "gap_stats": {
+        "min": 2.0,
+        "max": 99951407.0,
+        "mean": 20008.002601040414,
+        "std": 1413667.5616125623
+      }
+    },
+    "10000": {
+      "scale": 10000,
+      "total_gaps": 9998,
+      "fft_peaks": [
+        {
+          "index": 5,
+          "frequency": 0.000600120024004801,
+          "value": 0.01605054870321608,
+          "magnitude": 0.01605054870321608,
+          "rank": 1,
+          "ratio": 1.0006003001320534,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.0006003001320533663,
+          "match": true
+        },
+        {
+          "index": 83,
+          "frequency": 0.008401680336067214,
+          "value": 0.014949908352443725,
+          "magnitude": 0.014949908352443725,
+          "rank": 2,
+          "ratio": 1.008437073503558,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.008437073503557935,
+          "match": true
+        },
+        {
+          "index": 116,
+          "frequency": 0.011702340468093618,
+          "value": 0.01195658656243665,
+          "magnitude": 0.01195658656243665,
+          "rank": 3,
+          "ratio": 1.0117710807332783,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.01177108073327826,
+          "match": true
+        },
+        {
+          "index": 158,
+          "frequency": 0.015903180636127227,
+          "value": 0.010384554065007637,
+          "magnitude": 0.010384554065007637,
+          "rank": 4,
+          "ratio": 1.016030309235597,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.016030309235596896,
+          "match": true
+        },
+        {
+          "index": 209,
+          "frequency": 0.021004200840168033,
+          "value": 0.013337297306367837,
+          "magnitude": 0.013337297306367837,
+          "rank": 5,
+          "ratio": 1.0212263416371545,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.021226341637154533,
+          "match": true
+        },
+        {
+          "index": 240,
+          "frequency": 0.02410482096419284,
+          "value": 0.010299753126480939,
+          "magnitude": 0.010299753126480939,
+          "rank": 6,
+          "ratio": 1.0243976906167143,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.024397690616714263,
+          "match": true
+        },
+        {
+          "index": 295,
+          "frequency": 0.02960592118423685,
+          "value": 0.012148366486617785,
+          "magnitude": 0.012148366486617785,
+          "rank": 7,
+          "ratio": 1.0300485336543914,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.03004853365439142,
+          "match": true
+        },
+        {
+          "index": 329,
+          "frequency": 0.033006601320264055,
+          "value": 0.011012792271570133,
+          "magnitude": 0.011012792271570133,
+          "rank": 8,
+          "ratio": 1.0335573620619438,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.03355736206194382,
+          "match": true
+        }
+      ],
+      "detected_ratios": {
+        "1.000": {
+          "ratio": 1.0,
+          "detected": true,
+          "peak_count": 8
+        },
+        "\u03c6": {
+          "ratio": 1.618033988749895,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a2": {
+          "ratio": 1.4142135623730951,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a3": {
+          "ratio": 1.7320508075688772,
+          "detected": false,
+          "peak_count": 0
+        },
+        "1.847": {
+          "ratio": 2.302775637731995,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.000": {
+          "ratio": 2.0,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.287": {
+          "ratio": 2.2882456112707374,
+          "detected": false,
+          "peak_count": 0
+        },
+        "3.236": {
+          "ratio": 3.23606797749979,
+          "detected": false,
+          "peak_count": 0
+        }
+      },
+      "gap_stats": {
+        "min": 2.0,
+        "max": 99895277.0,
+        "mean": 10002.000100020005,
+        "std": 999002.611663802
+      }
+    },
+    "50000": {
+      "scale": 50000,
+      "total_gaps": 49998,
+      "fft_peaks": [
+        {
+          "index": 5,
+          "frequency": 0.00012000480019200768,
+          "value": 0.013245920227879312,
+          "magnitude": 0.013245920227879312,
+          "rank": 1,
+          "ratio": 1.000120012001056,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.00012001200105604681,
+          "match": true
+        },
+        {
+          "index": 197,
+          "frequency": 0.003960158406336254,
+          "value": 0.0046125659111019715,
+          "magnitude": 0.0046125659111019715,
+          "rank": 2,
+          "ratio": 1.0039680101949922,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.003968010194992155,
+          "match": true
+        },
+        {
+          "index": 354,
+          "frequency": 0.007100284011360454,
+          "value": 0.006185485677006821,
+          "magnitude": 0.006185485677006821,
+          "rank": 3,
+          "ratio": 1.007125550792923,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.0071255507929230966,
+          "match": true
+        },
+        {
+          "index": 511,
+          "frequency": 0.010240409616384656,
+          "value": 0.006713564767543743,
+          "magnitude": 0.006713564767543743,
+          "rank": 4,
+          "ratio": 1.0102930220485307,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.010293022048530664,
+          "match": true
+        },
+        {
+          "index": 679,
+          "frequency": 0.013600544021760872,
+          "value": 0.006253621840070658,
+          "magnitude": 0.006253621840070658,
+          "rank": 5,
+          "ratio": 1.0136934521431245,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.013693452143124452,
+          "match": true
+        },
+        {
+          "index": 837,
+          "frequency": 0.016760670426817073,
+          "value": 0.004890954795178876,
+          "magnitude": 0.004890954795178876,
+          "rank": 6,
+          "ratio": 1.0169019184974126,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.016901918497412627,
+          "match": true
+        },
+        {
+          "index": 995,
+          "frequency": 0.019920796831873276,
+          "value": 0.006670041797284468,
+          "magnitude": 0.006670041797284468,
+          "rank": 7,
+          "ratio": 1.020120540048348,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.020120540048347957,
+          "match": true
+        },
+        {
+          "index": 1154,
+          "frequency": 0.02310092403696148,
+          "value": 0.0067575877389882,
+          "magnitude": 0.0067575877389882,
+          "rank": 8,
+          "ratio": 1.0233698169487746,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.023369816948774602,
+          "match": true
+        }
+      ],
+      "detected_ratios": {
+        "1.000": {
+          "ratio": 1.0,
+          "detected": true,
+          "peak_count": 8
+        },
+        "\u03c6": {
+          "ratio": 1.618033988749895,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a2": {
+          "ratio": 1.4142135623730951,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a3": {
+          "ratio": 1.7320508075688772,
+          "detected": false,
+          "peak_count": 0
+        },
+        "1.847": {
+          "ratio": 2.302775637731995,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.000": {
+          "ratio": 2.0,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.287": {
+          "ratio": 2.2882456112707374,
+          "detected": false,
+          "peak_count": 0
+        },
+        "3.236": {
+          "ratio": 3.23606797749979,
+          "detected": false,
+          "peak_count": 0
+        }
+      },
+      "gap_stats": {
+        "min": 2.0,
+        "max": 99388049.0,
+        "mean": 2000.079943197728,
+        "std": 444481.25754695927
+      }
+    },
+    "100000": {
+      "scale": 100000,
+      "total_gaps": 99998,
+      "fft_peaks": [
+        {
+          "index": 11,
+          "frequency": 0.00012000240004800096,
+          "value": 0.0063803252768130135,
+          "magnitude": 0.0063803252768130135,
+          "rank": 1,
+          "ratio": 1.000120009600624,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.00012000960062397148,
+          "match": true
+        },
+        {
+          "index": 333,
+          "frequency": 0.003340066801336027,
+          "value": 0.0044102097845046696,
+          "magnitude": 0.0044102097845046696,
+          "rank": 2,
+          "ratio": 1.0033456510399672,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.0033456510399672013,
+          "match": true
+        },
+        {
+          "index": 645,
+          "frequency": 0.006460129202584052,
+          "value": 0.006046174613468171,
+          "magnitude": 0.006046174613468171,
+          "rank": 3,
+          "ratio": 1.0064810408436229,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.006481040843622887,
+          "match": true
+        },
+        {
+          "index": 960,
+          "frequency": 0.009610192203844077,
+          "value": 0.003996157950148189,
+          "magnitude": 0.003996157950148189,
+          "rank": 4,
+          "ratio": 1.009656518383181,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.009656518383180934,
+          "match": true
+        },
+        {
+          "index": 1272,
+          "frequency": 0.012730254605092103,
+          "value": 0.004316020610811464,
+          "magnitude": 0.004316020610811464,
+          "rank": 5,
+          "ratio": 1.0128116292362075,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.012811629236207489,
+          "match": true
+        },
+        {
+          "index": 1599,
+          "frequency": 0.01600032000640013,
+          "value": 0.004145825207289129,
+          "magnitude": 0.004145825207289129,
+          "rank": 6,
+          "ratio": 1.0161290105738294,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.016129010573829428,
+          "match": true
+        },
+        {
+          "index": 1911,
+          "frequency": 0.019120382407648153,
+          "value": 0.0038581653492239295,
+          "magnitude": 0.0038581653492239295,
+          "rank": 7,
+          "ratio": 1.0193043475433472,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.0193043475433472,
+          "match": true
+        },
+        {
+          "index": 2230,
+          "frequency": 0.02231044620892418,
+          "value": 0.00337818503259968,
+          "magnitude": 0.00337818503259968,
+          "rank": 8,
+          "ratio": 1.0225611854433385,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.022561185443338516,
+          "match": true
+        }
+      ],
+      "detected_ratios": {
+        "1.000": {
+          "ratio": 1.0,
+          "detected": true,
+          "peak_count": 8
+        },
+        "\u03c6": {
+          "ratio": 1.618033988749895,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a2": {
+          "ratio": 1.4142135623730951,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a3": {
+          "ratio": 1.7320508075688772,
+          "detected": false,
+          "peak_count": 0
+        },
+        "1.847": {
+          "ratio": 2.302775637731995,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.000": {
+          "ratio": 2.0,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.287": {
+          "ratio": 2.2882456112707374,
+          "detected": false,
+          "peak_count": 0
+        },
+        "3.236": {
+          "ratio": 3.23606797749979,
+          "detected": false,
+          "peak_count": 0
+        }
+      },
+      "gap_stats": {
+        "min": 2.0,
+        "max": 98700311.0,
+        "mean": 1000.019970399408,
+        "std": 312119.30819035927
+      }
+    },
+    "500000": {
+      "scale": 500000,
+      "total_gaps": 100000,
+      "fft_peaks": [
+        {
+          "index": 4,
+          "frequency": 5e-05,
+          "value": 0.011096626411186597,
+          "magnitude": 0.011096626411186597,
+          "rank": 1,
+          "ratio": 1.0000500012500209,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 5.000125002085909e-05,
+          "match": true
+        },
+        {
+          "index": 321,
+          "frequency": 0.00322,
+          "value": 0.003975996800025093,
+          "magnitude": 0.003975996800025093,
+          "rank": 2,
+          "ratio": 1.0032251897688569,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.0032251897688568842,
+          "match": true
+        },
+        {
+          "index": 633,
+          "frequency": 0.00634,
+          "value": 0.003868464699780669,
+          "magnitude": 0.003868464699780669,
+          "rank": 3,
+          "ratio": 1.0063601403407563,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.006360140340756271,
+          "match": true
+        },
+        {
+          "index": 956,
+          "frequency": 0.00957,
+          "value": 0.0052346210492665276,
+          "magnitude": 0.0052346210492665276,
+          "rank": 4,
+          "ratio": 1.009615938878077,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.00961593887807699,
+          "match": true
+        },
+        {
+          "index": 1269,
+          "frequency": 0.012700000000000001,
+          "value": 0.004680889968926319,
+          "magnitude": 0.004680889968926319,
+          "rank": 5,
+          "ratio": 1.0127809874838618,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.012780987483861805,
+          "match": true
+        },
+        {
+          "index": 1582,
+          "frequency": 0.01583,
+          "value": 0.004955470387551233,
+          "magnitude": 0.004955470387551233,
+          "rank": 6,
+          "ratio": 1.0159559582118032,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.01595595821180318,
+          "match": true
+        },
+        {
+          "index": 1900,
+          "frequency": 0.019010000000000003,
+          "value": 0.00406798334820156,
+          "magnitude": 0.00406798334820156,
+          "rank": 7,
+          "ratio": 1.0191918404848535,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.01919184048485345,
+          "match": true
+        },
+        {
+          "index": 2213,
+          "frequency": 0.022140000000000003,
+          "value": 0.0061931352357227284,
+          "magnitude": 0.0061931352357227284,
+          "rank": 8,
+          "ratio": 1.0223869086187207,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.022386908618720724,
+          "match": true
+        }
+      ],
+      "detected_ratios": {
+        "1.000": {
+          "ratio": 1.0,
+          "detected": true,
+          "peak_count": 8
+        },
+        "\u03c6": {
+          "ratio": 1.618033988749895,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a2": {
+          "ratio": 1.4142135623730951,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a3": {
+          "ratio": 1.7320508075688772,
+          "detected": false,
+          "peak_count": 0
+        },
+        "1.847": {
+          "ratio": 2.302775637731995,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.000": {
+          "ratio": 2.0,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.287": {
+          "ratio": 2.2882456112707374,
+          "detected": false,
+          "peak_count": 0
+        },
+        "3.236": {
+          "ratio": 3.23606797749979,
+          "detected": false,
+          "peak_count": 0
+        }
+      },
+      "gap_stats": {
+        "min": 2.0,
+        "max": 92631257.0,
+        "mean": 941.01243,
+        "std": 292924.2437827422
+      }
+    },
+    "1000000": {
+      "scale": 1000000,
+      "total_gaps": 100000,
+      "fft_peaks": [
+        {
+          "index": 7,
+          "frequency": 8e-05,
+          "value": 0.007897505467111269,
+          "magnitude": 0.007897505467111269,
+          "rank": 1,
+          "ratio": 1.0000800032000854,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 8.000320008538786e-05,
+          "match": true
+        },
+        {
+          "index": 320,
+          "frequency": 0.00321,
+          "value": 0.003947761285108121,
+          "magnitude": 0.003947761285108121,
+          "rank": 2,
+          "ratio": 1.0032151575671202,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.003215157567120208,
+          "match": true
+        },
+        {
+          "index": 641,
+          "frequency": 0.00642,
+          "value": 0.004862707083774404,
+          "magnitude": 0.004862707083774404,
+          "rank": 3,
+          "ratio": 1.0064406523724219,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.006440652372421862,
+          "match": true
+        },
+        {
+          "index": 955,
+          "frequency": 0.00956,
+          "value": 0.004098805910485352,
+          "magnitude": 0.004098805910485352,
+          "rank": 4,
+          "ratio": 1.0096058427691688,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.00960584276916876,
+          "match": true
+        },
+        {
+          "index": 1271,
+          "frequency": 0.01272,
+          "value": 0.0051955258709711905,
+          "magnitude": 0.0051955258709711905,
+          "rank": 5,
+          "ratio": 1.0128012433061688,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.01280124330616883,
+          "match": true
+        },
+        {
+          "index": 1587,
+          "frequency": 0.015880000000000002,
+          "value": 0.005273261806785445,
+          "magnitude": 0.005273261806785445,
+          "rank": 6,
+          "ratio": 1.01600675727968,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.01600675727968004,
+          "match": true
+        },
+        {
+          "index": 1915,
+          "frequency": 0.01916,
+          "value": 0.005715924907885429,
+          "magnitude": 0.005715924907885429,
+          "rank": 7,
+          "ratio": 1.0193447307274077,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.019344730727407722,
+          "match": true
+        },
+        {
+          "index": 2245,
+          "frequency": 0.02246,
+          "value": 0.004828773393468502,
+          "magnitude": 0.004828773393468502,
+          "rank": 8,
+          "ratio": 1.0227141247812725,
+          "closest_ratio": {
+            "value": 1.0,
+            "name": "Unity",
+            "symbol": "1.000"
+          },
+          "distance": 0.02271412478127255,
+          "match": true
+        }
+      ],
+      "detected_ratios": {
+        "1.000": {
+          "ratio": 1.0,
+          "detected": true,
+          "peak_count": 8
+        },
+        "\u03c6": {
+          "ratio": 1.618033988749895,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a2": {
+          "ratio": 1.4142135623730951,
+          "detected": false,
+          "peak_count": 0
+        },
+        "\u221a3": {
+          "ratio": 1.7320508075688772,
+          "detected": false,
+          "peak_count": 0
+        },
+        "1.847": {
+          "ratio": 2.302775637731995,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.000": {
+          "ratio": 2.0,
+          "detected": false,
+          "peak_count": 0
+        },
+        "2.287": {
+          "ratio": 2.2882456112707374,
+          "detected": false,
+          "peak_count": 0
+        },
+        "3.236": {
+          "ratio": 3.23606797749979,
+          "detected": false,
+          "peak_count": 0
+        }
+      },
+      "gap_stats": {
+        "min": 2.0,
+        "max": 84514143.0,
+        "mean": 860.64901,
+        "std": 267255.80136627925
+      }
+    }
+  },
+  "known_ratios": [
+    {
+      "value": 1.0,
+      "name": "Unity",
+      "symbol": "1.000"
+    },
+    {
+      "value": 1.618033988749895,
+      "name": "Golden",
+      "symbol": "\u03c6"
+    },
+    {
+      "value": 1.4142135623730951,
+      "name": "Sqrt2",
+      "symbol": "\u221a2"
+    },
+    {
+      "value": 1.7320508075688772,
+      "name": "Sqrt3",
+      "symbol": "\u221a3"
+    },
+    {
+      "value": 2.302775637731995,
+      "name": "Pell",
+      "symbol": "1.847"
+    },
+    {
+      "value": 2.0,
+      "name": "Octave",
+      "symbol": "2.000"
+    },
+    {
+      "value": 2.2882456112707374,
+      "name": "PhiSqrt2",
+      "symbol": "2.287"
+    },
+    {
+      "value": 3.23606797749979,
+      "name": "2Phi",
+      "symbol": "3.236"
+    }
+  ]
+}

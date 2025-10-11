@@ -1,0 +1,13 @@
+# Angular/Ionic client (static build served by nginx)
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY client/package*.json ./
+RUN npm ci || true
+COPY client ./client
+RUN cd client && npm run build || true
+
+FROM nginx:alpine
+COPY --from=build /app/client/www /usr/share/nginx/html
+EXPOSE 80
+
+

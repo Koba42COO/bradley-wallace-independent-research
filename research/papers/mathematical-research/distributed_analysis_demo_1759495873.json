@@ -1,0 +1,28 @@
+{
+  "demonstration_scale": 1000000,
+  "target_scale": 10000000000,
+  "best_result": {
+    "log_base": "e",
+    "scaling_constant": "\u03c0",
+    "match_rate": 0.09
+  },
+  "system_capabilities": {
+    "cpus": 14,
+    "ram_gb": 15.8
+  },
+  "cluster_requirements": {
+    "target_primes": 10000000000,
+    "estimated_actual_primes": 253284360229,
+    "memory_required_tb": 2.8619856540426554,
+    "storage_required_tb": 5.723971308085311,
+    "total_operations": 25328436022900,
+    "local_time_years": 0.05736853125430347,
+    "cluster_time_days": 0.029315319470949074,
+    "min_cluster_nodes": 157
+  },
+  "scaling_projections": {
+    "scale_factor": 10000.0,
+    "single_machine_days": 0.9,
+    "cluster_days": 0.0
+  }
+}

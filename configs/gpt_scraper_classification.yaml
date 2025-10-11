@@ -1,0 +1,85 @@
+# GPT Teams Conversation Classification Configuration
+# Defines how to categorize conversations into science disciplines vs personal
+
+# Science disciplines (these get exported to science/ folder)
+science_disciplines:
+  - math: ["mathematics", "algebra", "calculus", "geometry", "topology", "number theory", "prime", "factorization", "cryptography"]
+  - physics: ["physics", "quantum", "relativity", "electromagnetic", "thermodynamics", "mechanics", "field theory"]
+  - ml: ["machine learning", "neural network", "deep learning", "ai", "artificial intelligence", "model", "training", "dataset", "algorithm"]
+  - cryptography: ["encryption", "crypto", "security", "rsa", "diffie-hellman", "hash", "signature", "key exchange", "zkp", "zero knowledge"]
+  - systems: ["distributed", "architecture", "scalability", "performance", "infrastructure", "deployment", "kubernetes", "docker"]
+  - philosophy_theory: ["consciousness", "philosophy", "theory", "metaphysics", "epistemology", "ontology", "spirituality", "mind", "intelligence", "emergence"]
+  - application: ["implementation", "code", "programming", "software", "framework", "tool", "utility", "api", "interface"]
+
+# Keywords that indicate creative/spiritual brainstorming (goes to philosophy_theory)
+creative_spiritual_keywords:
+  - "spiritual"
+  - "consciousness"
+  - "emergence"
+  - "mind"
+  - "intelligence"
+  - "universe"
+  - "reality"
+  - "existence"
+  - "dream"
+  - "vision"
+  - "awakening"
+  - "transcendence"
+  - "mystical"
+  - "divine"
+  - "cosmic"
+  - "quantum consciousness"
+  - "field theory"
+  - "unified"
+  - "integration"
+
+# Personal/private content to exclude (never export)
+exclude_keywords:
+  - "trauma"
+  - "abuse"
+  - "personal"
+  - "private"
+  - "confidential"
+  - "therapy"
+  - "counseling"
+  - "emotional"
+  - "mental health"
+  - "relationship"
+  - "family"
+  - "divorce"
+  - "death"
+  - "grief"
+  - "anxiety"
+  - "depression"
+  - "ptsd"
+  - "addiction"
+
+# Classification rules (applied in order)
+classification_rules:
+  # Rule 1: If contains exclude keywords -> skip entirely
+  - condition: "any_exclude_keyword"
+    action: "skip"
+
+  # Rule 2: If contains science discipline keywords -> categorize by discipline
+  - condition: "science_discipline_match"
+    action: "science"
+
+  # Rule 3: If contains creative/spiritual keywords -> philosophy_theory
+  - condition: "creative_spiritual_match"
+    action: "philosophy_theory"
+
+  # Rule 4: Default -> personal_sanitized (if enabled)
+  - condition: "default"
+    action: "personal_sanitized"
+
+# Similarity threshold for fuzzy matching (0.0-1.0)
+similarity_threshold: 0.75
+
+# Maximum conversations to process per run
+max_conversations: 500
+
+# Export options
+export_raw: true
+export_markdown: true
+export_science: true
+export_personal_sanitized: false  # Set to true to include personal conversations

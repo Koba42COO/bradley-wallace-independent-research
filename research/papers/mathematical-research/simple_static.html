@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Static Research</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #94a3b8;
+        }
+        .card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.loading { background: #2196F3; color: white; }
+        .status.success { background: #4CAF50; color: white; }
+        .status.error { background: #f44336; color: white; }
+        .button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+        }
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .results-table th,
+        .results-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .results-table th {
+            background: rgba(59, 130, 246, 0.1);
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        .formula {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+            display: inline-block;
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 5px;
+        }
+        .metric-label {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🔬 Wallace Transform Research</h1>
+            <p class="subtitle">Static Version - Direct JavaScript Implementation</p>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">System Status</h2>
+            <div id="status" class="status loading">Initializing...</div>
+            <div id="dataset-info"></div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">Analysis Controls</h2>
+            <button class="button" onclick="initializeData()">Initialize Dataset</button>
+            <button class="button" onclick="runAnalysis()" id="runBtn" disabled>Run Analysis</button>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div id="progressText"></div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">Results Summary</h2>
+            <div id="resultsSummary">
+                <p>Run analysis to see results</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">Detailed Results</h2>
+            <div id="detailedResults">
+                <p>Detailed results will appear here after analysis</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let primes = [];
+        let gaps = [];
+        let isInitialized = false;
+        let isRunning = false;
+
+        function updateStatus(message, type = 'loading') {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = 'status ' + type;
+            console.log('[STATUS]', message);
+        }
+
+        function updateProgress(percent, text = '') {
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('progressText').textContent = text;
+        }
+
+        function isPrime(n) {
+            if (n < 2) return false;
+            if (n === 2) return true;
+            if (n % 2 === 0) return false;
+            for (let i = 3; i <= Math.sqrt(n); i += 2) {
+                if (n % i === 0) return false;
+            }
+            return true;
+        }
+
+        function generatePrimes(limit) {
+            const primes = [];
+            for (let i = 2; primes.length < limit; i++) {
+                if (isPrime(i)) primes.push(i);
+            }
+            return primes;
+        }
+
+        function WT(x) {
+            if (x <= 0) return 0;
+            const phi = (1 + Math.sqrt(5)) / 2;
+            const logVal = Math.log(x + 1e-12);
+            return phi * Math.pow(Math.abs(logVal), phi) * Math.sign(logVal) + 1.0;
+        }
+
+        function initializeData() {
+            if (isRunning) return;
+
+            updateStatus('Generating primes...', 'loading');
+            updateProgress(0, 'Initializing...');
+
+            try {
+                // Generate primes (smaller set for faster loading)
+                primes = generatePrimes(25000);
+                updateProgress(50, 'Generating primes...');
+
+                // Calculate gaps
+                gaps = [];
+                for (let i = 1; i < primes.length; i++) {
+                    gaps.push(primes[i] - primes[i-1]);
+                }
+                updateProgress(100, 'Complete');
+
+                isInitialized = true;
+                document.getElementById('runBtn').disabled = false;
+
+                document.getElementById('dataset-info').innerHTML = `
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">${primes.length.toLocaleString()}</div>
+                            <div class="metric-label">Primes Generated</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">${gaps.length.toLocaleString()}</div>
+                            <div class="metric-label">Prime Gaps</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">${primes[primes.length-1].toLocaleString()}</div>
+                            <div class="metric-label">Largest Prime</div>
+                        </div>
+                    </div>
+                `;
+
+                updateStatus('Dataset initialized successfully!', 'success');
+
+            } catch (error) {
+                updateStatus('Error initializing data: ' + error.message, 'error');
+                console.error(error);
+            }
+        }
+
+        function runAnalysis() {
+            if (!isInitialized || isRunning) return;
+
+            isRunning = true;
+            document.getElementById('runBtn').disabled = true;
+
+            updateStatus('Running analysis...', 'loading');
+            updateProgress(0, 'Starting analysis...');
+
+            try {
+                // Define constants to test
+                const constants = [
+                    { name: 'π (Pi)', symbol: 'π', value: Math.PI },
+                    { name: 'e (Euler)', symbol: 'e', value: Math.E },
+                    { name: 'φ (Golden)', symbol: 'φ', value: (1 + Math.sqrt(5)) / 2 },
+                    { name: 'γ (Euler-M)', symbol: 'γ', value: 0.5772156649015329 },
+                    { name: 'ζ(3) (Apéry)', symbol: 'ζ(3)', value: 1.2020569031595942 },
+                    { name: '√2', symbol: '√2', value: Math.sqrt(2) },
+                    { name: '√3', symbol: '√3', value: Math.sqrt(3) },
+                    { name: 'G (Catalan)', symbol: 'G', value: 0.915965594177219 }
+                ];
+
+                const results = [];
+                const testSize = Math.min(5000, gaps.length);
+
+                for (let i = 0; i < constants.length; i++) {
+                    const constant = constants[i];
+                    updateProgress((i / constants.length) * 100, `Testing ${constant.symbol}...`);
+
+                    // Test different powers
+                    const powers = [-3, -2, -1, 1, 2, 3];
+                    let bestMatchRate = 0;
+                    let bestPower = 0;
+
+                    powers.forEach(power => {
+                        const ratio = Math.pow(constant.value, power);
+                        let matches = 0;
+
+                        for (let j = 0; j < testSize; j++) {
+                            const actualGap = gaps[j];
+                            const p = primes[j];
+                            const wt_p = WT(p);
+                            const predicted = wt_p * ratio;
+
+                            if (Math.abs(actualGap - predicted) / Math.max(actualGap, predicted) <= 0.20) {
+                                matches++;
+                            }
+                        }
+
+                        const matchRate = (matches / testSize) * 100;
+                        if (matchRate > bestMatchRate) {
+                            bestMatchRate = matchRate;
+                            bestPower = power;
+                        }
+                    });
+
+                    results.push({
+                        ...constant,
+                        bestMatchRate: bestMatchRate.toFixed(2),
+                        bestPower: bestPower
+                    });
+                }
+
+                // Sort by match rate
+                results.sort((a, b) => parseFloat(b.bestMatchRate) - parseFloat(a.bestMatchRate));
+
+                updateProgress(100, 'Analysis complete!');
+                updateStatus('Analysis completed successfully!', 'success');
+
+                // Display results
+                displayResults(results, testSize);
+
+                isRunning = false;
+                document.getElementById('runBtn').disabled = false;
+
+            } catch (error) {
+                updateStatus('Analysis failed: ' + error.message, 'error');
+                console.error(error);
+                isRunning = false;
+                document.getElementById('runBtn').disabled = false;
+            }
+        }
+
+        function displayResults(results, testSize) {
+            // Summary
+            const bestResult = results[0];
+            document.getElementById('resultsSummary').innerHTML = `
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">${bestResult.symbol}</div>
+                        <div class="metric-label">Best Constant</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${bestResult.bestMatchRate}%</div>
+                        <div class="metric-label">Best Match Rate</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">k = ${bestResult.bestPower}</div>
+                        <div class="metric-label">Best Power</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${testSize.toLocaleString()}</div>
+                        <div class="metric-label">Test Samples</div>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; color: #94a3b8;">
+                    Formula: <span class="formula">g_n ≈ W_φ(p_n) · ${bestResult.symbol}^${bestResult.bestPower}</span>
+                </p>
+            `;
+
+            // Detailed table
+            let tableHTML = `
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Constant</th>
+                            <th>Symbol</th>
+                            <th>Match Rate</th>
+                            <th>Best Power</th>
+                            <th>Formula</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            results.forEach(result => {
+                tableHTML += `
+                    <tr>
+                        <td>${result.name}</td>
+                        <td><strong>${result.symbol}</strong></td>
+                        <td><strong style="color: #10b981;">${result.bestMatchRate}%</strong></td>
+                        <td>k = ${result.bestPower}</td>
+                        <td><span class="formula">g_n ≈ W_φ(p_n) · ${result.symbol}^${result.bestPower}</span></td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += '</tbody></table>';
+            document.getElementById('detailedResults').innerHTML = tableHTML;
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            updateStatus('Page loaded successfully', 'success');
+        };
+    </script>
+</body>
+</html>

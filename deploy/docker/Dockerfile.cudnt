@@ -1,0 +1,30 @@
+FROM python:3.9-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements first for better caching
+COPY configs/python/requirements-cudnt.txt ./requirements-cudnt.txt
+RUN pip install --no-cache-dir -r ./requirements-cudnt.txt
+
+# Copy application code
+COPY cudnt_enhanced_integration.py .
+COPY cudnt_gpu_virtualization.py .
+COPY experiments/cudnt_benchmark_suite.py ./cudnt_benchmark_suite.py
+
+# Create non-root user
+RUN useradd --create-home --shell /bin/bash app \
+    && chown -R app:app /app
+USER app
+
+# Expose port for potential monitoring
+EXPOSE 8080
+
+# Run the CUDNT demo
+CMD ["python3", "cudnt_enhanced_integration.py"]

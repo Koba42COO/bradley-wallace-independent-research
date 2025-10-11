@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Research Interface</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e293b 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #94a3b8;
+        }
+        .card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .constant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .constant-item {
+            background: rgba(30, 41, 59, 0.8);
+            border: 2px solid transparent;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        .constant-item.selected {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+        .constant-symbol {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .constant-name {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+        .run-button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 1rem 0;
+        }
+        .run-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .run-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .result-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .result-symbol {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .result-match {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #a855f7;
+            margin-bottom: 0.5rem;
+        }
+        .result-details {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Mathematical constants
+        const CONSTANTS = [
+            { name: 'π (Pi)', symbol: 'π', value: Math.PI, color: '#FF6B6B' },
+            { name: 'e (Euler)', symbol: 'e', value: Math.E, color: '#4ECDC4' },
+            { name: 'φ (Golden)', symbol: 'φ', value: (1 + Math.sqrt(5)) / 2, color: '#FFD93D' },
+            { name: 'γ (Euler-M)', symbol: 'γ', value: 0.5772156649015329, color: '#95E1D3' },
+            { name: 'ζ(3) (Apéry)', symbol: 'ζ(3)', value: 1.2020569031595942, color: '#F38181' },
+            { name: '√2', symbol: '√2', value: Math.sqrt(2), color: '#AA96DA' },
+            { name: '√3', symbol: '√3', value: Math.sqrt(3), color: '#FCBAD3' },
+            { name: 'G (Catalan)', symbol: 'G', value: 0.915965594177219, color: '#A8E6CF' }
+        ];
+
+        function SimpleResearch() {
+            const [selectedConstants, setSelectedConstants] = useState([0, 1, 2, 3, 4]);
+            const [computing, setComputing] = useState(false);
+            const [progress, setProgress] = useState(0);
+            const [primes, setPrimes] = useState([]);
+            const [gaps, setGaps] = useState([]);
+            const [results, setResults] = useState(null);
+
+            // Wallace Transform
+            const WT = (x) => {
+                if (x <= 0) return 0;
+                const logVal = Math.log(x + 1e-12);
+                return ((1 + Math.sqrt(5)) / 2) * Math.pow(Math.abs(logVal), (1 + Math.sqrt(5)) / 2) * Math.sign(logVal) + 1.0;
+            };
+
+            // Prime generation
+            const isPrime = (n) => {
+                if (n < 2) return false;
+                if (n === 2) return true;
+                if (n % 2 === 0) return false;
+                for (let i = 3; i <= Math.sqrt(n); i += 2) {
+                    if (n % i === 0) return false;
+                }
+                return true;
+            };
+
+            const generatePrimes = (limit) => {
+                const primes = [];
+                for (let i = 2; primes.length < limit; i++) {
+                    if (isPrime(i)) primes.push(i);
+                }
+                return primes;
+            };
+
+            // Initialize data
+            useEffect(() => {
+                console.log('🔬 Initializing research data...');
+                try {
+                    const computed = generatePrimes(100000); // Scaled up to 100K primes
+                    const gapArray = [];
+                    for (let i = 1; i < computed.length; i++) {
+                        gapArray.push(computed[i] - computed[i-1]);
+                    }
+                    setPrimes(computed);
+                    setGaps(gapArray);
+                    console.log('✅ Data initialized:', computed.length, 'primes,', gapArray.length, 'gaps');
+                } catch (error) {
+                    console.error('❌ Error initializing data:', error);
+                }
+            }, []);
+
+            // Test relationship with constant
+            const testConstantRelationship = (constant, power = -2) => {
+                if (gaps.length === 0 || primes.length === 0) return null;
+
+                const testSize = Math.min(25000, gaps.length); // Scaled up to 25K test samples
+                const ratio = Math.pow(constant, power);
+                let matches = 0;
+                const tolerance = 0.20;
+
+                for (let i = 0; i < testSize; i++) {
+                    const actualGap = gaps[i];
+                    const p = primes[i];
+                    const wt_p = WT(p);
+                    const predicted = wt_p * ratio;
+
+                    if (Math.abs(actualGap - predicted) / Math.max(actualGap, predicted) <= tolerance) {
+                        matches++;
+                    }
+                }
+
+                return {
+                    constant: constant,
+                    power: power,
+                    matches: matches,
+                    total: testSize,
+                    matchRate: parseFloat(((matches / testSize) * 100).toFixed(2)),
+                    ratio: ratio
+                };
+            };
+
+            // Run analysis
+            const runAnalysis = async () => {
+                setComputing(true);
+                setProgress(0);
+
+                const constantResults = [];
+                const selectedConsts = CONSTANTS.filter((_, i) => selectedConstants.includes(i));
+
+                console.log('🚀 Starting analysis for', selectedConsts.length, 'constants...');
+
+                for (let i = 0; i < selectedConsts.length; i++) {
+                    const constant = selectedConsts[i];
+                    console.log(`📊 Testing ${constant.symbol} (${constant.name})...`);
+                    setProgress(((i + 0.5) / selectedConsts.length) * 100);
+
+                    // Test various powers
+                    const powers = [-3, -2, -1, 1, 2, 3];
+                    const powerResults = powers.map(p => testConstantRelationship(constant.value, p));
+
+                    const bestResult = powerResults.reduce((best, curr) =>
+                        curr.matchRate > best.matchRate ? curr : best
+                    );
+
+                    constantResults.push({
+                        ...constant,
+                        bestPower: bestResult.power,
+                        bestMatchRate: bestResult.matchRate,
+                        allPowers: powerResults
+                    });
+
+                    await new Promise(resolve => setTimeout(resolve, 10));
+                }
+
+                // Sort by best match rate
+                constantResults.sort((a, b) => b.bestMatchRate - a.bestMatchRate);
+
+                console.log('✅ Analysis complete!');
+                setResults({
+                    constants: constantResults,
+                    summary: {
+                        tested: constantResults.length,
+                        bestConstant: constantResults[0]?.symbol,
+                        bestMatch: constantResults[0]?.bestMatchRate,
+                        bestPower: constantResults[0]?.bestPower
+                    }
+                });
+
+                setProgress(100);
+                setComputing(false);
+            };
+
+            const toggleConstant = (idx) => {
+                setSelectedConstants(prev =>
+                    prev.includes(idx)
+                        ? prev.filter(i => i !== idx)
+                        : [...prev, idx]
+                );
+            };
+
+            return (
+                <div className="container">
+                    {/* Header */}
+                    <div className="header">
+                        <h1 className="title">🔬 Wallace Transform Research</h1>
+                        <p className="subtitle">
+                            Testing g_n ≈ W_φ(p_n) · constant^k relationships
+                        </p>
+                        <p style={{ fontSize: '0.875rem', color: '#64748b', marginTop: '1rem' }}>
+                            Dataset: {primes.length.toLocaleString()} primes, {gaps.length.toLocaleString()} gaps
+                        </p>
+                    </div>
+
+                    {/* Constant Selection */}
+                    <div className="card">
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+                            Select Constants to Test
+                        </h3>
+                        <div className="constant-grid">
+                            {CONSTANTS.map((constant, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`constant-item ${selectedConstants.includes(idx) ? 'selected' : ''}`}
+                                    onClick={() => toggleConstant(idx)}
+                                    style={{
+                                        borderLeft: `4px solid ${constant.color}`
+                                    }}
+                                >
+                                    <div className="constant-symbol">{constant.symbol}</div>
+                                    <div className="constant-name">{constant.name}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <button
+                            onClick={runAnalysis}
+                            disabled={computing || primes.length === 0}
+                            className="run-button"
+                        >
+                            {computing ? '🔄 Computing...' : '🚀 Run Analysis'}
+                        </button>
+
+                        {computing && (
+                            <div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem', color: '#94a3b8', marginBottom: '0.5rem' }}>
+                                    <span>Progress</span>
+                                    <span>{progress.toFixed(1)}%</span>
+                                </div>
+                                <div className="progress-bar">
+                                    <div className="progress-fill" style={{ width: `${progress}%` }} />
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Results */}
+                    {results && (
+                        <div className="card">
+                            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+                                🏆 Analysis Results
+                            </h3>
+
+                            {/* Summary */}
+                            <div style={{ background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1))', padding: '1.5rem', borderRadius: '0.5rem', marginBottom: '2rem', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                                <h4 style={{ fontSize: '1.125rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+                                    📊 Summary
+                                </h4>
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem' }}>
+                                    <div>
+                                        <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>Constants Tested</div>
+                                        <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{results.summary.tested}</div>
+                                    </div>
+                                    <div>
+                                        <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>Best Constant</div>
+                                        <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#a855f7' }}>{results.summary.bestConstant}</div>
+                                    </div>
+                                    <div>
+                                        <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>Best Match Rate</div>
+                                        <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#10b981' }}>{results.summary.bestMatch}%</div>
+                                    </div>
+                                    <div>
+                                        <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>Best Power</div>
+                                        <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>k = {results.summary.bestPower}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Detailed Results */}
+                            <div className="results-grid">
+                                {results.constants.map((result, idx) => (
+                                    <div key={idx} className="result-card">
+                                        <div className="result-symbol" style={{ color: result.color }}>
+                                            {result.symbol}
+                                        </div>
+                                        <div className="result-match">
+                                            {result.bestMatchRate}%
+                                        </div>
+                                        <div className="result-details">
+                                            <div>Power: k = {result.bestPower}</div>
+                                            <div>Ratio: {result.symbol}^{result.bestPower}</div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Footer */}
+                    <div style={{ textAlign: 'center', marginTop: '2rem', fontSize: '0.875rem', color: '#64748b' }}>
+                        Wallace Transform Research Interface | Testing prime gap relationships
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<SimpleResearch />, document.getElementById('root'));
+    </script>
+</body>
+</html>

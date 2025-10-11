@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cudnt-accelerator
+  labels:
+    app: cudnt-accelerator
+    component: wallace-research
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cudnt-accelerator
+  template:
+    metadata:
+      labels:
+        app: cudnt-accelerator
+        component: wallace-research
+    spec:
+      containers:
+      - name: cudnt-accelerator
+        image: wallace-research/cudnt-accelerator:latest
+        ports:
+        - containerPort: 8080
+          name: http
+        env:
+        - name: PYTHONPATH
+          value: "/app"
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "2000m"
+          limits:
+            memory: "4Gi"
+            cpu: "4000m"
+        livenessProbe:
+          exec:
+            command:
+            - python3
+            - -c
+            - "import cudnt_enhanced_integration; print('healthy')"
+          initialDelaySeconds: 30
+          periodSeconds: 60
+        readinessProbe:
+          exec:
+            command:
+            - python3
+            - -c
+            - "import cudnt_enhanced_integration; print('ready')"
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        volumeMounts:
+        - name: cache-volume
+          mountPath: /app/cache
+        - name: logs-volume
+          mountPath: /app/logs
+      volumes:
+      - name: cache-volume
+        emptyDir:
+          sizeLimit: "2Gi"
+      - name: logs-volume
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cudnt-accelerator-service
+  labels:
+    app: cudnt-accelerator
+    component: wallace-research
+spec:
+  selector:
+    app: cudnt-accelerator
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+  type: ClusterIP

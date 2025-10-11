@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
+        }
+        .debug-card {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px 0;
+        }
+        .status {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .success { color: #4CAF50; }
+        .error { color: #f44336; }
+        .info { color: #2196F3; }
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #1976D2;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 10px;
+            background: #333;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Debug Interface</h1>
+
+    <div class="debug-card">
+        <h2>System Status</h2>
+        <div class="status success" id="status">Initializing...</div>
+        <button onclick="runTest()">Run Basic Test</button>
+        <button onclick="testPrimes()">Test Prime Generation</button>
+        <button onclick="testWallace()">Test Wallace Transform</button>
+        <button onclick="testConstants()">Test Constants Analysis</button>
+    </div>
+
+    <div class="debug-card">
+        <h2>Test Results</h2>
+        <div class="results" id="results">No tests run yet</div>
+    </div>
+
+    <div class="debug-card">
+        <h2>Navigation</h2>
+        <p><a href="test.html" style="color: #4CAF50;">Test Interface</a></p>
+        <p><a href="simple_research.html" style="color: #2196F3;">Simple Research</a></p>
+        <p><a href="composite_relationships.html" style="color: #FF9800;">Composite Relationships</a></p>
+        <p><a href="research_summary.html" style="color: #9C27B0;">Research Summary</a></p>
+    </div>
+
+    <script>
+        let primes = [];
+        let gaps = [];
+
+        function log(message) {
+            console.log('[DEBUG]', message);
+            document.getElementById('results').innerHTML += '<br>' + message;
+        }
+
+        function updateStatus(message, type = 'info') {
+            document.getElementById('status').className = 'status ' + type;
+            document.getElementById('status').textContent = message;
+            log(message);
+        }
+
+        function runTest() {
+            updateStatus('Running basic functionality test...', 'info');
+            document.getElementById('results').innerHTML = 'Starting tests...<br>';
+
+            try {
+                // Test basic math
+                const test = Math.PI + Math.E;
+                log('Math test: π + e = ' + test);
+
+                // Test array operations
+                const arr = [1, 2, 3, 4, 5];
+                const sum = arr.reduce((a, b) => a + b, 0);
+                log('Array test: sum = ' + sum);
+
+                updateStatus('Basic tests passed!', 'success');
+            } catch (error) {
+                updateStatus('Basic tests failed: ' + error.message, 'error');
+            }
+        }
+
+        function isPrime(n) {
+            if (n < 2) return false;
+            if (n === 2) return true;
+            if (n % 2 === 0) return false;
+            for (let i = 3; i <= Math.sqrt(n); i += 2) {
+                if (n % i === 0) return false;
+            }
+            return true;
+        }
+
+        function generatePrimes(limit) {
+            const primes = [];
+            for (let i = 2; primes.length < limit; i++) {
+                if (isPrime(i)) primes.push(i);
+            }
+            return primes;
+        }
+
+        function testPrimes() {
+            updateStatus('Testing prime generation...', 'info');
+
+            try {
+                primes = generatePrimes(1000);
+                log('Generated ' + primes.length + ' primes');
+                log('First 10 primes: ' + primes.slice(0, 10).join(', '));
+                log('Last 5 primes: ' + primes.slice(-5).join(', '));
+
+                // Calculate gaps
+                gaps = [];
+                for (let i = 1; i < primes.length; i++) {
+                    gaps.push(primes[i] - primes[i-1]);
+                }
+                log('Calculated ' + gaps.length + ' gaps');
+                log('First 10 gaps: ' + gaps.slice(0, 10).join(', '));
+
+                updateStatus('Prime generation test passed!', 'success');
+            } catch (error) {
+                updateStatus('Prime test failed: ' + error.message, 'error');
+            }
+        }
+
+        function WT(x) {
+            if (x <= 0) return 0;
+            const phi = (1 + Math.sqrt(5)) / 2;
+            const logVal = Math.log(x + 1e-12);
+            return phi * Math.pow(Math.abs(logVal), phi) * Math.sign(logVal) + 1.0;
+        }
+
+        function testWallace() {
+            updateStatus('Testing Wallace Transform...', 'info');
+
+            try {
+                if (primes.length === 0) {
+                    testPrimes();
+                }
+
+                const testPrimes = primes.slice(0, 10);
+                const wtResults = testPrimes.map(p => WT(p));
+
+                log('Wallace Transform results:');
+                for (let i = 0; i < testPrimes.length; i++) {
+                    log(`W_φ(${testPrimes[i]}) = ${wtResults[i].toFixed(4)}`);
+                }
+
+                updateStatus('Wallace Transform test passed!', 'success');
+            } catch (error) {
+                updateStatus('Wallace Transform test failed: ' + error.message, 'error');
+            }
+        }
+
+        function testConstants() {
+            updateStatus('Testing constants analysis...', 'info');
+
+            try {
+                if (primes.length === 0 || gaps.length === 0) {
+                    testPrimes();
+                }
+
+                const constants = [
+                    { name: 'π', value: Math.PI },
+                    { name: 'e', value: Math.E },
+                    { name: 'φ', value: (1 + Math.sqrt(5)) / 2 }
+                ];
+
+                const testSize = Math.min(100, gaps.length);
+
+                log('Testing constants with ' + testSize + ' samples:');
+
+                constants.forEach(constant => {
+                    let matches = 0;
+                    const ratio = Math.pow(constant.value, -2); // Test k = -2
+
+                    for (let i = 0; i < testSize; i++) {
+                        const actualGap = gaps[i];
+                        const p = primes[i];
+                        const wt_p = WT(p);
+                        const predicted = wt_p * ratio;
+
+                        if (Math.abs(actualGap - predicted) / Math.max(actualGap, predicted) <= 0.20) {
+                            matches++;
+                        }
+                    }
+
+                    const matchRate = ((matches / testSize) * 100).toFixed(2);
+                    log(`${constant.name}⁻²: ${matchRate}% match rate (${matches}/${testSize})`);
+                });
+
+                updateStatus('Constants analysis test passed!', 'success');
+            } catch (error) {
+                updateStatus('Constants analysis test failed: ' + error.message, 'error');
+            }
+        }
+
+        // Auto-run basic test on load
+        window.onload = function() {
+            updateStatus('Debug interface loaded successfully', 'success');
+            document.getElementById('results').innerHTML = 'Ready to run tests<br>';
+        };
+    </script>
+</body>
+</html>

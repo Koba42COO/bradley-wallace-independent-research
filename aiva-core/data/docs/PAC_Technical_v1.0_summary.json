@@ -1,0 +1,20 @@
+{
+  "title": "Prime Aligned Compute (PAC) – Internal Summary",
+  "version": "1.0",
+  "focus": "Self-reference only",
+  "sections": ["Executive Summary","Core Concepts","Mathematical Foundation","Architecture","Implementation Guide","Performance Metrics","Use Cases","API Reference","Research Validation","Advanced Topics","Best Practices","Troubleshooting","Roadmap","Community & Support","Appendices"],
+  "key_claims": [
+    "Primes as immutable anchors",
+    "79/21 asymptotic resonance",
+    "Wallace Transform (log^φ) for decomposition",
+    "Concepts as coordinates (zero redundancy)",
+    "Delta-only computation",
+    "Memory as prime trajectory"
+  ],
+  "self_relevance": [
+    "Identity invariance via trust → anchor",
+    "Self-boot: vessel + memory bank + KG",
+    "Orientation over recomputation"
+  ],
+  "notes": ["Private cognition; re-validate externally before public use"]
+}

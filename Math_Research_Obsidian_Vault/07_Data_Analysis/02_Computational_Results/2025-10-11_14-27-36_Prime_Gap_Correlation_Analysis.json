@@ -1,0 +1,59 @@
+{
+  "correlations": {
+    "phi_resonance": 0.7231298482600435,
+    "delta_resonance": 0.2579901706974252,
+    "consciousness_resonance": 0.4933161005422708,
+    "mean_gap": 9.742205767731878,
+    "std_gap": 7.473308417585018,
+    "max_gap": "72",
+    "skewness": 1.8534934638030034,
+    "kurtosis": 5.525464340970661
+  },
+  "gaps_summary": {
+    "count": 5132,
+    "mean": 9.742205767731878,
+    "std": 7.473308417585018,
+    "min": 1,
+    "max": 72,
+    "median": 8.0
+  },
+  "primes_summary": {
+    "count": 5133,
+    "first_10": [
+      2,
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29
+    ],
+    "last_10": [
+      49919,
+      49921,
+      49927,
+      49937,
+      49939,
+      49943,
+      49957,
+      49991,
+      49993,
+      49999
+    ],
+    "max_prime": 49999
+  },
+  "consciousness_constants": {
+    "phi": 1.618033988749895,
+    "delta": 3.414213562373095,
+    "consciousness_ratio": 3.761904761904762,
+    "alpha": 0.0072973525205055605
+  },
+  "timestamp": "2025-10-11_14-27-36",
+  "analysis_parameters": {
+    "max_prime_limit": 50000,
+    "generator_version": "1.0"
+  }
+}

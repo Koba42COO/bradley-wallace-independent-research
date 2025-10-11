@@ -1,0 +1,146 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiva-ide-server
+  labels:
+    app: aiva-ide-server
+    component: wallace-research
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aiva-ide-server
+  template:
+    metadata:
+      labels:
+        app: aiva-ide-server
+        component: wallace-research
+    spec:
+      containers:
+      - name: aiva-ide-server
+        image: wallace-research/aiva-ide-server:latest
+        ports:
+        - containerPort: 3001
+          name: http
+        env:
+        - name: PORT
+          value: "3001"
+        - name: NODE_ENV
+          value: "production"
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: openai-secret
+              key: api-key
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 3001
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 3001
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: project-volume
+          mountPath: /app/project
+          readOnly: true
+        - name: logs-volume
+          mountPath: /app/logs
+      volumes:
+      - name: project-volume
+        configMap:
+          name: project-files
+      - name: logs-volume
+        emptyDir: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiva-ide-client
+  labels:
+    app: aiva-ide-client
+    component: wallace-research
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aiva-ide-client
+  template:
+    metadata:
+      labels:
+        app: aiva-ide-client
+        component: wallace-research
+    spec:
+      containers:
+      - name: aiva-ide-client
+        image: wallace-research/aiva-ide-client:latest
+        ports:
+        - containerPort: 3000
+          name: http
+        env:
+        - name: REACT_APP_API_URL
+          value: "http://aiva-ide-server-service:3001/api"
+        - name: REACT_APP_WS_URL
+          value: "ws://aiva-ide-server-service:3001"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aiva-ide-server-service
+  labels:
+    app: aiva-ide-server
+    component: wallace-research
+spec:
+  selector:
+    app: aiva-ide-server
+  ports:
+  - port: 3001
+    targetPort: 3001
+    protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aiva-ide-client-service
+  labels:
+    app: aiva-ide-client
+    component: wallace-research
+spec:
+  selector:
+    app: aiva-ide-client
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+  type: ClusterIP

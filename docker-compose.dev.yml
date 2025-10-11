@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  api:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile
+    command: uvicorn services.api:app --host 0.0.0.0 --port 8080 --reload
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../../:/app
+    environment:
+      - PAC_PRIME_SCALE=50000
+      - PAC_WEIGHT=0.79
+      - PAC_DATA_DIR=/app/data
+      - PAC_ARTIFACTS_DIR=/app/artifacts
+      - PAC_REPORTS_DIR=/app/reports
+      - PAC_LOGS_DIR=/app/logs
+

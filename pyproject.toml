@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pac-system"
+version = "0.1.0"
+description = "PAC + Dual Kernel + Countercode consciousness computing"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Koba42" }]
+dependencies = [
+  "numpy",
+  "pandas",
+  "scipy",
+  "matplotlib",
+  "mpmath",
+  "torch; platform_system != 'Darwin' or platform_machine != 'arm64'",
+  "seaborn",
+  "fastapi",
+  "uvicorn[standard]",
+  "pydantic>=2",
+  "prometheus-client",
+]
+
+[project.urls]
+Homepage = "https://github.com/koba42c00"
+
+[project.scripts]
+pacctl = "pac_system.cli:main"
+
+[tool.setuptools]
+packages = ["pac_system"]
+
+

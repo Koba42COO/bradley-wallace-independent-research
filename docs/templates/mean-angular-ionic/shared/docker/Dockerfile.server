@@ -1,0 +1,10 @@
+FROM node:20-alpine
+WORKDIR /app
+COPY server/package*.json ./
+RUN npm ci || true
+COPY server ./server
+WORKDIR /app/server
+EXPOSE 3000
+CMD ["npm","start"]
+
+

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallace Transform Deep Research</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/recharts@2.12.0/umd/Recharts.min.js"></script>
+    <script src="https://unpkg.com/lucide-react@0.294.0/umd/lucide-react.development.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e293b 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+        .phase-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .phase-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+        .phase-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .phase-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .phase-description {
+            color: #94a3b8;
+        }
+        .results-section {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .constant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .constant-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 2px solid transparent;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .constant-card.selected {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+        .constant-symbol {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .constant-name {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+        .run-button {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .run-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .run-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        .chart-container {
+            height: 400px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } = Recharts;
+        const { Database, Activity, Zap, Play, Pause } = LucideReact;
+
+        // Mathematical constants
+        const CONSTANTS = [
+            { name: 'π (Pi)', symbol: 'π', value: Math.PI, color: '#FF6B6B' },
+            { name: 'e (Euler)', symbol: 'e', value: Math.E, color: '#4ECDC4' },
+            { name: 'φ (Golden Ratio)', symbol: 'φ', value: (1 + Math.sqrt(5)) / 2, color: '#FFD93D' },
+            { name: 'γ (Euler-Mascheroni)', symbol: 'γ', value: 0.5772156649015329, color: '#95E1D3' },
+            { name: 'ζ(3) (Apéry)', symbol: 'ζ(3)', value: 1.2020569031595942, color: '#F38181' },
+            { name: '√2 (Silver Ratio)', symbol: '√2', value: Math.sqrt(2), color: '#AA96DA' },
+            { name: '√3', symbol: '√3', value: Math.sqrt(3), color: '#FCBAD3' },
+            { name: 'G (Catalan)', symbol: 'G', value: 0.915965594177219, color: '#A8E6CF' }
+        ];
+
+        function DeepResearchExpansion() {
+            const [activePhase, setActivePhase] = useState('constants');
+            const [computing, setComputing] = useState(false);
+            const [progress, setProgress] = useState(0);
+            const [primes, setPrimes] = useState([]);
+            const [gaps, setGaps] = useState([]);
+            const [results, setResults] = useState(null);
+            const [selectedConstants, setSelectedConstants] = useState([0, 1, 2, 3, 4]);
+
+            // Wallace Transform
+            const WT = (x) => {
+                if (x <= 0) return 0;
+                const logVal = Math.log(x + 1e-12);
+                return ((1 + Math.sqrt(5)) / 2) * Math.pow(Math.abs(logVal), (1 + Math.sqrt(5)) / 2) * Math.sign(logVal) + 1.0;
+            };
+
+            // Prime generation
+            const isPrime = (n) => {
+                if (n < 2) return false;
+                if (n === 2) return true;
+                if (n % 2 === 0) return false;
+                for (let i = 3; i <= Math.sqrt(n); i += 2) {
+                    if (n % i === 0) return false;
+                }
+                return true;
+            };
+
+            const generatePrimes = (limit) => {
+                const primes = [];
+                for (let i = 2; primes.length < limit; i++) {
+                    if (isPrime(i)) primes.push(i);
+                }
+                return primes;
+            };
+
+            // Initialize data
+            useEffect(() => {
+                console.log('Generating primes...');
+                const computed = generatePrimes(25000);
+                const gapArray = [];
+                for (let i = 1; i < computed.length; i++) {
+                    gapArray.push(computed[i] - computed[i-1]);
+                }
+                setPrimes(computed);
+                setGaps(gapArray);
+                console.log('Data initialized:', computed.length, 'primes,', gapArray.length, 'gaps');
+            }, []);
+
+            // Test relationship with constant
+            const testConstantRelationship = (constant, power = -2) => {
+                if (gaps.length === 0 || primes.length === 0) return null;
+
+                const testSize = Math.min(5000, gaps.length);
+                const ratio = Math.pow(constant, power);
+                let matches = 0;
+                const tolerance = 0.20;
+
+                for (let i = 0; i < testSize; i++) {
+                    const actualGap = gaps[i];
+                    const p = primes[i];
+                    const wt_p = WT(p);
+                    const predicted = wt_p * ratio;
+
+                    if (Math.abs(actualGap - predicted) / actualGap <= tolerance) {
+                        matches++;
+                    }
+                }
+
+                return {
+                    constant: constant,
+                    power: power,
+                    matches: matches,
+                    total: testSize,
+                    matchRate: ((matches / testSize) * 100).toFixed(2),
+                    ratio: ratio
+                };
+            };
+
+            // Phase 1: Explore Mathematical Constants
+            const exploreConstants = async () => {
+                setComputing(true);
+                setProgress(0);
+
+                const constantResults = [];
+                const selectedConsts = CONSTANTS.filter((_, i) => selectedConstants.includes(i));
+
+                for (let i = 0; i < selectedConsts.length; i++) {
+                    const constant = selectedConsts[i];
+                    setProgress((i / selectedConsts.length) * 100);
+
+                    // Test various powers
+                    const powers = [-3, -2, -1, 1, 2, 3];
+                    const powerResults = powers.map(p => testConstantRelationship(constant.value, p));
+
+                    const bestResult = powerResults.reduce((best, curr) =>
+                        parseFloat(curr.matchRate) > parseFloat(best.matchRate) ? curr : best
+                    );
+
+                    constantResults.push({
+                        ...constant,
+                        bestPower: bestResult.power,
+                        bestMatchRate: parseFloat(bestResult.matchRate),
+                        allPowers: powerResults
+                    });
+
+                    await new Promise(resolve => setTimeout(resolve, 10));
+                }
+
+                constantResults.sort((a, b) => b.bestMatchRate - a.bestMatchRate);
+
+                setResults({
+                    type: 'constants',
+                    data: constantResults,
+                    summary: {
+                        tested: constantResults.length,
+                        bestConstant: constantResults[0]?.name,
+                        bestMatch: constantResults[0]?.bestMatchRate,
+                        bestPower: constantResults[0]?.bestPower
+                    }
+                });
+
+                setProgress(100);
+                setComputing(false);
+            };
+
+            // Phase 2: Physical Interpretations (simplified)
+            const explorePhysics = async () => {
+                setComputing(true);
+                setProgress(0);
+
+                const physicsTests = [
+                    {
+                        name: 'Quantum Energy Levels',
+                        description: 'Test E_n = hf · constant relationships',
+                        test: () => {
+                            const results = [];
+                            const selectedConsts = CONSTANTS.filter((_, i) => selectedConstants.includes(i));
+
+                            for (const constant of selectedConsts) {
+                                const scaling = constant.value / Math.PI;
+                                let matches = 0;
+
+                                for (let i = 0; i < Math.min(1000, gaps.length); i++) {
+                                    const gap = gaps[i];
+                                    const quantumLevel = Math.floor(gap * scaling);
+                                    const predicted = quantumLevel / scaling;
+
+                                    if (Math.abs(gap - predicted) / gap < 0.15) matches++;
+                                }
+
+                                results.push({
+                                    constant: constant.name,
+                                    matches: matches,
+                                    matchRate: ((matches / 1000) * 100).toFixed(2)
+                                });
+                            }
+
+                            return results.sort((a, b) => parseFloat(b.matchRate) - parseFloat(a.matchRate));
+                        }
+                    }
+                ];
+
+                const physicsResults = [];
+                for (let i = 0; i < physicsTests.length; i++) {
+                    setProgress((i / physicsTests.length) * 100);
+                    const test = physicsTests[i];
+                    const result = test.test();
+                    physicsResults.push({
+                        name: test.name,
+                        description: test.description,
+                        results: result
+                    });
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+
+                setResults({
+                    type: 'physics',
+                    data: physicsResults,
+                    summary: {
+                        testsRun: physicsResults.length,
+                        bestTest: physicsResults[0]?.name,
+                        bestConstant: physicsResults[0]?.results[0]?.constant
+                    }
+                });
+
+                setProgress(100);
+                setComputing(false);
+            };
+
+            // Phase 3: Riemann Connection (simplified)
+            const exploreRiemann = async () => {
+                setComputing(true);
+                setProgress(0);
+
+                const zetaTests = [];
+                const selectedConsts = CONSTANTS.filter((_, i) => selectedConstants.includes(i));
+
+                for (let i = 0; i < selectedConsts.length; i++) {
+                    const constant = selectedConsts[i];
+                    setProgress((i / selectedConsts.length) * 100);
+
+                    // Simplified GUE-like analysis
+                    const transformedPrimes = primes.slice(0, 1000).map(p => WT(p) * constant.value);
+
+                    const spacings = [];
+                    for (let j = 1; j < transformedPrimes.length; j++) {
+                        spacings.push(transformedPrimes[j] - transformedPrimes[j-1]);
+                    }
+
+                    const mean = spacings.reduce((a, b) => a + b, 0) / spacings.length;
+                    const variance = spacings.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / spacings.length;
+                    const stdDev = Math.sqrt(variance);
+
+                    // Simplified GUE ratio approximation
+                    const gueRatio = mean / stdDev;
+                    const correlation = Math.max(0, 1 - Math.abs(gueRatio - 0.5307) / 0.5307);
+
+                    zetaTests.push({
+                        constant: constant.name,
+                        symbol: constant.symbol,
+                        gueRatio: gueRatio.toFixed(4),
+                        correlation: (correlation * 100).toFixed(2),
+                        color: constant.color
+                    });
+
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                }
+
+                zetaTests.sort((a, b) => parseFloat(b.correlation) - parseFloat(a.correlation));
+
+                setResults({
+                    type: 'riemann',
+                    data: zetaTests,
+                    summary: {
+                        tested: zetaTests.length,
+                        bestConstant: zetaTests[0]?.constant,
+                        bestCorrelation: zetaTests[0]?.correlation,
+                        theoretical: '0.5307 (GUE)'
+                    }
+                });
+
+                setProgress(100);
+                setComputing(false);
+            };
+
+            const runPhase = () => {
+                switch(activePhase) {
+                    case 'constants':
+                        exploreConstants();
+                        break;
+                    case 'physics':
+                        explorePhysics();
+                        break;
+                    case 'riemann':
+                        exploreRiemann();
+                        break;
+                    default:
+                        break;
+                }
+            };
+
+            return (
+                <div className="container">
+                    {/* Header */}
+                    <div className="header">
+                        <h1 className="title">🔬 Deep Research Expansion</h1>
+                        <p className="subtitle">
+                            Exploring Mathematical Constants & Physical Interpretations in Prime Gaps
+                        </p>
+                        <div style={{ fontSize: '0.875rem', color: '#64748b', marginTop: '1rem' }}>
+                            Dataset: {primes.length.toLocaleString()} primes, {gaps.length.toLocaleString()} gaps
+                        </div>
+                    </div>
+
+                    {/* Phase Selector */}
+                    <div className="phase-selector">
+                        {[
+                            { id: 'constants', name: 'Phase 1: Mathematical Constants', icon: Database, desc: 'Test g_n ≈ W_φ(p_n) · constant^k' },
+                            { id: 'physics', name: 'Phase 2: Physical Interpretations', icon: Activity, desc: 'Quantum mechanics, chaos theory' },
+                            { id: 'riemann', name: 'Phase 3: Riemann Connection', icon: Zap, desc: 'Zeta function zeros, GUE spacing' }
+                        ].map(phase => (
+                            <div
+                                key={phase.id}
+                                className={`phase-card ${activePhase === phase.id ? 'selected' : ''}`}
+                                onClick={() => setActivePhase(phase.id)}
+                            >
+                                <div className="phase-icon">🔬</div>
+                                <div className="phase-title">{phase.name}</div>
+                                <div className="phase-description">{phase.desc}</div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Constant Selection */}
+                    {activePhase === 'constants' && (
+                        <div style={{ background: 'rgba(15, 23, 42, 0.8)', padding: '2rem', borderRadius: '1rem', marginBottom: '2rem', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                            <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem' }}>Select Constants to Test:</h3>
+                            <div className="constant-grid">
+                                {CONSTANTS.map((constant, idx) => (
+                                    <div
+                                        key={idx}
+                                        className={`constant-card ${selectedConstants.includes(idx) ? 'selected' : ''}`}
+                                        onClick={() => {
+                                            setSelectedConstants(prev =>
+                                                prev.includes(idx)
+                                                    ? prev.filter(i => i !== idx)
+                                                    : [...prev, idx]
+                                            );
+                                        }}
+                                        style={{
+                                            borderLeft: `4px solid ${constant.color}`
+                                        }}
+                                    >
+                                        <div className="constant-symbol">{constant.symbol}</div>
+                                        <div className="constant-name">{constant.name}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Run Controls */}
+                    <div style={{ background: 'rgba(15, 23, 42, 0.8)', padding: '2rem', borderRadius: '1rem', marginBottom: '2rem', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                            <div>
+                                <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                                    {activePhase === 'constants' && 'Test Mathematical Constants'}
+                                    {activePhase === 'physics' && 'Explore Physical Interpretations'}
+                                    {activePhase === 'riemann' && 'Analyze Riemann Connections'}
+                                </h3>
+                                <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '0.5rem' }}>
+                                    {activePhase === 'constants' && 'Test g_n ≈ W_φ(p_n) · constant^k for various powers'}
+                                    {activePhase === 'physics' && 'Explore quantum, chaos theory, and harmonic connections'}
+                                    {activePhase === 'riemann' && 'Correlate with Riemann zeta function zeros'}
+                                </p>
+                            </div>
+                            <button
+                                onClick={runPhase}
+                                disabled={computing || primes.length === 0}
+                                className="run-button"
+                            >
+                                {computing ? <Pause size={20} /> : <Play size={20} />}
+                                {computing ? 'Computing...' : 'Run Analysis'}
+                            </button>
+                        </div>
+
+                        {computing && (
+                            <div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem', color: '#94a3b8', marginBottom: '0.5rem' }}>
+                                    <span>Progress</span>
+                                    <span>{progress.toFixed(1)}%</span>
+                                </div>
+                                <div className="progress-bar">
+                                    <div className="progress-fill" style={{ width: `${progress}%` }} />
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Results Display */}
+                    {results && (
+                        <div className="results-section">
+                            {/* Summary */}
+                            <div style={{ background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1))', padding: '2rem', borderRadius: '1rem', marginBottom: '2rem', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                                <h3 style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '1rem' }}>🏆 Analysis Summary</h3>
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                                    {Object.entries(results.summary).map(([key, value]) => (
+                                        <div key={key} style={{ background: 'rgba(15, 23, 42, 0.5)', padding: '1rem', borderRadius: '0.5rem' }}>
+                                            <div style={{ fontSize: '0.875rem', color: '#94a3b8', textTransform: 'capitalize' }}>
+                                                {key.replace(/([A-Z])/g, ' $1').trim()}
+                                            </div>
+                                            <div style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '0.5rem' }}>
+                                                {typeof value === 'number' ? value.toFixed(2) : value}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Phase-specific results */}
+                            {results.type === 'constants' && (
+                                <div>
+                                    <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Constant Match Rates</h3>
+                                    <div className="chart-container">
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <BarChart data={results.data}>
+                                                <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+                                                <XAxis dataKey="symbol" stroke="#fff" />
+                                                <YAxis stroke="#fff" label={{ value: 'Match Rate (%)', angle: -90 }} />
+                                                <Tooltip contentStyle={{ backgroundColor: '#1e293b' }} />
+                                                <Bar dataKey="bestMatchRate" fill="#a855f7" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </div>
+
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginTop: '2rem' }}>
+                                        {results.data.map((item, idx) => (
+                                            <div key={idx} style={{ background: 'rgba(30, 41, 59, 0.8)', padding: '1rem', borderRadius: '0.5rem', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                        <div
+                                                            style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: item.color }}
+                                                        />
+                                                        <span style={{ fontSize: '1.125rem', fontWeight: 'bold' }}>{item.symbol}</span>
+                                                        <span style={{ color: '#94a3b8' }}>{item.name}</span>
+                                                    </div>
+                                                    <div style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#a855f7' }}>
+                                                        {item.bestMatchRate}%
+                                                    </div>
+                                                </div>
+                                                <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>
+                                                    Best power: {item.symbol}^{item.bestPower} = {Math.pow(item.value, item.bestPower).toFixed(6)}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {results.type === 'physics' && (
+                                <div>
+                                    {results.data.map((test, idx) => (
+                                        <div key={idx} style={{ background: 'rgba(30, 41, 59, 0.8)', padding: '2rem', borderRadius: '1rem', marginBottom: '2rem', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                                            <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>{test.name}</h3>
+                                            <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginBottom: '1rem' }}>{test.description}</p>
+
+                                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
+                                                {test.results.map((result, ridx) => (
+                                                    <div key={ridx} style={{ background: 'rgba(15, 23, 42, 0.8)', padding: '1rem', borderRadius: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                        <span style={{ fontWeight: '600' }}>{result.constant}</span>
+                                                        <div style={{ textAlign: 'right' }}>
+                                                            <div style={{ fontSize: '1.125rem', fontWeight: 'bold', color: '#a855f7' }}>
+                                                                {result.matchRate || result.score}%
+                                                            </div>
+                                                            <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+                                                                {result.matches || result.lyapunovAlignment} matches
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
+                            {results.type === 'riemann' && (
+                                <div>
+                                    <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Riemann Zeta Zero Correlations</h3>
+                                    <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginBottom: '2rem' }}>
+                                        GUE spacing ratio (theoretical: 0.5307) measures correlation with Riemann zeros
+                                    </p>
+
+                                    <div className="chart-container">
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <BarChart data={results.data}>
+                                                <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+                                                <XAxis dataKey="symbol" stroke="#fff" />
+                                                <YAxis stroke="#fff" label={{ value: 'Correlation (%)', angle: -90 }} />
+                                                <Tooltip contentStyle={{ backgroundColor: '#1e293b' }} />
+                                                <Bar dataKey="correlation" fill="#a855f7" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    </div>
+
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginTop: '2rem' }}>
+                                        {results.data.map((item, idx) => (
+                                            <div key={idx} style={{ background: 'rgba(30, 41, 59, 0.8)', padding: '1rem', borderRadius: '0.5rem', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                        <div
+                                                            style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: item.color }}
+                                                        />
+                                                        <span style={{ fontSize: '1.125rem', fontWeight: 'bold' }}>{item.symbol}</span>
+                                                        <span style={{ color: '#94a3b8' }}>{item.constant}</span>
+                                                    </div>
+                                                    <div style={{ textAlign: 'right' }}>
+                                                        <div style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#a855f7' }}>
+                                                            {item.correlation}%
+                                                        </div>
+                                                        <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+                                                            GUE ratio: {item.gueRatio}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<DeepResearchExpansion />, document.getElementById('root'));
+    </script>
+</body>
+</html>

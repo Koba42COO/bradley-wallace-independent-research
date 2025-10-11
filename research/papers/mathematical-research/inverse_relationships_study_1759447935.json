@@ -1,0 +1,986 @@
+{
+  "metadata": {
+    "total_primes": 148933,
+    "total_gaps": 148932,
+    "timestamp": 1759447935.1852758
+  },
+  "extended_phi_results": {
+    "direct_k-5": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-5",
+      "phi_k": 0.09016994374947422,
+      "matches": 28117,
+      "percent": 18.879085757258345
+    },
+    "direct_k-4": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-4",
+      "phi_k": 0.14589803375031543,
+      "matches": 27495,
+      "percent": 18.461445491902346
+    },
+    "direct_k-3": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-3",
+      "phi_k": 0.23606797749978967,
+      "matches": 20670,
+      "percent": 13.878817178309562
+    },
+    "direct_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-2",
+      "phi_k": 0.38196601125010515,
+      "matches": 7308,
+      "percent": 4.906937394247039
+    },
+    "direct_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-1",
+      "phi_k": 0.6180339887498948,
+      "matches": 1168,
+      "percent": 0.7842505304434237
+    },
+    "direct_k0": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^0",
+      "phi_k": 1.0,
+      "matches": 43,
+      "percent": 0.028872236994064403
+    },
+    "direct_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^1",
+      "phi_k": 1.618033988749895,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "direct_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^2",
+      "phi_k": 2.618033988749895,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "direct_k3": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^3",
+      "phi_k": 4.23606797749979,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "direct_k4": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^4",
+      "phi_k": 6.854101966249686,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "direct_k5": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^5",
+      "phi_k": 11.090169943749476,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "direct_k6": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^6",
+      "phi_k": 17.944271909999163,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "inverse_k-5": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^-5",
+      "phi_k": 0.09016994374947422,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "inverse_k-4": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^-4",
+      "phi_k": 0.14589803375031543,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "inverse_k-3": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^-3",
+      "phi_k": 0.23606797749978967,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "inverse_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^-2",
+      "phi_k": 0.38196601125010515,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "inverse_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^-1",
+      "phi_k": 0.6180339887498948,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "inverse_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^1",
+      "phi_k": 1.618033988749895,
+      "matches": 1168,
+      "percent": 0.7842505304434237
+    },
+    "inverse_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^2",
+      "phi_k": 2.618033988749895,
+      "matches": 7308,
+      "percent": 4.906937394247039
+    },
+    "inverse_k3": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^3",
+      "phi_k": 4.23606797749979,
+      "matches": 20670,
+      "percent": 13.878817178309562
+    },
+    "inverse_k4": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^4",
+      "phi_k": 6.854101966249686,
+      "matches": 27495,
+      "percent": 18.461445491902346
+    },
+    "inverse_k5": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^5",
+      "phi_k": 11.090169943749476,
+      "matches": 28117,
+      "percent": 18.879085757258345
+    },
+    "inverse_k6": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^6",
+      "phi_k": 17.944271909999163,
+      "matches": 28327,
+      "percent": 19.020089705368893
+    },
+    "combined_a-2_b-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-2 / \u03c6^-1",
+      "phi_a": 0.38196601125010515,
+      "phi_b": 0.6180339887498948,
+      "matches": 1168,
+      "percent": 0.7842505304434237
+    },
+    "combined_a-2_b1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-2 / \u03c6^1",
+      "phi_a": 0.38196601125010515,
+      "phi_b": 1.618033988749895,
+      "matches": 20670,
+      "percent": 13.878817178309562
+    },
+    "combined_a-2_b2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-2 / \u03c6^2",
+      "phi_a": 0.38196601125010515,
+      "phi_b": 2.618033988749895,
+      "matches": 27495,
+      "percent": 18.461445491902346
+    },
+    "combined_a-1_b-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-1 / \u03c6^-2",
+      "phi_a": 0.6180339887498948,
+      "phi_b": 0.38196601125010515,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "combined_a-1_b1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-1 / \u03c6^1",
+      "phi_a": 0.6180339887498948,
+      "phi_b": 1.618033988749895,
+      "matches": 7308,
+      "percent": 4.906937394247039
+    },
+    "combined_a-1_b2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-1 / \u03c6^2",
+      "phi_a": 0.6180339887498948,
+      "phi_b": 2.618033988749895,
+      "matches": 20670,
+      "percent": 13.878817178309562
+    },
+    "combined_a1_b-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^1 / \u03c6^-2",
+      "phi_a": 1.618033988749895,
+      "phi_b": 0.38196601125010515,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "combined_a1_b-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^1 / \u03c6^-1",
+      "phi_a": 1.618033988749895,
+      "phi_b": 0.6180339887498948,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "combined_a1_b2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^1 / \u03c6^2",
+      "phi_a": 1.618033988749895,
+      "phi_b": 2.618033988749895,
+      "matches": 1168,
+      "percent": 0.7842505304434237
+    },
+    "combined_a2_b-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^2 / \u03c6^-2",
+      "phi_a": 2.618033988749895,
+      "phi_b": 0.38196601125010515,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "combined_a2_b-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^2 / \u03c6^-1",
+      "phi_a": 2.618033988749895,
+      "phi_b": 0.6180339887498948,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "combined_a2_b1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^2 / \u03c6^1",
+      "phi_a": 2.618033988749895,
+      "phi_b": 1.618033988749895,
+      "matches": 0,
+      "percent": 0.0
+    }
+  },
+  "alternative_base_results": {
+    "sqrt2_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt2^-2",
+      "base_value": 1.4142135623730951,
+      "base_k": 0.49999999999999994,
+      "matches": 2945,
+      "percent": 1.9774125104074343
+    },
+    "sqrt2_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt2^-1",
+      "base_value": 1.4142135623730951,
+      "base_k": 0.7071067811865475,
+      "matches": 566,
+      "percent": 0.3800392125265222
+    },
+    "sqrt2_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt2^1",
+      "base_value": 1.4142135623730951,
+      "base_k": 1.4142135623730951,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "sqrt2_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt2^2",
+      "base_value": 1.4142135623730951,
+      "base_k": 2.0000000000000004,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "e_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 e^-2",
+      "base_value": 2.718281828459045,
+      "base_k": 0.1353352832366127,
+      "matches": 28593,
+      "percent": 19.19869470630892
+    },
+    "e_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 e^-1",
+      "base_value": 2.718281828459045,
+      "base_k": 0.36787944117144233,
+      "matches": 8224,
+      "percent": 5.521983186957806
+    },
+    "e_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 e^1",
+      "base_value": 2.718281828459045,
+      "base_k": 2.718281828459045,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "e_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 e^2",
+      "base_value": 2.718281828459045,
+      "base_k": 7.3890560989306495,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "pi_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 pi^-2",
+      "base_value": 3.141592653589793,
+      "base_k": 0.10132118364233778,
+      "matches": 32827,
+      "percent": 22.04160287916633
+    },
+    "pi_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 pi^-1",
+      "base_value": 3.141592653589793,
+      "base_k": 0.3183098861837907,
+      "matches": 11804,
+      "percent": 7.925764778556657
+    },
+    "pi_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 pi^1",
+      "base_value": 3.141592653589793,
+      "base_k": 3.141592653589793,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "pi_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 pi^2",
+      "base_value": 3.141592653589793,
+      "base_k": 9.869604401089358,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "golden_conjugate_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 golden_conjugate^-2",
+      "base_value": 0.6180339887498948,
+      "base_k": 2.6180339887498953,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "golden_conjugate_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 golden_conjugate^-1",
+      "base_value": 0.6180339887498948,
+      "base_k": 1.618033988749895,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "golden_conjugate_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 golden_conjugate^1",
+      "base_value": 0.6180339887498948,
+      "base_k": 0.6180339887498948,
+      "matches": 1168,
+      "percent": 0.7842505304434237
+    },
+    "golden_conjugate_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 golden_conjugate^2",
+      "base_value": 0.6180339887498948,
+      "base_k": 0.3819660112501051,
+      "matches": 7308,
+      "percent": 4.906937394247039
+    },
+    "sqrt3_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt3^-2",
+      "base_value": 1.7320508075688772,
+      "base_k": 0.33333333333333337,
+      "matches": 10486,
+      "percent": 7.040797142319985
+    },
+    "sqrt3_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt3^-1",
+      "base_value": 1.7320508075688772,
+      "base_k": 0.5773502691896258,
+      "matches": 1619,
+      "percent": 1.0870732951951225
+    },
+    "sqrt3_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt3^1",
+      "base_value": 1.7320508075688772,
+      "base_k": 1.7320508075688772,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "sqrt3_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt3^2",
+      "base_value": 1.7320508075688772,
+      "base_k": 2.9999999999999996,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "euler_gamma_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 euler_gamma^-2",
+      "base_value": 0.5772156649015329,
+      "base_k": 3.001399338141962,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "euler_gamma_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 euler_gamma^-1",
+      "base_value": 0.5772156649015329,
+      "base_k": 1.7324547146006335,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "euler_gamma_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 euler_gamma^1",
+      "base_value": 0.5772156649015329,
+      "base_k": 0.5772156649015329,
+      "matches": 1621,
+      "percent": 1.0884161899390326
+    },
+    "euler_gamma_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 euler_gamma^2",
+      "base_value": 0.5772156649015329,
+      "base_k": 0.33317792380771866,
+      "matches": 10497,
+      "percent": 7.048183063411489
+    }
+  },
+  "all_results": {
+    "direct_k-5": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-5",
+      "phi_k": 0.09016994374947422,
+      "matches": 28117,
+      "percent": 18.879085757258345
+    },
+    "direct_k-4": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-4",
+      "phi_k": 0.14589803375031543,
+      "matches": 27495,
+      "percent": 18.461445491902346
+    },
+    "direct_k-3": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-3",
+      "phi_k": 0.23606797749978967,
+      "matches": 20670,
+      "percent": 13.878817178309562
+    },
+    "direct_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-2",
+      "phi_k": 0.38196601125010515,
+      "matches": 7308,
+      "percent": 4.906937394247039
+    },
+    "direct_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-1",
+      "phi_k": 0.6180339887498948,
+      "matches": 1168,
+      "percent": 0.7842505304434237
+    },
+    "direct_k0": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^0",
+      "phi_k": 1.0,
+      "matches": 43,
+      "percent": 0.028872236994064403
+    },
+    "direct_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^1",
+      "phi_k": 1.618033988749895,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "direct_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^2",
+      "phi_k": 2.618033988749895,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "direct_k3": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^3",
+      "phi_k": 4.23606797749979,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "direct_k4": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^4",
+      "phi_k": 6.854101966249686,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "direct_k5": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^5",
+      "phi_k": 11.090169943749476,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "direct_k6": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^6",
+      "phi_k": 17.944271909999163,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "inverse_k-5": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^-5",
+      "phi_k": 0.09016994374947422,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "inverse_k-4": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^-4",
+      "phi_k": 0.14589803375031543,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "inverse_k-3": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^-3",
+      "phi_k": 0.23606797749978967,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "inverse_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^-2",
+      "phi_k": 0.38196601125010515,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "inverse_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^-1",
+      "phi_k": 0.6180339887498948,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "inverse_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^1",
+      "phi_k": 1.618033988749895,
+      "matches": 1168,
+      "percent": 0.7842505304434237
+    },
+    "inverse_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^2",
+      "phi_k": 2.618033988749895,
+      "matches": 7308,
+      "percent": 4.906937394247039
+    },
+    "inverse_k3": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^3",
+      "phi_k": 4.23606797749979,
+      "matches": 20670,
+      "percent": 13.878817178309562
+    },
+    "inverse_k4": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^4",
+      "phi_k": 6.854101966249686,
+      "matches": 27495,
+      "percent": 18.461445491902346
+    },
+    "inverse_k5": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^5",
+      "phi_k": 11.090169943749476,
+      "matches": 28117,
+      "percent": 18.879085757258345
+    },
+    "inverse_k6": {
+      "relationship": "g_n = W_\u03c6(p_n) / \u03c6^6",
+      "phi_k": 17.944271909999163,
+      "matches": 28327,
+      "percent": 19.020089705368893
+    },
+    "combined_a-2_b-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-2 / \u03c6^-1",
+      "phi_a": 0.38196601125010515,
+      "phi_b": 0.6180339887498948,
+      "matches": 1168,
+      "percent": 0.7842505304434237
+    },
+    "combined_a-2_b1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-2 / \u03c6^1",
+      "phi_a": 0.38196601125010515,
+      "phi_b": 1.618033988749895,
+      "matches": 20670,
+      "percent": 13.878817178309562
+    },
+    "combined_a-2_b2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-2 / \u03c6^2",
+      "phi_a": 0.38196601125010515,
+      "phi_b": 2.618033988749895,
+      "matches": 27495,
+      "percent": 18.461445491902346
+    },
+    "combined_a-1_b-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-1 / \u03c6^-2",
+      "phi_a": 0.6180339887498948,
+      "phi_b": 0.38196601125010515,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "combined_a-1_b1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-1 / \u03c6^1",
+      "phi_a": 0.6180339887498948,
+      "phi_b": 1.618033988749895,
+      "matches": 7308,
+      "percent": 4.906937394247039
+    },
+    "combined_a-1_b2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-1 / \u03c6^2",
+      "phi_a": 0.6180339887498948,
+      "phi_b": 2.618033988749895,
+      "matches": 20670,
+      "percent": 13.878817178309562
+    },
+    "combined_a1_b-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^1 / \u03c6^-2",
+      "phi_a": 1.618033988749895,
+      "phi_b": 0.38196601125010515,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "combined_a1_b-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^1 / \u03c6^-1",
+      "phi_a": 1.618033988749895,
+      "phi_b": 0.6180339887498948,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "combined_a1_b2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^1 / \u03c6^2",
+      "phi_a": 1.618033988749895,
+      "phi_b": 2.618033988749895,
+      "matches": 1168,
+      "percent": 0.7842505304434237
+    },
+    "combined_a2_b-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^2 / \u03c6^-2",
+      "phi_a": 2.618033988749895,
+      "phi_b": 0.38196601125010515,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "combined_a2_b-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^2 / \u03c6^-1",
+      "phi_a": 2.618033988749895,
+      "phi_b": 0.6180339887498948,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "combined_a2_b1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^2 / \u03c6^1",
+      "phi_a": 2.618033988749895,
+      "phi_b": 1.618033988749895,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "sqrt2_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt2^-2",
+      "base_value": 1.4142135623730951,
+      "base_k": 0.49999999999999994,
+      "matches": 2945,
+      "percent": 1.9774125104074343
+    },
+    "sqrt2_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt2^-1",
+      "base_value": 1.4142135623730951,
+      "base_k": 0.7071067811865475,
+      "matches": 566,
+      "percent": 0.3800392125265222
+    },
+    "sqrt2_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt2^1",
+      "base_value": 1.4142135623730951,
+      "base_k": 1.4142135623730951,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "sqrt2_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt2^2",
+      "base_value": 1.4142135623730951,
+      "base_k": 2.0000000000000004,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "e_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 e^-2",
+      "base_value": 2.718281828459045,
+      "base_k": 0.1353352832366127,
+      "matches": 28593,
+      "percent": 19.19869470630892
+    },
+    "e_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 e^-1",
+      "base_value": 2.718281828459045,
+      "base_k": 0.36787944117144233,
+      "matches": 8224,
+      "percent": 5.521983186957806
+    },
+    "e_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 e^1",
+      "base_value": 2.718281828459045,
+      "base_k": 2.718281828459045,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "e_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 e^2",
+      "base_value": 2.718281828459045,
+      "base_k": 7.3890560989306495,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "pi_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 pi^-2",
+      "base_value": 3.141592653589793,
+      "base_k": 0.10132118364233778,
+      "matches": 32827,
+      "percent": 22.04160287916633
+    },
+    "pi_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 pi^-1",
+      "base_value": 3.141592653589793,
+      "base_k": 0.3183098861837907,
+      "matches": 11804,
+      "percent": 7.925764778556657
+    },
+    "pi_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 pi^1",
+      "base_value": 3.141592653589793,
+      "base_k": 3.141592653589793,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "pi_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 pi^2",
+      "base_value": 3.141592653589793,
+      "base_k": 9.869604401089358,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "golden_conjugate_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 golden_conjugate^-2",
+      "base_value": 0.6180339887498948,
+      "base_k": 2.6180339887498953,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "golden_conjugate_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 golden_conjugate^-1",
+      "base_value": 0.6180339887498948,
+      "base_k": 1.618033988749895,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "golden_conjugate_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 golden_conjugate^1",
+      "base_value": 0.6180339887498948,
+      "base_k": 0.6180339887498948,
+      "matches": 1168,
+      "percent": 0.7842505304434237
+    },
+    "golden_conjugate_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 golden_conjugate^2",
+      "base_value": 0.6180339887498948,
+      "base_k": 0.3819660112501051,
+      "matches": 7308,
+      "percent": 4.906937394247039
+    },
+    "sqrt3_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt3^-2",
+      "base_value": 1.7320508075688772,
+      "base_k": 0.33333333333333337,
+      "matches": 10486,
+      "percent": 7.040797142319985
+    },
+    "sqrt3_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt3^-1",
+      "base_value": 1.7320508075688772,
+      "base_k": 0.5773502691896258,
+      "matches": 1619,
+      "percent": 1.0870732951951225
+    },
+    "sqrt3_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt3^1",
+      "base_value": 1.7320508075688772,
+      "base_k": 1.7320508075688772,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "sqrt3_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt3^2",
+      "base_value": 1.7320508075688772,
+      "base_k": 2.9999999999999996,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "euler_gamma_k-2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 euler_gamma^-2",
+      "base_value": 0.5772156649015329,
+      "base_k": 3.001399338141962,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "euler_gamma_k-1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 euler_gamma^-1",
+      "base_value": 0.5772156649015329,
+      "base_k": 1.7324547146006335,
+      "matches": 0,
+      "percent": 0.0
+    },
+    "euler_gamma_k1": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 euler_gamma^1",
+      "base_value": 0.5772156649015329,
+      "base_k": 0.5772156649015329,
+      "matches": 1621,
+      "percent": 1.0884161899390326
+    },
+    "euler_gamma_k2": {
+      "relationship": "g_n = W_\u03c6(p_n) \u00b7 euler_gamma^2",
+      "base_value": 0.5772156649015329,
+      "base_k": 0.33317792380771866,
+      "matches": 10497,
+      "percent": 7.048183063411489
+    }
+  },
+  "top_relationships": [
+    [
+      "pi_k-2",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 pi^-2",
+        "base_value": 3.141592653589793,
+        "base_k": 0.10132118364233778,
+        "matches": 32827,
+        "percent": 22.04160287916633
+      }
+    ],
+    [
+      "e_k-2",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 e^-2",
+        "base_value": 2.718281828459045,
+        "base_k": 0.1353352832366127,
+        "matches": 28593,
+        "percent": 19.19869470630892
+      }
+    ],
+    [
+      "inverse_k6",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) / \u03c6^6",
+        "phi_k": 17.944271909999163,
+        "matches": 28327,
+        "percent": 19.020089705368893
+      }
+    ],
+    [
+      "direct_k-5",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-5",
+        "phi_k": 0.09016994374947422,
+        "matches": 28117,
+        "percent": 18.879085757258345
+      }
+    ],
+    [
+      "inverse_k5",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) / \u03c6^5",
+        "phi_k": 11.090169943749476,
+        "matches": 28117,
+        "percent": 18.879085757258345
+      }
+    ],
+    [
+      "direct_k-4",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-4",
+        "phi_k": 0.14589803375031543,
+        "matches": 27495,
+        "percent": 18.461445491902346
+      }
+    ],
+    [
+      "inverse_k4",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) / \u03c6^4",
+        "phi_k": 6.854101966249686,
+        "matches": 27495,
+        "percent": 18.461445491902346
+      }
+    ],
+    [
+      "combined_a-2_b2",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-2 / \u03c6^2",
+        "phi_a": 0.38196601125010515,
+        "phi_b": 2.618033988749895,
+        "matches": 27495,
+        "percent": 18.461445491902346
+      }
+    ],
+    [
+      "direct_k-3",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-3",
+        "phi_k": 0.23606797749978967,
+        "matches": 20670,
+        "percent": 13.878817178309562
+      }
+    ],
+    [
+      "inverse_k3",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) / \u03c6^3",
+        "phi_k": 4.23606797749979,
+        "matches": 20670,
+        "percent": 13.878817178309562
+      }
+    ],
+    [
+      "combined_a-2_b1",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-2 / \u03c6^1",
+        "phi_a": 0.38196601125010515,
+        "phi_b": 1.618033988749895,
+        "matches": 20670,
+        "percent": 13.878817178309562
+      }
+    ],
+    [
+      "combined_a-1_b2",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-1 / \u03c6^2",
+        "phi_a": 0.6180339887498948,
+        "phi_b": 2.618033988749895,
+        "matches": 20670,
+        "percent": 13.878817178309562
+      }
+    ],
+    [
+      "pi_k-1",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 pi^-1",
+        "base_value": 3.141592653589793,
+        "base_k": 0.3183098861837907,
+        "matches": 11804,
+        "percent": 7.925764778556657
+      }
+    ],
+    [
+      "euler_gamma_k2",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 euler_gamma^2",
+        "base_value": 0.5772156649015329,
+        "base_k": 0.33317792380771866,
+        "matches": 10497,
+        "percent": 7.048183063411489
+      }
+    ],
+    [
+      "sqrt3_k-2",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 sqrt3^-2",
+        "base_value": 1.7320508075688772,
+        "base_k": 0.33333333333333337,
+        "matches": 10486,
+        "percent": 7.040797142319985
+      }
+    ],
+    [
+      "e_k-1",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 e^-1",
+        "base_value": 2.718281828459045,
+        "base_k": 0.36787944117144233,
+        "matches": 8224,
+        "percent": 5.521983186957806
+      }
+    ],
+    [
+      "direct_k-2",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-2",
+        "phi_k": 0.38196601125010515,
+        "matches": 7308,
+        "percent": 4.906937394247039
+      }
+    ],
+    [
+      "inverse_k2",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) / \u03c6^2",
+        "phi_k": 2.618033988749895,
+        "matches": 7308,
+        "percent": 4.906937394247039
+      }
+    ],
+    [
+      "combined_a-1_b1",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 \u03c6^-1 / \u03c6^1",
+        "phi_a": 0.6180339887498948,
+        "phi_b": 1.618033988749895,
+        "matches": 7308,
+        "percent": 4.906937394247039
+      }
+    ],
+    [
+      "golden_conjugate_k2",
+      {
+        "relationship": "g_n = W_\u03c6(p_n) \u00b7 golden_conjugate^2",
+        "base_value": 0.6180339887498948,
+        "base_k": 0.3819660112501051,
+        "matches": 7308,
+        "percent": 4.906937394247039
+      }
+    ]
+  ]
+}

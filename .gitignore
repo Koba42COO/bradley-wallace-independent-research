@@ -95,3 +95,22 @@ logs/
 *.bak
 *.backup
 *~
+
+# Data and artifacts (track structure, not contents)
+/data/*
+!/data/.gitkeep
+!/data/README.md
+/artifacts/*
+!/artifacts/.gitkeep
+!/artifacts/README.md
+# Common large outputs
+*.pkl
+*.ckpt
+*.pt
+*.onnx
+*.h5
+*.db
+*.csv
+*.parquet
+*.feather
+*.ipynb_checkpoints/

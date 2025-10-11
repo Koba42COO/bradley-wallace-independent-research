@@ -1,0 +1,509 @@
+{
+  "analysis_type": "comprehensive_spectral_analysis",
+  "timestamp": "2025-10-03T09:00:59.024109",
+  "scales_analyzed": 4,
+  "results": [
+    {
+      "scale": "10^5",
+      "dataset_size": 9591,
+      "gap_statistics": {
+        "min_gap": 1,
+        "max_gap": 72,
+        "mean_gap": 10.425294546971118,
+        "median_gap": 8,
+        "std_gap": 8.023647561431403
+      },
+      "spectral_analysis": {
+        "total_peaks_found": 8,
+        "peaks_analyzed": 8,
+        "matches_found": 4,
+        "match_rate": 50.0
+      },
+      "harmonic_matches": [
+        {
+          "detected_ratio": 1.4247233968637476,
+          "magnitude": 122.28348835307231,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.010509834490652459,
+          "match": "True",
+          "peak_index": 3394
+        },
+        {
+          "detected_ratio": 1.633237221083916,
+          "magnitude": 121.77285118396777,
+          "closest_known": 1.618033988749895,
+          "closest_name": "\u03c6",
+          "distance": 0.015203232334020989,
+          "match": "True",
+          "peak_index": 4704
+        },
+        {
+          "detected_ratio": 1.4411577347268851,
+          "magnitude": 116.1557660655218,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.026944172353789986,
+          "match": "True",
+          "peak_index": 3504
+        },
+        {
+          "detected_ratio": 1.3807048071835044,
+          "magnitude": 124.34317318397387,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.03350875518959073,
+          "match": "True",
+          "peak_index": 3093
+        },
+        {
+          "detected_ratio": 1.3599878399892538,
+          "magnitude": 127.66823549239605,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.05422572238384138,
+          "match": "False",
+          "peak_index": 2948
+        },
+        {
+          "detected_ratio": 1.351506496562496,
+          "magnitude": 126.51695738544505,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.06270706581059904,
+          "match": "False",
+          "peak_index": 2888
+        },
+        {
+          "detected_ratio": 1.5333947980016485,
+          "magnitude": 126.13557586419927,
+          "closest_known": 1.618033988749895,
+          "closest_name": "\u03c6",
+          "distance": 0.08463919074824644,
+          "match": "False",
+          "peak_index": 4099
+        },
+        {
+          "detected_ratio": 1.2718006614803683,
+          "magnitude": 136.5714378597601,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.14241290089272685,
+          "match": "False",
+          "peak_index": 2305
+        }
+      ],
+      "dominant_harmonics": [
+        {
+          "ratio_name": "\u221a2",
+          "detected_value": 1.4247,
+          "expected_value": 1.4142,
+          "magnitude": 122.28,
+          "accuracy": 99.26
+        },
+        {
+          "ratio_name": "\u03c6",
+          "detected_value": 1.6332,
+          "expected_value": 1.618,
+          "magnitude": 121.77,
+          "accuracy": 99.06
+        },
+        {
+          "ratio_name": "\u221a2",
+          "detected_value": 1.4412,
+          "expected_value": 1.4142,
+          "magnitude": 116.16,
+          "accuracy": 98.09
+        },
+        {
+          "ratio_name": "\u221a2",
+          "detected_value": 1.3807,
+          "expected_value": 1.4142,
+          "magnitude": 124.34,
+          "accuracy": 97.63
+        }
+      ],
+      "analysis_timestamp": "2025-10-03T08:55:38.935458"
+    },
+    {
+      "scale": "10^6",
+      "dataset_size": 78497,
+      "gap_statistics": {
+        "min_gap": 1,
+        "max_gap": 114,
+        "mean_gap": 12.739098309489535,
+        "median_gap": 10,
+        "std_gap": 10.28239601088216
+      },
+      "spectral_analysis": {
+        "total_peaks_found": 8,
+        "peaks_analyzed": 8,
+        "matches_found": 4,
+        "match_rate": 50.0
+      },
+      "harmonic_matches": [
+        {
+          "detected_ratio": 1.406040157564583,
+          "magnitude": 434.54820676911436,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.008173404808512252,
+          "match": "True",
+          "peak_index": 26749
+        },
+        {
+          "detected_ratio": 1.3841271825624368,
+          "magnitude": 435.5426167955693,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.030086379810658315,
+          "match": "True",
+          "peak_index": 25516
+        },
+        {
+          "detected_ratio": 1.457136176149228,
+          "magnitude": 419.4329690513738,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.042922613776132934,
+          "match": "True",
+          "peak_index": 29551
+        },
+        {
+          "detected_ratio": 1.3664494774419516,
+          "magnitude": 463.165269720755,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.04776408493114359,
+          "match": "True",
+          "peak_index": 24507
+        },
+        {
+          "detected_ratio": 1.464934849044763,
+          "magnitude": 473.6986479164165,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.050721286671667754,
+          "match": "False",
+          "peak_index": 29970
+        },
+        {
+          "detected_ratio": 1.4754231063763203,
+          "magnitude": 427.89179118273665,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.0612095440032252,
+          "match": "False",
+          "peak_index": 30530
+        },
+        {
+          "detected_ratio": 1.5126883451015483,
+          "magnitude": 435.41286390063226,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.09847478272845311,
+          "match": "False",
+          "peak_index": 32488
+        },
+        {
+          "detected_ratio": 1.2649281863764377,
+          "magnitude": 415.55340060742947,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.14928537599665748,
+          "match": "False",
+          "peak_index": 18447
+        }
+      ],
+      "dominant_harmonics": [
+        {
+          "ratio_name": "\u221a2",
+          "detected_value": 1.406,
+          "expected_value": 1.4142,
+          "magnitude": 434.55,
+          "accuracy": 99.42
+        },
+        {
+          "ratio_name": "\u221a2",
+          "detected_value": 1.3841,
+          "expected_value": 1.4142,
+          "magnitude": 435.54,
+          "accuracy": 97.87
+        },
+        {
+          "ratio_name": "\u221a2",
+          "detected_value": 1.4571,
+          "expected_value": 1.4142,
+          "magnitude": 419.43,
+          "accuracy": 96.96
+        },
+        {
+          "ratio_name": "\u221a2",
+          "detected_value": 1.3664,
+          "expected_value": 1.4142,
+          "magnitude": 463.17,
+          "accuracy": 96.62
+        }
+      ],
+      "analysis_timestamp": "2025-10-03T08:55:39.064380"
+    },
+    {
+      "scale": "10^7",
+      "dataset_size": 664578,
+      "gap_statistics": {
+        "min_gap": 1,
+        "max_gap": 154,
+        "mean_gap": 15.047126146216096,
+        "median_gap": 12,
+        "std_gap": 12.569700527410179
+      },
+      "spectral_analysis": {
+        "total_peaks_found": 8,
+        "peaks_analyzed": 8,
+        "matches_found": 2,
+        "match_rate": 25.0
+      },
+      "harmonic_matches": [
+        {
+          "detected_ratio": 1.427345997338018,
+          "magnitude": 1414.11935066207,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.01313243496492289,
+          "match": "True",
+          "peak_index": 236467
+        },
+        {
+          "detected_ratio": 1.4620807659506874,
+          "magnitude": 1460.023611182559,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.04786720357759222,
+          "match": "True",
+          "peak_index": 252446
+        },
+        {
+          "detected_ratio": 1.3595221102409063,
+          "magnitude": 1451.1458094272655,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.054691452132188845,
+          "match": "False",
+          "peak_index": 204113
+        },
+        {
+          "detected_ratio": 1.5396892989653308,
+          "magnitude": 1421.2143804799841,
+          "closest_known": 1.618033988749895,
+          "closest_name": "\u03c6",
+          "distance": 0.0783446897845641,
+          "match": "False",
+          "peak_index": 286818
+        },
+        {
+          "detected_ratio": 1.4954787122653186,
+          "magnitude": 1426.3293055283818,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.08126514989222344,
+          "match": "False",
+          "peak_index": 267456
+        },
+        {
+          "detected_ratio": 1.2755743674240156,
+          "magnitude": 1411.4916098621097,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.1386391949490795,
+          "match": "False",
+          "peak_index": 161755
+        },
+        {
+          "detected_ratio": 1.149170195367368,
+          "magnitude": 1413.0041229828528,
+          "closest_known": 1.0,
+          "closest_name": "Unity",
+          "distance": 0.14917019536736809,
+          "match": "False",
+          "peak_index": 92402
+        },
+        {
+          "detected_ratio": 1.249905403989098,
+          "magnitude": 1523.5002690350218,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.16430815838399715,
+          "match": "False",
+          "peak_index": 148245
+        }
+      ],
+      "dominant_harmonics": [
+        {
+          "ratio_name": "\u221a2",
+          "detected_value": 1.4273,
+          "expected_value": 1.4142,
+          "magnitude": 1414.12,
+          "accuracy": 99.07
+        },
+        {
+          "ratio_name": "\u221a2",
+          "detected_value": 1.4621,
+          "expected_value": 1.4142,
+          "magnitude": 1460.02,
+          "accuracy": 96.62
+        }
+      ],
+      "analysis_timestamp": "2025-10-03T08:55:43.238648"
+    },
+    {
+      "scale": "10^8",
+      "dataset_size": 5761454,
+      "gap_statistics": {
+        "min_gap": 1,
+        "max_gap": 220,
+        "mean_gap": 17.3567274858048,
+        "median_gap": 12,
+        "std_gap": 14.802893822165297
+      },
+      "spectral_analysis": {
+        "total_peaks_found": 8,
+        "peaks_analyzed": 8,
+        "matches_found": 5,
+        "match_rate": 62.5
+      },
+      "harmonic_matches": [
+        {
+          "detected_ratio": 1.4108729091553478,
+          "magnitude": 4690.554751917373,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.003340653217747347,
+          "match": "True",
+          "peak_index": 1983141
+        },
+        {
+          "detected_ratio": 1.641027157505451,
+          "magnitude": 4706.965948896072,
+          "closest_known": 1.618033988749895,
+          "closest_name": "\u03c6",
+          "distance": 0.022993168755556015,
+          "match": "True",
+          "peak_index": 2853776
+        },
+        {
+          "detected_ratio": 1.3784317140991367,
+          "magnitude": 5427.440103157008,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.03578184827395847,
+          "match": "True",
+          "peak_index": 1849117
+        },
+        {
+          "detected_ratio": 1.3740217377159765,
+          "magnitude": 4890.9054455599635,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.04019182465711868,
+          "match": "True",
+          "peak_index": 1830655
+        },
+        {
+          "detected_ratio": 1.575528822931284,
+          "magnitude": 4653.826422850191,
+          "closest_known": 1.618033988749895,
+          "closest_name": "\u03c6",
+          "distance": 0.04250516581861086,
+          "match": "True",
+          "peak_index": 2619104
+        },
+        {
+          "detected_ratio": 1.471593062732464,
+          "magnitude": 4720.850083524184,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.057379500359368896,
+          "match": "False",
+          "peak_index": 2225911
+        },
+        {
+          "detected_ratio": 1.5352888119651638,
+          "magnitude": 4947.927026056841,
+          "closest_known": 1.618033988749895,
+          "closest_name": "\u03c6",
+          "distance": 0.08274517678473114,
+          "match": "False",
+          "peak_index": 2470041
+        },
+        {
+          "detected_ratio": 1.251306927166656,
+          "magnitude": 4783.443628168052,
+          "closest_known": 1.4142135623730951,
+          "closest_name": "\u221a2",
+          "distance": 0.16290663520643922,
+          "match": "False",
+          "peak_index": 1291651
+        }
+      ],
+      "dominant_harmonics": [
+        {
+          "ratio_name": "\u221a2",
+          "detected_value": 1.4109,
+          "expected_value": 1.4142,
+          "magnitude": 4690.55,
+          "accuracy": 99.76
+        },
+        {
+          "ratio_name": "\u03c6",
+          "detected_value": 1.641,
+          "expected_value": 1.618,
+          "magnitude": 4706.97,
+          "accuracy": 98.58
+        },
+        {
+          "ratio_name": "\u221a2",
+          "detected_value": 1.3784,
+          "expected_value": 1.4142,
+          "magnitude": 5427.44,
+          "accuracy": 97.47
+        },
+        {
+          "ratio_name": "\u221a2",
+          "detected_value": 1.374,
+          "expected_value": 1.4142,
+          "magnitude": 4890.91,
+          "accuracy": 97.16
+        },
+        {
+          "ratio_name": "\u03c6",
+          "detected_value": 1.5755,
+          "expected_value": 1.618,
+          "magnitude": 4653.83,
+          "accuracy": 97.37
+        }
+      ],
+      "analysis_timestamp": "2025-10-03T09:00:59.022817"
+    }
+  ],
+  "cross_scale_patterns": {
+    "\u221a2": [
+      99.26,
+      98.09,
+      97.63,
+      99.42,
+      97.87,
+      96.96,
+      96.62,
+      99.07,
+      96.62,
+      99.76,
+      97.47,
+      97.16
+    ],
+    "\u03c6": [
+      99.06,
+      98.58,
+      97.37
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "total_primes": 168,
+  "analyzed_primes": 50,
+  "total_zetas": 50,
+  "avg_correlation": 0.5765386663685078,
+  "avg_difference": 15.851075877041595,
+  "max_difference": 15.851075877041595,
+  "min_difference": 15.851075877041595,
+  "tight_count": 0,
+  "normal_count": 0,
+  "loose_count": 0,
+  "outlier_count": 49,
+  "chi_squared": 35.0,
+  "pearson_r": NaN,
+  "pearson_p": NaN,
+  "analysis_time": 0.00185394287109375,
+  "rate": 26969.54732510288
+}

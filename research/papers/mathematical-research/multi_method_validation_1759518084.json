@@ -1,0 +1,915 @@
+{
+  "analysis_type": "multi_method_validation",
+  "timestamp": "2025-10-03T15:01:24.229323",
+  "scales_analyzed": 3,
+  "target_ratios": [
+    {
+      "name": "Unity",
+      "value": 1.0,
+      "symbol": "1.000",
+      "description": "Fundamental unity"
+    },
+    {
+      "name": "\u03c6 (Golden)",
+      "value": 1.618033988749895,
+      "symbol": "1.618",
+      "description": "Golden ratio"
+    },
+    {
+      "name": "\u221a2 (Quantum)",
+      "value": 1.4142135623730951,
+      "symbol": "1.414",
+      "description": "Quantum uncertainty"
+    },
+    {
+      "name": "\u221a3 (Fifth)",
+      "value": 1.7320508075688772,
+      "symbol": "1.732",
+      "description": "Perfect fifth"
+    },
+    {
+      "name": "Pell",
+      "value": 2.302775637731995,
+      "symbol": "1.847",
+      "description": "Pell number ratio"
+    },
+    {
+      "name": "Octave",
+      "value": 2.0,
+      "symbol": "2.000",
+      "description": "Frequency doubling"
+    },
+    {
+      "name": "\u03c6\u00b7\u221a2",
+      "value": 2.2882456112707374,
+      "symbol": "2.287",
+      "description": "Combined golden-quantum"
+    },
+    {
+      "name": "2\u03c6",
+      "value": 3.23606797749979,
+      "symbol": "3.236",
+      "description": "Double golden"
+    }
+  ],
+  "results": [
+    {
+      "scale": "10^6",
+      "prime_limit": 1000000,
+      "dataset_size": {
+        "primes": 78498,
+        "gaps": 78497
+      },
+      "methods": {
+        "fft": {
+          "results": [
+            {
+              "method": "FFT",
+              "detected_ratio": 1.464934849044763,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 473.6986479164165,
+              "distance": 0.050721286671667754,
+              "match": "False",
+              "accuracy": 96.41346342439569
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.3664494774419516,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 463.165269720755,
+              "distance": 0.04776408493114359,
+              "match": "True",
+              "accuracy": 96.62256916480182
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.3841271825624368,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 435.5426167955693,
+              "distance": 0.030086379810658315,
+              "match": "True",
+              "accuracy": 97.87257168145295
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.5126883451015483,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 435.41286390063226,
+              "distance": 0.09847478272845311,
+              "match": "False",
+              "accuracy": 93.0367813356839
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.406040157564583,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 434.54820676911436,
+              "distance": 0.008173404808512252,
+              "match": "True",
+              "accuracy": 99.42205300345182
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.4754231063763203,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 427.89179118273665,
+              "distance": 0.0612095440032252,
+              "match": "False",
+              "accuracy": 95.6718316361983
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.457136176149228,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 419.4329690513738,
+              "distance": 0.042922613776132934,
+              "match": "True",
+              "accuracy": 96.96491287326452
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.2649281863764377,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 415.55340060742947,
+              "distance": 0.14928537599665748,
+              "match": "False",
+              "accuracy": 89.443929830078
+            }
+          ],
+          "matches_found": 4,
+          "total_peaks": 8
+        },
+        "autocorrelation": {
+          "results": [],
+          "matches_found": 0,
+          "total_peaks": 0
+        },
+        "bradley": {
+          "results": [
+            {
+              "method": "Bradley",
+              "target_name": "Unity",
+              "target_ratio": 1.0,
+              "matches": 0,
+              "total_sampled": 10000,
+              "match_rate": 0.0,
+              "accuracy": 0.0
+            },
+            {
+              "method": "Bradley",
+              "target_name": "\u03c6 (Golden)",
+              "target_ratio": 1.618033988749895,
+              "matches": 2035,
+              "total_sampled": 10000,
+              "match_rate": 20.349999999999998,
+              "accuracy": 20.349999999999998
+            },
+            {
+              "method": "Bradley",
+              "target_name": "\u221a2 (Quantum)",
+              "target_ratio": 1.4142135623730951,
+              "matches": 822,
+              "total_sampled": 10000,
+              "match_rate": 8.219999999999999,
+              "accuracy": 8.219999999999999
+            },
+            {
+              "method": "Bradley",
+              "target_name": "\u221a3 (Fifth)",
+              "target_ratio": 1.7320508075688772,
+              "matches": 2682,
+              "total_sampled": 10000,
+              "match_rate": 26.82,
+              "accuracy": 26.82
+            },
+            {
+              "method": "Bradley",
+              "target_name": "Pell",
+              "target_ratio": 2.302775637731995,
+              "matches": 3775,
+              "total_sampled": 10000,
+              "match_rate": 37.75,
+              "accuracy": 37.75
+            },
+            {
+              "method": "Bradley",
+              "target_name": "Octave",
+              "target_ratio": 2.0,
+              "matches": 3579,
+              "total_sampled": 10000,
+              "match_rate": 35.79,
+              "accuracy": 35.79
+            },
+            {
+              "method": "Bradley",
+              "target_name": "\u03c6\u00b7\u221a2",
+              "target_ratio": 2.2882456112707374,
+              "matches": 3763,
+              "total_sampled": 10000,
+              "match_rate": 37.63,
+              "accuracy": 37.63
+            },
+            {
+              "method": "Bradley",
+              "target_name": "2\u03c6",
+              "target_ratio": 3.23606797749979,
+              "matches": 3303,
+              "total_sampled": 10000,
+              "match_rate": 33.03,
+              "accuracy": 33.03
+            }
+          ],
+          "ratios_above_5pct": 7,
+          "best_match_rate": 37.75
+        }
+      },
+      "cross_validation": {
+        "Unity": {
+          "target_ratio": 1.0,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": false,
+          "bradley_accuracy": 0,
+          "consensus_score": 0,
+          "confidence_level": "Low",
+          "avg_accuracy": 0.0
+        },
+        "\u03c6 (Golden)": {
+          "target_ratio": 1.618033988749895,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 20.349999999999998,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 6.783333333333332
+        },
+        "\u221a2 (Quantum)": {
+          "target_ratio": 1.4142135623730951,
+          "fft_detected": true,
+          "fft_accuracy": 96.96491287326452,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 8.219999999999999,
+          "consensus_score": 2,
+          "confidence_level": "Medium",
+          "avg_accuracy": 35.06163762442151
+        },
+        "\u221a3 (Fifth)": {
+          "target_ratio": 1.7320508075688772,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 26.82,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 8.94
+        },
+        "Pell": {
+          "target_ratio": 2.302775637731995,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 37.75,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 12.583333333333334
+        },
+        "Octave": {
+          "target_ratio": 2.0,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 35.79,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 11.93
+        },
+        "\u03c6\u00b7\u221a2": {
+          "target_ratio": 2.2882456112707374,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 37.63,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 12.543333333333335
+        },
+        "2\u03c6": {
+          "target_ratio": 3.23606797749979,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 33.03,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 11.01
+        }
+      },
+      "summary": {
+        "total_ratios_tested": 8,
+        "ratios_detected_fft": 4,
+        "ratios_detected_autocorr": 0,
+        "ratios_detected_bradley": 7,
+        "high_confidence_ratios": 0,
+        "medium_confidence_ratios": 1
+      },
+      "timestamp": "2025-10-03T14:42:54.655920"
+    },
+    {
+      "scale": "10^7",
+      "prime_limit": 10000000,
+      "dataset_size": {
+        "primes": 664579,
+        "gaps": 664578
+      },
+      "methods": {
+        "fft": {
+          "results": [
+            {
+              "method": "FFT",
+              "detected_ratio": 1.249905403989098,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 1523.5002690350218,
+              "distance": 0.16430815838399715,
+              "match": "False",
+              "accuracy": 88.38165870024024
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.4620807659506874,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 1460.023611182559,
+              "distance": 0.04786720357759222,
+              "match": "True",
+              "accuracy": 96.61527757538477
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.3595221102409063,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 1451.1458094272655,
+              "distance": 0.054691452132188845,
+              "match": "False",
+              "accuracy": 96.13273033243898
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.4954787122653186,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 1426.3293055283818,
+              "distance": 0.08126514989222344,
+              "match": "False",
+              "accuracy": 94.25368614370676
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.5396892989653308,
+              "target_ratio": 1.618033988749895,
+              "target_name": "\u03c6 (Golden)",
+              "magnitude": 1421.2143804799841,
+              "distance": 0.0783446897845641,
+              "match": "False",
+              "accuracy": 95.15803188750726
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.427345997338018,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 1414.11935066207,
+              "distance": 0.01313243496492289,
+              "match": "True",
+              "accuracy": 99.07139661828117
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.149170195367368,
+              "target_ratio": 1.0,
+              "target_name": "Unity",
+              "magnitude": 1413.0041229828528,
+              "distance": 0.14917019536736809,
+              "match": "False",
+              "accuracy": 85.0829804632632
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.2755743674240156,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 1411.4916098621097,
+              "distance": 0.1386391949490795,
+              "match": "False",
+              "accuracy": 90.19672851132621
+            }
+          ],
+          "matches_found": 2,
+          "total_peaks": 8
+        },
+        "autocorrelation": {
+          "results": [],
+          "matches_found": 0,
+          "total_peaks": 0
+        },
+        "bradley": {
+          "results": [
+            {
+              "method": "Bradley",
+              "target_name": "Unity",
+              "target_ratio": 1.0,
+              "matches": 2,
+              "total_sampled": 10000,
+              "match_rate": 0.02,
+              "accuracy": 0.02
+            },
+            {
+              "method": "Bradley",
+              "target_name": "\u03c6 (Golden)",
+              "target_ratio": 1.618033988749895,
+              "matches": 1727,
+              "total_sampled": 10000,
+              "match_rate": 17.27,
+              "accuracy": 17.27
+            },
+            {
+              "method": "Bradley",
+              "target_name": "\u221a2 (Quantum)",
+              "target_ratio": 1.4142135623730951,
+              "matches": 654,
+              "total_sampled": 10000,
+              "match_rate": 6.54,
+              "accuracy": 6.54
+            },
+            {
+              "method": "Bradley",
+              "target_name": "\u221a3 (Fifth)",
+              "target_ratio": 1.7320508075688772,
+              "matches": 2271,
+              "total_sampled": 10000,
+              "match_rate": 22.71,
+              "accuracy": 22.71
+            },
+            {
+              "method": "Bradley",
+              "target_name": "Pell",
+              "target_ratio": 2.302775637731995,
+              "matches": 3928,
+              "total_sampled": 10000,
+              "match_rate": 39.28,
+              "accuracy": 39.28
+            },
+            {
+              "method": "Bradley",
+              "target_name": "Octave",
+              "target_ratio": 2.0,
+              "matches": 3073,
+              "total_sampled": 10000,
+              "match_rate": 30.73,
+              "accuracy": 30.73
+            },
+            {
+              "method": "Bradley",
+              "target_name": "\u03c6\u00b7\u221a2",
+              "target_ratio": 2.2882456112707374,
+              "matches": 3936,
+              "total_sampled": 10000,
+              "match_rate": 39.36,
+              "accuracy": 39.36
+            },
+            {
+              "method": "Bradley",
+              "target_name": "2\u03c6",
+              "target_ratio": 3.23606797749979,
+              "matches": 3481,
+              "total_sampled": 10000,
+              "match_rate": 34.81,
+              "accuracy": 34.81
+            }
+          ],
+          "ratios_above_5pct": 7,
+          "best_match_rate": 39.36
+        }
+      },
+      "cross_validation": {
+        "Unity": {
+          "target_ratio": 1.0,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": false,
+          "bradley_accuracy": 0,
+          "consensus_score": 0,
+          "confidence_level": "Low",
+          "avg_accuracy": 0.0
+        },
+        "\u03c6 (Golden)": {
+          "target_ratio": 1.618033988749895,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 17.27,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 5.756666666666667
+        },
+        "\u221a2 (Quantum)": {
+          "target_ratio": 1.4142135623730951,
+          "fft_detected": true,
+          "fft_accuracy": 99.07139661828117,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 6.54,
+          "consensus_score": 2,
+          "confidence_level": "Medium",
+          "avg_accuracy": 35.203798872760395
+        },
+        "\u221a3 (Fifth)": {
+          "target_ratio": 1.7320508075688772,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 22.71,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 7.57
+        },
+        "Pell": {
+          "target_ratio": 2.302775637731995,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 39.28,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 13.093333333333334
+        },
+        "Octave": {
+          "target_ratio": 2.0,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 30.73,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 10.243333333333334
+        },
+        "\u03c6\u00b7\u221a2": {
+          "target_ratio": 2.2882456112707374,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 39.36,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 13.12
+        },
+        "2\u03c6": {
+          "target_ratio": 3.23606797749979,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 34.81,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 11.603333333333333
+        }
+      },
+      "summary": {
+        "total_ratios_tested": 8,
+        "ratios_detected_fft": 2,
+        "ratios_detected_autocorr": 0,
+        "ratios_detected_bradley": 7,
+        "high_confidence_ratios": 0,
+        "medium_confidence_ratios": 1
+      },
+      "timestamp": "2025-10-03T14:43:12.942206"
+    },
+    {
+      "scale": "10^8",
+      "prime_limit": 100000000,
+      "dataset_size": {
+        "primes": 5761455,
+        "gaps": 5761454
+      },
+      "methods": {
+        "fft": {
+          "results": [
+            {
+              "method": "FFT",
+              "detected_ratio": 1.3784317140991367,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 5427.440103157008,
+              "distance": 0.03578184827395847,
+              "match": "True",
+              "accuracy": 97.46984124420958
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.5352888119651638,
+              "target_ratio": 1.618033988749895,
+              "target_name": "\u03c6 (Golden)",
+              "magnitude": 4947.927026056841,
+              "distance": 0.08274517678473114,
+              "match": "False",
+              "accuracy": 94.88606683419174
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.3740217377159765,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 4890.9054455599635,
+              "distance": 0.04019182465711868,
+              "match": "True",
+              "accuracy": 97.15800882366908
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.251306927166656,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 4783.443628168052,
+              "distance": 0.16290663520643922,
+              "match": "False",
+              "accuracy": 88.48076135452436
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.471593062732464,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 4720.850083524184,
+              "distance": 0.057379500359368896,
+              "match": "False",
+              "accuracy": 95.94265661947942
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.641027157505451,
+              "target_ratio": 1.618033988749895,
+              "target_name": "\u03c6 (Golden)",
+              "magnitude": 4706.965948896072,
+              "distance": 0.022993168755556015,
+              "match": "True",
+              "accuracy": 98.57894402000042
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.4108729091553478,
+              "target_ratio": 1.4142135623730951,
+              "target_name": "\u221a2 (Quantum)",
+              "magnitude": 4690.554751917373,
+              "distance": 0.003340653217747347,
+              "match": "True",
+              "accuracy": 99.76378014561382
+            },
+            {
+              "method": "FFT",
+              "detected_ratio": 1.575528822931284,
+              "target_ratio": 1.618033988749895,
+              "target_name": "\u03c6 (Golden)",
+              "magnitude": 4653.826422850191,
+              "distance": 0.04250516581861086,
+              "match": "True",
+              "accuracy": 97.37303628266483
+            }
+          ],
+          "matches_found": 5,
+          "total_peaks": 8
+        },
+        "autocorrelation": {
+          "results": [],
+          "matches_found": 0,
+          "total_peaks": 0
+        },
+        "bradley": {
+          "results": [
+            {
+              "method": "Bradley",
+              "target_name": "Unity",
+              "target_ratio": 1.0,
+              "matches": 0,
+              "total_sampled": 10000,
+              "match_rate": 0.0,
+              "accuracy": 0.0
+            },
+            {
+              "method": "Bradley",
+              "target_name": "\u03c6 (Golden)",
+              "target_ratio": 1.618033988749895,
+              "matches": 1454,
+              "total_sampled": 10000,
+              "match_rate": 14.540000000000001,
+              "accuracy": 14.540000000000001
+            },
+            {
+              "method": "Bradley",
+              "target_name": "\u221a2 (Quantum)",
+              "target_ratio": 1.4142135623730951,
+              "matches": 479,
+              "total_sampled": 10000,
+              "match_rate": 4.79,
+              "accuracy": 4.79
+            },
+            {
+              "method": "Bradley",
+              "target_name": "\u221a3 (Fifth)",
+              "target_ratio": 1.7320508075688772,
+              "matches": 2027,
+              "total_sampled": 10000,
+              "match_rate": 20.27,
+              "accuracy": 20.27
+            },
+            {
+              "method": "Bradley",
+              "target_name": "Pell",
+              "target_ratio": 2.302775637731995,
+              "matches": 3651,
+              "total_sampled": 10000,
+              "match_rate": 36.51,
+              "accuracy": 36.51
+            },
+            {
+              "method": "Bradley",
+              "target_name": "Octave",
+              "target_ratio": 2.0,
+              "matches": 3035,
+              "total_sampled": 10000,
+              "match_rate": 30.349999999999998,
+              "accuracy": 30.349999999999998
+            },
+            {
+              "method": "Bradley",
+              "target_name": "\u03c6\u00b7\u221a2",
+              "target_ratio": 2.2882456112707374,
+              "matches": 3682,
+              "total_sampled": 10000,
+              "match_rate": 36.82,
+              "accuracy": 36.82
+            },
+            {
+              "method": "Bradley",
+              "target_name": "2\u03c6",
+              "target_ratio": 3.23606797749979,
+              "matches": 3754,
+              "total_sampled": 10000,
+              "match_rate": 37.54,
+              "accuracy": 37.54
+            }
+          ],
+          "ratios_above_5pct": 6,
+          "best_match_rate": 37.54
+        }
+      },
+      "cross_validation": {
+        "Unity": {
+          "target_ratio": 1.0,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": false,
+          "bradley_accuracy": 0,
+          "consensus_score": 0,
+          "confidence_level": "Low",
+          "avg_accuracy": 0.0
+        },
+        "\u03c6 (Golden)": {
+          "target_ratio": 1.618033988749895,
+          "fft_detected": true,
+          "fft_accuracy": 97.37303628266483,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 14.540000000000001,
+          "consensus_score": 2,
+          "confidence_level": "Medium",
+          "avg_accuracy": 37.30434542755494
+        },
+        "\u221a2 (Quantum)": {
+          "target_ratio": 1.4142135623730951,
+          "fft_detected": true,
+          "fft_accuracy": 99.76378014561382,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": false,
+          "bradley_accuracy": 0,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 33.254593381871274
+        },
+        "\u221a3 (Fifth)": {
+          "target_ratio": 1.7320508075688772,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 20.27,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 6.756666666666667
+        },
+        "Pell": {
+          "target_ratio": 2.302775637731995,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 36.51,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 12.17
+        },
+        "Octave": {
+          "target_ratio": 2.0,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 30.349999999999998,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 10.116666666666665
+        },
+        "\u03c6\u00b7\u221a2": {
+          "target_ratio": 2.2882456112707374,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 36.82,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 12.273333333333333
+        },
+        "2\u03c6": {
+          "target_ratio": 3.23606797749979,
+          "fft_detected": false,
+          "fft_accuracy": 0,
+          "autocorr_detected": false,
+          "autocorr_accuracy": 0,
+          "bradley_detected": true,
+          "bradley_accuracy": 37.54,
+          "consensus_score": 1,
+          "confidence_level": "Low",
+          "avg_accuracy": 12.513333333333334
+        }
+      },
+      "summary": {
+        "total_ratios_tested": 8,
+        "ratios_detected_fft": 5,
+        "ratios_detected_autocorr": 0,
+        "ratios_detected_bradley": 6,
+        "high_confidence_ratios": 0,
+        "medium_confidence_ratios": 1
+      },
+      "timestamp": "2025-10-03T15:01:24.227556"
+    }
+  ]
+}
