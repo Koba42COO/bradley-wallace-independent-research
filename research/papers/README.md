@@ -23,7 +23,7 @@ research/papers/
 
 All papers are authored by:
 - **Bradley Wallace**
-- Email: coo@koba42.com
+- Email: EMAIL_REDACTED_1
 - Affiliation: Working in collaborations using VantaX Trikernal since late June
 - Acknowledgments: Thanks to Julia for her help in research
 
@@ -94,7 +94,7 @@ When citing these papers, use:
 
 ```
 Wallace, B. (2025). [Paper Title]. Independent Research Framework.
-Email: coo@koba42.com
+Email: EMAIL_REDACTED_1
 ```
 
 ## Reproducibility
@@ -114,7 +114,7 @@ Code implementations are available in the main repository under:
 
 This research framework is actively developed. For collaboration inquiries:
 
-- Email: coo@koba42.com
+- Email: EMAIL_REDACTED_1
 - Framework: VantaX Trikernal collaborative environment
 - Focus: Consciousness mathematics, topological computing, unified theories
 
