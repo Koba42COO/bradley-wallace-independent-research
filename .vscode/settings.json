@@ -1,0 +1,46 @@
+{
+    // AGGRESSIVE Python settings to prevent memory issues
+    "python.analysis.memory.keepUpToDate": false,
+    "python.analysis.diagnosticMode": "off",
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.autoImportCompletions": false,
+    "python.analysis.indexing": false,
+    "python.analysis.autoSearchPaths": false,
+    "python.analysis.packageIndexDepths": [],
+    "python.linting.enabled": false,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": false,
+    "python.linting.mypyEnabled": false,
+    "python.languageServer": "None",
+    
+    // Aggressive file exclusions
+    "files.watcherExclude": {
+        "**/*.py": true,
+        "**/*.json": true,
+        "**/*.db": true,
+        "**/*.csv": true,
+        "**/node_modules/**": true,
+        "**/__pycache__/**": true,
+        "**/*.pyc": true,
+        "**/research/**": true,
+        "**/analysis/**": true,
+        "**/data/**": true,
+        "**/logs/**": true,
+        "**/claude_imported_data/**": true,
+        "**/kag_database/**": true,
+        "**/dev_high_value_kag_database/**": true
+    },
+    
+    "search.exclude": {
+        "**/*.py": true,
+        "**/*.json": true,
+        "**/*.db": true,
+        "**/*.csv": true,
+        "**/node_modules/**": true,
+        "**/__pycache__/**": true,
+        "**/research/**": true,
+        "**/analysis/**": true,
+        "**/data/**": true,
+        "**/logs/**": true
+    }
+}

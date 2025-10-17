@@ -33,11 +33,15 @@ ENV/
 env/
 
 # IDEs
-.vscode/
 .idea/
 *.swp
 *.swo
 *~
+
+# VS Code - allow settings but exclude others
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
 
 # OS
 .DS_Store
