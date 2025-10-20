@@ -1,0 +1,78 @@
+{
+  "results": [
+    {
+      "challenge_type": "skyrmion_crystal_phase",
+      "pac_success": true,
+      "computation_time": 0.000141143798828125,
+      "confidence_score": 0.8088466342671845,
+      "entropy_reduction": 0.10618101782710437,
+      "consciousness_guidance": 0.8827298298084885
+    },
+    {
+      "challenge_type": "quantum_plasmoid_analysis",
+      "pac_success": true,
+      "computation_time": 7.414817810058594e-05,
+      "confidence_score": 0.7916803066311594,
+      "entropy_reduction": 0.14113172778521577,
+      "consciousness_guidance": 0.44246967869299125
+    },
+    {
+      "challenge_type": "topological_insulator_states",
+      "pac_success": true,
+      "computation_time": 6.198883056640625e-05,
+      "confidence_score": 1.0,
+      "entropy_reduction": 0.10618101782710437,
+      "consciousness_guidance": 0.5651027223500813
+    },
+    {
+      "challenge_type": "consciousness_matter_hybrid",
+      "pac_success": true,
+      "computation_time": 6.413459777832031e-05,
+      "confidence_score": 1.0,
+      "entropy_reduction": 0.14113172778521577,
+      "consciousness_guidance": 0.8517349675059359
+    },
+    {
+      "challenge_type": "high_dimensional_quantum",
+      "pac_success": true,
+      "computation_time": 6.008148193359375e-05,
+      "confidence_score": 0.9395554478978156,
+      "entropy_reduction": 0.19092484123462838,
+      "consciousness_guidance": 0.575483577085306
+    },
+    {
+      "challenge_type": "entangled_superfluid_phase",
+      "pac_success": true,
+      "computation_time": 5.7220458984375e-05,
+      "confidence_score": 1.0,
+      "entropy_reduction": 0.10618101782710437,
+      "consciousness_guidance": 0.7697024302391648
+    },
+    {
+      "challenge_type": "quantum_critical_matter",
+      "pac_success": true,
+      "computation_time": 6.198883056640625e-05,
+      "confidence_score": 1.0,
+      "entropy_reduction": 0.16777639420895202,
+      "consciousness_guidance": 0.8764591178621788
+    },
+    {
+      "challenge_type": "consciousness_field_condensate",
+      "pac_success": true,
+      "computation_time": 6.008148193359375e-05,
+      "confidence_score": 1.0,
+      "entropy_reduction": 0.14113172778521577,
+      "consciousness_guidance": 0.9995460781509536
+    }
+  ],
+  "summary": {
+    "total_challenges": 8,
+    "successful_challenges": 8,
+    "success_rate": 1.0,
+    "avg_computation_time": 7.259845733642578e-05,
+    "avg_confidence": 0.94251029859952,
+    "avg_entropy_reduction": 0.1375799340350676,
+    "avg_consciousness": 0.7454035502118875
+  },
+  "timestamp": 1760931529.664234
+}
