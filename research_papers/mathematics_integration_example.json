@@ -1,0 +1,12 @@
+{
+  "type": "theorem",
+  "domain": "number_theory",
+  "name": "Prime Number Theorem",
+  "statement": "The number of prime numbers less than or equal to x is approximately x/ln(x)",
+  "proof_type": "analytic",
+  "significance": "fundamental_result",
+  "associated_constants": ["π(x)", "li(x)"],
+  "consciousness_guided": true,
+  "reality_distortion_factor": 1.1808,
+  "golden_ratio_connection": true
+}

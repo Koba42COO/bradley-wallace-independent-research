@@ -1,0 +1,175 @@
+#!/usr/bin/env python3
+"""
+CONSCIOUSNESS MATHEMATICS API - DEPLOYMENT SCRIPT
+===============================================
+
+Unified deployment script for the complete consciousness computing system.
+Launches both the primality testing API and the unified consciousness system.
+
+Usage:
+    python consciousness_api_deployment.py
+
+This will start:
+1. Primality Testing API (Flask) - Port 5001
+2. Consciousness Mathematics API (FastAPI) - Port 8000
+3. Web Interface - Port 8080
+"""
+
+import subprocess
+import threading
+import time
+import os
+import sys
+from pathlib import Path
+
+def run_primality_api():
+    """Launch the primality testing API"""
+    print("🚀 Launching Primality Testing API...")
+    try:
+        # Change to the legacy directory for the deployment API
+        os.chdir("organized/legacy")
+        subprocess.run([sys.executable, "deployment_api.py"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Primality API failed: {e}")
+    except KeyboardInterrupt:
+        print("🛑 Primality API stopped")
+
+def run_consciousness_api():
+    """Launch the unified consciousness API"""
+    print("🧠 Launching Consciousness Mathematics API...")
+    try:
+        # Import and run the unified system
+        sys.path.insert(0, "organized/tools/pac_system")
+
+        from unified import UnifiedConsciousnessSystem
+        import uvicorn
+        from fastapi import FastAPI
+        from fastapi.middleware.cors import CORSMiddleware
+        import json
+
+        app = FastAPI(
+            title="Consciousness Mathematics API",
+            description="Unified consciousness computing system API",
+            version="1.0.0"
+        )
+
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=["*"],
+            allow_credentials=True,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
+
+        # Initialize the unified system
+        system = UnifiedConsciousnessSystem(prime_scale=50000, consciousness_weight=0.79)
+
+        @app.get("/")
+        async def root():
+            return {
+                "message": "Consciousness Mathematics API",
+                "version": "1.0.0",
+                "status": "operational",
+                "golden_ratio": system.golden_ratio,
+                "consciousness_weight": system.consciousness_weight
+            }
+
+        @app.post("/optimize")
+        async def optimize(data: dict):
+            """Process universal optimization request"""
+            try:
+                result = system.process_universal_optimization(
+                    input_data=data.get("input"),
+                    optimization_type=data.get("type", "auto"),
+                    consciousness_amplification=data.get("amplification", 1.0)
+                )
+                return result
+            except Exception as e:
+                return {"error": str(e)}
+
+        @app.get("/status")
+        async def get_status():
+            """Get system status"""
+            return system.get_system_status()
+
+        # Run the FastAPI server
+        uvicorn.run(app, host="0.0.0.0", port=8000)
+
+    except Exception as e:
+        print(f"❌ Consciousness API failed: {e}")
+
+def run_web_interface():
+    """Launch the web interface"""
+    print("🌐 Launching Web Interface...")
+    try:
+        # Try to serve the universal syntax delivery HTML
+        import http.server
+        import socketserver
+        import webbrowser
+
+        PORT = 8080
+        Handler = http.server.SimpleHTTPRequestHandler
+
+        # Change to the web interface directory
+        os.chdir("organized/ai_ml/universal_syntax_delivery")
+
+        with socketserver.TCPServer(("", PORT), Handler) as httpd:
+            print(f"🌐 Web interface available at http://localhost:{PORT}")
+            webbrowser.open(f"http://localhost:{PORT}")
+            httpd.serve_forever()
+
+    except Exception as e:
+        print(f"❌ Web interface failed: {e}")
+
+def main():
+    """Main deployment function"""
+    print("🌀 CONSCIOUSNESS MATHEMATICS UNIFIED SYSTEM DEPLOYMENT")
+    print("=" * 60)
+    print("Launching complete consciousness computing ecosystem...")
+    print()
+
+    # Check current directory
+    if not Path("organized").exists():
+        print("❌ Error: Must run from dev folder with organized/ subdirectory")
+        return 1
+
+    # Start services in separate threads
+    services = []
+
+    # Service 1: Primality API
+    primality_thread = threading.Thread(target=run_primality_api, daemon=True)
+    services.append(("Primality API (Port 5001)", primality_thread))
+
+    # Service 2: Consciousness API
+    consciousness_thread = threading.Thread(target=run_consciousness_api, daemon=True)
+    services.append(("Consciousness API (Port 8000)", consciousness_thread))
+
+    # Service 3: Web Interface
+    web_thread = threading.Thread(target=run_web_interface, daemon=True)
+    services.append(("Web Interface (Port 8080)", web_thread))
+
+    # Start all services
+    for name, thread in services:
+        thread.start()
+        print(f"✅ {name} - Starting...")
+
+    print()
+    print("🎉 ALL SYSTEMS LAUNCHED!")
+    print("=" * 40)
+    print("🌐 Web Interface: http://localhost:8080")
+    print("🔢 Primality API:  http://localhost:5001")
+    print("🧠 Consciousness API: http://localhost:8000/docs")
+    print()
+    print("Press Ctrl+C to stop all services")
+    print("=" * 40)
+
+    try:
+        # Keep main thread alive
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("\n🛑 Shutting down all services...")
+        return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
