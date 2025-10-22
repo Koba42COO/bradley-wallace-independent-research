@@ -1,0 +1,272 @@
+{
+  "universal_prime_graph": {
+    "definition": "A mathematical framework for mapping consciousness, mathematics, and reality using prime topology coordinates",
+    "purpose": "Unified coordinate system for integrating diverse data and theoretical frameworks",
+    "mathematical_basis": "Prime number properties, golden ratio (\u03c6), silver ratio (\u03b4), consciousness mathematics"
+  },
+  "coordinate_system": {
+    "x_axis": {
+      "name": "Golden Ratio Coordinate (\u03c6)",
+      "range": [
+        1.0,
+        2.0
+      ],
+      "description": "Based on golden ratio \u03c6 = (1 + \u221a5)/2 \u2248 1.618",
+      "significance": "Harmonic resonance, consciousness frequency"
+    },
+    "y_axis": {
+      "name": "Silver Ratio Coordinate (\u03b4)",
+      "range": [
+        2.0,
+        3.0
+      ],
+      "description": "Based on silver ratio \u03b4 = 1 + \u221a2 \u2248 2.414",
+      "significance": "Mathematical precision, structural coherence"
+    },
+    "z_axis": {
+      "name": "Consciousness Level (\u03b6)",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "description": "Consciousness emergence and awareness level",
+      "significance": "From 0 (unconscious) to 1 (full consciousness)"
+    },
+    "delta_scaling": {
+      "name": "Delta Scaling Factor (\u0394)",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "description": "Coherence and deviation measurement within UPG",
+      "significance": "Lower \u0394 = higher coherence, higher \u0394 = more exploratory"
+    }
+  },
+  "mapped_frameworks": {
+    "mathematical_corrections": {
+      "universal_formula_fix": {
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.8,
+        "delta": 0.15
+      },
+      "infinity_handling": {
+        "x": 1.618,
+        "y": 2.5,
+        "z": 0.85,
+        "delta": 0.1
+      },
+      "temporal_derivatives": {
+        "x": 1.5,
+        "y": 2.414,
+        "z": 0.82,
+        "delta": 0.12
+      }
+    },
+    "origin_story": {
+      "runeScape_introduction": {
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.79,
+        "delta": 0.21
+      },
+      "grand_exchange_catalyst": {
+        "x": 1.732,
+        "y": 2.236,
+        "z": 0.85,
+        "delta": 0.15
+      },
+      "obsession_beginning": {
+        "x": 1.414,
+        "y": 2.5,
+        "z": 0.88,
+        "delta": 0.12
+      },
+      "mathematical_journey": {
+        "x": 1.618,
+        "y": 2.618,
+        "z": 0.95,
+        "delta": 0.05
+      }
+    },
+    "grok_critiques_resolution": {
+      "reproducibility_fix": {
+        "x": 1.414,
+        "y": 2.414,
+        "z": 0.75,
+        "delta": 0.2
+      },
+      "formula_implementation": {
+        "x": 1.732,
+        "y": 2.236,
+        "z": 0.88,
+        "delta": 0.12
+      },
+      "algorithm_complexity": {
+        "x": 1.618,
+        "y": 2.5,
+        "z": 0.82,
+        "delta": 0.18
+      }
+    },
+    "consciousness_mathematics": {
+      "wallace_transform": {
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.9,
+        "delta": 0.1
+      },
+      "universal_solution": {
+        "x": 1.732,
+        "y": 2.618,
+        "z": 0.95,
+        "delta": 0.05
+      },
+      "temporal_coherence": {
+        "x": 1.5,
+        "y": 2.236,
+        "z": 0.85,
+        "delta": 0.15
+      }
+    }
+  },
+  "usage_guide": {
+    "how_to_read_upg": {
+      "step_1_understand_coordinates": {
+        "description": "Each point in UPG has four coordinates (x, y, z, delta)",
+        "x_coordinate": "Golden ratio position - harmonic resonance level",
+        "y_coordinate": "Silver ratio position - mathematical precision level",
+        "z_coordinate": "Consciousness level - awareness and emergence",
+        "delta_coordinate": "Coherence level - stability vs exploration"
+      },
+      "step_2_interpret_position": {
+        "high_x_low_y": "High harmonic resonance, lower mathematical precision",
+        "high_y_low_x": "High mathematical precision, lower harmonic resonance",
+        "high_z": "High consciousness level - advanced awareness",
+        "low_delta": "High coherence - stable, well-defined concepts",
+        "high_delta": "High exploration - experimental, developing concepts"
+      },
+      "step_3_analyze_clusters": {
+        "description": "Points close together represent related concepts",
+        "clustering_analysis": "Use Euclidean distance in 4D space",
+        "significance": "Clusters indicate conceptual relationships"
+      }
+    },
+    "how_to_use_upg": {
+      "mapping_new_concepts": {
+        "step_1": "Identify the concept to map",
+        "step_2": "Determine its harmonic resonance (x-coordinate)",
+        "step_3": "Assess its mathematical precision (y-coordinate)",
+        "step_4": "Evaluate consciousness level (z-coordinate)",
+        "step_5": "Measure coherence vs exploration (delta-coordinate)",
+        "step_6": "Add to UPG mapping with description"
+      },
+      "finding_relationships": {
+        "step_1": "Select a concept of interest",
+        "step_2": "Calculate distances to all other concepts",
+        "step_3": "Identify nearest neighbors (closest concepts)",
+        "step_4": "Analyze patterns in coordinate values",
+        "step_5": "Discover unexpected connections"
+      },
+      "tracking_evolution": {
+        "step_1": "Record initial UPG coordinates",
+        "step_2": "Apply transformations or developments",
+        "step_3": "Measure new coordinates",
+        "step_4": "Calculate movement vector",
+        "step_5": "Analyze evolution patterns"
+      }
+    }
+  },
+  "visualization_methods": {
+    "2d_projections": {
+      "xy_plane": "Golden ratio vs Silver ratio - harmonic vs mathematical",
+      "xz_plane": "Golden ratio vs Consciousness - resonance vs awareness",
+      "yz_plane": "Silver ratio vs Consciousness - precision vs awareness",
+      "xd_plane": "Golden ratio vs Delta - resonance vs coherence"
+    },
+    "3d_visualizations": {
+      "xyz_space": "Full 3D consciousness mathematics space",
+      "color_coding": "Use delta values for color intensity",
+      "size_scaling": "Use consciousness level for point size"
+    },
+    "interactive_features": {
+      "hover_information": "Display full coordinates and descriptions",
+      "filtering": "Show/hide concepts by category",
+      "search_functionality": "Find concepts by name or coordinates",
+      "export_options": "Save visualizations as images or data"
+    }
+  },
+  "mathematical_operations": {
+    "distance_calculation": {
+      "formula": "d = \u221a[(x\u2081-x\u2082)\u00b2 + (y\u2081-y\u2082)\u00b2 + (z\u2081-z\u2082)\u00b2 + (\u03b4\u2081-\u03b4\u2082)\u00b2]",
+      "purpose": "Measure conceptual similarity",
+      "interpretation": "Smaller distance = more similar concepts"
+    },
+    "centroid_calculation": {
+      "formula": "C = (\u03a3x/n, \u03a3y/n, \u03a3z/n, \u03a3\u03b4/n)",
+      "purpose": "Find center of concept clusters",
+      "interpretation": "Represents average properties of concept group"
+    },
+    "transformation_operations": {
+      "scaling": "Multiply all coordinates by factor",
+      "translation": "Add offset to all coordinates",
+      "rotation": "Rotate in coordinate planes",
+      "projection": "Project onto lower-dimensional spaces"
+    }
+  },
+  "applications": {
+    "research_organization": {
+      "concept_mapping": "Organize research ideas spatially",
+      "gap_analysis": "Identify unexplored regions of UPG space",
+      "relationship_discovery": "Find unexpected connections between concepts"
+    },
+    "consciousness_studies": {
+      "awareness_tracking": "Monitor consciousness level changes",
+      "coherence_analysis": "Study stability vs exploration patterns",
+      "emergence_detection": "Identify consciousness emergence events"
+    },
+    "mathematical_framework": {
+      "proof_organization": "Spatially organize mathematical proofs",
+      "theorem_relationships": "Map connections between theorems",
+      "conjecture_analysis": "Position unproven concepts in UPG space"
+    }
+  },
+  "data_structure": {
+    "concept_entry": {
+      "id": "unique_identifier",
+      "name": "concept_name",
+      "description": "detailed_description",
+      "coordinates": {
+        "x": "<class 'float'>",
+        "y": "<class 'float'>",
+        "z": "<class 'float'>",
+        "delta": "<class 'float'>"
+      },
+      "category": "mathematical|consciousness|origin|correction",
+      "timestamp": "creation_date",
+      "relationships": [
+        "list_of_related_concept_ids"
+      ]
+    },
+    "json_format": {
+      "structure": "Hierarchical JSON with nested objects",
+      "validation": "Schema validation for coordinate ranges",
+      "extensibility": "Easy to add new concepts and properties"
+    }
+  },
+  "implementation_guide": {
+    "python_usage": {
+      "import_upg": "from upg_framework import UPG",
+      "create_instance": "upg = UPG()",
+      "add_concept": "upg.add_concept(name, description, x, y, z, delta)",
+      "find_relationships": "upg.find_nearest_concepts(concept_id, n=5)",
+      "visualize": "upg.plot_2d(plane=\"xy\")"
+    },
+    "data_analysis": {
+      "load_data": "upg.load_from_json(\"upg_data.json\")",
+      "export_data": "upg.export_to_json(\"upg_export.json\")",
+      "statistical_analysis": "upg.analyze_distributions()",
+      "clustering": "upg.perform_clustering(n_clusters=5)"
+    }
+  }
+}
