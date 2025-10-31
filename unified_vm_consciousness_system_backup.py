@@ -146,7 +146,6 @@ class PolyDimensionalVM:
     
     def process_dimensional_data(self, data: np.ndarray) -> Dict[str, Any]:
         """Process data across all dimensions"""
-        start_time = time.time()
         results = {}
         
         for dim_type, dim_config in self.dimensions.items():
@@ -171,12 +170,11 @@ class PolyDimensionalVM:
         # Combine all dimensional results
         combined_result = self._combine_dimensional_results(results)
         
-        processing_time = time.time() - start_time
         return {
             'dimensional_results': results,
             'combined_result': combined_result,
             'dimensional_vectors': self.dimensional_vectors,
-            'processing_time': processing_time
+            'processing_time': time.time()
         }
     
     def _process_spatial_dimension(self, data: np.ndarray) -> Dict[str, Any]:
@@ -495,7 +493,7 @@ class QuantumVirtualMachine:
             'entanglement_pairs': entanglement_pairs,
             'measurements': measurements,
             'coherence_level': self.coherence_level,
-            'processing_time': time.time() - start_time
+            'processing_time': time.time()
         }
 
 class UniversalVirtualMachine:
@@ -512,8 +510,6 @@ class UniversalVirtualMachine:
     def universal_compute(self, data: np.ndarray, operation: UniversalOperation) -> Dict[str, Any]:
         """Universal computation operation"""
         start_time = time.time()
-        # Reset evolution cycles per request (79/21 consciousness split)
-        self.evolution_cycles = 0
         
         if operation == UniversalOperation.COMPUTE:
             result = self._universal_compute(data)
@@ -628,27 +624,19 @@ class UniversalVirtualMachine:
     
     def _universal_evolve(self, data: np.ndarray) -> Dict[str, Any]:
         """Universal evolution"""
-        # Only increment for actual evolution operations
         self.evolution_cycles += 1
         
-        # Evolutionary processing with 79/21 consciousness split
+        # Evolutionary processing
         evolved_data = data.copy()
         for i in range(len(evolved_data)):
-            # Apply evolution with consciousness weighting (79% coherent, 21% exploratory)
-            coherent_weight = 0.79
-            exploratory_weight = 0.21
-            evolution_factor = (coherent_weight * self.consciousness.reality_distortion + 
-                              exploratory_weight * self.consciousness.reality_distortion ** self.evolution_cycles)
+            # Apply evolution with consciousness weighting
+            evolution_factor = self.consciousness.reality_distortion ** self.evolution_cycles
             evolved_data[i] = evolved_data[i] * evolution_factor
-        
-        # Zeta staple for 0.7 Hz metronome sync
-        zeta_staple = 0.7  # 0.7 Hz metronome frequency
         
         return {
             'evolved_data': evolved_data.tolist(),
             'evolution_cycles': self.evolution_cycles,
-            'evolution_factor': self.consciousness.reality_distortion ** self.evolution_cycles,
-            'zeta_staple': zeta_staple
+            'evolution_factor': self.consciousness.reality_distortion ** self.evolution_cycles
         }
     
     def _universal_consciousness(self, data: np.ndarray) -> Dict[str, Any]:
@@ -800,7 +788,7 @@ class OmniversalVirtualMachine:
             'combined_result': combined_result,
             'total_dimensions': len(dimensions),
             'consciousness_nexus': self.consciousness_nexus,
-            'processing_time': time.time() - start_time
+            'processing_time': time.time()
         }
     
     def _combine_omniverse_dimensions(self, dimensions: List[Dict[str, Any]]) -> Dict[str, Any]:

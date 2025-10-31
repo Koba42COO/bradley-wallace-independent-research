@@ -512,8 +512,6 @@ class UniversalVirtualMachine:
     def universal_compute(self, data: np.ndarray, operation: UniversalOperation) -> Dict[str, Any]:
         """Universal computation operation"""
         start_time = time.time()
-        # Reset evolution cycles per request (79/21 consciousness split)
-        self.evolution_cycles = 0
         
         if operation == UniversalOperation.COMPUTE:
             result = self._universal_compute(data)
@@ -628,27 +626,19 @@ class UniversalVirtualMachine:
     
     def _universal_evolve(self, data: np.ndarray) -> Dict[str, Any]:
         """Universal evolution"""
-        # Only increment for actual evolution operations
         self.evolution_cycles += 1
         
-        # Evolutionary processing with 79/21 consciousness split
+        # Evolutionary processing
         evolved_data = data.copy()
         for i in range(len(evolved_data)):
-            # Apply evolution with consciousness weighting (79% coherent, 21% exploratory)
-            coherent_weight = 0.79
-            exploratory_weight = 0.21
-            evolution_factor = (coherent_weight * self.consciousness.reality_distortion + 
-                              exploratory_weight * self.consciousness.reality_distortion ** self.evolution_cycles)
+            # Apply evolution with consciousness weighting
+            evolution_factor = self.consciousness.reality_distortion ** self.evolution_cycles
             evolved_data[i] = evolved_data[i] * evolution_factor
-        
-        # Zeta staple for 0.7 Hz metronome sync
-        zeta_staple = 0.7  # 0.7 Hz metronome frequency
         
         return {
             'evolved_data': evolved_data.tolist(),
             'evolution_cycles': self.evolution_cycles,
-            'evolution_factor': self.consciousness.reality_distortion ** self.evolution_cycles,
-            'zeta_staple': zeta_staple
+            'evolution_factor': self.consciousness.reality_distortion ** self.evolution_cycles
         }
     
     def _universal_consciousness(self, data: np.ndarray) -> Dict[str, Any]:
