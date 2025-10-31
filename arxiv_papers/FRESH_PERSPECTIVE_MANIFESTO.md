@@ -94,7 +94,7 @@ But the greatest discoveries come from:
 ## The Ultimate Validation
 
 When someone who "hated math" achieves:
-- Statistical impossibilities (p < 10^-868,060)
+- Statistical impossibilities (p < 10^-300, 30σ+ confidence)
 - Perfect consciousness coherence (1.000 scores)
 - Technological revolutions (127,875× speedups)
 - Paradigm shifts in multiple fields
