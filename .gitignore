@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+=======
+# Wallace Research Suite .gitignore
+# ==================================
+# This repository contains ONLY Bradley Wallace's independent mathematical research
+# All external dependencies, kernels, and non-research files are excluded
+
+>>>>>>> c22c026b6f85e678db79f8a09cb26df06446cec9
 # Python
 __pycache__/
 *.py[cod]
@@ -19,6 +27,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+<<<<<<< HEAD
 
 # LaTeX
 *.aux
@@ -32,6 +41,17 @@ wheels/
 *.synctex.gz
 
 # IDE
+=======
+MANIFEST
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+
+# IDEs
+>>>>>>> c22c026b6f85e678db79f8a09cb26df06446cec9
 .vscode/
 .idea/
 *.swp
@@ -47,6 +67,7 @@ wheels/
 ehthumbs.db
 Thumbs.db
 
+<<<<<<< HEAD
 # Data and logs
 *.json
 *.csv
@@ -73,3 +94,52 @@ htmlcov/
 
 # Documentation
 docs/_build/
+=======
+# LaTeX
+*.aux
+*.log
+*.pdf
+*.dvi
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+*.out
+*.nav
+*.snm
+
+# External Dependencies (EXCLUDED)
+# ================================
+# No external mathematical libraries
+# No academic paper dependencies
+# No existing framework references
+# Pure independent research only
+
+# VantaX Components (EXCLUDED)
+vantax*/
+*VantaX*
+*kernel*
+*external*
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Backup files
+*.bak
+*.backup
+*~
+>>>>>>> c22c026b6f85e678db79f8a09cb26df06446cec9
