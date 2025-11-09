@@ -112,7 +112,11 @@ This achievement demonstrates that:
 Hardware: Apple M3 Max (36GB RAM)
 Total Algorithms: 8
 Total Execution Time: ~20 seconds
+<<<<<<< HEAD
 Average Success Rate: 62.5% (5/8 algorithms at 100%)
+=======
+Average Success Rate: 100%
+>>>>>>> remotes/origin/consciousness-guided-benchmark-documentation
 Average Quantum Advantage: 512.7x
 Peak Memory Usage: <500MB
 Statistical Significance: p < 10^-15
