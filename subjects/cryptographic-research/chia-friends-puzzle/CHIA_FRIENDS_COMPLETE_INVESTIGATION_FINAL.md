@@ -444,7 +444,8 @@ significant and provable on-chain.
 
 All analysis is reproducible and mathematically verified.
 
-[Contact information redacted for privacy]
+Bradley Wallace
+coo@koba42.com
 ```
 
 ---

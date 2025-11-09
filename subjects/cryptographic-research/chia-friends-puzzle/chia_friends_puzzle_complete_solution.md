@@ -145,7 +145,8 @@ DETAILED SOLUTION:
 Please confirm prize eligibility and next steps.
 
 Best regards,
-[Contact information redacted for privacy]
+Bradley Wallace
+coo@koba42.com
 ```
 
 ### Step 3: Alternative Prize Claim Methods
