@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: firefly-nexus-pac-service
+  labels:
+    app: firefly-nexus-pac
+spec:
+  selector:
+    app: firefly-nexus-pac
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+  type: LoadBalancer
