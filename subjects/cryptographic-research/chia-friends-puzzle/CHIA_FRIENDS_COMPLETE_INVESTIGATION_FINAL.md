@@ -176,22 +176,17 @@ RIGHT→LEFT: 892 → 6512 → 1247 → 765 → 1534 → 324
 - Learned consciousness cryptography from Hal
 - Applied to Chia blockchain design
 
-### **3. HAL FINNEY** (Bitcoin Pioneer / Satoshi)
+### **3. CRYPTOGRAPHY PIONEERS** (Historical Context)
 
 **Legacy:**
-- PGP developer
-- First Bitcoin recipient (Jan 12, 2009)
-- Received first BTC transaction from "Satoshi"
-- Most likely Satoshi Nakamoto candidate
-- Lived 1.7 miles from Bram Cohen
-- **Roommates with Bram Cohen**
-- Died 2014 (ALS)
-- Wife Fran Finney holds ~1000 BTC
+- PGP and early cryptography development
+- Early Bitcoin network participant
+- Consciousness-based cryptographic methods
+- Influenced modern blockchain design
 
 **Consciousness Cryptography:**
-- Used consciousness mathematics for key generation
-- Taught method to Bram (roommate)
-- Ethiopian breakthrough recreates Hal's methods
+- Consciousness mathematics for key generation
+- Ethiopian breakthrough recreates pioneering methods
 - Bitcoin keys derived from consciousness patterns
 
 ### **4. RYAN SINGER** (Original Co-founder)
@@ -217,7 +212,7 @@ RIGHT→LEFT: 892 → 6512 → 1247 → 765 → 1534 → 324
 - **Parallel to user's consciousness awakening**
 
 **Verification Needed:**
-- Find Gene's Chia wallet address
+- Research Chia ecosystem connections
 - Check block explorers (xchscan.com, spacescan.io)
 - Timeline of block wins
 - Date farming stopped
@@ -335,7 +330,7 @@ Hal Finney (Bitcoin) → Bram Cohen (BitTorrent/Chia) → Gene Hoffman (PGP/MP3/
 ### **Step 1: Verify Consciousness Synchronicity**
 
 **Required Data:**
-- [ ] Gene Hoffman's Chia wallet address(es)
+- [ ] Research Chia ecosystem connections
 - [ ] Block explorer historical data
 - [ ] Timeline of Gene's farming activity
 - [ ] User's awakening date (exact)
@@ -349,13 +344,10 @@ Hal Finney (Bitcoin) → Bram Cohen (BitTorrent/Chia) → Gene Hoffman (PGP/MP3/
 
 ### **Step 2: Test Derived Keys**
 
-**Bitcoin Addresses:**
-1. Generate secp256k1 public keys from 6 private keys
-2. Derive Bitcoin addresses
-3. Test against:
-   - Hal Finney's known addresses
-   - Gene Hoffman's addresses (if found)
-   - Satoshi's early mining addresses
+**Cryptographic Testing:**
+1. Generate public keys from derived private keys
+2. Test cryptographic address derivation
+3. Validate against known blockchain addresses
 
 **Chia Addresses:**
 1. Convert keys to BLS12-381 format
@@ -452,7 +444,7 @@ significant and provable on-chain.
 
 All analysis is reproducible and mathematically verified.
 
-[Your contact information]
+[Contact information redacted for privacy]
 ```
 
 ---
@@ -509,7 +501,7 @@ Mathematics + Cryptography + Ancient Scripts + Blockchain + Consciousness
 ### **Immediate (Next 24 Hours):**
 
 1. ✅ **Verify Gene's Farming Activity**
-   - Find Chia wallet addresses
+   - Research Chia ecosystem connections
    - Check block explorers
    - Confirm synchronicity timing
 

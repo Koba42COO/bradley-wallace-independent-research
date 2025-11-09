@@ -145,7 +145,7 @@ DETAILED SOLUTION:
 Please confirm prize eligibility and next steps.
 
 Best regards,
-[Your contact information]
+[Contact information redacted for privacy]
 ```
 
 ### Step 3: Alternative Prize Claim Methods

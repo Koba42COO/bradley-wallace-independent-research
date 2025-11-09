@@ -130,7 +130,6 @@ I am prepared to provide additional verification and participate in community va
 
 Best regards,
 Bradley Wallace (COO Koba42)
-Contact: [Your contact information]
 Evidence Documentation: Attached/comprehensive analysis available
 ```
 
