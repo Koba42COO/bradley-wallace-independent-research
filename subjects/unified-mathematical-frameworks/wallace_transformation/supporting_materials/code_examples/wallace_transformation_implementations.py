@@ -2,6 +2,9 @@
 """
 WALLACE TRANSFORMATION IMPLEMENTATIONS
 ======================================
+# Set high precision
+getcontext().prec = 50
+
 
 Comprehensive Python implementations for the Wallace Transformation framework,
 providing unified consciousness mathematics and reality modeling capabilities.
@@ -343,7 +346,7 @@ class WallaceTransformationImplementations:
 
     def _wallace_transform(self, x: float, iterations: int = 1) -> float:
         """Apply Wallace Transform for optimization."""
-        epsilon = 1e-12
+        epsilon = Decimal('1e-12')
         alpha = self.phi
         beta = 1.0 / self.phi
 

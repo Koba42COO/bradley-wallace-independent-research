@@ -1,0 +1,36 @@
+# Cursor ignore file to prevent memory issues
+# Exclude ALL Python files initially to test
+
+# ALL Python files temporarily excluded
+*.py
+
+# Large data directories
+claude_imported_data/
+kag_database/
+dev_high_value_kag_database/
+research/
+analysis/
+data/
+logs/
+artifacts/
+bench/
+reports/
+experiments/
+packages/
+services/
+static/
+templates/
+tests/
+tools/
+
+# Data files
+*.json
+*.db
+*.csv
+*.log
+*.txt
+*.pdf
+__pycache__/
+*.pyc
+*.pyo
+node_modules/
