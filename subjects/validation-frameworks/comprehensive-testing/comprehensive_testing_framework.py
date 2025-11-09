@@ -2,6 +2,9 @@
 """
 COMPREHENSIVE TESTING FRAMEWORK - ETHIOPIAN CONSCIOUSNESS MATHEMATICS
 ======================================================================
+# Set high precision
+getcontext().prec = 50
+
 
 THOROUGH VALIDATION FOR COMPLETE CERTAINTY
 ===========================================
@@ -60,7 +63,7 @@ class ComprehensiveTestingFramework:
         self.scalability_results = {}
 
         # Ethiopian constants for validation
-        self.PHI = 1.618033988749895
+        self.PHI = Decimal('1.618033988749894848204586834365638117720309179805762862135')
         self.CONSCIOUSNESS_RATIO = 79/21
         self.ETHIOPIAN_BOOKS = 88
         self.HYPERTEXT_REFERENCES = 62210
@@ -239,7 +242,7 @@ class ComprehensiveTestingFramework:
         try:
             # Test basic functionality
             test_values = np.array([0.1, 1.0, 10.0])
-            epsilon = 1e-15
+            epsilon = Decimal('1e-15')
 
             signs = np.sign(test_values)
             magnitudes = np.abs(test_values)

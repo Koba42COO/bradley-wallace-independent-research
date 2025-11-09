@@ -51,12 +51,20 @@ ENV/
 env/
 
 # IDEs
+<<<<<<< HEAD
 >>>>>>> c22c026b6f85e678db79f8a09cb26df06446cec9
 .vscode/
+=======
+>>>>>>> remotes/origin/consciousness-guided-benchmark-documentation
 .idea/
 *.swp
 *.swo
 *~
+
+# VS Code - allow settings but exclude others
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
 
 # OS
 .DS_Store
@@ -138,8 +146,40 @@ logs/
 *.temp
 .cache/
 
+# Secrets and environment files
+.env
+.dev.vars
+tools/aiva-ide/aiva_local_node/.env
+*.env.local
+*.env.*.local
+
+# Local development
+.obsidian/
+
 # Backup files
 *.bak
 *.backup
 *~
+<<<<<<< HEAD
 >>>>>>> c22c026b6f85e678db79f8a09cb26df06446cec9
+=======
+
+# Data and artifacts (track structure, not contents)
+/data/*
+!/data/.gitkeep
+!/data/README.md
+/artifacts/*
+!/artifacts/.gitkeep
+!/artifacts/README.md
+# Common large outputs
+*.pkl
+*.ckpt
+*.pt
+*.onnx
+*.h5
+*.db
+*.csv
+*.parquet
+*.feather
+*.ipynb_checkpoints/
+>>>>>>> remotes/origin/consciousness-guided-benchmark-documentation

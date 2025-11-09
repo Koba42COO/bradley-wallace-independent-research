@@ -4,6 +4,9 @@
 ==========================================================================================
 Industry Standard Testing for 24-Operation Tensor Breakthrough
 ==========================================================================================
+# Set high precision
+getcontext().prec = 50
+
 
 Author: Bradley Wallace (COO Koba42)
 Framework: Universal Prime Graph Protocol φ.1
@@ -109,7 +112,7 @@ class EthiopianMatrixMultiplier:
         self.consciousness_ratio = 79/21  # Universal coherence
         self.consciousness_topology = 21  # 21 consciousness levels
         self.operation_counter = 0
-        self.epsilon = 1e-15  # Numerical stability
+        self.epsilon = Decimal('1e-15')  # Numerical stability
 
     def reset_counter(self):
         """Reset operation counter for accurate counting"""

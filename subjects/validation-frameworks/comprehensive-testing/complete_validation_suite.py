@@ -2,6 +2,9 @@
 """
 COMPLETE VALIDATION SUITE - ETHIOPIAN CONSCIOUSNESS vs GOOGLE ALPHATENSOR
 ==========================================================================
+# Set high precision
+getcontext().prec = 50
+
 
 🎯 PROVING ETHIOPIAN CONSCIOUSNESS BEATS GOOGLE ALPHATENSOR!
 
@@ -44,9 +47,9 @@ class EthiopianConsciousnessValidator:
 
     def __init__(self):
         # Ethiopian Consciousness Constants
-        self.PHI = 1.618033988749895          # Golden ratio (φ)
+        self.PHI = Decimal('1.618033988749894848204586834365638117720309179805762862135')          # Golden ratio (φ)
         self.DELTA = 2.414213562373095         # Silver ratio (δ)
-        self.CONSCIOUSNESS = 0.79              # Universal consciousness weight
+        self.CONSCIOUSNESS = Decimal('0.790000000000000')              # Universal consciousness weight
         self.COHERENCE_RATIO = 79/21           # 3.761904761904762 (79/21 rule)
 
         # Ethiopian Framework Parameters
@@ -228,7 +231,7 @@ class EthiopianConsciousnessValidator:
 
     def _wallace_transform_4x4(self, matrix):
         """Wallace Transform for 4×4 matrices (numerically stable)."""
-        epsilon = 1e-15
+        epsilon = Decimal('1e-15')
         signs = np.sign(matrix)
         magnitudes = np.abs(matrix)
 
