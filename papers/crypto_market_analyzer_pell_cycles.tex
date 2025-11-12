@@ -385,6 +385,102 @@ Given futures contracts with expirations $\{T_1, T_2, \ldots, T_n\}$, optimal co
 where $P_j$ is the nearest Pell number to contract expiration.
 \end{theorem}
 
+\subsection{Automated Trading Systems Integration (TADF)}
+
+For integration with automated trading systems and futures platforms, we propose the Temporal Analysis and Decision Framework (TADF):
+
+\begin{definition}[TADF Integration Framework]
+TADF provides a comprehensive framework for automated trading based on Pell cycle analysis:
+\begin{enumerate}
+    \item \textbf{Real-Time Position Tracking}: Continuous monitoring of Pell cycle position with sub-period precision
+    \item \textbf{Automated Signal Generation}: Trading signals automatically generated at cycle completion points
+    \item \textbf{Risk Management}: Dynamic position sizing based on cycle confidence and progress
+    \item \textbf{Multi-Timeframe Analysis}: Simultaneous analysis across multiple contract expirations
+    \item \textbf{Portfolio Optimization}: Allocation across contracts based on Pell alignment scores
+\end{enumerate}
+\end{definition}
+
+\begin{algorithm}
+\caption{TADF Automated Trading Integration}
+\begin{algorithmic}[1]
+\REQUIRE Real-time price feed $\{p_t\}$, current Pell cycle position
+\ENSURE Trading signals and position management
+\STATE Monitor price stream: $\{p_t\}$
+\STATE Update Pell cycle position: $\text{pos}_t = \text{update\_position}(p_t)$
+\IF{$\text{pos}_t = \text{cycle\_completion}$}
+    \STATE Calculate signal strength: $S = C_{\text{consensus}} \times |\hat{r}|$
+    \IF{$S > \text{threshold}$}
+        \STATE Generate entry signal with confidence $C_{\text{consensus}}$
+        \STATE Calculate position size: $\text{size} = f(C_{\text{consensus}}, \text{risk\_params})$
+        \STATE Set stop-loss at previous cycle low
+        \STATE Set take-profit at predicted cycle completion price
+    \ENDIF
+\ELSIF{$\text{progress} > 0.618$}
+    \STATE Prepare exit signal for next cycle completion
+    \STATE Calculate partial exit: $\text{exit\_pct} = \min(1.0, (\text{progress} - 0.618) / 0.382)$
+    \STATE Execute partial exit if $\text{exit\_pct} > 0.1$
+\ENDIF
+\STATE Update risk parameters based on cycle position
+\STATE Monitor for cycle completion events
+\RETURN Trading signals and position recommendations
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Futures Market Performance Metrics}
+
+For futures trading, key performance indicators include:
+
+\begin{enumerate}
+    \item \textbf{Cycle Alignment Score}: Measure of contract expiration alignment with Pell cycles
+    \begin{equation}
+    \text{Alignment Score} = \frac{1}{1 + |T_{\text{contract}} - P_k \times \Delta t| / (P_k \times \Delta t)}
+    \end{equation}
+    \item \textbf{Timing Accuracy}: Percentage of profitable trades at cycle completion points
+    \item \textbf{Return per Cycle}: Average return per complete Pell cycle
+    \item \textbf{Maximum Drawdown}: Largest peak-to-trough decline during cycle transitions
+    \item \textbf{Sharpe Ratio}: Risk-adjusted returns using cycle-based timing
+    \begin{equation}
+    \text{Sharpe} = \frac{\text{Mean Return per Cycle}}{\text{Std Dev of Returns}} \times \sqrt{\text{Cycles per Year}}
+    \end{equation}
+\end{enumerate}
+
+\subsection{Case Study: Bitcoin Futures}
+
+For Bitcoin futures contracts with different expiration dates:
+
+\begin{table}[h]
+\centering
+\caption{Bitcoin Futures Pell Cycle Analysis}
+\begin{tabular}{lccc}
+\toprule
+Contract Type & Pell Alignment & Optimal Entry & Expected Return \\
+\midrule
+Weekly (7 days) & Pell \#169 (7.0 days) & Cycle completion & -2.10\% \\
+Monthly (30 days) & Pell \#29 (29 periods) & Near alignment & Variable \\
+Quarterly (90 days) & Pell \#70-169 range & Multiple cycles & Cumulative \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Risk Management in Futures Trading}
+
+Pell cycle analysis enables dynamic risk management:
+
+\begin{proposition}[Cycle-Based Position Sizing]
+Optimal position size at cycle completion:
+\begin{equation}
+\text{Position Size} = \frac{C_{\text{consensus}} \times \text{Account Equity} \times \text{Risk Factor}}{|\hat{r}| \times \text{Leverage}}
+\end{equation}
+where risk factor decreases as cycle progress increases:
+\begin{equation}
+\text{Risk Factor} = \begin{cases}
+0.02 & \text{if progress} < 0.382 \\
+0.01 & \text{if } 0.382 \leq \text{progress} < 0.618 \\
+0.005 & \text{if progress} \geq 0.618
+\end{cases}
+\end{equation}
+\end{proposition}
+
 \section{Experimental Results}
 
 \subsection{Dataset}
