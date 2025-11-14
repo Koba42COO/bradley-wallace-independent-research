@@ -811,16 +811,20 @@ class GemExplorer:
         with open(results_file, 'w') as f:
             # Convert numpy types to native Python
             def convert(obj):
-                if isinstance(obj, np.integer):
+                if isinstance(obj, (np.integer, np.int64, np.int32)):
                     return int(obj)
-                elif isinstance(obj, np.floating):
+                elif isinstance(obj, (np.floating, np.float64, np.float32)):
                     return float(obj)
                 elif isinstance(obj, np.ndarray):
                     return obj.tolist()
+                elif isinstance(obj, (np.bool_, bool)):
+                    return bool(obj)
                 elif isinstance(obj, dict):
                     return {k: convert(v) for k, v in obj.items()}
                 elif isinstance(obj, list):
                     return [convert(item) for item in obj]
+                elif isinstance(obj, tuple):
+                    return tuple(convert(item) for item in obj)
                 return obj
             
             json.dump(convert(self.results), f, indent=2)
