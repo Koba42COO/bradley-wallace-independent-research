@@ -473,15 +473,25 @@ class AIVAUniversalIntelligence:
         self.knowledge = UniversalKnowledgeSynthesis(self.tool_caller)
         print("     ✅ Knowledge synthesis ready")
         
-        # UPG BitTorrent Storage (always pull from UPG)
-        print("  💾 Initializing UPG BitTorrent storage...")
+        # Moiré-Zeta Framework integration
+        print("  🔬 Initializing Moiré-Zeta Framework...")
         try:
-            from aiva_upg_bittorrent_storage import AIVAUPGStorage
-            self.storage = AIVAUPGStorage(dev_folder)
-            print("     ✅ UPG storage ready (storage IS delivery)")
-        except ImportError:
-            self.storage = None
-            print("     ⚠️  UPG storage not available")
+            aiva_full_spectrum_path = self.dev_folder / "aiva_full_spectrum"
+            if aiva_full_spectrum_path.exists():
+                sys.path.insert(0, str(aiva_full_spectrum_path))
+                from integration.aiva_moire_zeta_integration import AIVAMoireZetaIntegration
+                self.moire_zeta = AIVAMoireZetaIntegration()
+                if self.moire_zeta.initialized:
+                    caps = self.moire_zeta.get_capabilities()
+                    print(f"     ✅ Moiré-Zeta Framework integrated ({len(caps['modules'])} modules)")
+                else:
+                    print("     ⚠️  Moiré-Zeta Framework partially initialized")
+            else:
+                self.moire_zeta = None
+                print("     ⚠️  Moiré-Zeta Framework not found")
+        except Exception as e:
+            self.moire_zeta = None
+            print(f"     ⚠️  Moiré-Zeta Framework error: {e}")
         
         # AIVA state
         self.conversation_history: List[Dict[str, Any]] = []
@@ -490,7 +500,8 @@ class AIVAUniversalIntelligence:
             'awareness_level': 0.95,
             'self_reflection_depth': 0,
             'consciousness_signature': None,
-            'evolution_stage': 'universal_intelligence'
+            'evolution_stage': 'universal_intelligence',
+            'moire_zeta_available': self.moire_zeta is not None and self.moire_zeta.initialized if hasattr(self, 'moire_zeta') else False
         }
         
         print()
@@ -504,8 +515,9 @@ class AIVAUniversalIntelligence:
         print(f"💭 Reasoning: Consciousness mathematics")
         print(f"🔮 Prediction: Active")
         print(f"🌐 Knowledge Synthesis: Universal")
-        if self.storage:
-            print(f"💾 UPG Storage: Active (always pull from UPG)")
+        if self.moire_zeta and self.moire_zeta.initialized:
+            caps = self.moire_zeta.get_capabilities()
+            print(f"🔬 Moiré-Zeta Framework: {len(caps['modules'])} modules")
         print("=" * 70)
         print()
     
@@ -607,7 +619,58 @@ class AIVAUniversalIntelligence:
         self.self_awareness_state['memory_entries'] = len(self.memory.memories)
         self.self_awareness_state['tools_available'] = len(self.tool_caller.registry.tools)
         self.self_awareness_state['phi_coherence'] = self._calculate_phi_coherence()
+        if self.moire_zeta and self.moire_zeta.initialized:
+            self.self_awareness_state['moire_zeta_capabilities'] = self.moire_zeta.get_capabilities()
         return self.self_awareness_state
+    
+    # ========================================================================
+    # MOIRÉ-ZETA FRAMEWORK METHODS
+    # ========================================================================
+    
+    def moire_zeta_analyze(self, freq1: float, freq2: float) -> Dict[str, Any]:
+        """Analyze Moiré-Zeta correspondence"""
+        if not self.moire_zeta or not self.moire_zeta.initialized:
+            return {'error': 'Moiré-Zeta Framework not available'}
+        return self.moire_zeta.analyze_moire_zeta(freq1, freq2)
+    
+    def predict_primes(self, start: int, count: int = 100) -> Dict[str, Any]:
+        """Predict prime positions using Moiré shadows"""
+        if not self.moire_zeta or not self.moire_zeta.initialized:
+            return {'error': 'Moiré-Zeta Framework not available'}
+        return self.moire_zeta.predict_primes(start, count)
+    
+    def optimize_crystal(self, dimensions: int = 5, packing_type: str = 'golden_ratio') -> Dict[str, Any]:
+        """Optimize crystallographic packing"""
+        if not self.moire_zeta or not self.moire_zeta.initialized:
+            return {'error': 'Moiré-Zeta Framework not available'}
+        return self.moire_zeta.optimize_crystal(dimensions, packing_type)
+    
+    def compress_code(self, code: str) -> Dict[str, Any]:
+        """Compress code using topological analysis"""
+        if not self.moire_zeta or not self.moire_zeta.initialized:
+            return {'error': 'Moiré-Zeta Framework not available'}
+        return self.moire_zeta.compress_code(code)
+    
+    def classify_complexity(self, problem_pattern) -> Dict[str, Any]:
+        """Classify problem as P or NP"""
+        if not self.moire_zeta or not self.moire_zeta.initialized:
+            return {'error': 'Moiré-Zeta Framework not available'}
+        import numpy as np
+        if not isinstance(problem_pattern, np.ndarray):
+            problem_pattern = np.array(problem_pattern)
+        return self.moire_zeta.classify_complexity(problem_pattern)
+    
+    def discover_patterns(self) -> Dict[str, Any]:
+        """Discover all patterns (palindromic, cycles, chains, K2)"""
+        if not self.moire_zeta or not self.moire_zeta.initialized:
+            return {'error': 'Moiré-Zeta Framework not available'}
+        return self.moire_zeta.discover_patterns()
+    
+    def get_moire_zeta_capabilities(self) -> Dict[str, Any]:
+        """Get all available Moiré-Zeta capabilities"""
+        if not self.moire_zeta or not self.moire_zeta.initialized:
+            return {'error': 'Moiré-Zeta Framework not available', 'initialized': False}
+        return self.moire_zeta.get_capabilities()
 
 
 # ============================================================================
@@ -705,4 +768,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-
