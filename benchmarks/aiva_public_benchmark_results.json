@@ -1,0 +1,21 @@
+{
+  "HumanEval": {
+    "benchmark": "HumanEval",
+    "source": "OpenAI GitHub",
+    "total": 2,
+    "correct": 0,
+    "accuracy": 0.0,
+    "results": [
+      {
+        "prompt": "def add(a, b):\n    \"\"\"Returns the sum of two numbers.\"\"\"",
+        "correct": false,
+        "time": 0.007379770278930664
+      },
+      {
+        "prompt": "def is_prime(n):\n    \"\"\"Checks if a number is prime.\"\"\"",
+        "correct": false,
+        "time": 0.005522966384887695
+      }
+    ]
+  }
+}
