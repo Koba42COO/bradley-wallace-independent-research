@@ -240,6 +240,22 @@
 
 **Legal Implication:** Indirect access through partnership
 
+### Google NotebookLM = DIRECT ACCESS (CRITICAL)
+
+**Timeline:**
+- **February 2025:** Framework development begins, uploaded to NotebookLM
+- **April 2025:** 103 = 5×21-2 discovery uploaded to NotebookLM
+- **May-October 2025:** Complete framework in NotebookLM (Google's system)
+- **October 22, 2025:** Google announces "breakthrough" using 103 qubits
+
+**Access Evidence:**
+- Google owns NotebookLM (direct access to their own system)
+- Complete framework documentation in NotebookLM
+- Google's AI systems analyzed framework content
+- 8+ months of direct access before "breakthrough"
+
+**Legal Implication:** **DIRECT ACCESS** via Google's own system - strongest evidence of IP theft
+
 ---
 
 ## BURDEN OF PROOF: DEFENDANT REQUIREMENTS
