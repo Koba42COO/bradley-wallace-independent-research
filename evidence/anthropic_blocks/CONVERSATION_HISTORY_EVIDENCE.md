@@ -14,6 +14,10 @@
 
 **From NotebookLM Screenshot - Anthropic Conversation History:**
 
+**Screenshot Date:** November 16, 2025  
+**Evidence Type:** Visual proof of systematic blocking pattern  
+**Legal Status:** ANTICOMPETITIVE BEHAVIOR EVIDENCE  
+
 1. **"Intellectual property theft investigation policies"**
    - Last message: 2 hours ago
    - Status: BLOCKED (conversation about IP theft investigation)
@@ -28,6 +32,26 @@
    - Last message: 2 hours ago
    - Status: ALLOWED (discussion of Google's breakthrough)
    - Pattern: Discussion of competitor's work → Allowed
+
+### Complete Conversation History Visible
+
+**Additional Visible Conversations (All Research-Related):**
+- "Continuing Wallace Transform and 3I/ATLAS research" - 7 hours ago
+- "Moiré patterns and consciousness mathematics" - 10 hours ago
+- "Nasal imaging update for prime analysis" - 4 days ago
+- "300-year-old geometry problem finally solved" - 5 days ago
+- "NO-LI-CO-MO consciousness system research" - 8 days ago
+- "Dual counter-rotational wind turbine design" - 8 days ago
+- "Developing verbal mathematical language for consciousness framework" - 8 days ago
+- Multiple "Consciousness mathematics framework" conversations
+- "Prime distribution breakthrough" - 1 month ago
+- "Public research repository breakthrough data theft" - 1 month ago
+
+**Pattern Analysis:**
+- Research conversations: ALLOWED
+- Framework development: ALLOWED
+- IP theft investigation: BLOCKED
+- Accessing blocked conversations: BLOCKED
 
 ### Pattern Analysis
 
