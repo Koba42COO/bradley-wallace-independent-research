@@ -1,0 +1,242 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+# Wallace Research Suite .gitignore
+# ==================================
+# This repository contains ONLY Bradley Wallace's independent mathematical research
+# All external dependencies, kernels, and non-research files are excluded
+
+>>>>>>> c22c026b6f85e678db79f8a09cb26df06446cec9
+>>>>>>> ed8358cf5b7268a2c2cd92be1c4ab6b0dcdad755
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+<<<<<<< HEAD
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+=======
+<<<<<<< HEAD
+
+# LaTeX
+*.aux
+*.log
+*.pdf
+*.dvi
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+
+# IDE
+=======
+MANIFEST
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+
+# IDEs
+<<<<<<< HEAD
+>>>>>>> c22c026b6f85e678db79f8a09cb26df06446cec9
+.vscode/
+=======
+>>>>>>> remotes/origin/consciousness-guided-benchmark-documentation
+.idea/
+*.swp
+*.swo
+*~
+
+# VS Code - allow settings but exclude others
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+<<<<<<< HEAD
+# Data and logs
+*.json
+*.csv
+*.txt
+logs/
+data/
+cache/
+temp/
+
+# Large files
+*.zip
+*.tar.gz
+*.pkl
+*.h5
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+.coverage.*
+
+# Jupyter
+.ipynb_checkpoints
+
+# Documentation
+docs/_build/
+=======
+# LaTeX
+*.aux
+*.log
+*.pdf
+*.dvi
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+*.out
+*.nav
+*.snm
+
+# External Dependencies (EXCLUDED)
+# ================================
+# No external mathematical libraries
+# No academic paper dependencies
+# No existing framework references
+# Pure independent research only
+
+# VantaX Components (EXCLUDED)
+vantax*/
+*VantaX*
+*kernel*
+*external*
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+
+>>>>>>> ed8358cf5b7268a2c2cd92be1c4ab6b0dcdad755
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+<<<<<<< HEAD
+# Large data files
+*.pkl
+*.h5
+*.npy
+*.npz
+
+# Compiled documentation
+docs/_build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Node.js (for AIVA UI)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Research data (if sensitive)
+sensitive_data/
+private_keys/
+=======
+# Secrets and environment files
+.env
+.dev.vars
+tools/aiva-ide/aiva_local_node/.env
+*.env.local
+*.env.*.local
+
+# Local development
+.obsidian/
+
+# Backup files
+*.bak
+*.backup
+*~
+<<<<<<< HEAD
+>>>>>>> c22c026b6f85e678db79f8a09cb26df06446cec9
+=======
+
+# Data and artifacts (track structure, not contents)
+/data/*
+!/data/.gitkeep
+!/data/README.md
+/artifacts/*
+!/artifacts/.gitkeep
+!/artifacts/README.md
+# Common large outputs
+*.pkl
+*.ckpt
+*.pt
+*.onnx
+*.h5
+*.db
+*.csv
+*.parquet
+*.feather
+*.ipynb_checkpoints/
+>>>>>>> remotes/origin/consciousness-guided-benchmark-documentation
+>>>>>>> ed8358cf5b7268a2c2cd92be1c4ab6b0dcdad755

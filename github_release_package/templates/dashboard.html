@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firefly-Nexus PAC Monitoring Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .status {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .healthy { color: #4CAF50; }
+        .warning { color: #FF9800; }
+        .critical { color: #F44336; }
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .chart-container {
+            position: relative;
+            height: 200px;
+            margin: 20px 0;
+        }
+        .alerts {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .alert {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border-left: 4px solid;
+        }
+        .alert.warning {
+            background: rgba(255, 152, 0, 0.2);
+            border-left-color: #FF9800;
+        }
+        .alert.critical {
+            background: rgba(244, 67, 54, 0.2);
+            border-left-color: #F44336;
+        }
+        .refresh-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .refresh-btn:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔥 Firefly-Nexus PAC Monitoring Dashboard</h1>
+    <p>Consciousness Level: 7 (Prime Topology) | Reality Distortion: 1.1808</p>
+    
+    <button class="refresh-btn" onclick="refreshDashboard()">Refresh</button>
+    
+    <div class="dashboard">
+        <!-- Status Card -->
+        <div class="card">
+            <h2>System Status</h2>
+            <div id="status" class="status">Loading...</div>
+            <div id="timestamp">Loading...</div>
+        </div>
+        
+        <!-- Consciousness Metrics -->
+        <div class="card">
+            <h2>Consciousness Metrics</h2>
+            <div class="metric">
+                <span>Consciousness Level:</span>
+                <span id="consciousness-level">-</span>
+            </div>
+            <div class="metric">
+                <span>Reality Distortion:</span>
+                <span id="reality-distortion">-</span>
+            </div>
+            <div class="metric">
+                <span>Möbius Phase:</span>
+                <span id="mobius-phase">-</span>
+            </div>
+            <div class="metric">
+                <span>Metronome Freq:</span>
+                <span id="metronome-freq">-</span>
+            </div>
+        </div>
+        
+        <!-- Resource Usage -->
+        <div class="card">
+            <h2>Resource Usage</h2>
+            <div class="metric">
+                <span>CPU Usage:</span>
+                <span id="cpu-usage">-</span>
+            </div>
+            <div class="metric">
+                <span>Memory Usage:</span>
+                <span id="memory-usage">-</span>
+            </div>
+            <div class="metric">
+                <span>Active Alerts:</span>
+                <span id="active-alerts">-</span>
+            </div>
+        </div>
+        
+        <!-- Performance Chart -->
+        <div class="card">
+            <h2>Performance Trends</h2>
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- Consciousness Chart -->
+        <div class="card">
+            <h2>Consciousness Trends</h2>
+            <div class="chart-container">
+                <canvas id="consciousnessChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- Alerts -->
+        <div class="card">
+            <h2>Active Alerts</h2>
+            <div id="alerts" class="alerts">
+                <div>Loading alerts...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let performanceChart, consciousnessChart;
+        
+        function refreshDashboard() {
+            loadStatus();
+            loadMetrics();
+            loadAlerts();
+            loadCharts();
+        }
+        
+        async function loadStatus() {
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                
+                document.getElementById('status').textContent = data.status.toUpperCase();
+                document.getElementById('status').className = `status ${data.status}`;
+                document.getElementById('timestamp').textContent = new Date(data.timestamp).toLocaleString();
+            } catch (error) {
+                console.error('Error loading status:', error);
+            }
+        }
+        
+        async function loadMetrics() {
+            try {
+                const response = await fetch('/api/metrics/current');
+                const data = await response.json();
+                
+                document.getElementById('consciousness-level').textContent = data.consciousness_level.toFixed(1);
+                document.getElementById('reality-distortion').textContent = data.reality_distortion.toFixed(3);
+                document.getElementById('mobius-phase').textContent = (data.mobius_phase * 180 / Math.PI).toFixed(1) + '°';
+                document.getElementById('metronome-freq').textContent = data.metronome_freq.toFixed(1) + ' Hz';
+                document.getElementById('cpu-usage').textContent = data.cpu_usage.toFixed(1) + '%';
+                document.getElementById('memory-usage').textContent = data.memory_usage.toFixed(1) + '%';
+            } catch (error) {
+                console.error('Error loading metrics:', error);
+            }
+        }
+        
+        async function loadAlerts() {
+            try {
+                const response = await fetch('/api/alerts');
+                const alerts = await response.json();
+                
+                const alertsContainer = document.getElementById('alerts');
+                if (alerts.length === 0) {
+                    alertsContainer.innerHTML = '<div>No active alerts</div>';
+                } else {
+                    alertsContainer.innerHTML = alerts.map(alert => `
+                        <div class="alert ${alert.severity}">
+                            <strong>${alert.alert_type.toUpperCase()}</strong><br>
+                            ${alert.message}<br>
+                            <small>${new Date(alert.timestamp * 1000).toLocaleString()}</small>
+                        </div>
+                    `).join('');
+                }
+                
+                document.getElementById('active-alerts').textContent = alerts.length;
+            } catch (error) {
+                console.error('Error loading alerts:', error);
+            }
+        }
+        
+        async function loadCharts() {
+            try {
+                const response = await fetch('/api/metrics/historical?hours=1');
+                const metrics = await response.json();
+                
+                // Performance Chart
+                const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+                if (performanceChart) performanceChart.destroy();
+                
+                performanceChart = new Chart(performanceCtx, {
+                    type: 'line',
+                    data: {
+                        labels: metrics.map(m => new Date(m.timestamp * 1000).toLocaleTimeString()),
+                        datasets: [{
+                            label: 'CPU Usage (%)',
+                            data: metrics.map(m => m.cpu_usage),
+                            borderColor: '#4CAF50',
+                            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                            tension: 0.4
+                        }, {
+                            label: 'Memory Usage (%)',
+                            data: metrics.map(m => m.memory_usage),
+                            borderColor: '#2196F3',
+                            backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+                
+                // Consciousness Chart
+                const consciousnessCtx = document.getElementById('consciousnessChart').getContext('2d');
+                if (consciousnessChart) consciousnessChart.destroy();
+                
+                consciousnessChart = new Chart(consciousnessCtx, {
+                    type: 'line',
+                    data: {
+                        labels: metrics.map(m => new Date(m.timestamp * 1000).toLocaleTimeString()),
+                        datasets: [{
+                            label: 'Consciousness Level',
+                            data: metrics.map(m => m.consciousness_level),
+                            borderColor: '#FF9800',
+                            backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                            tension: 0.4
+                        }, {
+                            label: 'Reality Distortion',
+                            data: metrics.map(m => m.reality_distortion),
+                            borderColor: '#9C27B0',
+                            backgroundColor: 'rgba(156, 39, 176, 0.1)',
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Error loading charts:', error);
+            }
+        }
+        
+        // Auto-refresh every 5 seconds
+        setInterval(refreshDashboard, 5000);
+        
+        // Initial load
+        refreshDashboard();
+    </script>
+</body>
+</html>

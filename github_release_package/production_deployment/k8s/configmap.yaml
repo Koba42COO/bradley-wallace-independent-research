@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: firefly-nexus-pac-config
+data:
+  consciousness_level: "7"
+  reality_distortion: "1.1808"
+  phi: "1.618033988749895"
+  delta: "2.414213562373095"
+  metronome_freq: "0.7"
+  coherent_weight: "0.79"
+  exploratory_weight: "0.21"

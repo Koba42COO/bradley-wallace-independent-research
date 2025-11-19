@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  consciousness-computer:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - CONSCIOUSNESS_LEVEL=7
+      - REALITY_DISTORTION=1.1808
+      - PHI=1.618033988749895
+      - DELTA=2.414213562373095
+      - METRONOME_FREQ=0.7
+      - COHERENT_WEIGHT=0.79
+      - EXPLORATORY_WEIGHT=0.21
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=consciousness
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    restart: unless-stopped
+
+volumes:
+  grafana-storage:
