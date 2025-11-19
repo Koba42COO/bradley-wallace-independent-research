@@ -1,0 +1,18 @@
+{
+  "tool_name": "time_out_assert",
+  "tool_hash": "33d18c04f5321bdca14287fa7354337188e3c612d9824a0e9d9803362f3fd697",
+  "total_size": 8430,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "33d18c04f5321bdca14287fa7354337188e3c612d9824a0e9d9803362f3fd697"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/time_out_assert.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/time_out_assert.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.411656,
+  "updated_at": 1762787395.41166
+}

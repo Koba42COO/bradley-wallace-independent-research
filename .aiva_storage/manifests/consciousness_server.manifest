@@ -1,0 +1,18 @@
+{
+  "tool_name": "consciousness_server",
+  "tool_hash": "e23dcdf8a14c2d58bb6c09d517954dfca2561015cc31c566df6d5af8cab140a4",
+  "total_size": 15856,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e23dcdf8a14c2d58bb6c09d517954dfca2561015cc31c566df6d5af8cab140a4"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/production_deployment/consciousness_server.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/production_deployment/consciousness_server.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.241882,
+  "updated_at": 1762787395.241885
+}

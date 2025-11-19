@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_crawler_rpc",
+  "tool_hash": "8ebed9500d65d7831d38d5dd563b4aa6d73a5beb2f4e5755fbd6aaf56463862c",
+  "total_size": 2203,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "8ebed9500d65d7831d38d5dd563b4aa6d73a5beb2f4e5755fbd6aaf56463862c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_crawler_rpc.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_crawler_rpc.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.363146,
+  "updated_at": 1762787395.363148
+}

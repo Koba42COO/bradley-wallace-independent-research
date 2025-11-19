@@ -1,0 +1,18 @@
+{
+  "tool_name": "ethiopian_cuda_integration",
+  "tool_hash": "26289e594107d73b4debc4e74d22396af84524b60b84fec2609cac01429b435a",
+  "total_size": 27993,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "26289e594107d73b4debc4e74d22396af84524b60b84fec2609cac01429b435a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/ethiopian_cuda_integration.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/ethiopian_cuda_integration.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0181608,
+  "updated_at": 1762787395.018164
+}

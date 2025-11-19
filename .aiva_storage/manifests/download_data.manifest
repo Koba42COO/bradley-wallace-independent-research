@@ -1,0 +1,18 @@
+{
+  "tool_name": "download_data",
+  "tool_hash": "c412e50c375c334338749d711f932096969890a55197bc6d8c21e31c1cf9efd4",
+  "total_size": 14026,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c412e50c375c334338749d711f932096969890a55197bc6d8c21e31c1cf9efd4"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/download_data.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/download_data.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.581429,
+  "updated_at": 1762787395.581432
+}

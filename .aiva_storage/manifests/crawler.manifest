@@ -1,0 +1,18 @@
+{
+  "tool_name": "crawler",
+  "tool_hash": "fe221d9b07483b38317c55b1fe3c59c74da152d91f8a9ab8e97cb22920ea8e00",
+  "total_size": 22061,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fe221d9b07483b38317c55b1fe3c59c74da152d91f8a9ab8e97cb22920ea8e00"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/seeder/crawler.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/seeder/crawler.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3123379,
+  "updated_at": 1762787395.312341
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "verify_all_claims",
+  "tool_hash": "ab67cbee6444aa14cd1ed03275796fe1b827024e4048fb2e74634b7c7d921ecf",
+  "total_size": 15914,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ab67cbee6444aa14cd1ed03275796fe1b827024e4048fb2e74634b7c7d921ecf"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/verify_all_claims.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/verify_all_claims.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0988748,
+  "updated_at": 1762787395.0988789
+}

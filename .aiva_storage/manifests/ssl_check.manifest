@@ -1,0 +1,18 @@
+{
+  "tool_name": "ssl_check",
+  "tool_hash": "cf654c5ebbebc9cf75d3fad7ab2e87bb73b48d5de2cd7d6bcaa366a71cfb5d75",
+  "total_size": 10831,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cf654c5ebbebc9cf75d3fad7ab2e87bb73b48d5de2cd7d6bcaa366a71cfb5d75"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/ssl/ssl_check.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/ssl/ssl_check.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.295561,
+  "updated_at": 1762787395.295564
+}

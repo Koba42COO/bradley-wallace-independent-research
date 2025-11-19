@@ -1,0 +1,18 @@
+{
+  "tool_name": "full_node_simulator",
+  "tool_hash": "6adf6c3fcb6fee7d7c285636e544b1963bf2fa6955503d624b72a16b7aac097e",
+  "total_size": 38767,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6adf6c3fcb6fee7d7c285636e544b1963bf2fa6955503d624b72a16b7aac097e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/full_node_simulator.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/full_node_simulator.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.545702,
+  "updated_at": 1762787395.5457048
+}

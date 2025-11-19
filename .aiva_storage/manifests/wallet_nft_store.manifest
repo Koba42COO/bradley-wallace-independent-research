@@ -1,0 +1,18 @@
+{
+  "tool_name": "wallet_nft_store",
+  "tool_hash": "3bb6adc5e449beeba2a07674bf29daae2d06b01269c81bc221ca310ed9f20398",
+  "total_size": 15056,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3bb6adc5e449beeba2a07674bf29daae2d06b01269c81bc221ca310ed9f20398"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_nft_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_nft_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.601439,
+  "updated_at": 1762787395.601471
+}

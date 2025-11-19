@@ -1,0 +1,18 @@
+{
+  "tool_name": "coin_selection",
+  "tool_hash": "7a4b4dc4dba2f9b0cb2f997fbba2052ca1303507e12100972820a112192c7875",
+  "total_size": 11292,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7a4b4dc4dba2f9b0cb2f997fbba2052ca1303507e12100972820a112192c7875"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/coin_selection.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/coin_selection.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.610691,
+  "updated_at": 1762787395.610695
+}

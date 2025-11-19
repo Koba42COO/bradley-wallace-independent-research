@@ -1,8 +1,0 @@
-@import 'theme/_tokens.scss';
-
-// Android platform variable overrides
-:root {
-  --ion-color-primary: darken($primary-color, 6%);
-  --border-radius: 4px;
-  --font-family-base: 'Roboto', system-ui;
-}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_event_loop",
+  "tool_hash": "742590aa5fb7338d821acf7ccda811f60d424af7ab1fd8d0c62e58f5aa9e6c47",
+  "total_size": 9051,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "742590aa5fb7338d821acf7ccda811f60d424af7ab1fd8d0c62e58f5aa9e6c47"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_event_loop.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_event_loop.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.375367,
+  "updated_at": 1762787395.37537
+}

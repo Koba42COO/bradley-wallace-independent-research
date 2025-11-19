@@ -1,0 +1,18 @@
+{
+  "tool_name": "service_groups",
+  "tool_hash": "fda4bd2d1481addbaedeb1ae4564237012fb5a899b4c93098f69a7d79fd7b6bb",
+  "total_size": 4358,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fda4bd2d1481addbaedeb1ae4564237012fb5a899b4c93098f69a7d79fd7b6bb"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/service_groups.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/service_groups.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.326099,
+  "updated_at": 1762787395.326102
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "db_connection",
+  "tool_hash": "c0a138e3fbb1b5b3c459d22718adeda5c165852926eef913850abf0ba0f1ccf3",
+  "total_size": 1113,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c0a138e3fbb1b5b3c459d22718adeda5c165852926eef913850abf0ba0f1ccf3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/db_connection.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/db_connection.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.4259598,
+  "updated_at": 1762787395.425963
+}

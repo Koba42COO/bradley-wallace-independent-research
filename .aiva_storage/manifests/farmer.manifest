@@ -1,0 +1,18 @@
+{
+  "tool_name": "farmer",
+  "tool_hash": "79f61ec18487167037eae71700aed74e2e8b8190ae7b29ac6df84f51968f708d",
+  "total_size": 48004,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "79f61ec18487167037eae71700aed74e2e8b8190ae7b29ac6df84f51968f708d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/farmer/farmer.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/farmer/farmer.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.336085,
+  "updated_at": 1762787395.3360882
+}

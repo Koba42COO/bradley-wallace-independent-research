@@ -1,0 +1,18 @@
+{
+  "tool_name": "dual_kernel_validation",
+  "tool_hash": "33b5ff8f0f7cc08e68e76931df01a436eb4d274462e41e84c004037ee5668f1c",
+  "total_size": 18684,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "33b5ff8f0f7cc08e68e76931df01a436eb4d274462e41e84c004037ee5668f1c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/legacy/examples/dual_kernel_validation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/legacy/examples/dual_kernel_validation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.26865,
+  "updated_at": 1762787395.2686532
+}

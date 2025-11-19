@@ -1,0 +1,18 @@
+{
+  "tool_name": "connection_utils",
+  "tool_hash": "665d455c9573191ec3de7d32b6cfba4bae63cb40348cde8c658707458846f636",
+  "total_size": 4820,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "665d455c9573191ec3de7d32b6cfba4bae63cb40348cde8c658707458846f636"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/connection_utils.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/connection_utils.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.33775,
+  "updated_at": 1762787395.337753
+}

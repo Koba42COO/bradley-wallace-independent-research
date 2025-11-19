@@ -1,0 +1,18 @@
+{
+  "tool_name": "jsonify",
+  "tool_hash": "d35ee131f6d2c2f23f99644820bf0a8428931e8436375dcf92c3b11b069ab50a",
+  "total_size": 3265,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d35ee131f6d2c2f23f99644820bf0a8428931e8436375dcf92c3b11b069ab50a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/benchmarks/jsonify.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/benchmarks/jsonify.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2774131,
+  "updated_at": 1762787395.277416
+}

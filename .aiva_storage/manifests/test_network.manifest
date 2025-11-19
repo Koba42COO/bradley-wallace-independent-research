@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_network",
+  "tool_hash": "c84c380470ed56c72c9ccf76da9f9380e59bb5914bfd9c0ca32de5cf25d3f698",
+  "total_size": 6440,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c84c380470ed56c72c9ccf76da9f9380e59bb5914bfd9c0ca32de5cf25d3f698"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_network.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_network.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4238179,
+  "updated_at": 1762787395.4238222
+}

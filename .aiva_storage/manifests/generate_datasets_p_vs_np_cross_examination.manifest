@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_p_vs_np_cross_examination",
+  "tool_hash": "c7c137cae2812b5271168c9728fe5924979b9edd9ff115932b64fc8a3d7ae6e1",
+  "total_size": 6360,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c7c137cae2812b5271168c9728fe5924979b9edd9ff115932b64fc8a3d7ae6e1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/missing_papers/p_vs_np_advanced/supporting_materials/datasets/generate_datasets_p_vs_np_cross_examination.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/missing_papers/p_vs_np_advanced/supporting_materials/datasets/generate_datasets_p_vs_np_cross_examination.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.192831,
+  "updated_at": 1762787395.1928341
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "fix_uvm_operations_bug",
+  "tool_hash": "d74a8710b0dd8ae6111570d629d0d6b7fb7e34acbc906a658ae9009afb41586a",
+  "total_size": 8020,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d74a8710b0dd8ae6111570d629d0d6b7fb7e34acbc906a658ae9009afb41586a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/fix_uvm_operations_bug.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/fix_uvm_operations_bug.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.1003368,
+  "updated_at": 1762787395.10034
+}

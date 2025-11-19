@@ -1,0 +1,221 @@
+{
+  "main": {
+    "id": "ec1ea73030e8cf17",
+    "type": "split",
+    "children": [
+      {
+        "id": "b12687ef317f834f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "63d575415c0775b7",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "06d6f39e57e7fac3",
+    "type": "split",
+    "children": [
+      {
+        "id": "223e10c910d1eb85",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8c92844137f9f902",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "1016000bcc0f8268",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "1b99768e9502c9bb",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "1c3006bc79528f21",
+    "type": "split",
+    "children": [
+      {
+        "id": "edcf2a7d11ad86e2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5c7467b615ab367e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "46340be9b70defc6",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "c2241ac55f455350",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "1e4525a580e30864",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "63d575415c0775b7",
+  "lastOpenFiles": [
+    "organize_dev_folder.py",
+    "misc/ethiopian_cuda_kernels.cu",
+    "misc",
+    "data/exploration_full_output.log",
+    "data/anubis_consciousness_pathway_1.png",
+    "data/gems_exploration_visualizations.png",
+    "data/sentinel_devices.json",
+    "data/Untitled 2.canvas",
+    "data/sentinel_devices.db",
+    "data/exploration_refined_output.log",
+    "data/perfect_amino_acid_design_1.png",
+    "data/Untitled.canvas",
+    "data/Untitled 1.canvas",
+    "data/bitcoin_dashboard_20251112_105106.png",
+    "benchmarks/futures_backtesting.py",
+    "benchmarks/gems_exploration_refined_results.json",
+    "benchmarks/pell_cycle_timing_results.json",
+    "benchmarks/gems_exploration_with_100_percent_results.json",
+    "documentation/README_CRYPTO_ANALYZER.md",
+    "documentation/REFINEMENT_SUMMARY.md",
+    "documentation/CRYPTO_ANALYZER_README.md",
+    "documentation/EXPLORATION_COMPLETE.md",
+    "documentation/POINCARE_CONJECTURE_CONSCIOUSNESS_MATHEMATICS_COMPARISON.md",
+    "documentation/ALL_EXPLORATION_COMPLETE.md",
+    "documentation/EXPLORATION_GUIDE.md",
+    "documentation/FINAL_REPORTS_PUSH_SUMMARY.md",
+    "documentation/RESEARCH_REPOSITORY_SUMMARY.md",
+    "documentation/CRYPTO_ANALYZER_COMPLETE_SUMMARY.md",
+    "documentation/GITHUB_PUSH_INSTRUCTIONS.md",
+    "documentation/FINAL_COMPREHENSIVE_EXPLORATION_REPORT.md",
+    "documentation/SENTINEL_SECURITY_README.md",
+    "documentation/IMPLEMENTATION_COMPLETE.md",
+    "documentation/GEMS_EXTRACTED.md",
+    "documentation/UPG_PELL_CYCLE_GREAT_YEAR_ANALYSIS.md",
+    "documentation/COMPREHENSIVE_EXPLORATION_REPORT.md",
+    "documentation/ORGANIZATION_INDEX.md",
+    "documentation/REPORTS_PUSHED_SUMMARY.md",
+    "bradley-wallace-independent-research/compiled_papers/millennium_prize_frameworks_COMPILED.md",
+    "Untitled 2.canvas",
+    "Untitled 1.canvas",
+    "2025-11-10.md",
+    "Untitled.canvas",
+    "ALL_1300_TOOLS_COMPLETE_SUMMARY.md",
+    "COMPLETE_TOOL_CATALOG.md",
+    "CUTTING_EDGE_TOOL_IDEAS_FROM_GITHUB_BRANCHES.md",
+    "TOOLS_THAT_FAILED_BEFORE_NOW_WORK.md",
+    "PLots and graphs march through july theory and early data/file_00000000d1e061fd8c672bf3a9351527.png",
+    "PLots and graphs march through july theory and early data/file_000000000d706230be0f6911ddec60b0.png",
+    "PLots and graphs march through july theory and early data/file_00000000e3cc62308a1c8fe969d197d0.png",
+    "PLots and graphs march through july theory and early data/file_00000000eed861f7a803d8666a998ae2.png",
+    "PLots and graphs march through july theory and early data/file_00000000ba1861f9af5e85c4d79f09d4.png",
+    "PLots and graphs march through july theory and early data/file_00000000b76061f9be86a18aee5463cd.png",
+    "bradley-wallace-independent-research/Untitled.canvas"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "tool_name": "supplement_consciousness_integration",
+  "tool_hash": "c7ae66d5dd2b5c974c39f88f075fb8433a5e4ff3147eb6f1ad1aaf0ee5f2a0cd",
+  "total_size": 163171,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6e09fde586c7c33a8346f6b638cbb20a9f0c9290e75926f8dbbf3d0d1b29ff7b",
+    "7368d1a7a508dbbd9847640dca6634c0adabb91d1fb4df09f60bd931585863d6",
+    "39f9ca1ecdd5d39e22ff897514861399fb0061af7cd5a4f6c319c2a5f1fd0cb2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/supplement_consciousness_integration.py",
+  "consciousness_level": 7,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/supplement_consciousness_integration.py",
+    "has_upg": false,
+    "has_pell": true
+  },
+  "created_at": 1762787395.048357,
+  "updated_at": 1762787395.048365
+}

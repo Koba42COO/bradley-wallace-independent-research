@@ -1,0 +1,117 @@
+from __future__ import annotations
+
+from enum import Enum
+from typing import Any
+
+from chia.util.bech32m import bech32_decode, convertbits
+from chia.util.config import selected_network_address_prefix
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+class AddressType(Enum):
+    XCH = "xch"
+    NFT = "nft"
+    DID = "did:chia:"
+
+    def hrp(self, config: dict[str, Any]) -> str:
+        if self == AddressType.XCH:
+            # Special case to map XCH to the current network's address prefix
+            return selected_network_address_prefix(config)
+        return str(self.value)
+
+    def expected_decoded_length(self) -> int:
+        # Current address types encode 32 bytes. If future address types vary in
+        # their length, this will need to be updated.
+        return 32
+
+
+def is_valid_address(address: str, allowed_types: set[AddressType], config: dict[str, Any]) -> bool:
+    try:
+        ensure_valid_address(address, allowed_types=allowed_types, config=config)
+        return True
+    except ValueError:
+        return False
+
+
+def ensure_valid_address(address: str, *, allowed_types: set[AddressType], config: dict[str, Any]) -> str:
+    hrp, b32data = bech32_decode(address)
+    if not b32data or not hrp:
+        raise ValueError(f"Invalid address: {address}")
+    # Match by prefix (hrp) and return the corresponding address type
+    address_type = next(
+        (addr_type for (addr_type, addr_hrp) in ((a, a.hrp(config)) for a in allowed_types) if addr_hrp == hrp),
+        None,
+    )
+    if address_type is None:
+        raise ValueError(
+            f"Invalid address: {address}. "
+            f"Expected an address with one of the following prefixes: {[t.hrp(config) for t in allowed_types]}"
+        )
+    decoded_data = convertbits(b32data, 5, 8, False)
+    if len(decoded_data) != address_type.expected_decoded_length():
+        raise ValueError(
+            f"Invalid address: {address}. "
+            f"Expected {address_type.expected_decoded_length()} bytes, got {len(decoded_data)}"
+        )
+    return address

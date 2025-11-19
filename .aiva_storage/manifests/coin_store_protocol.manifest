@@ -1,0 +1,18 @@
+{
+  "tool_name": "coin_store_protocol",
+  "tool_hash": "58274e4c188691b8e72d59ee697646ab1b488773f6f2ba0f74d780625b16d865",
+  "total_size": 7220,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "58274e4c188691b8e72d59ee697646ab1b488773f6f2ba0f74d780625b16d865"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/coin_store_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/coin_store_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.291779,
+  "updated_at": 1762787395.291782
+}

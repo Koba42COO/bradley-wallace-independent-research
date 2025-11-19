@@ -1,0 +1,18 @@
+{
+  "tool_name": "simple_audit_demo",
+  "tool_hash": "8e5d5e8a45152d813416d69008a67c2b796f2a8d400864f55a15ccec147b3047",
+  "total_size": 5022,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "8e5d5e8a45152d813416d69008a67c2b796f2a8d400864f55a15ccec147b3047"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/simple_audit_demo.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/simple_audit_demo.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0254028,
+  "updated_at": 1762787395.025407
+}

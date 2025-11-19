@@ -1,0 +1,18 @@
+{
+  "tool_name": "more_ops",
+  "tool_hash": "f67e138eb982c159e58f4d63d957a76e2797b8fc53ea742bea17a59c14e8086b",
+  "total_size": 15465,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f67e138eb982c159e58f4d63d957a76e2797b8fc53ea742bea17a59c14e8086b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/clvm/more_ops.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/clvm/more_ops.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0593941,
+  "updated_at": 1762787395.0593972
+}

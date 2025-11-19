@@ -1,0 +1,18 @@
+{
+  "tool_name": "benchmark_cost",
+  "tool_hash": "f4b26424d305ffab78036a4750f60a0b7e9710c3608f5c53e6f0657e9708d832",
+  "total_size": 10020,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f4b26424d305ffab78036a4750f60a0b7e9710c3608f5c53e6f0657e9708d832"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/benchmark_cost.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/benchmark_cost.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4149928,
+  "updated_at": 1762787395.414995
+}

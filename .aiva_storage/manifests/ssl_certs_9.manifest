@@ -1,0 +1,18 @@
+{
+  "tool_name": "ssl_certs_9",
+  "tool_hash": "6c1d615300fa2fdf9bd0e1fe07186f2435724264e6affccdb0a88dbe4d13a97f",
+  "total_size": 42553,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6c1d615300fa2fdf9bd0e1fe07186f2435724264e6affccdb0a88dbe4d13a97f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/ssl_certs_9.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/ssl_certs_9.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.553748,
+  "updated_at": 1762787395.5537531
+}

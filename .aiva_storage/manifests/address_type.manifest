@@ -1,0 +1,18 @@
+{
+  "tool_name": "address_type",
+  "tool_hash": "eebafd07190d84fd7949bc95735ce9252bf677c40c369bf76723cc4563b928ed",
+  "total_size": 4742,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "eebafd07190d84fd7949bc95735ce9252bf677c40c369bf76723cc4563b928ed"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/address_type.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/address_type.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.624643,
+  "updated_at": 1762787395.6246452
+}

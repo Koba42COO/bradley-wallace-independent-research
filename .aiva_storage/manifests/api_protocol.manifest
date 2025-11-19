@@ -1,0 +1,18 @@
+{
+  "tool_name": "api_protocol",
+  "tool_hash": "3dd3be3a4cfb7e9e4b75b8a56fbd79c76df4fc480eea39d69fcb98c24f79c928",
+  "total_size": 7002,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3dd3be3a4cfb7e9e4b75b8a56fbd79c76df4fc480eea39d69fcb98c24f79c928"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/server/api_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/server/api_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5358348,
+  "updated_at": 1762787395.535838
+}

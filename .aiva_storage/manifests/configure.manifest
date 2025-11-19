@@ -1,0 +1,18 @@
+{
+  "tool_name": "configure",
+  "tool_hash": "b077663085be7428eb9090e53b25bec31cd194b9395f5e3aaeb914c93509693a",
+  "total_size": 18756,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b077663085be7428eb9090e53b25bec31cd194b9395f5e3aaeb914c93509693a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/configure.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/configure.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5117161,
+  "updated_at": 1762787395.51172
+}

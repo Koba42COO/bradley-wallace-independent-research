@@ -1,0 +1,18 @@
+{
+  "tool_name": "driver_protocol",
+  "tool_hash": "cee37eb833a890c5b5087c97eebc4c7d9c47978fa132a535b336e260080d3a01",
+  "total_size": 3742,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cee37eb833a890c5b5087c97eebc4c7d9c47978fa132a535b336e260080d3a01"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/driver_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/driver_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.599859,
+  "updated_at": 1762787395.599862
+}

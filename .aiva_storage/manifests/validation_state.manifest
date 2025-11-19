@@ -1,0 +1,18 @@
+{
+  "tool_name": "validation_state",
+  "tool_hash": "d6d966ad136816e748068ae7d2897ffda99af8f3224e2923b80ee9d19086dc8a",
+  "total_size": 3035,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d6d966ad136816e748068ae7d2897ffda99af8f3224e2923b80ee9d19086dc8a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/validation_state.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/validation_state.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.303522,
+  "updated_at": 1762787395.3035252
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "hoskinson_formal_verification",
+  "tool_hash": "fcd6356d834f4c30693058515b97f1da91841d59396ed0ecaf665f16f214167a",
+  "total_size": 35979,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fcd6356d834f4c30693058515b97f1da91841d59396ed0ecaf665f16f214167a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/hoskinson_formal_verification.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/hoskinson_formal_verification.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.011494,
+  "updated_at": 1762787395.011497
+}

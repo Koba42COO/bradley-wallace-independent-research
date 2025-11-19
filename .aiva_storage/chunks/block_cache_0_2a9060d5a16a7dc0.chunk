@@ -1,0 +1,121 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, ClassVar, Optional, cast
+
+from chia_rs import BlockRecord
+from chia_rs.sized_bytes import bytes32
+from chia_rs.sized_ints import uint32
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+# implements BlockRecordsProtocol
+class BlockCache:
+    if TYPE_CHECKING:
+        from chia.consensus.blockchain_interface import BlockRecordsProtocol
+
+        _protocol_check: ClassVar[BlockRecordsProtocol] = cast("BlockCache", None)
+
+    _block_records: dict[bytes32, BlockRecord]
+    _height_to_hash: dict[uint32, bytes32]
+
+    def __init__(
+        self,
+        blocks: dict[bytes32, BlockRecord],
+    ):
+        self._block_records = blocks
+        self._height_to_hash = {block.height: hh for hh, block in blocks.items()}
+
+    def add_block(self, block: BlockRecord) -> None:
+        hh = block.header_hash
+        self._block_records[hh] = block
+        self._height_to_hash[block.height] = hh
+
+    def block_record(self, header_hash: bytes32) -> BlockRecord:
+        return self._block_records[header_hash]
+
+    def height_to_block_record(self, height: uint32) -> BlockRecord:
+        # Precondition: height is < peak height
+        header_hash: Optional[bytes32] = self.height_to_hash(height)
+        assert header_hash is not None
+        return self.block_record(header_hash)
+
+    def height_to_hash(self, height: uint32) -> Optional[bytes32]:
+        if height not in self._height_to_hash:
+            return None
+        return self._height_to_hash[height]
+
+    def contains_block(self, header_hash: bytes32, height: uint32) -> bool:
+        block_hash_from_hh = self.height_to_hash(height)
+        if block_hash_from_hh is None or block_hash_from_hh != header_hash:
+            return False
+        return True
+
+    def contains_height(self, height: uint32) -> bool:
+        return height in self._height_to_hash
+
+    def try_block_record(self, header_hash: bytes32) -> Optional[BlockRecord]:
+        return self._block_records.get(header_hash)
+
+    async def prev_block_hash(self, header_hashes: list[bytes32]) -> list[bytes32]:
+        return [self._block_records[h].prev_hash for h in header_hashes]

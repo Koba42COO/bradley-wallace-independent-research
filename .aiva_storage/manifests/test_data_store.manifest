@@ -1,0 +1,19 @@
+{
+  "tool_name": "test_data_store",
+  "tool_hash": "265e9e2979e32cf6d359dbb320788210d5247b552867f9d5c7871d62dc79c118",
+  "total_size": 92053,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b5a64781dce6a912583b141a93db00ad6ad329de6520a8571963138055f54002",
+    "3a34da5d7d463f3485270d1cacc2847e6e87f92a7c0bba5f36e3dd08454e1f05"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/data_layer/test_data_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/data_layer/test_data_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3865259,
+  "updated_at": 1762787395.3865302
+}

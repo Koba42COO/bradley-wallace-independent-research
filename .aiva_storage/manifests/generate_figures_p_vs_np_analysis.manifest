@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_figures_p_vs_np_analysis",
+  "tool_hash": "d5e75cd2c0fb981da6ba518b28369ef6a9fbb4134e86521e07adaf9afea29bcf",
+  "total_size": 11325,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d5e75cd2c0fb981da6ba518b28369ef6a9fbb4134e86521e07adaf9afea29bcf"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects/wallace-convergence/advanced-mathematical-solutions/supporting_materials/visualizations/generate_figures_p_vs_np_analysis.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects/wallace-convergence/advanced-mathematical-solutions/supporting_materials/visualizations/generate_figures_p_vs_np_analysis.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.171999,
+  "updated_at": 1762787395.172002
+}

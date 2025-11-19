@@ -1,0 +1,370 @@
+                      left=hash_to_node[left_hash], right=hash_to_node[right_hash]
+                    )
+                else:
+                    assert isinstance(node, chia_rs.datalayer.LeafNode)
+                    tree_node = await self.get_terminal_node(node.key, node.value, store_id)
+                hash_to_node[node.hash] = tree_node
+
+            root_node = hash_to_node[root.node_hash]
+
+        return root_node
+
+    async def get_proof_of_inclusion_by_hash(
+        self,
+        node_hash: bytes32,
+        store_id: bytes32,
+        root_hash: Optional[bytes32] = None,
+    ) -> ProofOfInclusion:
+        if root_hash is None:
+            root = await self.get_tree_root(store_id=store_id)
+            root_hash = root.node_hash
+        merkle_blob = await self.get_merkle_blob(store_id=store_id, root_hash=root_hash)
+        kid, _ = merkle_blob.get_node_by_hash(node_hash)
+        return merkle_blob.get_proof_of_inclusion(kid)
+
+    async def get_proof_of_inclusion_by_key(
+        self,
+        key: bytes,
+        store_id: bytes32,
+    ) -> ProofOfInclusion:
+        root = await self.get_tree_root(store_id=store_id)
+        merkle_blob = await self.get_merkle_blob(store_id=store_id, root_hash=root.node_hash)
+        kvid = await self.get_kvid(key, store_id)
+        if kvid is None:
+            raise Exception(f"Cannot find key: {key.hex()}")
+        kid = KeyId(kvid)
+        return merkle_blob.get_proof_of_inclusion(kid)
+
+    async def get_nodes_for_file(
+        self,
+        root: Root,
+        node_hash: bytes32,
+        store_id: bytes32,
+        deltas_only: bool,
+        delta_file_cache: DeltaFileCache,
+        tree_nodes: list[SerializedNode],
+    ) -> None:
+        if deltas_only:
+            if delta_file_cache.seen_previous_hash(node_hash):
+                return
+
+        raw_index = delta_file_cache.get_index(node_hash)
+        raw_node = delta_file_cache.get_raw_node(raw_index)
+
+        if isinstance(raw_node, chia_rs.datalayer.InternalNode):
+            left_hash = delta_file_cache.get_hash_at_index(raw_node.left)
+            right_hash = delta_file_cache.get_hash_at_index(raw_node.right)
+            await self.get_nodes_for_file(root, left_hash, store_id, deltas_only, delta_file_cache, tree_nodes)
+            await self.get_nodes_for_file(root, right_hash, store_id, deltas_only, delta_file_cache, tree_nodes)
+            tree_nodes.append(SerializedNode(False, bytes(left_hash), bytes(right_hash)))
+        elif isinstance(raw_node, chia_rs.datalayer.LeafNode):
+            tree_nodes.append(
+                SerializedNode(
+                    True,
+                    raw_node.key.to_bytes(),
+                    raw_node.value.to_bytes(),
+                )
+            )
+        else:
+            raise Exception(f"Node is neither InternalNode nor TerminalNode: {raw_node}")
+
+    async def get_table_blobs(
+        self, kv_ids_iter: Iterable[KeyOrValueId], store_id: bytes32
+    ) -> dict[KeyOrValueId, tuple[bytes32, Optional[bytes]]]:
+        result: dict[KeyOrValueId, tuple[bytes32, Optional[bytes]]] = {}
+        batch_size = min(500, SQLITE_MAX_VARIABLE_NUMBER - 10)
+        kv_ids = list(dict.fromkeys(kv_ids_iter))
+
+        async with self.db_wrapper.reader() as reader:
+            for i in range(0, len(kv_ids), batch_size):
+                chunk = kv_ids[i : i + batch_size]
+                placeholders = ",".join(["?"] * len(chunk))
+                query = f"""
+                    SELECT hash, blob, kv_id
+                    FROM ids
+                    WHERE store_id = ? AND kv_id IN ({placeholders})
+                    LIMIT {len(chunk)}
+                """
+
+                async with reader.execute(query, (store_id, *chunk)) as cursor:
+                    rows = await cursor.fetchall()
+                    result.update({row["kv_id"]: (row["hash"], row["blob"]) for row in rows})
+
+        if len(result) != len(kv_ids):
+            raise Exception("Cannot retrieve all the requested kv_ids")
+
+        return result
+
+    async def write_tree_to_file(
+        self,
+        root: Root,
+        node_hash: bytes32,
+        store_id: bytes32,
+        deltas_only: bool,
+        writer: BinaryIO,
+    ) -> None:
+        if node_hash == bytes32.zeros:
+            return
+
+        with log_exceptions(log=log, message="Error while getting merkle blob"):
+            root_path = self.get_merkle_path(store_id=store_id, root_hash=root.node_hash)
+        delta_file_cache = DeltaFileCache(root_path)
+
+        if root.generation > 0:
+            previous_root = await self.get_tree_root(store_id=store_id, generation=root.generation - 1)
+            if previous_root.node_hash is not None:
+                with log_exceptions(log=log, message="Error while getting previous merkle blob"):
+                    previous_root_path = self.get_merkle_path(store_id=store_id, root_hash=previous_root.node_hash)
+                delta_file_cache.load_previous_hashes(previous_root_path)
+
+        tree_nodes: list[SerializedNode] = []
+
+        await self.get_nodes_for_file(root, node_hash, store_id, deltas_only, delta_file_cache, tree_nodes)
+        kv_ids = (
+            KeyOrValueId.from_bytes(raw_id)
+            for node in tree_nodes
+            if node.is_terminal
+            for raw_id in (node.value1, node.value2)
+        )
+        table_blobs = await self.get_table_blobs(kv_ids, store_id)
+
+        for node in tree_nodes:
+            if node.is_terminal:
+                blobs = []
+                for raw_id in (node.value1, node.value2):
+                    id = KeyOrValueId.from_bytes(raw_id)
+                    blob_hash, blob = table_blobs[id]
+                    if blob is None:
+                        blob = self.get_blob_from_file(blob_hash, store_id)
+                    blobs.append(blob)
+                to_write = bytes(SerializedNode(True, blobs[0], blobs[1]))
+            else:
+                to_write = bytes(node)
+            writer.write(len(to_write).to_bytes(4, byteorder="big"))
+            writer.write(to_write)
+
+    async def update_subscriptions_from_wallet(self, store_id: bytes32, new_urls: list[str]) -> None:
+        async with self.db_wrapper.writer() as writer:
+            cursor = await writer.execute(
+                "SELECT * FROM subscriptions WHERE from_wallet == 1 AND tree_id == :tree_id",
+                {
+                    "tree_id": store_id,
+                },
+            )
+            old_urls = [row["url"] async for row in cursor]
+            cursor = await writer.execute(
+                "SELECT * FROM subscriptions WHERE from_wallet == 0 AND tree_id == :tree_id",
+                {
+                    "tree_id": store_id,
+                },
+            )
+            from_subscriptions_urls = {row["url"] async for row in cursor}
+            additions = {url for url in new_urls if url not in old_urls}
+            removals = [url for url in old_urls if url not in new_urls]
+            for url in removals:
+                await writer.execute(
+                    "DELETE FROM subscriptions WHERE url == :url AND tree_id == :tree_id",
+                    {
+                        "url": url,
+                        "tree_id": store_id,
+                    },
+                )
+            for url in additions:
+                if url not in from_subscriptions_urls:
+                    await writer.execute(
+                        "INSERT INTO subscriptions(tree_id, url, ignore_till, num_consecutive_failures, from_wallet) "
+                        "VALUES (:tree_id, :url, 0, 0, 1)",
+                        {
+                            "tree_id": store_id,
+                            "url": url,
+                        },
+                    )
+
+    async def subscribe(self, subscription: Subscription) -> None:
+        async with self.db_wrapper.writer() as writer:
+            # Add a fake subscription, so we always have the store_id, even with no URLs.
+            await writer.execute(
+                "INSERT INTO subscriptions(tree_id, url, ignore_till, num_consecutive_failures, from_wallet) "
+                "VALUES (:tree_id, NULL, NULL, NULL, 0)",
+                {
+                    "tree_id": subscription.store_id,
+                },
+            )
+            all_subscriptions = await self.get_subscriptions()
+            old_subscription = next(
+                (
+                    old_subscription
+                    for old_subscription in all_subscriptions
+                    if old_subscription.store_id == subscription.store_id
+                ),
+                None,
+            )
+            old_urls = set()
+            if old_subscription is not None:
+                old_urls = {server_info.url for server_info in old_subscription.servers_info}
+            new_servers = [server_info for server_info in subscription.servers_info if server_info.url not in old_urls]
+            for server_info in new_servers:
+                await writer.execute(
+                    "INSERT INTO subscriptions(tree_id, url, ignore_till, num_consecutive_failures, from_wallet) "
+                    "VALUES (:tree_id, :url, :ignore_till, :num_consecutive_failures, 0)",
+                    {
+                        "tree_id": subscription.store_id,
+                        "url": server_info.url,
+                        "ignore_till": server_info.ignore_till,
+                        "num_consecutive_failures": server_info.num_consecutive_failures,
+                    },
+                )
+
+    async def remove_subscriptions(self, store_id: bytes32, urls: list[str]) -> None:
+        async with self.db_wrapper.writer() as writer:
+            for url in urls:
+                await writer.execute(
+                    "DELETE FROM subscriptions WHERE tree_id == :tree_id AND url == :url",
+                    {
+                        "tree_id": store_id,
+                        "url": url,
+                    },
+                )
+
+    async def unsubscribe(self, store_id: bytes32) -> None:
+        async with self.db_wrapper.writer() as writer:
+            await writer.execute(
+                "DELETE FROM subscriptions WHERE tree_id == :tree_id",
+                {"tree_id": store_id},
+            )
+            await writer.execute(
+                "DELETE FROM ids WHERE store_id == :store_id",
+                {"store_id": store_id},
+            )
+            await writer.execute(
+                "DELETE FROM nodes WHERE store_id == :store_id",
+                {"store_id": store_id},
+            )
+
+            with contextlib.suppress(FileNotFoundError):
+                shutil.rmtree(self.get_merkle_path(store_id=store_id, root_hash=None))
+
+            with contextlib.suppress(FileNotFoundError):
+                shutil.rmtree(self.get_key_value_path(store_id=store_id, blob_hash=None))
+
+    async def rollback_to_generation(self, store_id: bytes32, target_generation: int) -> None:
+        async with self.db_wrapper.writer() as writer:
+            await writer.execute(
+                "DELETE FROM root WHERE tree_id == :tree_id AND generation > :target_generation",
+                {"tree_id": store_id, "target_generation": target_generation},
+            )
+            await writer.execute(
+                "DELETE FROM nodes WHERE store_id == :store_id AND generation > :target_generation",
+                {"store_id": store_id, "target_generation": target_generation},
+            )
+
+    async def update_server_info(self, store_id: bytes32, server_info: ServerInfo) -> None:
+        async with self.db_wrapper.writer() as writer:
+            await writer.execute(
+                "UPDATE subscriptions SET ignore_till = :ignore_till, "
+                "num_consecutive_failures = :num_consecutive_failures WHERE tree_id = :tree_id AND url = :url",
+                {
+                    "ignore_till": server_info.ignore_till,
+                    "num_consecutive_failures": server_info.num_consecutive_failures,
+                    "tree_id": store_id,
+                    "url": server_info.url,
+                },
+            )
+
+    async def received_incorrect_file(self, store_id: bytes32, server_info: ServerInfo, timestamp: int) -> None:
+        SEVEN_DAYS_BAN = 7 * 24 * 60 * 60
+        new_server_info = replace(
+            server_info,
+            num_consecutive_failures=server_info.num_consecutive_failures + 1,
+            ignore_till=max(server_info.ignore_till, timestamp + SEVEN_DAYS_BAN),
+        )
+        await self.update_server_info(store_id, new_server_info)
+
+    async def received_correct_file(self, store_id: bytes32, server_info: ServerInfo) -> None:
+        new_server_info = replace(
+            server_info,
+            num_consecutive_failures=0,
+        )
+        await self.update_server_info(store_id, new_server_info)
+
+    async def server_misses_file(self, store_id: bytes32, server_info: ServerInfo, timestamp: int) -> ServerInfo:
+        # Max banned time is 1 hour.
+        BAN_TIME_BY_MISSING_COUNT = [5 * 60] * 3 + [15 * 60] * 3 + [30 * 60] * 2 + [60 * 60]
+        index = min(server_info.num_consecutive_failures, len(BAN_TIME_BY_MISSING_COUNT) - 1)
+        new_server_info = replace(
+            server_info,
+            num_consecutive_failures=server_info.num_consecutive_failures + 1,
+            ignore_till=max(server_info.ignore_till, timestamp + BAN_TIME_BY_MISSING_COUNT[index]),
+        )
+        await self.update_server_info(store_id, new_server_info)
+        return new_server_info
+
+    async def get_available_servers_for_store(self, store_id: bytes32, timestamp: int) -> list[ServerInfo]:
+        subscriptions = await self.get_subscriptions()
+        subscription = next((subscription for subscription in subscriptions if subscription.store_id == store_id), None)
+        if subscription is None:
+            return []
+        servers_info = []
+        for server_info in subscription.servers_info:
+            if timestamp > server_info.ignore_till:
+                servers_info.append(server_info)
+        return servers_info
+
+    async def get_subscriptions(self) -> list[Subscription]:
+        subscriptions: list[Subscription] = []
+
+        async with self.db_wrapper.reader() as reader:
+            cursor = await reader.execute(
+                "SELECT * from subscriptions",
+            )
+            async for row in cursor:
+                store_id = bytes32(row["tree_id"])
+                url = row["url"]
+                ignore_till = row["ignore_till"]
+                num_consecutive_failures = row["num_consecutive_failures"]
+                subscription = next(
+                    (subscription for subscription in subscriptions if subscription.store_id == store_id), None
+                )
+                if subscription is None:
+                    if url is not None and num_consecutive_failures is not None and ignore_till is not None:
+                        subscriptions.append(
+                            Subscription(store_id, [ServerInfo(url, num_consecutive_failures, ignore_till)])
+                        )
+                    else:
+                        subscriptions.append(Subscription(store_id, []))
+                elif url is not None and num_consecutive_failures is not None and ignore_till is not None:
+                    new_servers_info = subscription.servers_info
+                    new_servers_info.append(ServerInfo(url, num_consecutive_failures, ignore_till))
+                    new_subscription = replace(subscription, servers_info=new_servers_info)
+                    subscriptions.remove(subscription)
+                    subscriptions.append(new_subscription)
+
+        return subscriptions
+
+    async def get_kv_diff(
+        self,
+        store_id: bytes32,
+        # NOTE: empty is expressed as zeros
+        hash_1: bytes32,
+        hash_2: bytes32,
+    ) -> set[DiffData]:
+        async with self.db_wrapper.reader():
+            old_pairs = set(await self.get_keys_values(store_id, hash_1))
+            if len(old_pairs) == 0 and hash_1 != bytes32.zeros:
+                raise Exception(f"Unable to diff: Can't find keys and values for {hash_1}")
+
+            new_pairs = set(await self.get_keys_values(store_id, hash_2))
+            if len(new_pairs) == 0 and hash_2 != bytes32.zeros:
+                raise Exception(f"Unable to diff: Can't find keys and values for {hash_2}")
+
+            insertions = {
+                DiffData(type=OperationType.INSERT, key=node.key, value=node.value)
+                for node in new_pairs
+                if node not in old_pairs
+            }
+            deletions = {
+                DiffData(type=OperationType.DELETE, key=node.key, value=node.value)
+                for node in old_pairs
+                if node not in new_pairs
+            }
+            return set.union(insertions, deletions)

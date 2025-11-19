@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_daemon_register",
+  "tool_hash": "cec8284d041ba97c2c8f14fe0d1e68a9a95f639dc43c089a58280cdd64b4a56d",
+  "total_size": 4007,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cec8284d041ba97c2c8f14fe0d1e68a9a95f639dc43c089a58280cdd64b4a56d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/daemon/test_daemon_register.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/daemon/test_daemon_register.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.379528,
+  "updated_at": 1762787395.379531
+}

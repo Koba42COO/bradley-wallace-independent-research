@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_node_load",
+  "tool_hash": "00ca1a5f54f3cba5b2d930a566cf8329efb3eaf2405da8e63c10649fa952cf71",
+  "total_size": 1367,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "00ca1a5f54f3cba5b2d930a566cf8329efb3eaf2405da8e63c10649fa952cf71"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/full_node/test_node_load.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/full_node/test_node_load.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.3923268,
+  "updated_at": 1762787395.39233
+}

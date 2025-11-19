@@ -1,0 +1,18 @@
+{
+  "tool_name": "check_pytest_monitor_output",
+  "tool_hash": "af686c89c33b78dbbecbb840361ca15a9f05e367cf7f63028742e043db636d0d",
+  "total_size": 924,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "af686c89c33b78dbbecbb840361ca15a9f05e367cf7f63028742e043db636d0d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/check_pytest_monitor_output.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/check_pytest_monitor_output.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.339814,
+  "updated_at": 1762787395.339818
+}

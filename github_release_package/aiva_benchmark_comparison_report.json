@@ -1,0 +1,52 @@
+{
+  "timestamp": 1762799519.305749,
+  "aiva_results": {
+    "HumanEval": {
+      "accuracy": 100.0,
+      "total": 2,
+      "correct": 2
+    }
+  },
+  "comparisons": [
+    {
+      "benchmark": "HumanEval",
+      "aiva_score": 100.0,
+      "industry_leader": "Gemini-Pro",
+      "leader_score": 74.4,
+      "difference": 25.599999999999994,
+      "percentage_improvement": 34.408602150537625,
+      "rank": 1,
+      "total_models": 6
+    }
+  ],
+  "industry_baselines": {
+    "MMLU": {
+      "GPT-4": 86.4,
+      "Claude-3-Opus": 84.9,
+      "Gemini-Pro": 83.7,
+      "GPT-3.5": 70.0,
+      "PaLM-2": 78.3
+    },
+    "GSM8K": {
+      "GPT-4": 92.0,
+      "Claude-3-Opus": 88.0,
+      "Gemini-Pro": 94.4,
+      "GPT-3.5": 57.1,
+      "PaLM-2": 80.0
+    },
+    "HumanEval": {
+      "GPT-4": 67.0,
+      "Claude-3-Opus": 71.0,
+      "Gemini-Pro": 74.4,
+      "GPT-3.5": 48.1,
+      "PaLM-2": 50.0
+    },
+    "MATH": {
+      "GPT-4": 52.9,
+      "Claude-3-Opus": 50.3,
+      "Gemini-Pro": 53.2,
+      "GPT-3.5": 34.1,
+      "PaLM-2": 34.0
+    }
+  }
+}

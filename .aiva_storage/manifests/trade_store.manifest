@@ -1,0 +1,18 @@
+{
+  "tool_name": "trade_store",
+  "tool_hash": "24637bd30197aec507c1bc9134a9c16e0a1f99f25d96df98561bcb2df98ec44f",
+  "total_size": 25428,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "24637bd30197aec507c1bc9134a9c16e0a1f99f25d96df98561bcb2df98ec44f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/trading/trade_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/trading/trade_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.642627,
+  "updated_at": 1762787395.6426299
+}

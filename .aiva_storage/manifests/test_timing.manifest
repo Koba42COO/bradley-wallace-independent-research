@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_timing",
+  "tool_hash": "bd1d1a79ab1624a6884cf622df98a806b13d1b15cdaaf285f8101f0dc7aab8ac",
+  "total_size": 3789,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "bd1d1a79ab1624a6884cf622df98a806b13d1b15cdaaf285f8101f0dc7aab8ac"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_timing.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_timing.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.407706,
+  "updated_at": 1762787395.4077098
+}

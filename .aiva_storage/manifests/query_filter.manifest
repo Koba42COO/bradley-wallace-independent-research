@@ -1,0 +1,18 @@
+{
+  "tool_name": "query_filter",
+  "tool_hash": "4144e0e06c1d6bd80b6fde5fd9bd55b7dc8287083412e137f9f037a50fc5f55e",
+  "total_size": 4386,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4144e0e06c1d6bd80b6fde5fd9bd55b7dc8287083412e137f9f037a50fc5f55e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/query_filter.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/query_filter.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.626007,
+  "updated_at": 1762787395.6260102
+}

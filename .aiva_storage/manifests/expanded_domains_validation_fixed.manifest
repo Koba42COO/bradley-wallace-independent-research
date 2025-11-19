@@ -1,0 +1,18 @@
+{
+  "tool_name": "expanded_domains_validation_fixed",
+  "tool_hash": "18fce51a959f31958fbb535253da21717d6a5c28b05b505ebc0ea526ca90db98",
+  "total_size": 16848,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "18fce51a959f31958fbb535253da21717d6a5c28b05b505ebc0ea526ca90db98"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/expanded_domains_validation_fixed.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/expanded_domains_validation_fixed.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.055558,
+  "updated_at": 1762787395.055561
+}

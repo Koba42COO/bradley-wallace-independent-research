@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_homomorphic_encryption",
+  "tool_hash": "6c6bc5afbdaac1bf2fc7621c429b9caeed03d074e690038c7a2e051b37db66d2",
+  "total_size": 6314,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6c6bc5afbdaac1bf2fc7621c429b9caeed03d074e690038c7a2e051b37db66d2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/datasets/generate_datasets_homomorphic_encryption.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/datasets/generate_datasets_homomorphic_encryption.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2177238,
+  "updated_at": 1762787395.217727
+}

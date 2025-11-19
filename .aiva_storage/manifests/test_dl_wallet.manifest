@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_dl_wallet",
+  "tool_hash": "028da7a0fa50b0ac235f8b6748e16e4fdb6d5ef5682d56ba925a7ce3c72437ec",
+  "total_size": 37608,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "028da7a0fa50b0ac235f8b6748e16e4fdb6d5ef5682d56ba925a7ce3c72437ec"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/db_wallet/test_dl_wallet.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/db_wallet/test_dl_wallet.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4847202,
+  "updated_at": 1762787395.484722
+}

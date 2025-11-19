@@ -1,0 +1,18 @@
+{
+  "tool_name": "synthetic_validation_data",
+  "tool_hash": "2a01c54eec85213c3accc2e3357d69132e9dd06c44771386cc8e5210a7e3321f",
+  "total_size": 16962,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2a01c54eec85213c3accc2e3357d69132e9dd06c44771386cc8e5210a7e3321f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/fractal-harmonic-transform/datasets/synthetic_validation_data.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/fractal-harmonic-transform/datasets/synthetic_validation_data.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0662751,
+  "updated_at": 1762787395.066279
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_singletons",
+  "tool_hash": "a3b68997a760657ca61d6cdf897f54c656ac78fc9d48dfd8ffe24addc577a552",
+  "total_size": 22169,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a3b68997a760657ca61d6cdf897f54c656ac78fc9d48dfd8ffe24addc577a552"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_singletons.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_singletons.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3422651,
+  "updated_at": 1762787395.342268
+}

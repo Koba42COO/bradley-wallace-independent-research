@@ -1,0 +1,18 @@
+{
+  "tool_name": "mempool_manager",
+  "tool_hash": "617f5af5d1d6c987954738ae8acff61c47de59c553598d9c4576bdb5ae64bfda",
+  "total_size": 52590,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "617f5af5d1d6c987954738ae8acff61c47de59c553598d9c4576bdb5ae64bfda"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/mempool_manager.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/mempool_manager.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.662147,
+  "updated_at": 1762787395.6621509
+}

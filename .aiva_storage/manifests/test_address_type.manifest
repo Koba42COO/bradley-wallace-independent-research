@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_address_type",
+  "tool_hash": "5c6118ec94b46578fe40daffe7f6a027b6395ea827d00001763a91ac9edf9e08",
+  "total_size": 10009,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5c6118ec94b46578fe40daffe7f6a027b6395ea827d00001763a91ac9edf9e08"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_address_type.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_address_type.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.482832,
+  "updated_at": 1762787395.482835
+}

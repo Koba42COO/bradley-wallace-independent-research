@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_coin_store_protocol",
+  "tool_hash": "544a3e2b531874918e0d850b35d95c01c3cb072a8820898c1fc56e030682cfb3",
+  "total_size": 1591,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "544a3e2b531874918e0d850b35d95c01c3cb072a8820898c1fc56e030682cfb3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/consensus/stores/test_coin_store_protocol.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/consensus/stores/test_coin_store_protocol.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.365094,
+  "updated_at": 1762787395.365097
+}

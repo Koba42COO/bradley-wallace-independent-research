@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_timelord",
+  "tool_hash": "7b7892100efe810fbdf7cff3255d0a842979937cc938c8f6899bcdaa79ebe515",
+  "total_size": 310,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7b7892100efe810fbdf7cff3255d0a842979937cc938c8f6899bcdaa79ebe515"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/timelord/test_timelord.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/timelord/test_timelord.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.3565261,
+  "updated_at": 1762787395.356529
+}

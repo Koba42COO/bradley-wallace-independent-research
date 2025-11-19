@@ -1,0 +1,18 @@
+{
+  "tool_name": "check_plots",
+  "tool_hash": "610964d489acdee3dc8d5ec68ed4b926a2f8183e0026217dc10025a472e2329e",
+  "total_size": 16843,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "610964d489acdee3dc8d5ec68ed4b926a2f8183e0026217dc10025a472e2329e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plotting/check_plots.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plotting/check_plots.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5660632,
+  "updated_at": 1762787395.566066
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "clvm_cost",
+  "tool_hash": "4aef7dfaa93e7027146017acad57329493e8b09cad3863c0a04fe3f9e329dc56",
+  "total_size": 336,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4aef7dfaa93e7027146017acad57329493e8b09cad3863c0a04fe3f9e329dc56"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/clvm_cost.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/clvm_cost.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.303705,
+  "updated_at": 1762787395.3037078
+}

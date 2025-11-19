@@ -1,0 +1,18 @@
+{
+  "tool_name": "import_conversation",
+  "tool_hash": "bebcca7f4b61c962ca838fd6d04ee44694781fb3a484b91da07e866c36d42e63",
+  "total_size": 4240,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "bebcca7f4b61c962ca838fd6d04ee44694781fb3a484b91da07e866c36d42e63"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/import_conversation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/import_conversation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.12874,
+  "updated_at": 1762787395.128744
+}

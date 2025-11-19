@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_rate_limits",
+  "tool_hash": "c7e179f46ce8ba3b96dfd67f17ec1480a13da778dfafdbe0c200d5b549364d67",
+  "total_size": 22328,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c7e179f46ce8ba3b96dfd67f17ec1480a13da778dfafdbe0c200d5b549364d67"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_rate_limits.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_rate_limits.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.376974,
+  "updated_at": 1762787395.376977
+}

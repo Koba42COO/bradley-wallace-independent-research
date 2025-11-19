@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_wallet_retry",
+  "tool_hash": "c4cc63a0c8b51f3960eea6aae115a478e22c80197e7d0b7f7ea9cc1a746ecf82",
+  "total_size": 7154,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c4cc63a0c8b51f3960eea6aae115a478e22c80197e7d0b7f7ea9cc1a746ecf82"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_wallet_retry.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_wallet_retry.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4836,
+  "updated_at": 1762787395.4836018
+}

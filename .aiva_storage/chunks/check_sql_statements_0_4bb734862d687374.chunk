@@ -1,0 +1,134 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import sys
+from subprocess import check_output
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+# check for duplicate index names
+
+
+def check_create(sql_type: str, cwd: str, exemptions: set[tuple[str, str]] = set()) -> int:
+    # the need for this change seems to come from the git precommit plus the python pre-commit environment
+    # having GIT_DIR specified but not GIT_WORK_TREE.  this is an issue in some less common git setups
+    # such as with worktrees, at least in particular uses of them.  i think that we could switch to letting
+    # pre-commit provide the file list instead of reaching out to git to build that list ourselves.  until we
+    # make time to handle that, this is an alternative to alleviate the issue.
+    exemptions = {(cwd + "/" + file, name) for file, name in exemptions}
+    lines = check_output(["git", "grep", f"CREATE {sql_type}"]).decode("ascii").split("\n")
+
+    ret = 0
+
+    items: dict[str, str] = {}
+    for line in lines:
+        if f"CREATE {sql_type}" not in line:
+            continue
+        if line.startswith("tests/"):
+            continue
+        if "db_upgrade_func.py" in line:
+            continue
+        if not line.startswith(cwd):
+            continue
+
+        name = line.split(f"CREATE {sql_type}")[1]
+        if name.startswith(" IF NOT EXISTS"):
+            name = name[14:]
+        name = name.strip()
+        name = name.split()[0]
+        name = name.split("(")[0]
+
+        if name in items:
+            # these appear as a duplicates, but one is for v1 and the other for v2
+            if (line.split()[0][:-1], name) not in exemptions:
+                print(f'duplicate {sql_type} "{name}"\n    {items[name]}\n    {line}')
+                ret += 1
+
+        items[name] = line
+
+    return ret
+
+
+ret = 0
+
+ret += check_create("INDEX", "chia/wallet")
+ret += check_create(
+    "INDEX",
+    "chia/full_node",
+    {
+        ("block_store.py", "is_fully_compactified"),
+        ("block_store.py", "height"),
+    },
+)
+ret += check_create("TABLE", "chia/wallet")
+ret += check_create(
+    "TABLE",
+    "chia/full_node",
+    {
+        ("block_store.py", "sub_epoch_segments_v3"),
+        ("block_store.py", "full_blocks"),
+        ("coin_store.py", "coin_record"),
+        ("hint_store.py", "hints"),
+    },
+)
+sys.exit(ret)

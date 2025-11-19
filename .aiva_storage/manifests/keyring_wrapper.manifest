@@ -1,0 +1,18 @@
+{
+  "tool_name": "keyring_wrapper",
+  "tool_hash": "a60d73a2821117f6ebff6f3d9709bd73dcea37d5697846c237b64bc2354d9da7",
+  "total_size": 15198,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a60d73a2821117f6ebff6f3d9709bd73dcea37d5697846c237b64bc2354d9da7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/keyring_wrapper.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/keyring_wrapper.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.325001,
+  "updated_at": 1762787395.325003
+}

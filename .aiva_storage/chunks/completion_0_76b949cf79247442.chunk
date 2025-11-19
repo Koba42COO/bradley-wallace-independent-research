@@ -1,0 +1,111 @@
+from __future__ import annotations
+
+import os
+import subprocess
+from pathlib import Path
+
+import click
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+SHELLS = ["bash", "zsh", "fish"]
+shell = os.environ.get("SHELL")
+
+if shell is not None:
+    shell = Path(shell).name
+    if shell not in SHELLS:
+        shell = None
+
+
+@click.group(
+    help="Generate shell completion",
+)
+def completion() -> None:
+    pass
+
+
+@completion.command(help="Generate shell completion code")
+@click.option(
+    "-s",
+    "--shell",
+    type=click.Choice(SHELLS),
+    default=shell,
+    show_default=True,
+    required=shell is None,
+    help="Shell type to generate for",
+)
+def generate(shell: str) -> None:
+    """
+    \b
+    Generate shell completion code for the current, or specified (-s)hell.
+    You will need to 'source' this code to enable shell completion.
+    You can source it directly (performs slower) by running:
+        \033[3;33meval "$(chia complete generate)"\033[0m
+    or you can save the output to a file:
+        \033[3;33mchia complete generate > ~/.chia-complete-bash\033[0m
+    and source that file with:
+        \033[3;33m. ~/.chia-complete-bash\033[0m
+    """
+    # Could consider calling directly in the future.
+    # https://github.com/pallets/click/blob/ef11be6e49e19a055fe7e5a89f0f1f4062c68dba/src/click/shell_completion.py#L17
+    subprocess.run(["chia"], check=True, env={**os.environ, "_CHIA_COMPLETE": f"{shell}_source"})

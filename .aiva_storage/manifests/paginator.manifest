@@ -1,0 +1,18 @@
+{
+  "tool_name": "paginator",
+  "tool_hash": "d995815c1cf4e41f1b3423716430643e3eaf56bd31777f2a3348add3ab3c0dfc",
+  "total_size": 4365,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d995815c1cf4e41f1b3423716430643e3eaf56bd31777f2a3348add3ab3c0dfc"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/paginator.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/paginator.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.321565,
+  "updated_at": 1762787395.321569
+}

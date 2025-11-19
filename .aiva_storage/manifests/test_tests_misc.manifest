@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_tests_misc",
+  "tool_hash": "c6f9c7c34c71449849b927ed443f73e8590c7090ab171814fdd73e624bbe74d3",
+  "total_size": 3636,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c6f9c7c34c71449849b927ed443f73e8590c7090ab171814fdd73e624bbe74d3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_tests_misc.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_tests_misc.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.425698,
+  "updated_at": 1762787395.4257019
+}

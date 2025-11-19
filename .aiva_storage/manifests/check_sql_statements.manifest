@@ -1,0 +1,18 @@
+{
+  "tool_name": "check_sql_statements",
+  "tool_hash": "4bb734862d687374230f339db214b4fbcf6de81da95a7f11b8e2205aa62bb566",
+  "total_size": 5034,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4bb734862d687374230f339db214b4fbcf6de81da95a7f11b8e2205aa62bb566"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/check_sql_statements.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/check_sql_statements.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3373709,
+  "updated_at": 1762787395.337374
+}

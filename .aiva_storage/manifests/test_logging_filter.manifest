@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_logging_filter",
+  "tool_hash": "50b9d0323450fc0957438d60f302b599770fbc78584023969eb938524488c85b",
+  "total_size": 3984,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "50b9d0323450fc0957438d60f302b599770fbc78584023969eb938524488c85b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_logging_filter.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_logging_filter.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4183009,
+  "updated_at": 1762787395.418305
+}

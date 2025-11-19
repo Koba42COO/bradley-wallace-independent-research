@@ -1,0 +1,18 @@
+{
+  "tool_name": "transfer_program_puzzle",
+  "tool_hash": "69a2d11ceba02672d87a4a6f08ab36fab8c82929e9811100ab7bfac38a4a73fa",
+  "total_size": 6003,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "69a2d11ceba02672d87a4a6f08ab36fab8c82929e9811100ab7bfac38a4a73fa"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/nft_wallet/transfer_program_puzzle.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/nft_wallet/transfer_program_puzzle.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6221309,
+  "updated_at": 1762787395.622134
+}

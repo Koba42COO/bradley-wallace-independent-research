@@ -1,0 +1,18 @@
+{
+  "tool_name": "rate_limit_numbers",
+  "tool_hash": "35f12fef2756cdfa4e251f22153fb3568c5ca93bbcf1b6d0c369b1883c9d648a",
+  "total_size": 16830,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "35f12fef2756cdfa4e251f22153fb3568c5ca93bbcf1b6d0c369b1883c9d648a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/server/rate_limit_numbers.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/server/rate_limit_numbers.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.53633,
+  "updated_at": 1762787395.536333
+}

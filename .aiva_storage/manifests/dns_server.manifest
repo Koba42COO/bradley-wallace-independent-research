@@ -1,0 +1,18 @@
+{
+  "tool_name": "dns_server",
+  "tool_hash": "9db6552eedf6480e4c3dca6752268372c5565e0a48fba57b6602089049f3d0f9",
+  "total_size": 30647,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "9db6552eedf6480e4c3dca6752268372c5565e0a48fba57b6602089049f3d0f9"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/seeder/dns_server.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/seeder/dns_server.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.31083,
+  "updated_at": 1762787395.310833
+}

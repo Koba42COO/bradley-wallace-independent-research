@@ -1,0 +1,18 @@
+{
+  "tool_name": "synthetic_data_generator",
+  "tool_hash": "30cc6d6cea91b46b84d7ddddd7eb22a4e1a6306fe6525b51b1841239634e3a96",
+  "total_size": 21047,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "30cc6d6cea91b46b84d7ddddd7eb22a4e1a6306fe6525b51b1841239634e3a96"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/The-Wallace-Transformation-A-Complete-Unified-Framework-for-Consciousness-Mathematics-and-Reality/datasets/synthetic_data_generator.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/The-Wallace-Transformation-A-Complete-Unified-Framework-for-Consciousness-Mathematics-and-Reality/datasets/synthetic_data_generator.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0684228,
+  "updated_at": 1762787395.068426
+}

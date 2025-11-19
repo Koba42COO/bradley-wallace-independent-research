@@ -1,0 +1,18 @@
+{
+  "tool_name": "mempool_inclusion_status",
+  "tool_hash": "89cac1303326a8cd1e93ceabdd4022efc4f8b0880e0f487223315acc5cff7e57",
+  "total_size": 3005,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "89cac1303326a8cd1e93ceabdd4022efc4f8b0880e0f487223315acc5cff7e57"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/mempool_inclusion_status.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/mempool_inclusion_status.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.300159,
+  "updated_at": 1762787395.300162
+}

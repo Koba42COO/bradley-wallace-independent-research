@@ -1,0 +1,18 @@
+{
+  "tool_name": "load_clvm",
+  "tool_hash": "b2feda47a85b8daada19a0b913633819fc2fcf5a9e2b5c87b3e0a87c94e46065",
+  "total_size": 8459,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b2feda47a85b8daada19a0b913633819fc2fcf5a9e2b5c87b3e0a87c94e46065"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/load_clvm.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/load_clvm.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.632619,
+  "updated_at": 1762787395.632622
+}

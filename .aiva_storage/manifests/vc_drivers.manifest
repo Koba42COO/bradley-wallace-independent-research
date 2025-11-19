@@ -1,0 +1,18 @@
+{
+  "tool_name": "vc_drivers",
+  "tool_hash": "058917d6ac317fb58f2ea7b106716c19ea35b8a30c36222059f41a3515f838ef",
+  "total_size": 38706,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "058917d6ac317fb58f2ea7b106716c19ea35b8a30c36222059f41a3515f838ef"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/vc_wallet/vc_drivers.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/vc_wallet/vc_drivers.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6194549,
+  "updated_at": 1762787395.619458
+}

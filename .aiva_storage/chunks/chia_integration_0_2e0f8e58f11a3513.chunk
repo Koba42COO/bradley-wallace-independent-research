@@ -1,0 +1,404 @@
+#!/usr/bin/env python3
+"""
+Chia Blockchain Integration for Prime Graph Computation
+======================================================
+
+This module provides Python integration with Chia blockchain for the
+prime graph computation marketplace, including wallet management,
+smart contract interaction, and decentralized verification.
+"""
+
+import asyncio
+import json
+import hashlib
+from typing import Dict, List, Any, Optional
+from dataclasses import dataclass
+import aiohttp
+from pathlib import Path
+
+@dataclass
+class ChiaTransaction:
+    """Represents a Chia blockchain transaction."""
+    transaction_id: str
+    amount_mojos: int
+    recipient_address: str
+    sender_address: str
+    fee_mojos: int
+    status: str  # 'pending', 'confirmed', 'failed'
+
+@dataclass
+class SmartContractCall:
+    """Represents a smart contract function call."""
+    contract_puzzle_hash: str
+    function_name: str
+    parameters: List[Any]
+    amount_mojos: int
+    fee_mojos: int
+
+class ChiaIntegration:
+    """
+    Chia blockchain integration for prime graph computation marketplace.
+
+    Handles wallet operations, smart contract interactions, and
+    decentralized verification of computation results.
+    """
+
+    def __init__(self, wallet_fingerprint: int, chia_cert_path: str = "~/.chia/mainnet/config/ssl"):
+        self.wallet_fingerprint = wallet_fingerprint
+        self.chia_cert_path = Path(chia_cert_path).expanduser()
+
+        # Chia RPC endpoints
+        self.full_node_url = "https://localhost:8555"
+        self.wallet_url = "https://localhost:9256"
+
+        # Smart contract details
+        self.oracle_contract_hash = "prime_computation_oracle_hash_placeholder"
+
+        # Session for HTTP requests
+        self.session: Optional[aiohttp.ClientSession] = None
+
+        print("🌱 Chia Integration initialized")
+        print(f"   👛 Wallet fingerprint: {wallet_fingerprint}")
+        print(f"   🔗 Full node: {self.full_node_url}")
+        print(f"   💰 Wallet: {self.wallet_url}")
+
+    async def __aenter__(self):
+        """Async context manager entry."""
+        self.session = aiohttp.ClientSession()
+        return self
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        """Async context manager exit."""
+        if self.session:
+            await self.session.close()
+
+    async def _chia_rpc_call(self, url: str, method: str, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Make RPC call to Chia service."""
+        if not self.session:
+            raise RuntimeError("ChiaIntegration must be used as async context manager")
+
+        payload = {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": method,
+            "params": params
+        }
+
+        try:
+            async with self.session.post(url, json=payload) as response:
+                result = await response.json()
+                if 'error' in result:
+                    raise Exception(f"Chia RPC error: {result['error']}")
+                return result.get('result', {})
+        except Exception as e:
+            print(f"❌ Chia RPC call failed: {e}")
+            raise
+
+    async def get_wallet_balance(self) -> Dict[str, Any]:
+        """
+        Get wallet balance information.
+
+        Returns:
+            Dictionary with balance information in XCH and mojos
+        """
+        try:
+            result = await self._chia_rpc_call(
+                self.wallet_url,
+                "get_wallet_balance",
+                {"wallet_id": 1}  # Default wallet
+            )
+
+            balance_mojos = result.get('confirmed_wallet_balance', 0)
+            balance_xch = balance_mojos / 1_000_000_000_000  # Convert mojos to XCH
+
+            return {
+                'balance_xch': balance_xch,
+                'balance_mojos': balance_mojos,
+                'spendable_mojos': result.get('spendable_balance', 0),
+                'pending_mojos': result.get('pending_balance', 0)
+            }
+
+        except Exception as e:
+            print(f"❌ Failed to get wallet balance: {e}")
+            return {'balance_xch': 0, 'balance_mojos': 0}
+
+    async def create_computation_task_transaction(self, task_data: Dict[str, Any],
+                                                reward_mojos: int) -> Optional[str]:
+        """
+        Create a transaction to fund a computation task.
+
+        Args:
+            task_data: Task specification data
+            reward_mojos: Reward amount in mojos
+
+        Returns:
+            Transaction ID if successful, None otherwise
+        """
+        try:
+            # Create task data hash for on-chain storage
+            task_hash = hashlib.sha256(
+                json.dumps(task_data, sort_keys=True).encode()
+            ).hexdigest()
+
+            # Create transaction with task metadata
+            tx_params = {
+                "wallet_id": 1,
+                "amount": reward_mojos,
+                "address": self.oracle_contract_hash,  # Send to oracle contract
+                "fee": 1000000,  # 0.001 XCH fee
+                "memos": [task_hash]  # Store task hash as memo
+            }
+
+            result = await self._chia_rpc_call(
+                self.wallet_url,
+                "send_transaction",
+                tx_params
+            )
+
+            transaction_id = result.get('transaction_id')
+            print(f"✅ Created computation task transaction: {transaction_id}")
+            print(".6f"            return transaction_id
+
+        except Exception as e:
+            print(f"❌ Failed to create computation task: {e}")
+            return None
+
+    async def submit_computation_result(self, task_id: str, computation_result: Dict[str, Any],
+                                      worker_address: str) -> Optional[str]:
+        """
+        Submit computation result to smart contract for verification.
+
+        Args:
+            task_id: Task identifier
+            computation_result: Computation result data
+            worker_address: Worker's wallet address
+
+        Returns:
+            Transaction ID if successful
+        """
+        try:
+            # Create result hash
+            result_hash = hashlib.sha256(
+                json.dumps(computation_result, sort_keys=True).encode()
+            ).hexdigest()
+
+            # Prepare smart contract call
+            contract_call = SmartContractCall(
+                contract_puzzle_hash=self.oracle_contract_hash,
+                function_name="submit-result",
+                parameters=[
+                    task_id,
+                    f"prime_graph_{result_hash}",  # Prefixed hash
+                    worker_address,
+                    computation_result.get('reward_amount', 0)
+                ],
+                amount_mojos=0,  # No additional payment
+                fee_mojos=1000000  # Transaction fee
+            )
+
+            # Execute contract call
+            tx_params = {
+                "wallet_id": 1,
+                "amount": contract_call.amount_mojos,
+                "address": contract_call.contract_puzzle_hash,
+                "fee": contract_call.fee_mojos,
+                "memos": contract_call.parameters  # Contract parameters as memos
+            }
+
+            result = await self._chia_rpc_call(
+                self.wallet_url,
+                "send_transaction",
+                tx_params
+            )
+
+            transaction_id = result.get('transaction_id')
+            print(f"✅ Submitted computation result: {transaction_id}")
+            print(f"   🔗 Task: {task_id}")
+            print(f"   👷 Worker: {worker_address[:10]}...")
+
+            return transaction_id
+
+        except Exception as e:
+            print(f"❌ Failed to submit computation result: {e}")
+            return None
+
+    async def verify_transaction_status(self, transaction_id: str) -> Dict[str, Any]:
+        """
+        Check the status of a Chia transaction.
+
+        Args:
+            transaction_id: Transaction ID to check
+
+        Returns:
+            Transaction status information
+        """
+        try:
+            result = await self._chia_rpc_call(
+                self.wallet_url,
+                "get_transaction",
+                {
+                    "wallet_id": 1,
+                    "transaction_id": transaction_id
+                }
+            )
+
+            return {
+                'status': 'confirmed' if result.get('confirmed', False) else 'pending',
+                'confirmations': result.get('confirmed_at_height', 0),
+                'fee_mojos': result.get('fee_amount', 0),
+                'amount_mojos': result.get('amount', 0)
+            }
+
+        except Exception as e:
+            print(f"❌ Failed to verify transaction: {e}")
+            return {'status': 'failed', 'error': str(e)}
+
+    async def get_computation_market_stats(self) -> Dict[str, Any]:
+        """
+        Get marketplace statistics from blockchain.
+
+        Returns:
+            Marketplace statistics
+        """
+        try:
+            # In a real implementation, this would query the smart contract
+            # For demonstration, return mock statistics
+
+            return {
+                'total_tasks_created': 1247,
+                'total_computations_completed': 892,
+                'total_xch_distributed': 15.67,
+                'active_workers': 234,
+                'average_task_completion_time': 245,  # seconds
+                'network_hash_rate': '1.2 PH/s',  # Prime computations per second
+                'oracle_revenue': 0.312  # XCH earned by oracle
+            }
+
+        except Exception as e:
+            print(f"❌ Failed to get market stats: {e}")
+            return {}
+
+    async def create_marketplace_offer(self, task_specification: Dict[str, Any],
+                                     reward_xch: float) -> Optional[str]:
+        """
+        Create a marketplace offer for computation work.
+
+        Args:
+            task_specification: Task requirements
+            reward_xch: Reward amount in XCH
+
+        Returns:
+            Offer ID if successful
+        """
+        try:
+            reward_mojos = int(reward_xch * 1_000_000_000_000)  # Convert XCH to mojos
+
+            # Create task transaction
+            tx_id = await self.create_computation_task_transaction(
+                task_specification, reward_mojos
+            )
+
+            if tx_id:
+                print(f"🎯 Created marketplace offer: {tx_id}")
+                print(".6f"                return tx_id
+
+            return None
+
+        except Exception as e:
+            print(f"❌ Failed to create marketplace offer: {e}")
+            return None
+
+    async def claim_computation_reward(self, task_id: str, worker_address: str) -> bool:
+        """
+        Claim reward for completed computation work.
+
+        Args:
+            task_id: Completed task ID
+            worker_address: Worker's address
+
+        Returns:
+            True if reward claimed successfully
+        """
+        try:
+            # In a real system, this would trigger the smart contract payout
+            # For demonstration, simulate the reward claim
+
+            print(f"💰 Claiming reward for task: {task_id}")
+            print(f"   👷 Worker: {worker_address}")
+
+            # Simulate smart contract interaction
+            await asyncio.sleep(0.5)  # Simulate blockchain delay
+
+            print("   ✅ Reward claimed successfully")
+            print(".6f"            return True
+
+        except Exception as e:
+            print(f"❌ Failed to claim reward: {e}")
+            return False
+
+    def get_oracle_contract_info(self) -> Dict[str, Any]:
+        """Get information about the oracle smart contract."""
+        return {
+            'contract_hash': self.oracle_contract_hash,
+            'functions': [
+                'submit-result',
+                'verify-computation',
+                'distribute-rewards',
+                'store-knowledge',
+                'query-graph'
+            ],
+            'minimum_verifications': 3,
+            'oracle_fee_percentage': 2.0,
+            'supported_operations': [
+                'prime_graph_computation',
+                'wallace_transform_verification',
+                'consciousness_level_mapping'
+            ]
+        }
+
+async def demonstrate_chia_integration():
+    """Demonstrate Chia blockchain integration."""
+    print("🌱 Chia Blockchain Integration Demonstration")
+    print("=" * 50)
+
+    # Initialize Chia integration (mock fingerprint for demo)
+    wallet_fingerprint = 1234567890
+
+    async with ChiaIntegration(wallet_fingerprint) as chia:
+        # Check wallet balance
+        balance = await chia.get_wallet_balance()
+        print(".6f"        print(".0f"
+        # Create a computation task
+        task_data = {
+            'prime_range': [1000, 2000],
+            'difficulty': 3,
+            'wallace_iterations': 30,
+            'timestamp': 1640995200
+        }
+
+        task_tx = await chia.create_marketplace_offer(task_data, 0.005)
+        if task_tx:
+            print(f"✅ Task created with transaction: {task_tx}")
+
+            # Check transaction status
+            status = await chia.verify_transaction_status(task_tx)
+            print(f"📊 Transaction status: {status['status']}")
+
+        # Get market statistics
+        stats = await chia.get_computation_market_stats()
+        print("
+📊 Marketplace Statistics"        print(f"   🔢 Total tasks: {stats.get('total_tasks_created', 0)}")
+        print(f"   ✅ Completed: {stats.get('total_computations_completed', 0)}")
+        print(".3f"        print(f"   👷 Active workers: {stats.get('active_workers', 0)}")
+
+        # Get oracle contract info
+        contract_info = chia.get_oracle_contract_info()
+        print("
+🔗 Oracle Contract"        print(f"   📄 Hash: {contract_info['contract_hash'][:16]}...")
+        print(f"   🔧 Functions: {len(contract_info['functions'])}")
+        print(f"   ✅ Min verifications: {contract_info['minimum_verifications']}")
+
+    return True
+
+if __name__ == "__main__":
+    asyncio.run(demonstrate_chia_integration())

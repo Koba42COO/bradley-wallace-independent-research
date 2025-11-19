@@ -1,0 +1,18 @@
+{
+  "tool_name": "upg_implementation",
+  "tool_hash": "5f1dfcf50e4cf6a7fdbdc51a248c3fd78bd1a8a46fa098308e917347414e8bd1",
+  "total_size": 8184,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5f1dfcf50e4cf6a7fdbdc51a248c3fd78bd1a8a46fa098308e917347414e8bd1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/research/external/repo_clone/research_papers/upg_implementation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/research/external/repo_clone/research_papers/upg_implementation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.259059,
+  "updated_at": 1762787395.259062
+}

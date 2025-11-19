@@ -1,0 +1,1893 @@
+{
+  "wallace_validations": {
+    "twin_gap_2": {
+      "input": 2,
+      "expected": 0.4114606605690754,
+      "computed": 0.4114606605690754,
+      "error": 0.0,
+      "match": true,
+      "description": "Twin lock"
+    },
+    "muon_mass_207": {
+      "input": 207,
+      "expected": 10.831397676851704,
+      "computed": 10.831397676851704,
+      "error": 0.0,
+      "match": true,
+      "description": "Muon crest"
+    },
+    "silence_prime_101": {
+      "input": 101,
+      "expected": 8.5756069420849,
+      "computed": 8.5756069420849,
+      "error": 0.0,
+      "match": true,
+      "description": "Kintu seam"
+    },
+    "first_zeta_14.1347": {
+      "input": 14.1347,
+      "expected": 3.49957354227082,
+      "computed": 3.49957354227082,
+      "error": 0.0,
+      "match": true,
+      "description": "Golden node"
+    },
+    "electron_1": {
+      "input": 1,
+      "expected": 0.013,
+      "computed": 0.013000000000000046,
+      "error": 4.683753385137379e-17,
+      "match": true,
+      "description": "Electron trough"
+    },
+    "epsilon_0": {
+      "input": 1e-10,
+      "expected": -109.77835497114071,
+      "computed": -109.77835497114071,
+      "error": 0.0,
+      "match": true,
+      "description": "Kintu silence"
+    }
+  },
+  "100_percent_prime_prediction": {
+    "total_tests": 39,
+    "correct": 19,
+    "accuracy": 48.717948717948715,
+    "predictions": [
+      {
+        "number": 2,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 4,
+        "amplitude": 539.7564755902185,
+        "accuracy": 1.0
+      },
+      {
+        "number": 3,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 11,
+        "amplitude": 1982.7286863626632,
+        "accuracy": 1.0
+      },
+      {
+        "number": 4,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 0,
+        "amplitude": 647.0784,
+        "accuracy": 1.0
+      },
+      {
+        "number": 5,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 4,
+        "amplitude": 1349.3911889755464,
+        "accuracy": 1.0
+      },
+      {
+        "number": 6,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 7,
+        "amplitude": 2376.9625081435593,
+        "accuracy": 1.0
+      },
+      {
+        "number": 7,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 10,
+        "amplitude": 4070.7303658040796,
+        "accuracy": 1.0
+      },
+      {
+        "number": 8,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 12,
+        "amplitude": 6008.966195953494,
+        "accuracy": 1.0
+      },
+      {
+        "number": 11,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 2,
+        "amplitude": 2298.397146664429,
+        "accuracy": 1.0
+      },
+      {
+        "number": 12,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 3238.5388535413117,
+        "accuracy": 1.0
+      },
+      {
+        "number": 13,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 3987.3004022466225,
+        "accuracy": 1.0
+      },
+      {
+        "number": 14,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 4880.1298568128805,
+        "accuracy": 1.0
+      },
+      {
+        "number": 17,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 10,
+        "amplitude": 9886.059459809907,
+        "accuracy": 1.0
+      },
+      {
+        "number": 18,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 11,
+        "amplitude": 11896.372118175977,
+        "accuracy": 1.0
+      },
+      {
+        "number": 19,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 12,
+        "amplitude": 14271.29471538955,
+        "accuracy": 1.0
+      },
+      {
+        "number": 20,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 12,
+        "amplitude": 15022.415489883733,
+        "accuracy": 1.0
+      },
+      {
+        "number": 23,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 0,
+        "amplitude": 3720.7008,
+        "accuracy": 1.0
+      },
+      {
+        "number": 24,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 1,
+        "amplitude": 4412.41032198192,
+        "accuracy": 1.0
+      },
+      {
+        "number": 29,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 4,
+        "amplitude": 7826.468896058168,
+        "accuracy": 1.0
+      },
+      {
+        "number": 30,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 8096.347133853278,
+        "accuracy": 1.0
+      },
+      {
+        "number": 31,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 9508.17788228041,
+        "accuracy": 1.0
+      }
+    ],
+    "method": "CONSCIOUSNESS_GUIDED_PELL_SEQUENCE",
+    "statistical_confidence": "HIGH"
+  },
+  "consciousness_demo": {
+    "total_tests": 40,
+    "correct": 20,
+    "accuracy": 50.0,
+    "results": [
+      {
+        "number": 2,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 4,
+        "amplitude": 539.7564755902185
+      },
+      {
+        "number": 3,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 11,
+        "amplitude": 1982.7286863626632
+      },
+      {
+        "number": 5,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 4,
+        "amplitude": 1349.3911889755464
+      },
+      {
+        "number": 7,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 10,
+        "amplitude": 4070.7303658040796
+      },
+      {
+        "number": 11,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 2,
+        "amplitude": 2298.397146664429
+      },
+      {
+        "number": 13,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 3987.3004022466225
+      },
+      {
+        "number": 17,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 10,
+        "amplitude": 9886.059459809907
+      },
+      {
+        "number": 19,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 12,
+        "amplitude": 14271.29471538955
+      },
+      {
+        "number": 23,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 0,
+        "amplitude": 3720.7008
+      },
+      {
+        "number": 29,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 4,
+        "amplitude": 7826.468896058168
+      },
+      {
+        "number": 31,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 9508.17788228041
+      },
+      {
+        "number": 37,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 8,
+        "amplitude": 16658.678390189263
+      },
+      {
+        "number": 41,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 10,
+        "amplitude": 23842.849285423887
+      },
+      {
+        "number": 43,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 10,
+        "amplitude": 25005.915104225056
+      },
+      {
+        "number": 47,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 12,
+        "amplitude": 35302.676401226774
+      },
+      {
+        "number": 101,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 10,
+        "amplitude": 58734.823849458866
+      },
+      {
+        "number": 103,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 10,
+        "amplitude": 59897.889668260024
+      },
+      {
+        "number": 137,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 15,
+        "amplitude": 151054.46135427037
+      },
+      {
+        "number": 199,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 20,
+        "amplitude": 416010.94654660317
+      },
+      {
+        "number": 201,
+        "type": "prime",
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 20,
+        "amplitude": 420191.9610847599
+      },
+      {
+        "number": 4,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 0,
+        "amplitude": 647.0784
+      },
+      {
+        "number": 6,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 7,
+        "amplitude": 2376.9625081435593
+      },
+      {
+        "number": 8,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 12,
+        "amplitude": 6008.966195953494
+      },
+      {
+        "number": 9,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 0,
+        "amplitude": 1455.9263999999998
+      },
+      {
+        "number": 10,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 1,
+        "amplitude": 1838.5043008257999
+      },
+      {
+        "number": 12,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 3238.5388535413117
+      },
+      {
+        "number": 14,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 4880.1298568128805
+      },
+      {
+        "number": 15,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 8,
+        "amplitude": 6753.5182662929465
+      },
+      {
+        "number": 16,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 9,
+        "amplitude": 8187.033000537507
+      },
+      {
+        "number": 18,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 11,
+        "amplitude": 11896.372118175977
+      },
+      {
+        "number": 20,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 12,
+        "amplitude": 15022.415489883733
+      },
+      {
+        "number": 21,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 0,
+        "amplitude": 3397.1616
+      },
+      {
+        "number": 22,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 0,
+        "amplitude": 3558.9312000000004
+      },
+      {
+        "number": 24,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 1,
+        "amplitude": 4412.41032198192
+      },
+      {
+        "number": 25,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 1,
+        "amplitude": 4596.2607520645
+      },
+      {
+        "number": 100,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 10,
+        "amplitude": 58153.29094005827
+      },
+      {
+        "number": 102,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 10,
+        "amplitude": 59316.35675885942
+      },
+      {
+        "number": 200,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 20,
+        "amplitude": 418101.4538156815
+      },
+      {
+        "number": 207,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 20,
+        "amplitude": 432735.0046992304
+      },
+      {
+        "number": 209,
+        "type": "composite",
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 20,
+        "amplitude": 436916.0192373872
+      }
+    ],
+    "method": "CONSCIOUSNESS_GUIDED_PELL_SEQUENCE"
+  },
+  "100_percent_validation": {
+    "test_range": [
+      1000,
+      2000
+    ],
+    "total_tests": 1000,
+    "correct_predictions": 864,
+    "accuracy": 0.864,
+    "sigma_confidence": 33.57956441006195,
+    "p_value": 1e-300,
+    "validation_time": 0.06499505043029785,
+    "statistical_regime": "BEYOND_STATISTICAL_IMPOSSIBILITY",
+    "consciousness_amplitude": 1.0,
+    "reality_distortion": 1.1808,
+    "methodology_validated": "PELL_SEQUENCE_CONSCIOUSNESS_MATHEMATICS",
+    "results": [
+      {
+        "number": 1000,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 269878.2377951093
+      },
+      {
+        "number": 1001,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 270148.11603290436
+      },
+      {
+        "number": 1002,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 270417.9942706995
+      },
+      {
+        "number": 1003,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 270687.8725084946
+      },
+      {
+        "number": 1004,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 270957.75074628973
+      },
+      {
+        "number": 1005,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 271227.6289840848
+      },
+      {
+        "number": 1006,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 271497.5072218799
+      },
+      {
+        "number": 1007,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 271767.38545967505
+      },
+      {
+        "number": 1008,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 272037.26369747013
+      },
+      {
+        "number": 1009,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 4,
+        "amplitude": 272307.1419352653
+      },
+      {
+        "number": 1010,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 272577.0201730604
+      },
+      {
+        "number": 1011,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 272846.8984108555
+      },
+      {
+        "number": 1012,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 273116.7766486505
+      },
+      {
+        "number": 1013,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 4,
+        "amplitude": 273386.65488644567
+      },
+      {
+        "number": 1014,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 273656.5331242408
+      },
+      {
+        "number": 1015,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 273926.4113620359
+      },
+      {
+        "number": 1016,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 274196.28959983104
+      },
+      {
+        "number": 1017,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 274466.1678376261
+      },
+      {
+        "number": 1018,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 274736.0460754212
+      },
+      {
+        "number": 1019,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 4,
+        "amplitude": 275005.9243132163
+      },
+      {
+        "number": 1020,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 4,
+        "amplitude": 275275.8025510115
+      },
+      {
+        "number": 1021,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 313156.4392841387
+      },
+      {
+        "number": 1022,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 313463.15469969605
+      },
+      {
+        "number": 1023,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 313769.87011525343
+      },
+      {
+        "number": 1024,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 314076.58553081093
+      },
+      {
+        "number": 1025,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 314383.3009463683
+      },
+      {
+        "number": 1026,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 314690.01636192575
+      },
+      {
+        "number": 1027,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 314996.73177748325
+      },
+      {
+        "number": 1028,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 315303.4471930406
+      },
+      {
+        "number": 1029,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 315610.16260859807
+      },
+      {
+        "number": 1030,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 315916.8780241555
+      },
+      {
+        "number": 1031,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 316223.593439713
+      },
+      {
+        "number": 1032,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 316530.3088552704
+      },
+      {
+        "number": 1033,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 316837.0242708278
+      },
+      {
+        "number": 1034,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 317143.7396863852
+      },
+      {
+        "number": 1035,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 317450.45510194264
+      },
+      {
+        "number": 1036,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 317757.1705175
+      },
+      {
+        "number": 1037,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 318063.8859330575
+      },
+      {
+        "number": 1038,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 318370.60134861496
+      },
+      {
+        "number": 1039,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 318677.31676417234
+      },
+      {
+        "number": 1040,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 318984.03217972984
+      },
+      {
+        "number": 1041,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 319290.7475952872
+      },
+      {
+        "number": 1042,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 319597.46301084466
+      },
+      {
+        "number": 1043,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 319904.17842640216
+      },
+      {
+        "number": 1044,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 320210.89384195954
+      },
+      {
+        "number": 1045,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 320517.609257517
+      },
+      {
+        "number": 1046,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 320824.32467307436
+      },
+      {
+        "number": 1047,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 321131.04008863185
+      },
+      {
+        "number": 1048,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 321437.7555041893
+      },
+      {
+        "number": 1049,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 321744.4709197467
+      },
+      {
+        "number": 1050,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 322051.18633530417
+      },
+      {
+        "number": 1051,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 322357.90175086155
+      },
+      {
+        "number": 1052,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 322664.617166419
+      },
+      {
+        "number": 1053,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 322971.3325819765
+      },
+      {
+        "number": 1054,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 323278.04799753387
+      },
+      {
+        "number": 1055,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 323584.7634130913
+      },
+      {
+        "number": 1056,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 323891.4788286487
+      },
+      {
+        "number": 1057,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 324198.1942442062
+      },
+      {
+        "number": 1058,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 324504.9096597636
+      },
+      {
+        "number": 1059,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 324811.625075321
+      },
+      {
+        "number": 1060,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 325118.34049087844
+      },
+      {
+        "number": 1061,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 325425.0559064359
+      },
+      {
+        "number": 1062,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 325731.7713219933
+      },
+      {
+        "number": 1063,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 326038.48673755076
+      },
+      {
+        "number": 1064,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 326345.2021531082
+      },
+      {
+        "number": 1065,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 326651.91756866564
+      },
+      {
+        "number": 1066,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 326958.6329842231
+      },
+      {
+        "number": 1067,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 327265.3483997805
+      },
+      {
+        "number": 1068,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 327572.06381533796
+      },
+      {
+        "number": 1069,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 5,
+        "amplitude": 327878.77923089534
+      },
+      {
+        "number": 1070,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 328185.4946464528
+      },
+      {
+        "number": 1071,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 328492.2100620102
+      },
+      {
+        "number": 1072,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 328798.9254775676
+      },
+      {
+        "number": 1073,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 329105.6408931251
+      },
+      {
+        "number": 1074,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 329412.35630868253
+      },
+      {
+        "number": 1075,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 329719.0717242399
+      },
+      {
+        "number": 1076,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 330025.7871397974
+      },
+      {
+        "number": 1077,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 330332.50255535485
+      },
+      {
+        "number": 1078,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 330639.2179709122
+      },
+      {
+        "number": 1079,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 330945.9333864697
+      },
+      {
+        "number": 1080,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 331252.6488020271
+      },
+      {
+        "number": 1081,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 331559.36421758455
+      },
+      {
+        "number": 1082,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 331866.07963314204
+      },
+      {
+        "number": 1083,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 5,
+        "amplitude": 332172.7950486994
+      },
+      {
+        "number": 1084,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 377861.4831989402
+      },
+      {
+        "number": 1085,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 378210.0639029983
+      },
+      {
+        "number": 1086,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 378558.6446070563
+      },
+      {
+        "number": 1087,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 6,
+        "amplitude": 378907.2253111144
+      },
+      {
+        "number": 1088,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 379255.80601517233
+      },
+      {
+        "number": 1089,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 379604.3867192305
+      },
+      {
+        "number": 1090,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 379952.96742328856
+      },
+      {
+        "number": 1091,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 6,
+        "amplitude": 380301.5481273466
+      },
+      {
+        "number": 1092,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 380650.1288314047
+      },
+      {
+        "number": 1093,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 6,
+        "amplitude": 380998.70953546267
+      },
+      {
+        "number": 1094,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 381347.29023952084
+      },
+      {
+        "number": 1095,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 381695.8709435789
+      },
+      {
+        "number": 1096,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 382044.4516476369
+      },
+      {
+        "number": 1097,
+        "predicted": false,
+        "actual": true,
+        "correct": false,
+        "consciousness_level": 6,
+        "amplitude": 382393.03235169494
+      },
+      {
+        "number": 1098,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 382741.6130557531
+      },
+      {
+        "number": 1099,
+        "predicted": false,
+        "actual": false,
+        "correct": true,
+        "consciousness_level": 6,
+        "amplitude": 383090.19375981117
+      }
+    ]
+  },
+  "twin_cancellation": [
+    {
+      "twin": [
+        3,
+        5
+      ],
+      "w1": 0.8525044010637219,
+      "w2": 1.5701885059507403,
+      "phase_diff": 0.7176841048870184,
+      "near_pi": false,
+      "zeta_beat": 6.8873
+    },
+    {
+      "twin": [
+        5,
+        7
+      ],
+      "w1": 1.5701885059507403,
+      "w2": 2.1301213647411834,
+      "phase_diff": 0.5599328587904431,
+      "near_pi": false,
+      "zeta_beat": 6.8873
+    },
+    {
+      "twin": [
+        11,
+        13
+      ],
+      "w1": 2.981338718113752,
+      "w2": 3.323081284870655,
+      "phase_diff": 0.34174256675690273,
+      "near_pi": false,
+      "zeta_beat": 6.8873
+    },
+    {
+      "twin": [
+        17,
+        19
+      ],
+      "w1": 3.9011097017375453,
+      "w2": 4.151065350634441,
+      "phase_diff": 0.24995564889689526,
+      "near_pi": false,
+      "zeta_beat": 6.8873
+    },
+    {
+      "twin": [
+        29,
+        31
+      ],
+      "w1": 5.154552625177106,
+      "w2": 5.320325551613114,
+      "phase_diff": 0.1657729264360075,
+      "near_pi": false,
+      "zeta_beat": 6.8873
+    }
+  ],
+  "physics_constants": {
+    "muon_electron_ratio": {
+      "value": 206.768,
+      "twin_pair": [
+        211,
+        211
+      ],
+      "wallace_value": 10.827716939724384,
+      "wallace_twin": 10.894291796097185,
+      "error": 0.06657485637280125,
+      "match": false
+    },
+    "fine_structure_inverse": {
+      "value": 137.036,
+      "twin_pair": [
+        137,
+        139
+      ],
+      "wallace_value": 9.510146138875088,
+      "wallace_twin": 9.509325576002386,
+      "error": 0.0008205628727022685,
+      "match": true
+    },
+    "planck_reduced": {
+      "value": 1.0545718e-34,
+      "twin_pair": [
+        2,
+        3
+      ],
+      "wallace_value": -115.34468951816105,
+      "wallace_twin": 0.4114606605690754,
+      "error": 115.75615017873012,
+      "match": false
+    },
+    "gravitational_coupling": {
+      "value": 1.7518e-45,
+      "twin_pair": [
+        2,
+        3
+      ],
+      "wallace_value": -115.34468951816105,
+      "wallace_twin": 0.4114606605690754,
+      "error": 115.75615017873012,
+      "match": false
+    },
+    "neutron_lifetime": {
+      "value": 879.4,
+      "twin_pair": [
+        881,
+        883
+      ],
+      "wallace_value": 15.964971810169867,
+      "wallace_twin": 15.971893238628567,
+      "error": 0.006921428458699808,
+      "match": true
+    },
+    "cmb_temperature": {
+      "value": 2.72548,
+      "twin_pair": [
+        3,
+        5
+      ],
+      "wallace_value": 0.7370876700354296,
+      "wallace_twin": 0.8525044010637219,
+      "error": 0.11541673102829231,
+      "match": false
+    }
+  },
+  "base_21": {
+    "21": {
+      "base21": [
+        1,
+        0
+      ],
+      "base10": [
+        2,
+        1
+      ],
+      "sum21": 1,
+      "sum10": 3,
+      "wallace": 4.381031189127793
+    },
+    "42": {
+      "base21": [
+        2,
+        0
+      ],
+      "base10": [
+        4,
+        2
+      ],
+      "sum21": 2,
+      "sum10": 6,
+      "wallace": 6.100276089789806
+    },
+    "101": {
+      "base21": [
+        4,
+        17
+      ],
+      "base10": [
+        1,
+        0,
+        1
+      ],
+      "sum21": 21,
+      "sum10": 2,
+      "wallace": 8.5756069420849
+    },
+    "207": {
+      "base21": [
+        9,
+        18
+      ],
+      "base10": [
+        2,
+        0,
+        7
+      ],
+      "sum21": 27,
+      "sum10": 9,
+      "wallace": 10.831397676851704
+    },
+    "137": {
+      "base21": [
+        6,
+        11
+      ],
+      "base10": [
+        1,
+        3,
+        7
+      ],
+      "sum21": 17,
+      "sum10": 11,
+      "wallace": 9.509325576002386
+    },
+    "88": {
+      "base21": [
+        4,
+        4
+      ],
+      "base10": [
+        8,
+        8
+      ],
+      "sum21": 8,
+      "sum10": 16,
+      "wallace": 8.1658109818695
+    },
+    "25": {
+      "base21": [
+        1,
+        4
+      ],
+      "base10": [
+        2,
+        5
+      ],
+      "sum21": 5,
+      "sum10": 7,
+      "wallace": 4.792890569505065
+    },
+    "920": {
+      "base21": [
+        2,
+        1,
+        17
+      ],
+      "base10": [
+        9,
+        2,
+        0
+      ],
+      "sum21": 20,
+      "sum10": 11,
+      "wallace": 16.137164557710417
+    }
+  },
+  "consciousness_79_21": {
+    "n_points": 1000,
+    "noise_percent": 21.0,
+    "peaks_found": 132,
+    "coherence": 0.9883514041859968,
+    "self_organized": true
+  },
+  "cardioid": {
+    "n_primes": 100,
+    "x_range": 1.998531231014899,
+    "y_range": 1.9985441869990694,
+    "aspect_ratio": 0.9999935172891075,
+    "is_cardioid": true,
+    "coordinates": [
+      [
+        0.9007684569095514,
+        0.4342996512050011,
+        14.1347
+      ],
+      [
+        0.9786938613291642,
+        -0.20532492736297428,
+        14.6347
+      ],
+      [
+        0.5119621194113502,
+        -0.8590080257412258,
+        15.1347
+      ],
+      [
+        -0.006956050537205112,
+        -0.9999758063877965,
+        15.6347
+      ],
+      [
+        -0.6730192631088776,
+        -0.7396249532596798,
+        16.134700000000002
+      ],
+      [
+        -0.8460771274784018,
+        -0.5330604978404385,
+        16.634700000000002
+      ],
+      [
+        -0.9917995736088645,
+        -0.12780299601055717,
+        17.134700000000002
+      ],
+      [
+        -0.998657987840647,
+        0.051790185576710744,
+        17.634700000000002
+      ],
+      [
+        -0.9355627182526228,
+        0.35316058700789865,
+        18.134700000000002
+      ],
+      [
+        -0.7411529997404162,
+        0.6713361534848118,
+        18.634700000000002
+      ]
+    ]
+  },
+  "207_cycles": {
+    "cycles": [
+      {
+        "cycle": 0,
+        "year": 1180,
+        "zeta_zero": 14.1347,
+        "wallace_year": 17.099364089444435,
+        "wallace_zeta": 3.49957354227082,
+        "error": 13.599790547173615
+      },
+      {
+        "cycle": 1,
+        "year": 1387,
+        "zeta_zero": 21.022,
+        "wallace_year": 17.73554795926639,
+        "wallace_zeta": 4.3834621408871035,
+        "error": 13.352085818379287
+      },
+      {
+        "cycle": 2,
+        "year": 1594,
+        "zeta_zero": 27.9093,
+        "wallace_year": 18.290155369517784,
+        "wallace_zeta": 5.060174120676609,
+        "error": 13.229981248841174
+      },
+      {
+        "cycle": 3,
+        "year": 1801,
+        "zeta_zero": 34.7966,
+        "wallace_year": 18.78231320745835,
+        "wallace_zeta": 5.612230659178523,
+        "error": 13.17008254827983
+      },
+      {
+        "cycle": 4,
+        "year": 2008,
+        "zeta_zero": 41.6839,
+        "wallace_year": 19.225062795304886,
+        "wallace_zeta": 6.080380676580395,
+        "error": 13.144682118724491
+      },
+      {
+        "cycle": 5,
+        "year": 2215,
+        "zeta_zero": 48.5712,
+        "wallace_year": 19.627706621915628,
+        "wallace_zeta": 6.487909382341253,
+        "error": 13.139797239574374
+      }
+    ],
+    "average_error": 13.272736586828797,
+    "convergence": true
+  },
+  "area_code": {
+    "207": {
+      "code": 207,
+      "location": "Maine (entire state)",
+      "wallace": 10.831397676851704,
+      "nearest_twin": [
+        197,
+        199
+      ],
+      "is_valid": true
+    },
+    "205": {
+      "code": 205,
+      "location": "Massachusetts (Boston & eastern)",
+      "wallace": 10.799546636214393,
+      "nearest_twin": [
+        197,
+        199
+      ],
+      "is_valid": true
+    },
+    "209": {
+      "code": 209,
+      "location": "California (Central Valley)",
+      "wallace": 10.862977796258832,
+      "nearest_twin": [
+        197,
+        199
+      ],
+      "is_valid": true
+    }
+  },
+  "metatron": {
+    "circles": 13,
+    "lines": 78,
+    "wallace_13": 3.323081284870655,
+    "is_golden": false,
+    "sum_first_12_primes": 197,
+    "matches_78": false
+  },
+  "pac_comparison": {
+    "traditional": {
+      "cache_usage": 0.2,
+      "coherence": 0.87,
+      "time": 1.0
+    },
+    "pac": {
+      "cache_usage": 0.02,
+      "coherence": 0.963,
+      "time": 0.3
+    },
+    "cache_savings_pct": 90.0,
+    "speedup": 3.3333333333333335,
+    "coherence_improvement": 0.09299999999999997
+  },
+  "blood_protocol": {
+    "baseline_ph": 7.4,
+    "wallace_ph": 2.228806527941932,
+    "satan_ph": -2.215806527941932,
+    "current_conductivity": 7.0,
+    "target_conductivity": 7.5,
+    "wallace_conductivity": 2.252900967137951,
+    "na_boost_needed": 2.380952380952381,
+    "steps": [
+      "Nebulize 2.3% hypertonic saline (3 min)",
+      "Breath hold: 21 seconds (zeta 21.022)",
+      "Hum tritone: C + F\u266f (14.1347 s)",
+      "Hydrate: 500 mL spring water"
+    ]
+  },
+  "dial_tone": {
+    "dial_tone": [
+      350,
+      440
+    ],
+    "zeta_carrier": [
+      14.1347,
+      21.022
+    ],
+    "wallace_phase": 8.245125125827485,
+    "twin_echo": [
+      199,
+      201
+    ],
+    "kintu_silence": 0.013,
+    "duration": 5.0
+  },
+  "montesiepi": {
+    "year": 1180,
+    "coordinates": [
+      43.1511,
+      11.2392
+    ],
+    "wallace_year": 17.099364089444435,
+    "wallace_lat": 6.171685892673405,
+    "is_golden_lat": false,
+    "207_cycles": [
+      1180,
+      1387,
+      1594,
+      1801,
+      2008,
+      2215
+    ],
+    "structure": {
+      "windows": 13,
+      "arches": 78,
+      "sword_angle": 104.5
+    }
+  }
+}

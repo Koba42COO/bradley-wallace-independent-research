@@ -1,0 +1,18 @@
+{
+  "tool_name": "ether",
+  "tool_hash": "21473f9ad18c06281754f7a2740b74bf727ac370ae723353c352f5bb8f64957e",
+  "total_size": 821,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "21473f9ad18c06281754f7a2740b74bf727ac370ae723353c352f5bb8f64957e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/ether.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/ether.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.3370838,
+  "updated_at": 1762787395.3371
+}

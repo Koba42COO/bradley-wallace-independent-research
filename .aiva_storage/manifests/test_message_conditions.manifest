@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_message_conditions",
+  "tool_hash": "2c65702be3ec8df6d2ddc8908a287ad3431c3335c141e3448bb3fa92c7bce2aa",
+  "total_size": 10124,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2c65702be3ec8df6d2ddc8908a287ad3431c3335c141e3448bb3fa92c7bce2aa"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_message_conditions.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_message_conditions.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.342517,
+  "updated_at": 1762787395.34252
+}

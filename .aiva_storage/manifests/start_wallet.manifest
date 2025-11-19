@@ -1,0 +1,18 @@
+{
+  "tool_name": "start_wallet",
+  "tool_hash": "dd9b3a96e8e22535cda1a0c8b15c2c2b3fea04bbad46d9cfb427048e8a53373c",
+  "total_size": 6772,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "dd9b3a96e8e22535cda1a0c8b15c2c2b3fea04bbad46d9cfb427048e8a53373c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/start_wallet.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/start_wallet.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.589113,
+  "updated_at": 1762787395.5891159
+}

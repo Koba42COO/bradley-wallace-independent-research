@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_offer_lifecycle",
+  "tool_hash": "a882cae337a610fdd6b251319ec1db2671dabdbe235c44f37b001c0478e4a4d9",
+  "total_size": 15571,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a882cae337a610fdd6b251319ec1db2671dabdbe235c44f37b001c0478e4a4d9"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/cat_wallet/test_offer_lifecycle.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/cat_wallet/test_offer_lifecycle.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.49974,
+  "updated_at": 1762787395.499743
+}

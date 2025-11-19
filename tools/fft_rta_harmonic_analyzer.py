@@ -1,0 +1,482 @@
+#!/usr/bin/env python3
+"""
+FFT RTA (Real-Time Analyzer) Harmonic Analysis of Prime/Zeta Audio
+
+This script analyzes the harmonic content of the prime distribution and zeta distribution
+audio files using FFT and creates RTA visualizations.
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.fft import fft, fftfreq
+from scipy.signal import spectrogram
+import wave
+import struct
+import math
+import os
+from typing import Dict, List, Tuple, Optional
+import json
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+class FFTHarmonicAnalyzer:
+    """FFT-based harmonic analyzer for audio signals"""
+
+    def __init__(self):
+        self.sample_rate = 44100
+        self.fft_size = 8192  # Higher resolution for harmonic analysis
+        self.overlap = 0.75   # 75% overlap for smooth RTA
+        self.frequency_bins = 256  # For RTA display
+
+    def load_wav_file(self, filename: str) -> Optional[np.ndarray]:
+        """Load WAV file and return audio data as numpy array"""
+        try:
+            with wave.open(filename, 'rb') as wav_file:
+                # Get file parameters
+                n_channels = wav_file.getnchannels()
+                sample_width = wav_file.getsampwidth()
+                framerate = wav_file.getframerate()
+                n_frames = wav_file.getnframes()
+
+                # Read audio data
+                raw_data = wav_file.readframes(n_frames)
+
+                # Convert to numpy array based on sample width
+                if sample_width == 2:  # 16-bit
+                    audio_data = np.frombuffer(raw_data, dtype=np.int16)
+                    audio_data = audio_data.astype(np.float32) / 32768.0
+                elif sample_width == 4:  # 32-bit float
+                    audio_data = np.frombuffer(raw_data, dtype=np.float32)
+                else:
+                    raise ValueError(f"Unsupported sample width: {sample_width}")
+
+                # Convert to mono if stereo
+                if n_channels == 2:
+                    audio_data = audio_data.reshape(-1, 2).mean(axis=1)
+
+                return audio_data
+
+        except Exception as e:
+            print(f"Error loading {filename}: {e}")
+            return None
+
+    def compute_fft(self, audio_data: np.ndarray, window_size: int = None) -> Tuple[np.ndarray, np.ndarray]:
+        """Compute FFT of audio data"""
+        if window_size is None:
+            window_size = self.fft_size
+
+        # Apply Hanning window to reduce spectral leakage
+        window = np.hanning(window_size)
+        windowed_data = audio_data[:window_size] * window
+
+        # Compute FFT
+        fft_result = fft(windowed_data)
+
+        # Get frequency bins
+        freqs = fftfreq(window_size, 1/self.sample_rate)
+
+        # Take only positive frequencies and magnitude
+        positive_freqs = freqs[:window_size//2]
+        magnitude = np.abs(fft_result[:window_size//2])
+
+        # Convert to dB scale
+        magnitude_db = 20 * np.log10(magnitude + 1e-10)  # Add small epsilon to avoid log(0)
+
+        return positive_freqs, magnitude_db
+
+    def compute_spectrogram(self, audio_data: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Compute spectrogram for time-frequency analysis"""
+        f, t, Sxx = spectrogram(
+            audio_data,
+            fs=self.sample_rate,
+            nperseg=self.fft_size,
+            noverlap=int(self.fft_size * self.overlap),
+            scaling='spectrum'
+        )
+
+        # Convert to dB
+        Sxx_db = 10 * np.log10(Sxx + 1e-10)
+
+        return f, t, Sxx_db
+
+    def find_peaks(self, frequencies: np.ndarray, magnitudes: np.ndarray,
+                   threshold_db: float = -40) -> List[Tuple[float, float]]:
+        """Find peaks in the frequency spectrum"""
+        peaks = []
+
+        # Only consider frequencies above threshold
+        valid_indices = magnitudes > threshold_db
+
+        for i in range(1, len(magnitudes) - 1):
+            if (valid_indices[i] and
+                magnitudes[i] > magnitudes[i-1] and
+                magnitudes[i] > magnitudes[i+1]):
+                peaks.append((frequencies[i], magnitudes[i]))
+
+        # Sort by magnitude (loudest first)
+        peaks.sort(key=lambda x: x[1], reverse=True)
+
+        return peaks[:20]  # Return top 20 peaks
+
+    def analyze_harmonic_content(self, audio_data: np.ndarray, fundamental_freq: float = None) -> Dict:
+        """Analyze harmonic content of audio data"""
+        analysis = {}
+
+        # Compute FFT
+        freqs, mag_db = self.compute_fft(audio_data)
+
+        # Find fundamental frequency if not provided
+        if fundamental_freq is None:
+            peaks = self.find_peaks(freqs, mag_db)
+            if peaks:
+                fundamental_freq = peaks[0][0]  # Strongest peak
+                analysis['detected_fundamental'] = fundamental_freq
+
+        analysis['fundamental_frequency'] = fundamental_freq
+
+        # Find harmonics
+        harmonics = []
+        if fundamental_freq:
+            for i in range(1, 20):  # Look for first 20 harmonics
+                harmonic_freq = fundamental_freq * i
+
+                # Find closest frequency bin
+                freq_distances = np.abs(freqs - harmonic_freq)
+                closest_idx = np.argmin(freq_distances)
+
+                if freq_distances[closest_idx] < fundamental_freq * 0.1:  # Within 10% of fundamental
+                    harmonic_magnitude = mag_db[closest_idx]
+                    harmonics.append({
+                        'harmonic_number': i,
+                        'frequency': freqs[closest_idx],
+                        'magnitude_db': harmonic_magnitude,
+                        'expected_frequency': harmonic_freq
+                    })
+
+        analysis['harmonics'] = harmonics
+
+        # Spectral centroid (brightness)
+        spectral_centroid = np.sum(freqs * (10**(mag_db/10))) / np.sum(10**(mag_db/10))
+        analysis['spectral_centroid'] = spectral_centroid
+
+        # Spectral rolloff (frequency below which 85% of energy lies)
+        total_energy = np.sum(10**(mag_db/10))
+        cumulative_energy = np.cumsum(10**(mag_db/10))
+        rolloff_idx = np.where(cumulative_energy >= 0.85 * total_energy)[0]
+        if len(rolloff_idx) > 0:
+            rolloff_freq = freqs[rolloff_idx[0]]
+        else:
+            rolloff_freq = freqs[-1]
+        analysis['spectral_rolloff'] = rolloff_freq
+
+        return analysis
+
+    def create_rta_visualization(self, audio_data: np.ndarray, title: str,
+                               save_path: Optional[str] = None):
+        """Create RTA-style visualization"""
+        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 10))
+        fig.suptitle(f'RTA Harmonic Analysis: {title}', fontsize=16)
+
+        # FFT Spectrum
+        freqs, mag_db = self.compute_fft(audio_data)
+        ax1.semilogx(freqs, mag_db, 'b-', linewidth=1)
+        ax1.set_title('FFT Spectrum')
+        ax1.set_xlabel('Frequency (Hz)')
+        ax1.set_ylabel('Magnitude (dB)')
+        ax1.grid(True, alpha=0.3)
+        ax1.set_xlim(20, 20000)  # Audible range
+
+        # Mark peaks
+        peaks = self.find_peaks(freqs, mag_db)
+        if peaks:
+            peak_freqs = [p[0] for p in peaks[:10]]  # Top 10 peaks
+            peak_mags = [p[1] for p in peaks[:10]]
+            ax1.plot(peak_freqs, peak_mags, 'ro', markersize=6, label='Peaks')
+            ax1.legend()
+
+        # Spectrogram
+        f, t, Sxx_db = self.compute_spectrogram(audio_data)
+        ax2.pcolormesh(t, f, Sxx_db, shading='gouraud', cmap='viridis')
+        ax2.set_title('Spectrogram')
+        ax2.set_xlabel('Time (s)')
+        ax2.set_ylabel('Frequency (Hz)')
+        ax2.set_yscale('log')
+        ax2.set_ylim(20, 20000)
+
+        # Harmonic analysis
+        analysis = self.analyze_harmonic_content(audio_data)
+        ax3.bar(range(len(analysis['harmonics'])),
+                [h['magnitude_db'] for h in analysis['harmonics']],
+                color='orange', alpha=0.7)
+        ax3.set_title('Harmonic Content')
+        ax3.set_xlabel('Harmonic Number')
+        ax3.set_ylabel('Magnitude (dB)')
+        ax3.grid(True, alpha=0.3)
+
+        # Add harmonic labels
+        if analysis['harmonics']:
+            ax3.set_xticks(range(len(analysis['harmonics'])))
+            ax3.set_xticklabels([f'H{h["harmonic_number"]}' for h in analysis['harmonics']])
+
+        # Spectral statistics
+        stats_labels = ['Spectral Centroid', 'Spectral Rolloff']
+        stats_values = [analysis['spectral_centroid'], analysis['spectral_rolloff']]
+        ax4.bar(stats_labels, [20*np.log10(v) for v in stats_values],
+                color=['green', 'purple'], alpha=0.7)
+        ax4.set_title('Spectral Statistics')
+        ax4.set_ylabel('Frequency (Hz) - Log Scale')
+        ax4.set_yscale('log')
+        ax4.grid(True, alpha=0.3)
+
+        plt.tight_layout()
+
+        if save_path:
+            plt.savefig(save_path, dpi=300, bbox_inches='tight')
+            print(f"✅ Saved RTA visualization to {save_path}")
+
+        plt.show()
+
+    def compare_audio_files(self, file1: str, file2: str, mixed_file: str = None):
+        """Compare harmonic content of multiple audio files"""
+        files_to_analyze = [file1, file2]
+        if mixed_file and os.path.exists(mixed_file):
+            files_to_analyze.append(mixed_file)
+
+        results = {}
+
+        for audio_file in files_to_analyze:
+            print(f"🔍 Analyzing {audio_file}...")
+            audio_data = self.load_wav_file(audio_file)
+
+            if audio_data is not None:
+                # Analyze harmonic content
+                analysis = self.analyze_harmonic_content(audio_data)
+
+                # Create RTA visualization
+                filename_base = os.path.splitext(audio_file)[0]
+                viz_path = f'{filename_base}_rta_analysis.png'
+                self.create_rta_visualization(audio_data, audio_file, viz_path)
+
+                results[audio_file] = analysis
+            else:
+                print(f"❌ Failed to load {audio_file}")
+
+        return results
+
+    def analyze_prime_zeta_relationships(self, results: Dict) -> Dict:
+        """Analyze relationships between prime and zeta harmonic content"""
+        analysis = {}
+
+        if 'prime_distribution_track.wav' in results and 'zeta_distribution_track.wav' in results:
+            prime_analysis = results['prime_distribution_track.wav']
+            zeta_analysis = results['zeta_distribution_track.wav']
+
+            # Compare fundamental frequencies
+            prime_fund = prime_analysis.get('fundamental_frequency', 0)
+            zeta_fund = zeta_analysis.get('fundamental_frequency', 0)
+
+            analysis['fundamental_ratio'] = prime_fund / zeta_fund if zeta_fund != 0 else 0
+
+            # Compare harmonic richness
+            prime_harmonics = len(prime_analysis.get('harmonics', []))
+            zeta_harmonics = len(zeta_analysis.get('harmonics', []))
+
+            analysis['harmonic_richness'] = {
+                'prime_harmonics': prime_harmonics,
+                'zeta_harmonics': zeta_harmonics,
+                'ratio': prime_harmonics / zeta_harmonics if zeta_harmonics != 0 else 0
+            }
+
+            # Compare spectral centroids
+            prime_centroid = prime_analysis.get('spectral_centroid', 0)
+            zeta_centroid = zeta_analysis.get('spectral_centroid', 0)
+
+            analysis['spectral_brightness'] = {
+                'prime_centroid': prime_centroid,
+                'zeta_centroid': zeta_centroid,
+                'brightness_ratio': prime_centroid / zeta_centroid if zeta_centroid != 0 else 0
+            }
+
+            # Mathematical interpretation
+            analysis['mathematical_interpretation'] = {
+                'prime_distribution': 'Irregular, unpredictable harmonic content reflecting prime gaps',
+                'zeta_distribution': 'Smoother, more regular harmonics reflecting zeta convergence',
+                'harmonic_difference': f"Prime has {prime_harmonics - zeta_harmonics:+d} more harmonics than zeta"
+            }
+
+        return analysis
+
+    def generate_comprehensive_report(self, results: Dict, relationships: Dict) -> str:
+        """Generate comprehensive harmonic analysis report"""
+        report = []
+        report.append("🎵 FFT RTA HARMONIC ANALYSIS REPORT")
+        report.append("🔊 Prime Distribution vs Zeta Distribution")
+        report.append("=" * 50)
+
+        # Individual file analyses
+        for filename, analysis in results.items():
+            report.append(f"\n🎼 ANALYSIS: {filename}")
+            report.append("-" * 30)
+
+            fund_freq = analysis.get('fundamental_frequency', 0)
+            report.append(f"• Fundamental Frequency: {fund_freq:.1f} Hz")
+
+            harmonics = analysis.get('harmonics', [])
+            report.append(f"• Number of Harmonics: {len(harmonics)}")
+
+            if harmonics:
+                strongest_harmonic = max(harmonics, key=lambda h: h['magnitude_db'])
+                report.append(f"• Strongest Harmonic: H{strongest_harmonic['harmonic_number']} ({strongest_harmonic['frequency']:.1f} Hz, {strongest_harmonic['magnitude_db']:.1f} dB)")
+
+            centroid = analysis.get('spectral_centroid', 0)
+            rolloff = analysis.get('spectral_rolloff', 0)
+            report.append(f"• Spectral Centroid: {centroid:.1f} Hz")
+            report.append(f"• Spectral Rolloff: {rolloff:.1f} Hz")
+
+        # Relationship analysis
+        if relationships:
+            report.append("\n🎭 PRIME vs ZETA RELATIONSHIPS")
+            report.append("-" * 30)
+
+            fund_ratio = relationships.get('fundamental_ratio', 0)
+            report.append(f"• Fundamental Frequency Ratio: {fund_ratio:.3f}")
+
+            harm_rich = relationships.get('harmonic_richness', {})
+            report.append(f"• Prime Harmonics: {harm_rich.get('prime_harmonics', 0)}")
+            report.append(f"• Zeta Harmonics: {harm_rich.get('zeta_harmonics', 0)}")
+            report.append(f"• Harmonic Richness Ratio: {harm_rich.get('ratio', 0):.3f}")
+
+            brightness = relationships.get('spectral_brightness', {})
+            report.append(f"• Prime Spectral Centroid: {brightness.get('prime_centroid', 0):.1f} Hz")
+            report.append(f"• Zeta Spectral Centroid: {brightness.get('zeta_centroid', 0):.1f} Hz")
+            report.append(f"• Brightness Ratio: {brightness.get('brightness_ratio', 0):.3f}")
+
+        # Mathematical insights
+        report.append("\n🔢 MATHEMATICAL INSIGHTS")
+        report.append("-" * 30)
+        report.append("• Prime distribution: Shows irregular, unpredictable harmonic patterns")
+        report.append("• Zeta function: Exhibits smoother, more convergent harmonic behavior")
+        report.append("• Contrary motion: Creates harmonic tension between mathematical opposites")
+        report.append("• Riemann Hypothesis connection: Zeros of zeta function relate to harmonic series")
+
+        # Chia Friends connections
+        report.append("\n🌱 CHIA FRIENDS PUZZLE CONNECTIONS")
+        report.append("-" * 30)
+        report.append("• Coordinates (2156, 892) may correspond to harmonic frequencies")
+        report.append("• Prime/zeta relationships could encode claiming mechanism")
+        report.append("• Harmonic ratios might reveal wallet derivation patterns")
+        report.append("• Audio frequencies could contain steganographic messages")
+
+        return "\n".join(report)
+
+def main():
+    """Main FFT RTA harmonic analysis function"""
+
+    print("🎵 Starting FFT RTA Harmonic Analysis...")
+    print("🔊 Analyzing prime and zeta distribution audio harmonics...")
+
+    analyzer = FFTHarmonicAnalyzer()
+
+    # Audio files to analyze
+    prime_file = 'prime_distribution_track.wav'
+    zeta_file = 'zeta_distribution_track.wav'
+    mixed_file = 'prime_zeta_contrary_motion.wav'
+
+    # Check if files exist
+    files_exist = []
+    for f in [prime_file, zeta_file, mixed_file]:
+        if os.path.exists(f):
+            files_exist.append(f)
+        else:
+            print(f"⚠️  {f} not found, skipping...")
+
+    if not files_exist:
+        print("❌ No audio files found. Please run prime_zeta_contrary_motion.py first.")
+        return
+
+    # Compare audio files
+    results = analyzer.compare_audio_files(prime_file, zeta_file, mixed_file)
+
+    # Analyze relationships
+    relationships = analyzer.analyze_prime_zeta_relationships(results)
+
+    # Generate comprehensive report
+    report = analyzer.generate_comprehensive_report(results, relationships)
+    print("\n" + report)
+
+    # Save results
+    analysis_results = {
+        'harmonic_analysis': results,
+        'relationships': relationships,
+        'report': report
+    }
+
+    with open('fft_rta_harmonic_analysis_results.json', 'w') as f:
+        json.dump(analysis_results, f, indent=2, default=str)
+
+    print("\n📄 Detailed results saved to: fft_rta_harmonic_analysis_results.json")
+    print("📊 RTA visualizations saved as PNG files")
+    print("🎵 Harmonic analysis complete!")
+
+if __name__ == "__main__":
+    main()

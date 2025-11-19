@@ -1,0 +1,18 @@
+{
+  "tool_name": "monitoring_dashboard",
+  "tool_hash": "1e66eb9310e250badd066e606157ef2a8b2934f4a2f1a81802e467c40475f28f",
+  "total_size": 20469,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1e66eb9310e250badd066e606157ef2a8b2934f4a2f1a81802e467c40475f28f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/monitoring_dashboard.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/monitoring_dashboard.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.087138,
+  "updated_at": 1762787395.087141
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "debug_spend_bundle",
+  "tool_hash": "4ee6841b25fdd341938a1fa148e1d2f2a39f94d9c3c1e7a7af1b87319fa1011b",
+  "total_size": 12461,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4ee6841b25fdd341938a1fa148e1d2f2a39f94d9c3c1e7a7af1b87319fa1011b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/debug_spend_bundle.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/debug_spend_bundle.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.630274,
+  "updated_at": 1762787395.6302762
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "fee_tracker",
+  "tool_hash": "ec3c0c1a43076b88caf7d950c32add948a92271d74295c06d76808ce941504f3",
+  "total_size": 25296,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ec3c0c1a43076b88caf7d950c32add948a92271d74295c06d76808ce941504f3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/fee_tracker.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/fee_tracker.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6556,
+  "updated_at": 1762787395.655602
+}

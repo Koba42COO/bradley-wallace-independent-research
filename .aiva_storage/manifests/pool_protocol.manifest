@@ -1,0 +1,18 @@
+{
+  "tool_name": "pool_protocol",
+  "tool_hash": "c2cec16de2ea210a355741b81cb9a0bab8d1c5ba439376302d27fc47734acfed",
+  "total_size": 6729,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c2cec16de2ea210a355741b81cb9a0bab8d1c5ba439376302d27fc47734acfed"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/pool_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/pool_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6658502,
+  "updated_at": 1762787395.665853
+}

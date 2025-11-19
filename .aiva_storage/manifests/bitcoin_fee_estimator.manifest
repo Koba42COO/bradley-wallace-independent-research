@@ -1,0 +1,18 @@
+{
+  "tool_name": "bitcoin_fee_estimator",
+  "tool_hash": "27b87cdd7bfb1bad772bb7614a1027db49e7d7e77c028dcce3e893815c0725a4",
+  "total_size": 6345,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "27b87cdd7bfb1bad772bb7614a1027db49e7d7e77c028dcce3e893815c0725a4"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/bitcoin_fee_estimator.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/bitcoin_fee_estimator.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6497128,
+  "updated_at": 1762787395.649715
+}

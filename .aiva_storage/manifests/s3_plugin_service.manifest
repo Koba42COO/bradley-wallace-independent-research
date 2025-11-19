@@ -1,0 +1,18 @@
+{
+  "tool_name": "s3_plugin_service",
+  "tool_hash": "e8a23045d94ece945de37291c69c7e919d564e0ee5c6983651a95661ebb2c1e6",
+  "total_size": 22239,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e8a23045d94ece945de37291c69c7e919d564e0ee5c6983651a95661ebb2c1e6"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/s3_plugin_service.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/s3_plugin_service.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.58063,
+  "updated_at": 1762787395.580634
+}

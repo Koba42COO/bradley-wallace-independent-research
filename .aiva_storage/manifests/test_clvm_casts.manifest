@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_clvm_casts",
+  "tool_hash": "940376e48738e61a8d633e4b8fc7e2493d08c1b6f4b1fbc660a1dfa2e2379d07",
+  "total_size": 4654,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "940376e48738e61a8d633e4b8fc7e2493d08c1b6f4b1fbc660a1dfa2e2379d07"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_clvm_casts.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_clvm_casts.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.478573,
+  "updated_at": 1762787395.478579
+}

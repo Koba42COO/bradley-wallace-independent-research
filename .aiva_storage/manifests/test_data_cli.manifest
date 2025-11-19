@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_data_cli",
+  "tool_hash": "faf71d5ab64d9b04e9bf921ec3bde5d4e08b0dc86304ef289762b53d1f95fcca",
+  "total_size": 5062,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "faf71d5ab64d9b04e9bf921ec3bde5d4e08b0dc86304ef289762b53d1f95fcca"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/data_layer/test_data_cli.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/data_layer/test_data_cli.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.382433,
+  "updated_at": 1762787395.382435
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "nexus",
+  "tool_hash": "2f9a8c5b3161f83fa3f855bdaf098965bfd10a69b34a7097589f0b2859e64229",
+  "total_size": 4049,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2f9a8c5b3161f83fa3f855bdaf098965bfd10a69b34a7097589f0b2859e64229"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/consciousness_framework/nexus.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/consciousness_framework/nexus.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.115194,
+  "updated_at": 1762787395.115199
+}

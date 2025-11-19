@@ -1,0 +1,18 @@
+{
+  "tool_name": "coin_spend",
+  "tool_hash": "3f0fd45b78882f3e4dd56782c56ab8410d284e06f6b4f9e94f76669c5c6fa5e7",
+  "total_size": 4542,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3f0fd45b78882f3e4dd56782c56ab8410d284e06f6b4f9e94f76669c5c6fa5e7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/coin_spend.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/coin_spend.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3020842,
+  "updated_at": 1762787395.3020868
+}

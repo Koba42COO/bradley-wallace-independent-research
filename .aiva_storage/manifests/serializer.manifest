@@ -1,0 +1,18 @@
+{
+  "tool_name": "serializer",
+  "tool_hash": "6e4cdef85f8382302043b021c552d6d8cf6396f6da57eb58c0ae8df3207c905d",
+  "total_size": 3321,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6e4cdef85f8382302043b021c552d6d8cf6396f6da57eb58c0ae8df3207c905d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/serializer.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/serializer.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.1271648,
+  "updated_at": 1762787395.127168
+}

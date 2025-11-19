@@ -1,0 +1,18 @@
+{
+  "tool_name": "chia_friends_complete_solution_final",
+  "tool_hash": "175f1fda83140b4e0c9d7a0b7913b6d0b4b0c1c97b9ea6c8c80aeb8e5f8924a4",
+  "total_size": 17466,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "175f1fda83140b4e0c9d7a0b7913b6d0b4b0c1c97b9ea6c8c80aeb8e5f8924a4"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia_friends_complete_solution_final.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia_friends_complete_solution_final.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787394.9932768,
+  "updated_at": 1762787394.99328
+}

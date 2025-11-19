@@ -1,0 +1,18 @@
+{
+  "tool_name": "final_pac_dual_kernel_integration",
+  "tool_hash": "76b98e6b772df3d4af181f4664cd61a50e245f1e6bee52d3e7cf9d5c53f8406b",
+  "total_size": 44169,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "76b98e6b772df3d4af181f4664cd61a50e245f1e6bee52d3e7cf9d5c53f8406b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/tools/pac_system/final_pac_dual_kernel_integration.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/tools/pac_system/final_pac_dual_kernel_integration.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.26519,
+  "updated_at": 1762787395.265193
+}

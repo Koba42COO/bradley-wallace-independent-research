@@ -1,0 +1,189 @@
+from __future__ import annotations
+
+from typing import Optional
+
+from chia_rs import ConsensusConstants, PlotSize, ProofOfSpace
+from chia_rs.sized_bytes import bytes32
+from chia_rs.sized_ints import uint8, uint32, uint64
+
+from chia.consensus.pos_quality import _expected_plot_size
+from chia.types.blockchain_format.proof_of_space import verify_and_get_quality_string
+from chia.util.hash import std_hash
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+def is_overflow_block(constants: ConsensusConstants, signage_point_index: uint8) -> bool:
+    if signage_point_index >= constants.NUM_SPS_SUB_SLOT:
+        raise ValueError("SP index too high")
+    return signage_point_index >= constants.NUM_SPS_SUB_SLOT - constants.NUM_SP_INTERVALS_EXTRA
+
+
+def calculate_sp_interval_iters(constants: ConsensusConstants, sub_slot_iters: uint64) -> uint64:
+    assert sub_slot_iters % constants.NUM_SPS_SUB_SLOT == 0
+    return uint64(sub_slot_iters // constants.NUM_SPS_SUB_SLOT)
+
+
+def calculate_sp_iters(constants: ConsensusConstants, sub_slot_iters: uint64, signage_point_index: uint8) -> uint64:
+    if signage_point_index >= constants.NUM_SPS_SUB_SLOT:
+        raise ValueError("SP index too high")
+    return uint64(calculate_sp_interval_iters(constants, sub_slot_iters) * signage_point_index)
+
+
+def calculate_phase_out(
+    constants: ConsensusConstants,
+    sub_slot_iters: uint64,
+    prev_transaction_block_height: uint32,
+) -> uint64:
+    if prev_transaction_block_height <= constants.HARD_FORK2_HEIGHT:
+        return uint64(0)
+    elif uint32(prev_transaction_block_height - constants.HARD_FORK2_HEIGHT) >= constants.PLOT_V1_PHASE_OUT:
+        return uint64(calculate_sp_interval_iters(constants, sub_slot_iters))
+
+    return uint64(
+        (
+            uint32(prev_transaction_block_height - constants.HARD_FORK2_HEIGHT)
+            * calculate_sp_interval_iters(constants, sub_slot_iters)
+        )
+        // constants.PLOT_V1_PHASE_OUT
+    )
+
+
+def calculate_ip_iters(
+    constants: ConsensusConstants,
+    sub_slot_iters: uint64,
+    signage_point_index: uint8,
+    required_iters: uint64,
+) -> uint64:
+    # Note that the SSI is for the block passed in, which might be in the previous epoch
+    sp_iters = calculate_sp_iters(constants, sub_slot_iters, signage_point_index)
+    sp_interval_iters: uint64 = calculate_sp_interval_iters(constants, sub_slot_iters)
+    if sp_iters % sp_interval_iters != 0 or sp_iters >= sub_slot_iters:
+        raise ValueError(f"Invalid sp iters {sp_iters} for this ssi {sub_slot_iters}")
+
+    if required_iters >= sp_interval_iters or required_iters == 0:
+        raise ValueError(
+            f"Required iters {required_iters} is not below the sp interval iters {sp_interval_iters} "
+            f"{sub_slot_iters} or not >0."
+        )
+
+    return uint64((sp_iters + constants.NUM_SP_INTERVALS_EXTRA * sp_interval_iters + required_iters) % sub_slot_iters)
+
+
+def validate_pospace_and_get_required_iters(
+    constants: ConsensusConstants,
+    proof_of_space: ProofOfSpace,
+    challenge: bytes32,
+    cc_sp_hash: bytes32,
+    height: uint32,
+    difficulty: uint64,
+    sub_slot_iters: uint64,
+    prev_transaction_block_height: uint32,  # this is the height of the last tx block before the current block SP
+) -> Optional[uint64]:
+    q_str: Optional[bytes32] = verify_and_get_quality_string(
+        proof_of_space, constants, challenge, cc_sp_hash, height=height
+    )
+    if q_str is None:
+        return None
+
+    return calculate_iterations_quality(
+        constants,
+        q_str,
+        proof_of_space.size(),
+        difficulty,
+        cc_sp_hash,
+        sub_slot_iters,
+        prev_transaction_block_height,
+    )
+
+
+def calculate_iterations_quality(
+    constants: ConsensusConstants,
+    quality_string: bytes32,
+    size: PlotSize,
+    difficulty: uint64,
+    cc_sp_output_hash: bytes32,
+    ssi: uint64,
+    prev_transaction_block_height: uint32,  # this is the height of the last tx block before the current block SP
+) -> uint64:
+    """
+    Calculates the number of iterations from the quality. This is derives as the difficulty times the constant factor
+    times a random number between 0 and 1 (based on quality string), divided by plot size.
+    """
+    if size.size_v1 is not None:
+        assert size.size_v2 is None
+        phase_out = calculate_phase_out(constants, ssi, prev_transaction_block_height)
+    else:
+        phase_out = uint64(0)
+
+    sp_quality_string: bytes32 = std_hash(quality_string + cc_sp_output_hash)
+    iters = uint64(
+        (
+            int(difficulty)
+            * int(constants.DIFFICULTY_CONSTANT_FACTOR)
+            * int.from_bytes(sp_quality_string, "big", signed=False)
+            // (int(pow(2, 256)) * int(_expected_plot_size(size)))
+        )
+        + phase_out
+    )
+    return max(iters, uint64(1))

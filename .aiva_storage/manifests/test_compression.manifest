@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_compression",
+  "tool_hash": "c62be096d8653c57b9da58b6ee424f20e2d5956fb2d0b09b7196eea3135c4481",
+  "total_size": 11425,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c62be096d8653c57b9da58b6ee424f20e2d5956fb2d0b09b7196eea3135c4481"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/generator/test_compression.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/generator/test_compression.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.458045,
+  "updated_at": 1762787395.458048
+}

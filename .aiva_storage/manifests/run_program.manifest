@@ -1,0 +1,18 @@
+{
+  "tool_name": "run_program",
+  "tool_hash": "05938194b1bd28968f6e23913de91037fc6cc3e5aedcc1d1fd085c746ebdf01d",
+  "total_size": 8894,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "05938194b1bd28968f6e23913de91037fc6cc3e5aedcc1d1fd085c746ebdf01d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/clvm/run_program.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/clvm/run_program.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.061263,
+  "updated_at": 1762787395.061266
+}

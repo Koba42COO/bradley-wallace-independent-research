@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_tx_decorators",
+  "tool_hash": "220174cdadacd61cd088d95686c0a05e7a19c25d90abe94b4b8c67977b96b87d",
+  "total_size": 3686,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "220174cdadacd61cd088d95686c0a05e7a19c25d90abe94b4b8c67977b96b87d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/wallet/test_tx_decorators.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/wallet/test_tx_decorators.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.453662,
+  "updated_at": 1762787395.453666
+}

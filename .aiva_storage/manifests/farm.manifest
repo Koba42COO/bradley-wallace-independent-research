@@ -1,0 +1,18 @@
+{
+  "tool_name": "farm",
+  "tool_hash": "95fa29e773267f8b833c55891ea0e9da7ffc27575484690d7d50253c335f4973",
+  "total_size": 6069,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "95fa29e773267f8b833c55891ea0e9da7ffc27575484690d7d50253c335f4973"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/farm.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/farm.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.514,
+  "updated_at": 1762787395.514004
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "socket",
+  "tool_hash": "84ca4d9bf48726722c14c5315710eb9cd3857c1b92761590d07d7b0d05e5c8cc",
+  "total_size": 3390,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "84ca4d9bf48726722c14c5315710eb9cd3857c1b92761590d07d7b0d05e5c8cc"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/socket.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/socket.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.554365,
+  "updated_at": 1762787395.554368
+}

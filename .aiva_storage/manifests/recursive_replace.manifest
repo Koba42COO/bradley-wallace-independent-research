@@ -1,0 +1,18 @@
+{
+  "tool_name": "recursive_replace",
+  "tool_hash": "068d559b9a374302a878cfd51c566d1a762a1ae5cacf127a5ee7698ad681c875",
+  "total_size": 3690,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "068d559b9a374302a878cfd51c566d1a762a1ae5cacf127a5ee7698ad681c875"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/recursive_replace.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/recursive_replace.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.315399,
+  "updated_at": 1762787395.315402
+}

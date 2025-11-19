@@ -1,0 +1,18 @@
+{
+  "tool_name": "get_block_challenge",
+  "tool_hash": "f79167abd4ae2e0b5d539504cf8efeaf3355ffe1b30386eb8305d3fb92f01eb9",
+  "total_size": 8399,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f79167abd4ae2e0b5d539504cf8efeaf3355ffe1b30386eb8305d3fb92f01eb9"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/get_block_challenge.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/get_block_challenge.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.289846,
+  "updated_at": 1762787395.289849
+}

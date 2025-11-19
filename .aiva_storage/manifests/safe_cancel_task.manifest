@@ -1,0 +1,18 @@
+{
+  "tool_name": "safe_cancel_task",
+  "tool_hash": "25d3849be64b1765ed7332d5c88d7ad8eb138e9149be0ea73a0d1418df2aa314",
+  "total_size": 3158,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "25d3849be64b1765ed7332d5c88d7ad8eb138e9149be0ea73a0d1418df2aa314"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/safe_cancel_task.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/safe_cancel_task.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.317296,
+  "updated_at": 1762787395.317298
+}

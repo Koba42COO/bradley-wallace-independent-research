@@ -1,0 +1,18 @@
+{
+  "tool_name": "serialize_test",
+  "tool_hash": "97a3bc033a90a6d4e15b8ca0c241b3a14fd89b5fad352f2f56bd4365e1e9e4f2",
+  "total_size": 12530,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "97a3bc033a90a6d4e15b8ca0c241b3a14fd89b5fad352f2f56bd4365e1e9e4f2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/tests/serialize_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/tests/serialize_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.062846,
+  "updated_at": 1762787395.06285
+}

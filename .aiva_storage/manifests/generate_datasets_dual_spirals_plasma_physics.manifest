@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_dual_spirals_plasma_physics",
+  "tool_hash": "2a4f9b621c4c06d1502b1d580de341e5134be6890be4b95925eac1bc41a8e53a",
+  "total_size": 6324,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2a4f9b621c4c06d1502b1d580de341e5134be6890be4b95925eac1bc41a8e53a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/missing_papers/dual_spirals_plasma_physics/supporting_materials/datasets/generate_datasets_dual_spirals_plasma_physics.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/missing_papers/dual_spirals_plasma_physics/supporting_materials/datasets/generate_datasets_dual_spirals_plasma_physics.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.210248,
+  "updated_at": 1762787395.210251
+}

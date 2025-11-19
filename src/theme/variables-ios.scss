@@ -1,9 +1,0 @@
-@import 'theme/_tokens.scss';
-
-// iOS platform variable overrides
-:root {
-  --ion-color-primary: #{$primary-color};
-  --ion-ios-button-border-radius: 14px;
-  --border-radius: 10px;
-  --font-family-base: -apple-system, 'SF Pro Text', system-ui;
-}

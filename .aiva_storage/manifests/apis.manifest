@@ -1,0 +1,18 @@
+{
+  "tool_name": "apis",
+  "tool_hash": "e188c10fb892e188ac6abc2e525a0181b2880e881192f7358071d89e2ed13924",
+  "total_size": 810,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e188c10fb892e188ac6abc2e525a0181b2880e881192f7358071d89e2ed13924"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/apis.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/apis.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.279119,
+  "updated_at": 1762787395.2791219
+}

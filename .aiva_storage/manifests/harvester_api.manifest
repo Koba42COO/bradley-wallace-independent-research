@@ -1,0 +1,18 @@
+{
+  "tool_name": "harvester_api",
+  "tool_hash": "7236588648b2deb700db40b085169133d631faf6b8f427b037c985b6981790ed",
+  "total_size": 28567,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7236588648b2deb700db40b085169133d631faf6b8f427b037c985b6981790ed"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/harvester/harvester_api.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/harvester/harvester_api.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.332756,
+  "updated_at": 1762787395.3327591
+}

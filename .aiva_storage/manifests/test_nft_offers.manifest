@@ -1,0 +1,19 @@
+{
+  "tool_name": "test_nft_offers",
+  "tool_hash": "531bff8d6c99a197ad49533f42e5019a609075287aaf1c8cd4fee3c00386e173",
+  "total_size": 70344,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7525732b005a9a539b4cae6ac4a9ad5ac7b2183e1e79538e6d4b8b84b5c4ce0b",
+    "ec853428a35411ff54f84cc005d5090f99fae8363b738c972fb9f83198b04d42"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/nft_wallet/test_nft_offers.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/nft_wallet/test_nft_offers.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.49044,
+  "updated_at": 1762787395.490449
+}

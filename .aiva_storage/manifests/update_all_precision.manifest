@@ -1,0 +1,18 @@
+{
+  "tool_name": "update_all_precision",
+  "tool_hash": "c2b129b520e75ce0a37690c2890ce5b6bdadc8c08b91d1c95a6d45d1ec41e495",
+  "total_size": 10874,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c2b129b520e75ce0a37690c2890ce5b6bdadc8c08b91d1c95a6d45d1ec41e495"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/update_all_precision.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/update_all_precision.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.039003,
+  "updated_at": 1762787395.039006
+}

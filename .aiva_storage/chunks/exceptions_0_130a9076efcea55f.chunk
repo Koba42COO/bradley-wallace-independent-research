@@ -1,0 +1,175 @@
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+class PyJWTError(Exception):
+    """
+    Base class for all exceptions
+    """
+
+    pass
+
+
+class InvalidTokenError(PyJWTError):
+    """Base exception when ``decode()`` fails on a token"""
+
+    pass
+
+
+class DecodeError(InvalidTokenError):
+    """Raised when a token cannot be decoded because it failed validation"""
+
+    pass
+
+
+class InvalidSignatureError(DecodeError):
+    """Raised when a token's signature doesn't match the one provided as part of
+    the token."""
+
+    pass
+
+
+class ExpiredSignatureError(InvalidTokenError):
+    """Raised when a token's ``exp`` claim indicates that it has expired"""
+
+    pass
+
+
+class InvalidAudienceError(InvalidTokenError):
+    """Raised when a token's ``aud`` claim does not match one of the expected
+    audience values"""
+
+    pass
+
+
+class InvalidIssuerError(InvalidTokenError):
+    """Raised when a token's ``iss`` claim does not match the expected issuer"""
+
+    pass
+
+
+class InvalidIssuedAtError(InvalidTokenError):
+    """Raised when a token's ``iat`` claim is non-numeric"""
+
+    pass
+
+
+class ImmatureSignatureError(InvalidTokenError):
+    """Raised when a token's ``nbf`` or ``iat`` claims represent a time in the future"""
+
+    pass
+
+
+class InvalidKeyError(PyJWTError):
+    """Raised when the specified key is not in the proper format"""
+
+    pass
+
+
+class InvalidAlgorithmError(InvalidTokenError):
+    """Raised when the specified algorithm is not recognized by PyJWT"""
+
+    pass
+
+
+class MissingRequiredClaimError(InvalidTokenError):
+    """Raised when a claim that is required to be present is not contained
+    in the claimset"""
+
+    def __init__(self, claim: str) -> None:
+        self.claim = claim
+
+    def __str__(self) -> str:
+        return f'Token is missing the "{self.claim}" claim'
+
+
+class PyJWKError(PyJWTError):
+    pass
+
+
+class MissingCryptographyError(PyJWKError):
+    """Raised if the algorithm requires ``cryptography`` to be installed and it is not available."""
+
+    pass
+
+
+class PyJWKSetError(PyJWTError):
+    pass
+
+
+class PyJWKClientError(PyJWTError):
+    pass
+
+
+class PyJWKClientConnectionError(PyJWKClientError):
+    pass
+
+
+class InvalidSubjectError(InvalidTokenError):
+    """Raised when a token's ``sub`` claim is not a string or doesn't match the expected ``subject``"""
+
+    pass
+
+
+class InvalidJTIError(InvalidTokenError):
+    """Raised when a token's ``jti`` claim is not a string"""
+
+    pass

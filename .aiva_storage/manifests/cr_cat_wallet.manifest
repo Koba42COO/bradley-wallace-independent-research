@@ -1,0 +1,18 @@
+{
+  "tool_name": "cr_cat_wallet",
+  "tool_hash": "8e4756520e80782e79f3044ab8d55a0af84a9538bcc53e5cc1e12b9e96ae404d",
+  "total_size": 42695,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "8e4756520e80782e79f3044ab8d55a0af84a9538bcc53e5cc1e12b9e96ae404d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/vc_wallet/cr_cat_wallet.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/vc_wallet/cr_cat_wallet.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.618651,
+  "updated_at": 1762787395.618654
+}

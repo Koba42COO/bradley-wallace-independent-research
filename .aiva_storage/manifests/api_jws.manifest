@@ -1,0 +1,18 @@
+{
+  "tool_name": "api_jws",
+  "tool_hash": "0e804e2aed46f4169c80477c4ed23f69a3b0283df4b52d473c2347d6924a63f4",
+  "total_size": 15046,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "0e804e2aed46f4169c80477c4ed23f69a3b0283df4b52d473c2347d6924a63f4"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pyjwt_repo/jwt/api_jws.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pyjwt_repo/jwt/api_jws.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.076942,
+  "updated_at": 1762787395.0769448
+}

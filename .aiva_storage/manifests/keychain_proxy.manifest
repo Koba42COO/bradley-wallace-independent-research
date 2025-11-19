@@ -1,0 +1,18 @@
+{
+  "tool_name": "keychain_proxy",
+  "tool_hash": "165443983c1633754fdf88b80fd77bde6ad81e982b15d9876aac9ad245c9f5fb",
+  "total_size": 23210,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "165443983c1633754fdf88b80fd77bde6ad81e982b15d9876aac9ad245c9f5fb"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/daemon/keychain_proxy.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/daemon/keychain_proxy.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.543633,
+  "updated_at": 1762787395.543636
+}

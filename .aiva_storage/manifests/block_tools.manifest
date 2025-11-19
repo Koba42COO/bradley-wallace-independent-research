@@ -1,0 +1,19 @@
+{
+  "tool_name": "block_tools",
+  "tool_hash": "71e8be74559663a0befa451a6900f88cc56db5331f2585b90389a68dc9041021",
+  "total_size": 97634,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "aca32194d8fb624f8ca1a5cf6ddece48179c968e0fb30fb190bb2308d9f27758",
+    "9f4782da9bdc5784a448acf69707e3f1b167b783d62c6415094b5eb9776907e9"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/block_tools.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/block_tools.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5515552,
+  "updated_at": 1762787395.551557
+}

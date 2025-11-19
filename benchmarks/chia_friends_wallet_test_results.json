@@ -1,0 +1,244 @@
+{
+  "derivation_test": {
+    "coordinate_concat": {
+      "address": "xch1at5oukpdwczmsft7spj46zrm7enyo7jz2lh5urarlgwv5u6m6gra",
+      "length_check": false,
+      "prefix_check": true,
+      "base32_check": true,
+      "puzzle_hash_format": {
+        "puzzle_hash": "04faea29e3b0b2c9167f93d3cf662cf91b877d39d2cfda441159ad5ed3ccf1a2",
+        "length": 32,
+        "expected_length": 32,
+        "is_correct_length": true
+      }
+    },
+    "prime_factors": {
+      "address": "xch1mzfhd4zfdhojjs3bzwmlyt2tti4hru2ehsk5wnss2bywmblcn5ca",
+      "length_check": false,
+      "prefix_check": true,
+      "base32_check": true,
+      "puzzle_hash_format": {
+        "puzzle_hash": "664a71f32519dc94cb61cd98bc4f539a3878d3443c95db3652d0716605626f44",
+        "length": 32,
+        "expected_length": 32,
+        "is_correct_length": true
+      }
+    },
+    "golden_ratio": {
+      "address": "xch1qzidsskmitevtgekjiilwmej7m37acyt44iti4oqgukxptogknua",
+      "length_check": false,
+      "prefix_check": true,
+      "base32_check": true,
+      "puzzle_hash_format": {
+        "puzzle_hash": "865039494c44c959988a4a10bb3089fb37f00b13e7113471d0351577cdc65368",
+        "length": 32,
+        "expected_length": 32,
+        "is_correct_length": true
+      }
+    },
+    "ethiopian_bible": {
+      "address": "xch1x2t4ko42mkilzt7hkc6q6i7oau5b5uly3pumlzl6dlpows4vccxq",
+      "length_check": false,
+      "prefix_check": true,
+      "base32_check": true,
+      "puzzle_hash_format": {
+        "puzzle_hash": "bea7c53b9a6290bccfe750bd0f23ee053a1ed178dbe8c5e57e1adeeb4b9510af",
+        "length": 32,
+        "expected_length": 32,
+        "is_correct_length": true
+      }
+    },
+    "bram_cohen": {
+      "address": "xch1lcnnkiestjaebpzqej6cmopdrpi24rva2eejy6qsxbftzcexxfhq",
+      "length_check": false,
+      "prefix_check": true,
+      "base32_check": true,
+      "puzzle_hash_format": {
+        "puzzle_hash": "589ad520929a4040bf30227c2639e38bd1ae46a0d1089c7a12b84b3c8897b94f",
+        "length": 32,
+        "expected_length": 32,
+        "is_correct_length": true
+      }
+    }
+  },
+  "balance_checks": {
+    "coordinate_concat": {
+      "address": "xch1at5oukpdwczmsft7spj46zrm7enyo7jz2lh5urarlgwv5u6m6gra",
+      "error": "HTTP 429",
+      "status": "error",
+      "network": "mainnet"
+    },
+    "prime_factors": {
+      "address": "xch1mzfhd4zfdhojjs3bzwmlyt2tti4hru2ehsk5wnss2bywmblcn5ca",
+      "error": "HTTP 404",
+      "status": "error",
+      "network": "mainnet"
+    },
+    "golden_ratio": {
+      "address": "xch1qzidsskmitevtgekjiilwmej7m37acyt44iti4oqgukxptogknua",
+      "error": "HTTP 429",
+      "status": "error",
+      "network": "mainnet"
+    },
+    "ethiopian_bible": {
+      "address": "xch1x2t4ko42mkilzt7hkc6q6i7oau5b5uly3pumlzl6dlpows4vccxq",
+      "error": "HTTP 429",
+      "status": "error",
+      "network": "mainnet"
+    },
+    "bram_cohen": {
+      "address": "xch1lcnnkiestjaebpzqej6cmopdrpi24rva2eejy6qsxbftzcexxfhq",
+      "error": "HTTP 429",
+      "status": "error",
+      "network": "mainnet"
+    }
+  },
+  "prize_patterns": {
+    "coordinate_concat": {
+      "name": "coordinate_concat",
+      "address": "xch1at5oukpdwczmsft7spj46zrm7enyo7jz2lh5urarlgwv5u6m6gra",
+      "analysis": {
+        "decoded_bytes": "04faea29e3b0b2c9167f93d3cf662cf91b877d39d2cfda441159ad5ed3ccf1a2",
+        "decoded_length": 32,
+        "contains_2156": false,
+        "contains_892": false,
+        "contains_chia": false,
+        "ethiopian_patterns": {
+          "book_81": false,
+          "ratio_reference": false,
+          "golden_ratio": false
+        },
+        "character_analysis": {
+          "length": 56,
+          "unique_chars": 29,
+          "has_numbers": true,
+          "has_lowercase": true,
+          "ends_with": "m6gra"
+        }
+      },
+      "numerical_value": 2252579298509203687497211611970877576989527050350383324368889139597933343138,
+      "relationship_to_2156": 1946,
+      "relationship_to_892": 94
+    },
+    "prime_factors": {
+      "name": "prime_factors",
+      "address": "xch1mzfhd4zfdhojjs3bzwmlyt2tti4hru2ehsk5wnss2bywmblcn5ca",
+      "analysis": {
+        "decoded_bytes": "664a71f32519dc94cb61cd98bc4f539a3878d3443c95db3652d0716605626f44",
+        "decoded_length": 32,
+        "contains_2156": false,
+        "contains_892": false,
+        "contains_chia": false,
+        "ethiopian_patterns": {
+          "book_81": false,
+          "ratio_reference": false,
+          "golden_ratio": false
+        },
+        "character_analysis": {
+          "length": 56,
+          "unique_chars": 27,
+          "has_numbers": true,
+          "has_lowercase": true,
+          "ends_with": "cn5ca"
+        }
+      },
+      "numerical_value": 46267443690798193161369259040405117335966759359154450135747368740422278082372,
+      "relationship_to_2156": 1452,
+      "relationship_to_892": 236
+    },
+    "golden_ratio": {
+      "name": "golden_ratio",
+      "address": "xch1qzidsskmitevtgekjiilwmej7m37acyt44iti4oqgukxptogknua",
+      "analysis": {
+        "decoded_bytes": "865039494c44c959988a4a10bb3089fb37f00b13e7113471d0351577cdc65368",
+        "decoded_length": 32,
+        "contains_2156": false,
+        "contains_892": false,
+        "contains_chia": false,
+        "ethiopian_patterns": {
+          "book_81": false,
+          "ratio_reference": false,
+          "golden_ratio": false
+        },
+        "character_analysis": {
+          "length": 56,
+          "unique_chars": 27,
+          "has_numbers": true,
+          "has_lowercase": true,
+          "ends_with": "gknua"
+        }
+      },
+      "numerical_value": 60751664850989871853758721896104655405556440232832850054269896919220362826600,
+      "relationship_to_2156": 1736,
+      "relationship_to_892": 84
+    },
+    "ethiopian_bible": {
+      "name": "ethiopian_bible",
+      "address": "xch1x2t4ko42mkilzt7hkc6q6i7oau5b5uly3pumlzl6dlpows4vccxq",
+      "analysis": {
+        "decoded_bytes": "bea7c53b9a6290bccfe750bd0f23ee053a1ed178dbe8c5e57e1adeeb4b9510af",
+        "decoded_length": 32,
+        "contains_2156": false,
+        "contains_892": false,
+        "contains_chia": false,
+        "ethiopian_patterns": {
+          "book_81": false,
+          "ratio_reference": false,
+          "golden_ratio": false
+        },
+        "character_analysis": {
+          "length": 56,
+          "unique_chars": 27,
+          "has_numbers": true,
+          "has_lowercase": true,
+          "ends_with": "vccxq"
+        }
+      },
+      "numerical_value": 86235865941564415439809330341409070645946794863370629722750580561189262397615,
+      "relationship_to_2156": 123,
+      "relationship_to_892": 487
+    },
+    "bram_cohen": {
+      "name": "bram_cohen",
+      "address": "xch1lcnnkiestjaebpzqej6cmopdrpi24rva2eejy6qsxbftzcexxfhq",
+      "analysis": {
+        "decoded_bytes": "589ad520929a4040bf30227c2639e38bd1ae46a0d1089c7a12b84b3c8897b94f",
+        "decoded_length": 32,
+        "contains_2156": false,
+        "contains_892": false,
+        "contains_chia": false,
+        "ethiopian_patterns": {
+          "book_81": false,
+          "ratio_reference": false,
+          "golden_ratio": false
+        },
+        "character_analysis": {
+          "length": 56,
+          "unique_chars": 27,
+          "has_numbers": true,
+          "has_lowercase": true,
+          "ends_with": "xxfhq"
+        }
+      },
+      "numerical_value": 40077096073432522862039027036701668482220954084721379065710321430700976748879,
+      "relationship_to_2156": 407,
+      "relationship_to_892": 127
+    }
+  },
+  "cross_references": {
+    "addresses_with_balance": [],
+    "mathematical_relationships": {},
+    "prize_claiming_hypothesis": {
+      "seed_based_claim": "CHIA_FRIENDS_SEED likely generates the winning address",
+      "ethiopian_bible_clue": "ETHIOPIAN_BIBLE_REFERENCE provides claiming instructions",
+      "coordinate_transformation": "2156 and 892 used in key derivation algorithm",
+      "bram_cohen_method": "Uses BitTorrent-inspired distributed claiming"
+    },
+    "recommended_actions": [
+      "Test actual Chia wallet derivation with found seeds",
+      "Check Ethiopian Bible for specific claiming passage",
+      "Analyze mathematical transformations of coordinates",
+      "Look for smart coin or NFT claiming mechanism"
+    ]
+  }
+}

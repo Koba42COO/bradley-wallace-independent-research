@@ -1,0 +1,18 @@
+{
+  "tool_name": "generator_tools",
+  "tool_hash": "102dc4dccd1f750e1880644af59f20ccd2e26c9c5a198c937f6bc368f657cd5a",
+  "total_size": 5224,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "102dc4dccd1f750e1880644af59f20ccd2e26c9c5a198c937f6bc368f657cd5a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/generator_tools.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/generator_tools.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.281541,
+  "updated_at": 1762787395.281543
+}

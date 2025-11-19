@@ -1,0 +1,18 @@
+{
+  "tool_name": "run_validation_dual_spirals_plasma_physics",
+  "tool_hash": "1421b9b52e9558473ab777fa5449b39b0d9e98336d202697972432ef9656bec9",
+  "total_size": 6265,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1421b9b52e9558473ab777fa5449b39b0d9e98336d202697972432ef9656bec9"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/missing_papers/dual_spirals_plasma_physics/supporting_materials/validation_logs/run_validation_dual_spirals_plasma_physics.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/missing_papers/dual_spirals_plasma_physics/supporting_materials/validation_logs/run_validation_dual_spirals_plasma_physics.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.211194,
+  "updated_at": 1762787395.211197
+}

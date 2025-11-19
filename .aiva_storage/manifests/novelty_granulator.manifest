@@ -1,0 +1,18 @@
+{
+  "tool_name": "novelty_granulator",
+  "tool_hash": "92c312cc1a3d63500fe54caebd7614837078b5cdabd60452d49ae171516629cf",
+  "total_size": 31850,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "92c312cc1a3d63500fe54caebd7614837078b5cdabd60452d49ae171516629cf"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/legacy/aiva-core/brain/novelty_granulator.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/legacy/aiva-core/brain/novelty_granulator.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.267212,
+  "updated_at": 1762787395.267215
+}

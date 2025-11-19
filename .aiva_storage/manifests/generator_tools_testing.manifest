@@ -1,0 +1,18 @@
+{
+  "tool_name": "generator_tools_testing",
+  "tool_hash": "a6ca7ea5e449a84fc547a36714c3887649a26bde0b2ca540d2c2006a4d174fdf",
+  "total_size": 4247,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a6ca7ea5e449a84fc547a36714c3887649a26bde0b2ca540d2c2006a4d174fdf"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/generator_tools_testing.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/generator_tools_testing.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.408988,
+  "updated_at": 1762787395.4089909
+}

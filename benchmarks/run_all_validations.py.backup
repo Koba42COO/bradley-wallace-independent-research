@@ -1,0 +1,156 @@
+#!/usr/bin/env python3
+"""
+Run all validation scripts for all papers.
+Generates comprehensive validation report.
+"""
+
+import os
+import subprocess
+import sys
+import json
+from pathlib import Path
+from datetime import datetime
+from collections import defaultdict
+
+def find_all_validation_scripts():
+    """Find all validation scripts."""
+    base_dirs = [
+        "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers",
+        "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects",
+    ]
+    
+    scripts = []
+    for base_dir in base_dirs:
+        if not os.path.exists(base_dir):
+            continue
+        for root, dirs, files in os.walk(base_dir):
+            dirs[:] = [d for d in dirs if not d.startswith('.')]
+            if 'validation_logs' in root:
+                for file in files:
+                    if file.startswith('run_validation_') and file.endswith('.py'):
+                        scripts.append(os.path.join(root, file))
+    return scripts
+
+def run_validation(script_path):
+    """Run a single validation script."""
+    paper_name = os.path.basename(script_path).replace('run_validation_', '').replace('.py', '')
+    paper_dir = os.path.dirname(os.path.dirname(script_path))
+    
+    print(f"\\n{'='*70}")
+    print(f"Validating: {paper_name}")
+    print(f"Location: {os.path.relpath(paper_dir, '/Users/coo-koba42/dev')}")
+    print(f"{'='*70}")
+    
+    try:
+        result = subprocess.run(
+            [sys.executable, script_path],
+            capture_output=True,
+            text=True,
+            timeout=60,
+            cwd=os.path.dirname(script_path)
+        )
+        
+        return {
+            'paper': paper_name,
+            'path': paper_dir,
+            'success': result.returncode == 0,
+            'stdout': result.stdout,
+            'stderr': result.stderr,
+            'returncode': result.returncode
+        }
+    except subprocess.TimeoutExpired:
+        return {
+            'paper': paper_name,
+            'path': paper_dir,
+            'success': False,
+            'error': 'Timeout',
+            'stdout': '',
+            'stderr': 'Validation timed out after 60 seconds'
+        }
+    except Exception as e:
+        return {
+            'paper': paper_name,
+            'path': paper_dir,
+            'success': False,
+            'error': str(e),
+            'stdout': '',
+            'stderr': str(e)
+        }
+
+def run_all_validations():
+    """Run all validation scripts."""
+    scripts = find_all_validation_scripts()
+    print(f"Found {len(scripts)} validation scripts to run\\n")
+    
+    results = []
+    for i, script in enumerate(scripts, 1):
+        print(f"\\n[{i}/{len(scripts)}] ", end='', flush=True)
+        result = run_validation(script)
+        results.append(result)
+        
+        if result['success']:
+            print("✅ PASSED")
+        else:
+            print(f"❌ FAILED: {result.get('error', 'Test failures')}")
+    
+    # Generate summary report
+    passed = sum(1 for r in results if r['success'])
+    failed = len(results) - passed
+    
+    print(f"\\n{'='*70}")
+    print("VALIDATION SUMMARY")
+    print(f"{'='*70}")
+    print(f"Total Papers: {len(results)}")
+    print(f"✅ Passed: {passed} ({passed/len(results)*100:.1f}%)")
+    print(f"❌ Failed: {failed} ({failed/len(results)*100:.1f}%)")
+    
+    # Save detailed results
+    results_file = "/Users/coo-koba42/dev/ALL_VALIDATION_RESULTS.json"
+    with open(results_file, 'w') as f:
+        json.dump({
+            'timestamp': datetime.now().isoformat(),
+            'total': len(results),
+            'passed': passed,
+            'failed': failed,
+            'results': results
+        }, f, indent=2)
+    
+    # Generate markdown report
+    report_file = "/Users/coo-koba42/dev/ALL_VALIDATION_REPORT.md"
+    with open(report_file, 'w') as f:
+        f.write("# Comprehensive Validation Report\\n\\n")
+        f.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\\n")
+        f.write(f"**Total Papers Validated:** {len(results)}\\n")
+        f.write(f"**Passed:** {passed} ({passed/len(results)*100:.1f}%)\\n")
+        f.write(f"**Failed:** {failed} ({failed/len(results)*100:.1f}%)\\n\\n")
+        
+        f.write("## Results by Paper\\n\\n")
+        f.write("| Paper | Status | Location |\\n")
+        f.write("|-------|--------|----------|\\n")
+        
+        for result in sorted(results, key=lambda x: (not x['success'], x['paper'])):
+            status = "✅ PASS" if result['success'] else "❌ FAIL"
+            rel_path = os.path.relpath(result['path'], '/Users/coo-koba42/dev')
+            f.write(f"| {result['paper']} | {status} | `{rel_path}` |\\n")
+        
+        f.write("\\n## Failed Validations\\n\\n")
+        failed_results = [r for r in results if not r['success']]
+        if failed_results:
+            for result in failed_results:
+                f.write(f"### {result['paper']}\\n")
+                f.write(f"**Error:** {result.get('error', 'Test failures')}\\n")
+                if result.get('stderr'):
+                    f.write(f"\\n```\\n{result['stderr'][:500]}\\n```\\n")
+                f.write("\\n")
+        else:
+            f.write("✅ All validations passed!\\n")
+    
+    print(f"\\n📄 Detailed results saved to: {results_file}")
+    print(f"📄 Report saved to: {report_file}")
+    
+    return results
+
+if __name__ == '__main__':
+    results = run_all_validations()
+    sys.exit(0 if all(r['success'] for r in results) else 1)
+

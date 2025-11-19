@@ -1,0 +1,156 @@
+from __future__ import annotations
+
+import logging
+import pathlib
+import sys
+from multiprocessing import freeze_support
+from typing import Any, Optional
+
+from chia_rs import ConsensusConstants
+
+from chia.apis import ApiProtocolRegistry
+from chia.consensus.constants import replace_str_to_bytes
+from chia.consensus.default_constants import DEFAULT_CONSTANTS
+from chia.protocols.outbound_message import NodeType
+from chia.seeder.crawler import Crawler
+from chia.seeder.crawler_api import CrawlerAPI
+from chia.seeder.crawler_rpc_api import CrawlerRpcApi
+from chia.seeder.crawler_service import CrawlerService
+from chia.server.signal_handlers import SignalHandlers
+from chia.server.start_service import RpcInfo, Service, async_run
+from chia.util.chia_logging import initialize_service_logging
+from chia.util.config import load_config, load_config_cli
+from chia.util.default_root import resolve_root_path
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+# See: https://bugs.python.org/issue29288
+"".encode("idna")
+
+SERVICE_NAME = "seeder"
+log = logging.getLogger(__name__)
+
+
+def create_full_node_crawler_service(
+    root_path: pathlib.Path,
+    config: dict[str, Any],
+    consensus_constants: ConsensusConstants,
+    connect_to_daemon: bool = True,
+    start_crawler_loop: bool = True,
+) -> CrawlerService:
+    service_config = config[SERVICE_NAME]
+    crawler_config = service_config["crawler"]
+
+    crawler = Crawler(
+        service_config, root_path=root_path, constants=consensus_constants, start_crawler_loop=start_crawler_loop
+    )
+    api = CrawlerAPI(crawler)
+
+    network_id = service_config["selected_network"]
+
+    rpc_info: Optional[RpcInfo[CrawlerRpcApi]] = None
+    if crawler_config.get("start_rpc_server", True):
+        rpc_info = (CrawlerRpcApi, crawler_config.get("rpc_port", 8561))
+
+    return Service(
+        root_path=root_path,
+        config=config,
+        node=api.crawler,
+        peer_api=api,
+        node_type=NodeType.FULL_NODE,
+        advertised_port=service_config["port"],
+        service_name="full_node",
+        upnp_ports=[],
+        on_connect_callback=crawler.on_connect,
+        network_id=network_id,
+        rpc_info=rpc_info,
+        connect_to_daemon=connect_to_daemon,
+        class_for_type=ApiProtocolRegistry,
+    )
+
+
+async def async_main(root_path: pathlib.Path) -> int:
+    # TODO: refactor to avoid the double load
+    config = load_config(root_path, "config.yaml")
+    service_config = load_config_cli(root_path, "config.yaml", SERVICE_NAME)
+    config[SERVICE_NAME] = service_config
+    overrides = service_config["network_overrides"]["constants"][service_config["selected_network"]]
+    updated_constants = replace_str_to_bytes(DEFAULT_CONSTANTS, **overrides)
+    initialize_service_logging(service_name=SERVICE_NAME, config=config, root_path=root_path)
+    service = create_full_node_crawler_service(root_path, config, updated_constants)
+    async with SignalHandlers.manage() as signal_handlers:
+        await service.setup_process_global_state(signal_handlers=signal_handlers)
+        await service.run()
+
+    return 0
+
+
+def main() -> int:
+    freeze_support()
+    root_path = resolve_root_path(override=None)
+
+    return async_run(async_main(root_path=root_path))
+
+
+if __name__ == "__main__":
+    sys.exit(main())

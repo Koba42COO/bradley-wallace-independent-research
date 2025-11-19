@@ -1,0 +1,18 @@
+{
+  "tool_name": "magnetic_field_sim",
+  "tool_hash": "28b9e457472885e41a066cd0a1815ad227f175008692a9cb827c2e1b27ee5753",
+  "total_size": 9896,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "28b9e457472885e41a066cd0a1815ad227f175008692a9cb827c2e1b27ee5753"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/MicroManipulatorStepper/simulation/EncoderMagneticFieldSim/magnetic_field_sim.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/MicroManipulatorStepper/simulation/EncoderMagneticFieldSim/magnetic_field_sim.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.083981,
+  "updated_at": 1762787395.083984
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "wallet_retry_store",
+  "tool_hash": "e0948c2ae446babf95ff94de785aaeb516ff5a49f6f7c3aee3d2ea28c819f06c",
+  "total_size": 5153,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e0948c2ae446babf95ff94de785aaeb516ff5a49f6f7c3aee3d2ea28c819f06c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_retry_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_retry_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.586931,
+  "updated_at": 1762787395.586934
+}

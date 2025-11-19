@@ -1,0 +1,18 @@
+{
+  "tool_name": "jwt_cosmological_lensing_analysis",
+  "tool_hash": "1b72ff013807edf5ef8ef654ccdd1912df3716af9cf967ca764214ddf6f47428",
+  "total_size": 14722,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1b72ff013807edf5ef8ef654ccdd1912df3716af9cf967ca764214ddf6f47428"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/jwt_cosmological_lensing_analysis.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/jwt_cosmological_lensing_analysis.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.036313,
+  "updated_at": 1762787395.036316
+}

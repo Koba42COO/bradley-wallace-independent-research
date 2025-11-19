@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_paginator",
+  "tool_hash": "5449915e7992a68bcce8d75736eb30aecb3e122998c7721621864862e3daf3ec",
+  "total_size": 5049,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5449915e7992a68bcce8d75736eb30aecb3e122998c7721621864862e3daf3ec"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_paginator.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_paginator.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4099112,
+  "updated_at": 1762787395.4099169
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_fee_estimation_integration",
+  "tool_hash": "e05aa9e0b28cefdff75868c1fc2a5605aa3a057ca265ef02e48b7c73bcae0c9b",
+  "total_size": 13305,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e05aa9e0b28cefdff75868c1fc2a5605aa3a057ca265ef02e48b7c73bcae0c9b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/fee_estimation/test_fee_estimation_integration.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/fee_estimation/test_fee_estimation_integration.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.431376,
+  "updated_at": 1762787395.4313788
+}

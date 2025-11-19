@@ -1,0 +1,119 @@
+from __future__ import annotations
+
+from typing import Callable, Optional
+
+from chia_rs.sized_bytes import bytes32
+
+from chia.consensus.blockchain import StateChangeSummary
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+def get_hints_and_subscription_coin_ids(
+    state_change_summary: StateChangeSummary,
+    has_coin_subscription: Callable[[bytes32], bool],
+    has_puzzle_subscription: Callable[[bytes32], bool],
+) -> tuple[list[tuple[bytes32, bytes]], list[bytes32]]:
+    # Precondition: all hints passed in are max 32 bytes long
+    # Returns the hints that we need to add to the DB, and the coin ids that need to be looked up
+
+    # Finds the coin IDs that we need to lookup in order to notify wallets of hinted transactions
+    hint: Optional[bytes]
+    hints_to_add: list[tuple[bytes32, bytes]] = []
+
+    # Goes through additions and removals for each block and flattens to a map and a set
+    lookup_coin_ids: set[bytes32] = set()
+
+    def add_if_coin_subscription(coin_id: bytes32) -> None:
+        if has_coin_subscription(coin_id):
+            lookup_coin_ids.add(coin_id)
+
+    def add_if_ph_subscription(puzzle_hash: bytes32, coin_id: bytes32) -> None:
+        if has_puzzle_subscription(puzzle_hash):
+            lookup_coin_ids.add(coin_id)
+
+    for spend_id, puzzle_hash in state_change_summary.removals:
+        # Record all coin_ids that we are interested in, that had changes
+        add_if_coin_subscription(spend_id)
+        add_if_ph_subscription(puzzle_hash, spend_id)
+
+    for addition_coin, hint in state_change_summary.additions:
+        addition_coin_name = addition_coin.name()
+        add_if_coin_subscription(addition_coin_name)
+        add_if_ph_subscription(addition_coin.puzzle_hash, addition_coin_name)
+        if hint is None:
+            continue
+        if len(hint) == 32:
+            add_if_ph_subscription(bytes32(hint), addition_coin_name)
+
+        if len(hint) > 0:
+            assert len(hint) <= 32
+            hints_to_add.append((addition_coin_name, hint))
+
+    # Goes through all new reward coins
+    for reward_coin in state_change_summary.new_rewards:
+        reward_coin_name: bytes32 = reward_coin.name()
+        add_if_coin_subscription(reward_coin_name)
+        add_if_ph_subscription(reward_coin.puzzle_hash, reward_coin_name)
+
+    return hints_to_add, list(lookup_coin_ids)

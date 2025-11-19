@@ -1,0 +1,18 @@
+{
+  "tool_name": "sim",
+  "tool_hash": "80bf76219ff3a8cc5f720066eec771545c76fec2c7b19ce40edc45a1c63099af",
+  "total_size": 10624,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "80bf76219ff3a8cc5f720066eec771545c76fec2c7b19ce40edc45a1c63099af"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/dev/sim.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/dev/sim.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5282948,
+  "updated_at": 1762787395.528297
+}

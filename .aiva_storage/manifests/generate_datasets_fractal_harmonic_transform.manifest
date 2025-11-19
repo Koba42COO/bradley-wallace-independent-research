@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_fractal_harmonic_transform",
+  "tool_hash": "9da422925cd8e52c50f314c8a99b856693fa1bec3d46907c1388390f4bcfefd0",
+  "total_size": 6322,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "9da422925cd8e52c50f314c8a99b856693fa1bec3d46907c1388390f4bcfefd0"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/fractal_harmonic/supporting_materials/datasets/generate_datasets_fractal_harmonic_transform.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/fractal_harmonic/supporting_materials/datasets/generate_datasets_fractal_harmonic_transform.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.231796,
+  "updated_at": 1762787395.231798
+}

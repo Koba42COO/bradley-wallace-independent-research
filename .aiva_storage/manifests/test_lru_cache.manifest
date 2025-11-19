@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_lru_cache",
+  "tool_hash": "a30773b7b0a7c408ca281e8c0a4f56f48788277e90e734f8005f13463ae9e5b5",
+  "total_size": 4957,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a30773b7b0a7c408ca281e8c0a4f56f48788277e90e734f8005f13463ae9e5b5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/util/test_lru_cache.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/util/test_lru_cache.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.369271,
+  "updated_at": 1762787395.3692741
+}

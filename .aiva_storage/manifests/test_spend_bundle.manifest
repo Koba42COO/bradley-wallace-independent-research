@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_spend_bundle",
+  "tool_hash": "7ed719e1da2f95ae2b61cf3905c43479d42c1f2a3fab6f27c23bee4386d6b17a",
+  "total_size": 4743,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7ed719e1da2f95ae2b61cf3905c43479d42c1f2a3fab6f27c23bee4386d6b17a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/custom_types/test_spend_bundle.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/custom_types/test_spend_bundle.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3723252,
+  "updated_at": 1762787395.37233
+}

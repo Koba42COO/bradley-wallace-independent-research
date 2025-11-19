@@ -1,0 +1,139 @@
+from __future__ import annotations
+
+import random
+import time
+from dataclasses import dataclass
+from typing import Optional
+
+from chia_rs.sized_ints import uint16, uint64
+
+from chia.types.peer_info import PeerInfo
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+@dataclass(frozen=False)
+class VettedPeer:
+    host: str
+    port: uint16
+
+    # 0 means we have not attempted to vet this peer yet
+    # a negative number means we have failed that many vetting attempts in a row
+    # a positive number means we have successfully vetted the peer this many
+    # times in a row
+    vetted: int = 0
+    # the timestamp of the last *successful* vetting of this peer
+    vetted_timestamp: uint64 = uint64(0)
+    # the last time we attempted to vet this peer, or 0 if we haven't tried yet
+    # we set this regardless of whether the vetting is successful or not
+    last_attempt: uint64 = uint64(0)
+    time_added: uint64 = uint64(0)
+
+    def __eq__(self, rhs: object) -> bool:
+        return self.host == rhs.host and self.port == rhs.port  # type: ignore[no-any-return, attr-defined]
+
+    def __hash__(self) -> int:
+        return hash((self.host, self.port))
+
+
+class IntroducerPeers:
+    """
+    Has the list of known full node peers that are already connected or may be
+    connected to, and the time that they were last added.
+    """
+
+    def __init__(self) -> None:
+        self._peers: set[VettedPeer] = set()
+
+    def add(self, peer: Optional[PeerInfo]) -> bool:
+        if peer is None or not peer.port:
+            return False
+
+        p = VettedPeer(peer.host, peer.port)
+        p.time_added = uint64(time.time())
+
+        if p in self._peers:
+            return True
+
+        self._peers.add(p)
+        return True
+
+    def remove(self, peer: Optional[VettedPeer]) -> bool:
+        if peer is None or not peer.port:
+            return False
+        try:
+            self._peers.remove(peer)
+            return True
+        except ValueError:
+            return False
+
+    def get_peers(
+        self, max_peers: int = 0, randomize: bool = False, recent_threshold: float = 9999999
+    ) -> list[VettedPeer]:
+        target_peers = [peer for peer in self._peers if time.time() - float(peer.time_added) < recent_threshold]
+        if not max_peers or max_peers > len(target_peers):
+            max_peers = len(target_peers)
+        if randomize:
+            return random.sample(target_peers, max_peers)
+        else:
+            return target_peers[:max_peers]

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_lookup_fork_chain",
+  "tool_hash": "51237d75319481ff10d046e658cf43128fd823805afdcefc86f225b5be485f3e",
+  "total_size": 8487,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "51237d75319481ff10d046e658cf43128fd823805afdcefc86f225b5be485f3e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/blockchain/test_lookup_fork_chain.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/blockchain/test_lookup_fork_chain.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.461289,
+  "updated_at": 1762787395.461292
+}

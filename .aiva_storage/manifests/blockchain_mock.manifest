@@ -1,0 +1,18 @@
+{
+  "tool_name": "blockchain_mock",
+  "tool_hash": "709e7785882e31b8f178b1bf10db0e105eed48d695eae30643ae27961a1242e3",
+  "total_size": 7709,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "709e7785882e31b8f178b1bf10db0e105eed48d695eae30643ae27961a1242e3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/blockchain_mock.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/blockchain_mock.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.409405,
+  "updated_at": 1762787395.409407
+}

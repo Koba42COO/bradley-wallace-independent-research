@@ -1,0 +1,148 @@
+from __future__ import annotations
+
+from chia_rs.sized_ints import uint32, uint64
+
+from chia.full_node.fee_estimate_store import FeeStore
+from chia.full_node.fee_estimation import EmptyFeeMempoolInfo, FeeBlockInfo, FeeMempoolInfo, MempoolItemInfo
+from chia.full_node.fee_estimator import SmartFeeEstimator
+from chia.full_node.fee_estimator_interface import FeeEstimatorInterface
+from chia.full_node.fee_tracker import FeeTracker
+from chia.types.clvm_cost import CLVMCost
+from chia.types.fee_rate import FeeRateV2
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+class BitcoinFeeEstimator(FeeEstimatorInterface):
+    """
+    A Fee Estimator based on the concepts and code at:
+    https://github.com/bitcoin/bitcoin/tree/5b6f0f31fa6ce85db3fb7f9823b1bbb06161ae32/src/policy
+    """
+
+    fee_rate_estimator: SmartFeeEstimator
+    tracker: FeeTracker
+    last_mempool_info: FeeMempoolInfo = EmptyFeeMempoolInfo
+    block_height: uint32
+
+    def __init__(self, fee_tracker: FeeTracker, smart_fee_estimator: SmartFeeEstimator) -> None:
+        self.fee_rate_estimator: SmartFeeEstimator = smart_fee_estimator
+        self.tracker: FeeTracker = fee_tracker
+        self.last_mempool_info: FeeMempoolInfo = EmptyFeeMempoolInfo
+        self.block_height: uint32 = uint32(0)
+
+    def new_block_height(self, block_height: uint32) -> None:
+        self.block_height = block_height
+
+    def new_block(self, block_info: FeeBlockInfo) -> None:
+        self.block_height = block_info.block_height
+        self.tracker.process_block(block_info.block_height, block_info.included_items)
+
+    def add_mempool_item(self, mempool_info: FeeMempoolInfo, mempool_item: MempoolItemInfo) -> None:
+        self.last_mempool_info = mempool_info
+        self.tracker.add_tx(mempool_item)
+
+    def remove_mempool_item(self, mempool_info: FeeMempoolInfo, mempool_item: MempoolItemInfo) -> None:
+        self.last_mempool_info = mempool_info
+        self.tracker.remove_tx(mempool_item)
+
+    def estimate_fee_rate(self, *, time_offset_seconds: int) -> FeeRateV2:
+        """
+        time_offset_seconds: Target time in the future we want our tx included by
+        """
+        fee_estimate = self.fee_rate_estimator.get_estimate(time_offset_seconds)
+        if fee_estimate.error is not None:
+            return FeeRateV2(0)
+        return fee_estimate.estimated_fee_rate
+
+    def estimate_fee_rate_for_block(self, block: uint32) -> FeeRateV2:
+        fee_estimate = self.fee_rate_estimator.get_estimate_for_block(block)
+        if fee_estimate.error is not None:
+            return FeeRateV2(0)
+        return fee_estimate.estimated_fee_rate
+
+    def mempool_size(self) -> CLVMCost:
+        """Report last seen mempool size"""
+        return self.last_mempool_info.current_mempool_cost
+
+    def mempool_max_size(self) -> CLVMCost:
+        """Report current mempool max size (cost)"""
+        return self.last_mempool_info.mempool_info.max_size_in_cost
+
+    def get_tracker(self) -> FeeTracker:
+        """
+        `get_tracker` is for testing the BitcoinFeeEstimator.
+        Not part of `FeeEstimatorInterface`
+        """
+        return self.tracker
+
+    def get_mempool_info(self) -> FeeMempoolInfo:
+        return self.last_mempool_info
+
+
+def create_bitcoin_fee_estimator(max_block_cost_clvm: uint64) -> BitcoinFeeEstimator:
+    # fee_store and fee_tracker are particular to the BitcoinFeeEstimator, and
+    # are not necessary if a different fee estimator is used.
+    fee_store = FeeStore()
+    fee_tracker = FeeTracker(fee_store)
+    smart_fee_estimator = SmartFeeEstimator(fee_tracker, max_block_cost_clvm)
+    return BitcoinFeeEstimator(fee_tracker, smart_fee_estimator)

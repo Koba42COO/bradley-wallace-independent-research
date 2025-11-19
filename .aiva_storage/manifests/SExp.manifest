@@ -1,0 +1,18 @@
+{
+  "tool_name": "SExp",
+  "tool_hash": "2cf2b719b5a8ae4da5d90ffd3723a7199e17a8331f63b43e7c58899159f50522",
+  "total_size": 10759,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2cf2b719b5a8ae4da5d90ffd3723a7199e17a8331f63b43e7c58899159f50522"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/clvm/SExp.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/clvm/SExp.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.061655,
+  "updated_at": 1762787395.0616581
+}

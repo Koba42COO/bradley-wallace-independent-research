@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_pool_cmdline",
+  "tool_hash": "9695866e6ae97ccb1b3665813cf850588cc7de0784cf1d65cce911da464e5ea7",
+  "total_size": 39431,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "9695866e6ae97ccb1b3665813cf850588cc7de0784cf1d65cce911da464e5ea7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/pools/test_pool_cmdline.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/pools/test_pool_cmdline.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.351506,
+  "updated_at": 1762787395.351509
+}

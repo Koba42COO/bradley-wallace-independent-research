@@ -1,0 +1,103 @@
+import unittest
+
+from clvm.object_cache import ObjectCache, treehash, serialized_length
+
+from clvm_tools.binutils import assemble
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+class ObjectCacheTest(unittest.TestCase):
+    def check(self, obj_text: str, expected_hash: str, expected_length: int) -> None:
+        obj = assemble(obj_text)
+        th = ObjectCache(treehash)
+        self.assertEqual(th.get(obj).hex(), expected_hash)
+        sl = ObjectCache(serialized_length)
+        self.assertEqual(sl.get(obj), expected_length)
+
+    def test_various(self) -> None:
+        self.check(
+            "0x00",
+            "47dc540c94ceb704a23875c11273e16bb0b8a87aed84de911f2133568115f254",
+            1,
+        )
+
+        self.check(
+            "0", "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a", 1
+        )
+
+        self.check(
+            "foo", "0080b50a51ecd0ccfaaa4d49dba866fe58724f18445d30202bafb03e21eef6cb", 4
+        )
+
+        self.check(
+            "(foo . bar)",
+            "c518e45ae6a7b4146017b7a1d81639051b132f1f5572ce3088a3898a9ed1280b",
+            9,
+        )
+
+        self.check(
+            "(this is a longer test of a deeper tree)",
+            "0a072d7d860d77d8e290ced0fdb29a271198ca3db54d701c45d831e3aae6422c",
+            47,
+        )

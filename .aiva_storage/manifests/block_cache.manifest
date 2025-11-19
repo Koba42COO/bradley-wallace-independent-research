@@ -1,0 +1,18 @@
+{
+  "tool_name": "block_cache",
+  "tool_hash": "2a9060d5a16a7dc05422e13a3b2f1d5bd69e07334de8c5c08afd434601c82c4d",
+  "total_size": 4871,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2a9060d5a16a7dc05422e13a3b2f1d5bd69e07334de8c5c08afd434601c82c4d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/block_cache.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/block_cache.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3227708,
+  "updated_at": 1762787395.3227751
+}

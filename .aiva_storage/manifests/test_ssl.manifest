@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_ssl",
+  "tool_hash": "a0ce367f8f8e7c85d893b8ff8b538e4eaff51028e2b9f81fa386e99c111d2c7d",
+  "total_size": 11235,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a0ce367f8f8e7c85d893b8ff8b538e4eaff51028e2b9f81fa386e99c111d2c7d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/ssl/test_ssl.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/ssl/test_ssl.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.365589,
+  "updated_at": 1762787395.365591
+}

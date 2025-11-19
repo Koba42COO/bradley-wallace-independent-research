@@ -1,0 +1,18 @@
+{
+  "tool_name": "pending_tx_cache",
+  "tool_hash": "b6632574f1c0fa5677e3c8dd3e099b5fed828f07d63966a51165aac2097c0983",
+  "total_size": 6402,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b6632574f1c0fa5677e3c8dd3e099b5fed828f07d63966a51165aac2097c0983"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/pending_tx_cache.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/pending_tx_cache.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.655093,
+  "updated_at": 1762787395.655096
+}

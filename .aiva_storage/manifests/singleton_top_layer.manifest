@@ -1,0 +1,18 @@
+{
+  "tool_name": "singleton_top_layer",
+  "tool_hash": "809f9067f6c776cf06bc9ddbd117be800392389a8c427a8863b6d4a66189e6f5",
+  "total_size": 15523,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "809f9067f6c776cf06bc9ddbd117be800392389a8c427a8863b6d4a66189e6f5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/singleton_top_layer.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/singleton_top_layer.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.633426,
+  "updated_at": 1762787395.633429
+}

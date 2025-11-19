@@ -1,0 +1,18 @@
+{
+  "tool_name": "plotnft_funcs",
+  "tool_hash": "78538ab03f608f8f8b3751bf8a2542653ae3d5d3e246fa98dfc7523d668893b8",
+  "total_size": 19736,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "78538ab03f608f8f8b3751bf8a2542653ae3d5d3e246fa98dfc7523d668893b8"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/plotnft_funcs.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/plotnft_funcs.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.515101,
+  "updated_at": 1762787395.515104
+}

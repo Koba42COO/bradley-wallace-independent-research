@@ -1,0 +1,18 @@
+{
+  "tool_name": "check_time_locks",
+  "tool_hash": "f6653b70f15545c68cf2379081d7d5be01cf2fba1ba81d348344e603be814c72",
+  "total_size": 5159,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f6653b70f15545c68cf2379081d7d5be01cf2fba1ba81d348344e603be814c72"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/check_time_locks.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/check_time_locks.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.292786,
+  "updated_at": 1762787395.292789
+}

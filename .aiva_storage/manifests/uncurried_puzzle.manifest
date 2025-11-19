@@ -1,0 +1,18 @@
+{
+  "tool_name": "uncurried_puzzle",
+  "tool_hash": "8eb2d982aa5e340d179ba95b3134e6ab647734ec9fe3081b392abeea453580df",
+  "total_size": 3198,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "8eb2d982aa5e340d179ba95b3134e6ab647734ec9fe3081b392abeea453580df"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/uncurried_puzzle.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/uncurried_puzzle.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5888278,
+  "updated_at": 1762787395.588832
+}

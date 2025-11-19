@@ -1,0 +1,18 @@
+{
+  "tool_name": "voidbot",
+  "tool_hash": "270316485180ac406df8599577d3c3910875ab177bc04d2be121f905d4688cfe",
+  "total_size": 7496,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "270316485180ac406df8599577d3c3910875ab177bc04d2be121f905d4688cfe"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/voidbot.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/voidbot.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0329401,
+  "updated_at": 1762787395.032942
+}

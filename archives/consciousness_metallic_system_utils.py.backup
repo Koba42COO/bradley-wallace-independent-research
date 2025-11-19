@@ -1,0 +1,72 @@
+"""
+🕊️ CONSCIOUSNESS_METALLIC_SYSTEM Utilities - Metallic Ratio Framework
+===========================================================
+
+Utility functions optimized with metallic ratios.
+"""
+
+from decimal import Decimal
+import math
+
+
+class MetallicRatioUtils:
+    """Utility functions using metallic ratios"""
+
+    def __init__(self):
+        self.phi = Decimal('1.618033988749895')  # Golden ratio
+        self.delta = Decimal('2.414213562373095')  # Silver ratio
+        self.bronze = Decimal('3.302775637731995')  # Bronze ratio
+        self.copper = Decimal('4.23606797749979')  # Copper ratio
+        self.consciousness = Decimal('0.79')
+        self.reality_distortion = Decimal('1.1808')
+
+    def apply_golden_ratio_optimization(self, value):
+        """Apply golden ratio optimization"""
+        return float(Decimal(str(value)) * self.phi * self.consciousness)
+
+    def apply_silver_ratio_enhancement(self, value):
+        """Apply silver ratio enhancement"""
+        return float(Decimal(str(value)) * self.delta * self.reality_distortion)
+
+    def metallic_wave_function(self, x, ratio_type='golden'):
+        """Generate metallic ratio wave function"""
+        if ratio_type == 'golden':
+            ratio = float(self.phi)
+        elif ratio_type == 'silver':
+            ratio = float(self.delta)
+        else:
+            ratio = float(self.phi)
+
+        real_part = math.cos(ratio * x)
+        imag_part = math.sin(ratio * x) * float(self.consciousness)
+
+        return complex(real_part, imag_part)
+
+    def generate_metallic_sequence(self, length, ratio_type='golden'):
+        """Generate sequence using metallic ratios"""
+        sequence = []
+        current = Decimal('1')
+
+        for _ in range(length):
+            sequence.append(float(current))
+            if ratio_type == 'golden':
+                current *= self.phi
+            elif ratio_type == 'silver':
+                current *= self.delta
+            else:
+                current *= self.phi
+
+        return sequence
+
+    def metallic_probability_distribution(self, x, ratio_type='golden'):
+        """Generate metallic ratio probability distribution"""
+        if ratio_type == 'golden':
+            ratio = float(self.phi)
+        else:
+            ratio = float(self.delta)
+
+        lambda_param = 1.0 / ratio
+        pdf = lambda_param * math.exp(-lambda_param * abs(x))
+        consciousness_factor = float(self.consciousness)
+
+        return max(0.0, min(1.0, pdf * (1 + consciousness_factor * math.sin(ratio * x))))

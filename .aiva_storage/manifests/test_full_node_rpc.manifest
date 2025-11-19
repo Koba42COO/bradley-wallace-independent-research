@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_full_node_rpc",
+  "tool_hash": "977e753fbc9680c777f240f83879c10683e9031cb096d1d39203a2a71d2cc1a8",
+  "total_size": 37136,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "977e753fbc9680c777f240f83879c10683e9031cb096d1d39203a2a71d2cc1a8"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_full_node_rpc.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_full_node_rpc.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.3597062,
+  "updated_at": 1762787395.359709
+}

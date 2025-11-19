@@ -1,0 +1,18 @@
+{
+  "tool_name": "signer",
+  "tool_hash": "bb23145a86e46adb9bc75dd707424f37e56c10dfa42c4780c5cc364e3e5635a5",
+  "total_size": 13988,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "bb23145a86e46adb9bc75dd707424f37e56c10dfa42c4780c5cc364e3e5635a5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/signer.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/signer.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.523763,
+  "updated_at": 1762787395.523768
+}

@@ -1,0 +1,178 @@
+from __future__ import annotations
+
+import functools
+import logging
+from collections.abc import Awaitable
+from dataclasses import dataclass, field
+from logging import Logger
+from typing import Callable, ClassVar, Optional, TypeVar, Union, final, get_type_hints
+
+from typing_extensions import Concatenate, ParamSpec, Protocol
+
+from chia.protocols.outbound_message import Message
+from chia.protocols.protocol_message_types import ProtocolMessageTypes
+from chia.util.streamable import Streamable
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+class ApiProtocol(Protocol):
+    log: Logger
+    metadata: ClassVar[ApiMetadata]
+
+    def ready(self) -> bool: ...
+
+
+log = logging.getLogger(__name__)
+P = ParamSpec("P")
+R = TypeVar("R", bound=Awaitable[Optional[Message]])
+S = TypeVar("S", bound=Streamable)
+Self = TypeVar("Self")
+api_attribute_name = "_chia_api"
+
+
+@dataclass
+class ApiRequest:
+    request_type: ProtocolMessageTypes
+    message_class: type[Streamable]
+    method: Callable[..., Awaitable[Optional[Message]]]
+    peer_required: bool = False
+    bytes_required: bool = False
+    execute_task: bool = False
+    reply_types: list[ProtocolMessageTypes] = field(default_factory=list)
+
+
+@final
+@dataclass
+class ApiMetadata:
+    message_type_to_request: dict[ProtocolMessageTypes, ApiRequest] = field(default_factory=dict)
+
+    @classmethod
+    def copy(cls, original: ApiMetadata) -> ApiMetadata:
+        return cls(message_type_to_request=dict(original.message_type_to_request))
+
+    @classmethod
+    def from_bound_method(cls, method: Callable[..., Awaitable[Optional[Message]]]) -> ApiRequest:
+        self: ApiMetadata = getattr(method, api_attribute_name)
+        message_type = ProtocolMessageTypes[method.__name__]
+        return self.message_type_to_request[message_type]
+
+    # TODO: This hinting does not express that the returned callable *_bytes parameter
+    #       corresponding to the first parameter name will be filled in by the wrapper.
+    def request(
+        self,
+        peer_required: bool = False,
+        bytes_required: bool = False,
+        execute_task: bool = False,
+        reply_types: Optional[list[ProtocolMessageTypes]] = None,
+        request_type: Optional[ProtocolMessageTypes] = None,
+    ) -> Callable[[Callable[Concatenate[Self, S, P], R]], Callable[Concatenate[Self, Union[bytes, S], P], R]]:
+        non_optional_reply_types: list[ProtocolMessageTypes]
+        if reply_types is None:
+            non_optional_reply_types = []
+        else:
+            non_optional_reply_types = reply_types
+
+        def inner(f: Callable[Concatenate[Self, S, P], R]) -> Callable[Concatenate[Self, Union[bytes, S], P], R]:
+            @functools.wraps(f)
+            def wrapper(self: Self, original: Union[bytes, S], *args: P.args, **kwargs: P.kwargs) -> R:
+                arg: S
+                if isinstance(original, bytes):
+                    if request.bytes_required:
+                        kwargs[message_name_bytes] = original
+                    arg = message_class.from_bytes(original)
+                else:
+                    arg = original
+                    if request.bytes_required:
+                        kwargs[message_name_bytes] = bytes(original)
+
+                return f(self, arg, *args, **kwargs)
+
+            setattr(wrapper, api_attribute_name, self)
+            message_name, message_class = next(
+                (name, hint) for name, hint in get_type_hints(f).items() if name not in {"self", "peer", "return"}
+            )
+            message_name_bytes = f"{message_name}_bytes"
+
+            nonlocal request_type
+            if request_type is None:
+                request_type = ProtocolMessageTypes[f.__name__]
+
+            request = ApiRequest(
+                request_type=request_type,
+                peer_required=peer_required,
+                bytes_required=bytes_required,
+                execute_task=execute_task,
+                reply_types=non_optional_reply_types,
+                message_class=message_class,
+                method=wrapper,
+            )
+
+            if request_type in self.message_type_to_request:
+                raise Exception(f"request type already registered: {request_type}")
+
+            self.message_type_to_request[request_type] = request
+
+            return wrapper
+
+        return inner

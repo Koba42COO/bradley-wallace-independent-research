@@ -1,0 +1,18 @@
+{
+  "tool_name": "capabilities",
+  "tool_hash": "cd7fb0791692de89537923de37598fdd96cc622f8682e7d618c62034bf641bc0",
+  "total_size": 3461,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cd7fb0791692de89537923de37598fdd96cc622f8682e7d618c62034bf641bc0"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/server/capabilities.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/server/capabilities.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.53536,
+  "updated_at": 1762787395.535363
+}

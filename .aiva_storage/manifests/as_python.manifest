@@ -1,0 +1,18 @@
+{
+  "tool_name": "as_python",
+  "tool_hash": "a62d000af04c8211754f20c11febbcd237d6870c74a8cc77bfdc83a9035bdb88",
+  "total_size": 4621,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a62d000af04c8211754f20c11febbcd237d6870c74a8cc77bfdc83a9035bdb88"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/clvm/as_python.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/clvm/as_python.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0609689,
+  "updated_at": 1762787395.060972
+}

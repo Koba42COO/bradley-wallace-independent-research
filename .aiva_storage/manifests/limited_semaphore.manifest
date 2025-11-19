@@ -1,0 +1,18 @@
+{
+  "tool_name": "limited_semaphore",
+  "tool_hash": "270fc1f88d42bdc4606162006b0a0c275f077eaf5a91e74ce5e6a3cbab7b0f5e",
+  "total_size": 3783,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "270fc1f88d42bdc4606162006b0a0c275f077eaf5a91e74ce5e6a3cbab7b0f5e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/limited_semaphore.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/limited_semaphore.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.327851,
+  "updated_at": 1762787395.327853
+}

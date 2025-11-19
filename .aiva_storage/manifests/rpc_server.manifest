@@ -1,0 +1,18 @@
+{
+  "tool_name": "rpc_server",
+  "tool_hash": "0d3b23a67bcd833664610869bc71648c66a631e01db6c9ec0510d8f751d8c773",
+  "total_size": 22129,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "0d3b23a67bcd833664610869bc71648c66a631e01db6c9ec0510d8f751d8c773"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/rpc/rpc_server.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/rpc/rpc_server.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6652539,
+  "updated_at": 1762787395.665258
+}

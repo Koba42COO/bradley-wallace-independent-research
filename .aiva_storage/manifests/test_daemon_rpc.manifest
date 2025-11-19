@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_daemon_rpc",
+  "tool_hash": "2a6bb0dda75ec4f3095b7eb14b917b75f72920edf0aa8860df4f0cda6df9b644",
+  "total_size": 622,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2a6bb0dda75ec4f3095b7eb14b917b75f72920edf0aa8860df4f0cda6df9b644"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_daemon_rpc.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_daemon_rpc.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.3575392,
+  "updated_at": 1762787395.3575418
+}

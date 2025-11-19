@@ -1,0 +1,18 @@
+{
+  "tool_name": "estimate_fees",
+  "tool_hash": "c330392714c79af1a3f906479d380461d64b2be86e4cb48dc87139de5b4d539b",
+  "total_size": 3709,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c330392714c79af1a3f906479d380461d64b2be86e4cb48dc87139de5b4d539b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/estimate_fees.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/estimate_fees.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.598164,
+  "updated_at": 1762787395.598166
+}

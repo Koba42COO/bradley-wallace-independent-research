@@ -1,0 +1,18 @@
+{
+  "tool_name": "timelord",
+  "tool_hash": "176634df432c05816ac130c2127d60e17c85433571cebd1608cf15f06a7efcad",
+  "total_size": 62778,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "176634df432c05816ac130c2127d60e17c85433571cebd1608cf15f06a7efcad"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/timelord/timelord.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/timelord/timelord.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3085718,
+  "updated_at": 1762787395.308575
+}

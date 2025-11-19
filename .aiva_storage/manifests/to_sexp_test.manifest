@@ -1,0 +1,18 @@
+{
+  "tool_name": "to_sexp_test",
+  "tool_hash": "ae3b896461cce5dbe319cd2492962092f15f540f6b7efa71cdd75231e76cb6ae",
+  "total_size": 9243,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ae3b896461cce5dbe319cd2492962092f15f540f6b7efa71cdd75231e76cb6ae"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/tests/to_sexp_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/tests/to_sexp_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0648801,
+  "updated_at": 1762787395.064883
+}

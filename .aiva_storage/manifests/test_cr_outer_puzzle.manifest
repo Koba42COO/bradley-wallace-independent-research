@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_cr_outer_puzzle",
+  "tool_hash": "4dd83265358922a8146ea9c2b6278c41711b730e3fe5ca58912c130587658f52",
+  "total_size": 5380,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4dd83265358922a8146ea9c2b6278c41711b730e3fe5ca58912c130587658f52"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/vc_wallet/test_cr_outer_puzzle.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/vc_wallet/test_cr_outer_puzzle.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.487338,
+  "updated_at": 1762787395.4873412
+}

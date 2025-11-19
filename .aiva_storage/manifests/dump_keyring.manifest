@@ -1,0 +1,18 @@
+{
+  "tool_name": "dump_keyring",
+  "tool_hash": "261284784adc3919daf726db92460f4262950d26ae531fbb2541d55860fe56d5",
+  "total_size": 5754,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "261284784adc3919daf726db92460f4262950d26ae531fbb2541d55860fe56d5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/dump_keyring.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/dump_keyring.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.525974,
+  "updated_at": 1762787395.5259771
+}

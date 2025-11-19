@@ -1,0 +1,18 @@
+{
+  "tool_name": "shared_protocol",
+  "tool_hash": "63ece64c36cbacb04595225494fad62e00764d3ea8694af11751f67918f6a6bc",
+  "total_size": 5585,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "63ece64c36cbacb04595225494fad62e00764d3ea8694af11751f67918f6a6bc"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/shared_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/shared_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.668341,
+  "updated_at": 1762787395.668343
+}

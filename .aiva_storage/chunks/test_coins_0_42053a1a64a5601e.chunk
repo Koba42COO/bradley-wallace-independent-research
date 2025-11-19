@@ -1,0 +1,96 @@
+from __future__ import annotations
+
+from itertools import permutations
+
+from chia_rs.sized_bytes import bytes32
+
+from chia._tests.util.benchmarks import rand_hash
+from chia.types.blockchain_format.coin import hash_coin_ids
+from chia.util.hash import std_hash
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+def test_hash_coin_ids_empty() -> None:
+    assert hash_coin_ids([]) == std_hash(b"")
+
+
+def test_hash_coin_ids() -> None:
+    A = bytes32([1] + [0] * 31)
+    B = bytes32([2] + [0] * 31)
+    C = bytes32([3] + [0] * 31)
+    D = bytes32([4] + [0] * 31)
+    E = bytes32([254] + [0] * 31)
+    F = bytes32([255] + [0] * 31)
+
+    expected = std_hash(F + E + D + C + B + A)
+
+    for i in permutations([A, B, C, D, E, F]):
+        assert hash_coin_ids(list(i)) == expected
+
+
+def test_sorting() -> None:
+    for _ in range(5000):
+        h1 = rand_hash()
+        h2 = rand_hash()
+        assert (h1 < h2) == (h1.hex() < h2.hex())

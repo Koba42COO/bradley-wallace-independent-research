@@ -1,0 +1,18 @@
+{
+  "tool_name": "cudnn_ethiopian_upgrade",
+  "tool_hash": "4631cff2ff85242794501e186e0e2135e78084ddd808c82ba69d7d1552158739",
+  "total_size": 21957,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4631cff2ff85242794501e186e0e2135e78084ddd808c82ba69d7d1552158739"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/cudnn_ethiopian_upgrade.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/cudnn_ethiopian_upgrade.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.056368,
+  "updated_at": 1762787395.056371
+}

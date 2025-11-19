@@ -1,0 +1,18 @@
+{
+  "tool_name": "vdf_info_computation",
+  "tool_hash": "90587cbc98473333642d40d6cc2ba35dd68ec12bf46ed33b44e587dc54e895fb",
+  "total_size": 9592,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "90587cbc98473333642d40d6cc2ba35dd68ec12bf46ed33b44e587dc54e895fb"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/vdf_info_computation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/vdf_info_computation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2819,
+  "updated_at": 1762787395.281903
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "outbound_message",
+  "tool_hash": "2d26226070b86cfa05a4dc3dd0dfd734dc1aa89ba5e87cf44b86aad2b930801e",
+  "total_size": 3585,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2d26226070b86cfa05a4dc3dd0dfd734dc1aa89ba5e87cf44b86aad2b930801e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/outbound_message.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/outbound_message.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.666999,
+  "updated_at": 1762787395.6670022
+}

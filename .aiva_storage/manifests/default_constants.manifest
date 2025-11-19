@@ -1,0 +1,18 @@
+{
+  "tool_name": "default_constants",
+  "tool_hash": "95d38bf09e57df2ed5198d6343d1810145628a57cc025c35008f5add8c19c1f3",
+  "total_size": 9028,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "95d38bf09e57df2ed5198d6343d1810145628a57cc025c35008f5add8c19c1f3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/default_constants.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/default_constants.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2877681,
+  "updated_at": 1762787395.287771
+}

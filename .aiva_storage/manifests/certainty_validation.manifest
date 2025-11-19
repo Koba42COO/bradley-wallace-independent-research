@@ -1,0 +1,18 @@
+{
+  "tool_name": "certainty_validation",
+  "tool_hash": "cd2eaa4de760b8631de5c06b81786baa92c6b6077772e9b25c9d75f24350aab7",
+  "total_size": 18011,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cd2eaa4de760b8631de5c06b81786baa92c6b6077772e9b25c9d75f24350aab7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/certainty_validation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/certainty_validation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.010997,
+  "updated_at": 1762787395.0110002
+}

@@ -1,0 +1,19 @@
+{
+  "tool_name": "test_trades",
+  "tool_hash": "de79d39ccf25e20ee8628e310717f96067dc00ce1036e324b06f50910124bf01",
+  "total_size": 108604,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a63b49c1ae758df4aa8860f2937b3b5b5085d4c4515693451f41f500e8c7fb90",
+    "7f64c440383cb0423b32a6e86bc4b40dd7221ba843a6bc7a987e43188fbb27e7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/cat_wallet/test_trades.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/cat_wallet/test_trades.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.501224,
+  "updated_at": 1762787395.501227
+}

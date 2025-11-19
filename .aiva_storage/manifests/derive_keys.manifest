@@ -1,0 +1,18 @@
+{
+  "tool_name": "derive_keys",
+  "tool_hash": "1232c1bfa7f48319ed6424a0352de1341de787a395885384aa1af9639a3cbf58",
+  "total_size": 8086,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1232c1bfa7f48319ed6424a0352de1341de787a395885384aa1af9639a3cbf58"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/derive_keys.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/derive_keys.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5930948,
+  "updated_at": 1762787395.593098
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_pool_cli_parsing",
+  "tool_hash": "9c89e65e873f38d932f75772674190bc9c9484290c352d009a3cdfbd6d4ce082",
+  "total_size": 6311,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "9c89e65e873f38d932f75772674190bc9c9484290c352d009a3cdfbd6d4ce082"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/pools/test_pool_cli_parsing.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/pools/test_pool_cli_parsing.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.352482,
+  "updated_at": 1762787395.3524852
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "json_util",
+  "tool_hash": "3177c99a0fa6d70d46f60de4710e95563d4e7e36056a79e0e8fef87e4e2c6977",
+  "total_size": 3727,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3177c99a0fa6d70d46f60de4710e95563d4e7e36056a79e0e8fef87e4e2c6977"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/json_util.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/json_util.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3209379,
+  "updated_at": 1762787395.320941
+}

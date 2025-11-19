@@ -1,0 +1,18 @@
+{
+  "tool_name": "import_memory",
+  "tool_hash": "2510cae1266d998d173843434a22dd3a8788a316db5b40a55492397e8eaa8b87",
+  "total_size": 3831,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2510cae1266d998d173843434a22dd3a8788a316db5b40a55492397e8eaa8b87"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/import_memory.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/import_memory.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.1248262,
+  "updated_at": 1762787395.1248288
+}

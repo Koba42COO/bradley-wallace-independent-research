@@ -1,0 +1,18 @@
+{
+  "tool_name": "condition_opcodes",
+  "tool_hash": "ff60c824dc3dd05675dd2a5c6b9bcd3241e2f532c3cc7b253eb32107ff2bdad7",
+  "total_size": 4958,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ff60c824dc3dd05675dd2a5c6b9bcd3241e2f532c3cc7b253eb32107ff2bdad7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/condition_opcodes.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/condition_opcodes.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3007271,
+  "updated_at": 1762787395.300729
+}

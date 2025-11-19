@@ -1,0 +1,18 @@
+{
+  "tool_name": "object_cache_test",
+  "tool_hash": "74695b0d15b950b954fa7779c885b15f956f7f59aa1fd547f5a15cc3c6e5e9f5",
+  "total_size": 3987,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "74695b0d15b950b954fa7779c885b15f956f7f59aa1fd547f5a15cc3c6e5e9f5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/tests/object_cache_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/tests/object_cache_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0659058,
+  "updated_at": 1762787395.06591
+}

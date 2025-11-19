@@ -1,0 +1,18 @@
+{
+  "tool_name": "ingest_docs",
+  "tool_hash": "33a2850af13a3552f734dc39b70611eb5b408c6cd059145fb03f5ed3ae3de16f",
+  "total_size": 3362,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "33a2850af13a3552f734dc39b70611eb5b408c6cd059145fb03f5ed3ae3de16f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/ingest_docs.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/ingest_docs.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.125427,
+  "updated_at": 1762787395.12543
+}

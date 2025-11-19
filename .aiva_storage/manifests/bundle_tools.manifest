@@ -1,0 +1,18 @@
+{
+  "tool_name": "bundle_tools",
+  "tool_hash": "84f056c0bb4025077de70db8d810ab3eaad23e374c500fe98a7f1b102c2e05cf",
+  "total_size": 3599,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "84f056c0bb4025077de70db8d810ab3eaad23e374c500fe98a7f1b102c2e05cf"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/bundle_tools.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/bundle_tools.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6491442,
+  "updated_at": 1762787395.6491468
+}

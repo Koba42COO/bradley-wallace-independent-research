@@ -1,0 +1,457 @@
+er_hash) and top.height > 0:
+            request_prev = RequestBlockHeader(uint32(top.height - 1))
+            response_prev: Optional[RespondBlockHeader] = await peer.call_api(
+                FullNodeAPI.request_block_header, request_prev
+            )
+            if response_prev is None or not isinstance(response_prev, RespondBlockHeader):
+                raise RuntimeError("bad block header response from peer while syncing")
+            prev_head = response_prev.header_block
+            blocks.append(prev_head)
+            top = prev_head
+            fork_height = top.height - 1
+
+        blocks.reverse()
+        # Roll back coins and transactions
+        peak_height = await self.wallet_state_manager.blockchain.get_finished_sync_up_to()
+        if fork_height < peak_height:
+            self.log.info(f"Rolling back to {fork_height}")
+            # we should clear all peers since this is a full rollback
+            await self.perform_atomic_rollback(fork_height)
+            await self.update_ui()
+
+        if peak is not None:
+            assert header_block.weight >= peak.weight
+        for block in blocks:
+            # Set blockchain to the latest peak
+            res, err = await self.wallet_state_manager.blockchain.add_block(block)
+            if res == AddBlockResult.INVALID_BLOCK:
+                raise ValueError(err)
+
+        return fork_height
+
+    async def update_ui(self) -> None:
+        for wallet_id, wallet in self.wallet_state_manager.wallets.items():
+            self.wallet_state_manager.state_changed("coin_removed", wallet_id)
+            self.wallet_state_manager.state_changed("coin_added", wallet_id)
+
+    async def fetch_and_update_weight_proof(self, peer: WSChiaConnection, peak: HeaderBlock) -> int:
+        assert self._weight_proof_handler is not None
+        weight_request = RequestProofOfWeight(peak.height, peak.header_hash)
+        wp_timeout = self.config.get("weight_proof_timeout", 360)
+        self.log.debug(f"weight proof timeout is {wp_timeout} sec")
+        weight_proof_response: RespondProofOfWeight = await peer.call_api(
+            FullNodeAPI.request_proof_of_weight, weight_request, timeout=wp_timeout
+        )
+
+        if weight_proof_response is None:
+            raise Exception("weight proof response was none")
+
+        weight_proof = weight_proof_response.wp
+
+        if weight_proof.recent_chain_data[-1].height != peak.height:
+            raise Exception("weight proof height does not match peak")
+        if weight_proof.recent_chain_data[-1].weight != peak.weight:
+            raise Exception("weight proof weight does not match peak")
+        if weight_proof.recent_chain_data[-1].header_hash != peak.header_hash:
+            raise Exception("weight proof peak hash does not match peak")
+
+        old_proof = self.wallet_state_manager.blockchain.synced_weight_proof
+        block_records = await self._weight_proof_handler.validate_weight_proof(weight_proof, False, old_proof)
+
+        await self.wallet_state_manager.blockchain.new_valid_weight_proof(weight_proof, block_records)
+
+        return get_wp_fork_point(self.constants, old_proof, weight_proof)
+
+    async def get_puzzle_hashes_to_subscribe(self) -> list[bytes32]:
+        all_puzzle_hashes = await self.wallet_state_manager.puzzle_store.get_all_puzzle_hashes(1)
+        # Get all phs from interested store
+        interested_puzzle_hashes = [
+            t[0] for t in await self.wallet_state_manager.interested_store.get_interested_puzzle_hashes()
+        ]
+        all_puzzle_hashes.update(interested_puzzle_hashes)
+        return list(all_puzzle_hashes)
+
+    async def get_coin_ids_to_subscribe(self) -> list[bytes32]:
+        coin_ids = await self.wallet_state_manager.trade_manager.get_coins_of_interest()
+        coin_ids.update(await self.wallet_state_manager.interested_store.get_interested_coin_ids())
+        return list(coin_ids)
+
+    async def validate_received_state_from_peer(
+        self,
+        coin_state: CoinState,
+        peer: WSChiaConnection,
+        peer_request_cache: PeerRequestCache,
+        fork_height: Optional[uint32],
+    ) -> bool:
+        """
+        Returns True if the coin_state is valid and included in the blockchain proved by the weight proof.
+        """
+        if peer.closed:
+            return False
+        # Only use the cache if we are talking about states before the fork point. If we are evaluating something
+        # in a reorg, we cannot use the cache, since we don't know if it's actually in the new chain after the reorg.
+        if can_use_peer_request_cache(coin_state, peer_request_cache, fork_height):
+            return True
+
+        spent_height: Optional[uint32] = None if coin_state.spent_height is None else uint32(coin_state.spent_height)
+        confirmed_height: Optional[uint32] = (
+            None if coin_state.created_height is None else uint32(coin_state.created_height)
+        )
+        current = await self.wallet_state_manager.coin_store.get_coin_record(coin_state.coin.name())
+        # if remote state is same as current local state we skip validation
+
+        # CoinRecord unspent = height 0, coin state = None. We adjust for comparison below
+        current_spent_height = None
+        if current is not None and current.spent_block_height != 0:
+            current_spent_height = current.spent_block_height
+
+        # Same as current state, nothing to do
+        if (
+            current is not None
+            and current_spent_height == spent_height
+            and current.confirmed_block_height == confirmed_height
+        ):
+            peer_request_cache.add_to_states_validated(coin_state)
+            return True
+
+        reorg_mode = False
+
+        # If coin was removed from the blockchain
+        if confirmed_height is None:
+            if current is None:
+                # Coin does not exist in local DB, so no need to do anything
+                return False
+            # This coin got reorged
+            reorg_mode = True
+            confirmed_height = current.confirmed_block_height
+
+        # request header block for created height
+        state_block: Optional[HeaderBlock] = peer_request_cache.get_block(confirmed_height)
+        if state_block is None or reorg_mode:
+            state_blocks = await request_header_blocks(peer, confirmed_height, confirmed_height)
+            if state_blocks is None:
+                return False
+            state_block = state_blocks[0]
+            assert state_block is not None
+            peer_request_cache.add_to_blocks(state_block)
+
+        # get proof of inclusion
+        assert state_block.foliage_transaction_block is not None
+        validate_additions_result = await request_and_validate_additions(
+            peer,
+            peer_request_cache,
+            state_block.height,
+            state_block.header_hash,
+            coin_state.coin.puzzle_hash,
+            state_block.foliage_transaction_block.additions_root,
+        )
+
+        if validate_additions_result is False:
+            self.log.warning("Validate false 1")
+            await peer.close(9999)
+            return False
+
+        # If spent_height is None, we need to validate that the creation block is actually in the longest blockchain.
+        # Otherwise, we don't have to, since we will validate the spent block later.
+        if coin_state.spent_height is None:
+            validated = await self.validate_block_inclusion(state_block, peer, peer_request_cache)
+            if not validated:
+                return False
+
+        # TODO: make sure all cases are covered
+        if current is not None:
+            if spent_height is None and current.spent_block_height != 0:
+                # Peer is telling us that coin that was previously known to be spent is not spent anymore
+                # Check old state
+
+                spent_state_blocks: Optional[list[HeaderBlock]] = await request_header_blocks(
+                    peer, current.spent_block_height, current.spent_block_height
+                )
+                if spent_state_blocks is None:
+                    return False
+                spent_state_block = spent_state_blocks[0]
+                assert spent_state_block.height == current.spent_block_height
+                assert spent_state_block.foliage_transaction_block is not None
+                peer_request_cache.add_to_blocks(spent_state_block)
+
+                validate_removals_result: bool = await request_and_validate_removals(
+                    peer,
+                    current.spent_block_height,
+                    spent_state_block.header_hash,
+                    coin_state.coin.name(),
+                    spent_state_block.foliage_transaction_block.removals_root,
+                )
+                if validate_removals_result is False:
+                    self.log.warning("Validate false 2")
+                    await peer.close(9999)
+                    return False
+                validated = await self.validate_block_inclusion(spent_state_block, peer, peer_request_cache)
+                if not validated:
+                    return False
+
+        if spent_height is not None:
+            # request header block for created height
+            cached_spent_state_block = peer_request_cache.get_block(spent_height)
+            if cached_spent_state_block is None:
+                spent_state_blocks = await request_header_blocks(peer, spent_height, spent_height)
+                if spent_state_blocks is None:
+                    return False
+                spent_state_block = spent_state_blocks[0]
+                assert spent_state_block.height == spent_height
+                assert spent_state_block.foliage_transaction_block is not None
+                peer_request_cache.add_to_blocks(spent_state_block)
+            else:
+                spent_state_block = cached_spent_state_block
+            assert spent_state_block is not None
+            assert spent_state_block.foliage_transaction_block is not None
+            validate_removals_result = await request_and_validate_removals(
+                peer,
+                spent_state_block.height,
+                spent_state_block.header_hash,
+                coin_state.coin.name(),
+                spent_state_block.foliage_transaction_block.removals_root,
+            )
+            if validate_removals_result is False:
+                self.log.warning("Validate false 3")
+                await peer.close(9999)
+                return False
+            validated = await self.validate_block_inclusion(spent_state_block, peer, peer_request_cache)
+            if not validated:
+                return False
+        peer_request_cache.add_to_states_validated(coin_state)
+
+        return True
+
+    async def validate_block_inclusion(
+        self, block: HeaderBlock, peer: WSChiaConnection, peer_request_cache: PeerRequestCache
+    ) -> bool:
+        if self.wallet_state_manager.blockchain.contains_height(block.height):
+            stored_hash = self.wallet_state_manager.blockchain.height_to_hash(block.height)
+            stored_record = self.wallet_state_manager.blockchain.try_block_record(stored_hash)
+            if stored_record is not None:
+                if stored_record.header_hash == block.header_hash:
+                    return True
+
+        weight_proof: Optional[WeightProof] = self.wallet_state_manager.blockchain.synced_weight_proof
+        if weight_proof is None:
+            return False
+
+        if block.height >= weight_proof.recent_chain_data[0].height:
+            # this was already validated as part of the wp validation
+            index = block.height - weight_proof.recent_chain_data[0].height
+            if index >= len(weight_proof.recent_chain_data):
+                return False
+            if weight_proof.recent_chain_data[index].header_hash != block.header_hash:
+                self.log.error("Failed validation 1")
+                return False
+            return True
+
+        # block is not included in wp recent chain
+        start = uint32(block.height + 1)
+        compare_to_recent = False
+        inserted: int = 0
+        first_height_recent = weight_proof.recent_chain_data[0].height
+        if start > first_height_recent - 1000:
+            # compare up to weight_proof.recent_chain_data[0].height
+            compare_to_recent = True
+            end = first_height_recent
+        else:
+            # get ses from wp
+            start_height = block.height
+            end_height = block.height + 32
+            ses_start_height = 0
+            end = uint32(0)
+            for idx, ses in enumerate(weight_proof.sub_epochs):
+                if idx == len(weight_proof.sub_epochs) - 1:
+                    break
+                next_ses_height = uint32(
+                    (idx + 1) * self.constants.SUB_EPOCH_BLOCKS + weight_proof.sub_epochs[idx + 1].num_blocks_overflow
+                )
+                # start_ses_hash
+                if ses_start_height <= start_height < next_ses_height:
+                    inserted = idx + 1
+                    if ses_start_height < end_height < next_ses_height:
+                        end = next_ses_height
+                        break
+                    else:
+                        if idx > len(weight_proof.sub_epochs) - 3:
+                            break
+                        # else add extra ses as request start <-> end spans two ses
+                        end = uint32(
+                            (idx + 2) * self.constants.SUB_EPOCH_BLOCKS
+                            + weight_proof.sub_epochs[idx + 2].num_blocks_overflow
+                        )
+                        inserted += 1
+                        break
+                ses_start_height = next_ses_height
+
+        if end == 0:
+            self.log.error("Error finding sub epoch")
+            return False
+        all_peers_c = self.server.get_connections(NodeType.FULL_NODE)
+        all_peers = [(con, self.is_trusted(con)) for con in all_peers_c]
+        blocks: Optional[list[HeaderBlock]] = await fetch_header_blocks_in_range(
+            start, end, peer_request_cache, all_peers
+        )
+        if blocks is None:
+            log_level = logging.DEBUG if self._shut_down or peer.closed else logging.ERROR
+            self.log.log(log_level, f"Error fetching blocks {start} {end}")
+            return False
+
+        if compare_to_recent and weight_proof.recent_chain_data[0].header_hash != blocks[-1].header_hash:
+            self.log.error("Failed validation 3")
+            return False
+
+        if not compare_to_recent:
+            last = blocks[-1].finished_sub_slots[-1].reward_chain.get_hash()
+            if last != weight_proof.sub_epochs[inserted].reward_chain_hash:
+                self.log.error("Failed validation 4")
+                return False
+        pk_m_sig: list[tuple[G1Element, bytes32, G2Element]] = []
+        sigs_to_cache: list[HeaderBlock] = []
+        blocks_to_cache: list[tuple[bytes32, uint32]] = []
+
+        signatures_to_validate: int = 30
+        for idx in range(len(blocks)):
+            en_block = blocks[idx]
+            if idx < signatures_to_validate and not peer_request_cache.in_block_signatures_validated(en_block):
+                # Validate that the block is buried in the foliage by checking the signatures
+                pk_m_sig.append(
+                    (
+                        en_block.reward_chain_block.proof_of_space.plot_public_key,
+                        en_block.foliage.foliage_block_data.get_hash(),
+                        en_block.foliage.foliage_block_data_signature,
+                    )
+                )
+                sigs_to_cache.append(en_block)
+
+            # This is the reward chain challenge. If this is in the cache, it means the prev block
+            # has been validated. We must at least check the first block to ensure they are connected
+            reward_chain_hash: bytes32 = en_block.reward_chain_block.reward_chain_ip_vdf.challenge
+            if idx != 0 and peer_request_cache.in_blocks_validated(reward_chain_hash):
+                # As soon as we see a block we have already concluded is in the chain, we can quit.
+                if idx > signatures_to_validate:
+                    break
+            else:
+                # Validate that the block is committed to by the weight proof
+                if idx == 0:
+                    prev_block_rc_hash: bytes32 = block.reward_chain_block.get_hash()
+                    prev_hash = block.header_hash
+                else:
+                    prev_block_rc_hash = blocks[idx - 1].reward_chain_block.get_hash()
+                    prev_hash = blocks[idx - 1].header_hash
+
+                if not en_block.prev_header_hash == prev_hash:
+                    self.log.error("Failed validation 5")
+                    return False
+
+                if len(en_block.finished_sub_slots) > 0:
+                    reversed_slots = en_block.finished_sub_slots.copy()
+                    reversed_slots.reverse()
+                    for slot_idx, slot in enumerate(reversed_slots[:-1]):
+                        hash_val = reversed_slots[slot_idx + 1].reward_chain.get_hash()
+                        if not hash_val == slot.reward_chain.end_of_slot_vdf.challenge:
+                            self.log.error("Failed validation 6")
+                            return False
+                    if not prev_block_rc_hash == reversed_slots[-1].reward_chain.end_of_slot_vdf.challenge:
+                        self.log.error("Failed validation 7")
+                        return False
+                elif not prev_block_rc_hash == reward_chain_hash:
+                    self.log.error("Failed validation 8")
+                    return False
+                blocks_to_cache.append((reward_chain_hash, en_block.height))
+
+        agg_sig: G2Element = AugSchemeMPL.aggregate([sig for (_, _, sig) in pk_m_sig])
+        if not AugSchemeMPL.aggregate_verify([pk for (pk, _, _) in pk_m_sig], [m for (_, m, _) in pk_m_sig], agg_sig):
+            self.log.error("Failed signature validation")
+            return False
+        for header_block in sigs_to_cache:
+            peer_request_cache.add_to_block_signatures_validated(header_block)
+        for reward_chain_hash, height in blocks_to_cache:
+            peer_request_cache.add_to_blocks_validated(reward_chain_hash, height)
+        return True
+
+    async def get_coin_state(
+        self, coin_names: list[bytes32], peer: WSChiaConnection, fork_height: Optional[uint32] = None
+    ) -> list[CoinState]:
+        msg = RegisterForCoinUpdates(coin_names, uint32(0))
+        coin_state: Optional[RespondToCoinUpdates] = await peer.call_api(FullNodeAPI.register_for_coin_updates, msg)
+        if coin_state is None or not isinstance(coin_state, RespondToCoinUpdates):
+            raise PeerRequestException(f"Was not able to get states for {coin_names}")
+
+        if not self.is_trusted(peer):
+            valid_list = []
+            for coin in coin_state.coin_states:
+                if coin.coin.name() not in coin_names:
+                    await peer.close(9999)
+                    self.log.warning(f"Peer {peer.peer_node_id} sent us an unrequested coin state. Banning.")
+                    raise PeerRequestException(f"Peer sent us unrequested coin state {coin}")
+                valid = await self.validate_received_state_from_peer(
+                    coin, peer, self.get_cache_for_peer(peer), fork_height
+                )
+                if valid:
+                    valid_list.append(coin)
+            return valid_list
+
+        return coin_state.coin_states
+
+    async def fetch_children(
+        self, coin_name: bytes32, peer: WSChiaConnection, fork_height: Optional[uint32] = None
+    ) -> list[CoinState]:
+        response: Optional[RespondChildren] = await peer.call_api(
+            FullNodeAPI.request_children, RequestChildren(coin_name)
+        )
+        if response is None or not isinstance(response, RespondChildren):
+            raise PeerRequestException(f"Was not able to obtain children {response}")
+
+        if not self.is_trusted(peer):
+            request_cache = self.get_cache_for_peer(peer)
+            validated = []
+            for state in response.coin_states:
+                valid = await self.validate_received_state_from_peer(state, peer, request_cache, fork_height)
+                if valid:
+                    validated.append(state)
+            return validated
+        return response.coin_states
+
+    # For RPC only. You should use wallet_state_manager.add_pending_transaction for normal wallet business.
+    async def push_tx(self, spend_bundle: WalletSpendBundle) -> None:
+        msg = make_msg(ProtocolMessageTypes.send_transaction, SendTransaction(spend_bundle))
+        full_nodes = self.server.get_connections(NodeType.FULL_NODE)
+        for peer in full_nodes:
+            await peer.send_message(msg)
+
+    async def _update_balance_cache(self, wallet_id: uint32) -> None:
+        assert self.wallet_state_manager.lock.locked(), "WalletStateManager.lock required"
+        wallet = self.wallet_state_manager.wallets[wallet_id]
+        if wallet.type() == WalletType.CRCAT:
+            coin_type = CoinType.CRCAT
+        else:
+            coin_type = CoinType.NORMAL
+        unspent_records = await self.wallet_state_manager.coin_store.get_unspent_coins_for_wallet(wallet_id, coin_type)
+        balance = await wallet.get_confirmed_balance(unspent_records)
+        pending_balance = await wallet.get_unconfirmed_balance(unspent_records)
+        spendable_balance = await wallet.get_spendable_balance(unspent_records)
+        pending_change = await wallet.get_pending_change_balance()
+        max_send_amount = await wallet.get_max_send_amount(unspent_records)
+
+        unconfirmed_removals: dict[bytes32, Coin] = await wallet.wallet_state_manager.unconfirmed_removals_for_wallet(
+            wallet_id
+        )
+        self._balance_cache[wallet_id] = Balance(
+            confirmed_wallet_balance=balance,
+            unconfirmed_wallet_balance=pending_balance,
+            spendable_balance=spendable_balance,
+            pending_change=pending_change,
+            max_send_amount=max_send_amount,
+            unspent_coin_count=uint32(len(unspent_records)),
+            pending_coin_removal_count=uint32(len(unconfirmed_removals)),
+        )
+
+    async def get_balance(self, wallet_id: uint32) -> Balance:
+        self.log.debug(f"get_balance - wallet_id: {wallet_id}")
+        if not self.wallet_state_manager.sync_mode:
+            self.log.debug(f"get_balance - Updating cache for {wallet_id}")
+            async with self.wallet_state_manager.lock:
+                await self._update_balance_cache(wallet_id)
+        return self._balance_cache.get(wallet_id, Balance())

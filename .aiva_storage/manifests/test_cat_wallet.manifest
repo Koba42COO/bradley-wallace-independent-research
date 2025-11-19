@@ -1,0 +1,19 @@
+{
+  "tool_name": "test_cat_wallet",
+  "tool_hash": "85ad329cbcdb9485d5cb2dbc75c0ef24203785dad7e5506ecf415c71f394a909",
+  "total_size": 73205,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3522dd574b5f984d2a1415efb056ec0b1884b530deef7e8cd715d93be923ceb4",
+    "2d2e16b751494f47094deae0765ec1bae85b711ba70816b45726989ef11c99f6"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/cat_wallet/test_cat_wallet.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/cat_wallet/test_cat_wallet.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.50322,
+  "updated_at": 1762787395.5032241
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "prover",
+  "tool_hash": "cdd8945878501223bacf166f0617c8ca5d90efc9a7ef27ed9bec78e102645661",
+  "total_size": 7910,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cdd8945878501223bacf166f0617c8ca5d90efc9a7ef27ed9bec78e102645661"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plotting/prover.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plotting/prover.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.569477,
+  "updated_at": 1762787395.56948
+}

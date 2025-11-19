@@ -1,0 +1,18 @@
+{
+  "tool_name": "aiva_novelty_integration",
+  "tool_hash": "1449484d468d577a4b8b042e77c44e0fc0a54fc3a40bee9903fe1fbca779e0e8",
+  "total_size": 9587,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1449484d468d577a4b8b042e77c44e0fc0a54fc3a40bee9903fe1fbca779e0e8"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/legacy/aiva-core/interface/aiva_novelty_integration.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/legacy/aiva-core/interface/aiva_novelty_integration.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.266113,
+  "updated_at": 1762787395.2661152
+}

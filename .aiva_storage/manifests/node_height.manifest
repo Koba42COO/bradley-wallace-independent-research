@@ -1,0 +1,18 @@
+{
+  "tool_name": "node_height",
+  "tool_hash": "f9c9de39d42bdae4bf9b05906f4a8c7f805fff961837d1e26dee978bcacfc6e8",
+  "total_size": 3662,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f9c9de39d42bdae4bf9b05906f4a8c7f805fff961837d1e26dee978bcacfc6e8"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/node_height.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/node_height.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.356879,
+  "updated_at": 1762787395.356881
+}

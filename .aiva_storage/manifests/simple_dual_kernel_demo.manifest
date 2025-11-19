@@ -1,0 +1,18 @@
+{
+  "tool_name": "simple_dual_kernel_demo",
+  "tool_hash": "adf7111c2bad5777e074ff72fd189c370529755a2d8bb043218568842a1d96f9",
+  "total_size": 8185,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "adf7111c2bad5777e074ff72fd189c370529755a2d8bb043218568842a1d96f9"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/legacy/experiments/simple_dual_kernel_demo.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/legacy/experiments/simple_dual_kernel_demo.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.265453,
+  "updated_at": 1762787395.2654562
+}

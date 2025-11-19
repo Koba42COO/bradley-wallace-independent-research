@@ -1,0 +1,18 @@
+{
+  "tool_name": "fee_history",
+  "tool_hash": "cfb679d9621d7d62a1bfb3d3fa4238c085810a4f72a8b1c7303a1c82473b841f",
+  "total_size": 3336,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cfb679d9621d7d62a1bfb3d3fa4238c085810a4f72a8b1c7303a1c82473b841f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/fee_history.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/fee_history.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.649451,
+  "updated_at": 1762787395.649454
+}

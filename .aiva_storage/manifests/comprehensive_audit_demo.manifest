@@ -1,0 +1,18 @@
+{
+  "tool_name": "comprehensive_audit_demo",
+  "tool_hash": "266512df2624def03153209fe881ee786a51561b96de231545698d4f5f7a7f6b",
+  "total_size": 14414,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "266512df2624def03153209fe881ee786a51561b96de231545698d4f5f7a7f6b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/comprehensive_audit_demo.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/comprehensive_audit_demo.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0551932,
+  "updated_at": 1762787395.055197
+}

@@ -1,0 +1,114 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Optional
+
+from chia_rs.sized_bytes import bytes32
+from chia_rs.sized_ints import uint64
+
+from chia.types.blockchain_format.program import Program
+from chia.util.streamable import Streamable, streamable
+from chia.wallet.lineage_proof import LineageProof
+from chia.wallet.vc_wallet.cr_cat_drivers import ProofsChecker
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+@streamable
+@dataclass(frozen=True)
+class CATInfo(Streamable):
+    limitations_program_hash: bytes32
+    my_tail: Optional[Program]  # this is the program
+
+
+@streamable
+@dataclass(frozen=True)
+class RCATInfo(CATInfo):
+    hidden_puzzle_hash: bytes32
+
+
+@streamable
+@dataclass(frozen=True)
+class CATCoinData(Streamable):
+    mod_hash: bytes32
+    tail_program_hash: bytes32
+    inner_puzzle: Program
+    parent_coin_id: bytes32
+    amount: uint64
+
+
+# We used to store all of the lineage proofs here but it was very slow to serialize for a lot of transactions
+# so we moved it to CATLineageStore.  We keep this around for migration purposes.
+@streamable
+@dataclass(frozen=True)
+class LegacyCATInfo(Streamable):
+    limitations_program_hash: bytes32
+    my_tail: Optional[Program]  # this is the program
+    lineage_proofs: list[tuple[bytes32, Optional[LineageProof]]]  # {coin.name(): lineage_proof}
+
+
+@streamable
+@dataclass(frozen=True)
+class CRCATInfo(CATInfo):
+    authorized_providers: list[bytes32]
+    proofs_checker: ProofsChecker

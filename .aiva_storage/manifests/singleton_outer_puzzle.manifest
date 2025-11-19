@@ -1,0 +1,18 @@
+{
+  "tool_name": "singleton_outer_puzzle",
+  "tool_hash": "2be5fadea2395c1f42e4e936b5b91c2c69ca14baeb3226d5c808fd751d7de9a5",
+  "total_size": 7469,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2be5fadea2395c1f42e4e936b5b91c2c69ca14baeb3226d5c808fd751d7de9a5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/nft_wallet/singleton_outer_puzzle.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/nft_wallet/singleton_outer_puzzle.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.620082,
+  "updated_at": 1762787395.620084
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_taproot",
+  "tool_hash": "e10f5e61f148d55270a86f014ede88c4dbc4b6a2332580b89d10ed993e71ed6e",
+  "total_size": 3496,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e10f5e61f148d55270a86f014ede88c4dbc4b6a2332580b89d10ed993e71ed6e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_taproot.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_taproot.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.479442,
+  "updated_at": 1762787395.479446
+}

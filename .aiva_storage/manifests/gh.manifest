@@ -1,0 +1,18 @@
+{
+  "tool_name": "gh",
+  "tool_hash": "16a8694d14d37369b6eebecbb28573afc157e54e5d83956fd9ab292b476a4eb6",
+  "total_size": 13169,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "16a8694d14d37369b6eebecbb28573afc157e54e5d83956fd9ab292b476a4eb6"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/dev/gh.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/dev/gh.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.528756,
+  "updated_at": 1762787395.528766
+}

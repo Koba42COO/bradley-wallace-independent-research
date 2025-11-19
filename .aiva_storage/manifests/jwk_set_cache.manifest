@@ -1,0 +1,18 @@
+{
+  "tool_name": "jwk_set_cache",
+  "tool_hash": "0866535197e0ab365554eb42868f65c6245cad1f2b397b31821eba5c07c73650",
+  "total_size": 3706,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "0866535197e0ab365554eb42868f65c6245cad1f2b397b31821eba5c07c73650"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pyjwt_repo/jwt/jwk_set_cache.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pyjwt_repo/jwt/jwk_set_cache.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.075225,
+  "updated_at": 1762787395.0752268
+}

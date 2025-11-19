@@ -1,0 +1,18 @@
+{
+  "tool_name": "block_rewards",
+  "tool_hash": "4ede80892cf337fb67fca40853ca87db855693f779c76ce4b546b949f2e49004",
+  "total_size": 4935,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4ede80892cf337fb67fca40853ca87db855693f779c76ce4b546b949f2e49004"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/block_rewards.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/block_rewards.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.285341,
+  "updated_at": 1762787395.285344
+}

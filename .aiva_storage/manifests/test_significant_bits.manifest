@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_significant_bits",
+  "tool_hash": "beb22c85d47f1eae223cf1bb2393a1243e51effd9f7acbb736883773a96745ea",
+  "total_size": 4187,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "beb22c85d47f1eae223cf1bb2393a1243e51effd9f7acbb736883773a96745ea"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/util/test_significant_bits.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/util/test_significant_bits.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.370236,
+  "updated_at": 1762787395.370239
+}

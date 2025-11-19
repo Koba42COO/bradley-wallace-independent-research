@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_new_peak",
+  "tool_hash": "81f84aebeaeaba4abb325bac948abbb76bbb27542d5af1231ce80933ee79dfe5",
+  "total_size": 35401,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "81f84aebeaeaba4abb325bac948abbb76bbb27542d5af1231ce80933ee79dfe5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/timelord/test_new_peak.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/timelord/test_new_peak.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.356241,
+  "updated_at": 1762787395.3562438
+}

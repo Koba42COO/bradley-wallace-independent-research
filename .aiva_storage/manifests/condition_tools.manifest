@@ -1,0 +1,18 @@
+{
+  "tool_name": "condition_tools",
+  "tool_hash": "89114f76e579f182f1ba37b111085c2c9300765b4eee5e094a06b6d6acbb282b",
+  "total_size": 10588,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "89114f76e579f182f1ba37b111085c2c9300765b4eee5e094a06b6d6acbb282b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/condition_tools.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/condition_tools.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.291376,
+  "updated_at": 1762787395.291379
+}

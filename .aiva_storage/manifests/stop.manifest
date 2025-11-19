@@ -1,0 +1,18 @@
+{
+  "tool_name": "stop",
+  "tool_hash": "26f260c7bbf6d1fbc381ebae8bac37cc1086d6fcc8db431afaf6c0c9ef3206b0",
+  "total_size": 4864,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "26f260c7bbf6d1fbc381ebae8bac37cc1086d6fcc8db431afaf6c0c9ef3206b0"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/stop.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/stop.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.515417,
+  "updated_at": 1762787395.51542
+}

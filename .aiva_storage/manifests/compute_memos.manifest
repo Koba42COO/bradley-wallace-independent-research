@@ -1,0 +1,18 @@
+{
+  "tool_name": "compute_memos",
+  "tool_hash": "64355059b2b2fe62afcd55efb233e0cbf49bbd228b1458add98cc1cd79cbb173",
+  "total_size": 4793,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "64355059b2b2fe62afcd55efb233e0cbf49bbd228b1458add98cc1cd79cbb173"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/compute_memos.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/compute_memos.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6243,
+  "updated_at": 1762787395.624303
+}

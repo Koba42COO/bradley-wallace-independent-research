@@ -1,0 +1,18 @@
+{
+  "tool_name": "cmd_helpers",
+  "tool_hash": "21fb325ee2de58d2ef1506d3223878e1e1a04d14d771ae6bcdd773a4fb739434",
+  "total_size": 10969,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "21fb325ee2de58d2ef1506d3223878e1e1a04d14d771ae6bcdd773a4fb739434"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/cmd_helpers.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/cmd_helpers.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.523168,
+  "updated_at": 1762787395.5231712
+}

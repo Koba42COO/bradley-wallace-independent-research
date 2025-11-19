@@ -1,0 +1,18 @@
+{
+  "tool_name": "quick_consolidate_duplicates",
+  "tool_hash": "a41660434670929dd3cd01f4587e177755ce787ef3ecf164201558e71913aa23",
+  "total_size": 11242,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a41660434670929dd3cd01f4587e177755ce787ef3ecf164201558e71913aa23"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/quick_consolidate_duplicates.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/quick_consolidate_duplicates.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.049588,
+  "updated_at": 1762787395.049591
+}

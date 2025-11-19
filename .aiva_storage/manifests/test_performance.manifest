@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_performance",
+  "tool_hash": "6e5bb696081540a315cb107d0bf08c76896c1698eb8fa6ea81a9aa117fe1a241",
+  "total_size": 9556,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6e5bb696081540a315cb107d0bf08c76896c1698eb8fa6ea81a9aa117fe1a241"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/full_node/test_performance.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/full_node/test_performance.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3902762,
+  "updated_at": 1762787395.3902779
+}

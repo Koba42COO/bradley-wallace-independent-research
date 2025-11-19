@@ -1,0 +1,18 @@
+{
+  "tool_name": "derivation_record",
+  "tool_hash": "31089dbd06fb6cbaa577179bfc021dafe3f597450cf8334606eeff62941fb54e",
+  "total_size": 4388,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "31089dbd06fb6cbaa577179bfc021dafe3f597450cf8334606eeff62941fb54e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/derivation_record.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/derivation_record.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.614264,
+  "updated_at": 1762787395.6142669
+}

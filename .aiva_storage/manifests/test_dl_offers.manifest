@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_dl_offers",
+  "tool_hash": "459ccc8aa7d5bad8eef52b9d714a62d582310028e09b2d543ef2269d48d09132",
+  "total_size": 34336,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "459ccc8aa7d5bad8eef52b9d714a62d582310028e09b2d543ef2269d48d09132"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/db_wallet/test_dl_offers.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/db_wallet/test_dl_offers.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.486003,
+  "updated_at": 1762787395.486006
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "start_simulator",
+  "tool_hash": "04d27f0f1a386eed6aa803677621eabc0fe8796f88df1f825f2f6b52485de96a",
+  "total_size": 7909,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "04d27f0f1a386eed6aa803677621eabc0fe8796f88df1f825f2f6b52485de96a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/start_simulator.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/start_simulator.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.552789,
+  "updated_at": 1762787395.552791
+}

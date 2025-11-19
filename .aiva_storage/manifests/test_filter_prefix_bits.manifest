@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_filter_prefix_bits",
+  "tool_hash": "f9c11efe763a9b882ccbefb0d8c1b82105770840ff021a7e90240a29ea06b7ee",
+  "total_size": 8779,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f9c11efe763a9b882ccbefb0d8c1b82105770840ff021a7e90240a29ea06b7ee"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/farmer_harvester/test_filter_prefix_bits.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/farmer_harvester/test_filter_prefix_bits.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.354848,
+  "updated_at": 1762787395.3548522
+}

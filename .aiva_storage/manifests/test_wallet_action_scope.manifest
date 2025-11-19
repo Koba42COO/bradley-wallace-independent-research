@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_wallet_action_scope",
+  "tool_hash": "730f2c97f99527e9148b6d59cb3d45c00e05c8d86750d4540f0b58dd24c002a8",
+  "total_size": 6548,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "730f2c97f99527e9148b6d59cb3d45c00e05c8d86750d4540f0b58dd24c002a8"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_wallet_action_scope.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_wallet_action_scope.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.478112,
+  "updated_at": 1762787395.478115
+}

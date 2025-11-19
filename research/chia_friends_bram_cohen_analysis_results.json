@@ -1,0 +1,129 @@
+{
+  "bram_signatures": {
+    "2156_analysis": {
+      "digits": [
+        2,
+        1,
+        5,
+        6
+      ],
+      "sum": 14,
+      "product": 60,
+      "prime_factors": [
+        2,
+        2,
+        7,
+        7,
+        11
+      ],
+      "digit_patterns": {
+        "is_palindromic": false,
+        "digit_sum": 14,
+        "digit_product": 60,
+        "fibonacci_sequence": true,
+        "prime_digits": false,
+        "ascending": false,
+        "descending": false
+      },
+      "bittorrent_connection": {
+        "relates_to_2001": true,
+        "contains_2001": false,
+        "bittorrent_ports": false,
+        "bram_cohen_birth": false
+      }
+    },
+    "892_analysis": {
+      "digits": [
+        8,
+        9,
+        2
+      ],
+      "sum": 19,
+      "product": 144,
+      "prime_factors": [
+        2,
+        2,
+        223
+      ],
+      "digit_patterns": {
+        "is_palindromic": false,
+        "digit_sum": 19,
+        "digit_product": 144,
+        "fibonacci_sequence": true,
+        "prime_digits": false,
+        "ascending": false,
+        "descending": false
+      },
+      "bittorrent_connection": {
+        "relates_to_2001": false,
+        "contains_2001": false,
+        "bittorrent_ports": false,
+        "bram_cohen_birth": false
+      }
+    },
+    "cross_analysis": {
+      "ratio_2156_892": 2.4170403587443947,
+      "golden_ratio_proximity": 0.7990063699944998,
+      "metallic_ratio_proximity": 0.11426472101239993,
+      "bittorrent_era": {
+        "bittorrent_to_chia_years": 16,
+        "coordinate_sum": 3048,
+        "coordinate_product": 1923152,
+        "timeline_connection": {
+          "bittorrent_release": 2001,
+          "chia_founding": 2017,
+          "years_between": 16,
+          "coordinate_ratio": 2.4170403587443947,
+          "potential_date_encoding": {
+            "2156_as_year": false,
+            "892_as_time": true,
+            "coordinate_interpretation": {
+              "latitude_longitude": "21.56\u00b0N, 89.2\u00b0E",
+              "time_coordinates": "21:56, 8:92",
+              "bittorrent_blocks": "Block 2156, offset 892"
+            }
+          }
+        }
+      }
+    }
+  },
+  "bittorrent_era": {
+    "bittorrent_to_chia_years": 16,
+    "coordinate_sum": 3048,
+    "coordinate_product": 1923152,
+    "timeline_connection": {
+      "bittorrent_release": 2001,
+      "chia_founding": 2017,
+      "years_between": 16,
+      "coordinate_ratio": 2.4170403587443947,
+      "potential_date_encoding": {
+        "2156_as_year": false,
+        "892_as_time": true,
+        "coordinate_interpretation": {
+          "latitude_longitude": "21.56\u00b0N, 89.2\u00b0E",
+          "time_coordinates": "21:56, 8:92",
+          "bittorrent_blocks": "Block 2156, offset 892"
+        }
+      }
+    }
+  },
+  "consciousness_math": {
+    "2156": {
+      "error": "'FireflyUniversalDecoder' object has no attribute 'decode_signal'"
+    },
+    "892": {
+      "error": "'FireflyUniversalDecoder' object has no attribute 'decode_signal'"
+    },
+    "2.4170403587443947": {
+      "error": "'FireflyUniversalDecoder' object has no attribute 'decode_signal'"
+    },
+    "bittorrent": {
+      "error": "'FireflyUniversalDecoder' object has no attribute 'decode_signal'"
+    },
+    "bramcohen": {
+      "error": "'FireflyUniversalDecoder' object has no attribute 'decode_signal'"
+    }
+  },
+  "maximum_power_analysis": "[{'2156': IntegratedAnalysis(target_text='2156', all_decodings=[DecodingResult(method='homophonic', input_text='2156', decoded_text='CHIA', confidence=0.4, technique='pattern_based', key_used=None, metadata={'pattern_type': 'digit_groups'}), DecodingResult(method='firefly', input_text='2156', decoded_text='3488.481280', confidence=0.3, technique='golden_ratio_transform', key_used=None, metadata={'original': 2156.0, 'transform': 'phi_multiplication'}), DecodingResult(method='firefly', input_text='2156', decoded_text='5205.044440', confidence=0.3, technique='silver_ratio_transform', key_used=None, metadata={'original': 2156.0, 'transform': 'delta_multiplication'}), DecodingResult(method='firefly', input_text='2156', decoded_text='1703.240000', confidence=0.3, technique='consciousness_ratio_transform', key_used=None, metadata={'original': 2156.0, 'transform': 'consciousness_weighting'}), DecodingResult(method='firefly', input_text='2156', decoded_text='CONSCIOUSNESS_SEED', confidence=0.6, technique='sacred_text_analysis', key_used=None, metadata={'sacred_type': 'universal'}), DecodingResult(method='pattern_analysis', input_text='2156', decoded_text='CHIA_FRIENDS_SEED', confidence=0.9000000000000001, technique='chia_specific_replacement', key_used=None, metadata={'original_pattern': '2156', 'replacement': 'CHIA_FRIENDS_SEED'})], top_candidates=['CHIA_FRIENDS_SEED', 'CONSCIOUSNESS_SEED', 'CHIA', '3488.481280', '5205.044440'], consciousness_analysis={'consciousness_levels': [21, 21, 21], 'mathematical_relationships': [{'value': 3488.48128, 'relationship': 'golden_ratio', 'ratio': 2156.0000001577387}], 'cetacean_frequencies': [{'frequency': 3488.48128, 'species': 'whale'}, {'frequency': 5205.04444, 'species': 'whale'}, {'frequency': 1703.24, 'species': 'whale'}], 'sacred_patterns': []}, pattern_analysis={'common_substrings': [{'substring': 'S_SEED', 'frequency': 2, 'sources': [4, 5], 'unique_sources': 2}, {'substring': 'S_SEE', 'frequency': 2, 'sources': [4, 5], 'unique_sources': 2}, {'substring': '_SEED', 'frequency': 2, 'sources': [4, 5], 'unique_sources': 2}, {'substring': 'CHIA', 'frequency': 2, 'sources': [0, 5], 'unique_sources': 2}, {'substring': 'S_SE', 'frequency': 2, 'sources': [4, 5], 'unique_sources': 2}], 'recurring_themes': [], 'structural_patterns': [], 'confidence_distribution': {'high': 1, 'medium': 2, 'low': 3, 'average': 0.4666666666666666}}, confidence_score=0.7654666666666666)}, {'892': IntegratedAnalysis(target_text='892', all_decodings=[DecodingResult(method='homophonic', input_text='892', decoded_text='89B', confidence=0.5, technique='number_to_letter_mapping', key_used=None, metadata={'mapping_type': 'chia_specific'}), DecodingResult(method='homophonic', input_text='892', decoded_text='FRIENDS', confidence=0.4, technique='pattern_based', key_used=None, metadata={'pattern_type': 'digit_groups'}), DecodingResult(method='firefly', input_text='892', decoded_text='1443.286318', confidence=0.3, technique='golden_ratio_transform', key_used=None, metadata={'original': 892.0, 'transform': 'phi_multiplication'}), DecodingResult(method='firefly', input_text='892', decoded_text='2153.478498', confidence=0.3, technique='silver_ratio_transform', key_used=None, metadata={'original': 892.0, 'transform': 'delta_multiplication'}), DecodingResult(method='firefly', input_text='892', decoded_text='704.680000', confidence=0.3, technique='consciousness_ratio_transform', key_used=None, metadata={'original': 892.0, 'transform': 'consciousness_weighting'}), DecodingResult(method='firefly', input_text='892', decoded_text='BIBLICAL_REFERENCE', confidence=0.6, technique='sacred_text_analysis', key_used=None, metadata={'sacred_type': 'universal'}), DecodingResult(method='pattern_analysis', input_text='892', decoded_text='ETHIOPIAN_BIBLE_REFERENCE', confidence=0.7, technique='chia_specific_replacement', key_used=None, metadata={'original_pattern': '892', 'replacement': 'ETHIOPIAN_BIBLE_REFERENCE'})], top_candidates=['ETHIOPIAN_BIBLE_REFERENCE', 'BIBLICAL_REFERENCE', 'FRIENDS', '89B', '1443.286318'], consciousness_analysis={'consciousness_levels': [8, 21, 21, 21], 'mathematical_relationships': [{'value': 89.0, 'relationship': 'golden_ratio', 'ratio': 55.00502499874064}, {'value': 1443.286318, 'relationship': 'golden_ratio', 'ratio': 892.0000000216891}], 'cetacean_frequencies': [{'frequency': 89.0, 'species': 'dolphin'}, {'frequency': 1443.286318, 'species': 'whale'}, {'frequency': 2153.478498, 'species': 'whale'}, {'frequency': 704.68, 'species': 'dolphin'}], 'sacred_patterns': []}, pattern_analysis={'common_substrings': [{'substring': '_REFERENCE', 'frequency': 2, 'sources': [5, 6], 'unique_sources': 2}, {'substring': '_REFERENC', 'frequency': 2, 'sources': [5, 6], 'unique_sources': 2}, {'substring': 'REFERENCE', 'frequency': 2, 'sources': [5, 6], 'unique_sources': 2}, {'substring': '_REFEREN', 'frequency': 2, 'sources': [5, 6], 'unique_sources': 2}, {'substring': 'REFERENC', 'frequency': 2, 'sources': [5, 6], 'unique_sources': 2}], 'recurring_themes': [], 'structural_patterns': [], 'confidence_distribution': {'high': 0, 'medium': 4, 'low': 3, 'average': 0.4428571428571428}}, confidence_score=0.7724428571428571)}, {'2.4170403587443947': IntegratedAnalysis(target_text='2.4170403587443947', all_decodings=[DecodingResult(method='homophonic', input_text='2.4170403587443947', decoded_text='BDOT4A7U4U3HO7443R47', confidence=0.5, technique='number_to_letter_mapping', key_used=None, metadata={'mapping_type': 'chia_specific'}), DecodingResult(method='firefly', input_text='2.4170403587443947', decoded_text='3.910853', confidence=0.3, technique='golden_ratio_transform', key_used=None, metadata={'original': 2.4170403587443947, 'transform': 'phi_multiplication'}), DecodingResult(method='firefly', input_text='2.4170403587443947', decoded_text='5.835252', confidence=0.3, technique='silver_ratio_transform', key_used=None, metadata={'original': 2.4170403587443947, 'transform': 'delta_multiplication'}), DecodingResult(method='firefly', input_text='2.4170403587443947', decoded_text='1.909462', confidence=0.3, technique='consciousness_ratio_transform', key_used=None, metadata={'original': 2.4170403587443947, 'transform': 'consciousness_weighting'})], top_candidates=['BDOT4A7U4U3HO7443R47', '3.910853', '5.835252', '1.909462'], consciousness_analysis={'consciousness_levels': [21, 1, 1, 1], 'mathematical_relationships': [], 'cetacean_frequencies': [{'frequency': 7443.0, 'species': 'whale'}, {'frequency': 47.0, 'species': 'dolphin'}], 'sacred_patterns': []}, pattern_analysis={'common_substrings': [], 'recurring_themes': [], 'structural_patterns': [], 'confidence_distribution': {'high': 0, 'medium': 1, 'low': 3, 'average': 0.35000000000000003}}, confidence_score=0.436)}, {'bittorrent': IntegratedAnalysis(target_text='bittorrent', all_decodings=[], top_candidates=[], consciousness_analysis={'consciousness_levels': [], 'mathematical_relationships': [], 'cetacean_frequencies': [], 'sacred_patterns': []}, pattern_analysis={'common_substrings': [], 'recurring_themes': [], 'structural_patterns': [], 'confidence_distribution': {}}, confidence_score=0.0)}, {'bramcohen': IntegratedAnalysis(target_text='bramcohen', all_decodings=[], top_candidates=[], consciousness_analysis={'consciousness_levels': [], 'mathematical_relationships': [], 'cetacean_frequencies': [], 'sacred_patterns': []}, pattern_analysis={'common_substrings': [], 'recurring_themes': [], 'structural_patterns': [], 'confidence_distribution': {}}, confidence_score=0.0)}, {'chiafriends': IntegratedAnalysis(target_text='chiafriends', all_decodings=[], top_candidates=[], consciousness_analysis={'consciousness_levels': [], 'mathematical_relationships': [], 'cetacean_frequencies': [], 'sacred_patterns': []}, pattern_analysis={'common_substrings': [], 'recurring_themes': [], 'structural_patterns': [], 'confidence_distribution': {}}, confidence_score=0.0)}]",
+  "cross_reference": "{'golden_ratio_alignment': 0.7990063699944998, 'is_golden_ratio': False, 'prime_patterns': {'2156_primes': [2, 2, 7, 7, 11], '892_primes': [2, 2, 223], 'shared_primes': {2}}, 'consciousness_correlation': {'average_level': 0.0, 'max_level': 0, 'puzzle_coordinates_highly_conscious': False}, 'bram_cohen_hypothesis': {'puzzle_designer_confirmed': True, 'chia_connection_confirmed': True, 'steganography_expected': True, 'multiple_encoding_layers': True, 'consciousness_mathematics': True}}"
+}

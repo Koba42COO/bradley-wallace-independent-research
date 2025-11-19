@@ -1,0 +1,1364 @@
+from __future__ import annotations
+
+import asyncio
+import copy
+import logging
+import random
+import re
+import time
+from collections.abc import AsyncIterator, Awaitable
+from contextlib import asynccontextmanager
+from dataclasses import dataclass, replace
+from typing import Optional
+
+import pytest
+from chia_rs import (
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+    AugSchemeMPL,
+    BlockRecord,
+    ConsensusConstants,
+    EndOfSubSlotBundle,
+    FullBlock,
+    G2Element,
+    InfusedChallengeChainSubSlot,
+    MerkleSet,
+    SpendBundle,
+    SpendBundleConditions,
+    SpendConditions,
+    TransactionsInfo,
+    UnfinishedBlock,
+    is_canonical_serialization,
+)
+from chia_rs.sized_bytes import bytes32
+from chia_rs.sized_ints import uint8, uint32, uint64
+
+from chia._tests.blockchain.blockchain_test_utils import (
+    _validate_and_add_block,
+    _validate_and_add_block_multi_error,
+    _validate_and_add_block_multi_result,
+    _validate_and_add_block_no_error,
+    check_block_store_invariant,
+)
+from chia._tests.conftest import ConsensusMode
+from chia._tests.util.blockchain import create_blockchain
+from chia._tests.util.get_name_puzzle_conditions import get_name_puzzle_conditions
+from chia.consensus.augmented_chain import AugmentedBlockchain
+from chia.consensus.block_body_validation import ForkAdd, ForkInfo
+from chia.consensus.block_header_validation import validate_finished_header_block
+from chia.consensus.block_rewards import calculate_base_farmer_reward
+from chia.consensus.blockchain import AddBlockResult, Blockchain
+from chia.consensus.coinbase import create_farmer_coin
+from chia.consensus.find_fork_point import lookup_fork_chain
+from chia.consensus.full_block_to_block_record import block_to_block_record
+from chia.consensus.generator_tools import get_block_header
+from chia.consensus.get_block_generator import get_block_generator
+from chia.consensus.multiprocess_validation import PreValidationResult, pre_validate_block
+from chia.consensus.pot_iterations import is_overflow_block
+from chia.simulator.block_tools import BlockTools, create_block_tools_async
+from chia.simulator.keyring import TempKeyring
+from chia.simulator.vdf_prover import get_vdf_info_and_proof
+from chia.simulator.wallet_tools import WalletTool
+from chia.types.blockchain_format.classgroup import ClassgroupElement
+from chia.types.blockchain_format.coin import Coin
+from chia.types.blockchain_format.serialized_program import SerializedProgram
+from chia.types.blockchain_format.vdf import VDFInfo, VDFProof, validate_vdf
+from chia.types.condition_opcodes import ConditionOpcode
+from chia.types.condition_with_args import ConditionWithArgs
+from chia.types.generator_types import BlockGenerator
+from chia.types.validation_state import ValidationState
+from chia.util.casts import int_to_bytes
+from chia.util.errors import Err
+from chia.util.hash import std_hash
+from chia.util.keychain import Keychain
+from chia.util.recursive_replace import recursive_replace
+from chia.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
+    DEFAULT_HIDDEN_PUZZLE_HASH,
+    calculate_synthetic_secret_key,
+)
+
+log = logging.getLogger(__name__)
+bad_element = ClassgroupElement.create(b"\x00")
+
+
+@asynccontextmanager
+async def make_empty_blockchain(constants: ConsensusConstants) -> AsyncIterator[Blockchain]:
+    """
+    Provides a list of 10 valid blocks, as well as a blockchain with 9 blocks added to it.
+    """
+
+    async with create_blockchain(constants, 2) as (bc, _):
+        yield bc
+
+
+class TestGenesisBlock:
+    @pytest.mark.anyio
+    async def test_block_tools_proofs_400(
+        self, default_400_blocks: list[FullBlock], blockchain_constants: ConsensusConstants
+    ) -> None:
+        vdf, proof = get_vdf_info_and_proof(
+            blockchain_constants,
+            ClassgroupElement.get_default_element(),
+            blockchain_constants.GENESIS_CHALLENGE,
+            uint64(231),
+        )
+        if validate_vdf(proof, blockchain_constants, ClassgroupElement.get_default_element(), vdf) is False:
+            raise Exception("invalid proof")
+
+    @pytest.mark.anyio
+    async def test_block_tools_proofs_1000(
+        self, default_1000_blocks: list[FullBlock], blockchain_constants: ConsensusConstants
+    ) -> None:
+        vdf, proof = get_vdf_info_and_proof(
+            blockchain_constants,
+            ClassgroupElement.get_default_element(),
+            blockchain_constants.GENESIS_CHALLENGE,
+            uint64(231),
+        )
+        if validate_vdf(proof, blockchain_constants, ClassgroupElement.get_default_element(), vdf) is False:
+            raise Exception("invalid proof")
+
+    @pytest.mark.anyio
+    async def test_block_tools_proofs(self, blockchain_constants: ConsensusConstants) -> None:
+        vdf, proof = get_vdf_info_and_proof(
+            blockchain_constants,
+            ClassgroupElement.get_default_element(),
+            blockchain_constants.GENESIS_CHALLENGE,
+            uint64(231),
+        )
+        if validate_vdf(proof, blockchain_constants, ClassgroupElement.get_default_element(), vdf) is False:
+            raise Exception("invalid proof")
+
+    @pytest.mark.anyio
+    async def test_non_overflow_genesis(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        assert empty_blockchain.get_peak() is None
+        genesis = bt.get_consecutive_blocks(1, force_overflow=False)[0]
+        await _validate_and_add_block(empty_blockchain, genesis)
+        peak = empty_blockchain.get_peak()
+        assert peak is not None
+        assert peak.height == 0
+
+    @pytest.mark.anyio
+    async def test_overflow_genesis(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        genesis = bt.get_consecutive_blocks(1, force_overflow=True)[0]
+        await _validate_and_add_block(empty_blockchain, genesis)
+
+    @pytest.mark.anyio
+    async def test_genesis_empty_slots(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        genesis = bt.get_consecutive_blocks(1, force_overflow=False, skip_slots=30)[0]
+        await _validate_and_add_block(empty_blockchain, genesis)
+
+    @pytest.mark.anyio
+    async def test_overflow_genesis_empty_slots(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        genesis = bt.get_consecutive_blocks(1, force_overflow=True, skip_slots=3)[0]
+        await _validate_and_add_block(empty_blockchain, genesis)
+
+    @pytest.mark.anyio
+    async def test_genesis_validate_1(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        genesis = bt.get_consecutive_blocks(1, force_overflow=False)[0]
+        bad_prev = bytes([1] * 32)
+        genesis = recursive_replace(genesis, "foliage.prev_block_hash", bad_prev)
+        await _validate_and_add_block(empty_blockchain, genesis, expected_error=Err.INVALID_PREV_BLOCK_HASH)
+
+
+class TestBlockHeaderValidation:
+    @pytest.mark.anyio
+    async def test_long_chain(self, empty_blockchain: Blockchain, default_1000_blocks: list[FullBlock]) -> None:
+        blocks = default_1000_blocks
+        fork_info = ForkInfo(blocks[0].height - 1, blocks[0].height - 1, blocks[0].prev_header_hash)
+        for block in blocks:
+            if (
+                len(block.finished_sub_slots) == 0
+                or block.finished_sub_slots[0].challenge_chain.subepoch_summary_hash is None
+            ):
+                await _validate_and_add_block(empty_blockchain, block, fork_info=fork_info)
+                continue
+
+            # TODO: deduplicate the test code, perhaps by parameterizing the
+            # test
+
+            # Sub/Epoch. Try using a bad ssi and difficulty to test 2m and 2n
+            new_finished_ss = recursive_replace(
+                block.finished_sub_slots[0],
+                "challenge_chain.new_sub_slot_iters",
+                uint64(10_000_000),
+            )
+            block_bad = recursive_replace(block, "finished_sub_slots", [new_finished_ss, *block.finished_sub_slots[1:]])
+            header_block_bad = get_block_header(block_bad)
+            # TODO: Inspect these block values as they are currently None
+            expected_difficulty = block.finished_sub_slots[0].challenge_chain.new_difficulty or uint64(0)
+            expected_sub_slot_iters = block.finished_sub_slots[0].challenge_chain.new_sub_slot_iters or uint64(0)
+            expected_vs = ValidationState(expected_sub_slot_iters, expected_difficulty, None)
+            _, error = validate_finished_header_block(
+                empty_blockchain.constants, empty_blockchain, header_block_bad, False, expected_vs
+            )
+            assert error is not None
+            assert error.code == Err.INVALID_NEW_SUB_SLOT_ITERS
+
+            # Also fails calling the outer methods, but potentially with a different error
+            await _validate_and_add_block(
+                empty_blockchain, block_bad, expected_result=AddBlockResult.INVALID_BLOCK, fork_info=fork_info
+            )
+
+            new_finished_ss = recursive_replace(
+                block.finished_sub_slots[0],
+                "challenge_chain.new_difficulty",
+                uint64(10_000_000),
+            )
+            block_bad = recursive_replace(block, "finished_sub_slots", [new_finished_ss, *block.finished_sub_slots[1:]])
+
+            header_block_bad = get_block_header(block_bad)
+            # TODO: Inspect these block values as they are currently None
+            expected_difficulty = block.finished_sub_slots[0].challenge_chain.new_difficulty or uint64(0)
+            expected_sub_slot_iters = block.finished_sub_slots[0].challenge_chain.new_sub_slot_iters or uint64(0)
+            expected_vs = ValidationState(expected_sub_slot_iters, expected_difficulty, None)
+            _, error = validate_finished_header_block(
+                empty_blockchain.constants, empty_blockchain, header_block_bad, False, expected_vs
+            )
+            assert error is not None
+            assert error.code == Err.INVALID_NEW_DIFFICULTY
+
+            # Also fails calling the outer methods, but potentially with a different error
+            await _validate_and_add_block(
+                empty_blockchain, block_bad, expected_result=AddBlockResult.INVALID_BLOCK, fork_info=fork_info
+            )
+
+            # 3c
+            new_finished_ss = recursive_replace(
+                block.finished_sub_slots[0],
+                "challenge_chain.subepoch_summary_hash",
+                bytes([0] * 32),
+            )
+            new_finished_ss = recursive_replace(
+                new_finished_ss,
+                "reward_chain.challenge_chain_sub_slot_hash",
+                new_finished_ss.challenge_chain.get_hash(),
+            )
+            log.warning(f"Number of slots: {len(block.finished_sub_slots)}")
+            block_bad = recursive_replace(block, "finished_sub_slots", [new_finished_ss])
+
+            header_block_bad = get_block_header(block_bad)
+            # TODO: Inspect these block values as they are currently None
+            expected_difficulty = block.finished_sub_slots[0].challenge_chain.new_difficulty or uint64(0)
+            expected_sub_slot_iters = block.finished_sub_slots[0].challenge_chain.new_sub_slot_iters or uint64(0)
+            expected_vs = ValidationState(expected_sub_slot_iters, expected_difficulty, None)
+            _, error = validate_finished_header_block(
+                empty_blockchain.constants, empty_blockchain, header_block_bad, False, expected_vs
+            )
+            assert error is not None
+            assert error.code == Err.INVALID_SUB_EPOCH_SUMMARY
+
+            # Also fails calling the outer methods, but potentially with a different error
+            await _validate_and_add_block(
+                empty_blockchain, block_bad, expected_result=AddBlockResult.INVALID_BLOCK, fork_info=fork_info
+            )
+
+            # 3d
+            new_finished_ss = recursive_replace(
+                block.finished_sub_slots[0],
+                "challenge_chain.subepoch_summary_hash",
+                std_hash(b"123"),
+            )
+            new_finished_ss = recursive_replace(
+                new_finished_ss,
+                "reward_chain.challenge_chain_sub_slot_hash",
+                new_finished_ss.challenge_chain.get_hash(),
+            )
+            block_bad = recursive_replace(block, "finished_sub_slots", [new_finished_ss])
+
+            header_block_bad = get_block_header(block_bad)
+            # TODO: Inspect these block values as they are currently None
+            expected_difficulty = block.finished_sub_slots[0].challenge_chain.new_difficulty or uint64(0)
+            expected_sub_slot_iters = block.finished_sub_slots[0].challenge_chain.new_sub_slot_iters or uint64(0)
+            expected_vs = ValidationState(expected_sub_slot_iters, expected_difficulty, None)
+            _, error = validate_finished_header_block(
+                empty_blockchain.constants, empty_blockchain, header_block_bad, False, expected_vs
+            )
+            assert error is not None
+            assert error.code == Err.INVALID_SUB_EPOCH_SUMMARY
+
+            # Also fails calling the outer methods, but potentially with a different error
+            await _validate_and_add_block(
+                empty_blockchain, block_bad, expected_result=AddBlockResult.INVALID_BLOCK, fork_info=fork_info
+            )
+
+            await _validate_and_add_block(empty_blockchain, block, fork_info=fork_info)
+            log.info(
+                f"Added block {block.height} total iters {block.total_iters} new slot? {len(block.finished_sub_slots)}"
+            )
+        peak = empty_blockchain.get_peak()
+        assert peak is not None
+        assert peak.height == len(blocks) - 1
+
+    @pytest.mark.anyio
+    async def test_unfinished_blocks(
+        self, empty_blockchain: Blockchain, softfork_height: uint32, bt: BlockTools
+    ) -> None:
+        blockchain = empty_blockchain
+        blocks = bt.get_consecutive_blocks(3)
+        for block in blocks[:-1]:
+            await _validate_and_add_block(empty_blockchain, block)
+        block = blocks[-1]
+        unf = UnfinishedBlock(
+            block.finished_sub_slots,
+            block.reward_chain_block.get_unfinished(),
+            block.challenge_chain_sp_proof,
+            block.reward_chain_sp_proof,
+            block.foliage,
+            block.foliage_transaction_block,
+            block.transactions_info,
+            block.transactions_generator,
+            [],
+        )
+        npc_result = None
+        # if this assert fires, remove it along with the pragma for the block
+        # below
+        assert unf.transactions_generator is None
+        if unf.transactions_generator is not None:  # pragma: no cover
+            block_generator = await get_block_generator(blockchain.lookup_block_generators, unf)
+            assert block_generator is not None
+            block_bytes = bytes(unf)
+            npc_result = await blockchain.run_generator(block_bytes, block_generator, height=softfork_height)
+
+        validate_res = await blockchain.validate_unfinished_block(unf, npc_result, False)
+        err = validate_res.error
+        assert err is None
+
+        await _validate_and_add_block(empty_blockchain, block)
+        blocks = bt.get_consecutive_blocks(1, block_list_input=blocks, force_overflow=True)
+        block = blocks[-1]
+        unf = UnfinishedBlock(
+            block.finished_sub_slots,
+            block.reward_chain_block.get_unfinished(),
+            block.challenge_chain_sp_proof,
+            block.reward_chain_sp_proof,
+            block.foliage,
+            block.foliage_transaction_block,
+            block.transactions_info,
+            block.transactions_generator,
+            [],
+        )
+        npc_result = None
+        # if this assert fires, remove it along with the pragma for the block
+        # below
+        assert unf.transactions_generator is None
+        if unf.transactions_generator is not None:  # pragma: no cover
+            block_generator = await get_block_generator(blockchain.lookup_block_generators, unf)
+            assert block_generator is not None
+            block_bytes = bytes(unf)
+            npc_result = await blockchain.run_generator(block_bytes, block_generator, height=softfork_height)
+        validate_res = await blockchain.validate_unfinished_block(unf, npc_result, False)
+        assert validate_res.error is None
+
+    @pytest.mark.anyio
+    async def test_empty_genesis(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        for block in bt.get_consecutive_blocks(2, skip_slots=3):
+            await _validate_and_add_block(empty_blockchain, block)
+
+    @pytest.mark.anyio
+    async def test_empty_slots_non_genesis(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        blockchain = empty_blockchain
+        blocks = bt.get_consecutive_blocks(10)
+        for block in blocks:
+            await _validate_and_add_block(empty_blockchain, block)
+
+        blocks = bt.get_consecutive_blocks(10, skip_slots=2, block_list_input=blocks)
+        for block in blocks[10:]:
+            await _validate_and_add_block(empty_blockchain, block)
+        peak = blockchain.get_peak()
+        assert peak is not None
+        assert peak.height == 19
+
+    @pytest.mark.anyio
+    async def test_one_sb_per_slot(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        blockchain = empty_blockchain
+        num_blocks = 20
+        blocks: list[FullBlock] = []
+        for _ in range(num_blocks):
+            blocks = bt.get_consecutive_blocks(1, block_list_input=blocks, skip_slots=1)
+            await _validate_and_add_block(empty_blockchain, blocks[-1])
+        peak = blockchain.get_peak()
+        assert peak is not None
+        assert peak.height == num_blocks - 1
+
+    @pytest.mark.anyio
+    async def test_all_overflow(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        blockchain = empty_blockchain
+        num_rounds = 5
+        blocks: list[FullBlock] = []
+        num_blocks = 0
+        for i in range(1, num_rounds):
+            num_blocks += i
+            blocks = bt.get_consecutive_blocks(i, block_list_input=blocks, skip_slots=1, force_overflow=True)
+            for block in blocks[-i:]:
+                await _validate_and_add_block(empty_blockchain, block)
+        peak = blockchain.get_peak()
+        assert peak is not None
+        assert peak.height == num_blocks - 1
+
+    @pytest.mark.anyio
+    async def test_unf_block_overflow(
+        self, empty_blockchain: Blockchain, softfork_height: uint32, bt: BlockTools
+    ) -> None:
+        blockchain = empty_blockchain
+
+        blocks: list[FullBlock] = []
+        while True:
+            # This creates an overflow block, then a normal block, and then an overflow in the next sub-slot
+            # blocks = bt.get_consecutive_blocks(1, block_list_input=blocks, force_overflow=True)
+            blocks = bt.get_consecutive_blocks(1, block_list_input=blocks)
+            blocks = bt.get_consecutive_blocks(1, block_list_input=blocks, force_overflow=True)
+
+            await _validate_and_add_block(blockchain, blocks[-2])
+
+            sb_1 = blockchain.block_record(blocks[-2].header_hash)
+
+            sb_2_next_ss = blocks[-1].total_iters - blocks[-2].total_iters < sb_1.sub_slot_iters
+            # We might not get a normal block for sb_2, and we might not get them in the right slots
+            # So this while loop keeps trying
+            if sb_1.overflow and sb_2_next_ss:
+                block = blocks[-1]
+                unf = UnfinishedBlock(
+                    [],
+                    block.reward_chain_block.get_unfinished(),
+                    block.challenge_chain_sp_proof,
+                    block.reward_chain_sp_proof,
+                    block.foliage,
+                    block.foliage_transaction_block,
+                    block.transactions_info,
+                    block.transactions_generator,
+                    [],
+                )
+                npc_result = None
+                # if this assert fires, remove it along with the pragma for the block
+                # below
+                assert block.transactions_generator is None
+                if block.transactions_generator is not None:  # pragma: no cover
+                    block_generator = await get_block_generator(blockchain.lookup_block_generators, unf)
+                    assert block_generator is not None
+                    block_bytes = bytes(unf)
+                    npc_result = await blockchain.run_generator(block_bytes, block_generator, height=softfork_height)
+                validate_res = await blockchain.validate_unfinished_block(
+                    unf, npc_result, skip_overflow_ss_validation=True
+                )
+                assert validate_res.error is None
+                return None
+
+            await _validate_and_add_block(blockchain, blocks[-1])
+
+    @pytest.mark.anyio
+    async def test_one_sb_per_two_slots(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        blockchain = empty_blockchain
+        num_blocks = 20
+        blocks: list[FullBlock] = []
+        for _ in range(num_blocks):  # Same thing, but 2 sub-slots per block
+            blocks = bt.get_consecutive_blocks(1, block_list_input=blocks, skip_slots=2)
+            await _validate_and_add_block(blockchain, blocks[-1])
+        peak = blockchain.get_peak()
+        assert peak is not None
+        assert peak.height == num_blocks - 1
+
+    @pytest.mark.anyio
+    async def test_one_sb_per_five_slots(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        blockchain = empty_blockchain
+        num_blocks = 10
+        blocks: list[FullBlock] = []
+        for _ in range(num_blocks):  # Same thing, but 5 sub-slots per block
+            blocks = bt.get_consecutive_blocks(1, block_list_input=blocks, skip_slots=5)
+            await _validate_and_add_block(blockchain, blocks[-1])
+        peak = blockchain.get_peak()
+        assert peak is not None
+        assert peak.height == num_blocks - 1
+
+    @pytest.mark.anyio
+    async def test_basic_chain_overflow(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        blocks = bt.get_consecutive_blocks(5, force_overflow=True)
+        for block in blocks:
+            await _validate_and_add_block(empty_blockchain, block)
+        peak = empty_blockchain.get_peak()
+        assert peak is not None
+        assert peak.height == len(blocks) - 1
+
+    @pytest.mark.anyio
+    async def test_one_sb_per_two_slots_force_overflow(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        blockchain = empty_blockchain
+        num_blocks = 10
+        blocks: list[FullBlock] = []
+        for _ in range(num_blocks):
+            blocks = bt.get_consecutive_blocks(1, block_list_input=blocks, skip_slots=2, force_overflow=True)
+            await _validate_and_add_block(blockchain, blocks[-1])
+        peak = blockchain.get_peak()
+        assert peak is not None
+        assert peak.height == num_blocks - 1
+
+    @pytest.mark.anyio
+    async def test_invalid_prev(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 1
+        blocks = bt.get_consecutive_blocks(2, force_overflow=False)
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+        block_1_bad = recursive_replace(blocks[-1], "foliage.prev_block_hash", bytes([0] * 32))
+
+        await _validate_and_add_block(empty_blockchain, block_1_bad, expected_error=Err.INVALID_PREV_BLOCK_HASH)
+
+    @pytest.mark.anyio
+    async def test_invalid_pospace(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 2
+        blocks = bt.get_consecutive_blocks(2, force_overflow=False)
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+        block_1_bad = recursive_replace(blocks[-1], "reward_chain_block.proof_of_space.proof", bytes([0] * 32))
+
+        await _validate_and_add_block(empty_blockchain, block_1_bad, expected_error=Err.INVALID_POSPACE)
+
+    @pytest.mark.anyio
+    async def test_invalid_sub_slot_challenge_hash_genesis(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 2a
+        blocks = bt.get_consecutive_blocks(1, force_overflow=False, skip_slots=1)
+        new_finished_ss = recursive_replace(
+            blocks[0].finished_sub_slots[0],
+            "challenge_chain.challenge_chain_end_of_slot_vdf.challenge",
+            bytes([2] * 32),
+        )
+        block_0_bad = recursive_replace(
+            blocks[0], "finished_sub_slots", [new_finished_ss, *blocks[0].finished_sub_slots[1:]]
+        )
+
+        header_block_bad = get_block_header(block_0_bad)
+        expected_vs = ValidationState(
+            empty_blockchain.constants.SUB_SLOT_ITERS_STARTING, empty_blockchain.constants.DIFFICULTY_STARTING, None
+        )
+        _, error = validate_finished_header_block(
+            empty_blockchain.constants, empty_blockchain, header_block_bad, False, expected_vs
+        )
+
+        assert error is not None
+        assert error.code == Err.INVALID_PREV_CHALLENGE_SLOT_HASH
+        await _validate_and_add_block(empty_blockchain, block_0_bad, expected_result=AddBlockResult.INVALID_BLOCK)
+
+    @pytest.mark.anyio
+    async def test_invalid_sub_slot_challenge_hash_non_genesis(
+        self, empty_blockchain: Blockchain, bt: BlockTools
+    ) -> None:
+        # 2b
+        blocks = bt.get_consecutive_blocks(1, force_overflow=False, skip_slots=0)
+        blocks = bt.get_consecutive_blocks(1, force_overflow=False, skip_slots=1, block_list_input=blocks)
+        new_finished_ss = recursive_replace(
+            blocks[1].finished_sub_slots[0],
+            "challenge_chain.challenge_chain_end_of_slot_vdf.challenge",
+            bytes([2] * 32),
+        )
+        block_1_bad = recursive_replace(
+            blocks[1], "finished_sub_slots", [new_finished_ss, *blocks[1].finished_sub_slots[1:]]
+        )
+
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+        header_block_bad = get_block_header(block_1_bad)
+        # TODO: Inspect these block values as they are currently None
+        expected_difficulty = blocks[1].finished_sub_slots[0].challenge_chain.new_difficulty or uint64(0)
+        expected_sub_slot_iters = blocks[1].finished_sub_slots[0].challenge_chain.new_sub_slot_iters or uint64(0)
+        expected_vs = ValidationState(expected_sub_slot_iters, expected_difficulty, None)
+        _, error = validate_finished_header_block(
+            empty_blockchain.constants, empty_blockchain, header_block_bad, False, expected_vs
+        )
+        assert error is not None
+        assert error.code == Err.INVALID_PREV_CHALLENGE_SLOT_HASH
+        await _validate_and_add_block(empty_blockchain, block_1_bad, expected_result=AddBlockResult.INVALID_BLOCK)
+
+    @pytest.mark.anyio
+    async def test_invalid_sub_slot_challenge_hash_empty_ss(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 2c
+        blocks = bt.get_consecutive_blocks(1, force_overflow=False, skip_slots=0)
+        blocks = bt.get_consecutive_blocks(1, force_overflow=False, skip_slots=2, block_list_input=blocks)
+        new_finished_ss = recursive_replace(
+            blocks[1].finished_sub_slots[-1],
+            "challenge_chain.challenge_chain_end_of_slot_vdf.challenge",
+            bytes([2] * 32),
+        )
+        block_1_bad = recursive_replace(
+            blocks[1], "finished_sub_slots", [*blocks[1].finished_sub_slots[:-1], new_finished_ss]
+        )
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+
+        header_block_bad = get_block_header(block_1_bad)
+        # TODO: Inspect these block values as they are currently None
+        expected_difficulty = blocks[1].finished_sub_slots[0].challenge_chain.new_difficulty or uint64(0)
+        expected_sub_slot_iters = blocks[1].finished_sub_slots[0].challenge_chain.new_sub_slot_iters or uint64(0)
+        expected_vs = ValidationState(expected_sub_slot_iters, expected_difficulty, None)
+        _, error = validate_finished_header_block(
+            empty_blockchain.constants, empty_blockchain, header_block_bad, False, expected_vs
+        )
+        assert error is not None
+        assert error.code == Err.INVALID_PREV_CHALLENGE_SLOT_HASH
+        await _validate_and_add_block(empty_blockchain, block_1_bad, expected_result=AddBlockResult.INVALID_BLOCK)
+
+    @pytest.mark.anyio
+    async def test_genesis_no_icc(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 2d
+        blocks = bt.get_consecutive_blocks(1, force_overflow=False, skip_slots=1)
+        new_finished_ss = recursive_replace(
+            blocks[0].finished_sub_slots[0],
+            "infused_challenge_chain",
+            InfusedChallengeChainSubSlot(
+                VDFInfo(
+                    bytes32.zeros,
+                    uint64(1200),
+                    ClassgroupElement.get_default_element(),
+                )
+            ),
+        )
+        block_0_bad = recursive_replace(
+            blocks[0], "finished_sub_slots", [new_finished_ss, *blocks[0].finished_sub_slots[1:]]
+        )
+        await _validate_and_add_block(empty_blockchain, block_0_bad, expected_error=Err.SHOULD_NOT_HAVE_ICC)
+
+    async def do_test_invalid_icc_sub_slot_vdf(
+        self, keychain: Keychain, db_version: int, constants: ConsensusConstants
+    ) -> None:
+        bt_high_iters = await create_block_tools_async(
+            constants=constants.replace(
+                SUB_SLOT_ITERS_STARTING=uint64(2**12),
+                DIFFICULTY_STARTING=uint64(2**14),
+            ),
+            keychain=keychain,
+        )
+        async with create_blockchain(bt_high_iters.constants, db_version) as (bc1, _):
+            blocks = bt_high_iters.get_consecutive_blocks(10)
+            for block in blocks:
+                if (
+                    len(block.finished_sub_slots) > 0
+                    and block.finished_sub_slots[-1].infused_challenge_chain is not None
+                ):
+                    # Bad iters
+                    new_finished_ss = recursive_replace(
+                        block.finished_sub_slots[-1],
+                        "infused_challenge_chain",
+                        InfusedChallengeChainSubSlot(
+                            block.finished_sub_slots[
+                                -1
+                            ].infused_challenge_chain.infused_challenge_chain_end_of_slot_vdf.replace(
+                                number_of_iterations=uint64(10000000),
+                            )
+                        ),
+                    )
+                    block_bad = recursive_replace(
+                        block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss]
+                    )
+                    await _validate_and_add_block(bc1, block_bad, expected_error=Err.INVALID_ICC_EOS_VDF)
+
+                    # Bad output
+                    new_finished_ss_2 = recursive_replace(
+                        block.finished_sub_slots[-1],
+                        "infused_challenge_chain",
+                        InfusedChallengeChainSubSlot(
+                            block.finished_sub_slots[
+                                -1
+                            ].infused_challenge_chain.infused_challenge_chain_end_of_slot_vdf.replace(
+                                output=ClassgroupElement.get_default_element(),
+                            )
+                        ),
+                    )
+                    log.warning(f"Proof: {block.finished_sub_slots[-1].proofs}")
+                    block_bad_2 = recursive_replace(
+                        block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss_2]
+                    )
+                    await _validate_and_add_block(bc1, block_bad_2, expected_error=Err.INVALID_ICC_EOS_VDF)
+
+                    # Bad challenge hash
+                    new_finished_ss_3 = recursive_replace(
+                        block.finished_sub_slots[-1],
+                        "infused_challenge_chain",
+                        InfusedChallengeChainSubSlot(
+                            block.finished_sub_slots[
+                                -1
+                            ].infused_challenge_chain.infused_challenge_chain_end_of_slot_vdf.replace(
+                                challenge=bytes32.zeros
+                            )
+                        ),
+                    )
+                    block_bad_3 = recursive_replace(
+                        block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss_3]
+                    )
+                    await _validate_and_add_block(bc1, block_bad_3, expected_error=Err.INVALID_ICC_EOS_VDF)
+
+                    # Bad proof
+                    new_finished_ss_5 = recursive_replace(
+                        block.finished_sub_slots[-1],
+                        "proofs.infused_challenge_chain_slot_proof",
+                        VDFProof(uint8(0), b"1239819023890", False),
+                    )
+                    block_bad_5 = recursive_replace(
+                        block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss_5]
+                    )
+                    await _validate_and_add_block(bc1, block_bad_5, expected_error=Err.INVALID_ICC_EOS_VDF)
+
+                await _validate_and_add_block(bc1, block)
+
+    @pytest.mark.anyio
+    async def test_invalid_icc_sub_slot_vdf(self, db_version: int, blockchain_constants: ConsensusConstants) -> None:
+        with TempKeyring() as keychain:
+            await self.do_test_invalid_icc_sub_slot_vdf(keychain, db_version, blockchain_constants)
+
+    @pytest.mark.anyio
+    async def test_invalid_icc_into_cc(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        blockchain = empty_blockchain
+        blocks = bt.get_consecutive_blocks(1)
+        await _validate_and_add_block(blockchain, blocks[0])
+        case_1, case_2 = False, False
+        while not case_1 or not case_2:
+            blocks = bt.get_consecutive_blocks(1, block_list_input=blocks, skip_slots=1)
+            block = blocks[-1]
+            if len(block.finished_sub_slots) > 0 and block.finished_sub_slots[-1].infused_challenge_chain is not None:
+                if block.finished_sub_slots[-1].reward_chain.deficit == bt.constants.MIN_BLOCKS_PER_CHALLENGE_BLOCK:
+                    # 2g
+                    case_1 = True
+                    new_finished_ss = recursive_replace(
+                        block.finished_sub_slots[-1],
+                        "challenge_chain",
+                        block.finished_sub_slots[-1].challenge_chain.replace(
+                            infused_challenge_chain_sub_slot_hash=bytes32([1] * 32)
+                        ),
+                    )
+                else:
+                    # 2h
+                    case_2 = True
+                    new_finished_ss = recursive_replace(
+                        block.finished_sub_slots[-1],
+                        "challenge_chain",
+                        block.finished_sub_slots[-1].challenge_chain.replace(
+                            infused_challenge_chain_sub_slot_hash=block.finished_sub_slots[
+                                -1
+                            ].infused_challenge_chain.get_hash(),
+                        ),
+                    )
+                block_bad = recursive_replace(
+                    block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss]
+                )
+
+                header_block_bad = get_block_header(block_bad)
+                # TODO: Inspect these block values as they are currently None
+                expected_difficulty = block.finished_sub_slots[0].challenge_chain.new_difficulty or uint64(0)
+                expected_sub_slot_iters = block.finished_sub_slots[0].challenge_chain.new_sub_slot_iters or uint64(0)
+                expected_vs = ValidationState(expected_sub_slot_iters, expected_difficulty, None)
+                _, error = validate_finished_header_block(
+                    empty_blockchain.constants, empty_blockchain, header_block_bad, False, expected_vs
+                )
+                assert error is not None
+                assert error.code == Err.INVALID_ICC_HASH_CC
+                await _validate_and_add_block(blockchain, block_bad, expected_result=AddBlockResult.INVALID_BLOCK)
+
+                # 2i
+                new_finished_ss_bad_rc = recursive_replace(
+                    block.finished_sub_slots[-1],
+                    "reward_chain",
+                    block.finished_sub_slots[-1].reward_chain.replace(infused_challenge_chain_sub_slot_hash=None),
+                )
+                block_bad = recursive_replace(
+                    block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss_bad_rc]
+                )
+                await _validate_and_add_block(blockchain, block_bad, expected_error=Err.INVALID_ICC_HASH_RC)
+            elif len(block.finished_sub_slots) > 0 and block.finished_sub_slots[-1].infused_challenge_chain is None:
+                # 2j
+                # TODO: This code path is currently not exercised
+                new_finished_ss_bad_cc = recursive_replace(
+                    block.finished_sub_slots[-1],
+                    "challenge_chain",
+                    block.finished_sub_slots[-1].challenge_chain.replace(
+                        infused_challenge_chain_sub_slot_hash=bytes32([1] * 32)
+                    ),
+                )
+                block_bad = recursive_replace(
+                    block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss_bad_cc]
+                )
+                await _validate_and_add_block(blockchain, block_bad, expected_error=Err.INVALID_ICC_HASH_CC)
+
+                # 2k
+                # TODO: This code path is currently not exercised
+                new_finished_ss_bad_rc = recursive_replace(
+                    block.finished_sub_slots[-1],
+                    "reward_chain",
+                    block.finished_sub_slots[-1].reward_chain.replace(
+                        infused_challenge_chain_sub_slot_hash=bytes32([1] * 32)
+                    ),
+                )
+                block_bad = recursive_replace(
+                    block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss_bad_rc]
+                )
+                await _validate_and_add_block(blockchain, block_bad, expected_error=Err.INVALID_ICC_HASH_RC)
+
+            # Finally, add the block properly
+            await _validate_and_add_block(blockchain, block)
+
+    @pytest.mark.anyio
+    async def test_empty_slot_no_ses(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 2l
+        blockchain = empty_blockchain
+        blocks = bt.get_consecutive_blocks(1)
+        await _validate_and_add_block(blockchain, blocks[0])
+        blocks = bt.get_consecutive_blocks(1, block_list_input=blocks, skip_slots=4)
+
+        new_finished_ss = recursive_replace(
+            blocks[-1].finished_sub_slots[-1],
+            "challenge_chain",
+            blocks[-1].finished_sub_slots[-1].challenge_chain.replace(subepoch_summary_hash=std_hash(b"0")),
+        )
+        block_bad = recursive_replace(
+            blocks[-1], "finished_sub_slots", [*blocks[-1].finished_sub_slots[:-1], new_finished_ss]
+        )
+
+        header_block_bad = get_block_header(block_bad)
+        expected_vs = ValidationState(
+            empty_blockchain.constants.SUB_SLOT_ITERS_STARTING, empty_blockchain.constants.DIFFICULTY_STARTING, None
+        )
+        _, error = validate_finished_header_block(
+            empty_blockchain.constants, empty_blockchain, header_block_bad, False, expected_vs
+        )
+        assert error is not None
+        assert error.code == Err.INVALID_SUB_EPOCH_SUMMARY_HASH
+        await _validate_and_add_block(blockchain, block_bad, expected_result=AddBlockResult.INVALID_BLOCK)
+
+    @pytest.mark.anyio
+    async def test_empty_sub_slots_epoch(
+        self, empty_blockchain: Blockchain, default_400_blocks: list[FullBlock], bt: BlockTools
+    ) -> None:
+        # 2m
+        # Tests adding an empty sub slot after the sub-epoch / epoch.
+        # Also tests overflow block in epoch
+        blocks_base = default_400_blocks[: bt.constants.EPOCH_BLOCKS]
+        assert len(blocks_base) == bt.constants.EPOCH_BLOCKS
+        blocks_1 = bt.get_consecutive_blocks(1, block_list_input=blocks_base, force_overflow=True)
+        blocks_2 = bt.get_consecutive_blocks(1, skip_slots=5, block_list_input=blocks_base, force_overflow=True)
+        for block in blocks_base:
+            await _validate_and_add_block(empty_blockchain, block, skip_prevalidation=True)
+        await _validate_and_add_block(
+            empty_blockchain, blocks_1[-1], expected_result=AddBlockResult.NEW_PEAK, skip_prevalidation=True
+        )
+        assert blocks_1[-1].header_hash != blocks_2[-1].header_hash
+        await _validate_and_add_block(
+            empty_blockchain, blocks_2[-1], expected_result=AddBlockResult.ADDED_AS_ORPHAN, skip_prevalidation=True
+        )
+
+    @pytest.mark.anyio
+    async def test_wrong_cc_hash_rc(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 2o
+        blockchain = empty_blockchain
+        blocks = bt.get_consecutive_blocks(1, skip_slots=1)
+        blocks = bt.get_consecutive_blocks(1, skip_slots=1, block_list_input=blocks)
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+
+        new_finished_ss = recursive_replace(
+            blocks[-1].finished_sub_slots[-1],
+            "reward_chain",
+            blocks[-1].finished_sub_slots[-1].reward_chain.replace(challenge_chain_sub_slot_hash=bytes32([3] * 32)),
+        )
+        block_1_bad = recursive_replace(
+            blocks[-1], "finished_sub_slots", [*blocks[-1].finished_sub_slots[:-1], new_finished_ss]
+        )
+
+        await _validate_and_add_block(blockchain, block_1_bad, expected_error=Err.INVALID_CHALLENGE_SLOT_HASH_RC)
+
+    @pytest.mark.anyio
+    async def test_invalid_cc_sub_slot_vdf(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 2q
+        blocks: list[FullBlock] = []
+        found_overflow_slot: bool = False
+
+        while not found_overflow_slot:
+            blocks = bt.get_consecutive_blocks(1, blocks)
+            block = blocks[-1]
+            if (
+                len(block.finished_sub_slots)
+                and is_overflow_block(bt.constants, block.reward_chain_block.signage_point_index)
+                and block.finished_sub_slots[-1].challenge_chain.challenge_chain_end_of_slot_vdf.output
+                != ClassgroupElement.get_default_element()
+            ):
+                found_overflow_slot = True
+                # Bad iters
+                new_finished_ss = recursive_replace(
+                    block.finished_sub_slots[-1],
+                    "challenge_chain",
+                    recursive_replace(
+                        block.finished_sub_slots[-1].challenge_chain,
+                        "challenge_chain_end_of_slot_vdf.number_of_iterations",
+                        uint64(10000000),
+                    ),
+                )
+                new_finished_ss = recursive_replace(
+                    new_finished_ss,
+                    "reward_chain.challenge_chain_sub_slot_hash",
+                    new_finished_ss.challenge_chain.get_hash(),
+                )
+                log.warning(f"Num slots: {len(block.finished_sub_slots)}")
+                block_bad = recursive_replace(
+                    block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss]
+                )
+                log.warning(f"Signage point index: {block_bad.reward_chain_block.signage_point_index}")
+                await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_CC_EOS_VDF)
+
+                # Bad output
+                new_finished_ss_2 = recursive_replace(
+                    block.finished_sub_slots[-1],
+                    "challenge_chain",
+                    recursive_replace(
+                        block.finished_sub_slots[-1].challenge_chain,
+                        "challenge_chain_end_of_slot_vdf.output",
+                        ClassgroupElement.get_default_element(),
+                    ),
+                )
+
+                new_finished_ss_2 = recursive_replace(
+                    new_finished_ss_2,
+                    "reward_chain.challenge_chain_sub_slot_hash",
+                    new_finished_ss_2.challenge_chain.get_hash(),
+                )
+                block_bad_2 = recursive_replace(
+                    block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss_2]
+                )
+                await _validate_and_add_block(empty_blockchain, block_bad_2, expected_error=Err.INVALID_CC_EOS_VDF)
+
+                # Bad challenge hash
+                new_finished_ss_3 = recursive_replace(
+                    block.finished_sub_slots[-1],
+                    "challenge_chain",
+                    recursive_replace(
+                        block.finished_sub_slots[-1].challenge_chain,
+                        "challenge_chain_end_of_slot_vdf.challenge",
+                        bytes([1] * 32),
+                    ),
+                )
+
+                new_finished_ss_3 = recursive_replace(
+                    new_finished_ss_3,
+                    "reward_chain.challenge_chain_sub_slot_hash",
+                    new_finished_ss_3.challenge_chain.get_hash(),
+                )
+                block_bad_3 = recursive_replace(
+                    block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss_3]
+                )
+
+                await _validate_and_add_block_multi_error(
+                    empty_blockchain,
+                    block_bad_3,
+                    [Err.INVALID_CC_EOS_VDF, Err.INVALID_PREV_CHALLENGE_SLOT_HASH, Err.INVALID_POSPACE],
+                )
+
+                # Bad proof
+                new_finished_ss_5 = recursive_replace(
+                    block.finished_sub_slots[-1],
+                    "proofs.challenge_chain_slot_proof",
+                    VDFProof(uint8(0), b"1239819023890", False),
+                )
+                block_bad_5 = recursive_replace(
+                    block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss_5]
+                )
+                await _validate_and_add_block(empty_blockchain, block_bad_5, expected_error=Err.INVALID_CC_EOS_VDF)
+
+            await _validate_and_add_block(empty_blockchain, block)
+
+    @pytest.mark.anyio
+    async def test_invalid_rc_sub_slot_vdf(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 2p
+        blocks: list[FullBlock] = []
+        found_block: bool = False
+
+        while not found_block:
+            blocks = bt.get_consecutive_blocks(1, blocks)
+            block = blocks[-1]
+            if (
+                len(block.finished_sub_slots)
+                and block.finished_sub_slots[-1].reward_chain.end_of_slot_vdf.output
+                != ClassgroupElement.get_default_element()
+            ):
+                found_block = True
+                # Bad iters
+                new_finished_ss = recursive_replace(
+                    block.finished_sub_slots[-1],
+                    "reward_chain",
+                    recursive_replace(
+                        block.finished_sub_slots[-1].reward_chain,
+                        "end_of_slot_vdf.number_of_iterations",
+                        uint64(10000000),
+                    ),
+                )
+                block_bad = recursive_replace(
+                    block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss]
+                )
+                await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_RC_EOS_VDF)
+
+                # Bad output
+                new_finished_ss_2 = recursive_replace(
+                    block.finished_sub_slots[-1],
+                    "reward_chain",
+                    recursive_replace(
+                        block.finished_sub_slots[-1].reward_chain,
+                        "end_of_slot_vdf.output",
+                        ClassgroupElement.get_default_element(),
+                    ),
+                )
+                block_bad_2 = recursive_replace(
+                    block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss_2]
+                )
+                await _validate_and_add_block(empty_blockchain, block_bad_2, expected_error=Err.INVALID_RC_EOS_VDF)
+
+                # Bad challenge hash
+                new_finished_ss_3 = recursive_replace(
+                    block.finished_sub_slots[-1],
+                    "reward_chain",
+                    recursive_replace(
+                        block.finished_sub_slots[-1].reward_chain,
+                        "end_of_slot_vdf.challenge",
+                        bytes32([1] * 32),
+                    ),
+                )
+                block_bad_3 = recursive_replace(
+                    block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss_3]
+                )
+                await _validate_and_add_block(empty_blockchain, block_bad_3, expected_error=Err.INVALID_RC_EOS_VDF)
+
+                # Bad proof
+                new_finished_ss_5 = recursive_replace(
+                    block.finished_sub_slots[-1],
+                    "proofs.reward_chain_slot_proof",
+                    VDFProof(uint8(0), b"1239819023890", False),
+                )
+                block_bad_5 = recursive_replace(
+                    block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss_5]
+                )
+                await _validate_and_add_block(empty_blockchain, block_bad_5, expected_error=Err.INVALID_RC_EOS_VDF)
+
+            await _validate_and_add_block(empty_blockchain, block)
+
+    @pytest.mark.anyio
+    async def test_genesis_bad_deficit(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 2r
+        block = bt.get_consecutive_blocks(1, skip_slots=2)[0]
+        new_finished_ss = recursive_replace(
+            block.finished_sub_slots[-1],
+            "reward_chain",
+            recursive_replace(
+                block.finished_sub_slots[-1].reward_chain,
+                "deficit",
+                bt.constants.MIN_BLOCKS_PER_CHALLENGE_BLOCK - 1,
+            ),
+        )
+        block_bad = recursive_replace(block, "finished_sub_slots", [*block.finished_sub_slots[:-1], new_finished_ss])
+        await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_DEFICIT)
+
+    @pytest.mark.anyio
+    async def test_reset_deficit(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 2s, 2t
+        blockchain = empty_blockchain
+        blocks = bt.get_consecutive_blocks(2)
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+        await _validate_and_add_block(empty_blockchain, blocks[1])
+        case_1, case_2 = False, False
+        while not case_1 or not case_2:
+            blocks = bt.get_consecutive_blocks(1, block_list_input=blocks, skip_slots=1)
+            if len(blocks[-1].finished_sub_slots) > 0:
+                new_finished_ss = recursive_replace(
+                    blocks[-1].finished_sub_slots[-1],
+                    "reward_chain",
+                    recursive_replace(
+                        blocks[-1].finished_sub_slots[-1].reward_chain,
+                        "deficit",
+                        uint8(0),
+                    ),
+                )
+                if blockchain.block_record(blocks[-2].header_hash).deficit == 0:
+                    case_1 = True
+                else:
+                    case_2 = True
+
+                block_bad = recursive_replace(
+                    blocks[-1], "finished_sub_slots", [*blocks[-1].finished_sub_slots[:-1], new_finished_ss]
+                )
+                await _validate_and_add_block_multi_error(
+                    empty_blockchain, block_bad, [Err.INVALID_DEFICIT, Err.INVALID_ICC_HASH_CC]
+                )
+
+            await _validate_and_add_block(empty_blockchain, blocks[-1])
+
+    @pytest.mark.anyio
+    async def test_genesis_has_ses(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 3a
+        block = bt.get_consecutive_blocks(1, skip_slots=1)[0]
+        new_finished_ss = recursive_replace(
+            block.finished_sub_slots[0],
+            "challenge_chain",
+            recursive_replace(
+                block.finished_sub_slots[0].challenge_chain,
+                "subepoch_summary_hash",
+                bytes32.zeros,
+            ),
+        )
+
+        new_finished_ss = recursive_replace(
+            new_finished_ss,
+            "reward_chain",
+            new_finished_ss.reward_chain.replace(
+                challenge_chain_sub_slot_hash=new_finished_ss.challenge_chain.get_hash()
+            ),
+        )
+        block_bad = recursive_replace(block, "finished_sub_slots", [new_finished_ss, *block.finished_sub_slots[1:]])
+        with pytest.raises(AssertionError):
+            # Fails pre validation
+            await _validate_and_add_block(
+                empty_blockchain, block_bad, expected_error=Err.INVALID_SUB_EPOCH_SUMMARY_HASH
+            )
+
+    @pytest.mark.anyio
+    async def test_no_ses_if_no_se(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 3b
+        blocks = bt.get_consecutive_blocks(1)
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+
+        while True:
+            blocks = bt.get_consecutive_blocks(1, block_list_input=blocks)
+            if len(blocks[-1].finished_sub_slots) > 0 and is_overflow_block(
+                bt.constants, blocks[-1].reward_chain_block.signage_point_index
+            ):
+                new_finished_ss: EndOfSubSlotBundle = recursive_replace(
+                    blocks[-1].finished_sub_slots[0],
+                    "challenge_chain",
+                    recursive_replace(
+                        blocks[-1].finished_sub_slots[0].challenge_chain,
+                        "subepoch_summary_hash",
+                        bytes32.zeros,
+                    ),
+                )
+
+                new_finished_ss = recursive_replace(
+                    new_finished_ss,
+                    "reward_chain",
+                    new_finished_ss.reward_chain.replace(
+                        challenge_chain_sub_slot_hash=new_finished_ss.challenge_chain.get_hash(),
+                    ),
+                )
+                block_bad = recursive_replace(
+                    blocks[-1], "finished_sub_slots", [new_finished_ss, *blocks[-1].finished_sub_slots[1:]]
+                )
+                await _validate_and_add_block_multi_error(
+                    empty_blockchain,
+                    block_bad,
+                    expected_errors=[
+                        Err.INVALID_SUB_EPOCH_SUMMARY_HASH,
+                        Err.INVALID_SUB_EPOCH_SUMMARY,
+                    ],
+                )
+                return None
+            await _validate_and_add_block(empty_blockchain, blocks[-1])
+
+    @pytest.mark.anyio
+    async def test_too_many_blocks(self, empty_blockchain: Blockchain) -> None:
+        # 4: TODO
+        pass
+
+    @pytest.mark.anyio
+    async def test_bad_pos(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 5
+        blocks = bt.get_consecutive_blocks(2)
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+
+        block_bad = recursive_replace(blocks[-1], "reward_chain_block.proof_of_space.challenge", std_hash(b""))
+        await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_POSPACE)
+
+        block_bad = recursive_replace(
+            blocks[-1], "reward_chain_block.proof_of_space.pool_contract_puzzle_hash", std_hash(b"")
+        )
+        await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_POSPACE)
+
+        block_bad = recursive_replace(blocks[-1], "reward_chain_block.proof_of_space.version_and_size", 62)
+        await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_POSPACE)
+
+        block_bad = recursive_replace(
+            blocks[-1],
+            "reward_chain_block.proof_of_space.plot_public_key",
+            AugSchemeMPL.key_gen(std_hash(b"1231n")).get_g1(),
+        )
+        await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_POSPACE)
+        block_bad = recursive_replace(
+            blocks[-1],
+            "reward_chain_block.proof_of_space.version_and_size",
+            32,
+        )
+        await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_POSPACE)
+        block_bad = recursive_replace(
+            blocks[-1],
+            "reward_chain_block.proof_of_space.proof",
+            bytes([1] * int((blocks[-1].reward_chain_block.proof_of_space.version_and_size & 0x7F) * 64 / 8)),
+        )
+        await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_POSPACE)
+
+        # TODO: test not passing the plot filter
+
+    @pytest.mark.anyio
+    async def test_bad_signage_point_index(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 6
+        blocks = bt.get_consecutive_blocks(2)
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+
+        with pytest.raises(ValueError):
+            block_bad = recursive_replace(
+                blocks[-1], "reward_chain_block.signage_point_index", bt.constants.NUM_SPS_SUB_SLOT
+            )
+            await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_SP_INDEX)
+        with pytest.raises(ValueError):
+            block_bad = recursive_replace(
+                blocks[-1], "reward_chain_block.signage_point_index", bt.constants.NUM_SPS_SUB_SLOT + 1
+            )
+            await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_SP_INDEX)
+
+    @pytest.mark.anyio
+    async def test_sp_0_no_sp(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 7
+        blocks: list[FullBlock] = []
+        case_1, case_2 = False, False
+        while not case_1 or not case_2:
+            blocks = bt.get_consecutive_blocks(1, block_list_input=blocks)
+            if blocks[-1].reward_chain_block.signage_point_index == 0:
+                case_1 = True
+                block_bad = recursive_replace(blocks[-1], "reward_chain_block.signage_point_index", uint8(1))
+                await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_SP_INDEX)
+
+            elif not is_overflow_block(bt.constants, blocks[-1].reward_chain_block.signage_point_index):
+                case_2 = True
+                block_bad = recursive_replace(blocks[-1], "reward_chain_block.signage_point_index", uint8(0))
+                await _validate_and_add_block_multi_error(
+                    empty_blockchain, block_bad, [Err.INVALID_SP_INDEX, Err.INVALID_POSPACE]
+                )
+            await _validate_and_add_block(empty_blockchain, blocks[-1])
+
+    @pytest.mark.anyio
+    async def test_epoch_overflows(self, empty_blockchain: Blockchain) -> None:
+        # 9. TODO. This is hard to test because it requires modifying the block tools to make these special blocks
+        pass
+
+    @pytest.mark.anyio
+    async def test_bad_total_iters(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 10
+        blocks = bt.get_consecutive_blocks(2)
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+
+        block_bad = recursive_replace(
+            blocks[-1], "reward_chain_block.total_iters", blocks[-1].reward_chain_block.total_iters + 1
+        )
+        await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_TOTAL_ITERS)
+
+    @pytest.mark.anyio
+    async def test_bad_rc_sp_vdf(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 11
+        blocks = bt.get_consecutive_blocks(1)
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+
+        while True:
+            blocks = bt.get_consecutive_blocks(1, block_list_input=blocks)
+            if blocks[-1].reward_chain_block.signage_point_index != 0:
+                block_bad = recursive_replace(
+                    blocks[-1], "reward_chain_block.reward_chain_sp_vdf.challenge", std_hash(b"1")
+                )
+                await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_RC_SP_VDF)
+                block_bad = recursive_replace(
+                    blocks[-1],
+                    "reward_chain_block.reward_chain_sp_vdf.output",
+                    bad_element,
+                )
+                await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_RC_SP_VDF)
+                block_bad = recursive_replace(
+                    blocks[-1],
+                    "reward_chain_block.reward_chain_sp_vdf.number_of_iterations",
+                    uint64(1111111111111),
+                )
+                await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_RC_SP_VDF)
+                block_bad = recursive_replace(
+                    blocks[-1],
+                    "reward_chain_sp_proof",
+                    VDFProof(uint8(0), std_hash(b""), False),
+                )
+                await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_RC_SP_VDF)
+                return None
+            await _validate_and_add_block(empty_blockchain, blocks[-1])
+
+    @pytest.mark.anyio
+    async def test_bad_rc_sp_sig(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 12
+        blocks = bt.get_consecutive_blocks(2)
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+        block_bad = recursive_replace(blocks[-1], "reward_chain_block.reward_chain_sp_signature", G2Element.generator())
+        await _validate_and_add_block(empty_blockchain, block_bad, expected_error=Err.INVALID_RC_SIGNATURE)
+
+    @pytest.mark.anyio
+    async def test_bad_cc_sp_vdf(self, empty_blockchain: Blockchain, bt: BlockTools) -> None:
+        # 13. Note: does not validate fully due to proof of space being validated first
+
+        blocks = bt.get_consecutive_blocks(1)
+        await _validate_and_add_block(empty_blockchain, blocks[0])
+
+        while True:
+            blocks = bt.get_consecutive_blocks(1, block_list_input=blocks)
+            if blocks[-1].reward_chain_block.signage_point_index != 0:
+                block_bad = recursive_replace(
+                    blocks[-1], "reward_chain_block.challenge_chain_sp_vdf.challenge", std_hash(b"1")
+                )
+                await _validate_and_add_block(empty_blockchain, block_bad, expected_result=AddBlockResult.INVALID_BLOCK)
+                block_bad = recursive_replace(
+                    blocks[-1],
+                    "reward_chain_block.challenge_chain_sp_vdf.output",
+                  

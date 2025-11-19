@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_seeder",
+  "tool_hash": "64d1e8ffd5c365929099567b47e2e494df674b632a1c7d007b357864433d4e20",
+  "total_size": 20454,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "64d1e8ffd5c365929099567b47e2e494df674b632a1c7d007b357864433d4e20"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_seeder.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_seeder.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.357236,
+  "updated_at": 1762787395.357239
+}

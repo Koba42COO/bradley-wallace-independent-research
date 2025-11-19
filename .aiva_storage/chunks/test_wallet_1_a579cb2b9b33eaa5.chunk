@@ -1,0 +1,800 @@
+     await wallet_1.generate_signed_transaction([uint64(tx_amount)], [wallet_0_ph], action_scope, uint64(0))
+
+        await wallet_environments.process_pending_states(
+            [
+                WalletStateTransition(
+                    pre_block_balance_updates={},
+                    post_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": tx_amount,
+                            "unconfirmed_wallet_balance": tx_amount,
+                            "spendable_balance": tx_amount,
+                            "max_send_amount": tx_amount,
+                            "unspent_coin_count": 1,
+                        }
+                    },
+                ),
+                WalletStateTransition(
+                    pre_block_balance_updates={
+                        1: {
+                            "unconfirmed_wallet_balance": -1 * tx_amount,
+                            "<=#spendable_balance": -1 * tx_amount,
+                            "<=#max_send_amount": -1 * tx_amount,
+                            ">=#pending_change": 1,  # any amount increase
+                            "pending_coin_removal_count": 1,
+                        }
+                    },
+                    post_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": -1 * tx_amount,
+                            ">=#spendable_balance": 1,  # any amount increase
+                            ">=#max_send_amount": 1,  # any amount increase
+                            "<=#pending_change": -1,  # any amount decrease
+                            "pending_coin_removal_count": -1,
+                        }
+                    },
+                ),
+            ]
+        )
+
+    @pytest.mark.parametrize(
+        "wallet_environments",
+        [{"num_environments": 2, "blocks_needed": [1, 1]}],
+        indirect=True,
+    )
+    @pytest.mark.limit_consensus_modes(reason="irrelevant")
+    @pytest.mark.anyio
+    async def test_wallet_make_transaction_with_fee(self, wallet_environments: WalletTestFramework) -> None:
+        env_0 = wallet_environments.environments[0]
+        env_1 = wallet_environments.environments[1]
+        wallet_0 = env_0.xch_wallet
+        wallet_1 = env_1.xch_wallet
+
+        tx_amount = 1_750_000_000_000  # ensures we grab both coins
+        tx_fee = 10
+        async with wallet_1.wallet_state_manager.new_action_scope(
+            wallet_environments.tx_config, push=True
+        ) as action_scope:
+            wallet_1_ph = await action_scope.get_puzzle_hash(wallet_1.wallet_state_manager)
+        async with wallet_0.wallet_state_manager.new_action_scope(DEFAULT_TX_CONFIG, push=True) as action_scope:
+            await wallet_0.generate_signed_transaction(
+                [uint64(tx_amount)],
+                [wallet_1_ph],
+                action_scope,
+                uint64(tx_fee),
+            )
+        [tx] = action_scope.side_effects.transactions
+        assert tx.spend_bundle is not None
+
+        fees = estimate_fees(tx.spend_bundle)
+        assert fees == tx_fee
+
+        await wallet_environments.process_pending_states(
+            [
+                WalletStateTransition(
+                    pre_block_balance_updates={
+                        1: {
+                            "unconfirmed_wallet_balance": -1 * tx_amount - tx_fee,
+                            "<=#spendable_balance": -1 * tx_amount - tx_fee,
+                            "<=#max_send_amount": -1 * tx_amount - tx_fee,
+                            ">=#pending_change": 1,  # any amount increase
+                            "pending_coin_removal_count": 2,
+                        }
+                    },
+                    post_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": -1 * tx_amount - tx_fee,
+                            ">=#spendable_balance": 1,  # any amount increase
+                            ">=#max_send_amount": 1,  # any amount increase
+                            "<=#pending_change": -1,  # any amount decrease
+                            "pending_coin_removal_count": -2,
+                            "unspent_coin_count": -1,
+                        }
+                    },
+                ),
+                WalletStateTransition(
+                    pre_block_balance_updates={},
+                    post_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": tx_amount,
+                            "unconfirmed_wallet_balance": tx_amount,
+                            "spendable_balance": tx_amount,
+                            "max_send_amount": tx_amount,
+                            "unspent_coin_count": 1,
+                        }
+                    },
+                ),
+            ]
+        )
+
+    @pytest.mark.parametrize(
+        "wallet_environments",
+        [{"num_environments": 2, "blocks_needed": [1, 1]}],
+        indirect=True,
+    )
+    @pytest.mark.limit_consensus_modes(reason="irrelevant")
+    @pytest.mark.anyio
+    async def test_wallet_make_transaction_with_memo(self, wallet_environments: WalletTestFramework) -> None:
+        env_0 = wallet_environments.environments[0]
+        env_1 = wallet_environments.environments[1]
+        wallet_0 = env_0.xch_wallet
+        wallet_1 = env_1.xch_wallet
+
+        tx_amount = 1_750_000_000_000  # ensures we grab both coins
+        tx_fee = 10
+        async with wallet_1.wallet_state_manager.new_action_scope(DEFAULT_TX_CONFIG, push=True) as action_scope:
+            ph_2 = await action_scope.get_puzzle_hash(wallet_1.wallet_state_manager)
+        async with wallet_0.wallet_state_manager.new_action_scope(DEFAULT_TX_CONFIG, push=True) as action_scope:
+            await wallet_0.generate_signed_transaction(
+                [uint64(tx_amount)], [ph_2], action_scope, uint64(tx_fee), memos=[[ph_2]]
+            )
+        [tx] = action_scope.side_effects.transactions
+        assert tx.spend_bundle is not None
+
+        fees = estimate_fees(tx.spend_bundle)
+        assert fees == tx_fee
+
+        memo_response = await env_0.rpc_client.get_transaction_memo(GetTransactionMemo(transaction_id=tx.name))
+        assert len(memo_response.memo_dict) == 1
+        assert next(iter(memo_response.memo_dict.values()))[0] == ph_2
+
+        await wallet_environments.process_pending_states(
+            [
+                WalletStateTransition(
+                    pre_block_balance_updates={
+                        1: {
+                            "unconfirmed_wallet_balance": -1 * tx_amount - tx_fee,
+                            "<=#spendable_balance": -1 * tx_amount - tx_fee,
+                            "<=#max_send_amount": -1 * tx_amount - tx_fee,
+                            ">=#pending_change": 1,  # any amount increase
+                            "pending_coin_removal_count": 2,
+                        }
+                    },
+                    post_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": -1 * tx_amount - tx_fee,
+                            ">=#spendable_balance": 1,  # any amount increase
+                            ">=#max_send_amount": 1,  # any amount increase
+                            "<=#pending_change": -1,  # any amount decrease
+                            "pending_coin_removal_count": -2,
+                            "unspent_coin_count": -1,
+                        }
+                    },
+                ),
+                WalletStateTransition(
+                    pre_block_balance_updates={},
+                    post_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": tx_amount,
+                            "unconfirmed_wallet_balance": tx_amount,
+                            "spendable_balance": tx_amount,
+                            "max_send_amount": tx_amount,
+                            "unspent_coin_count": 1,
+                        }
+                    },
+                ),
+            ]
+        )
+
+        tx_id = None
+        for coin in tx.additions:
+            if coin.amount == tx_amount:
+                tx_id = coin.name()
+        assert tx_id is not None
+        memo_response = await env_1.rpc_client.get_transaction_memo(GetTransactionMemo(transaction_id=tx_id))
+        assert len(memo_response.memo_dict) == 1
+        assert next(iter(memo_response.memo_dict.values()))[0] == ph_2
+
+    @pytest.mark.parametrize(
+        "wallet_environments",
+        [{"num_environments": 1, "blocks_needed": [1], "trusted": True, "reuse_puzhash": True}],
+        indirect=True,
+    )
+    @pytest.mark.limit_consensus_modes(reason="irrelevant")
+    @pytest.mark.anyio
+    async def test_wallet_create_hit_max_send_amount(self, wallet_environments: WalletTestFramework) -> None:
+        env = wallet_environments.environments[0]
+        wallet = env.xch_wallet
+
+        async with wallet.wallet_state_manager.new_action_scope(DEFAULT_TX_CONFIG, push=True) as action_scope:
+            ph = await action_scope.get_puzzle_hash(wallet.wallet_state_manager)
+            await wallet.generate_signed_transaction(
+                [uint64(1)] + [uint64(1000000000 + i) for i in range(int(wallet.max_send_quantity) + 1)],
+                [ph] * (wallet.max_send_quantity + 2),
+                action_scope,
+                uint64(0),
+            )
+
+        await wallet_environments.process_pending_states(
+            [
+                WalletStateTransition(
+                    pre_block_balance_updates={
+                        1: {
+                            # tx sent to ourselves
+                            "unconfirmed_wallet_balance": 0,
+                            "<=#spendable_balance": 0,
+                            "<=#max_send_amount": 0,
+                            ">=#pending_change": 1,  # any amount increase
+                            "pending_coin_removal_count": 1,
+                        }
+                    },
+                    post_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": 0,
+                            ">=#spendable_balance": 1,  # any amount increase
+                            ">=#max_send_amount": 1,  # any amount increase
+                            "<=#pending_change": -1,  # any amount decrease
+                            "pending_coin_removal_count": -1,
+                            "unspent_coin_count": wallet.max_send_quantity + 2,
+                        }
+                    },
+                ),
+            ]
+        )
+
+        max_sent_amount = await wallet.get_max_send_amount()
+        assert max_sent_amount < (await wallet.get_spendable_balance())
+
+        # 1) Generate transaction that is under the limit
+        async with wallet.wallet_state_manager.new_action_scope(DEFAULT_TX_CONFIG, push=False) as action_scope:
+            await wallet.generate_signed_transaction(
+                [uint64(max_sent_amount - 1)],
+                [ph],
+                action_scope,
+                uint64(0),
+            )
+
+        assert action_scope.side_effects.transactions[0].amount == uint64(max_sent_amount - 1)
+
+        # 2) Generate transaction that is equal to limit
+        async with wallet.wallet_state_manager.new_action_scope(DEFAULT_TX_CONFIG, push=False) as action_scope:
+            await wallet.generate_signed_transaction(
+                [uint64(max_sent_amount)],
+                [ph],
+                action_scope,
+                uint64(0),
+            )
+
+        assert action_scope.side_effects.transactions[0].amount == uint64(max_sent_amount)
+
+        # 3) Generate transaction that is greater than limit
+        with pytest.raises(
+            ValueError,
+            match=f"Transaction for {max_sent_amount + 1} is greater than max spendable balance in a block of "
+            f"{max_sent_amount}. There may be other transactions pending or our minimum coin amount is too high.",
+        ):
+            async with wallet.wallet_state_manager.new_action_scope(DEFAULT_TX_CONFIG, push=False) as action_scope:
+                await wallet.generate_signed_transaction(
+                    [uint64(max_sent_amount + 1)],
+                    [ph],
+                    action_scope,
+                    uint64(0),
+                )
+
+    @pytest.mark.parametrize(
+        "wallet_environments",
+        [{"num_environments": 1, "blocks_needed": [2], "trusted": True, "reuse_puzhash": True}],
+        indirect=True,
+    )
+    @pytest.mark.limit_consensus_modes(reason="irrelevant")
+    @pytest.mark.anyio
+    async def test_wallet_prevent_fee_theft(self, wallet_environments: WalletTestFramework) -> None:
+        env = wallet_environments.environments[0]
+        wallet = env.xch_wallet
+
+        tx_amount = 1_750_000_000_000
+        tx_fee = 2_000_000_000_000
+        async with wallet.wallet_state_manager.new_action_scope(DEFAULT_TX_CONFIG, push=False) as action_scope:
+            await wallet.generate_signed_transaction(
+                [uint64(tx_amount)],
+                [bytes32.zeros],
+                action_scope,
+                uint64(tx_fee),
+            )
+        [tx] = action_scope.side_effects.transactions
+        assert tx.spend_bundle is not None
+
+        stolen_cs: Optional[CoinSpend] = None
+        # extract coin_spend from generated spend_bundle
+        for cs in tx.spend_bundle.coin_spends:
+            if compute_additions(cs) == []:
+                stolen_cs = cs
+
+        assert stolen_cs is not None
+
+        # get a legit signature
+        stolen_sb, _ = await wallet.wallet_state_manager.sign_bundle([stolen_cs])
+        stolen_tx = wallet.wallet_state_manager.new_outgoing_transaction(
+            wallet_id=wallet.id(),
+            puzzle_hash=bytes32.zeros,
+            amount=uint64(0),
+            fee=uint64(0),
+            spend_bundle=stolen_sb,
+            additions=[],
+            removals=[],
+            name=stolen_sb.name(),
+        )
+        [stolen_tx] = await wallet.wallet_state_manager.add_pending_transactions([stolen_tx])
+
+        async def transaction_has_failed(tx_id: bytes32) -> bool:
+            tx = await wallet.wallet_state_manager.tx_store.get_transaction_record(tx_id)
+            assert tx is not None
+            return any(error_str == Err.ASSERT_ANNOUNCE_CONSUMED_FAILED.name for _, _, error_str in tx.sent_to)
+
+        await time_out_assert(10, transaction_has_failed, True, stolen_tx.name)
+
+    @pytest.mark.parametrize(
+        "wallet_environments",
+        [{"num_environments": 2, "blocks_needed": [4, 1]}],
+        indirect=True,
+    )
+    @pytest.mark.limit_consensus_modes(reason="irrelevant")
+    @pytest.mark.anyio
+    async def test_wallet_tx_reorg(self, wallet_environments: WalletTestFramework) -> None:
+        full_node_api = wallet_environments.full_node
+        env = wallet_environments.environments[0]
+        env_2 = wallet_environments.environments[1]
+        wsm = env.wallet_state_manager
+        wallet = env.xch_wallet
+        wallet_2 = env_2.xch_wallet
+
+        # Ensure that we use a coin that we will not reorg out
+        tx_amount = 1000
+        async with wallet.wallet_state_manager.new_action_scope(
+            wallet_environments.tx_config, push=False
+        ) as action_scope:
+            coins = await wallet.select_coins(amount=uint64(tx_amount), action_scope=action_scope)
+        coin = next(iter(coins))
+
+        reorg_height = full_node_api.full_node.blockchain.get_peak_height()
+        assert reorg_height is not None
+        await full_node_api.farm_blocks_to_puzzlehash(count=3)
+
+        async with wallet_2.wallet_state_manager.new_action_scope(
+            wallet_environments.tx_config, push=True
+        ) as action_scope:
+            wallet_2_ph = await action_scope.get_puzzle_hash(wallet_2.wallet_state_manager)
+        async with wallet.wallet_state_manager.new_action_scope(DEFAULT_TX_CONFIG, push=True) as action_scope:
+            await wallet.generate_signed_transaction([uint64(tx_amount)], [wallet_2_ph], action_scope, coins={coin})
+
+        await wallet_environments.process_pending_states(
+            [
+                WalletStateTransition(
+                    pre_block_balance_updates={
+                        1: {
+                            "unconfirmed_wallet_balance": -1 * tx_amount,
+                            "<=#spendable_balance": -1 * tx_amount,
+                            "<=#max_send_amount": -1 * tx_amount,
+                            ">=#pending_change": 1,  # any amount increase
+                            "pending_coin_removal_count": 1,
+                        }
+                    },
+                    post_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": -1 * tx_amount,
+                            ">=#spendable_balance": 1,  # any amount increase
+                            ">=#max_send_amount": 1,  # any amount increase
+                            "<=#pending_change": -1,  # any amount decrease
+                            "pending_coin_removal_count": -1,
+                        }
+                    },
+                ),
+                WalletStateTransition(
+                    pre_block_balance_updates={},
+                    post_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": tx_amount,
+                            "unconfirmed_wallet_balance": tx_amount,
+                            "spendable_balance": tx_amount,
+                            "max_send_amount": tx_amount,
+                            "unspent_coin_count": 1,
+                        }
+                    },
+                ),
+            ]
+        )
+
+        peak = full_node_api.full_node.blockchain.get_peak()
+        assert peak is not None
+        peak_height = peak.height
+        assert peak_height is not None
+
+        target_height_after_reorg = peak_height + 3
+        # Perform a reorg, which will revert the transaction in the full node and wallet, and cause wallet to resubmit
+        await full_node_api.reorg_from_index_to_new_index(
+            ReorgProtocol(uint32(reorg_height - 1), uint32(target_height_after_reorg), bytes32(32 * b"0"), None)
+        )
+
+        await time_out_assert(20, full_node_api.full_node.blockchain.get_peak_height, target_height_after_reorg)
+
+        await wallet_environments.process_pending_states(
+            [
+                WalletStateTransition(
+                    pre_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": tx_amount,
+                            "unconfirmed_wallet_balance": 0,
+                            "<=#spendable_balance": -1,  # any amount decrease
+                            "<=#max_send_amount": -1,  # any amount decrease
+                            ">=#pending_change": 1,  # any amount increase
+                            "pending_coin_removal_count": 1,
+                        }
+                    },
+                    post_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": -1 * tx_amount,
+                            ">=#spendable_balance": -1,  # any amount increase
+                            ">=#max_send_amount": -1,  # any amount increase
+                            "<=#pending_change": -1,  # any amount decrease
+                            "pending_coin_removal_count": -1,
+                        }
+                    },
+                ),
+                WalletStateTransition(
+                    pre_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": -1 * tx_amount,
+                            "unconfirmed_wallet_balance": -1 * tx_amount,
+                            "spendable_balance": -1 * tx_amount,
+                            "max_send_amount": -1 * tx_amount,
+                            "unspent_coin_count": -1,
+                        }
+                    },
+                    post_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": tx_amount,
+                            "unconfirmed_wallet_balance": tx_amount,
+                            "spendable_balance": tx_amount,
+                            "max_send_amount": tx_amount,
+                            "unspent_coin_count": 1,
+                        }
+                    },
+                ),
+            ]
+        )
+
+        unconfirmed = await wsm.tx_store.get_unconfirmed_for_wallet(int(wallet.id()))
+        assert len(unconfirmed) == 0
+        [tx] = action_scope.side_effects.transactions
+        tx_record = await wsm.tx_store.get_transaction_record(tx.name)
+        assert tx_record is not None
+        removed = tx_record.removals[0]
+        added = tx_record.additions[0]
+        added_1 = tx_record.additions[1]
+        wallet_coin_record_rem = await wsm.coin_store.get_coin_record(removed.name())
+        assert wallet_coin_record_rem is not None
+        assert wallet_coin_record_rem.spent
+
+        coin_record_full_node = await full_node_api.full_node.coin_store.get_coin_record(removed.name())
+        assert coin_record_full_node is not None
+        assert coin_record_full_node.spent
+        add_1_coin_record_full_node = await full_node_api.full_node.coin_store.get_coin_record(added.name())
+        assert add_1_coin_record_full_node is not None
+        assert add_1_coin_record_full_node.confirmed_block_index > 0
+        add_2_coin_record_full_node = await full_node_api.full_node.coin_store.get_coin_record(added_1.name())
+        assert add_2_coin_record_full_node is not None
+        assert add_2_coin_record_full_node.confirmed_block_index > 0
+
+    @pytest.mark.parametrize(
+        "wallet_environments",
+        [
+            {
+                "num_environments": 1,
+                "blocks_needed": [1],
+                "trusted": True,
+                "reuse_puzhash": False,
+                "config_overrides": {"initial_num_public_keys": 100},
+            }
+        ],
+        indirect=True,
+    )
+    @pytest.mark.anyio
+    async def test_address_sliding_window(self, wallet_environments: WalletTestFramework) -> None:
+        full_node_api = wallet_environments.full_node
+        env = wallet_environments.environments[0]
+        wallet = env.xch_wallet
+
+        peak = full_node_api.full_node.blockchain.get_peak_height()
+        assert peak is not None
+
+        puzzle_hashes = []
+        for i in range(211):
+            pubkey = master_sk_to_wallet_sk(wallet.wallet_state_manager.get_master_private_key(), uint32(i)).get_g1()
+            puzzle: Program = wallet.puzzle_for_pk(pubkey)
+            puzzle_hash: bytes32 = puzzle.get_tree_hash()
+            puzzle_hashes.append(puzzle_hash)
+
+        await full_node_api.farm_blocks_to_puzzlehash(count=1, farm_to=puzzle_hashes[0])
+        await full_node_api.farm_blocks_to_puzzlehash(count=1, farm_to=puzzle_hashes[210])
+        await full_node_api.farm_blocks_to_puzzlehash(
+            count=1,
+            farm_to=puzzle_hashes[114],
+            guarantee_transaction_blocks=True,
+        )
+
+        await full_node_api.wait_for_wallet_synced(env.node, peak_height=uint32(peak + 3))
+        await env.change_balances(
+            {
+                1: {
+                    "confirmed_wallet_balance": 2_000_000_000_000,
+                    "unconfirmed_wallet_balance": 2_000_000_000_000,
+                    "spendable_balance": 2_000_000_000_000,
+                    "max_send_amount": 2_000_000_000_000,
+                    "unspent_coin_count": 2,
+                }
+            }
+        )
+
+        await full_node_api.farm_blocks_to_puzzlehash(
+            count=1,
+            farm_to=puzzle_hashes[50],
+            guarantee_transaction_blocks=True,
+        )
+        await full_node_api.farm_blocks_to_puzzlehash(
+            count=1,
+            guarantee_transaction_blocks=True,
+        )
+
+        await full_node_api.wait_for_wallet_synced(env.node, peak_height=uint32(peak + 5))
+        await env.change_balances(
+            {
+                1: {
+                    "confirmed_wallet_balance": 6_000_000_000_000,
+                    "unconfirmed_wallet_balance": 6_000_000_000_000,
+                    "spendable_balance": 6_000_000_000_000,
+                    "max_send_amount": 6_000_000_000_000,
+                    "unspent_coin_count": 6,
+                }
+            }
+        )
+
+        await full_node_api.farm_blocks_to_puzzlehash(count=1, farm_to=puzzle_hashes[113])
+        await full_node_api.farm_blocks_to_puzzlehash(
+            count=1,
+            farm_to=puzzle_hashes[209],
+            guarantee_transaction_blocks=True,
+        )
+        await full_node_api.farm_blocks_to_puzzlehash(count=1, guarantee_transaction_blocks=True)
+
+        await full_node_api.wait_for_wallet_synced(env.node, peak_height=uint32(peak + 8))
+        await env.change_balances(
+            {
+                1: {
+                    "confirmed_wallet_balance": 4_000_000_000_000,
+                    "unconfirmed_wallet_balance": 4_000_000_000_000,
+                    "spendable_balance": 4_000_000_000_000,
+                    "max_send_amount": 4_000_000_000_000,
+                    "unspent_coin_count": 4,
+                }
+            }
+        )
+
+    @pytest.mark.parametrize(
+        "wallet_environments",
+        [{"num_environments": 1, "blocks_needed": [1]}],
+        indirect=True,
+    )
+    @pytest.mark.limit_consensus_modes(reason="irrelevant")
+    @pytest.mark.anyio
+    async def test_sign_message(self, wallet_environments: WalletTestFramework) -> None:
+        env = wallet_environments.environments[0]
+        api_0 = env.rpc_api
+
+        # Test general string
+        message = "Hello World"
+
+        async with env.wallet_state_manager.new_action_scope(wallet_environments.tx_config, push=True) as action_scope:
+            ph = await action_scope.get_puzzle_hash(env.wallet_state_manager)
+        response = await api_0.sign_message_by_address({"address": encode_puzzle_hash(ph, "xch"), "message": message})
+        puzzle: Program = Program.to((CHIP_0002_SIGN_MESSAGE_PREFIX, message))
+
+        assert AugSchemeMPL.verify(
+            G1Element.from_bytes(hexstr_to_bytes(response["pubkey"])),
+            puzzle.get_tree_hash(),
+            G2Element.from_bytes(hexstr_to_bytes(response["signature"])),
+        )
+        # Test hex string
+        message = "0123456789ABCDEF"
+        response = await api_0.sign_message_by_address(
+            {"address": encode_puzzle_hash(ph, "xch"), "message": message, "is_hex": True}
+        )
+        puzzle = Program.to((CHIP_0002_SIGN_MESSAGE_PREFIX, bytes.fromhex(message)))
+
+        assert AugSchemeMPL.verify(
+            G1Element.from_bytes(hexstr_to_bytes(response["pubkey"])),
+            puzzle.get_tree_hash(),
+            G2Element.from_bytes(hexstr_to_bytes(response["signature"])),
+        )
+        # Test informal input
+        message = "0123456789ABCDEF"
+        response = await api_0.sign_message_by_address(
+            {"address": encode_puzzle_hash(ph, "xch"), "message": message, "is_hex": "true", "safe_mode": "true"}
+        )
+        puzzle = Program.to((CHIP_0002_SIGN_MESSAGE_PREFIX, bytes.fromhex(message)))
+
+        assert AugSchemeMPL.verify(
+            G1Element.from_bytes(hexstr_to_bytes(response["pubkey"])),
+            puzzle.get_tree_hash(),
+            G2Element.from_bytes(hexstr_to_bytes(response["signature"])),
+        )
+        # Test BLS sign string
+        message = "Hello World"
+        response = await api_0.sign_message_by_address(
+            {"address": encode_puzzle_hash(ph, "xch"), "message": message, "is_hex": False, "safe_mode": False}
+        )
+
+        assert AugSchemeMPL.verify(
+            G1Element.from_bytes(hexstr_to_bytes(response["pubkey"])),
+            bytes(message, "utf-8"),
+            G2Element.from_bytes(hexstr_to_bytes(response["signature"])),
+        )
+        # Test BLS sign hex
+        message = "0123456789ABCDEF"
+        response = await api_0.sign_message_by_address(
+            {"address": encode_puzzle_hash(ph, "xch"), "message": message, "is_hex": True, "safe_mode": False}
+        )
+
+        assert AugSchemeMPL.verify(
+            G1Element.from_bytes(hexstr_to_bytes(response["pubkey"])),
+            hexstr_to_bytes(message),
+            G2Element.from_bytes(hexstr_to_bytes(response["signature"])),
+        )
+
+    @pytest.mark.parametrize(
+        "wallet_environments",
+        [{"num_environments": 1, "blocks_needed": [2]}],
+        indirect=True,
+    )
+    @pytest.mark.limit_consensus_modes(reason="irrelevant")
+    @pytest.mark.anyio
+    async def test_wallet_transaction_options(self, wallet_environments: WalletTestFramework) -> None:
+        env = wallet_environments.environments[0]
+        wallet = env.xch_wallet
+
+        AMOUNT_TO_SEND = 4000000000000
+        async with wallet.wallet_state_manager.new_action_scope(DEFAULT_TX_CONFIG, push=True) as action_scope:
+            coins = await wallet.select_coins(uint64(AMOUNT_TO_SEND), action_scope)
+            coin_list = list(coins)
+            await wallet.generate_signed_transaction(
+                [uint64(AMOUNT_TO_SEND)],
+                [bytes32.zeros],
+                action_scope,
+                uint64(0),
+                coins=coins,
+                origin_id=coin_list[2].name(),
+            )
+        [tx] = action_scope.side_effects.transactions
+        assert tx.spend_bundle is not None
+        paid_coin = next(coin for coin in tx.spend_bundle.additions() if coin.amount == AMOUNT_TO_SEND)
+        assert paid_coin.parent_coin_info == coin_list[2].name()
+        [tx] = await wallet.wallet_state_manager.add_pending_transactions([tx])
+
+        await wallet_environments.process_pending_states(
+            [
+                WalletStateTransition(
+                    pre_block_balance_updates={
+                        1: {
+                            "unconfirmed_wallet_balance": -1 * AMOUNT_TO_SEND,
+                            "spendable_balance": -1 * AMOUNT_TO_SEND,  # used exact amount
+                            "max_send_amount": -1 * AMOUNT_TO_SEND,  # used exact amount
+                            "pending_change": 0,  # used exact amount
+                            "pending_coin_removal_count": len(coins),
+                        }
+                    },
+                    post_block_balance_updates={
+                        1: {
+                            "confirmed_wallet_balance": -1 * AMOUNT_TO_SEND,
+                            "spendable_balance": 0,  # used exact amount
+                            "max_send_amount": 0,  # used exact amount
+                            "pending_change": 0,  # used exact amount
+                            "unspent_coin_count": -len(coins),
+                            "pending_coin_removal_count": -len(coins),
+                        }
+                    },
+                )
+            ]
+        )
+
+    @pytest.mark.parametrize(
+        "wallet_environments",
+        [{"num_environments": 1, "blocks_needed": [1], "reuse_puzhash": True, "trusted": True}],
+        indirect=True,
+    )
+    @pytest.mark.limit_consensus_modes
+    @pytest.mark.anyio
+    async def test_forced_new_puzzle_hash(self, wallet_environments: WalletTestFramework) -> None:
+        env = wallet_environments.environments[0]
+        wallet = env.xch_wallet
+
+        with wallet_environments.new_puzzle_hashes_allowed():
+            async with wallet.wallet_state_manager.new_action_scope(
+                wallet_environments.tx_config, push=True
+            ) as action_scope:
+                coins = await wallet.select_coins(uint64(1), action_scope)
+                coin_list = list(coins)
+                assert len(coin_list) == 1
+                await wallet.generate_signed_transaction(
+                    [uint64(coin_list[0].amount / 2)],
+                    [coin_list[0].puzzle_hash],
+                    action_scope,
+                    coins=coins,
+                )
+        [tx] = action_scope.side_effects.transactions
+        assert tx.spend_bundle is not None
+        assert len(list(set(coin.puzzle_hash for coin in tx.spend_bundle.additions()))) == 2
+
+    @pytest.mark.parametrize(
+        "wallet_environments",
+        [{"num_environments": 1, "blocks_needed": [1], "reuse_puzhash": True, "trusted": True}],
+        indirect=True,
+    )
+    @pytest.mark.limit_consensus_modes
+    @pytest.mark.anyio
+    async def test_puzzle_hashes_not_committed(self, wallet_environments: WalletTestFramework) -> None:
+        env = wallet_environments.environments[0]
+        wallet = env.xch_wallet
+
+        # Our framework
+        async with wallet.wallet_state_manager.new_action_scope(
+            wallet_environments.tx_config,
+            push=False,
+        ) as action_scope:
+            await action_scope.get_puzzle_hash(wallet.wallet_state_manager, override_reuse_puzhash_with=False)
+
+
+def test_get_wallet_db_path_v2_r1() -> None:
+    root_path: Path = Path("/x/y/z/.chia/mainnet").resolve()
+    config: dict[str, Any] = {
+        "database_path": "wallet/db/blockchain_wallet_v2_r1_CHALLENGE_KEY.sqlite",
+        "selected_network": "mainnet",
+    }
+    fingerprint: str = "1234567890"
+    wallet_db_path: Path = get_wallet_db_path(root_path, config, fingerprint)
+
+    assert wallet_db_path == root_path.joinpath("wallet/db/blockchain_wallet_v2_r1_mainnet_1234567890.sqlite")
+
+
+def test_get_wallet_db_path_v2() -> None:
+    root_path: Path = Path("/x/y/z/.chia/mainnet").resolve()
+    config: dict[str, Any] = {
+        "database_path": "wallet/db/blockchain_wallet_v2_CHALLENGE_KEY.sqlite",
+        "selected_network": "mainnet",
+    }
+    fingerprint: str = "1234567890"
+    wallet_db_path: Path = get_wallet_db_path(root_path, config, fingerprint)
+
+    assert wallet_db_path == root_path.joinpath("wallet/db/blockchain_wallet_v2_r1_mainnet_1234567890.sqlite")
+
+
+def test_get_wallet_db_path_v1() -> None:
+    root_path: Path = Path("/x/y/z/.chia/mainnet").resolve()
+    config: dict[str, Any] = {
+        "database_path": "wallet/db/blockchain_wallet_v1_CHALLENGE_KEY.sqlite",
+        "selected_network": "mainnet",
+    }
+    fingerprint: str = "1234567890"
+    wallet_db_path: Path = get_wallet_db_path(root_path, config, fingerprint)
+
+    assert wallet_db_path == root_path.joinpath("wallet/db/blockchain_wallet_v2_r1_mainnet_1234567890.sqlite")
+
+
+def test_get_wallet_db_path_testnet() -> None:
+    root_path: Path = Path("/x/y/z/.chia/testnet").resolve()
+    config: dict[str, Any] = {
+        "database_path": "wallet/db/blockchain_wallet_v2_CHALLENGE_KEY.sqlite",
+        "selected_network": "testnet",
+    }
+    fingerprint: str = "1234567890"
+    wallet_db_path: Path = get_wallet_db_path(root_path, config, fingerprint)
+
+    assert wallet_db_path == root_path.joinpath("wallet/db/blockchain_wallet_v2_r1_testnet_1234567890.sqlite")
+
+
+@pytest.mark.anyio
+async def test_wallet_has_no_server(
+    simulator_and_wallet: tuple[list[FullNodeSimulator], list[tuple[WalletNode, ChiaServer]], BlockTools],
+) -> None:
+    _full_nodes, wallets, _bt = simulator_and_wallet
+    _wallet_node, wallet_server = wallets[0]
+
+    assert wallet_server.webserver is None

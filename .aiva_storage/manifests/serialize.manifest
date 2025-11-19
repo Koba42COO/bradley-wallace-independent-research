@@ -1,0 +1,18 @@
+{
+  "tool_name": "serialize",
+  "tool_hash": "83a5831bd429fd462079babf42be9b8c0ceb97ae08b39fcd01d2722deca1ce3b",
+  "total_size": 12737,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "83a5831bd429fd462079babf42be9b8c0ceb97ae08b39fcd01d2722deca1ce3b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/clvm/serialize.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/clvm/serialize.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0578291,
+  "updated_at": 1762787395.0578308
+}

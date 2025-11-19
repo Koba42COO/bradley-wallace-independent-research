@@ -1,0 +1,18 @@
+{
+  "tool_name": "vdf",
+  "tool_hash": "5bacb908aad9e91ec4c1751be256de508142e0161275a338c81d5a51a7a00741",
+  "total_size": 5066,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5bacb908aad9e91ec4c1751be256de508142e0161275a338c81d5a51a7a00741"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/blockchain_format/vdf.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/blockchain_format/vdf.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3041642,
+  "updated_at": 1762787395.3041658
+}

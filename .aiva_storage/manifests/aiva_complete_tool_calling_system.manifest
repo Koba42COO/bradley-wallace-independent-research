@@ -1,0 +1,18 @@
+{
+  "tool_name": "aiva_complete_tool_calling_system",
+  "tool_hash": "4ace7b6d6e45cb102db5268be09183e5a22a67486eaaf6e77bd65c69e023a512",
+  "total_size": 18824,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4ace7b6d6e45cb102db5268be09183e5a22a67486eaaf6e77bd65c69e023a512"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/aiva_complete_tool_calling_system.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/aiva_complete_tool_calling_system.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0504901,
+  "updated_at": 1762787395.0504918
+}

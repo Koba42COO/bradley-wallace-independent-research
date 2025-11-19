@@ -1,0 +1,18 @@
+{
+  "tool_name": "mobius",
+  "tool_hash": "d9d909c43c78689500e39b9e82c2a7ebe549890f67d987d697da738b9046dfb2",
+  "total_size": 4825,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d9d909c43c78689500e39b9e82c2a7ebe549890f67d987d697da738b9046dfb2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/research/external/repo_clone/consciousness_framework/mobius.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/research/external/repo_clone/consciousness_framework/mobius.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2546,
+  "updated_at": 1762787395.254603
+}

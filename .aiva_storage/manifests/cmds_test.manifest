@@ -1,0 +1,18 @@
+{
+  "tool_name": "cmds_test",
+  "tool_hash": "45cb41ad55e781e696b346fa3452dbe2059d92e8f4f21399b600eaec6325ae50",
+  "total_size": 6826,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "45cb41ad55e781e696b346fa3452dbe2059d92e8f4f21399b600eaec6325ae50"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/tests/cmds_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/tests/cmds_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0635898,
+  "updated_at": 1762787395.063592
+}

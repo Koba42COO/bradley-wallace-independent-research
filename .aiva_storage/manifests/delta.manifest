@@ -1,0 +1,18 @@
+{
+  "tool_name": "delta",
+  "tool_hash": "fc1983a9665f5eb5dbc31278e4ee152653933e87d4aeb861a80d75b26c8ec2c2",
+  "total_size": 4579,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fc1983a9665f5eb5dbc31278e4ee152653933e87d4aeb861a80d75b26c8ec2c2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plot_sync/delta.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plot_sync/delta.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.294314,
+  "updated_at": 1762787395.294317
+}

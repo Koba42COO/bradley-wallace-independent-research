@@ -1,0 +1,18 @@
+{
+  "tool_name": "plots",
+  "tool_hash": "937bb662f2ab1978d7458920519893b918e5747bde3072b91390f02ef8c0db9e",
+  "total_size": 10219,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "937bb662f2ab1978d7458920519893b918e5747bde3072b91390f02ef8c0db9e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/plots.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/plots.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.51936,
+  "updated_at": 1762787395.5193632
+}

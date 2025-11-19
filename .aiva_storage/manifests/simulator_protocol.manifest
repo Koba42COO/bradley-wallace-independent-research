@@ -1,0 +1,18 @@
+{
+  "tool_name": "simulator_protocol",
+  "tool_hash": "99b71671660336409141c95ab21758dbb1022565c45c34467cdd58042c77e685",
+  "total_size": 3357,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "99b71671660336409141c95ab21758dbb1022565c45c34467cdd58042c77e685"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/simulator_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/simulator_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.55483,
+  "updated_at": 1762787395.554833
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "block_height_map_protocol",
+  "tool_hash": "40ea0a39e5b084c9ae6747d5dc4c0d96160434225e9676d98677b3aac0fcee39",
+  "total_size": 3373,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "40ea0a39e5b084c9ae6747d5dc4c0d96160434225e9676d98677b3aac0fcee39"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/block_height_map_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/block_height_map_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2881658,
+  "updated_at": 1762787395.288169
+}

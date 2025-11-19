@@ -1,0 +1,18 @@
+{
+  "tool_name": "outer_puzzles",
+  "tool_hash": "df733b1cd71f361410bceb673e351e25d61f8d32ffd82fa78f0aaefbb7c94575",
+  "total_size": 7095,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "df733b1cd71f361410bceb673e351e25d61f8d32ffd82fa78f0aaefbb7c94575"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/outer_puzzles.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/outer_puzzles.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.615863,
+  "updated_at": 1762787395.6158662
+}

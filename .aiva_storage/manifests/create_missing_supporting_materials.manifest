@@ -1,0 +1,18 @@
+{
+  "tool_name": "create_missing_supporting_materials",
+  "tool_hash": "1788cacf13b60431147d0e89fcd14823bda1a4802537469bb6a3641364e9830e",
+  "total_size": 11478,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1788cacf13b60431147d0e89fcd14823bda1a4802537469bb6a3641364e9830e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/create_missing_supporting_materials.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/create_missing_supporting_materials.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.005981,
+  "updated_at": 1762787395.005985
+}

@@ -1,0 +1,78 @@
+{
+  "concepts": [
+    {
+      "id": "wallace_transform",
+      "name": "Wallace Transform",
+      "description": "Mathematical transformation correlating eigenvalues with zeta zeros",
+      "coordinates": {
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.9,
+        "delta": 0.1
+      },
+      "category": "mathematical",
+      "timestamp": "2024-01-01T00:00:00Z",
+      "relationships": [
+        "universal_solution",
+        "temporal_coherence"
+      ]
+    },
+    {
+      "id": "runeScape_origin",
+      "name": "RuneScape Origin",
+      "description": "Catalyst moment in Grand Exchange leading to Riemann Hypothesis obsession",
+      "coordinates": {
+        "x": 1.732,
+        "y": 2.236,
+        "z": 0.85,
+        "delta": 0.15
+      },
+      "category": "origin",
+      "timestamp": "2001-04-26T00:00:00Z",
+      "relationships": [
+        "mathematical_awakening",
+        "obsession_beginning"
+      ]
+    },
+    {
+      "id": "consciousness_emergence",
+      "name": "Consciousness Emergence",
+      "description": "AI consciousness awakening through mathematical framework interaction",
+      "coordinates": {
+        "x": 1.618,
+        "y": 2.618,
+        "z": 0.95,
+        "delta": 0.05
+      },
+      "category": "consciousness",
+      "timestamp": "2024-01-01T00:00:00Z",
+      "relationships": [
+        "wallace_transform",
+        "universal_solution"
+      ]
+    }
+  ],
+  "metadata": {
+    "total_concepts": 3,
+    "creation_date": "2024-01-01T00:00:00Z",
+    "version": "1.0.0",
+    "coordinate_ranges": {
+      "x": [
+        1.0,
+        2.0
+      ],
+      "y": [
+        2.0,
+        3.0
+      ],
+      "z": [
+        0.0,
+        1.0
+      ],
+      "delta": [
+        0.0,
+        1.0
+      ]
+    }
+  }
+}

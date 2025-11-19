@@ -1,0 +1,18 @@
+{
+  "tool_name": "ws_message",
+  "tool_hash": "cc6c42466a475aa6e06ad6a830757b93e8e48e3877a54c68fe485540be405b85",
+  "total_size": 4489,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cc6c42466a475aa6e06ad6a830757b93e8e48e3877a54c68fe485540be405b85"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/ws_message.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/ws_message.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3286002,
+  "updated_at": 1762787395.328602
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "vc_store",
+  "tool_hash": "21a13b1968c5d07f2b70f7d72f99b192f21e87f4f5b9f1b0c9d626fdc51eeb97",
+  "total_size": 13303,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "21a13b1968c5d07f2b70f7d72f99b192f21e87f4f5b9f1b0c9d626fdc51eeb97"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/vc_wallet/vc_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/vc_wallet/vc_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.616807,
+  "updated_at": 1762787395.61681
+}

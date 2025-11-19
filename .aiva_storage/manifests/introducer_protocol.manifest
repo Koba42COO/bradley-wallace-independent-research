@@ -1,0 +1,18 @@
+{
+  "tool_name": "introducer_protocol",
+  "tool_hash": "c4ee96f8f07c8f44048734f875d385ddefa4059b980a05580a2f4d07577f2bfe",
+  "total_size": 3321,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c4ee96f8f07c8f44048734f875d385ddefa4059b980a05580a2f4d07577f2bfe"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/introducer_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/introducer_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6686668,
+  "updated_at": 1762787395.66867
+}

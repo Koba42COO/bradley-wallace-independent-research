@@ -1,0 +1,18 @@
+{
+  "tool_name": "split_managers",
+  "tool_hash": "6a0cfdd80c40de83cf3ec6edabb3731fff34eafa0d98c40f0939f9774e72e828",
+  "total_size": 5814,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6a0cfdd80c40de83cf3ec6edabb3731fff34eafa0d98c40f0939f9774e72e828"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/split_managers.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/split_managers.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.416708,
+  "updated_at": 1762787395.41671
+}

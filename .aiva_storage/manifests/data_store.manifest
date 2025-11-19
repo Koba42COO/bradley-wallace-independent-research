@@ -1,0 +1,19 @@
+{
+  "tool_name": "data_store",
+  "tool_hash": "6987b43cb782cd4b6bcd96608aac3e45177f92852730dbaf65657aa06e4fa3ea",
+  "total_size": 82295,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fe0b410417482995a9159d75ad7930ab66c49f3e1beed45982ec154d974db78e",
+    "eb491ceaa96df567b022f6c5a5ae2bec37bf43994d16912d49a4942c1a1465f1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/data_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/data_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.575198,
+  "updated_at": 1762787395.575201
+}

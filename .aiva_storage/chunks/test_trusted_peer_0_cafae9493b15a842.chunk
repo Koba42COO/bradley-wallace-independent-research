@@ -1,0 +1,113 @@
+from __future__ import annotations
+
+from typing import Any
+
+import pytest
+from chia_rs.sized_bytes import bytes32
+
+from chia.util.network import is_trusted_peer
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+@pytest.mark.parametrize(
+    "host,node_id,trusted_peers,trusted_cidrs,testing,result",
+    [
+        # IPv6 localhost testing
+        ("::1", bytes32(b"0" * 32), {}, [], False, True),
+        # IPv6 localhost testing with mismatched node_id (still True)
+        ("::1", bytes32(b"d" * 32), {bytes32(b"a" * 32).hex(): "0"}, [], False, True),
+        # IPv6 localhost testing with testing flag True
+        ("::1", bytes32(b"0" * 32), {}, [], True, False),
+        ("::1", bytes32(b"d" * 32), {bytes32(b"a" * 32).hex(): "0"}, [], True, False),
+        # IPv6 localhost long form
+        ("0:0:0:0:0:0:0:1", bytes32(b"0" * 32), {}, [], False, True),
+        ("0:0:0:0:0:0:0:1", bytes32(b"0" * 32), {}, [], True, False),
+        # IPv4 localhost testing
+        ("127.0.0.1", bytes32(b"0" * 32), {}, [], False, True),
+        ("localhost", bytes32(b"0" * 32), {}, [], False, True),
+        ("127.0.0.1", bytes32(b"0" * 32), {}, [], True, False),
+        ("localhost", bytes32(b"0" * 32), {}, [], True, False),
+        # localhost testing with testing True but with matching node_id
+        ("127.0.0.1", bytes32(b"0" * 32), {bytes32(b"0" * 32).hex(): "0"}, [], True, True),
+        # misc
+        ("2000:1000::1234:abcd", bytes32(b"0" * 32), {}, [], True, False),
+        ("10.11.12.13", bytes32(b"d" * 32), {bytes32(b"a" * 32).hex(): "0"}, [], False, False),
+        ("10.11.12.13", bytes32(b"d" * 32), {bytes32(b"d" * 32).hex(): "0"}, [], False, True),
+        ("10.11.12.13", bytes32(b"d" * 32), {}, [], False, False),
+        # CIDR Allowlist
+        ("2000:1000::1234:abcd", bytes32(b"0" * 32), {}, ["2000:1000::/64"], False, True),
+        ("2000:1000::1234:abcd", bytes32(b"0" * 32), {}, [], False, False),
+        ("10.11.12.13", bytes32(b"d" * 32), {bytes32(b"a" * 32).hex(): "0"}, ["10.0.0.0/8"], False, True),
+        ("10.11.12.13", bytes32(b"d" * 32), {bytes32(b"a" * 32).hex(): "0"}, [], False, False),
+    ],
+)
+def test_is_trusted_peer(
+    host: str, node_id: bytes32, trusted_peers: dict[str, Any], trusted_cidrs: list[str], testing: bool, result: bool
+) -> None:
+    assert (
+        is_trusted_peer(
+            host=host, node_id=node_id, trusted_peers=trusted_peers, testing=testing, trusted_cidrs=trusted_cidrs
+        )
+        == result
+    )

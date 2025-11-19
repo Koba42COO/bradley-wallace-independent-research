@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_comprehensive",
+  "tool_hash": "83318a4c8e769da79cfa30797424413f18157dc867b24a03a57d9ccb27a6ea8c",
+  "total_size": 19743,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "83318a4c8e769da79cfa30797424413f18157dc867b24a03a57d9ccb27a6ea8c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/validation/test_comprehensive.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/validation/test_comprehensive.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2443142,
+  "updated_at": 1762787395.2443168
+}

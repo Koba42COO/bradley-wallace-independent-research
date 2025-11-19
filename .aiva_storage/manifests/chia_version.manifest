@@ -1,0 +1,18 @@
+{
+  "tool_name": "chia_version",
+  "tool_hash": "9ee26a4b3ca9560d044871e19f3327ebe2e5eec23caafd9f2c460ed74d1b94a8",
+  "total_size": 3672,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "9ee26a4b3ca9560d044871e19f3327ebe2e5eec23caafd9f2c460ed74d1b94a8"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/chia_version.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/chia_version.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.31802,
+  "updated_at": 1762787395.318023
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_node_discovery",
+  "tool_hash": "b8dffb263397c98852ee0eb9da6cca052cbf3ef9b0e297d6c6adaf2331683c36",
+  "total_size": 3565,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b8dffb263397c98852ee0eb9da6cca052cbf3ef9b0e297d6c6adaf2331683c36"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_node_discovery.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_node_discovery.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.375094,
+  "updated_at": 1762787395.375097
+}

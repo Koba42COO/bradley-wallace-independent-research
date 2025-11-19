@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_godel_p_vs_np_connection",
+  "tool_hash": "9babd84772142b8225e06ef8cd81fc72c78a567674133a86fb6af9c5820132ec",
+  "total_size": 6318,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "9babd84772142b8225e06ef8cd81fc72c78a567674133a86fb6af9c5820132ec"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/missing_papers/godel_connections/supporting_materials/datasets/generate_datasets_godel_p_vs_np_connection.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/missing_papers/godel_connections/supporting_materials/datasets/generate_datasets_godel_p_vs_np_connection.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2037818,
+  "updated_at": 1762787395.203796
+}

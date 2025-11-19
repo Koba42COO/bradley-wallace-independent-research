@@ -1,0 +1,224 @@
+from __future__ import annotations
+
+import random
+from dataclasses import dataclass, field
+from typing import Optional
+
+import pytest
+from chia_rs import CoinSpend
+from chia_rs.sized_bytes import bytes32
+from chia_rs.sized_ints import uint32, uint64
+from clvm_tools import binutils
+
+from chia._tests.util.db_connection import DBConnection
+from chia.types.blockchain_format.coin import Coin
+from chia.types.blockchain_format.program import Program
+from chia.types.coin_spend import make_spend
+from chia.wallet.util.compute_additions import compute_additions
+from chia.wallet.wallet_pool_store import WalletPoolStore
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+def make_child_solution(
+    coin_spend: Optional[CoinSpend], new_coin: Optional[Coin], seeded_random: random.Random
+) -> CoinSpend:
+    new_puzzle_hash: bytes32 = bytes32.random(seeded_random)
+    solution = "()"
+    puzzle = f"(q . ((51 0x{new_puzzle_hash.hex()} 1)))"
+    puzzle_prog = Program.to(binutils.assemble(puzzle))
+    solution_prog = Program.to(binutils.assemble(solution))
+    if new_coin is None:
+        assert coin_spend is not None
+        new_coin = compute_additions(coin_spend)[0]
+    sol: CoinSpend = make_spend(
+        new_coin,
+        puzzle_prog,
+        solution_prog,
+    )
+    return sol
+
+
+async def assert_db_spends(store: WalletPoolStore, wallet_id: int, spends: list[CoinSpend]) -> None:
+    db_spends = await store.get_spends_for_wallet(wallet_id)
+    assert len(db_spends) == len(spends)
+    for spend, (_, db_spend) in zip(spends, db_spends):
+        assert spend == db_spend
+
+
+@dataclass
+class DummySpends:
+    seeded_random: random.Random
+    spends_per_wallet: dict[int, list[CoinSpend]] = field(default_factory=dict)
+
+    def generate(self, wallet_id: int, count: int) -> None:
+        current = self.spends_per_wallet.setdefault(wallet_id, [])
+        for _ in range(count):
+            coin = None
+            last_spend = None if len(current) == 0 else current[-1]
+            if last_spend is None:
+                coin = Coin(bytes32.random(self.seeded_random), bytes32.random(self.seeded_random), uint64(12312))
+            current.append(make_child_solution(coin_spend=last_spend, new_coin=coin, seeded_random=self.seeded_random))
+
+
+class TestWalletPoolStore:
+    @pytest.mark.anyio
+    async def test_store(self, seeded_random: random.Random):
+        async with DBConnection(1) as db_wrapper:
+            store = await WalletPoolStore.create(db_wrapper)
+
+            try:
+                async with db_wrapper.writer():
+                    coin_0 = Coin(bytes32.random(seeded_random), bytes32.random(seeded_random), uint64(12312))
+                    coin_0_alt = Coin(bytes32.random(seeded_random), bytes32.random(seeded_random), uint64(12312))
+                    solution_0: CoinSpend = make_child_solution(
+                        coin_spend=None, new_coin=coin_0, seeded_random=seeded_random
+                    )
+                    solution_0_alt: CoinSpend = make_child_solution(
+                        coin_spend=None, new_coin=coin_0_alt, seeded_random=seeded_random
+                    )
+                    solution_1: CoinSpend = make_child_solution(
+                        coin_spend=solution_0, new_coin=None, seeded_random=seeded_random
+                    )
+
+                    assert await store.get_spends_for_wallet(0) == []
+                    assert await store.get_spends_for_wallet(1) == []
+
+                    await store.add_spend(1, solution_1, 100)
+                    assert await store.get_spends_for_wallet(1) == [(100, solution_1)]
+
+                    # Idempotent
+                    await store.add_spend(1, solution_1, 100)
+                    assert await store.get_spends_for_wallet(1) == [(100, solution_1)]
+
+                    with pytest.raises(ValueError):
+                        await store.add_spend(1, solution_1, 101)
+
+                    # Rebuild cache, no longer present
+                    raise RuntimeError("abandon transaction")
+            except Exception:
+                pass
+
+            assert await store.get_spends_for_wallet(1) == []
+
+            await store.add_spend(1, solution_1, 100)
+            assert await store.get_spends_for_wallet(1) == [(100, solution_1)]
+
+            solution_1_alt: CoinSpend = make_child_solution(solution_0_alt, new_coin=None, seeded_random=seeded_random)
+
+            with pytest.raises(ValueError):
+                await store.add_spend(1, solution_1_alt, 100)
+
+            assert await store.get_spends_for_wallet(1) == [(100, solution_1)]
+
+            solution_2: CoinSpend = make_child_solution(solution_1, new_coin=None, seeded_random=seeded_random)
+            await store.add_spend(1, solution_2, 100)
+            solution_3: CoinSpend = make_child_solution(solution_2, new_coin=None, seeded_random=seeded_random)
+            await store.add_spend(1, solution_3, 100)
+            solution_4: CoinSpend = make_child_solution(solution_3, new_coin=None, seeded_random=seeded_random)
+
+            with pytest.raises(ValueError):
+                await store.add_spend(1, solution_4, 99)
+
+            await store.add_spend(1, solution_4, 101)
+            await store.rollback(101, 1)
+            assert await store.get_spends_for_wallet(1) == [
+                (100, solution_1),
+                (100, solution_2),
+                (100, solution_3),
+                (101, solution_4),
+            ]
+            await store.rollback(100, 1)
+            assert await store.get_spends_for_wallet(1) == [
+                (100, solution_1),
+                (100, solution_2),
+                (100, solution_3),
+            ]
+            with pytest.raises(ValueError):
+                await store.add_spend(1, solution_1, 105)
+
+            await store.add_spend(1, solution_4, 105)
+            solution_5: CoinSpend = make_child_solution(solution_4, new_coin=None, seeded_random=seeded_random)
+            await store.add_spend(1, solution_5, 105)
+            await store.rollback(99, 1)
+            assert await store.get_spends_for_wallet(1) == []
+
+
+@pytest.mark.anyio
+async def test_delete_wallet(seeded_random: random.Random) -> None:
+    dummy_spends = DummySpends(seeded_random=seeded_random)
+    for i in range(5):
+        dummy_spends.generate(i, i * 5)
+    async with DBConnection(1) as db_wrapper:
+        store = await WalletPoolStore.create(db_wrapper)
+        # Add the spends per wallet and verify them
+        for wallet_id, spends in dummy_spends.spends_per_wallet.items():
+            for i, spend in enumerate(spends):
+                await store.add_spend(wallet_id, spend, uint32(i + wallet_id))
+            await assert_db_spends(store, wallet_id, spends)
+        # Remove one wallet after the other and verify before and after each
+        for wallet_id, spends in dummy_spends.spends_per_wallet.items():
+            # Assert the existence again here to make sure the previous removals did not affect other wallet_ids
+            await assert_db_spends(store, wallet_id, spends)
+            await store.delete_wallet(wallet_id)
+            await assert_db_spends(store, wallet_id, [])

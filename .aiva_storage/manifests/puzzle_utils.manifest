@@ -1,0 +1,18 @@
+{
+  "tool_name": "puzzle_utils",
+  "tool_hash": "7aad05ee875991b6d5e0b468b5013821ce7fe41944fffba4e750ff3b2646c740",
+  "total_size": 3871,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7aad05ee875991b6d5e0b468b5013821ce7fe41944fffba4e750ff3b2646c740"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/puzzle_utils.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/puzzle_utils.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.633044,
+  "updated_at": 1762787395.633047
+}

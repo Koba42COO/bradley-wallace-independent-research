@@ -1,0 +1,18 @@
+{
+  "tool_name": "download_cetacean_papers_consolidated",
+  "tool_hash": "2db18d3508e4fee2666bc8ccd5244373f558102594281f319a4ad8fd1c1eab5c",
+  "total_size": 10865,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2db18d3508e4fee2666bc8ccd5244373f558102594281f319a4ad8fd1c1eab5c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/download_cetacean_papers_consolidated.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/download_cetacean_papers_consolidated.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0245419,
+  "updated_at": 1762787395.024545
+}

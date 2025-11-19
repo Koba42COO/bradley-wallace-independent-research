@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_full_sync_consolidated",
+  "tool_hash": "aa6a5d99f53c0bc446fd3ae75589a84f763c3d5cd22f4353e280db68d4884d48",
+  "total_size": 9505,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "aa6a5d99f53c0bc446fd3ae75589a84f763c3d5cd22f4353e280db68d4884d48"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/tools/test_full_sync_consolidated.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/tools/test_full_sync_consolidated.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.273825,
+  "updated_at": 1762787395.273828
+}

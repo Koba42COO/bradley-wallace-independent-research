@@ -1,0 +1,212 @@
+ies: list[SubEpochSummary], weight_proof: WeightProof) -> tuple[list[bytes], bytes, bytes]:
+    wp_recent_chain_bytes = bytes(RecentChainData(weight_proof.recent_chain_data))
+    wp_segment_bytes = bytes(SubEpochSegments(weight_proof.sub_epoch_segments))
+    summary_bytes = []
+    for summary in summaries:
+        summary_bytes.append(bytes(summary))
+    return summary_bytes, wp_segment_bytes, wp_recent_chain_bytes
+
+
+def summaries_from_bytes(summaries_bytes: list[bytes]) -> list[SubEpochSummary]:
+    summaries = []
+    for summary in summaries_bytes:
+        summaries.append(SubEpochSummary.from_bytes(summary))
+    return summaries
+
+
+def _get_last_ses_hash(
+    constants: ConsensusConstants, recent_reward_chain: list[HeaderBlock]
+) -> tuple[Optional[bytes32], uint32]:
+    for idx, block in enumerate(reversed(recent_reward_chain)):
+        if (block.reward_chain_block.height % constants.SUB_EPOCH_BLOCKS) == 0:
+            original_idx = len(recent_reward_chain) - 1 - idx  # reverse
+            # find first block after sub slot end
+            while original_idx < len(recent_reward_chain):
+                curr = recent_reward_chain[original_idx]
+                if len(curr.finished_sub_slots) > 0:
+                    for slot in curr.finished_sub_slots:
+                        if slot.challenge_chain.subepoch_summary_hash is not None:
+                            return (
+                                slot.challenge_chain.subepoch_summary_hash,
+                                curr.reward_chain_block.height,
+                            )
+                original_idx += 1
+    return None, uint32(0)
+
+
+def _get_ses_idx(recent_reward_chain: list[HeaderBlock]) -> list[int]:
+    idxs: list[int] = []
+    for idx, curr in enumerate(recent_reward_chain):
+        if len(curr.finished_sub_slots) > 0:
+            for slot in curr.finished_sub_slots:
+                if slot.challenge_chain.subepoch_summary_hash is not None:
+                    idxs.append(idx)
+    return idxs
+
+
+def get_deficit(
+    constants: ConsensusConstants,
+    curr_deficit: uint8,
+    prev_block: Optional[BlockRecord],
+    overflow: bool,
+    num_finished_sub_slots: int,
+) -> uint8:
+    if prev_block is None:
+        if curr_deficit >= 1 and not (overflow and curr_deficit == constants.MIN_BLOCKS_PER_CHALLENGE_BLOCK):
+            curr_deficit = uint8(curr_deficit - 1)
+        return curr_deficit
+
+    return calculate_deficit(constants, uint32(prev_block.height + 1), prev_block, overflow, num_finished_sub_slots)
+
+
+def get_sp_total_iters(
+    constants: ConsensusConstants, is_overflow: bool, ssi: uint64, sub_slot_data: SubSlotData
+) -> int:
+    assert sub_slot_data.cc_ip_vdf_info is not None
+    assert sub_slot_data.total_iters is not None
+    assert sub_slot_data.signage_point_index is not None
+    sp_iters = calculate_sp_iters(constants, ssi, sub_slot_data.signage_point_index)
+    ip_iters = sub_slot_data.cc_ip_vdf_info.number_of_iterations
+    sp_sub_slot_total_iters = uint128(sub_slot_data.total_iters - ip_iters)
+    if is_overflow:
+        sp_sub_slot_total_iters = uint128(sp_sub_slot_total_iters - ssi)
+    return sp_sub_slot_total_iters + sp_iters
+
+
+def blue_boxed_end_of_slot(sub_slot: EndOfSubSlotBundle) -> bool:
+    if sub_slot.proofs.challenge_chain_slot_proof.normalized_to_identity:
+        if sub_slot.proofs.infused_challenge_chain_slot_proof is not None:
+            if sub_slot.proofs.infused_challenge_chain_slot_proof.normalized_to_identity:
+                return True
+        else:
+            return True
+    return False
+
+
+def validate_sub_epoch_sampling(
+    rng: random.Random, sub_epoch_weight_list: list[uint128], weight_proof: WeightProof
+) -> bool:
+    tip = weight_proof.recent_chain_data[-1]
+    weight_to_check = _get_weights_for_sampling(rng, tip.weight, weight_proof.recent_chain_data)
+    sampled_sub_epochs: dict[int, bool] = {}
+    for idx in range(1, len(sub_epoch_weight_list)):
+        if _sample_sub_epoch(sub_epoch_weight_list[idx - 1], sub_epoch_weight_list[idx], weight_to_check):
+            sampled_sub_epochs[idx - 1] = True
+            if len(sampled_sub_epochs) == WeightProofHandler.MAX_SAMPLES:
+                break
+    curr_sub_epoch_n = -1
+    for sub_epoch_segment in weight_proof.sub_epoch_segments:
+        if curr_sub_epoch_n < sub_epoch_segment.sub_epoch_n:
+            if sub_epoch_segment.sub_epoch_n in sampled_sub_epochs:
+                del sampled_sub_epochs[sub_epoch_segment.sub_epoch_n]
+        curr_sub_epoch_n = sub_epoch_segment.sub_epoch_n
+    if len(sampled_sub_epochs) > 0:
+        return False
+    return True
+
+
+def map_segments_by_sub_epoch(
+    sub_epoch_segments: list[SubEpochChallengeSegment],
+) -> dict[int, list[SubEpochChallengeSegment]]:
+    segments: dict[int, list[SubEpochChallengeSegment]] = {}
+    curr_sub_epoch_n = -1
+    for idx, segment in enumerate(sub_epoch_segments):
+        if curr_sub_epoch_n < segment.sub_epoch_n:
+            curr_sub_epoch_n = segment.sub_epoch_n
+            segments[curr_sub_epoch_n] = []
+        segments[curr_sub_epoch_n].append(segment)
+    return segments
+
+
+def _validate_vdf_batch(
+    constants: ConsensusConstants,
+    vdf_list: list[tuple[bytes, bytes, bytes]],
+    shutdown_file_path: Optional[pathlib.Path] = None,
+) -> bool:
+    for vdf_proof_bytes, class_group_bytes, info in vdf_list:
+        vdf = VDFProof.from_bytes(vdf_proof_bytes)
+        class_group = ClassgroupElement.create(class_group_bytes)
+        vdf_info = VDFInfo.from_bytes(info)
+        if not validate_vdf(vdf, constants, class_group, vdf_info):
+            return False
+
+        if shutdown_file_path is not None and not shutdown_file_path.is_file():
+            log.info("cancelling VDF validation, shutdown requested")
+            return False
+
+    return True
+
+
+async def validate_weight_proof_inner(
+    constants: ConsensusConstants,
+    executor: ProcessPoolExecutor,
+    shutdown_file_name: str,
+    num_processes: int,
+    weight_proof: WeightProof,
+    summaries: list[SubEpochSummary],
+    sub_epoch_weight_list: list[uint128],
+    skip_segment_validation: bool,
+    validate_from: int,
+) -> tuple[bool, list[BlockRecord]]:
+    assert len(weight_proof.sub_epochs) > 0
+    if len(weight_proof.sub_epochs) == 0:
+        return False, []
+
+    peak_height = weight_proof.recent_chain_data[-1].reward_chain_block.height
+    log.info(f"validate weight proof peak height {peak_height}")
+    seed = summaries[-2].get_hash()
+    rng = random.Random(seed)
+    if not validate_sub_epoch_sampling(rng, sub_epoch_weight_list, weight_proof):
+        log.error("failed weight proof sub epoch sample validation")
+        return False, []
+
+    loop = asyncio.get_running_loop()
+    summary_bytes, wp_segment_bytes, wp_recent_chain_bytes = vars_to_bytes(summaries, weight_proof)
+    recent_blocks_validation_task = loop.run_in_executor(
+        executor,
+        validate_recent_blocks,
+        constants,
+        wp_recent_chain_bytes,
+        summary_bytes,
+        pathlib.Path(shutdown_file_name),
+    )
+
+    if not skip_segment_validation:
+        vdfs_to_validate = _validate_sub_epoch_segments(
+            constants, rng, wp_segment_bytes, summary_bytes, peak_height, validate_from
+        )
+        await asyncio.sleep(0)  # break up otherwise multi-second sync code
+
+        if vdfs_to_validate is None:
+            return False, []
+
+        vdf_tasks = []
+        for batch in to_batches(vdfs_to_validate, num_processes):
+            byte_chunks = []
+            for vdf_proof, classgroup, vdf_info in batch.entries:
+                byte_chunks.append((bytes(vdf_proof), bytes(classgroup), bytes(vdf_info)))
+            vdf_task = asyncio.get_running_loop().run_in_executor(
+                executor,
+                _validate_vdf_batch,
+                constants,
+                byte_chunks,
+                pathlib.Path(shutdown_file_name),
+            )
+            vdf_tasks.append(vdf_task)
+            # give other stuff a turn
+            await asyncio.sleep(0)
+
+        for vdf_task in asyncio.as_completed(fs=vdf_tasks):
+            validated = await vdf_task
+            if not validated:
+                return False, []
+
+    valid_recent_blocks, records_bytes = await recent_blocks_validation_task
+
+    if not valid_recent_blocks or records_bytes is None:
+        log.error("failed validating weight proof recent blocks")
+        # Verify the data
+        return False, []
+
+    records = [BlockRecord.from_bytes(b) for b in records_bytes]
+    return True, records

@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_p_vs_np_analysis",
+  "tool_hash": "168d68df8b46256e32ef80d094817919323a02b417b2ae1e988bf5d73347338b",
+  "total_size": 6303,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "168d68df8b46256e32ef80d094817919323a02b417b2ae1e988bf5d73347338b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects/wallace-convergence/advanced-mathematical-solutions/supporting_materials/datasets/generate_datasets_p_vs_np_analysis.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects/wallace-convergence/advanced-mathematical-solutions/supporting_materials/datasets/generate_datasets_p_vs_np_analysis.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.1706932,
+  "updated_at": 1762787395.170696
+}

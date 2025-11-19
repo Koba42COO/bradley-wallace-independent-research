@@ -1,0 +1,18 @@
+{
+  "tool_name": "create_ssl",
+  "tool_hash": "338003f1e628718672a6a78b2f475c73711fc27d7e5416252cfdf55db3b15d72",
+  "total_size": 11668,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "338003f1e628718672a6a78b2f475c73711fc27d7e5416252cfdf55db3b15d72"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/ssl/create_ssl.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/ssl/create_ssl.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2951832,
+  "updated_at": 1762787395.295189
+}

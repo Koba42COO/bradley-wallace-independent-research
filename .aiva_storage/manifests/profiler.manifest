@@ -1,0 +1,18 @@
+{
+  "tool_name": "profiler",
+  "tool_hash": "b7e38be1f3878ad06b1eb9ec84d79fb2e4a5c5a0b9cfeee5956adb4f07db1b03",
+  "total_size": 10011,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b7e38be1f3878ad06b1eb9ec84d79fb2e4a5c5a0b9cfeee5956adb4f07db1b03"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/profiler.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/profiler.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.327273,
+  "updated_at": 1762787395.327276
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_start_simulator",
+  "tool_hash": "c1da756ad5f3d93eba6eec465ba2b303632e36f1f175e33f7aadb34a8e3ab033",
+  "total_size": 7842,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c1da756ad5f3d93eba6eec465ba2b303632e36f1f175e33f7aadb34a8e3ab033"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/simulation/test_start_simulator.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/simulation/test_start_simulator.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.43544,
+  "updated_at": 1762787395.435443
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "full_block_to_block_record",
+  "tool_hash": "0998b414ae1ac393c733a48efe47e12771b930c0fd0c6cdfa2c7d01f57fc6fff",
+  "total_size": 8947,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "0998b414ae1ac393c733a48efe47e12771b930c0fd0c6cdfa2c7d01f57fc6fff"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/full_block_to_block_record.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/full_block_to_block_record.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.284534,
+  "updated_at": 1762787395.2845361
+}

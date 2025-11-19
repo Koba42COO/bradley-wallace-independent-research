@@ -1,0 +1,18 @@
+{
+  "tool_name": "signer_protocol",
+  "tool_hash": "db2862b7e89ec5f7b88052c837d880f874227033eb35c9c777c735d73febc8f6",
+  "total_size": 5608,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "db2862b7e89ec5f7b88052c837d880f874227033eb35c9c777c735d73febc8f6"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/signer_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/signer_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6064808,
+  "updated_at": 1762787395.606485
+}

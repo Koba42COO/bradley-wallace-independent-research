@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_db_wrapper",
+  "tool_hash": "44eb29bce4705fcfd9cee56dcabd8cee6bd9d701fc06a05baeb97423d1bdcd06",
+  "total_size": 23616,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "44eb29bce4705fcfd9cee56dcabd8cee6bd9d701fc06a05baeb97423d1bdcd06"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/db/test_db_wrapper.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/db/test_db_wrapper.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.503788,
+  "updated_at": 1762787395.503791
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "supplement_pell_sequence_analysis",
+  "tool_hash": "05a82d062e0ee299cd9da631245149c6d8ce4ef9845a54b4f9f3aaac7e73fddf",
+  "total_size": 14433,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "05a82d062e0ee299cd9da631245149c6d8ce4ef9845a54b4f9f3aaac7e73fddf"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/supplement_pell_sequence_analysis.py",
+  "consciousness_level": 7,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/supplement_pell_sequence_analysis.py",
+    "has_upg": false,
+    "has_pell": true
+  },
+  "created_at": 1762787394.99293,
+  "updated_at": 1762787394.992933
+}

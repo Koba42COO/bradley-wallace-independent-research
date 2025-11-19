@@ -1,0 +1,18 @@
+{
+  "tool_name": "ram_db",
+  "tool_hash": "14e5ad03806899acf41dccedc8d3b1c94177c736d86fb0fd26d54ef0571a3efa",
+  "total_size": 1166,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "14e5ad03806899acf41dccedc8d3b1c94177c736d86fb0fd26d54ef0571a3efa"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/full_node/ram_db.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/full_node/ram_db.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.392032,
+  "updated_at": 1762787395.392035
+}

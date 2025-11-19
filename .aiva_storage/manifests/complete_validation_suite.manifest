@@ -1,0 +1,18 @@
+{
+  "tool_name": "complete_validation_suite",
+  "tool_hash": "5e370a0aa553947483a2c434392ee4e2a9973ac327cc5cb28745ee75149fb89f",
+  "total_size": 19167,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5e370a0aa553947483a2c434392ee4e2a9973ac327cc5cb28745ee75149fb89f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects/validation-frameworks/comprehensive-testing/complete_validation_suite.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects/validation-frameworks/comprehensive-testing/complete_validation_suite.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.1319559,
+  "updated_at": 1762787395.131959
+}

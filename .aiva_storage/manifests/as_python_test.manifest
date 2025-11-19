@@ -1,0 +1,18 @@
+{
+  "tool_name": "as_python_test",
+  "tool_hash": "ec64d38f7ab40e00e8cadcc9d4c511d2f729e9e42a3595b863950288d6554634",
+  "total_size": 11462,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ec64d38f7ab40e00e8cadcc9d4c511d2f729e9e42a3595b863950288d6554634"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/tests/as_python_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/tests/as_python_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.062272,
+  "updated_at": 1762787395.0622752
+}

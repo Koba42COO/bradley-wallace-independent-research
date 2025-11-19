@@ -1,0 +1,18 @@
+{
+  "tool_name": "lineage_store",
+  "tool_hash": "73bdb9c4d9cd1eff9964e662b9e273fa1628b5ddddc8e7de1734deb6326b4327",
+  "total_size": 5836,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "73bdb9c4d9cd1eff9964e662b9e273fa1628b5ddddc8e7de1734deb6326b4327"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/cat_wallet/lineage_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/cat_wallet/lineage_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.644949,
+  "updated_at": 1762787395.644952
+}

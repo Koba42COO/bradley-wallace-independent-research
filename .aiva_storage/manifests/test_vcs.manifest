@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_vcs",
+  "tool_hash": "f60fc6ecec32bbe1f4aba6a59837b5cafbd65b34931024e2465b93b2a09e43a8",
+  "total_size": 17163,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f60fc6ecec32bbe1f4aba6a59837b5cafbd65b34931024e2465b93b2a09e43a8"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/wallet/test_vcs.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/wallet/test_vcs.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.45407,
+  "updated_at": 1762787395.4540732
+}

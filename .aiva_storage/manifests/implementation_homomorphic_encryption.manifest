@@ -1,0 +1,18 @@
+{
+  "tool_name": "implementation_homomorphic_encryption",
+  "tool_hash": "ffda22825f7ba1549ba40b74ca636018f8bd2815321a09db92b6fa6f4a8e8ca0",
+  "total_size": 4704,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ffda22825f7ba1549ba40b74ca636018f8bd2815321a09db92b6fa6f4a8e8ca0"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/code_examples/implementation_homomorphic_encryption.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/code_examples/implementation_homomorphic_encryption.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.227394,
+  "updated_at": 1762787395.227396
+}

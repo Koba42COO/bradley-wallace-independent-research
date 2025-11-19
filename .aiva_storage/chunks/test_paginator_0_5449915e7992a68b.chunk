@@ -1,0 +1,133 @@
+from __future__ import annotations
+
+from math import ceil
+
+import pytest
+
+from chia.util.paginator import InvalidPageSizeError, InvalidPageSizeLimit, PageOutOfBoundsError, Paginator
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+@pytest.mark.parametrize(
+    "source, page_size, page_size_limit",
+    [([], 1, 1), ([1], 1, 2), ([1, 2], 2, 2), ([], 10, 100), ([1, 2, 10], 1000, 1000)],
+)
+def test_constructor_valid_inputs(source: list[int], page_size: int, page_size_limit: int) -> None:
+    paginator: Paginator = Paginator.create(source, page_size, page_size_limit)
+    assert paginator.page_size() == page_size
+    assert paginator.page_count() == 1
+    assert paginator.get_page(0) == source
+
+
+@pytest.mark.parametrize(
+    "page_size, page_size_limit, exception",
+    [
+        (5, -1, InvalidPageSizeLimit),
+        (5, 0, InvalidPageSizeLimit),
+        (2, 1, InvalidPageSizeError),
+        (100, 1, InvalidPageSizeError),
+        (1001, 1000, InvalidPageSizeError),
+    ],
+)
+def test_constructor_invalid_inputs(page_size: int, page_size_limit: int, exception: type[Exception]) -> None:
+    with pytest.raises(exception):
+        Paginator.create([], page_size, page_size_limit)
+
+
+def test_page_count() -> None:
+    for page_size in range(1, 10):
+        for i in range(10):
+            assert Paginator.create(range(i), page_size).page_count() == max(1, ceil(i / page_size))
+
+
+@pytest.mark.parametrize(
+    "length, page_size, page, expected_data",
+    [
+        (17, 5, 0, [0, 1, 2, 3, 4]),
+        (17, 5, 1, [5, 6, 7, 8, 9]),
+        (17, 5, 2, [10, 11, 12, 13, 14]),
+        (17, 5, 3, [15, 16]),
+        (3, 4, 0, [0, 1, 2]),
+        (3, 3, 0, [0, 1, 2]),
+        (3, 2, 0, [0, 1]),
+        (3, 2, 1, [2]),
+        (3, 1, 0, [0]),
+        (3, 1, 1, [1]),
+        (3, 1, 2, [2]),
+        (2, 2, 0, [0, 1]),
+        (2, 1, 0, [0]),
+        (2, 1, 1, [1]),
+        (1, 2, 0, [0]),
+        (0, 2, 0, []),
+        (0, 10, 0, []),
+    ],
+)
+def test_get_page_valid(length: int, page: int, page_size: int, expected_data: list[int]) -> None:
+    assert Paginator.create(list(range(length)), page_size).get_page(page) == expected_data
+
+
+@pytest.mark.parametrize("page", [-1000, -10, -1, 5, 10, 1000])
+def test_get_page_invalid(page: int) -> None:
+    with pytest.raises(PageOutOfBoundsError):
+        Paginator.create(range(17), 5).get_page(page)

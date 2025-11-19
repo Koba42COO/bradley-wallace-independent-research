@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_action_scope",
+  "tool_hash": "1b5a096d839250aa177cd48f0c4700088efa29928ddb109710e9bb337d174ea3",
+  "total_size": 7965,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1b5a096d839250aa177cd48f0c4700088efa29928ddb109710e9bb337d174ea3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_action_scope.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_action_scope.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.412106,
+  "updated_at": 1762787395.41211
+}

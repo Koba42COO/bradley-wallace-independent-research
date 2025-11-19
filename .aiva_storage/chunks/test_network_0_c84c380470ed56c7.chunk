@@ -1,0 +1,168 @@
+from __future__ import annotations
+
+import os
+import sys
+from ipaddress import IPv4Address, IPv6Address
+from typing import Union
+
+import pytest
+
+from chia.util.ip_address import IPAddress
+from chia.util.network import parse_host_port, resolve
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+@pytest.mark.parametrize(
+    "host_port, expected_host, expected_port",
+    [
+        ("127.0.0.1:8080", "127.0.0.1", 8080),
+        ("[::1]:8080", "::1", 8080),
+        ("example.com:8080", "example.com", 8080),
+        ("localhost:8555", "localhost", 8555),
+    ],
+)
+def test_parse_host_port(host_port: str, expected_host: str, expected_port: int) -> None:
+    host, port = parse_host_port(host_port)
+    assert host == expected_host
+    assert port == expected_port
+
+
+@pytest.mark.parametrize(
+    "host_port",
+    [
+        "127.0.0.1",
+        "::1",
+        "example.com",
+        "localhost",
+        "127.0.0.1:",
+        ":8080",
+    ],
+)
+def test_parse_host_port_invalid(host_port: str) -> None:
+    with pytest.raises(ValueError):
+        parse_host_port(host_port)
+
+
+@pytest.mark.anyio
+async def test_resolve4() -> None:
+    # Run these tests forcing IPv4 resolution
+    prefer_ipv6 = False
+    assert await resolve("127.0.0.1", prefer_ipv6=prefer_ipv6) == IPAddress.create("127.0.0.1")
+    assert await resolve("10.11.12.13", prefer_ipv6=prefer_ipv6) == IPAddress.create("10.11.12.13")
+    assert await resolve("localhost", prefer_ipv6=prefer_ipv6) == IPAddress.create("127.0.0.1")
+    example = await resolve("example.net", prefer_ipv6=prefer_ipv6)
+    assert example.is_v4
+    assert not example.is_private
+
+
+@pytest.mark.anyio
+@pytest.mark.skipif(
+    condition=("GITHUB_ACTIONS" in os.environ) and (sys.platform in {"darwin", "win32"}),
+    reason="macOS and Windows runners in GitHub Actions do not seem to support IPv6",
+)
+async def test_resolve6() -> None:
+    # Run these tests forcing IPv6 resolution
+    prefer_ipv6 = True
+    assert await resolve("::1", prefer_ipv6=prefer_ipv6) == IPAddress.create("::1")
+    assert await resolve("2000:1000::1234:abcd", prefer_ipv6=prefer_ipv6) == IPAddress.create("2000:1000::1234:abcd")
+    # ip6-localhost is not always available, and localhost is IPv4 only
+    # on some systems.  Just test neither here.
+    # assert await resolve("ip6-localhost", prefer_ipv6=prefer_ipv6) == IPAddress.create("::1")
+    # assert await resolve("localhost", prefer_ipv6=prefer_ipv6) == IPAddress.create("::1")
+    example = await resolve("example.net", prefer_ipv6=prefer_ipv6)
+    assert example.is_v6
+    assert not example.is_private
+
+
+@pytest.mark.parametrize(
+    "address_string, expected_inner",
+    [
+        ("::1", IPv6Address),
+        ("2000:1000::1234:abcd", IPv6Address),
+        ("127.0.0.1", IPv4Address),
+        ("10.11.12.13", IPv4Address),
+        ("93.184.216.34", IPv4Address),
+    ],
+)
+def test_ip_address(address_string: str, expected_inner: type[Union[IPv4Address, IPv6Address]]) -> None:
+    inner = expected_inner(address_string)
+    ip = IPAddress.create(address_string)
+    # Helpers
+    assert ip.is_v4 == (expected_inner == IPv4Address)
+    assert ip.is_v6 == (expected_inner == IPv6Address)
+    # Overwritten dataclass methods
+    assert int(ip) == int(inner)
+    assert str(ip) == str(inner)
+    assert repr(ip) == repr(inner)
+    # Forwarded IPv4Address, IPV6Address properties
+    assert ip.packed == inner.packed
+    assert ip.is_private == inner.is_private
+    # Still use dataclass comparison
+    assert ip != inner
+
+
+@pytest.mark.parametrize("address_string", ["10.11.12.13.14", "10,11.12.13", "0:::", "localhost", "invalid"])
+def test_invalid_ip_addresses(address_string: str) -> None:
+    with pytest.raises(ValueError):
+        IPAddress.create(address_string)

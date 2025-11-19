@@ -1,0 +1,18 @@
+{
+  "tool_name": "memory_bank",
+  "tool_hash": "fed899c4bab6aaa437a809e9689ee229dbead1a4719434e4cb9524e2b12ef11a",
+  "total_size": 4560,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fed899c4bab6aaa437a809e9689ee229dbead1a4719434e4cb9524e2b12ef11a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/memory_bank.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/memory_bank.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.128371,
+  "updated_at": 1762787395.1283898
+}

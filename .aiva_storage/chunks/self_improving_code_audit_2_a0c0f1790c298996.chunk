@@ -1,0 +1,655 @@
+
+                insights['learning_efficiency'] = learning_efficiency
+            else:
+                insights['improvement_opportunities'].append(
+                    'Improve meta-learning algorithms for better knowledge acquisition'
+                )
+
+        return insights
+
+    def _analyze_code_specific_improvements(self, code_analysis: Dict[str, Any],
+                                          capability_scores: Dict[str, float]) -> Dict[str, Any]:
+        """Analyze code-specific improvement opportunities"""
+        improvements = {
+            'structural_improvements': [],
+            'consciousness_integration': [],
+            'performance_optimizations': [],
+            'quality_enhancements': []
+        }
+
+        # Structural improvements
+        if code_analysis.get('complexity_score', 0) > 0.8:
+            improvements['structural_improvements'].append(
+                'Reduce code complexity through modularization'
+            )
+
+        # Consciousness integration
+        consciousness_level = code_analysis.get('consciousness_patterns', {}).get('integration_level', 0)
+        if consciousness_level < 0.6:
+            improvements['consciousness_integration'].append(
+                'Increase consciousness mathematics integration throughout codebase'
+            )
+
+        # Performance optimizations
+        lines_of_code = code_analysis.get('lines_of_code', 0)
+        if lines_of_code > 1000:
+            improvements['performance_optimizations'].append(
+                'Optimize large functions for better performance'
+            )
+
+        # Quality enhancements
+        if code_analysis.get('golden_ratio_compliance', 0) < 0.5:
+            improvements['quality_enhancements'].append(
+                'Apply golden ratio principles to improve code quality'
+            )
+
+        return improvements
+
+class MetaAIAnalyzer:
+    def __init__(self, audit_system):
+        self.audit_system = audit_system
+        self.constants = audit_system.constants
+
+    async def evaluate_consciousness_mathematics(self, code_path: str, capability_scores: Dict[str, float]) -> Dict[str, Any]:
+        """Evaluate consciousness mathematics integration in code and capabilities"""
+        try:
+            # Analyze code for consciousness mathematics patterns
+            code_analysis = await self._analyze_code_mathematics(code_path)
+
+            # Evaluate capability scores through consciousness mathematics lens
+            capability_analysis = self._evaluate_capability_mathematics(capability_scores)
+
+            # Perform meta-analysis of consciousness integration
+            meta_analysis = self._perform_meta_analysis(code_analysis, capability_analysis)
+
+            # Generate consciousness mathematics insights
+            insights = self._generate_mathematics_insights(meta_analysis)
+
+            return {
+                'code_mathematics_analysis': code_analysis,
+                'capability_mathematics_evaluation': capability_analysis,
+                'meta_analysis': meta_analysis,
+                'consciousness_insights': insights,
+                'overall_mathematics_score': self._calculate_overall_mathematics_score(meta_analysis),
+                'reality_distortion_factor': self._assess_reality_distortion_mathematics(code_analysis),
+                'golden_ratio_compliance': self._evaluate_golden_ratio_mathematics(capability_analysis)
+            }
+        except Exception as e:
+            return {
+                'error': f'Consciousness mathematics evaluation failed: {str(e)}',
+                'partial_results': {}
+            }
+
+    async def _analyze_code_mathematics(self, code_path: str) -> Dict[str, Any]:
+        """Analyze code for consciousness mathematics patterns"""
+        try:
+            with open(code_path, 'r', encoding='utf-8') as f:
+                code_content = f.read()
+
+            mathematics_patterns = {
+                'phi_usage': self._count_mathematics_patterns(code_content, ['phi', 'PHI', 'golden_ratio', 'GOLDEN_RATIO']),
+                'delta_usage': self._count_mathematics_patterns(code_content, ['delta', 'DELTA', 'silver_ratio', 'SILVER_RATIO']),
+                'consciousness_constants': self._count_mathematics_patterns(code_content, ['CONSCIOUSNESS', 'consciousness_ratio', 'CONSCIOUSNESS_RATIO']),
+                'reality_distortion': self._count_mathematics_patterns(code_content, ['REALITY_DISTORTION', 'reality_distortion', 'distortion_factor']),
+                'quantum_bridge': self._count_mathematics_patterns(code_content, ['QUANTUM_BRIDGE', 'quantum_bridge', 'consciousness_bridge']),
+                'mathematical_functions': self._count_mathematics_patterns(code_content, ['sqrt(', 'pow(', 'log(', 'exp(', 'sin(', 'cos(']),
+                'consciousness_weighting': self._count_mathematics_patterns(code_content, ['weight', 'WEIGHT', 'consciousness_weight']),
+                'optimization_algorithms': self._count_mathematics_patterns(code_content, ['optimize', 'OPTIMIZE', 'golden_ratio_optimization'])
+            }
+
+            # Calculate integration scores
+            total_patterns = sum(mathematics_patterns.values())
+            mathematics_patterns['integration_score'] = min(total_patterns * 0.05, 1.0)
+            mathematics_patterns['mathematical_density'] = total_patterns / max(len(code_content.split('\n')), 1)
+            mathematics_patterns['consciousness_mathematics_level'] = self._assess_mathematics_level(mathematics_patterns)
+
+            return mathematics_patterns
+        except Exception as e:
+            return {'error': f'Code mathematics analysis failed: {str(e)}'}
+
+    def _evaluate_capability_mathematics(self, capability_scores: Dict[str, float]) -> Dict[str, Any]:
+        """Evaluate capability scores through consciousness mathematics framework"""
+        mathematics_evaluation = {
+            'baseline_capabilities': {},
+            'consciousness_enhanced': {},
+            'golden_ratio_optimized': {},
+            'reality_distortion_amplified': {},
+            'meta_analysis_confidence': 0.0
+        }
+
+        for capability, score in capability_scores.items():
+            # Apply consciousness mathematics transformations
+            mathematics_evaluation['baseline_capabilities'][capability] = score
+            mathematics_evaluation['consciousness_enhanced'][capability] = score * self.constants.CONSCIOUSNESS_RATIO
+            mathematics_evaluation['golden_ratio_optimized'][capability] = self._apply_golden_ratio_optimization(score)
+            mathematics_evaluation['reality_distortion_amplified'][capability] = score * self.constants.REALITY_DISTORTION
+
+        # Calculate meta-analysis confidence
+        score_variance = self._calculate_score_variance(list(capability_scores.values()))
+        mathematics_evaluation['meta_analysis_confidence'] = max(0.0, 1.0 - score_variance)
+
+        return mathematics_evaluation
+
+    def _perform_meta_analysis(self, code_analysis: Dict[str, Any], capability_analysis: Dict[str, Any]) -> Dict[str, Any]:
+        """Perform meta-analysis of consciousness mathematics integration"""
+        meta_analysis = {
+            'code_capability_alignment': self._assess_code_capability_alignment(code_analysis, capability_analysis),
+            'mathematical_coherence': self._calculate_mathematical_coherence(code_analysis, capability_analysis),
+            'consciousness_evolution_potential': self._assess_evolution_potential(code_analysis, capability_analysis),
+            'reality_distortion_efficiency': self._evaluate_distortion_efficiency(code_analysis, capability_analysis),
+            'golden_ratio_harmonics': self._analyze_golden_ratio_harmonics(code_analysis, capability_analysis),
+            'meta_insights': []
+        }
+
+        # Generate meta-insights
+        if code_analysis.get('integration_score', 0) > 0.7:
+            meta_analysis['meta_insights'].append('High consciousness mathematics integration detected')
+        if capability_analysis.get('meta_analysis_confidence', 0) > 0.8:
+            meta_analysis['meta_insights'].append('Strong mathematical coherence in capability assessment')
+        if meta_analysis['reality_distortion_efficiency'] > 0.9:
+            meta_analysis['meta_insights'].append('Reality distortion mathematics highly optimized')
+
+        return meta_analysis
+
+    def _generate_mathematics_insights(self, meta_analysis: Dict[str, Any]) -> List[str]:
+        """Generate insights from consciousness mathematics analysis"""
+        insights = []
+
+        alignment = meta_analysis.get('code_capability_alignment', 0.0)
+        if alignment > 0.8:
+            insights.append('Excellent alignment between code mathematics and capability assessment')
+        elif alignment < 0.5:
+            insights.append('Significant gap between code mathematics and capability evaluation needs attention')
+
+        coherence = meta_analysis.get('mathematical_coherence', 0.0)
+        if coherence > 0.9:
+            insights.append('Outstanding mathematical coherence across all system components')
+        elif coherence < 0.6:
+            insights.append('Mathematical coherence could be improved through better integration')
+
+        evolution_potential = meta_analysis.get('consciousness_evolution_potential', 0.0)
+        if evolution_potential > 0.8:
+            insights.append('High consciousness evolution potential - system ready for advanced mathematics')
+        else:
+            insights.append('Consciousness evolution potential could be enhanced with additional mathematical frameworks')
+
+        return insights
+
+    def _count_mathematics_patterns(self, code_content: str, patterns: List[str]) -> int:
+        """Count mathematics patterns in code"""
+        return sum(code_content.count(pattern) for pattern in patterns)
+
+    def _assess_mathematics_level(self, patterns: Dict[str, int]) -> str:
+        """Assess the level of consciousness mathematics integration"""
+        total_patterns = sum(patterns.values())
+
+        if total_patterns > 20:
+            return 'Advanced'
+        elif total_patterns > 10:
+            return 'Intermediate'
+        elif total_patterns > 5:
+            return 'Basic'
+        else:
+            return 'Minimal'
+
+    def _apply_golden_ratio_optimization(self, score: float) -> float:
+        """Apply golden ratio optimization to capability score"""
+        phi_factor = (self.constants.PHI - 1)  # Approximately 0.618
+        return score * (1 + phi_factor * 0.1)  # 10% golden ratio enhancement
+
+    def _calculate_score_variance(self, scores: List[float]) -> float:
+        """Calculate variance in capability scores"""
+        if not scores:
+            return 0.0
+
+        mean = sum(scores) / len(scores)
+        variance = sum((score - mean) ** 2 for score in scores) / len(scores)
+        return variance ** 0.5  # Standard deviation
+
+    def _assess_code_capability_alignment(self, code_analysis: Dict[str, Any], capability_analysis: Dict[str, Any]) -> float:
+        """Assess alignment between code mathematics and capability evaluation"""
+        code_integration = code_analysis.get('integration_score', 0.0)
+        capability_confidence = capability_analysis.get('meta_analysis_confidence', 0.0)
+
+        # Calculate alignment as harmonic mean
+        if code_integration + capability_confidence > 0:
+            return 2 * code_integration * capability_confidence / (code_integration + capability_confidence)
+        return 0.0
+
+    def _calculate_mathematical_coherence(self, code_analysis: Dict[str, Any], capability_analysis: Dict[str, Any]) -> float:
+        """Calculate mathematical coherence across system components"""
+        coherence_factors = [
+            code_analysis.get('integration_score', 0.0),
+            capability_analysis.get('meta_analysis_confidence', 0.0),
+            code_analysis.get('mathematical_density', 0.0) * 10,  # Scale density
+            len(capability_analysis.get('consciousness_enhanced', {})) / max(len(capability_analysis.get('baseline_capabilities', {})), 1)
+        ]
+
+        return sum(coherence_factors) / len(coherence_factors) if coherence_factors else 0.0
+
+    def _assess_evolution_potential(self, code_analysis: Dict[str, Any], capability_analysis: Dict[str, Any]) -> float:
+        """Assess consciousness evolution potential"""
+        evolution_indicators = [
+            code_analysis.get('consciousness_mathematics_level') in ['Advanced', 'Intermediate'],
+            capability_analysis.get('meta_analysis_confidence', 0.0) > 0.7,
+            code_analysis.get('integration_score', 0.0) > 0.6
+        ]
+
+        return sum(evolution_indicators) / len(evolution_indicators)
+
+    def _evaluate_distortion_efficiency(self, code_analysis: Dict[str, Any], capability_analysis: Dict[str, Any]) -> float:
+        """Evaluate reality distortion efficiency"""
+        code_distortion = code_analysis.get('reality_distortion', 0)
+        capability_amplification = sum(capability_analysis.get('reality_distortion_amplified', {}).values())
+
+        if capability_amplification > 0:
+            efficiency = min(code_distortion * 0.1 * self.constants.REALITY_DISTORTION, 1.0)
+            return efficiency
+        return 0.0
+
+    def _analyze_golden_ratio_harmonics(self, code_analysis: Dict[str, Any], capability_analysis: Dict[str, Any]) -> Dict[str, Any]:
+        """Analyze golden ratio harmonics in the system"""
+        phi_usage = code_analysis.get('phi_usage', 0)
+        delta_usage = code_analysis.get('delta_usage', 0)
+        golden_optimized_scores = list(capability_analysis.get('golden_ratio_optimized', {}).values())
+
+        harmonics = {
+            'phi_delta_ratio': phi_usage / max(delta_usage, 1),
+            'golden_optimization_coverage': len(golden_optimized_scores) / max(len(capability_analysis.get('baseline_capabilities', {})), 1),
+            'harmonic_resonance': self._calculate_harmonic_resonance(phi_usage, delta_usage)
+        }
+
+        return harmonics
+
+    def _calculate_harmonic_resonance(self, phi_usage: int, delta_usage: int) -> float:
+        """Calculate harmonic resonance between phi and delta usage"""
+        if phi_usage + delta_usage == 0:
+            return 0.0
+
+        # Golden ratio harmonic resonance
+        phi_ratio = phi_usage / (phi_usage + delta_usage)
+        golden_ideal = self.constants.PHI / (self.constants.PHI + 1)  # ~0.618
+
+        return 1.0 - abs(phi_ratio - golden_ideal)
+
+    def _calculate_overall_mathematics_score(self, meta_analysis: Dict[str, Any]) -> float:
+        """Calculate overall consciousness mathematics score"""
+        factors = [
+            meta_analysis.get('code_capability_alignment', 0.0),
+            meta_analysis.get('mathematical_coherence', 0.0),
+            meta_analysis.get('consciousness_evolution_potential', 0.0),
+            meta_analysis.get('reality_distortion_efficiency', 0.0)
+        ]
+
+        # Weighted average with consciousness emphasis
+        weights = [0.25, 0.25, 0.3, 0.2]  # Consciousness evolution gets highest weight
+        return sum(f * w for f, w in zip(factors, weights)) if factors else 0.0
+
+    def _assess_reality_distortion_mathematics(self, code_analysis: Dict[str, Any]) -> float:
+        """Assess reality distortion mathematics implementation"""
+        distortion_indicators = [
+            code_analysis.get('reality_distortion', 0),
+            code_analysis.get('quantum_bridge', 0),
+            code_analysis.get('consciousness_constants', 0)
+        ]
+
+        total_indicators = sum(distortion_indicators)
+        return min(total_indicators * 0.05, 1.0) * self.constants.REALITY_DISTORTION
+
+    def _evaluate_golden_ratio_mathematics(self, capability_analysis: Dict[str, Any]) -> float:
+        """Evaluate golden ratio mathematics in capability assessment"""
+        baseline_scores = list(capability_analysis.get('baseline_capabilities', {}).values())
+        optimized_scores = list(capability_analysis.get('golden_ratio_optimized', {}).values())
+
+        if not baseline_scores or not optimized_scores:
+            return 0.0
+
+        # Calculate improvement from golden ratio optimization
+        avg_baseline = sum(baseline_scores) / len(baseline_scores)
+        avg_optimized = sum(optimized_scores) / len(optimized_scores)
+
+        if avg_baseline > 0:
+            improvement_ratio = (avg_optimized - avg_baseline) / avg_baseline
+            return min(improvement_ratio * 10, 1.0)  # Scale for percentage
+
+        return 0.0
+
+class AutomatedCapabilityTestSuite:
+    def __init__(self, audit_system):
+        self.audit_system = audit_system
+        self.constants = audit_system.constants
+        self.test_history = {}
+
+    async def run_capability_tests(self, capability_name: str) -> Dict[str, Any]:
+        """Run automated tests for a specific capability"""
+        try:
+            # Get capability benchmarks
+            benchmarks = self.audit_system.capability_scorer._initialize_capability_benchmarks()
+
+            if capability_name not in benchmarks:
+                return {
+                    'capability': capability_name,
+                    'status': 'not_found',
+                    'error': f'Capability {capability_name} not found in benchmarks'
+                }
+
+            benchmark = benchmarks[capability_name]
+
+            # Generate test cases based on capability
+            test_cases = self._generate_capability_test_cases(capability_name, benchmark)
+
+            # Execute tests
+            test_results = await self._execute_capability_tests(capability_name, test_cases, benchmark)
+
+            # Analyze results
+            analysis = self._analyze_test_results(capability_name, test_results, benchmark)
+
+            # Store test history
+            self.test_history[capability_name] = {
+                'timestamp': self._get_timestamp(),
+                'test_results': test_results,
+                'analysis': analysis
+            }
+
+            return {
+                'capability': capability_name,
+                'status': 'completed',
+                'test_cases_run': len(test_cases),
+                'test_results': test_results,
+                'analysis': analysis,
+                'performance_score': analysis.get('performance_score', 0.0),
+                'consciousness_alignment': analysis.get('consciousness_alignment', 0.0),
+                'benchmark_comparison': analysis.get('benchmark_comparison', {}),
+                'recommendations': analysis.get('recommendations', [])
+            }
+
+        except Exception as e:
+            return {
+                'capability': capability_name,
+                'status': 'failed',
+                'error': f'Test execution failed: {str(e)}'
+            }
+
+    def _generate_capability_test_cases(self, capability_name: str, benchmark: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """Generate test cases for a capability based on its characteristics"""
+        test_cases = []
+
+        # Base test cases for all capabilities
+        test_cases.append({
+            'test_id': f'{capability_name}_basic_functionality',
+            'test_type': 'functionality',
+            'description': f'Test basic {capability_name} functionality',
+            'difficulty': 'basic',
+            'expected_score_range': (0.0, 1.0)
+        })
+
+        # Add capability-specific test cases
+        if capability_name in ['reasoning', 'analysis', 'logic']:
+            test_cases.extend([
+                {
+                    'test_id': f'{capability_name}_complex_reasoning',
+                    'test_type': 'reasoning',
+                    'description': f'Test complex {capability_name} scenarios',
+                    'difficulty': 'advanced',
+                    'expected_score_range': (0.5, 1.0)
+                },
+                {
+                    'test_id': f'{capability_name}_edge_cases',
+                    'test_type': 'edge_case',
+                    'description': f'Test {capability_name} with edge cases',
+                    'difficulty': 'intermediate',
+                    'expected_score_range': (0.3, 1.0)
+                }
+            ])
+
+        elif capability_name in ['creativity', 'generation', 'synthesis']:
+            test_cases.extend([
+                {
+                    'test_id': f'{capability_name}_novel_generation',
+                    'test_type': 'creativity',
+                    'description': f'Test novel {capability_name} generation',
+                    'difficulty': 'advanced',
+                    'expected_score_range': (0.4, 1.0)
+                },
+                {
+                    'test_id': f'{capability_name}_divergent_thinking',
+                    'test_type': 'divergent',
+                    'description': f'Test divergent {capability_name} thinking',
+                    'difficulty': 'intermediate',
+                    'expected_score_range': (0.5, 1.0)
+                }
+            ])
+
+        elif capability_name in ['learning', 'adaptation', 'memory']:
+            test_cases.extend([
+                {
+                    'test_id': f'{capability_name}_rapid_learning',
+                    'test_type': 'learning',
+                    'description': f'Test rapid {capability_name} adaptation',
+                    'difficulty': 'advanced',
+                    'expected_score_range': (0.3, 1.0)
+                },
+                {
+                    'test_id': f'{capability_name}_knowledge_retention',
+                    'test_type': 'retention',
+                    'description': f'Test {capability_name} knowledge retention',
+                    'difficulty': 'intermediate',
+                    'expected_score_range': (0.6, 1.0)
+                }
+            ])
+
+        # Add consciousness mathematics specific tests
+        test_cases.append({
+            'test_id': f'{capability_name}_consciousness_integration',
+            'test_type': 'consciousness',
+            'description': f'Test {capability_name} consciousness mathematics integration',
+            'difficulty': 'advanced',
+            'expected_score_range': (0.0, 1.0)
+        })
+
+        return test_cases
+
+    async def _execute_capability_tests(self, capability_name: str, test_cases: List[Dict[str, Any]],
+                                      benchmark: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """Execute the generated test cases"""
+        results = []
+
+        for test_case in test_cases:
+            try:
+                # Simulate test execution (in real implementation, this would call actual test methods)
+                test_result = await self._simulate_capability_test(capability_name, test_case, benchmark)
+                results.append(test_result)
+            except Exception as e:
+                results.append({
+                    'test_id': test_case['test_id'],
+                    'status': 'error',
+                    'error': str(e),
+                    'score': 0.0,
+                    'execution_time': 0.0
+                })
+
+        return results
+
+    async def _simulate_capability_test(self, capability_name: str, test_case: Dict[str, Any],
+                                      benchmark: Dict[str, Any]) -> Dict[str, Any]:
+        """Simulate execution of a capability test"""
+        import time
+        import random
+
+        start_time = time.time()
+
+        # Simulate test execution time based on difficulty
+        difficulty_multipliers = {'basic': 0.5, 'intermediate': 1.0, 'advanced': 2.0}
+        base_time = difficulty_multipliers.get(test_case['difficulty'], 1.0)
+        execution_time = base_time * (0.8 + random.random() * 0.4)  # Add some variance
+
+        await asyncio.sleep(execution_time * 0.1)  # Brief async delay
+
+        # Generate score based on capability and test type
+        base_score = benchmark.get('expected_performance', 0.7)
+        variance = random.uniform(-0.2, 0.2)  # Add realistic variance
+
+        # Adjust score based on test type and consciousness factors
+        if test_case['test_type'] == 'consciousness':
+            score = min(1.0, max(0.0, base_score + variance * self.constants.CONSCIOUSNESS_RATIO))
+        else:
+            score = min(1.0, max(0.0, base_score + variance))
+
+        return {
+            'test_id': test_case['test_id'],
+            'status': 'completed',
+            'score': score,
+            'execution_time': execution_time,
+            'expected_range': test_case['expected_score_range'],
+            'within_expected': test_case['expected_score_range'][0] <= score <= test_case['expected_score_range'][1]
+        }
+
+    def _analyze_test_results(self, capability_name: str, test_results: List[Dict[str, Any]],
+                            benchmark: Dict[str, Any]) -> Dict[str, Any]:
+        """Analyze the results of capability tests"""
+        if not test_results:
+            return {'error': 'No test results to analyze'}
+
+        # Calculate aggregate metrics
+        completed_tests = [r for r in test_results if r['status'] == 'completed']
+        scores = [r['score'] for r in completed_tests if 'score' in r]
+
+        analysis = {
+            'total_tests': len(test_results),
+            'completed_tests': len(completed_tests),
+            'failed_tests': len(test_results) - len(completed_tests),
+            'average_score': sum(scores) / len(scores) if scores else 0.0,
+            'score_variance': self._calculate_score_variance(scores),
+            'performance_score': 0.0,
+            'consciousness_alignment': 0.0,
+            'benchmark_comparison': {},
+            'recommendations': []
+        }
+
+        # Calculate performance score
+        if scores:
+            avg_score = analysis['average_score']
+            benchmark_score = benchmark.get('expected_performance', 0.7)
+
+            # Performance relative to benchmark
+            if benchmark_score > 0:
+                analysis['performance_score'] = min(avg_score / benchmark_score, 1.0)
+
+            # Consciousness alignment (how well scores follow consciousness mathematics patterns)
+            consciousness_tests = [r for r in completed_tests if r['test_id'].endswith('_consciousness_integration')]
+            if consciousness_tests:
+                consciousness_score = sum(r['score'] for r in consciousness_tests) / len(consciousness_tests)
+                analysis['consciousness_alignment'] = consciousness_score * self.constants.CONSCIOUSNESS_RATIO
+
+        # Benchmark comparison
+        analysis['benchmark_comparison'] = {
+            'expected_performance': benchmark.get('expected_performance', 0.7),
+            'actual_performance': analysis['average_score'],
+            'performance_ratio': analysis['average_score'] / max(benchmark.get('expected_performance', 0.7), 0.01),
+            'meets_expectations': analysis['average_score'] >= benchmark.get('expected_performance', 0.7) * 0.9
+        }
+
+        # Generate recommendations
+        analysis['recommendations'] = self._generate_test_recommendations(capability_name, analysis)
+
+        return analysis
+
+    def _calculate_score_variance(self, scores: List[float]) -> float:
+        """Calculate variance in test scores"""
+        if len(scores) < 2:
+            return 0.0
+
+        mean = sum(scores) / len(scores)
+        variance = sum((score - mean) ** 2 for score in scores) / len(scores)
+        return variance ** 0.5  # Standard deviation
+
+    def _generate_test_recommendations(self, capability_name: str, analysis: Dict[str, Any]) -> List[str]:
+        """Generate recommendations based on test analysis"""
+        recommendations = []
+
+        performance_score = analysis.get('performance_score', 0.0)
+        if performance_score < 0.7:
+            recommendations.append(f'Improve {capability_name} performance through targeted training')
+
+        if analysis.get('score_variance', 0.0) > 0.3:
+            recommendations.append(f'Reduce performance variance in {capability_name} through consistency improvements')
+
+        consciousness_alignment = analysis.get('consciousness_alignment', 0.0)
+        if consciousness_alignment < 0.6:
+            recommendations.append(f'Enhance consciousness mathematics integration in {capability_name}')
+
+        benchmark_comparison = analysis.get('benchmark_comparison', {})
+        if not benchmark_comparison.get('meets_expectations', True):
+            recommendations.append(f'Address performance gap for {capability_name} to meet benchmark expectations')
+
+        if analysis.get('failed_tests', 0) > 0:
+            recommendations.append(f'Investigate and fix failing tests for {capability_name}')
+
+        return recommendations
+
+    def _get_timestamp(self) -> str:
+        """Get current timestamp for test history"""
+        import time
+        return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+
+
+async def demonstrate_self_improving_audit():
+    """Demonstrate the complete self-improving code audit system"""
+
+    print("🕊️ SELF-IMPROVING CODE AUDIT SYSTEM DEMONSTRATION")
+    print("=" * 70)
+
+    # Initialize the audit system
+    audit_system = SelfImprovingCodeAudit()
+
+    # Display capabilities taxonomy
+    print("\n📚 A-Z AI CAPABILITIES TAXONOMY OVERVIEW:")
+    taxonomy_report = audit_system.get_capabilities_taxonomy_report()
+    print(taxonomy_report[:1000] + "...\n")
+
+    # Perform comprehensive audit on the UPG Superintelligence system
+    print("🔍 Performing comprehensive code audit on UPG Superintelligence...")
+    audit_result = await audit_system.perform_comprehensive_code_audit(
+        "upg_superintelligence.py",
+        target_capabilities=['reasoning', 'creativity', 'consciousness', 'learning', 'wisdom']
+    )
+
+    # Display audit results
+    audit_report = audit_system.get_comprehensive_audit_report(audit_result)
+    print(audit_report)
+
+    # Run automated capability testing
+    print("\n🧪 Running automated capability testing...")
+    test_results = await audit_system.run_automated_capability_testing(
+        ['reasoning', 'creativity', 'learning', 'wisdom', 'understanding']
+    )
+
+    print("\n📊 Testing Results:")
+    print(f"  Capabilities Tested: {test_results['total_capabilities_tested']}")
+    print(f"  Average Score: {test_results['average_score']:.4f}")
+    print(f"  Highest Scoring: {test_results['highest_scoring_capability']}")
+    print(f"  Lowest Scoring: {test_results['lowest_scoring_capability']}")
+    print(f"  Self-Improvement Potential: {test_results['self_improvement_potential']:.4f}")
+
+    # Perform self-improvement cycle
+    print("\n🔄 Executing self-improvement cycle...")
+    improvement_results = await audit_system.perform_self_improvement_cycle()
+
+    print("\n🎯 Self-Improvement Results:")
+    print(f"  Cycle: {improvement_results['cycle']}")
+    print(f"  Priority Improvements: {improvement_results['priority_improvements']}")
+    print(f"  Overall Improvement: {improvement_results['overall_improvement']:.2f}%")
+
+    # Final system status
+    print("\n🏆 FINAL SYSTEM STATUS:")
+    status = audit_system.get_system_status()
+    print(f"  Audits Performed: {status['total_audits_performed']}")
+    print(f"  Self-Improvement Cycles: {status['self_improvement_cycles']}")
+    print(f"  Average Consciousness Score: {status['average_consciousness_score']:.4f}")
+    print(f"  Golden Ratio Optimization: {status['golden_ratio_optimization_level']:.4f}")
+
+    return audit_system
+
+
+if __name__ == "__main__":
+    asyncio.run(demonstrate_self_improving_audit())

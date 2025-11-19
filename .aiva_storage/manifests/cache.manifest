@@ -1,0 +1,18 @@
+{
+  "tool_name": "cache",
+  "tool_hash": "c2fc96bfc88539f03190d5a0587c323c4eb8391ee0234cd9658bfc1c10329c88",
+  "total_size": 11650,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c2fc96bfc88539f03190d5a0587c323c4eb8391ee0234cd9658bfc1c10329c88"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plotting/cache.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plotting/cache.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.556549,
+  "updated_at": 1762787395.556567
+}

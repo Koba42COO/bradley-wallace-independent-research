@@ -1,0 +1,18 @@
+{
+  "tool_name": "pac_delta_scaling_full_analysis",
+  "tool_hash": "78195078c5b96d8a6da9effb3a0d5d240d963bc6619028123f1afb6df995539b",
+  "total_size": 5978,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "78195078c5b96d8a6da9effb3a0d5d240d963bc6619028123f1afb6df995539b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pac_delta_scaling_full_analysis.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pac_delta_scaling_full_analysis.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.001428,
+  "updated_at": 1762787395.001431
+}

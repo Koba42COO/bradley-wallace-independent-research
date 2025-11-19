@@ -1,0 +1,18 @@
+{
+  "tool_name": "jwks_client",
+  "tool_hash": "d9e717857743341750b37a7611ddeae1b69cd0a537bd1acfc635472bb703f588",
+  "total_size": 7052,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d9e717857743341750b37a7611ddeae1b69cd0a537bd1acfc635472bb703f588"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pyjwt_repo/jwt/jwks_client.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pyjwt_repo/jwt/jwks_client.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0765529,
+  "updated_at": 1762787395.076556
+}

@@ -1,0 +1,20 @@
+{
+  "tool_name": "wallet_rpc_api",
+  "tool_hash": "38d113b5cd4ab608361638fa923c145818504697f404912eb67c88256ce4090b",
+  "total_size": 191838,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "523bb014f8372fb4160c0b4ddf3b6d00d36101dbca0475602dce0e4289a198da",
+    "eb5d348684d73c4a275bbc0cb348656e38764551a967f7a5c9d5727ed65af306",
+    "f5e7752c41694b88e03b8add9310ed595598ac5c1a45a7c16cc355349e53a41d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_rpc_api.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_rpc_api.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.597155,
+  "updated_at": 1762787395.597158
+}

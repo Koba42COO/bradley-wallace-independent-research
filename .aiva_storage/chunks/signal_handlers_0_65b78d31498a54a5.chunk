@@ -1,0 +1,182 @@
+from __future__ import annotations
+
+import asyncio
+import contextlib
+import dataclasses
+import functools
+import signal
+import sys
+from collections.abc import AsyncIterator
+from types import FrameType
+from typing import Optional, final
+
+from typing_extensions import Protocol
+
+from chia.util.task_referencer import create_referenced_task
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+class Handler(Protocol):
+    def __call__(
+        self,
+        signal_: signal.Signals,
+        stack_frame: Optional[FrameType],
+        loop: asyncio.AbstractEventLoop,
+    ) -> None: ...
+
+
+class AsyncHandler(Protocol):
+    async def __call__(
+        self,
+        signal_: signal.Signals,
+        stack_frame: Optional[FrameType],
+        loop: asyncio.AbstractEventLoop,
+    ) -> None: ...
+
+
+@final
+@dataclasses.dataclass
+class SignalHandlers:
+    tasks: list[asyncio.Task[None]] = dataclasses.field(default_factory=list)
+
+    @classmethod
+    @contextlib.asynccontextmanager
+    async def manage(cls) -> AsyncIterator[SignalHandlers]:
+        self = cls()
+        try:
+            yield self
+        finally:
+            # TODO: log errors?
+            # TODO: return to previous signal handlers?
+            await asyncio.gather(*self.tasks)
+
+    def remove_done_handlers(self) -> None:
+        self.tasks = [task for task in self.tasks if not task.done()]
+
+    def loop_safe_sync_signal_handler_for_async(
+        self,
+        signal_: signal.Signals,
+        stack_frame: Optional[FrameType],
+        loop: asyncio.AbstractEventLoop,
+        handler: AsyncHandler,
+    ) -> None:
+        self.remove_done_handlers()
+
+        task = create_referenced_task(
+            handler(signal_=signal_, stack_frame=stack_frame, loop=loop),
+        )
+        self.tasks.append(task)
+
+    def threadsafe_sync_signal_handler_for_async(
+        self,
+        signal_: signal.Signals,
+        stack_frame: Optional[FrameType],
+        loop: asyncio.AbstractEventLoop,
+        handler: AsyncHandler,
+    ) -> None:
+        loop.call_soon_threadsafe(
+            functools.partial(
+                self.loop_safe_sync_signal_handler_for_async,
+                signal_=signal_,
+                stack_frame=stack_frame,
+                loop=loop,
+                handler=handler,
+            ),
+        )
+
+    def setup_sync_signal_handler(self, handler: Handler) -> None:
+        loop = asyncio.get_event_loop()
+
+        if sys.platform == "win32" or sys.platform == "cygwin":
+
+            def ensure_signal_object_not_int(
+                signal_: int,
+                stack_frame: Optional[FrameType],
+                *,
+                handler: Handler = handler,
+                loop: asyncio.AbstractEventLoop = loop,
+            ) -> None:
+                signal_ = signal.Signals(signal_)
+                handler(signal_=signal_, stack_frame=stack_frame, loop=loop)
+
+            for signal_ in [signal.SIGBREAK, signal.SIGINT, signal.SIGTERM]:
+                signal.signal(signal_, ensure_signal_object_not_int)
+        else:
+            for signal_ in [signal.SIGINT, signal.SIGTERM]:
+                loop.add_signal_handler(
+                    signal_,
+                    functools.partial(handler, signal_=signal_, stack_frame=None, loop=loop),
+                )
+
+    def setup_async_signal_handler(self, handler: AsyncHandler) -> None:
+        # https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.add_signal_handler
+        # > a callback registered with this function is allowed to interact with the event
+        # > loop
+        #
+        # This is a bit vague so let's just use a thread safe call for Windows
+        # compatibility.
+
+        self.setup_sync_signal_handler(
+            handler=functools.partial(self.threadsafe_sync_signal_handler_for_async, handler=handler)
+        )

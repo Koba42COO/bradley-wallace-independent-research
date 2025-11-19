@@ -1,0 +1,152 @@
+from __future__ import annotations
+
+from enum import Enum
+from typing import Optional
+
+from chia_rs.sized_bytes import bytes32
+
+from chia.types.blockchain_format.program import Program
+from chia.wallet.cat_wallet.cat_outer_puzzle import CATOuterPuzzle
+from chia.wallet.driver_protocol import DriverProtocol
+from chia.wallet.nft_wallet.metadata_outer_puzzle import MetadataOuterPuzzle
+from chia.wallet.nft_wallet.ownership_outer_puzzle import OwnershipOuterPuzzle
+from chia.wallet.nft_wallet.singleton_outer_puzzle import SingletonOuterPuzzle
+from chia.wallet.nft_wallet.transfer_program_puzzle import TransferProgramPuzzle
+from chia.wallet.puzzle_drivers import PuzzleInfo, Solver
+from chia.wallet.uncurried_puzzle import UncurriedPuzzle
+from chia.wallet.vc_wallet.cr_outer_puzzle import CROuterPuzzle
+from chia.wallet.vc_wallet.vc_drivers import RevocationOuterPuzzle
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+"""
+This file provides a central location for acquiring drivers for outer puzzles like CATs, NFTs, etc.
+
+A driver for a puzzle must include the following functions:
+  - match(self, puzzle: UncurriedPuzzle) -> Optional[PuzzleInfo]
+    - Given a puzzle reveal, return a PuzzleInfo object that can be used to reconstruct it later
+  - get_inner_puzzle(self, constructor: PuzzleInfo, puzzle_reveal: UncurriedPuzzle) -> Optional[Program]:
+    - Given a PuzzleInfo object and a puzzle reveal, pull out this outer puzzle's inner puzzle
+  - asset_id(self, constructor: PuzzleInfo) -> Optional[bytes32]
+    - Given a PuzzleInfo object, generate a 32 byte ID for use in dictionaries, etc.
+  - construct(self, constructor: PuzzleInfo, inner_puzzle: Program) -> Program
+    - Given a PuzzleInfo object and an innermost puzzle, construct a puzzle reveal for a coin spend
+  - solve(self, constructor: PuzzleInfo, solver: Solver, inner_puzzle: Program, inner_solution: Program) -> Program
+    - Given a PuzzleInfo object, a Solver object, and an innermost puzzle and its solution return a solution for a spend
+    - The "Solver" object can contain any dictionary, it's up to the driver to enforce the needed elements of the API
+    - Some classes that wish to integrate with a driver may not have access to all of the info it needs so the driver
+      needs to raise errors appropriately
+"""
+
+
+class AssetType(Enum):
+    CAT = "CAT"
+    SINGLETON = "singleton"
+    METADATA = "metadata"
+    OWNERSHIP = "ownership"
+    ROYALTY_TRANSFER_PROGRAM = "royalty transfer program"
+    CR = "credential restricted"
+    REVOCATION_LAYER = "revocation layer"
+
+
+def match_puzzle(puzzle: UncurriedPuzzle) -> Optional[PuzzleInfo]:
+    for driver in driver_lookup.values():
+        potential_info: Optional[PuzzleInfo] = driver.match(puzzle)
+        if potential_info is not None:
+            return potential_info
+    return None
+
+
+def construct_puzzle(constructor: PuzzleInfo, inner_puzzle: Program) -> Program:
+    return driver_lookup[AssetType(constructor.type())].construct(constructor, inner_puzzle)
+
+
+def solve_puzzle(constructor: PuzzleInfo, solver: Solver, inner_puzzle: Program, inner_solution: Program) -> Program:
+    return driver_lookup[AssetType(constructor.type())].solve(constructor, solver, inner_puzzle, inner_solution)
+
+
+def get_inner_puzzle(
+    constructor: PuzzleInfo, puzzle_reveal: UncurriedPuzzle, solution: Optional[Program] = None
+) -> Optional[Program]:
+    return driver_lookup[AssetType(constructor.type())].get_inner_puzzle(constructor, puzzle_reveal, solution)
+
+
+def get_inner_solution(constructor: PuzzleInfo, solution: Program) -> Optional[Program]:
+    return driver_lookup[AssetType(constructor.type())].get_inner_solution(constructor, solution)
+
+
+def create_asset_id(constructor: PuzzleInfo) -> Optional[bytes32]:
+    return driver_lookup[AssetType(constructor.type())].asset_id(constructor)
+
+
+function_args = (match_puzzle, construct_puzzle, solve_puzzle, get_inner_puzzle, get_inner_solution)
+
+driver_lookup: dict[AssetType, DriverProtocol] = {
+    AssetType.CAT: CATOuterPuzzle(*function_args),
+    AssetType.SINGLETON: SingletonOuterPuzzle(*function_args),
+    AssetType.METADATA: MetadataOuterPuzzle(*function_args),
+    AssetType.OWNERSHIP: OwnershipOuterPuzzle(*function_args),
+    AssetType.ROYALTY_TRANSFER_PROGRAM: TransferProgramPuzzle(*function_args),
+    AssetType.CR: CROuterPuzzle(*function_args),
+    AssetType.REVOCATION_LAYER: RevocationOuterPuzzle(),
+}

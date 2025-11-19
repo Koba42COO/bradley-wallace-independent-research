@@ -1,0 +1,18 @@
+{
+  "tool_name": "cmd_test_utils",
+  "tool_hash": "0d812980ce78557dba3455190a85801627598fab8716fe19dcc5eb816e5f9ce2",
+  "total_size": 23408,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "0d812980ce78557dba3455190a85801627598fab8716fe19dcc5eb816e5f9ce2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/cmd_test_utils.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/cmd_test_utils.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.43787,
+  "updated_at": 1762787395.437881
+}

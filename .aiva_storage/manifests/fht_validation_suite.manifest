@@ -1,0 +1,18 @@
+{
+  "tool_name": "fht_validation_suite",
+  "tool_hash": "edecbbd39eedc066e48d2115f66e200e6e5a812ced614aaed5783facaf220fa1",
+  "total_size": 16144,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "edecbbd39eedc066e48d2115f66e200e6e5a812ced614aaed5783facaf220fa1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/fractal-harmonic-transform/code/fht_validation_suite.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/fractal-harmonic-transform/code/fht_validation_suite.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.066606,
+  "updated_at": 1762787395.066609
+}

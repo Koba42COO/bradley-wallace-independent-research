@@ -1,0 +1,18 @@
+{
+  "tool_name": "wallet_node_api",
+  "tool_hash": "f92d169f9b9ca1195c0811c74b330b79de0f02d2b463cdf636f53f08d4722f86",
+  "total_size": 11820,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f92d169f9b9ca1195c0811c74b330b79de0f02d2b463cdf636f53f08d4722f86"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_node_api.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_node_api.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6148648,
+  "updated_at": 1762787395.614868
+}

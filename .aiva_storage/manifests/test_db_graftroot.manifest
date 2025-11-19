@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_db_graftroot",
+  "tool_hash": "1470f3e68c1bc8da1f642696c41f8ffbb91d86c76055b0cf2afdad1b4106fd46",
+  "total_size": 9453,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1470f3e68c1bc8da1f642696c41f8ffbb91d86c76055b0cf2afdad1b4106fd46"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/db_wallet/test_db_graftroot.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/db_wallet/test_db_graftroot.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.485352,
+  "updated_at": 1762787395.485355
+}

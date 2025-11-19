@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_plot_manager",
+  "tool_hash": "00943812481aaacfef324ae0b8080adcde72c564323c86258decf603a371a783",
+  "total_size": 38822,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "00943812481aaacfef324ae0b8080adcde72c564323c86258decf603a371a783"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/plotting/test_plot_manager.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/plotting/test_plot_manager.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.467433,
+  "updated_at": 1762787395.467436
+}

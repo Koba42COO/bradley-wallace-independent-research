@@ -1,0 +1,266 @@
+.contribution-panel {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.contribution-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.contribution-header h3 {
+  margin: 0 0 0.5rem 0;
+  color: #667eea;
+  font-size: 1.5rem;
+}
+
+.contribution-header .subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.user-stats-bar {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.contribution-input-section {
+  margin-bottom: 2rem;
+}
+
+.contribution-input-section h4 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.contribution-input-section textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s;
+}
+
+.contribution-input-section textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.contribute-button {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contribute-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.contribute-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.contribution-result {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f3f4f6;
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+}
+
+.contribution-result h4 {
+  margin-top: 0;
+  color: #667eea;
+}
+
+.scores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.score-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.score-card.total {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.score-label {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.score-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.upg-impact {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+}
+
+.upg-impact h5 {
+  margin-top: 0;
+  color: #667eea;
+}
+
+.impact-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.reward-display {
+  text-align: center;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  border-radius: 12px;
+  color: white;
+  margin: 1.5rem 0;
+}
+
+.reward-display h5 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.reward-amount {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.reward-total {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.success-message {
+  text-align: center;
+  color: #059669;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.stats-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.upg-stats-section,
+.leaderboard-section {
+  background: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.upg-stats-section h4,
+.leaderboard-section h4 {
+  margin-top: 0;
+  color: #667eea;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.leaderboard-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-item .rank {
+  font-weight: bold;
+  color: #667eea;
+  min-width: 30px;
+}
+
+.leaderboard-item .user-id {
+  flex: 1;
+  font-weight: 600;
+}
+
+.leaderboard-item .rewards {
+  color: #059669;
+  font-weight: bold;
+}
+
+.leaderboard-item .contributions {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.error-message {
+  padding: 1rem;
+  background: #fee2e2;
+  color: #dc2626;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+

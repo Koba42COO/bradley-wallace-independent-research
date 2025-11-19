@@ -1,0 +1,18 @@
+{
+  "tool_name": "protocol_state_machine",
+  "tool_hash": "29e3825f12420b93e7e9a7d435c9514ffca92f5cd741429c9ba11ab6412834aa",
+  "total_size": 6874,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "29e3825f12420b93e7e9a7d435c9514ffca92f5cd741429c9ba11ab6412834aa"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/protocol_state_machine.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/protocol_state_machine.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.665526,
+  "updated_at": 1762787395.665529
+}

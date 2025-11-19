@@ -1,0 +1,18 @@
+{
+  "tool_name": "puzzle_decorator_type",
+  "tool_hash": "fb7ebcff4d26de01e5063c8996c5a6619362250809d8fd810ab147403a76c589",
+  "total_size": 2855,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fb7ebcff4d26de01e5063c8996c5a6619362250809d8fd810ab147403a76c589"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/puzzle_decorator_type.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/puzzle_decorator_type.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6273532,
+  "updated_at": 1762787395.6273558
+}

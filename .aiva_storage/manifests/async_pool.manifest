@@ -1,0 +1,18 @@
+{
+  "tool_name": "async_pool",
+  "tool_hash": "3b4e3c8a81c890e7b3273d5489d2b69ec6ca0a66dce3e30db3197f5edb1ff4d9",
+  "total_size": 10397,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3b4e3c8a81c890e7b3273d5489d2b69ec6ca0a66dce3e30db3197f5edb1ff4d9"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/async_pool.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/async_pool.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.320212,
+  "updated_at": 1762787395.3202188
+}

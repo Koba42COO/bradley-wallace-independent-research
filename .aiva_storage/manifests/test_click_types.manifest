@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_click_types",
+  "tool_hash": "e0ddb335a3e75f0ddb15cf11cc8cac67fab216e6f514bf05f38e0d1e461f73f3",
+  "total_size": 11555,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e0ddb335a3e75f0ddb15cf11cc8cac67fab216e6f514bf05f38e0d1e461f73f3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/test_click_types.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/test_click_types.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.440423,
+  "updated_at": 1762787395.4404259
+}

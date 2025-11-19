@@ -1,0 +1,18 @@
+{
+  "tool_name": "navigation",
+  "tool_hash": "7757584d367dc6edcfbffdbc90ef68ab837e610450ee0c0a67011b2dbc8655c0",
+  "total_size": 11276,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7757584d367dc6edcfbffdbc90ef68ab837e610450ee0c0a67011b2dbc8655c0"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/navigation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/navigation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.1274219,
+  "updated_at": 1762787395.127424
+}

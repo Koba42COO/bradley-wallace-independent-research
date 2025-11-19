@@ -1,0 +1,18 @@
+{
+  "tool_name": "firefly_interactive_cli",
+  "tool_hash": "11f303dc920eecca54a2ff7b319eccfdea4edf69e9c13aca9aa4f63c941e0143",
+  "total_size": 20804,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "11f303dc920eecca54a2ff7b319eccfdea4edf69e9c13aca9aa4f63c941e0143"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/firefly_interactive_cli.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/firefly_interactive_cli.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.035858,
+  "updated_at": 1762787395.035861
+}

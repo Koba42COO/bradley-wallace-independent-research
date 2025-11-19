@@ -1,0 +1,19 @@
+{
+  "tool_name": "upg_superintelligence",
+  "tool_hash": "a0cfe7d722f9db8934aff2605fa4e080ad0258a88f0c7f616388f134508a5b88",
+  "total_size": 91692,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "878c288483c04e28514e2cb1a459cece42ae6e9a8628a5e6af8d3b68505bdd06",
+    "9068173af2eda0e6b6b6bd5c44cee011f6ae48ebf954fa65979b6fb7336e9d26"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/upg_superintelligence.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/upg_superintelligence.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.031513,
+  "updated_at": 1762787395.03152
+}

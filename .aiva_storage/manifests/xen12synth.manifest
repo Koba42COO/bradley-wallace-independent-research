@@ -1,0 +1,18 @@
+{
+  "tool_name": "xen12synth",
+  "tool_hash": "eb23633f9987f609ac31b7d7d90ead2c55fe4a453d3a14abe313173cceb0c100",
+  "total_size": 8790,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "eb23633f9987f609ac31b7d7d90ead2c55fe4a453d3a14abe313173cceb0c100"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bram_cohen_synth/xen12synth.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bram_cohen_synth/xen12synth.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.247492,
+  "updated_at": 1762787395.247495
+}

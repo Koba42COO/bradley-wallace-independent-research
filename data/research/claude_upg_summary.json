@@ -1,0 +1,56 @@
+{
+  "total_conversations": 104,
+  "categories": {
+    "General": 104
+  },
+  "coordinate_stats": {
+    "x_mean": 1.6248338433927239,
+    "y_mean": 2.4177130820467543,
+    "z_mean": 0.7861381269706107,
+    "delta_mean": 0.36756885174907905
+  },
+  "key_theorems_count": 0,
+  "upg_base": {
+    "x": 1.618,
+    "y": 2.414,
+    "z": 0.79
+  },
+  "framework_mapping": {
+    "Phase Coherence": {
+      "x": 1.618,
+      "y": 2.414,
+      "z": 0.79,
+      "delta": 0.21
+    },
+    "Symbolic Compression": {
+      "x": 1.618,
+      "y": 2.618,
+      "z": 0.85,
+      "delta": 0.15
+    },
+    "Quantum Verification": {
+      "x": 1.414,
+      "y": 2.414,
+      "z": 0.79,
+      "delta": 0.21
+    },
+    "Prime Harmonics": {
+      "x": 1.618,
+      "y": 2.414,
+      "z": 0.618,
+      "delta": 0.382
+    },
+    "Consciousness Mathematics": {
+      "x": 1.618,
+      "y": 2.414,
+      "z": 0.95,
+      "delta": 0.05
+    },
+    "Unified Field Theory": {
+      "x": 1.618,
+      "y": 2.414,
+      "z": 0.79,
+      "delta": 0.21
+    }
+  }
+}

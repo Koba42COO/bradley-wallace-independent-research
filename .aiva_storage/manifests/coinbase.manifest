@@ -1,0 +1,18 @@
+{
+  "tool_name": "coinbase",
+  "tool_hash": "4988362f0bf668c9ff13b920ff2b4f7712a3596cd40a7615f165c494853c1a49",
+  "total_size": 3711,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4988362f0bf668c9ff13b920ff2b4f7712a3596cd40a7615f165c494853c1a49"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/coinbase.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/coinbase.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.285642,
+  "updated_at": 1762787395.285645
+}

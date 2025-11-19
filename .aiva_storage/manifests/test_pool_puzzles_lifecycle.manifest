@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_pool_puzzles_lifecycle",
+  "tool_hash": "f786b06f3ea1b1ed66c01bbd4a19570ca3e6902102f4b6138ba4b701e6b39d37",
+  "total_size": 17728,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f786b06f3ea1b1ed66c01bbd4a19570ca3e6902102f4b6138ba4b701e6b39d37"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/pools/test_pool_puzzles_lifecycle.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/pools/test_pool_puzzles_lifecycle.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.352222,
+  "updated_at": 1762787395.352225
+}

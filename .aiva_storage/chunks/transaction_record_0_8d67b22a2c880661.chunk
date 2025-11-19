@@ -1,0 +1,183 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Generic, Optional, TypeVar
+
+from chia_rs import SpendBundle
+from chia_rs.sized_bytes import bytes32
+from chia_rs.sized_ints import uint8, uint32, uint64
+
+from chia.consensus.coinbase import farmer_parent_id, pool_parent_id
+from chia.types.blockchain_format.coin import Coin
+from chia.types.mempool_inclusion_status import MempoolInclusionStatus
+from chia.util.bech32m import decode_puzzle_hash
+from chia.util.errors import Err
+from chia.util.streamable import Streamable, streamable
+from chia.wallet.conditions import ConditionValidTimes
+from chia.wallet.util.transaction_type import TransactionType
+from chia.wallet.wallet_spend_bundle import WalletSpendBundle
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+T = TypeVar("T")
+
+minimum_send_attempts = 6
+
+
+@dataclass
+class ItemAndTransactionRecords(Generic[T]):
+    item: T
+    transaction_records: list[TransactionRecord]
+
+
+@streamable
+@dataclass(frozen=True)
+class TransactionRecordOld(Streamable):
+    """
+    Used for storing transaction data and status in wallets.
+    """
+
+    confirmed_at_height: uint32
+    created_at_time: uint64
+    to_puzzle_hash: bytes32
+    amount: uint64
+    fee_amount: uint64
+    confirmed: bool
+    sent: uint32
+    spend_bundle: Optional[WalletSpendBundle]
+    additions: list[Coin]
+    removals: list[Coin]
+    wallet_id: uint32
+
+    # Represents the list of peers that we sent the transaction to, whether each one
+    # included it in the mempool, and what the error message (if any) was
+    sent_to: list[tuple[str, uint8, Optional[str]]]
+    trade_id: Optional[bytes32]
+    type: uint32  # TransactionType
+
+    # name is also called bundle_id and tx_id
+    name: bytes32
+    memos: dict[bytes32, list[bytes]]
+
+    def is_in_mempool(self) -> bool:
+        # If one of the nodes we sent it to responded with success or pending, we return True
+        for _, mis, _ in self.sent_to:
+            if MempoolInclusionStatus(mis) in {MempoolInclusionStatus.SUCCESS, MempoolInclusionStatus.PENDING}:
+                return True
+        return False
+
+    def height_farmed(self, genesis_challenge: bytes32) -> Optional[uint32]:
+        if not self.confirmed:
+            return None
+        if self.type in {TransactionType.FEE_REWARD, TransactionType.COINBASE_REWARD}:
+            for block_index in range(self.confirmed_at_height, self.confirmed_at_height - 100, -1):
+                if block_index < 0:
+                    return None
+                pool_parent = pool_parent_id(uint32(block_index), genesis_challenge)
+                farmer_parent = farmer_parent_id(uint32(block_index), genesis_challenge)
+                if pool_parent == self.additions[0].parent_coin_info:
+                    return uint32(block_index)
+                if farmer_parent == self.additions[0].parent_coin_info:
+                    return uint32(block_index)
+        return None
+
+    def is_valid(self) -> bool:
+        if len(self.sent_to) < minimum_send_attempts:
+            # we haven't tried enough peers yet
+            return True
+        if any(x[1] == MempoolInclusionStatus.SUCCESS for x in self.sent_to):
+            # we managed to push it to mempool at least once
+            return True
+        if any(x[2] in {Err.INVALID_FEE_LOW_FEE.name, Err.INVALID_FEE_TOO_CLOSE_TO_ZERO.name} for x in self.sent_to):
+            # we tried to push it to mempool and got a fee error so it's a temporary error
+            return True
+        return False
+
+    def hint_dict(self) -> dict[bytes32, bytes32]:
+        return {
+            coin_id: bytes32(memos[0])
+            for coin_id, memos in self.memos.items()
+            if len(memos) > 0 and len(memos[0]) == 32
+        }
+
+
+@streamable
+@dataclass(frozen=True)
+class TransactionRecord(TransactionRecordOld):
+    valid_times: ConditionValidTimes
+    to_address: str
+
+    def __post_init__(self) -> None:
+        if decode_puzzle_hash(self.to_address) != self.to_puzzle_hash:
+            raise ValueError("Invalid tx record initialization, to_address must match to_puzzle_hash")
+        return super().__post_init__()
+
+
+@streamable
+@dataclass(frozen=True)
+class LightTransactionRecord(Streamable):
+    name: bytes32
+    type: uint32
+    additions: list[Coin]
+    removals: list[Coin]
+    spend_bundle: Optional[SpendBundle]

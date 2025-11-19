@@ -1,0 +1,18 @@
+{
+  "tool_name": "block_creation",
+  "tool_hash": "5f4e9c2d3b6386a158de698c803b67f5bc5160eb17ff2283800fe9ba01f3849b",
+  "total_size": 23479,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5f4e9c2d3b6386a158de698c803b67f5bc5160eb17ff2283800fe9ba01f3849b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/block_creation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/block_creation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2866821,
+  "updated_at": 1762787395.286685
+}

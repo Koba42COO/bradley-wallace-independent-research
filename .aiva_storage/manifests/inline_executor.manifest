@@ -1,0 +1,18 @@
+{
+  "tool_name": "inline_executor",
+  "tool_hash": "3ef776c87e22000025e88c3778b5e788b6b43fd673120d63b57e764364553cdd",
+  "total_size": 3409,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3ef776c87e22000025e88c3778b5e788b6b43fd673120d63b57e764364553cdd"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/inline_executor.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/inline_executor.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3266828,
+  "updated_at": 1762787395.326685
+}

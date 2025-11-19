@@ -1,0 +1,18 @@
+{
+  "tool_name": "address_manager_store",
+  "tool_hash": "d7568e6baa38e6d85c36b71470b92f47559d004c0bc79c63c3ee40941aceb058",
+  "total_size": 3258,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d7568e6baa38e6d85c36b71470b92f47559d004c0bc79c63c3ee40941aceb058"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/server/address_manager_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/server/address_manager_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5314848,
+  "updated_at": 1762787395.531488
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_tx_config_args",
+  "tool_hash": "4e368065f726ad8787995d780e6e4c69ec006db0815479c0680ce952c1bd4922",
+  "total_size": 7481,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4e368065f726ad8787995d780e6e4c69ec006db0815479c0680ce952c1bd4922"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/test_tx_config_args.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/test_tx_config_args.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.438967,
+  "updated_at": 1762787395.438977
+}

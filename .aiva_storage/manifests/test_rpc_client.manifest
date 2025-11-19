@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_rpc_client",
+  "tool_hash": "6d218216f57c120e0163bef5497d082f1b98570dcdae25850b79199b1ef564b9",
+  "total_size": 7418,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6d218216f57c120e0163bef5497d082f1b98570dcdae25850b79199b1ef564b9"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/rpc/test_rpc_client.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/rpc/test_rpc_client.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.504491,
+  "updated_at": 1762787395.5044942
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "coin_record",
+  "tool_hash": "9712733ca226d8919ac43c0daecd37c1d4b53cb58e02d5b68f4b0c412d5d3f7a",
+  "total_size": 3990,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "9712733ca226d8919ac43c0daecd37c1d4b53cb58e02d5b68f4b0c412d5d3f7a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/coin_record.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/coin_record.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3027258,
+  "updated_at": 1762787395.302728
+}

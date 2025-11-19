@@ -1,0 +1,18 @@
+{
+  "tool_name": "generator_types",
+  "tool_hash": "b45ea35fe41a898093530fa6def0d2e01311337ad4cbe18526a82faa799cfc9d",
+  "total_size": 4591,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b45ea35fe41a898093530fa6def0d2e01311337ad4cbe18526a82faa799cfc9d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/generator_types.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/generator_types.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.299495,
+  "updated_at": 1762787395.299499
+}

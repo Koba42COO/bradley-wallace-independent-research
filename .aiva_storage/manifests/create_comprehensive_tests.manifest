@@ -1,0 +1,18 @@
+{
+  "tool_name": "create_comprehensive_tests",
+  "tool_hash": "fba4ff86a37e5bf822316f0c2e5a69db4d745ea146258088ca47c87daf3df02b",
+  "total_size": 16516,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fba4ff86a37e5bf822316f0c2e5a69db4d745ea146258088ca47c87daf3df02b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/create_comprehensive_tests.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/create_comprehensive_tests.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0341032,
+  "updated_at": 1762787395.034106
+}

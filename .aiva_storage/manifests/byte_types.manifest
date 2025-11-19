@@ -1,0 +1,18 @@
+{
+  "tool_name": "byte_types",
+  "tool_hash": "ed78423744bd819963792b336eadf6957f9c224b108a1ee40c799477179db5e5",
+  "total_size": 3056,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ed78423744bd819963792b336eadf6957f9c224b108a1ee40c799477179db5e5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/byte_types.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/byte_types.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3170428,
+  "updated_at": 1762787395.317046
+}

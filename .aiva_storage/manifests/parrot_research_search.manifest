@@ -1,0 +1,18 @@
+{
+  "tool_name": "parrot_research_search",
+  "tool_hash": "a574e9968a0ebb8cbc9b881c2820645dd68262948c604f74cad942d636ff0c24",
+  "total_size": 1032,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a574e9968a0ebb8cbc9b881c2820645dd68262948c604f74cad942d636ff0c24"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/parrot_research_search.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/parrot_research_search.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.0169978,
+  "updated_at": 1762787395.017001
+}

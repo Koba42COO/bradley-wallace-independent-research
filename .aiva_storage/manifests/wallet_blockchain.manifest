@@ -1,0 +1,18 @@
+{
+  "tool_name": "wallet_blockchain",
+  "tool_hash": "ebf1196201c20049a061f3851652e9bde6dd5c586be82bd5dc7478fa47eebe85",
+  "total_size": 14467,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ebf1196201c20049a061f3851652e9bde6dd5c586be82bd5dc7478fa47eebe85"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_blockchain.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_blockchain.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.594512,
+  "updated_at": 1762787395.594516
+}

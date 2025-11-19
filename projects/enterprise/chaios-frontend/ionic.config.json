@@ -1,7 +1,0 @@
-{
-  "name": "chaios-frontend",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular-standalone"
-}

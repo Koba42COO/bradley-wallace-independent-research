@@ -1,0 +1,120 @@
+from __future__ import annotations
+
+from chia_rs import CoinSpend
+from chia_rs.sized_ints import uint64
+
+from chia.consensus.condition_costs import ConditionCost
+from chia.consensus.default_constants import DEFAULT_CONSTANTS
+from chia.types.blockchain_format.coin import Coin
+from chia.types.blockchain_format.program import Program, run_with_cost
+from chia.types.condition_opcodes import ConditionOpcode
+from chia.util.errors import Err, ValidationError
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+def compute_additions_with_cost(
+    cs: CoinSpend,
+    *,
+    max_cost: int = DEFAULT_CONSTANTS.MAX_BLOCK_COST_CLVM,
+) -> tuple[list[Coin], int]:
+    """
+    Run the puzzle in the specified CoinSpend and return the cost and list of
+    coins created by the puzzle, i.e. additions. If the cost (CLVM- and
+    condition cost) exceeds the specified max_cost, the function fails with a
+    ValidationError exception. Byte cost is not included since at this point the
+    puzzle and solution may have been decompressed, the true byte-cost can only be
+    measured at the block generator level.
+    """
+    parent_id = cs.coin.name()
+    ret: list[Coin] = []
+    cost, r = run_with_cost(cs.puzzle_reveal, max_cost, cs.solution)
+    for cond in Program.to(r).as_iter():
+        if cost > max_cost:
+            raise ValidationError(Err.BLOCK_COST_EXCEEDS_MAX, "compute_additions() for CoinSpend")
+        atoms = cond.as_iter()
+        op = next(atoms).atom
+        if op in {
+            ConditionOpcode.AGG_SIG_PARENT,
+            ConditionOpcode.AGG_SIG_PUZZLE,
+            ConditionOpcode.AGG_SIG_AMOUNT,
+            ConditionOpcode.AGG_SIG_PUZZLE_AMOUNT,
+            ConditionOpcode.AGG_SIG_PARENT_AMOUNT,
+            ConditionOpcode.AGG_SIG_PARENT_PUZZLE,
+            ConditionOpcode.AGG_SIG_UNSAFE,
+            ConditionOpcode.AGG_SIG_ME,
+        }:
+            cost += ConditionCost.AGG_SIG.value
+            continue
+        if op != ConditionOpcode.CREATE_COIN.value:
+            continue
+        cost += ConditionCost.CREATE_COIN.value
+        puzzle_hash = next(atoms).as_atom()
+        amount = uint64(next(atoms).as_int())
+        ret.append(Coin(parent_id, puzzle_hash, uint64(amount)))
+
+    return ret, cost
+
+
+def compute_additions(cs: CoinSpend, *, max_cost: int = DEFAULT_CONSTANTS.MAX_BLOCK_COST_CLVM) -> list[Coin]:
+    return compute_additions_with_cost(cs, max_cost=max_cost)[0]

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_augmented_chain",
+  "tool_hash": "a7ce85af4467fb582bdd5efac92556b462cceb4ba17adb1af6c799f073ceeb04",
+  "total_size": 10786,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a7ce85af4467fb582bdd5efac92556b462cceb4ba17adb1af6c799f073ceeb04"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/blockchain/test_augmented_chain.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/blockchain/test_augmented_chain.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4608371,
+  "updated_at": 1762787395.460842
+}

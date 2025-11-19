@@ -1,0 +1,129 @@
+# Package: utils
+
+from __future__ import annotations
+
+import os
+import sys
+import time
+from collections.abc import Iterator
+from typing import Callable, Optional, overload
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+system_delays = {
+    # based on data from https://github.com/Chia-Network/chia-blockchain/pull/13724
+    "github": {
+        "darwin": 20,
+        "linux": 1,
+        "win32": 10,
+    },
+    # arbitrarily selected
+    "local": {
+        "darwin": 2,
+        "linux": 1,
+        "win32": 1,
+    },
+}
+
+
+if os.environ.get("GITHUB_ACTIONS") == "true":
+    # https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables
+    _system_delay = system_delays["github"][sys.platform]
+else:
+    try:
+        _system_delay = system_delays["local"][sys.platform]
+    except KeyError:
+        _system_delay = system_delays["local"]["linux"]
+
+
+@overload
+def adjusted_timeout(timeout: float) -> float: ...
+
+
+@overload
+def adjusted_timeout(timeout: None) -> None: ...
+
+
+def adjusted_timeout(timeout: Optional[float]) -> Optional[float]:
+    if timeout is None:
+        return None
+
+    return timeout + _system_delay
+
+
+def backoff_times(
+    initial: float = 0.001,
+    final: float = 0.100,
+    time_to_final: float = 0.5,
+    clock: Callable[[], float] = time.monotonic,
+) -> Iterator[float]:
+    # initially implemented as a simple linear backoff
+
+    start = clock()
+    delta: float = 0
+
+    result_range = final - initial
+
+    while True:
+        yield min(final, initial + ((delta / time_to_final) * result_range))
+        delta = clock() - start

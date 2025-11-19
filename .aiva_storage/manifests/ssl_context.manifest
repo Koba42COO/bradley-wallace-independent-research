@@ -1,0 +1,18 @@
+{
+  "tool_name": "ssl_context",
+  "tool_hash": "352c3411ec9c2d3df862c8b75480e8f2187624dbc962628df309f779a9abf793",
+  "total_size": 3599,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "352c3411ec9c2d3df862c8b75480e8f2187624dbc962628df309f779a9abf793"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/server/ssl_context.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/server/ssl_context.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.53559,
+  "updated_at": 1762787395.535593
+}

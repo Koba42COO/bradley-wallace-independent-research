@@ -1,0 +1,182 @@
+from __future__ import annotations
+
+import pytest
+from chia_rs import Program as SerializedProgram
+from chia_rs import (
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+    SpendBundleConditions,
+    SpendConditions,
+    get_spends_for_trusted_block,
+    get_spends_for_trusted_block_with_conditions,
+)
+from chia_rs.sized_ints import uint32, uint64
+
+from chia.consensus.generator_tools import tx_removals_and_additions
+from chia.simulator.block_tools import test_constants
+from chia.types.blockchain_format.coin import Coin
+from chia.types.generator_types import BlockGenerator
+from chia.util.hash import std_hash
+
+coin_ids = [std_hash(i.to_bytes(4, "big")) for i in range(10)]
+parent_ids = [std_hash(i.to_bytes(4, "big")) for i in range(10)]
+phs = [std_hash(i.to_bytes(4, "big")) for i in range(10)]
+spends: list[SpendConditions] = [
+    SpendConditions(
+        coin_ids[0],
+        parent_ids[0],
+        phs[0],
+        123,
+        None,
+        uint64(5),
+        None,
+        None,
+        None,
+        None,
+        [
+            (phs[2], uint64(123), b""),
+            (phs[3], uint64(0), b"1" * 300),
+            (phs[4], uint64(0), b"1" * 300),
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        0,
+        execution_cost=0,
+        condition_cost=0,
+        fingerprint=b"",
+    ),
+    SpendConditions(
+        coin_ids[1],
+        parent_ids[1],
+        phs[0],
+        123,
+        None,
+        uint64(2),
+        None,
+        None,
+        None,
+        None,
+        [
+            (phs[5], uint64(123), b""),
+            (phs[6], uint64(0), b"1" * 300),
+            (phs[7], uint64(0), b"1" * 300),
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        0,
+        execution_cost=0,
+        condition_cost=0,
+        fingerprint=b"",
+    ),
+]
+
+
+def test_tx_removals_and_additions() -> None:
+    conditions = SpendBundleConditions(
+        spends, uint64(0), uint32(0), uint64(0), None, None, [], uint64(0), 0, 0, False, 0, 0, 0, 0, 0
+    )
+    expected_rems = [coin_ids[0], coin_ids[1]]
+    expected_additions = []
+    for spend in spends:
+        for puzzle_hash, am, _ in spend.create_coin:
+            expected_additions.append(Coin(spend.coin_id, puzzle_hash, uint64(am)))
+    rems, adds = tx_removals_and_additions(conditions)
+    assert rems == expected_rems
+    assert adds == expected_additions
+
+
+def test_empty_conditions() -> None:
+    assert tx_removals_and_additions(None) == ([], [])
+
+
+# this is a malicious generator which should fail
+TEST_GENERATOR = BlockGenerator(
+    SerializedProgram.fromhex(
+        "ff02ffff01ff02ffff01ff04ffff04ffff04ffff01a00101010101010101010101010101010101010101010101010101010101010101ffff04ffff04ffff0101ffff02ff02ffff04ff02ffff04ff05ffff04ff0bffff04ff17ff80808080808080ffff01ff7bffff80ffff018080808080ff8080ff8080ffff04ffff01ff02ffff03ff17ffff01ff04ff05ffff04ff0bffff02ff02ffff04ff02ffff04ff05ffff04ff0bffff04ffff11ff17ffff010180ff8080808080808080ff8080ff0180ff018080ffff04ffff01ff42ff24ff8568656c6c6fffa0010101010101010101010101010101010101010101010101010101010101010180ffff04ffff01ff43ff24ff8568656c6c6fffa0010101010101010101010101010101010101010101010101010101010101010180ffff04ffff01830f4240ff0180808080"
+    ),
+    [],
+)
+
+
+def test_get_spends_for_block(caplog: pytest.LogCaptureFixture) -> None:
+    conditions = get_spends_for_trusted_block(
+        test_constants, TEST_GENERATOR.program, TEST_GENERATOR.generator_refs, 100
+    )
+    assert conditions["block_spends"] == []
+
+
+def test_get_spends_for_block_with_conditions(caplog: pytest.LogCaptureFixture) -> None:
+    conditions = get_spends_for_trusted_block_with_conditions(
+        test_constants, TEST_GENERATOR.program, TEST_GENERATOR.generator_refs, 100
+    )
+    assert conditions == []

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_third_party_harvesters",
+  "tool_hash": "7c27ffb905dc27daeb75627fc1637f0c24010fccaac34b28c330ea59c394e0ed",
+  "total_size": 23648,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7c27ffb905dc27daeb75627fc1637f0c24010fccaac34b28c330ea59c394e0ed"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/farmer_harvester/test_third_party_harvesters.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/farmer_harvester/test_third_party_harvesters.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.354309,
+  "updated_at": 1762787395.354312
+}

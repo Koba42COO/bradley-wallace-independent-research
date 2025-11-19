@@ -1,0 +1,18 @@
+{
+  "tool_name": "notification_manager",
+  "tool_hash": "4e35dd78ec4082264c39f913ebc13cd8cdcc8f5ca060f6a5581700c2a85bc475",
+  "total_size": 7601,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4e35dd78ec4082264c39f913ebc13cd8cdcc8f5ca060f6a5581700c2a85bc475"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/notification_manager.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/notification_manager.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.611735,
+  "updated_at": 1762787395.611737
+}

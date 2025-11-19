@@ -1,0 +1,18 @@
+{
+  "tool_name": "p2_m_of_n_delegate_direct",
+  "tool_hash": "6e6cbc8c51546b5cd839565b552811a20de4739c07bf24da63d640ce3e341941",
+  "total_size": 3390,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6e6cbc8c51546b5cd839565b552811a20de4739c07bf24da63d640ce3e341941"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/p2_m_of_n_delegate_direct.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/p2_m_of_n_delegate_direct.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.634031,
+  "updated_at": 1762787395.6340349
+}

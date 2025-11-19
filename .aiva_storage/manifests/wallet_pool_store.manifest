@@ -1,0 +1,18 @@
+{
+  "tool_name": "wallet_pool_store",
+  "tool_hash": "23e2173dbaf271799881f24028820e578f9316089f5a39d1f8cea0a511899341",
+  "total_size": 7274,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "23e2173dbaf271799881f24028820e578f9316089f5a39d1f8cea0a511899341"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_pool_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_pool_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.588447,
+  "updated_at": 1762787395.58845
+}

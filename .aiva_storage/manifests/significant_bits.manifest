@@ -1,0 +1,18 @@
+{
+  "tool_name": "significant_bits",
+  "tool_hash": "3849e7b46ac18b9b838734c6f30ee166302856c9a7bee7674b5860f8717a041d",
+  "total_size": 3754,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3849e7b46ac18b9b838734c6f30ee166302856c9a7bee7674b5860f8717a041d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/significant_bits.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/significant_bits.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.315682,
+  "updated_at": 1762787395.315684
+}

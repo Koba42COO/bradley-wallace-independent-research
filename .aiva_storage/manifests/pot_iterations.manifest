@@ -1,0 +1,18 @@
+{
+  "tool_name": "pot_iterations",
+  "tool_hash": "bf57c25e9397febd899edbd439480579687cf0738636aef392e49a40c2ded1af",
+  "total_size": 7504,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "bf57c25e9397febd899edbd439480579687cf0738636aef392e49a40c2ded1af"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/pot_iterations.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/pot_iterations.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.286953,
+  "updated_at": 1762787395.286956
+}

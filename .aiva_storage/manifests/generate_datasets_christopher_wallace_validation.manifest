@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_christopher_wallace_validation",
+  "tool_hash": "34399233485e66aeee748ea9289f01b68fdc7639fc3574c8e215fade3eff8487",
+  "total_size": 6331,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "34399233485e66aeee748ea9289f01b68fdc7639fc3574c8e215fade3eff8487"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects/wallace-convergence/christopher-wallace-validation/supporting_materials/datasets/generate_datasets_christopher_wallace_validation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects/wallace-convergence/christopher-wallace-validation/supporting_materials/datasets/generate_datasets_christopher_wallace_validation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.15957,
+  "updated_at": 1762787395.159572
+}

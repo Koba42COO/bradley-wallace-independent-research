@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_puzzles",
+  "tool_hash": "732c30d3ff0937ab6f6e2d394a9833d42c2620479dc4d943389372f4364c2a7a",
+  "total_size": 11865,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "732c30d3ff0937ab6f6e2d394a9833d42c2620479dc4d943389372f4364c2a7a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_puzzles.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_puzzles.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3414268,
+  "updated_at": 1762787395.341429
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_riemann_hypothesis_analysis",
+  "tool_hash": "936184ecd02aa857e1cd7ccb57fab038168cf0d57a52fc7b710aa7b437aa9045",
+  "total_size": 6325,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "936184ecd02aa857e1cd7ccb57fab038168cf0d57a52fc7b710aa7b437aa9045"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects/wallace-convergence/advanced-mathematical-solutions/supporting_materials/datasets/generate_datasets_riemann_hypothesis_analysis.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects/wallace-convergence/advanced-mathematical-solutions/supporting_materials/datasets/generate_datasets_riemann_hypothesis_analysis.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.1701472,
+  "updated_at": 1762787395.1701498
+}

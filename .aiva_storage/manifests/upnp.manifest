@@ -1,0 +1,18 @@
+{
+  "tool_name": "upnp",
+  "tool_hash": "d3441cfe364effe465fdc3d0c4f009e00a2fc8c6659ed9b1832d0fb7071b3298",
+  "total_size": 6491,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d3441cfe364effe465fdc3d0c4f009e00a2fc8c6659ed9b1832d0fb7071b3298"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/server/upnp.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/server/upnp.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5373561,
+  "updated_at": 1762787395.537359
+}

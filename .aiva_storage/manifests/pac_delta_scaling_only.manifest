@@ -1,0 +1,18 @@
+{
+  "tool_name": "pac_delta_scaling_only",
+  "tool_hash": "1c27aae57cf7f1e6925c0379b1419683d935c59fa9a742988170470e3e1a0817",
+  "total_size": 16435,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1c27aae57cf7f1e6925c0379b1419683d935c59fa9a742988170470e3e1a0817"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/research/external/repo_clone/research_papers/pac_delta_scaling_only.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/research/external/repo_clone/research_papers/pac_delta_scaling_only.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2550578,
+  "updated_at": 1762787395.255061
+}

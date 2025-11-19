@@ -1,0 +1,18 @@
+{
+  "tool_name": "comprehensive_stress_test",
+  "tool_hash": "ae219edb08c8f7058842039e291be35dbfa53f2e77764fb25e38e25c87336456",
+  "total_size": 25219,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ae219edb08c8f7058842039e291be35dbfa53f2e77764fb25e38e25c87336456"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/comprehensive_stress_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/comprehensive_stress_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0862238,
+  "updated_at": 1762787395.086227
+}

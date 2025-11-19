@@ -1,0 +1,18 @@
+{
+  "tool_name": "simulator_full_node_rpc_client",
+  "tool_hash": "7028a17b6dee7d840312a9db1c1960d9bb116e53e60b89a3440fed9febf2a21a",
+  "total_size": 5691,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7028a17b6dee7d840312a9db1c1960d9bb116e53e60b89a3440fed9febf2a21a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/simulator_full_node_rpc_client.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/simulator_full_node_rpc_client.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5446029,
+  "updated_at": 1762787395.544605
+}

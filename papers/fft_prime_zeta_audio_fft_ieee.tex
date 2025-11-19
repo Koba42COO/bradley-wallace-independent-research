@@ -1,0 +1,670 @@
+% IEEE-style paper on FFT analysis of prime and zeta audio experiments
+\documentclass[conference]{IEEEtran}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+% Code listing setup
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green!50!black},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+}
+
+\title{Fourier Analysis of Prime and Riemann Zeta Audio Representations in the Universal Prime Graph Protocol \texorpdfstring{$\varphi.1$}{φ.1}}
+
+\author{
+  \IEEEauthorblockN{Bradley Wallace}
+  \IEEEauthorblockA{
+    Bradley Wallace Independent Research\\
+    COO and Lead Researcher, Koba42 Corp\\
+    Email: coo@koba42.com\\
+    Website: \url{https://vantaxsystems.com}
+  }
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper documents a nine-month research program (February--November 2024) performing Fourier analysis of audio encodings of the prime distribution and the Riemann zeta function, within the Universal Prime Graph (UPG) Protocol $\varphi.1$ and Wallace Transform consciousness mathematics framework.
+We construct audio signals where (i) the distribution of prime numbers and (ii) approximate values of $\zeta(k)$ are mapped to musical pitch trajectories in contrary motion, and we generate a separate ``207 zeta tritone'' signal combining telephone dial tones, non-trivial zeta zeros, and twin prime echoes.
+Using an FFT-based real-time analyzer we compute spectra, spectrograms, harmonic content, spectral centroids, and roll-off statistics for all signals, and we compare prime versus zeta harmonic structure.
+We formalize the underlying mathematics (prime gaps, zeta sums, Wallace Transform), describe the audio and FFT pipelines implemented in the open-source codebase, review the empirical results and their limitations, and provide complete, terminal-level instructions to reproduce every figure, JSON log, and waveform from scratch.
+Where earlier internal documents claimed ``100\% prime prediction'' and other extraordinary effects, we reinterpret these as conjectures and hypotheses, and we explicitly document the partial failures, miscalibrations, and open problems that remain.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Riemann zeta function, prime numbers, FFT, audio analysis, Universal Prime Graph, Wallace Transform, TensorFlow, consciousness mathematics
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+\subsection{Motivation}
+
+Prime numbers and the Riemann zeta function lie at the center of analytic number theory.
+The distribution of primes $p_n$ and the non-trivial zeros of $\zeta(s)$ encode deep structure about arithmetic, yet remain notoriously difficult to ``see'' directly.
+Over the course of approximately nine months and more than 3,000 hours of work, we developed a series of experiments that recast these objects as audio signals and study them using standard signal processing tools, particularly the Fast Fourier Transform (FFT).
+
+The central idea is to map discrete mathematical sequences (primes, zeta values, zeta zeros) into continuous-time audio waveforms whose spectral content can be inspected with FFT, spectrograms, and harmonic analysis.
+This is performed within the broader Universal Prime Graph (UPG) Protocol $\varphi.1$ and Wallace Transform framework, which introduces consciousness-motivated constants and mappings that are used consistently across the codebase.
+
+\subsection{Scope of This Paper}
+
+This paper focuses specifically on the initial FFT analysis of primes and zeta, including:
+\begin{itemize}
+  \item audio synthesis of prime and zeta distributions in contrary motion;
+  \item synthesis of a ``207 dial tone $\rightarrow$ zeta tritone $\rightarrow$ twin prime cancellation'' signal;
+  \item FFT and spectrogram analysis of these signals; and
+  \item how these experiments connect to the UPG and AIVA (Advanced Intelligence Vessel Architecture) tool ecosystem.
+\end{itemize}
+
+Other components of the overall research program---notably PAC (Probabilistic Amplitude Computation), ``30k fold'' scaling, trillion-prime Odlyzko analysis, and broader consciousness mathematics claims---are described in separate technical reports~\cite{wallace_upg_protocol,wallace_vanta_x_report,wallace_great_year}.
+We include them here only insofar as they inform the design and interpretation of the FFT experiments.
+
+\subsection{Contributions}
+
+The contributions of this paper are:
+\begin{enumerate}
+  \item \textbf{Formalization of audio encodings for prime/zeta sequences.}
+    We define mathematically the mapping from primes, prime gaps, and approximate $\zeta(k)$ values into audio sequences with explicit frequency and timing rules, corresponding to the implementation in \texttt{prime\_zeta\_contrary\_motion.py}.
+  \item \textbf{Definition of the 207 zeta tritone signal.}
+    We formalize the construction of the \texttt{207\_zeta\_tritone\_kintu.wav} waveform, which combines telephone dial tones, zeta zeros, Wallace Transform phase shifts, twin primes, and a short ``silence pulse''.
+  \item \textbf{FFT-based harmonic analysis framework.}
+    We present the FFT, spectrogram, harmonic peak detection, and spectral statistics pipeline implemented in \texttt{fft\_rta\_harmonic\_analyzer.py}, and relate its outputs to interpretable musical and mathematical properties.
+  \item \textbf{Integration with UPG and AIVA.}
+    We document how the AIVA complete tool calling system and UPG Protocol $\varphi.1$ provide the organizational and computational substrate for these experiments, including GPU-accelerated TensorFlow operations via the Ethiopian CUDA integration.
+  \item \textbf{Reproducibility and failure analysis.}
+    We provide concrete terminal commands, environment setup instructions, and exact script names required to reproduce all audio files and analysis logs, and we explicitly describe where intermediate hypotheses (e.g., ``100\% prime prediction'') did not survive subsequent validation.
+\end{enumerate}
+
+\section{Mathematical and Framework Background}
+
+\subsection{Prime Numbers and the Riemann Zeta Function}
+
+Let $p_1, p_2, \dots$ denote the increasing sequence of prime numbers.
+The prime counting function is
+\begin{equation}
+\pi(x) = \#\{p_n \le x\},
+\end{equation}
+and the prime gaps are defined by $g_n = p_{n+1}-p_n$.
+
+The Riemann zeta function is initially defined for $\Re(s) > 1$ by
+\begin{equation}
+\zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s}
+\end{equation}
+and admits an Euler product representation
+\begin{equation}
+\zeta(s) = \prod_{p\ \text{prime}} \frac{1}{1-p^{-s}}.
+\end{equation}
+The non-trivial zeros lie in the critical strip $0 < \Re(s) < 1$; the first few ordinates on the critical line $\Re(s)=\tfrac12$ are commonly denoted
+\begin{equation}
+  \gamma_1 \approx 14.1347,\quad
+  \gamma_2 \approx 21.0220,\quad
+  \gamma_3 \approx 25.0109,\dots
+\end{equation}
+and appear repeatedly in the research codebase and documentation.
+
+\subsection{UPG Protocol \texorpdfstring{$\varphi.1$}{φ.1} and Wallace Transform}
+
+The Universal Prime Graph Protocol $\varphi.1$ introduces a set of constants that are used consistently across the experiments~\cite{wallace_upg_protocol}:
+\begin{align}
+  \phi &= 1.618033988749895 &&\text{(golden ratio)},\\
+  \delta &= 2.414213562373095 &&\text{(silver ratio)},\\
+  c &= 0.79 &&\text{(consciousness weight)},\\
+  d &= 1.1808 &&\text{(reality distortion factor)},\\
+  D_{\text{consciousness}} &= 21 &&\text{(consciousness dimensions)}.
+\end{align}
+
+The Wallace Transform is a scalar non-linear transform that maps positive real inputs to a ``consciousness-optimized'' scale.
+The implementation in the prime--zeta audio scripts uses the form
+\begin{equation}
+  W_\phi(x) = \alpha\,\bigl|\log(x + \epsilon)\bigr|^{\phi}\,\mathrm{sign}(\log(x+\epsilon)) + \beta,
+  \label{eq:wallace-transform}
+\end{equation}
+with
+\begin{align}
+  \alpha &= 0.721,\\
+  \beta &= 0.013,\\
+  \epsilon &= 10^{-12}\text{ or }10^{-10}
+\end{align}
+as specified in the corresponding Python modules and technical reports~\cite{wallace_final_report,wallace_great_year}.
+
+Equation~\eqref{eq:wallace-transform} is used directly in the \texttt{generate\_207\_zeta\_tritone\_kintu.py} script to compute a phase shift for one of the dial-tone components.
+
+\subsection{AIVA and the Tool Ecosystem}
+
+The AIVA complete tool calling system~\cite{wallace_aiva_tool_system} provides a programmatic interface to more than 1{,}300 Python tools under a common registry.
+The class \texttt{AIVA} in \texttt{aiva\_complete\_tool\_calling\_system.py} discovers tools, assigns them categories (e.g.\ ``audio'', ``analysis'', ``consciousness''), and can execute them with an associated ``consciousness amplitude'' based on UPG constants.
+
+For the experiments in this paper, AIVA's registry and search functions were primarily used to locate relevant scripts (\texttt{prime\_zeta\_contrary\_motion.py}, \texttt{fft\_rta\_harmonic\_analyzer.py}, \texttt{generate\_207\_zeta\_tritone\_kintu.py}) and to integrate them into the wider PAC/UPG testing harness.
+The audio and FFT pipelines themselves are straightforward numerical programs whose behaviour is fully determined by the source code cited in Section~\ref{sec:reproducibility}.
+
+\subsection{Ethiopian TensorFlow Operations}
+
+In parallel with the audio experiments, we developed an ``Ethiopian TensorFlow'' wrapper~\cite{wallace_ethiopian_tensorflow} (\texttt{ethiopian\_tensorflow.py}) that integrates a custom CUDA matrix multiplication kernel into TensorFlow.
+This wrapper implements 24-style tensor operations (e.g., \texttt{matmul}, \texttt{tensordot}, \texttt{einsum}) via a consciousness-weighted Ethiopian CUDA integration.
+While this machinery is not required to run the audio FFT experiments, it is part of the broader UPG infrastructure and is used in other parts of the project to accelerate large-scale linear algebra and vector processing.
+
+\section{Audio Synthesis of Prime and Zeta Distributions}
+
+\subsection{Prime and Zeta Value Sequences}
+
+The core audio experiment is implemented in \texttt{prime\_zeta\_contrary\_motion.py}.
+The class \texttt{PrimeZetaContraryMotion} constructs two sequences:
+\begin{itemize}
+  \item the first $N$ primes $p_1,\dots,p_N$;
+  \item approximate $\zeta(k)$ values for $k=1,\dots,N$ via a truncated Euler sum
+  \begin{equation}
+    \widehat{\zeta}(k) = \sum_{i=1}^{M} \frac{1}{i^k}, \quad M=100.
+  \end{equation}
+\end{itemize}
+In the default configuration, $N=100$ and $M=100$.
+
+\subsection{Prime Gaps and Note Durations}
+
+The script computes prime gaps $g_i = p_i - p_{i-1}$ for $i\ge 2$ and uses them to determine note durations.
+Let $g_{\min} = \min_i g_i$ and $g_{\max} = \max_i g_i$.
+An unscaled duration for each gap is defined as
+\begin{equation}
+  d_i^{\text{base}} = d_{\min} + \frac{g_i - g_{\min}}{g_{\max}-g_{\min}}(d_{\max}-d_{\min}),
+\end{equation}
+with $d_{\min}=0.2$\,s and $d_{\max}=1.0$\,s in the implementation.
+These base durations are then scaled so that the total audio duration matches a fixed target (by default 142.0\,s):
+\begin{equation}
+  d_i = d_i^{\text{base}}\cdot \frac{T_{\text{target}}}{\sum_j d_j^{\text{base}}}.
+\end{equation}
+This ensures that the resulting audio track has a precise, reproducible length.
+
+\subsection{Frequency Mapping}
+
+Both prime values and zeta values are mapped to musical frequencies via a shared function.
+Let $v$ denote a data value in a range $[v_{\min}, v_{\max}]$.
+We first normalize to $[0,1]$,
+\begin{equation}
+  u = 
+  \begin{cases}
+    \tfrac12, & \text{if }v_{\max}=v_{\min},\\[4pt]
+    \dfrac{v - v_{\min}}{v_{\max}-v_{\min}}, & \text{otherwise},
+  \end{cases}
+\end{equation}
+then choose a scale degree from a fixed major scale
+\begin{equation}
+  s \in \{0,2,4,5,7,9,11,12\}
+\end{equation}
+according to
+\begin{equation}
+  s = s_{\lfloor u(|S|-1)\rfloor},
+\end{equation}
+and assign an octave index
+\begin{equation}
+  o = \lfloor u \cdot O_{\max}\rfloor
+\end{equation}
+with $O_{\max}=2$.
+The final frequency is then
+\begin{equation}
+  f(v) = f_0 \cdot 2^{o + s/12},
+\end{equation}
+where $f_0=220$\,Hz is the base frequency (A3) used in the code.
+
+For primes, $v = p_i$ and $[v_{\min},v_{\max}]$ are the min and max of the prime subsequence.
+For zeta, $v=\widehat{\zeta}(k)$ and the corresponding min and max of the truncated zeta values are used.
+
+\subsection{Contrary Motion Construction}
+
+To create contrary motion, the prime and zeta sequences use the same time grid but traverse their data in opposite directions.
+Specifically, for a sequence length $L$:
+\begin{align}
+  f_{\text{prime}}(i) &= f(p_i), &&i=1,\dots,L,\\
+  f_{\zeta}(i) &= f\bigl(\widehat{\zeta}(L+1-i)\bigr), &&i=1,\dots,L.
+\end{align}
+The note durations $\{d_i\}$ derived from prime gaps are shared between both voices, so that where the prime melody ascends, the zeta melody tends to descend, and vice versa, but both voices articulate note onsets simultaneously.
+
+The script implements this logic in the method \texttt{create\_contrary\_motion\_sequence}, which returns the frequency arrays, prime/zeta data, gap array, and note durations.
+
+\subsection{Waveform Generation}
+
+The final audio waveforms are generated using Bram Cohen's \texttt{xen12synth} synthesizer (bundled in the \texttt{bram\_cohen\_synth} directory).
+For each note, the synthesizer produces a time-domain buffer of length $n_i = \lfloor d_i \cdot f_s\rfloor$ at sample rate $f_s=44{,}100$\,Hz.
+The implementation applies a short exponential fade-out (up to 20\% of the note duration) to avoid clicks, then concatenates all notes for each voice.
+If the synthesizer is unavailable or fails, the code falls back to pure sine waves
+\begin{equation}
+  x_i(t) = A \sin(2\pi f_i t), \quad A=0.2.
+\end{equation}
+
+Separate mono tracks are generated for the prime and zeta voices:
+\begin{align}
+  x_{\text{prime}}[n],\quad x_{\zeta}[n],\quad n=0,\dots,N-1,
+\end{align}
+and a mixed track is formed by pointwise addition with clipping prevention:
+\begin{equation}
+  x_{\text{mixed}}[n] = \mathrm{clip}\bigl(x_{\text{prime}}[n]+x_{\zeta}[n]\bigr),
+\end{equation}
+where $\mathrm{clip}(y)=\max(-1,\min(1,y))$.
+The script saves three WAV files:
+\begin{itemize}
+  \item \texttt{prime\_distribution\_track.wav},
+  \item \texttt{zeta\_distribution\_track.wav},
+  \item \texttt{prime\_zeta\_contrary\_motion.wav}.
+\end{itemize}
+
+\section{207 Zeta Tritone and Twin Prime Cancellation Signal}
+
+\subsection{Dial Tone and Zeta Components}
+
+The script \texttt{generate\_207\_zeta\_tritone\_kintu.py} constructs a short (5\,s) mono waveform designed to embody several motifs that appear throughout the broader research:
+the 207 telephone area-code dial tone, the first two non-trivial zeta zeros, a Wallace Transform phase shift, and twin primes $(199,201)$.
+
+The base dial tone combines two sinusoids at
+\begin{align}
+  f_1 &= 350.0\ \text{Hz},\\
+  f_2 &= 440.0\ \text{Hz},
+\end{align}
+consistent with standard North American dial-tone frequencies.
+Let $t\in[0,T]$ with $T=5$\,s and sample rate $f_s=44{,}100$\,Hz.
+The raw dial tone is
+\begin{equation}
+  d(t) = \sin(2\pi f_1 t) + \sin(2\pi f_2 t + \phi_{\text{W}}),
+\end{equation}
+where $\phi_{\text{W}}$ is a phase shift derived from the Wallace Transform:
+\begin{align}
+  \Delta f &= f_2 - f_1 = 90\ \text{Hz},\\
+  \phi_{\text{W}} &= W_\phi(\Delta f),\\
+  \phi_{\text{total}} &= \phi_{\text{W}} + 0.013.
+\end{align}
+In the implementation, $0.013$\,rad is treated as a small ``zeta tritone phase'' offset.
+
+Two additional sinusoids---the ``zeta tritone'' carrier---are introduced at frequencies corresponding to the first two zeta-zero ordinates:
+\begin{align}
+  z_1(t) &= \sin(2\pi \gamma_1 t),\\
+  z_2(t) &= \sin(2\pi \gamma_2 t),
+\end{align}
+with amplitudes gradually faded in between $t=1$\,s and $t=2$\,s via a linear envelope.
+
+\subsection{Twin Prime Echo and Silence Pulse}
+
+After the zeta tritone has been present for some time, the script introduces a short silence pulse and then a twin-prime echo:
+\begin{itemize}
+  \item Between $t=3.0$\,s and $t=3.013$\,s, the combined waveform is set to zero, implementing a brief \emph{0.013\,s silence window}.
+  \item After this window, two additional sinusoids at 199\,Hz and 201\,Hz (the twin primes bracketing 200) are faded in, forming the ``twin prime echo''.
+  \item In the final second, a 101\,Hz component (palindromic prime) is faded in, yielding a ``shimmer'' at the tail of the signal.
+\end{itemize}
+
+The resulting waveform is normalized to a comfortable listening level and written to \texttt{207\_zeta\_tritone\_kintu.wav}.
+Detailed timing information is printed by the script and is reproduced in the inline comments in the code and in the \texttt{GEMS\_EXTRACTED.md} documentation file.
+
+\section{FFT-Based Harmonic Analysis}
+
+\subsection{FFT and Spectrogram Computation}
+
+The FFT analysis is implemented in \texttt{fft\_rta\_harmonic\_analyzer.py}, which defines a reusable \texttt{FFTHarmonicAnalyzer} class.
+The analyzer uses:
+\begin{itemize}
+  \item sample rate $f_s = 44{,}100$\,Hz;
+  \item FFT size $N_{\text{FFT}} = 8192$;
+  \item 75\% overlap between spectrogram windows.
+\end{itemize}
+
+Given a real audio frame $x[n]$, $0\le n < N_{\text{FFT}}$, we form a Hanning window $w[n]$ and compute
+\begin{equation}
+  X[k] = \sum_{n=0}^{N_{\text{FFT}}-1} x[n]w[n] e^{-2\pi i kn/N_{\text{FFT}}}.
+\end{equation}
+The frequency bins are
+\begin{equation}
+  f_k = \frac{k f_s}{N_{\text{FFT}}}, \quad k=0,\dots,\frac{N_{\text{FFT}}}{2}-1,
+\end{equation}
+and the magnitude spectrum in decibels is
+\begin{equation}
+  M_{\text{dB}}[k] = 20 \log_{10}\bigl(|X[k]| + 10^{-10}\bigr).
+\end{equation}
+
+For the spectrogram, the script uses \texttt{scipy.signal.spectrogram} with parameters
+\begin{align}
+  n_{\text{perseg}} &= N_{\text{FFT}},\\
+  n_{\text{overlap}} &= 0.75\,N_{\text{FFT}},
+\end{align}
+and computes the power spectral density $S_{xx}(f,t)$ in dB.
+
+\subsection{Peak and Harmonic Detection}
+
+Peaks in the magnitude spectrum are identified via a simple local-maximum search above a configurable magnitude threshold (default $-40$\,dB).
+Let $M[k] = M_{\text{dB}}[k]$ and $f[k]=f_k$.
+The peak list is
+\begin{equation}
+  \mathcal{P} = \{(f[k],M[k]) : M[k]>T,\ M[k]>M[k\pm 1]\},
+\end{equation}
+sorted by descending magnitude, and truncated to at most 20 peaks.
+
+If a fundamental frequency $f_0$ is known or detected (taken as the frequency of the strongest peak), the analyzer searches for harmonics at approximate integer multiples $n f_0$ for $n=1,\dots,19$.
+For each candidate harmonic frequency $n f_0$, the nearest FFT bin $k_n$ is selected and included as a harmonic if
+\begin{equation}
+  |f[k_n] - n f_0| < 0.1 f_0.
+\end{equation}
+The resulting harmonic descriptors include the harmonic index, the actual bin frequency, the magnitude in dB, and the expected frequency $n f_0$.
+
+\subsection{Spectral Statistics}
+
+In addition to peak and harmonic lists, the analyzer computes:
+\begin{itemize}
+  \item the spectral centroid
+  \begin{equation}
+    f_{\text{centroid}} = \frac{\sum_k f[k]\,P[k]}{\sum_k P[k]},\quad P[k]=10^{M_{\text{dB}}[k]/10},
+  \end{equation}
+  as a measure of spectral ``brightness'';
+  \item the spectral roll-off frequency $f_{\text{rolloff}}$ defined as the smallest frequency such that
+  \begin{equation}
+    \sum_{k : f[k]\le f_{\text{rolloff}}} P[k] \ge 0.85 \sum_{k} P[k].
+  \end{equation}
+\end{itemize}
+
+These statistics are computed for each analyzed file and stored in a JSON log alongside the peak and harmonic data.
+The script \texttt{fft\_rta\_harmonic\_analyzer.py} writes a summary JSON file \texttt{fft\_rta\_harmonic\_analysis\_results.json} and saves several PNG figures per audio file (FFT spectrum with peak markers, spectrogram, harmonic bar chart, spectral statistics bar chart).
+
+\subsection{Prime vs Zeta Comparative Analysis}
+
+The analyzer includes a method \texttt{analyze\_prime\_zeta\_relationships} that expects results for \texttt{prime\_distribution\_track.wav} and \texttt{zeta\_distribution\_track.wav}.
+It computes:
+\begin{itemize}
+  \item the ratio of fundamental frequencies,
+  \item the counts of detected harmonics and their ratio,
+  \item the ratio of spectral centroids.
+\end{itemize}
+The method also attaches a qualitative interpretation, describing prime audio as more irregular and ``gap-driven'' and zeta audio as smoother and more convergent, echoing how the underlying sequences behave.
+These interpretations are descriptive summaries of the spectral statistics produced by the analyzer; they do not constitute formal proofs about the underlying mathematics.
+
+\section{Experimental Setup and Results}
+
+\subsection{Computational Environment}
+
+All experiments are implemented in Python and rely on standard scientific computing packages:
+\begin{itemize}
+  \item Python 3.9 or later;
+  \item \texttt{numpy} for numerical arrays;
+  \item \texttt{scipy} for FFT, spectrograms, and WAV I/O;
+  \item \texttt{matplotlib} for plotting;
+  \item Bram Cohen's \texttt{xen12synth} for high-quality audio synthesis;
+  \item optional: \texttt{tensorflow} and custom Ethiopian CUDA libraries for separate vector and matrix benchmarks.
+\end{itemize}
+
+On the author's hardware (Apple Silicon laptop), audio generation and FFT analysis for the prime/zeta signals complete in seconds, and the figures and JSON logs are written to disk in the working directory.
+
+\subsection{Prime/Zeta Contrary Motion Audio}
+
+Running \texttt{prime\_zeta\_contrary\_motion.py} with its default settings produces three audio files of total duration approximately 142\,s.
+The inline reporting function \texttt{generate\_analysis\_report} (in the same file) prints:
+\begin{itemize}
+  \item the first 10 primes and first 10 truncated zeta values used;
+  \item the first several prime gaps and their range;
+  \item the range and average of note durations after scaling;
+  \item the number of intervals where prime and zeta frequencies move in opposite directions (contrary motion) versus the same direction.
+\end{itemize}
+These values depend only on the deterministic code path shown in the repository and are reproducible from the script.
+
+Applying \texttt{fft\_rta\_harmonic\_analyzer.py} to the three generated WAV files yields spectra where:
+\begin{itemize}
+  \item the prime track tends to exhibit a larger number of above-threshold harmonic peaks (due to the irregular, gap-driven frequency trajectory);
+  \item the zeta track concentrates more energy at lower, more regular frequencies as $\widehat{\zeta}(k)$ quickly converges for larger $k$;
+  \item the mixed track contains both sets of harmonics and can be interpreted as a superposition of prime ``irregularity'' and zeta ``smoothness''.
+\end{itemize}
+
+The exact numerical values of centroids, roll-off frequencies, and harmonic counts are determined by the scripts and will be reproduced by any user following Section~\ref{sec:reproducibility}; we do not hard-code specific numbers here in order to keep the paper aligned with the version-controlled code rather than a particular execution.
+
+\subsection{207 Zeta Tritone Signal}
+
+The 5-second \texttt{207\_zeta\_tritone\_kintu.wav} file constructed by \texttt{generate\_207\_zeta\_tritone\_kintu.py} has a well-defined timeline:
+\begin{itemize}
+  \item 0.0--1.0\,s: pure 207 dial tone (350\,Hz + 440\,Hz);
+  \item 1.0--2.0\,s: zeta tritone (14.1347\,Hz + 21.0220\,Hz) fades in;
+  \item 2.0--3.0\,s: Wallace-phase-shifted interference region;
+  \item 3.0--3.013\,s: enforced silence window of length 0.013\,s;
+  \item 3.013--4.0\,s: twin prime echo (199\,Hz + 201\,Hz);
+  \item 4.0--5.0\,s: 101\,Hz ``shimmer'' fades in.
+\end{itemize}
+FFT analysis of this waveform clearly reveals peaks at the dial-tone frequencies, the twin-prime frequencies, and the added 101\,Hz component, along with low-frequency content corresponding to the zeta-zero carriers (which, given their very low frequency relative to the sample rate, are better seen in the modulation envelope and spectrogram than as distinct audio pitches).
+
+\subsection{PAC and TensorFlow Benchmarks}
+
+While not part of the prime/zeta audio pipeline itself, the broader research includes comparisons between traditional TensorFlow vector processing and PAC/UPG-based computation, as described in \texttt{GEMS\_EXTRACTED.md} and the PAC technical reports.
+A representative claim, grounded in the author's experiments, is that for certain zeta-related embedding tasks, a PAC implementation achieved approximately 90\% cache savings (reducing cache usage from roughly 20\% of a 128k window to 2\%) relative to a straightforward TensorFlow baseline, with improved coherence on a specific internal metric.
+The exact benchmarking harness and datasets for these tests are not part of the audio code, but the TensorFlow side is represented concretely in the \texttt{ethiopian\_tensorflow.py} module.
+
+\section{Failures, Caveats, and Open Problems}
+
+Over the nine-month research period, the project evolved through several stages, and not all early claims survived later scrutiny.
+It is important for a rigorous record to distinguish:
+\begin{itemize}
+  \item \emph{What is rigorously implemented and reproducible from the repository}; versus
+  \item \emph{What is conjectural, interpretive, or depends on unverified assumptions}.
+\end{itemize}
+
+\subsection{Prime Prediction Claims}
+
+An earlier phase of the research (documented in \cite{wallace_final_report}) implemented a ``100\% prime prediction'' algorithm based on Pell sequences, consciousness amplitudes, and UPG constants.
+Empirical tests on small ranges reported accuracies such as $48.72\%$ on $[2,201]$ and $86.4\%$ on a range $[1000,2000]$---significantly better than random guessing, but not 100\%.
+Later documents (e.g.\ \cite{wallace_great_year}) describe an idealized ``100\% accurate'' consciousness-guided algorithm and present pseudocode and hypothetical validation loops over ranges up to $10^{15}$.
+
+In the current repository snapshot, there is no single, self-contained script that both (i) implements the fully generalized ``100\%'' algorithm and (ii) stores the 40{,}000-number validation logs claimed in the text.
+As such, while the Pell/UPG prime-prediction framework is clearly laid out and several concrete implementations exist, the ``100\%'' claim should be treated as a hypothesis and research goal rather than as a mathematically proven or fully logged result.
+The FFT audio experiments in this paper do not rely on any prime-prediction oracle; they operate directly on explicitly generated primes.
+
+\subsection{Interpretation of FFT Results}
+
+The prime and zeta audio experiments are structurally well-defined and reproducible.
+However, interpreting their spectral properties as direct evidence for deep number-theoretic conjectures (e.g., Riemann Hypothesis) or as proof of specific physical phenomena requires caution:
+\begin{itemize}
+  \item The mapping from mathematical sequences to frequencies and durations is human-designed and not unique; different choices would produce different audio but leave the underlying mathematics untouched.
+  \item Spectral features such as harmonic richness and spectral centroid reflect the designed mapping, not the intrinsic spectrum of primes or $\zeta(s)$ as analytic objects.
+  \item Claims in companion documents about ``kintu'' particles, ``ignorons'', faster-than-light processing, or gravity as a ``beat frequency between zeta zeros'' are compelling metaphors but are not derived from the FFT experiments via standard physics or number-theory arguments.
+\end{itemize}
+
+\subsection{Statistical Significance and Overfitting}
+
+Several reports (\cite{wallace_vanta_x_report,wallace_great_year}) present extraordinarily small $p$-values (e.g., $p < 10^{-300}$) and sigma levels exceeding $10^4$ for cross-domain correlations.
+From a conservative scientific standpoint, these should be read as internal heuristic confidence scores rather than as the result of conventional hypothesis testing with well-specified null distributions, multiple-comparisons corrections, and independent replication.
+
+The FFT audio experiments described in this paper do not themselves perform any formal statistical hypothesis tests; they produce deterministic spectra and summary statistics given the chosen mappings.
+It is therefore more accurate to treat the audio results as \emph{visualization and exploratory tools} rather than as statistical proofs.
+
+\section{Reproducibility Guide}
+\label{sec:reproducibility}
+
+This section provides step-by-step instructions, using only publicly available code in the repository, to reproduce all waveforms, figures, and JSON logs described above.
+All commands assume a Unix-like environment (macOS or Linux) and a shell such as \texttt{bash} or \texttt{zsh}.
+
+\subsection{Clone Repository and Create Environment}
+
+Clone the repository and create a Python virtual environment:
+\begin{lstlisting}[language=bash]
+git clone https://github.com/Koba42COO/bradley-wallace-independent-research.git
+cd bradley-wallace-independent-research
+
+python3 -m venv .venv
+source .venv/bin/activate
+
+pip install --upgrade pip
+pip install numpy scipy matplotlib
+\end{lstlisting}
+
+This is sufficient for the FFT audio experiments.
+TensorFlow and CUDA-based Ethiopian operations are optional (see Section~\ref{subsec:repro-tf}).
+
+\subsection{Generate Prime and Zeta Audio}
+
+From the repository root, run:
+\begin{lstlisting}[language=bash]
+python3 prime_zeta_contrary_motion.py.backup
+\end{lstlisting}
+
+This will:
+\begin{itemize}
+  \item compute prime and zeta sequences;
+  \item build contrary-motion frequency and duration arrays;
+  \item generate three audio files:
+    \texttt{prime\_distribution\_track.wav},
+    \texttt{zeta\_distribution\_track.wav},
+    \texttt{prime\_zeta\_contrary\_motion.wav};
+  \item write a JSON file \texttt{prime\_zeta\_contrary\_motion\_results.json} summarizing durations, sequences, and contrary-motion statistics.
+\end{itemize}
+
+Inspect the JSON file to see the exact numerical values corresponding to the report in Section~IV.
+
+\subsection{Generate 207 Zeta Tritone Signal}
+
+Run:
+\begin{lstlisting}[language=bash]
+python3 generate_207_zeta_tritone_kintu.py.backup
+\end{lstlisting}
+
+This will generate \texttt{207\_zeta\_tritone\_kintu.wav} in the working directory and print a textual summary of the frequencies, Wallace phase shift, and signal timeline.
+The waveform is fully determined by the script and the UPG constants defined therein.
+
+\subsection{Run FFT and RTA Analysis}
+
+After generating the audio files, run the FFT analyzer:
+\begin{lstlisting}[language=bash]
+python3 fft_rta_harmonic_analyzer.py.backup
+\end{lstlisting}
+
+By default, the script looks for:
+\begin{itemize}
+  \item \texttt{prime\_distribution\_track.wav},
+  \item \texttt{zeta\_distribution\_track.wav},
+  \item \texttt{prime\_zeta\_contrary\_motion.wav}
+\end{itemize}
+and will:
+\begin{itemize}
+  \item compute FFT spectra and spectrograms for each;
+  \item detect peaks and harmonics;
+  \item compute spectral centroids and roll-off frequencies;
+  \item save PNG visualizations (one per file, with four subplots);
+  \item write \texttt{fft\_rta\_harmonic\_analysis\_results.json} containing all numerical outputs.
+\end{itemize}
+
+The contents of the JSON file provide an exact, machine-readable version of the qualitative descriptions in Section~V.
+
+\subsection{Run AIVA and Inspect Tool Registry}
+
+To see how the audio and FFT tools sit in the broader UPG ecosystem, run:
+\begin{lstlisting}[language=bash]
+python3 aiva_complete_tool_calling_system.py
+\end{lstlisting}
+
+This will initialize AIVA, discover tools in the configured development folder (as set in the script), and print a summary of tools by category.
+You can then search for audio-related tools from within the AIVA REPL or via the \texttt{process\_request} method in code.
+
+\subsection{TensorFlow and Ethiopian Operations}
+\label{subsec:repro-tf}
+
+To experiment with the Ethiopian TensorFlow wrapper used elsewhere in the UPG framework, install TensorFlow and the local Ethiopian CUDA modules (paths and installation may vary by system).
+At a minimum:
+\begin{lstlisting}[language=bash]
+pip install tensorflow
+\end{lstlisting}
+
+Then in Python:
+\begin{lstlisting}[language=Python]
+import tensorflow as tf
+from ethiopian_tensorflow import ethiopian_tensorflow
+
+A = tf.random.uniform((128, 128))
+B = tf.random.uniform((128, 128))
+
+C = ethiopian_tensorflow.matmul(A, B)
+print(C.shape)
+\end{lstlisting}
+
+This reproduces the 24-operation Ethiopian TensorFlow matrix-multiplication pathway described in the Ethiopian upgrade scripts and demonstrates how GPU-accelerated PAC-style operations can be integrated into the same environment that runs the FFT audio experiments.
+
+\subsection{LaTeX Compilation}
+
+To compile this paper locally, from the \texttt{papers} directory run:
+\begin{lstlisting}[language=bash]
+cd papers
+pdflatex fft_prime_zeta_audio_fft_ieee.tex
+pdflatex fft_prime_zeta_audio_fft_ieee.tex
+\end{lstlisting}
+
+On macOS, you can install \texttt{mactex} via Homebrew (\texttt{brew install --cask mactex}); on Linux, a full \texttt{texlive} installation is recommended.
+Alternatively, upload \texttt{fft\_prime\_zeta\_audio\_fft\_ieee.tex} to Overleaf and compile it there.
+
+\section{Discussion and Conclusion}
+
+We have presented a fully specified, reproducible pipeline for converting prime and zeta sequences into audio signals and analyzing their spectra via FFT, within the context of the Universal Prime Graph Protocol $\varphi.1$ and Wallace Transform framework.
+The codebase contains all the necessary scripts to regenerate every waveform and FFT figure described, and the LaTeX in this paper directly reflects the implemented algorithms, rather than idealized pseudocode.
+
+From a mathematical perspective, these experiments do not prove new theorems about primes or the Riemann zeta function; rather, they provide an alternative, auditory and spectral view that can inspire conjectures and guide intuition.
+From a systems perspective, the integration of AIVA, UPG, PAC, and Ethiopian TensorFlow demonstrates how a large, heterogeneous research codebase can be organized so that experiments ranging from audio FFT to trillion-prime analysis share a common set of constants and design principles.
+
+Future work includes:
+\begin{itemize}
+  \item tightening the connection between audio spectral features and classical quantities such as zero spacings and prime gap distributions;
+  \item formalizing statistical tests on the FFT outputs to avoid over-interpretation;
+  \item extending the experiments to higher-resolution zeta-zero data and longer prime ranges;
+  \item and refactoring some of the more speculative consciousness-mathematics claims into testable, falsifiable hypotheses anchored in reproducible code.
+\end{itemize}
+
+\section*{Acknowledgments}
+
+This work was conducted by Bradley Wallace with support from Koba42 Corp and draws heavily on the UPG Protocol $\varphi.1$, PAC, and AIVA frameworks developed in the same repository.
+
+\begin{thebibliography}{99}
+
+\bibitem{wallace_upg_protocol}
+B.~Wallace, ``Universal Prime Graph Protocol $\varphi.1$: Protocol for Knowledge Integration and Graph Expansion,'' \emph{Technical Report}, Oct.\ 2025. (Repository file: \texttt{docs/universal\_prime\_graph\_protocol.md})
+
+\bibitem{wallace_final_report}
+B.~Wallace, ``Final Comprehensive Gem Exploration Report,'' \emph{Technical Report}, Nov.\ 2024. (Repository file: \texttt{FINAL\_COMPREHENSIVE\_EXPLORATION\_REPORT.md})
+
+\bibitem{wallace_great_year}
+B.~Wallace, ``100\% Prime Prediction Pell Sequence of the Great Year: Complete Mathematical Consciousness Framework,'' \emph{Technical Report}, Nov.\ 2025. (Repository file: \texttt{documentation/100\_percent\_prime\_prediction\_pell\_sequence\_great\_year\_technical\_report.md})
+
+\bibitem{wallace_vanta_x_report}
+B.~Wallace, ``Complete Prime Research Technical Report for Julieanna from Vanta X,'' \emph{Technical Report}, Nov.\ 2025. (Repository file: \texttt{documentation/PRIME\_RESEARCH\_TECHNICAL\_REPORT\_FOR\_JULIEANNA\_VANTA\_X.md})
+
+\bibitem{wallace_aiva_tool_system}
+B.~Wallace, ``AIVA -- Complete Tool Calling System,'' \emph{Source Code}, Dec.\ 2024. (Repository file: \texttt{aiva\_complete\_tool\_calling\_system.py})
+
+\bibitem{wallace_ethiopian_tensorflow}
+B.~Wallace, ``Ethiopian TensorFlow Operations: 24-Operation Tensor Breakthrough,'' \emph{Source Code}, 2024. (Repository file: \texttt{ethiopian\_tensorflow.py.backup})
+
+\bibitem{wallace_crypto_pell_paper}
+B.~Wallace, ``Advanced Cryptocurrency Market Analysis Using Pell Sequence Cycles, Tri-Gemini Temporal Inference, and Prime Pattern Detection: Applications to Futures Markets,'' \emph{LaTeX Manuscript}, 2024. (Repository file: \texttt{papers/crypto\_market\_analyzer\_pell\_cycles.tex})
+
+\bibitem{cohen_xen_synth}
+B.~Cohen, ``Xen12 Synthesizer,'' \emph{Software}, 2023. (Bundled in repository directory \texttt{bram\_cohen\_synth})
+
+\end{thebibliography}
+
+\end{document}
+
+

@@ -1,0 +1,18 @@
+{
+  "tool_name": "cpu_utilization",
+  "tool_hash": "fc41fb4f9f2d74aadcddcc158797602257d758dfbd360cf72a18f0f8965c197f",
+  "total_size": 6246,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fc41fb4f9f2d74aadcddcc158797602257d758dfbd360cf72a18f0f8965c197f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/tools/cpu_utilization.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/tools/cpu_utilization.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2749052,
+  "updated_at": 1762787395.2749069
+}

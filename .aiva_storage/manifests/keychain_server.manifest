@@ -1,0 +1,18 @@
+{
+  "tool_name": "keychain_server",
+  "tool_hash": "542309920f8b56c02f3c08050870bbba4b26ea0b633c99a02df47bb203bc4516",
+  "total_size": 15837,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "542309920f8b56c02f3c08050870bbba4b26ea0b633c99a02df47bb203bc4516"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/daemon/keychain_server.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/daemon/keychain_server.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.543995,
+  "updated_at": 1762787395.543998
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_research_journey_biography",
+  "tool_hash": "98fe81dfa4fd89128436100c2aee52cad99cf8264e547442775d40fe7abf4a2b",
+  "total_size": 6322,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "98fe81dfa4fd89128436100c2aee52cad99cf8264e547442775d40fe7abf4a2b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects/wallace-convergence/independent-research-journey/supporting_materials/datasets/generate_datasets_research_journey_biography.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects/wallace-convergence/independent-research-journey/supporting_materials/datasets/generate_datasets_research_journey_biography.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.166236,
+  "updated_at": 1762787395.166239
+}

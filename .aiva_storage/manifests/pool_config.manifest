@@ -1,0 +1,18 @@
+{
+  "tool_name": "pool_config",
+  "tool_hash": "a6a7b444349d46ebea5abb19c92dc61b907bdda1ecfb6eec76025fa902942b6b",
+  "total_size": 6950,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a6a7b444349d46ebea5abb19c92dc61b907bdda1ecfb6eec76025fa902942b6b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/pools/pool_config.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/pools/pool_config.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.295895,
+  "updated_at": 1762787395.2958982
+}

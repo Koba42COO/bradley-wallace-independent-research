@@ -1,0 +1,18 @@
+{
+  "tool_name": "jwt_upg_visualization",
+  "tool_hash": "f8c452f5d9a1bf99f2fa6229da5c785e6076027890f9b27b1fb2c62c88fe8b99",
+  "total_size": 13347,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f8c452f5d9a1bf99f2fa6229da5c785e6076027890f9b27b1fb2c62c88fe8b99"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/jwt_upg_visualization.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/jwt_upg_visualization.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.019346,
+  "updated_at": 1762787395.019349
+}
