@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_setproctitle",
+  "tool_hash": "a9a711eb8363fa51da58cc2cb56ac096537c8bf0c72c976782364dd67fa1f285",
+  "total_size": 3064,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a9a711eb8363fa51da58cc2cb56ac096537c8bf0c72c976782364dd67fa1f285"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_setproctitle.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_setproctitle.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.359324,
+  "updated_at": 1762787395.359327
+}

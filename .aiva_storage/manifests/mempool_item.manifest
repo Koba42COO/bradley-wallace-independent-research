@@ -1,0 +1,18 @@
+{
+  "tool_name": "mempool_item",
+  "tool_hash": "8cb5c08dbd6c50f00ded1e597d2965041cb53d620e7c47710f5ca34dccee1334",
+  "total_size": 6279,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "8cb5c08dbd6c50f00ded1e597d2965041cb53d620e7c47710f5ca34dccee1334"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/mempool_item.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/mempool_item.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.302974,
+  "updated_at": 1762787395.302977
+}

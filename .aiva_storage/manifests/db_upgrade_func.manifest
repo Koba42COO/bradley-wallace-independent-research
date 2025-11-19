@@ -1,0 +1,18 @@
+{
+  "tool_name": "db_upgrade_func",
+  "tool_hash": "b3a6bcb30ea8c1de8888cf0cd3cdee3cfde878aa1da1d0479ccd4b892072cc90",
+  "total_size": 21425,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b3a6bcb30ea8c1de8888cf0cd3cdee3cfde878aa1da1d0479ccd4b892072cc90"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/db_upgrade_func.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/db_upgrade_func.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5252118,
+  "updated_at": 1762787395.525216
+}

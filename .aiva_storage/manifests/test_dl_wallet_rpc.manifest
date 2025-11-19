@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_dl_wallet_rpc",
+  "tool_hash": "0e2efc4b779f98a06d7e7c752bb1fb76f936eaa60710433ae0911678236d8e84",
+  "total_size": 20362,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "0e2efc4b779f98a06d7e7c752bb1fb76f936eaa60710433ae0911678236d8e84"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/rpc/test_dl_wallet_rpc.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/rpc/test_dl_wallet_rpc.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.49787,
+  "updated_at": 1762787395.4978719
+}

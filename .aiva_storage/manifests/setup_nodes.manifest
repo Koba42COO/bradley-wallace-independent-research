@@ -1,0 +1,18 @@
+{
+  "tool_name": "setup_nodes",
+  "tool_hash": "a9aa023732365b342abde00832cd920fff54c29c6800eedc46eb0070f10b4684",
+  "total_size": 21827,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a9aa023732365b342abde00832cd920fff54c29c6800eedc46eb0070f10b4684"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/setup_nodes.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/setup_nodes.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.421521,
+  "updated_at": 1762787395.421525
+}

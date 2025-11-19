@@ -1,0 +1,18 @@
+{
+  "tool_name": "network_protocol_data",
+  "tool_hash": "0de0590d716d4df9b4a8587349c5d59d78cf6cec6de046b4444f2c20ffdd2de7",
+  "total_size": 39217,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "0de0590d716d4df9b4a8587349c5d59d78cf6cec6de046b4444f2c20ffdd2de7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/network_protocol_data.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/network_protocol_data.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.416054,
+  "updated_at": 1762787395.416057
+}

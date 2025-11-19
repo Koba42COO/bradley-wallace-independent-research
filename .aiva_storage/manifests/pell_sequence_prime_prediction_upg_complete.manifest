@@ -1,0 +1,18 @@
+{
+  "tool_name": "pell_sequence_prime_prediction_upg_complete",
+  "tool_hash": "35cb4de85da487b6521db09bb4661b2c2b8c274b79faa7758704be7afbdd1a4e",
+  "total_size": 21893,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "35cb4de85da487b6521db09bb4661b2c2b8c274b79faa7758704be7afbdd1a4e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pell_sequence_prime_prediction_upg_complete.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pell_sequence_prime_prediction_upg_complete.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.004181,
+  "updated_at": 1762787395.004184
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "merkle_tree",
+  "tool_hash": "82df9e37bf0846ebb3439b508e66a3c167a53853b174b41c4ac75908bab6fd1f",
+  "total_size": 6389,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "82df9e37bf0846ebb3439b508e66a3c167a53853b174b41c4ac75908bab6fd1f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/merkle_tree.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/merkle_tree.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.628944,
+  "updated_at": 1762787395.628947
+}

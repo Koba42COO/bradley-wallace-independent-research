@@ -1,0 +1,18 @@
+{
+  "tool_name": "help",
+  "tool_hash": "0175f651ea04be53617ce5dae7964141cb7b911dd6c9e917901e44287672acb1",
+  "total_size": 4553,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "0175f651ea04be53617ce5dae7964141cb7b911dd6c9e917901e44287672acb1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pyjwt_repo/jwt/help.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pyjwt_repo/jwt/help.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0772212,
+  "updated_at": 1762787395.0772228
+}

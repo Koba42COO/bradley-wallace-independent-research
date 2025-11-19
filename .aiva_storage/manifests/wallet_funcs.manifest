@@ -1,0 +1,19 @@
+{
+  "tool_name": "wallet_funcs",
+  "tool_hash": "1b089fb35b8bfbb9137fb1e3eea65bfd05dfe8cc51fe114a5448c82ef55dcdc7",
+  "total_size": 84484,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4b7784dff168be6027c7346a6023e4de0e993b0399ed64f1c267396b56f344b2",
+    "11ec6bb4a95bb882ea2d7febde21da802a10ed8fd06577bb73f74f30204a23f0"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/wallet_funcs.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/wallet_funcs.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.508406,
+  "updated_at": 1762787395.508409
+}

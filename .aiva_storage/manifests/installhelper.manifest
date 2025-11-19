@@ -1,0 +1,18 @@
+{
+  "tool_name": "installhelper",
+  "tool_hash": "fb1510302162312d3f8c95deea02fba7157efc04767cc06a62d7663a0a07f08a",
+  "total_size": 4813,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fb1510302162312d3f8c95deea02fba7157efc04767cc06a62d7663a0a07f08a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/installhelper.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/installhelper.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.270099,
+  "updated_at": 1762787395.270102
+}

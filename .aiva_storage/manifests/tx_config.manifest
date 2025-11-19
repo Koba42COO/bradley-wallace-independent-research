@@ -1,0 +1,18 @@
+{
+  "tool_name": "tx_config",
+  "tool_hash": "17b87997e13abe7b3fe4299b4c1e0b1f89fdfd738b91882ce73de0ce1c1edf0c",
+  "total_size": 8171,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "17b87997e13abe7b3fe4299b4c1e0b1f89fdfd738b91882ce73de0ce1c1edf0c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/tx_config.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/tx_config.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.631582,
+  "updated_at": 1762787395.6315851
+}

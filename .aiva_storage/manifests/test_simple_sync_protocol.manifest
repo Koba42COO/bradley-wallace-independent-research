@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_simple_sync_protocol",
+  "tool_hash": "48b36d06d96a00bb0de404c3704ef6fc7c4fc32e61e5f15f841a791fc6ff18f3",
+  "total_size": 36117,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "48b36d06d96a00bb0de404c3704ef6fc7c4fc32e61e5f15f841a791fc6ff18f3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/simple_sync/test_simple_sync_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/simple_sync/test_simple_sync_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.493199,
+  "updated_at": 1762787395.493202
+}

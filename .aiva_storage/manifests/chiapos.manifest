@@ -1,0 +1,18 @@
+{
+  "tool_name": "chiapos",
+  "tool_hash": "901e004958f24f869d2e7584e09108c91cf192a4edcc5407449401efd28a489b",
+  "total_size": 4676,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "901e004958f24f869d2e7584e09108c91cf192a4edcc5407449401efd28a489b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plotters/chiapos.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plotters/chiapos.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.506505,
+  "updated_at": 1762787395.506508
+}

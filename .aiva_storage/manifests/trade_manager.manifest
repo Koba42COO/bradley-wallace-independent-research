@@ -1,0 +1,18 @@
+{
+  "tool_name": "trade_manager",
+  "tool_hash": "d8bffaad2239fc79a044bc840753c8104ba41b14d0db22b0947b04c1073bc8e2",
+  "total_size": 54152,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d8bffaad2239fc79a044bc840753c8104ba41b14d0db22b0947b04c1073bc8e2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/trade_manager.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/trade_manager.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6060119,
+  "updated_at": 1762787395.606025
+}

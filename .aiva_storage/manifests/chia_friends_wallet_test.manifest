@@ -1,0 +1,18 @@
+{
+  "tool_name": "chia_friends_wallet_test",
+  "tool_hash": "091bbf6881d78c728381aea92476dd1dd308e6c00d618d2dedf76bb39edbe195",
+  "total_size": 17355,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "091bbf6881d78c728381aea92476dd1dd308e6c00d618d2dedf76bb39edbe195"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia_friends_wallet_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia_friends_wallet_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.037833,
+  "updated_at": 1762787395.037836
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "wsm_apis",
+  "tool_hash": "cd7ef6ac1b91bfe91c253e578d0949b5062cae6d4563a68c65e7d83fc27dd48e",
+  "total_size": 6659,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cd7ef6ac1b91bfe91c253e578d0949b5062cae6d4563a68c65e7d83fc27dd48e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wsm_apis.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wsm_apis.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6001248,
+  "updated_at": 1762787395.600128
+}

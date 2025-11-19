@@ -1,0 +1,121 @@
+# TODO: this should not exist, it is a bad task group that doesn't require
+#       any responsibility of the requestor.
+
+from __future__ import annotations
+
+import asyncio
+import dataclasses
+import logging
+import typing
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+T = typing.TypeVar("T")
+
+logger = logging.getLogger(__name__)
+
+
+@dataclasses.dataclass(frozen=True)
+class _TaskInfo:
+    task: asyncio.Task[object]
+    # retained for potential debugging use
+    known_unreferenced: bool
+
+    def __str__(self) -> str:
+        return self.task.get_name()
+
+
+@dataclasses.dataclass
+class _TaskReferencer:
+    """Holds strong references to tasks until they are done.  This compensates for
+    asyncio holding only weak references.  This should be replaced by patterns using
+    task groups such as from anyio.
+    """
+
+    tasks: dict[asyncio.Task[object], _TaskInfo] = dataclasses.field(default_factory=dict)
+
+    def create_task(
+        self,
+        coroutine: typing.Coroutine[object, object, T],
+        *,
+        name: typing.Optional[str] = None,
+        known_unreferenced: bool = False,
+    ) -> asyncio.Task[T]:
+        task = asyncio.create_task(coro=coroutine, name=name)  # noqa: TID251
+        task.add_done_callback(self._task_done)
+
+        self.tasks[task] = _TaskInfo(task=task, known_unreferenced=known_unreferenced)
+
+        return task
+
+    def _task_done(self, task: asyncio.Task[object]) -> None:
+        # TODO: consider collecting results and logging errors
+        try:
+            del self.tasks[task]
+        except KeyError:
+            logger.warning("Task not found in task referencer: %s", task)
+
+
+_global_task_referencer = _TaskReferencer()
+
+create_referenced_task = _global_task_referencer.create_task

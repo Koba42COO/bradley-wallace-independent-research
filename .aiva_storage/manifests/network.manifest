@@ -1,0 +1,18 @@
+{
+  "tool_name": "network",
+  "tool_hash": "6caf08627895ff4345c2ede64b4ffe6c5a621ccd03701ff4ed74af9872574c34",
+  "total_size": 8884,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6caf08627895ff4345c2ede64b4ffe6c5a621ccd03701ff4ed74af9872574c34"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/network.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/network.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.324107,
+  "updated_at": 1762787395.324109
+}

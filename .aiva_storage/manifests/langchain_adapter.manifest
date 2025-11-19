@@ -1,0 +1,18 @@
+{
+  "tool_name": "langchain_adapter",
+  "tool_hash": "5acf23e8b9c3d109c0f9da96ab70bed50873fd7bd671cb5fdf02383b7aca5d1a",
+  "total_size": 3502,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5acf23e8b9c3d109c0f9da96ab70bed50873fd7bd671cb5fdf02383b7aca5d1a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/langchain_adapter.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/langchain_adapter.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.1245859,
+  "updated_at": 1762787395.124589
+}

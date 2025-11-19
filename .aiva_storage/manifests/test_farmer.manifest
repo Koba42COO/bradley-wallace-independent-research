@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_farmer",
+  "tool_hash": "9c1294eff6f420bc9c561ce389b3e2654e36be355af75d1f08e229a40ca9bc73",
+  "total_size": 53004,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "9c1294eff6f420bc9c561ce389b3e2654e36be355af75d1f08e229a40ca9bc73"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/farmer_harvester/test_farmer.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/farmer_harvester/test_farmer.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.353492,
+  "updated_at": 1762787395.3534982
+}

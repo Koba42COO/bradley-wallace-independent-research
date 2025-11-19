@@ -1,0 +1,18 @@
+{
+  "tool_name": "singleton",
+  "tool_hash": "8338ac121cd394e521bfeab28fbb2bd98853f14ce00a24f50f508c596a21ad14",
+  "total_size": 6851,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "8338ac121cd394e521bfeab28fbb2bd98853f14ce00a24f50f508c596a21ad14"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/singleton.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/singleton.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.607848,
+  "updated_at": 1762787395.607856
+}

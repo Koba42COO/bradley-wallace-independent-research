@@ -1,0 +1,18 @@
+{
+  "tool_name": "object_cache",
+  "tool_hash": "a0e5616a4f3a8ca081b6649b811d17d68c032b39acca99fe822fe3d07b70a802",
+  "total_size": 6503,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a0e5616a4f3a8ca081b6649b811d17d68c032b39acca99fe822fe3d07b70a802"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/clvm/object_cache.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/clvm/object_cache.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.060075,
+  "updated_at": 1762787395.0600781
+}

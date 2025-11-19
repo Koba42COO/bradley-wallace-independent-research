@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_merkle_set",
+  "tool_hash": "285e820dc477ddb7e9ff35d7d596dca15d4aa78f71f847b8d6c5d77ed97e5589",
+  "total_size": 13827,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "285e820dc477ddb7e9ff35d7d596dca15d4aa78f71f847b8d6c5d77ed97e5589"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_merkle_set.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_merkle_set.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3600051,
+  "updated_at": 1762787395.3600068
+}

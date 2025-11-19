@@ -1,0 +1,18 @@
+{
+  "tool_name": "pprint",
+  "tool_hash": "3ebbc6384796a04c4bacdd53eda744f90f878d2b24442383ae7c378a32c45f71",
+  "total_size": 3605,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3ebbc6384796a04c4bacdd53eda744f90f878d2b24442383ae7c378a32c45f71"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/pprint.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/pprint.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.628265,
+  "updated_at": 1762787395.628268
+}

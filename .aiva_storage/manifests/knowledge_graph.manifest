@@ -1,0 +1,18 @@
+{
+  "tool_name": "knowledge_graph",
+  "tool_hash": "1fff0f79f8a9ac00d196a0c5c8fa61dad0f0cf4cace1362d5ce5ea53ed212c28",
+  "total_size": 12557,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1fff0f79f8a9ac00d196a0c5c8fa61dad0f0cf4cace1362d5ce5ea53ed212c28"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/knowledge_graph.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/knowledge_graph.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.1260219,
+  "updated_at": 1762787395.126025
+}

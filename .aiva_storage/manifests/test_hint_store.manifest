@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_hint_store",
+  "tool_hash": "f5a8f99a28d866e6a8643e63dcc8a889a4a3045267fc16c11f4813af409e110c",
+  "total_size": 8052,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f5a8f99a28d866e6a8643e63dcc8a889a4a3045267fc16c11f4813af409e110c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/full_node/stores/test_hint_store.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/full_node/stores/test_hint_store.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.396267,
+  "updated_at": 1762787395.396271
+}

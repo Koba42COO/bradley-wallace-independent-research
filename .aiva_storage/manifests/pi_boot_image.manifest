@@ -1,0 +1,18 @@
+{
+  "tool_name": "pi_boot_image",
+  "tool_hash": "d534944ae9996e678de52b8bf1c165117a21b95927155cf4d8b8065785382737",
+  "total_size": 13993,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d534944ae9996e678de52b8bf1c165117a21b95927155cf4d8b8065785382737"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/pi_boot_image.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/pi_boot_image.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.1033988,
+  "updated_at": 1762787395.103402
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "chia_logging",
+  "tool_hash": "557960d327861b8df448c816e6396d407d1f839f9b0655cd891d228e820fedc7",
+  "total_size": 8470,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "557960d327861b8df448c816e6396d407d1f839f9b0655cd891d228e820fedc7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/chia_logging.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/chia_logging.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3189719,
+  "updated_at": 1762787395.318975
+}

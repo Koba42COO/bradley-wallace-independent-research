@@ -1,0 +1,18 @@
+{
+  "tool_name": "blockchains",
+  "tool_hash": "27791180f010e356fd6891c4bc5118ba8d6b9b80f83d93aa0f86a367099c45df",
+  "total_size": 4997,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "27791180f010e356fd6891c4bc5118ba8d6b9b80f83d93aa0f86a367099c45df"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/benchmarks/blockchains.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/benchmarks/blockchains.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.277683,
+  "updated_at": 1762787395.277686
+}

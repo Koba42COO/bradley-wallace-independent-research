@@ -1,0 +1,18 @@
+{
+  "tool_name": "madmax",
+  "tool_hash": "7814fa027b687449a61527c3d40fb3e7be1d1b564f0548a71d114a895114f19f",
+  "total_size": 10450,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7814fa027b687449a61527c3d40fb3e7be1d1b564f0548a71d114a895114f19f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plotters/madmax.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plotters/madmax.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5049448,
+  "updated_at": 1762787395.504948
+}

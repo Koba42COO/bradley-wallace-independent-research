@@ -1,0 +1,18 @@
+{
+  "tool_name": "signing_mode",
+  "tool_hash": "b9e0ae532c63c70b6d77809598e880614d69b5d1c3630f7b09b960991de15fcc",
+  "total_size": 4148,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b9e0ae532c63c70b6d77809598e880614d69b5d1c3630f7b09b960991de15fcc"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/signing_mode.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/signing_mode.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.301435,
+  "updated_at": 1762787395.3014379
+}

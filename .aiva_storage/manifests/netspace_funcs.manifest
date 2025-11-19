@@ -1,0 +1,18 @@
+{
+  "tool_name": "netspace_funcs",
+  "tool_hash": "e5bb34a24a1f9d7881300443c689993dbb2ab15ad47b5c2d4bcd722a9a411d3a",
+  "total_size": 2571,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e5bb34a24a1f9d7881300443c689993dbb2ab15ad47b5c2d4bcd722a9a411d3a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/netspace_funcs.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/netspace_funcs.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.5217888,
+  "updated_at": 1762787395.521792
+}

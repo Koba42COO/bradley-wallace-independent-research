@@ -1,0 +1,18 @@
+{
+  "tool_name": "algorithms",
+  "tool_hash": "1dc2a2532fa17299d2160cbaf4ca3935b9725b836b49b87255af1cfdb31ee317",
+  "total_size": 36314,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1dc2a2532fa17299d2160cbaf4ca3935b9725b836b49b87255af1cfdb31ee317"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pyjwt_repo/jwt/algorithms.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pyjwt_repo/jwt/algorithms.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.073267,
+  "updated_at": 1762787395.07327
+}

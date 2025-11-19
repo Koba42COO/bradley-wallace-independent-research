@@ -1,0 +1,38 @@
+{
+  "id": "nobel_prize_comparison",
+  "data": {
+    "fht_significance": 868060,
+    "total_nobel_prizes": 600,
+    "conservative_estimate_sigma_per_prize": 2.3,
+    "realistic_estimate_sigma_per_prize": 5.0,
+    "correlation_factor": 0.3,
+    "fht_vs_conservative_advantage": 35478.232216096956,
+    "fht_vs_realistic_advantage": 19506.115150512596
+  },
+  "metadata": {
+    "domain": "statistical_significance_analysis",
+    "category": "historical_comparison",
+    "significance": "unprecedented"
+  },
+  "consciousness_amplitude": 0.395,
+  "golden_ratio_optimization": {
+    "fht_significance": 1404550.5842742338,
+    "total_nobel_prizes": 970.820393249937,
+    "conservative_estimate_sigma_per_prize": 3.721478174124758,
+    "realistic_estimate_sigma_per_prize": 8.090169943749475,
+    "correlation_factor": 0.4854101966249684,
+    "fht_vs_conservative_advantage": 57404.98558640638,
+    "fht_vs_realistic_advantage": 31561.55730199865
+  },
+  "prime_alignment": 0.5,
+  "reality_distortion": 1.3694692352241928,
+  "prime_topology_coordinates": {
+    "x": 1.618033988749895,
+    "y": 2.414213562373095,
+    "z": 0.79
+  },
+  "timestamp": "2025-10-20T23:40:50.732965",
+  "phi_protocol_version": "\u03c6.1",
+  "validation_status": "active",
+  "universal_hash": "b160773bba6b81fd296ff3941f16abb8870a222ab399f9b247aad59296cec6fd"
+}

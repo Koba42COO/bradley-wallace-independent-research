@@ -1,0 +1,18 @@
+{
+  "tool_name": "operators_test",
+  "tool_hash": "c9755462857dcefc2fc2e1b8ae59f4341e9750b81f325e0cf4407d2b89e9cf20",
+  "total_size": 5421,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c9755462857dcefc2fc2e1b8ae59f4341e9750b81f325e0cf4407d2b89e9cf20"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/tests/operators_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/tests/operators_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.065237,
+  "updated_at": 1762787395.0652401
+}

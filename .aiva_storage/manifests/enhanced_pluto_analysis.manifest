@@ -1,0 +1,18 @@
+{
+  "tool_name": "enhanced_pluto_analysis",
+  "tool_hash": "7a5a9ec8cfcf5d719467c9413447cabdc6d3e7fdd10c5907310d97aed918bb9f",
+  "total_size": 16394,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7a5a9ec8cfcf5d719467c9413447cabdc6d3e7fdd10c5907310d97aed918bb9f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pluto_2015_ir_analysis/enhanced_pluto_analysis.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pluto_2015_ir_analysis/enhanced_pluto_analysis.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.24466,
+  "updated_at": 1762787395.244662
+}

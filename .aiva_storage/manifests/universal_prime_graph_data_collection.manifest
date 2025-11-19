@@ -1,0 +1,18 @@
+{
+  "tool_name": "universal_prime_graph_data_collection",
+  "tool_hash": "e0d6b28c24299897c3ddcbe418e3b4cc9ce2590c2b2e20931371c0eac04c51f5",
+  "total_size": 28458,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e0d6b28c24299897c3ddcbe418e3b4cc9ce2590c2b2e20931371c0eac04c51f5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/research/external/repo_clone/research_papers/universal_prime_graph_data_collection.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/research/external/repo_clone/research_papers/universal_prime_graph_data_collection.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.259614,
+  "updated_at": 1762787395.259617
+}

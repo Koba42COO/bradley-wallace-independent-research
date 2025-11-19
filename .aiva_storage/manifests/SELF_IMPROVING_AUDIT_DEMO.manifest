@@ -1,0 +1,18 @@
+{
+  "tool_name": "SELF_IMPROVING_AUDIT_DEMO",
+  "tool_hash": "c84af20c7fa2dd875099916d664e0a2d872d9aa7ce190b2c056c72cd625f13bf",
+  "total_size": 18347,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c84af20c7fa2dd875099916d664e0a2d872d9aa7ce190b2c056c72cd625f13bf"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/SELF_IMPROVING_AUDIT_DEMO.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/SELF_IMPROVING_AUDIT_DEMO.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.015282,
+  "updated_at": 1762787395.015288
+}

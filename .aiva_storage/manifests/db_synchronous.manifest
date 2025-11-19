@@ -1,0 +1,18 @@
+{
+  "tool_name": "db_synchronous",
+  "tool_hash": "a3e15499130625dc3828f078e3f29262d20e27678e7663a92ab19132659efa37",
+  "total_size": 3342,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a3e15499130625dc3828f078e3f29262d20e27678e7663a92ab19132659efa37"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/db_synchronous.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/db_synchronous.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.321166,
+  "updated_at": 1762787395.321169
+}

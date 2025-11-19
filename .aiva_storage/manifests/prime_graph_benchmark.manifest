@@ -1,0 +1,18 @@
+{
+  "tool_name": "prime_graph_benchmark",
+  "tool_hash": "0d45e26720db765d4d5a2dabd282006df9d9de7510255f3633ed1e85da997796",
+  "total_size": 10788,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "0d45e26720db765d4d5a2dabd282006df9d9de7510255f3633ed1e85da997796"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/benchmarks/prime_graph_benchmark.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/benchmarks/prime_graph_benchmark.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.188513,
+  "updated_at": 1762787395.1885161
+}

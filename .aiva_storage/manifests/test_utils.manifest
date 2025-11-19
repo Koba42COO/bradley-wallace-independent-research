@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_utils",
+  "tool_hash": "c210eb5722f5d88b9b9d13aca1ae397c30e03120b47888442361fbb56bf8ba42",
+  "total_size": 4128,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c210eb5722f5d88b9b9d13aca1ae397c30e03120b47888442361fbb56bf8ba42"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pyjwt_repo/tests/test_utils.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pyjwt_repo/tests/test_utils.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0776699,
+  "updated_at": 1762787395.077673
+}

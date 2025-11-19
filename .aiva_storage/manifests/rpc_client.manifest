@@ -1,0 +1,18 @@
+{
+  "tool_name": "rpc_client",
+  "tool_hash": "4fe6dfb852de860687502f350906442c92f76e2f256ac7b3d60a4cb7459ef980",
+  "total_size": 8504,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4fe6dfb852de860687502f350906442c92f76e2f256ac7b3d60a4cb7459ef980"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/rpc/rpc_client.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/rpc/rpc_client.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6645272,
+  "updated_at": 1762787395.66453
+}

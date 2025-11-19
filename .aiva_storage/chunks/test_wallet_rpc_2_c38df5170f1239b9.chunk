@@ -1,0 +1,749 @@
+ool_spend_count, True, full_node_api, 1)
+    await farm_transaction_block(full_node_api, env.wallet_1.node)
+    await time_out_assert(20, check_client_synced, True, wc)
+
+    wallet_node: WalletNode = env.wallet_1.node
+    wallet_node_2: WalletNode = env.wallet_2.node
+    # Test Clawback resync
+    tx = (
+        await wc.send_transaction(
+            SendTransaction(
+                wallet_id=uint32(1),
+                amount=uint64(500),
+                address=address,
+                puzzle_decorator=[ClawbackPuzzleDecoratorOverride(decorator="CLAWBACK", clawback_timelock=uint64(5))],
+                push=True,
+            ),
+            tx_config=DEFAULT_TX_CONFIG,
+        )
+    ).transaction
+    clawback_coin_id = tx.additions[0].name()
+    assert tx.spend_bundle is not None
+    await farm_transaction(full_node_api, wallet_node, tx.spend_bundle)
+    await time_out_assert(20, check_client_synced, True, wc)
+    await asyncio.sleep(10)
+    resp = await wc.spend_clawback_coins(
+        SpendClawbackCoins(coin_ids=[clawback_coin_id], fee=uint64(0), push=True), tx_config=DEFAULT_TX_CONFIG
+    )
+    assert len(resp.transaction_ids) == 1
+    await time_out_assert_not_none(10, full_node_api.full_node.mempool_manager.get_spendbundle, resp.transaction_ids[0])
+    await farm_transaction_block(full_node_api, wallet_node)
+    await time_out_assert(20, check_client_synced, True, wc)
+    wallet_node_2._close()
+    await wallet_node_2._await_closed()
+    # set flag to reset wallet sync data on start
+    await client.set_wallet_resync_on_startup(SetWalletResyncOnStartup())
+    fingerprint = wallet_node.logged_in_fingerprint
+    assert wallet_node._wallet_state_manager
+    # 2 reward coins, 1 DID, 1 NFT, 1 clawbacked coin
+    assert len(await wallet_node._wallet_state_manager.coin_store.get_all_unspent_coins()) == 5
+    assert await wallet_node._wallet_state_manager.nft_store.count() == 1
+    # standard wallet, did wallet, nft wallet, did nft wallet
+    assert len(await wallet_node.wallet_state_manager.user_store.get_all_wallet_info_entries()) == 4
+    before_txs = await wallet_node.wallet_state_manager.tx_store.get_all_transactions()
+    wallet_node._close()
+    await wallet_node._await_closed()
+    config = load_config(wallet_node.root_path, "config.yaml")
+    # check that flag was set in config file
+    assert config["wallet"]["reset_sync_for_fingerprint"] == fingerprint
+    new_config = wallet_node.config.copy()
+    new_config["reset_sync_for_fingerprint"] = config["wallet"]["reset_sync_for_fingerprint"]
+    wallet_node_2.config = new_config
+    wallet_node_2.root_path = wallet_node.root_path
+    wallet_node_2.local_keychain = wallet_node.local_keychain
+    # use second node to start the same wallet, reusing config and db
+    await wallet_node_2._start_with_fingerprint(fingerprint)
+    assert wallet_node_2._wallet_state_manager
+    after_txs = await wallet_node_2.wallet_state_manager.tx_store.get_all_transactions()
+    # transactions should be the same
+    assert after_txs == before_txs
+    # Check clawback
+    clawback_tx = await wallet_node_2.wallet_state_manager.tx_store.get_transaction_record(clawback_coin_id)
+    assert clawback_tx is not None
+    assert clawback_tx.confirmed
+    # only coin_store was populated in this case, but now should be empty
+    assert len(await wallet_node_2._wallet_state_manager.coin_store.get_all_unspent_coins()) == 0
+    assert await wallet_node_2._wallet_state_manager.nft_store.count() == 0
+    # we don't delete wallets
+    assert len(await wallet_node_2.wallet_state_manager.user_store.get_all_wallet_info_entries()) == 4
+    updated_config = load_config(wallet_node.root_path, "config.yaml")
+    # check that it's disabled after reset
+    assert updated_config["wallet"].get("reset_sync_for_fingerprint") is None
+    wallet_node_2._close()
+    await wallet_node_2._await_closed()
+
+
+@pytest.mark.anyio
+async def test_set_wallet_resync_on_startup_disable(wallet_rpc_environment: WalletRpcTestEnvironment) -> None:
+    env: WalletRpcTestEnvironment = wallet_rpc_environment
+    full_node_api: FullNodeSimulator = env.full_node.api
+    client: WalletRpcClient = env.wallet_1.rpc_client
+    await generate_funds(full_node_api, env.wallet_1)
+    wallet_node: WalletNode = env.wallet_1.node
+    wallet_node_2: WalletNode = env.wallet_2.node
+    wallet_node_2._close()
+    await wallet_node_2._await_closed()
+    # set flag to reset wallet sync data on start
+    await client.set_wallet_resync_on_startup(SetWalletResyncOnStartup())
+    fingerprint = wallet_node.logged_in_fingerprint
+    assert wallet_node._wallet_state_manager
+    assert len(await wallet_node._wallet_state_manager.coin_store.get_all_unspent_coins()) == 2
+    before_txs = await wallet_node.wallet_state_manager.tx_store.get_all_transactions()
+    await client.set_wallet_resync_on_startup(SetWalletResyncOnStartup(False))
+    wallet_node._close()
+    await wallet_node._await_closed()
+    config = load_config(wallet_node.root_path, "config.yaml")
+    # check that flag was set in config file
+    assert config["wallet"].get("reset_sync_for_fingerprint") is None
+    new_config = wallet_node.config.copy()
+    new_config["reset_sync_for_fingerprint"] = config["wallet"].get("reset_sync_for_fingerprint")
+    wallet_node_2.config = new_config
+    wallet_node_2.root_path = wallet_node.root_path
+    wallet_node_2.local_keychain = wallet_node.local_keychain
+    # use second node to start the same wallet, reusing config and db
+    await wallet_node_2._start_with_fingerprint(fingerprint)
+    assert wallet_node_2._wallet_state_manager
+    after_txs = await wallet_node_2.wallet_state_manager.tx_store.get_all_transactions()
+    # transactions should be the same
+    assert after_txs == before_txs
+    # only coin_store was populated in this case, but now should be empty
+    assert len(await wallet_node_2._wallet_state_manager.coin_store.get_all_unspent_coins()) == 2
+    wallet_node_2._close()
+    await wallet_node_2._await_closed()
+
+
+@pytest.mark.anyio
+@pytest.mark.limit_consensus_modes(reason="irrelevant")
+async def test_set_wallet_resync_schema(wallet_rpc_environment: WalletRpcTestEnvironment) -> None:
+    env: WalletRpcTestEnvironment = wallet_rpc_environment
+    full_node_api: FullNodeSimulator = env.full_node.api
+    await generate_funds(full_node_api, env.wallet_1)
+    wallet_node: WalletNode = env.wallet_1.node
+    fingerprint = wallet_node.logged_in_fingerprint
+    assert fingerprint is not None
+    db_path = wallet_node.wallet_state_manager.db_path
+    assert await wallet_node.reset_sync_db(db_path, fingerprint), (
+        "Schema has been changed, reset sync db won't work, please update WalletNode.reset_sync_db function"
+    )
+    dbw: DBWrapper2 = wallet_node.wallet_state_manager.db_wrapper
+    conn: aiosqlite.Connection
+    async with dbw.writer() as conn:
+        await conn.execute("CREATE TABLE blah(temp int)")
+    await wallet_node.reset_sync_db(db_path, fingerprint)
+    assert (
+        len(list(await conn.execute_fetchall("SELECT name FROM sqlite_master WHERE type='table' AND name='blah'"))) == 0
+    )
+
+
+@pytest.mark.anyio
+async def test_cat_spend_run_tail(wallet_rpc_environment: WalletRpcTestEnvironment) -> None:
+    env: WalletRpcTestEnvironment = wallet_rpc_environment
+
+    wallet_node: WalletNode = env.wallet_1.node
+    client: WalletRpcClient = env.wallet_1.rpc_client
+    full_node_api: FullNodeSimulator = env.full_node.api
+    full_node_rpc: FullNodeRpcClient = env.full_node.rpc_client
+
+    await generate_funds(full_node_api, env.wallet_1, 1)
+
+    # Send to a CAT with an anyone can spend TAIL
+    async with env.wallet_1.wallet.wallet_state_manager.new_action_scope(DEFAULT_TX_CONFIG, push=True) as action_scope:
+        our_ph = await action_scope.get_puzzle_hash(env.wallet_1.wallet.wallet_state_manager)
+    cat_puzzle: Program = construct_cat_puzzle(CAT_MOD, Program.NIL.get_tree_hash(), Program.to(1))
+    addr = encode_puzzle_hash(
+        cat_puzzle.get_tree_hash(),
+        "txch",
+    )
+    tx_amount = uint64(100)
+
+    tx = (
+        await client.send_transaction(
+            SendTransaction(wallet_id=uint32(1), amount=tx_amount, address=addr, push=True), DEFAULT_TX_CONFIG
+        )
+    ).transaction
+    transaction_id = tx.name
+    spend_bundle = tx.spend_bundle
+    assert spend_bundle is not None
+
+    await time_out_assert(20, tx_in_mempool, True, client, transaction_id)
+    await farm_transaction(full_node_api, wallet_node, spend_bundle)
+
+    # Do the eve spend back to our wallet
+    cat_coin = next(c for c in spend_bundle.additions() if c.amount == tx_amount)
+    eve_spend = WalletSpendBundle(
+        [
+            make_spend(
+                cat_coin,
+                cat_puzzle,
+                Program.to(
+                    [
+                        Program.to([[51, our_ph, tx_amount, [our_ph]], [51, None, -113, None, None]]),
+                        None,
+                        cat_coin.name(),
+                        coin_as_list(cat_coin),
+                        [cat_coin.parent_coin_info, Program.to(1).get_tree_hash(), cat_coin.amount],
+                        0,
+                        0,
+                    ]
+                ),
+            )
+        ],
+        G2Element(),
+    )
+    await full_node_rpc.push_tx(eve_spend)
+    await farm_transaction(full_node_api, wallet_node, eve_spend)
+
+    # Make sure we have the CAT
+    res = await client.create_wallet_for_existing_cat(Program.NIL.get_tree_hash())
+    assert res["success"]
+    cat_wallet_id = res["wallet_id"]
+    await time_out_assert(20, get_confirmed_balance, tx_amount, client, cat_wallet_id)
+
+    # Attempt to melt it fully
+    tx = (
+        await client.cat_spend(
+            CATSpend(
+                wallet_id=cat_wallet_id,
+                amount=uint64(0),
+                inner_address=encode_puzzle_hash(our_ph, "txch"),
+                extra_delta=str(tx_amount * -1),
+                tail_reveal=b"\x80",
+                tail_solution=b"\x80",
+                push=True,
+            ),
+            tx_config=DEFAULT_TX_CONFIG,
+        )
+    ).transaction
+    transaction_id = tx.name
+    spend_bundle = tx.spend_bundle
+    assert spend_bundle is not None
+
+    await time_out_assert(20, tx_in_mempool, True, client, transaction_id)
+    await farm_transaction(full_node_api, wallet_node, spend_bundle)
+
+    await time_out_assert(20, get_confirmed_balance, 0, client, cat_wallet_id)
+
+
+@pytest.mark.anyio
+async def test_get_balances(wallet_rpc_environment: WalletRpcTestEnvironment) -> None:
+    env: WalletRpcTestEnvironment = wallet_rpc_environment
+
+    client: WalletRpcClient = env.wallet_1.rpc_client
+    wallet_node: WalletNode = env.wallet_1.node
+
+    full_node_api: FullNodeSimulator = env.full_node.api
+
+    await generate_funds(full_node_api, env.wallet_1, 1)
+
+    await time_out_assert(20, check_client_synced, True, client)
+    # Creates a CAT wallet with 100 mojos and a CAT with 20 mojos
+    await client.create_new_cat_and_wallet(uint64(100), test=True)
+
+    await time_out_assert(20, check_client_synced, True, client)
+    res = await client.create_new_cat_and_wallet(uint64(20), test=True)
+    assert res["success"]
+    await time_out_assert(5, check_mempool_spend_count, True, full_node_api, 2)
+    await farm_transaction_block(full_node_api, wallet_node)
+    await time_out_assert(20, check_client_synced, True, client)
+    bals_response = await client.get_wallet_balances(GetWalletBalances())
+    assert len(bals_response.wallet_balances) == 3
+    assert bals_response.wallet_balances[uint32(1)].confirmed_wallet_balance == 1999999999880
+    assert bals_response.wallet_balances[uint32(2)].confirmed_wallet_balance == 100
+    assert bals_response.wallet_balances[uint32(3)].confirmed_wallet_balance == 20
+    bals_response = await client.get_wallet_balances(GetWalletBalances([uint32(3), uint32(2)]))
+    assert len(bals_response.wallet_balances) == 2
+    assert bals_response.wallet_balances[uint32(2)].confirmed_wallet_balance == 100
+    assert bals_response.wallet_balances[uint32(3)].confirmed_wallet_balance == 20
+
+
+@pytest.mark.parametrize(
+    "wallet_environments",
+    [
+        {
+            "num_environments": 1,
+            "blocks_needed": [1],
+        }
+    ],
+    indirect=True,
+)
+@pytest.mark.limit_consensus_modes(reason="irrelevant")
+@pytest.mark.anyio
+async def test_split_coins(wallet_environments: WalletTestFramework, capsys: pytest.CaptureFixture[str]) -> None:
+    env = wallet_environments.environments[0]
+    env.wallet_aliases = {
+        "xch": 1,
+        "cat": 2,
+    }
+
+    # Test XCH first
+    async with env.wallet_state_manager.new_action_scope(wallet_environments.tx_config) as action_scope:
+        target_coin = next(iter(await env.xch_wallet.select_coins(uint64(250_000_000_000), action_scope)))
+        assert target_coin.amount == 250_000_000_000
+
+    xch_request = SplitCMD(
+        **{
+            **wallet_environments.cmd_tx_endpoint_args(env),
+            **dict(
+                id=env.wallet_aliases["xch"],
+                number_of_coins=100,
+                amount_per_coin=CliAmount(amount=uint64(100), mojos=True),
+                target_coin_id=target_coin.name(),
+                fee=uint64(1_000_000_000_000),  # 1 XCH
+                push=True,
+            ),
+        }
+    )
+
+    with pytest.raises(ResponseFailureError, match="501 coins is greater then the maximum limit of 500 coins"):
+        await dataclasses.replace(xch_request, number_of_coins=501).run()
+
+    with pytest.raises(ResponseFailureError, match="Could not find coin with ID 00000000000000000"):
+        await dataclasses.replace(xch_request, target_coin_id=bytes32.zeros).run()
+
+    with pytest.raises(ResponseFailureError, match="is less than the total amount of the split"):
+        await dataclasses.replace(
+            xch_request, amount_per_coin=CliAmount(amount=uint64(1_000_000_000_000), mojos=True)
+        ).run()
+
+    # We catch this one
+    capsys.readouterr()
+    await dataclasses.replace(xch_request, id=50).run()
+    output = (capsys.readouterr()).out
+    assert "Wallet id: 50 not found" in output
+
+    # This one only "works" on the RPC
+    env.wallet_state_manager.wallets[uint32(42)] = object()  # type: ignore[assignment]
+    with pytest.raises(ResponseFailureError, match="Cannot split coins from non-fungible wallet types"):
+        assert xch_request.amount_per_coin is not None  # hey there mypy
+        rpc_request = SplitCoins(
+            wallet_id=uint32(42),
+            number_of_coins=uint16(xch_request.number_of_coins),
+            amount_per_coin=xch_request.amount_per_coin.convert_amount(1),
+            target_coin_id=xch_request.target_coin_id,
+            fee=xch_request.fee,
+            push=xch_request.push,
+        )
+        await env.rpc_client.split_coins(rpc_request, wallet_environments.tx_config)
+
+    del env.wallet_state_manager.wallets[uint32(42)]
+
+    await dataclasses.replace(xch_request, number_of_coins=0).run()
+    output = (capsys.readouterr()).out
+    assert "Transaction sent" not in output
+
+    with wallet_environments.new_puzzle_hashes_allowed():
+        await xch_request.run()
+
+    await wallet_environments.process_pending_states(
+        [
+            WalletStateTransition(
+                pre_block_balance_updates={
+                    "xch": {
+                        "unconfirmed_wallet_balance": -1_000_000_000_000,  # just the fee
+                        "spendable_balance": -2_000_000_000_000,
+                        "pending_change": 1_000_000_000_000,
+                        "max_send_amount": -2_000_000_000_000,
+                        "pending_coin_removal_count": 2,
+                    }
+                },
+                post_block_balance_updates={
+                    "xch": {
+                        "confirmed_wallet_balance": -1_000_000_000_000,  # just the fee
+                        "spendable_balance": 1_000_000_000_000,
+                        "pending_change": -1_000_000_000_000,
+                        "max_send_amount": 1_000_000_000_000,
+                        "pending_coin_removal_count": -2,
+                        "unspent_coin_count": 99,  # split 1 into 100 i.e. +99
+                    }
+                },
+            )
+        ]
+    )
+
+    # Now do CATs
+    async with env.wallet_state_manager.new_action_scope(wallet_environments.tx_config, push=True) as action_scope:
+        cat_wallet = await CATWallet.create_new_cat_wallet(
+            env.wallet_state_manager,
+            env.xch_wallet,
+            {"identifier": "genesis_by_id"},
+            uint64(50),
+            action_scope,
+        )
+
+    await wallet_environments.process_pending_states(
+        [
+            WalletStateTransition(
+                # no need to test this, it is tested elsewhere
+                pre_block_balance_updates={
+                    "xch": {"set_remainder": True},
+                    "cat": {"init": True, "set_remainder": True},
+                },
+                post_block_balance_updates={
+                    "xch": {"set_remainder": True},
+                    "cat": {"set_remainder": True},
+                },
+            )
+        ]
+    )
+
+    async with env.wallet_state_manager.new_action_scope(wallet_environments.tx_config) as action_scope:
+        target_coin = next(iter(await cat_wallet.select_coins(uint64(50), action_scope)))
+        assert target_coin.amount == 50
+
+    cat_request = SplitCMD(
+        **{
+            **wallet_environments.cmd_tx_endpoint_args(env),
+            **dict(
+                id=env.wallet_aliases["cat"],
+                number_of_coins=50,
+                amount_per_coin=CliAmount(amount=uint64(1), mojos=True),
+                target_coin_id=target_coin.name(),
+                push=True,
+            ),
+        }
+    )
+
+    with wallet_environments.new_puzzle_hashes_allowed():
+        await dataclasses.replace(cat_request).run()
+
+    await wallet_environments.process_pending_states(
+        [
+            WalletStateTransition(
+                pre_block_balance_updates={
+                    "cat": {
+                        "unconfirmed_wallet_balance": 0,
+                        "spendable_balance": -50,
+                        "pending_change": 50,
+                        "max_send_amount": -50,
+                        "pending_coin_removal_count": 1,
+                    }
+                },
+                post_block_balance_updates={
+                    "cat": {
+                        "confirmed_wallet_balance": 0,
+                        "spendable_balance": 50,
+                        "pending_change": -50,
+                        "max_send_amount": 50,
+                        "pending_coin_removal_count": -1,
+                        "unspent_coin_count": 49,  # split 1 into 50 i.e. +49
+                    }
+                },
+            )
+        ]
+    )
+
+    # Test a not synced error
+    assert xch_request.rpc_info.client_info is not None
+
+    async def not_synced() -> GetSyncStatusResponse:
+        return GetSyncStatusResponse(False, False)
+
+    xch_request.rpc_info.client_info.client.get_sync_status = not_synced  # type: ignore[method-assign]
+    await xch_request.run()
+    output = (capsys.readouterr()).out
+    assert "Wallet not synced. Please wait." in output
+
+
+@pytest.mark.parametrize(
+    "wallet_environments",
+    [
+        {
+            "num_environments": 1,
+            "blocks_needed": [2],
+        }
+    ],
+    indirect=True,
+)
+@pytest.mark.limit_consensus_modes(reason="irrelevant")
+@pytest.mark.anyio
+async def test_combine_coins(wallet_environments: WalletTestFramework, capsys: pytest.CaptureFixture[str]) -> None:
+    env = wallet_environments.environments[0]
+    env.wallet_aliases = {
+        "xch": 1,
+        "cat": 2,
+    }
+
+    # Should have 4 coins, two 1.75 XCH, two 0.25 XCH
+
+    # Grab one of the 0.25 ones to specify
+    async with env.wallet_state_manager.new_action_scope(wallet_environments.tx_config) as action_scope:
+        target_coin = next(iter(await env.xch_wallet.select_coins(uint64(250_000_000_000), action_scope)))
+        assert target_coin.amount == 250_000_000_000
+
+    # These parameters will give us the maximum amount of behavior coverage
+    # - More amount than the coin we specify
+    # - Less amount than will have to be selected in order create it
+    # - Higher # coins than necessary to create it
+    fee = uint64(100)
+    xch_combine_request = CombineCMD(
+        **{
+            **wallet_environments.cmd_tx_endpoint_args(env),
+            **dict(
+                id=env.wallet_aliases["xch"],
+                target_amount=CliAmount(amount=uint64(1_000_000_000_000), mojos=True),
+                number_of_coins=uint16(3),
+                input_coins=(target_coin.name(),),
+                fee=fee,
+                push=True,
+            ),
+        }
+    )
+
+    # Test some error cases first
+    with pytest.raises(ResponseFailureError, match="greater then the maximum limit"):
+        await dataclasses.replace(xch_combine_request, number_of_coins=uint16(501)).run()
+
+    with pytest.raises(ResponseFailureError, match="You need at least two coins to combine"):
+        await dataclasses.replace(xch_combine_request, number_of_coins=uint16(0)).run()
+
+    with pytest.raises(ResponseFailureError, match="More coin IDs specified than desired number of coins to combine"):
+        await dataclasses.replace(xch_combine_request, input_coins=(bytes32.zeros,) * 100).run()
+
+    # We catch this one
+    capsys.readouterr()
+    await dataclasses.replace(xch_combine_request, id=50).run()
+    output = (capsys.readouterr()).out
+    assert "Wallet id: 50 not found" in output
+
+    # This one only "works" on the RPC
+    env.wallet_state_manager.wallets[uint32(42)] = object()  # type: ignore[assignment]
+    with pytest.raises(ResponseFailureError, match="Cannot combine coins from non-fungible wallet types"):
+        assert xch_combine_request.target_amount is not None  # hey there mypy
+        rpc_request = CombineCoins(
+            wallet_id=uint32(42),
+            target_coin_amount=xch_combine_request.target_amount.convert_amount(1),
+            number_of_coins=uint16(xch_combine_request.number_of_coins),
+            target_coin_ids=list(xch_combine_request.input_coins),
+            fee=xch_combine_request.fee,
+            push=xch_combine_request.push,
+        )
+        await env.rpc_client.combine_coins(rpc_request, wallet_environments.tx_config)
+
+    del env.wallet_state_manager.wallets[uint32(42)]
+
+    # Now push the request
+    with patch("sys.stdin", new=io.StringIO("y\n")):
+        await xch_combine_request.run()
+
+    await wallet_environments.process_pending_states(
+        [
+            WalletStateTransition(
+                pre_block_balance_updates={
+                    "xch": {
+                        "unconfirmed_wallet_balance": -fee,
+                        "spendable_balance": -2_250_000_000_000,
+                        "pending_change": 2_250_000_000_000 - fee,
+                        "max_send_amount": -2_250_000_000_000,
+                        "pending_coin_removal_count": 3,
+                    }
+                },
+                post_block_balance_updates={
+                    "xch": {
+                        "confirmed_wallet_balance": -fee,
+                        "spendable_balance": 2_250_000_000_000 - fee,
+                        "pending_change": -(2_250_000_000_000 - fee),
+                        "max_send_amount": 2_250_000_000_000 - fee,
+                        "pending_coin_removal_count": -3,
+                        "unspent_coin_count": -1,  # combine 3 into 1 + change
+                    }
+                },
+            )
+        ]
+    )
+
+    # Now do CATs
+    async with env.wallet_state_manager.new_action_scope(wallet_environments.tx_config, push=True) as action_scope:
+        cat_wallet = await CATWallet.create_new_cat_wallet(
+            env.wallet_state_manager,
+            env.xch_wallet,
+            {"identifier": "genesis_by_id"},
+            uint64(50),
+            action_scope,
+        )
+
+    await wallet_environments.process_pending_states(
+        [
+            WalletStateTransition(
+                # no need to test this, it is tested elsewhere
+                pre_block_balance_updates={
+                    "xch": {"set_remainder": True},
+                    "cat": {"init": True, "set_remainder": True},
+                },
+                post_block_balance_updates={
+                    "xch": {"set_remainder": True},
+                    "cat": {"set_remainder": True},
+                },
+            )
+        ]
+    )
+
+    BIG_COIN_AMOUNT = uint64(30)
+    SMALL_COIN_AMOUNT = uint64(15)
+    REALLY_SMALL_COIN_AMOUNT = uint64(5)
+    async with env.wallet_state_manager.new_action_scope(wallet_environments.tx_config, push=True) as action_scope:
+        await cat_wallet.generate_signed_transaction(
+            [BIG_COIN_AMOUNT, SMALL_COIN_AMOUNT, REALLY_SMALL_COIN_AMOUNT],
+            [await action_scope.get_puzzle_hash(env.wallet_state_manager)] * 3,
+            action_scope,
+        )
+
+    await wallet_environments.process_pending_states(
+        [
+            WalletStateTransition(
+                # no need to test this, it is tested elsewhere
+                pre_block_balance_updates={
+                    "xch": {"set_remainder": True},
+                    "cat": {"init": True, "set_remainder": True},
+                },
+                post_block_balance_updates={
+                    "xch": {"set_remainder": True},
+                    "cat": {"set_remainder": True},
+                },
+            )
+        ]
+    )
+
+    # We're going to test that we select the two smaller coins
+    cat_combine_request = CombineCMD(
+        **{
+            **wallet_environments.cmd_tx_endpoint_args(env),
+            **dict(
+                id=env.wallet_aliases["cat"],
+                target_amount=None,
+                number_of_coins=uint16(2),
+                input_coins=(),
+                largest_first=False,
+                fee=fee,
+                push=True,
+            ),
+        }
+    )
+
+    with patch("sys.stdin", new=io.StringIO("y\n")):
+        await cat_combine_request.run()
+
+    await wallet_environments.process_pending_states(
+        [
+            WalletStateTransition(
+                pre_block_balance_updates={
+                    "xch": {
+                        "unconfirmed_wallet_balance": -fee,
+                        "set_remainder": True,  # We only really care that a fee was in fact attached
+                    },
+                    "cat": {
+                        "spendable_balance": -SMALL_COIN_AMOUNT - REALLY_SMALL_COIN_AMOUNT,
+                        "pending_change": SMALL_COIN_AMOUNT + REALLY_SMALL_COIN_AMOUNT,
+                        "max_send_amount": -SMALL_COIN_AMOUNT - REALLY_SMALL_COIN_AMOUNT,
+                        "pending_coin_removal_count": 2,
+                    },
+                },
+                post_block_balance_updates={
+                    "xch": {
+                        "confirmed_wallet_balance": -fee,
+                        "set_remainder": True,  # We only really care that a fee was in fact attached
+                    },
+                    "cat": {
+                        "spendable_balance": SMALL_COIN_AMOUNT + REALLY_SMALL_COIN_AMOUNT,
+                        "pending_change": -SMALL_COIN_AMOUNT - REALLY_SMALL_COIN_AMOUNT,
+                        "max_send_amount": SMALL_COIN_AMOUNT + REALLY_SMALL_COIN_AMOUNT,
+                        "pending_coin_removal_count": -2,
+                        "unspent_coin_count": -1,
+                    },
+                },
+            )
+        ]
+    )
+
+    # Test a not synced error
+    assert xch_combine_request.rpc_info.client_info is not None
+
+    async def not_synced() -> GetSyncStatusResponse:
+        return GetSyncStatusResponse(False, False)
+
+    xch_combine_request.rpc_info.client_info.client.get_sync_status = not_synced  # type: ignore[method-assign]
+    await xch_combine_request.run()
+    output = (capsys.readouterr()).out
+    assert "Wallet not synced. Please wait." in output
+
+
+@pytest.mark.parametrize(
+    "wallet_environments",
+    [
+        {
+            "num_environments": 1,
+            "blocks_needed": [2],
+            "trusted": True,  # irrelevant
+            "reuse_puzhash": True,  # irrelevant
+        }
+    ],
+    indirect=True,
+)
+@pytest.mark.limit_consensus_modes(reason="irrelevant")
+@pytest.mark.anyio
+async def test_fee_bigger_than_selection_coin_combining(wallet_environments: WalletTestFramework) -> None:
+    """
+    This tests the case where the coins we would otherwise select are not enough to pay the fee.
+    """
+
+    env = wallet_environments.environments[0]
+    env.wallet_aliases = {
+        "xch": 1,
+        "cat": 2,
+    }
+
+    # Should have 4 coins, two 1.75 XCH, two 0.25 XCH
+
+    # Grab one of the 0.25 ones to specify
+    async with env.wallet_state_manager.new_action_scope(wallet_environments.tx_config) as action_scope:
+        target_coin = next(iter(await env.xch_wallet.select_coins(uint64(250_000_000_000), action_scope)))
+        assert target_coin.amount == 250_000_000_000
+
+    fee = uint64(1_750_000_000_000)
+    # Under standard circumstances we would select the small coins, but this is not enough to pay the fee
+    # Instead, we will grab the big coin first and combine it with one of the smaller coins
+    xch_combine_request = CombineCMD(
+        **{
+            **wallet_environments.cmd_tx_endpoint_args(env),
+            **dict(
+                id=env.wallet_aliases["xch"],
+                number_of_coins=uint16(2),
+                input_coins=(),
+                fee=fee,
+                push=True,
+                largest_first=False,
+            ),
+        }
+    )
+
+    # First test an error where fee selection causes too many coins to be selected
+    with pytest.raises(ResponseFailureError, match="without selecting more coins than specified: 3"):
+        await dataclasses.replace(xch_combine_request, fee=uint64(2_250_000_000_000)).run()
+
+    with patch("sys.stdin", new=io.StringIO("y\n")):
+        await xch_combine_request.run()
+
+    await wallet_environments.process_pending_states(
+        [
+            WalletStateTransition(
+                pre_block_balance_updates={
+                    "xch": {
+                        "unconfirmed_wallet_balance": -fee,
+                        "spendable_balance": -2_000_000_000_000,
+                        "pending_change": 250_000_000_000,
+                        "max_send_amount": -2_000_000_000_000,
+                        "pending_coin_removal_count": 2,
+                    }
+                },
+                post_block_balance_updates={
+                    "xch": {
+                        "confirmed_wallet_balance": -fee,
+                        "spendable_balance": 250_000_000_000,
+                        "pending_change": -250_000_000_000,
+                        "max_send_amount": 250_000_000_000,
+                        "pending_coin_removal_count": -2,
+                        "unspent_coin_count": -1,  # combine 2 into 1
+                    }
+                },
+            )
+        ]
+    )

@@ -1,0 +1,18 @@
+{
+  "tool_name": "fee_estimation",
+  "tool_hash": "699dd50eb2962577ee17e89d354e1d30c9e152a41a60f8579ebe520d69dd3b7d",
+  "total_size": 5648,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "699dd50eb2962577ee17e89d354e1d30c9e152a41a60f8579ebe520d69dd3b7d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/fee_estimation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/fee_estimation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.656611,
+  "updated_at": 1762787395.6566138
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "windows_signal",
+  "tool_hash": "65a4ff976e3db1444f54426faba7aaa0040d62ae7db5e06f881848b5169f3696",
+  "total_size": 4788,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "65a4ff976e3db1444f54426faba7aaa0040d62ae7db5e06f881848b5169f3696"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/daemon/windows_signal.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/daemon/windows_signal.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.543071,
+  "updated_at": 1762787395.5430741
+}

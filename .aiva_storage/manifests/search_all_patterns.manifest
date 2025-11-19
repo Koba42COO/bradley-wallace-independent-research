@@ -1,0 +1,18 @@
+{
+  "tool_name": "search_all_patterns",
+  "tool_hash": "8e8dd015bb3d4677b26d125130ef977cac411197e19da7b77dd8a504da06f7cc",
+  "total_size": 13680,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "8e8dd015bb3d4677b26d125130ef977cac411197e19da7b77dd8a504da06f7cc"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/search_all_patterns.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/search_all_patterns.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.034464,
+  "updated_at": 1762787395.034466
+}

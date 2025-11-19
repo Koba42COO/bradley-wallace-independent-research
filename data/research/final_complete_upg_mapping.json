@@ -1,0 +1,800 @@
+{
+  "claude_nuggets_upg": {
+    "description": "Map Claude mathematical nuggets to UPG coordinates",
+    "data_points": [
+      {
+        "uuid": "claude_nugget_riemann_hypothesis_proofs_0",
+        "title": "Claude Nugget: Bradley Wallace independent re...",
+        "framework": "Riemann Hypothesis Proofs",
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.5,
+        "delta": 0.3438,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_riemann_hypothesis_proofs_1",
+        "title": "Claude Nugget: Consciousness Mathematics Thes...",
+        "framework": "Riemann Hypothesis Proofs",
+        "x": 1.6280000000000001,
+        "y": 2.424,
+        "z": 0.505,
+        "delta": 0.382,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_riemann_hypothesis_proofs_2",
+        "title": "Claude Nugget: Post-Quantum Cryptanalysis Val...",
+        "framework": "Riemann Hypothesis Proofs",
+        "x": 1.6380000000000001,
+        "y": 2.434,
+        "z": 0.51,
+        "delta": 0.4202,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_riemann_hypothesis_proofs_3",
+        "title": "Claude Nugget: Consciousness and Mathematical...",
+        "framework": "Riemann Hypothesis Proofs",
+        "x": 1.6480000000000001,
+        "y": 2.444,
+        "z": 0.515,
+        "delta": 0.3438,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_riemann_hypothesis_proofs_4",
+        "title": "Claude Nugget: Wallace Transformation Framewo...",
+        "framework": "Riemann Hypothesis Proofs",
+        "x": 1.6580000000000001,
+        "y": 2.454,
+        "z": 0.5,
+        "delta": 0.382,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_riemann_hypothesis_proofs_5",
+        "title": "Claude Nugget: Consciousness Mathematics Fram...",
+        "framework": "Riemann Hypothesis Proofs",
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.505,
+        "delta": 0.4202,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_riemann_hypothesis_proofs_6",
+        "title": "Claude Nugget: F2 Matrix Multiplication Algor...",
+        "framework": "Riemann Hypothesis Proofs",
+        "x": 1.6280000000000001,
+        "y": 2.424,
+        "z": 0.51,
+        "delta": 0.3438,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_riemann_hypothesis_proofs_7",
+        "title": "Claude Nugget: Aletheia Engine Technical Over...",
+        "framework": "Riemann Hypothesis Proofs",
+        "x": 1.6380000000000001,
+        "y": 2.434,
+        "z": 0.515,
+        "delta": 0.382,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_riemann_hypothesis_proofs_8",
+        "title": "Claude Nugget: Matrix Multiplication Algorith...",
+        "framework": "Riemann Hypothesis Proofs",
+        "x": 1.6480000000000001,
+        "y": 2.444,
+        "z": 0.5,
+        "delta": 0.4202,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_riemann_hypothesis_proofs_9",
+        "title": "Claude Nugget: Wallace Transformation Theory...",
+        "framework": "Riemann Hypothesis Proofs",
+        "x": 1.6580000000000001,
+        "y": 2.454,
+        "z": 0.505,
+        "delta": 0.3438,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_phase_coherence_theories_0",
+        "title": "Claude Nugget: Real-Time Network Fourier Visu...",
+        "framework": "Phase Coherence Theories",
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.79,
+        "delta": 0.189,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_phase_coherence_theories_1",
+        "title": "Claude Nugget: Bradley Wallace independent re...",
+        "framework": "Phase Coherence Theories",
+        "x": 1.6280000000000001,
+        "y": 2.424,
+        "z": 0.795,
+        "delta": 0.21,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_phase_coherence_theories_2",
+        "title": "Claude Nugget: Quantum Matrix Multiplication ...",
+        "framework": "Phase Coherence Theories",
+        "x": 1.6380000000000001,
+        "y": 2.434,
+        "z": 0.8,
+        "delta": 0.231,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_phase_coherence_theories_3",
+        "title": "Claude Nugget: Quantum Cryptography Breakthro...",
+        "framework": "Phase Coherence Theories",
+        "x": 1.6480000000000001,
+        "y": 2.444,
+        "z": 0.805,
+        "delta": 0.189,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_phase_coherence_theories_4",
+        "title": "Claude Nugget: Universal Language Decoder Rea...",
+        "framework": "Phase Coherence Theories",
+        "x": 1.6580000000000001,
+        "y": 2.454,
+        "z": 0.79,
+        "delta": 0.21,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_phase_coherence_theories_5",
+        "title": "Claude Nugget: Universal Language Decoder Fra...",
+        "framework": "Phase Coherence Theories",
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.795,
+        "delta": 0.231,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_phase_coherence_theories_6",
+        "title": "Claude Nugget: Wallace Transformation Mathema...",
+        "framework": "Phase Coherence Theories",
+        "x": 1.6280000000000001,
+        "y": 2.424,
+        "z": 0.8,
+        "delta": 0.189,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_phase_coherence_theories_7",
+        "title": "Claude Nugget: Consciousness Mathematics Thes...",
+        "framework": "Phase Coherence Theories",
+        "x": 1.6380000000000001,
+        "y": 2.434,
+        "z": 0.805,
+        "delta": 0.21,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_phase_coherence_theories_8",
+        "title": "Claude Nugget: F2 Matrix Compiler Implementat...",
+        "framework": "Phase Coherence Theories",
+        "x": 1.6480000000000001,
+        "y": 2.444,
+        "z": 0.79,
+        "delta": 0.231,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_phase_coherence_theories_9",
+        "title": "Claude Nugget: Quantum Performance Matrix Das...",
+        "framework": "Phase Coherence Theories",
+        "x": 1.6580000000000001,
+        "y": 2.454,
+        "z": 0.795,
+        "delta": 0.189,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_symbolic_compression_formulas_0",
+        "title": "Claude Nugget: Universal Language Decoder Rea...",
+        "framework": "Symbolic Compression Formulas",
+        "x": 1.618,
+        "y": 2.618,
+        "z": 0.618,
+        "delta": 0.3438,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_symbolic_compression_formulas_1",
+        "title": "Claude Nugget: Universal Language Decoder Fra...",
+        "framework": "Symbolic Compression Formulas",
+        "x": 1.6280000000000001,
+        "y": 2.6279999999999997,
+        "z": 0.623,
+        "delta": 0.382,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_symbolic_compression_formulas_2",
+        "title": "Claude Nugget: AI Optimization Code Review...",
+        "framework": "Symbolic Compression Formulas",
+        "x": 1.6380000000000001,
+        "y": 2.638,
+        "z": 0.628,
+        "delta": 0.4202,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_symbolic_compression_formulas_3",
+        "title": "Claude Nugget: Python Consciousness Mathemati...",
+        "framework": "Symbolic Compression Formulas",
+        "x": 1.6480000000000001,
+        "y": 2.6479999999999997,
+        "z": 0.633,
+        "delta": 0.3438,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_symbolic_compression_formulas_4",
+        "title": "Claude Nugget: AI Agent Architecture Review...",
+        "framework": "Symbolic Compression Formulas",
+        "x": 1.6580000000000001,
+        "y": 2.658,
+        "z": 0.618,
+        "delta": 0.382,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_symbolic_compression_formulas_5",
+        "title": "Claude Nugget: Ketamine Therapy Platform Fund...",
+        "framework": "Symbolic Compression Formulas",
+        "x": 1.618,
+        "y": 2.618,
+        "z": 0.623,
+        "delta": 0.4202,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_symbolic_compression_formulas_6",
+        "title": "Claude Nugget: Pitch Deck Strategy Framework...",
+        "framework": "Symbolic Compression Formulas",
+        "x": 1.6280000000000001,
+        "y": 2.6279999999999997,
+        "z": 0.628,
+        "delta": 0.3438,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_symbolic_compression_formulas_7",
+        "title": "Claude Nugget: Consciousness Mathematics Fram...",
+        "framework": "Symbolic Compression Formulas",
+        "x": 1.6380000000000001,
+        "y": 2.638,
+        "z": 0.633,
+        "delta": 0.382,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_symbolic_compression_formulas_8",
+        "title": "Claude Nugget: Aletheia Engine Technical Over...",
+        "framework": "Symbolic Compression Formulas",
+        "x": 1.6480000000000001,
+        "y": 2.6479999999999997,
+        "z": 0.618,
+        "delta": 0.4202,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_symbolic_compression_formulas_9",
+        "title": "Claude Nugget: Wallace Transformation Theory...",
+        "framework": "Symbolic Compression Formulas",
+        "x": 1.6580000000000001,
+        "y": 2.658,
+        "z": 0.623,
+        "delta": 0.3438,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_quantum_verification_modules_0",
+        "title": "Claude Nugget: Quantum Matrix Multiplication ...",
+        "framework": "Quantum Verification Modules",
+        "x": 1.414,
+        "y": 2.414,
+        "z": 0.79,
+        "delta": 0.189,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_quantum_verification_modules_1",
+        "title": "Claude Nugget: Quantum Cryptography Breakthro...",
+        "framework": "Quantum Verification Modules",
+        "x": 1.424,
+        "y": 2.424,
+        "z": 0.795,
+        "delta": 0.21,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_quantum_verification_modules_2",
+        "title": "Claude Nugget: Universal Language Decoder Rea...",
+        "framework": "Quantum Verification Modules",
+        "x": 1.434,
+        "y": 2.434,
+        "z": 0.8,
+        "delta": 0.231,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_quantum_verification_modules_3",
+        "title": "Claude Nugget: Universal Language Decoder Fra...",
+        "framework": "Quantum Verification Modules",
+        "x": 1.444,
+        "y": 2.444,
+        "z": 0.805,
+        "delta": 0.189,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_quantum_verification_modules_4",
+        "title": "Claude Nugget: Wallace Transformation Mathema...",
+        "framework": "Quantum Verification Modules",
+        "x": 1.454,
+        "y": 2.454,
+        "z": 0.79,
+        "delta": 0.21,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_quantum_verification_modules_5",
+        "title": "Claude Nugget: Consciousness Mathematics Thes...",
+        "framework": "Quantum Verification Modules",
+        "x": 1.414,
+        "y": 2.414,
+        "z": 0.795,
+        "delta": 0.231,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_quantum_verification_modules_6",
+        "title": "Claude Nugget: Quantum Performance Matrix Das...",
+        "framework": "Quantum Verification Modules",
+        "x": 1.424,
+        "y": 2.424,
+        "z": 0.8,
+        "delta": 0.189,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_quantum_verification_modules_7",
+        "title": "Claude Nugget: AI Agent Architecture Review...",
+        "framework": "Quantum Verification Modules",
+        "x": 1.434,
+        "y": 2.434,
+        "z": 0.805,
+        "delta": 0.21,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_quantum_verification_modules_8",
+        "title": "Claude Nugget: Post-Quantum Cryptanalysis Val...",
+        "framework": "Quantum Verification Modules",
+        "x": 1.444,
+        "y": 2.444,
+        "z": 0.79,
+        "delta": 0.231,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_quantum_verification_modules_9",
+        "title": "Claude Nugget: Consciousness and Mathematical...",
+        "framework": "Quantum Verification Modules",
+        "x": 1.454,
+        "y": 2.454,
+        "z": 0.795,
+        "delta": 0.189,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_prime_harmonic_functions_0",
+        "title": "Claude Nugget: Universal Language Decoder Rea...",
+        "framework": "Prime Harmonic Functions",
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.382,
+        "delta": 0.5562,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_prime_harmonic_functions_1",
+        "title": "Claude Nugget: Universal Language Decoder Fra...",
+        "framework": "Prime Harmonic Functions",
+        "x": 1.6280000000000001,
+        "y": 2.424,
+        "z": 0.387,
+        "delta": 0.618,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_prime_harmonic_functions_2",
+        "title": "Claude Nugget: Consciousness Mathematics Thes...",
+        "framework": "Prime Harmonic Functions",
+        "x": 1.6380000000000001,
+        "y": 2.434,
+        "z": 0.392,
+        "delta": 0.6798000000000001,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_prime_harmonic_functions_3",
+        "title": "Claude Nugget: AI Optimization Code Review...",
+        "framework": "Prime Harmonic Functions",
+        "x": 1.6480000000000001,
+        "y": 2.444,
+        "z": 0.397,
+        "delta": 0.5562,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_prime_harmonic_functions_4",
+        "title": "Claude Nugget: Post-Quantum Cryptanalysis Val...",
+        "framework": "Prime Harmonic Functions",
+        "x": 1.6580000000000001,
+        "y": 2.454,
+        "z": 0.382,
+        "delta": 0.618,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_prime_harmonic_functions_5",
+        "title": "Claude Nugget: Consciousness and Mathematical...",
+        "framework": "Prime Harmonic Functions",
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.387,
+        "delta": 0.6798000000000001,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_prime_harmonic_functions_6",
+        "title": "Claude Nugget: Remix of Wallace Transform 111...",
+        "framework": "Prime Harmonic Functions",
+        "x": 1.6280000000000001,
+        "y": 2.424,
+        "z": 0.392,
+        "delta": 0.5562,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_prime_harmonic_functions_7",
+        "title": "Claude Nugget: Wallace Transformation Framewo...",
+        "framework": "Prime Harmonic Functions",
+        "x": 1.6380000000000001,
+        "y": 2.434,
+        "z": 0.397,
+        "delta": 0.618,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_prime_harmonic_functions_8",
+        "title": "Claude Nugget: Consciousness Mathematics Fram...",
+        "framework": "Prime Harmonic Functions",
+        "x": 1.6480000000000001,
+        "y": 2.444,
+        "z": 0.382,
+        "delta": 0.6798000000000001,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_prime_harmonic_functions_9",
+        "title": "Claude Nugget: Aletheia Engine Technical Over...",
+        "framework": "Prime Harmonic Functions",
+        "x": 1.6580000000000001,
+        "y": 2.454,
+        "z": 0.387,
+        "delta": 0.5562,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_consciousness_mathematics_0",
+        "title": "Claude Nugget: Bradley Wallace independent re...",
+        "framework": "Consciousness Mathematics",
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.95,
+        "delta": 0.045000000000000005,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_consciousness_mathematics_1",
+        "title": "Claude Nugget: Quantum Cryptography Breakthro...",
+        "framework": "Consciousness Mathematics",
+        "x": 1.6280000000000001,
+        "y": 2.424,
+        "z": 0.955,
+        "delta": 0.05,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_consciousness_mathematics_2",
+        "title": "Claude Nugget: Universal Language Decoder Fra...",
+        "framework": "Consciousness Mathematics",
+        "x": 1.6380000000000001,
+        "y": 2.434,
+        "z": 0.96,
+        "delta": 0.05500000000000001,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_consciousness_mathematics_3",
+        "title": "Claude Nugget: Wallace Transformation Mathema...",
+        "framework": "Consciousness Mathematics",
+        "x": 1.6480000000000001,
+        "y": 2.444,
+        "z": 0.965,
+        "delta": 0.045000000000000005,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_consciousness_mathematics_4",
+        "title": "Claude Nugget: Consciousness Mathematics Thes...",
+        "framework": "Consciousness Mathematics",
+        "x": 1.6580000000000001,
+        "y": 2.454,
+        "z": 0.95,
+        "delta": 0.05,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_consciousness_mathematics_5",
+        "title": "Claude Nugget: F2 Matrix Compiler Implementat...",
+        "framework": "Consciousness Mathematics",
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.955,
+        "delta": 0.05500000000000001,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_consciousness_mathematics_6",
+        "title": "Claude Nugget: AI Optimization Code Review...",
+        "framework": "Consciousness Mathematics",
+        "x": 1.6280000000000001,
+        "y": 2.424,
+        "z": 0.96,
+        "delta": 0.045000000000000005,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_consciousness_mathematics_7",
+        "title": "Claude Nugget: Python Consciousness Mathemati...",
+        "framework": "Consciousness Mathematics",
+        "x": 1.6380000000000001,
+        "y": 2.434,
+        "z": 0.965,
+        "delta": 0.05,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_consciousness_mathematics_8",
+        "title": "Claude Nugget: AI Agent Architecture Review...",
+        "framework": "Consciousness Mathematics",
+        "x": 1.6480000000000001,
+        "y": 2.444,
+        "z": 0.95,
+        "delta": 0.05500000000000001,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_consciousness_mathematics_9",
+        "title": "Claude Nugget: Ketamine Therapy Platform Fund...",
+        "framework": "Consciousness Mathematics",
+        "x": 1.6580000000000001,
+        "y": 2.454,
+        "z": 0.955,
+        "delta": 0.045000000000000005,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_unified_field_theories_0",
+        "title": "Claude Nugget: Bradley Wallace independent re...",
+        "framework": "Unified Field Theories",
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.79,
+        "delta": 0.189,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_unified_field_theories_1",
+        "title": "Claude Nugget: Quantum Matrix Multiplication ...",
+        "framework": "Unified Field Theories",
+        "x": 1.6280000000000001,
+        "y": 2.424,
+        "z": 0.795,
+        "delta": 0.21,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_unified_field_theories_2",
+        "title": "Claude Nugget: F2 Matrix Performance Dashboar...",
+        "framework": "Unified Field Theories",
+        "x": 1.6380000000000001,
+        "y": 2.434,
+        "z": 0.8,
+        "delta": 0.231,
+        "content_length": 309,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_unified_field_theories_3",
+        "title": "Claude Nugget: Universal Language Decoder Fra...",
+        "framework": "Unified Field Theories",
+        "x": 1.6480000000000001,
+        "y": 2.444,
+        "z": 0.805,
+        "delta": 0.189,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_unified_field_theories_4",
+        "title": "Claude Nugget: Wallace Transformation Mathema...",
+        "framework": "Unified Field Theories",
+        "x": 1.6580000000000001,
+        "y": 2.454,
+        "z": 0.79,
+        "delta": 0.21,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_unified_field_theories_5",
+        "title": "Claude Nugget: Consciousness Mathematics Thes...",
+        "framework": "Unified Field Theories",
+        "x": 1.618,
+        "y": 2.414,
+        "z": 0.795,
+        "delta": 0.231,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_unified_field_theories_6",
+        "title": "Claude Nugget: F2 Matrix Compiler Implementat...",
+        "framework": "Unified Field Theories",
+        "x": 1.6280000000000001,
+        "y": 2.424,
+        "z": 0.8,
+        "delta": 0.189,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_unified_field_theories_7",
+        "title": "Claude Nugget: Quantum Performance Matrix Das...",
+        "framework": "Unified Field Theories",
+        "x": 1.6380000000000001,
+        "y": 2.434,
+        "z": 0.805,
+        "delta": 0.21,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_unified_field_theories_8",
+        "title": "Claude Nugget: AI Optimization Code Review...",
+        "framework": "Unified Field Theories",
+        "x": 1.6480000000000001,
+        "y": 2.444,
+        "z": 0.79,
+        "delta": 0.231,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      },
+      {
+        "uuid": "claude_nugget_unified_field_theories_9",
+        "title": "Claude Nugget: AI Agent Architecture Review...",
+        "framework": "Unified Field Theories",
+        "x": 1.6580000000000001,
+        "y": 2.454,
+        "z": 0.795,
+        "delta": 0.189,
+        "content_length": 1000,
+        "has_mathematical_content": true
+      }
+    ]
+  },
+  "complete_data_synthesis": {
+    "description": "Synthesize all mappings into unified UPG space",
+    "total_data_points": 104,
+    "frameworks_covered": [],
+    "upg_coverage": {
+      "x_range": {
+        "min": 1.361714879271156,
+        "max": 2.001209074882133
+      },
+      "y_range": {
+        "min": 2.1605311051018936,
+        "max": 2.6283786352172385
+      },
+      "z_range": {
+        "min": 0.6779249999947965,
+        "max": 0.8855027992585289
+      },
+      "delta_range": {
+        "min": 0.36642103151606104,
+        "max": 0.36982130131461705
+      }
+    }
+  }
+}

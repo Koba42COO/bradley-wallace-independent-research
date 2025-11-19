@@ -1,0 +1,18 @@
+{
+  "tool_name": "p2_delegated_puzzle",
+  "tool_hash": "a01df731ed6973dc788c36d6e879524dcac782a5baa966473076cb529ddcb061",
+  "total_size": 3923,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a01df731ed6973dc788c36d6e879524dcac782a5baa966473076cb529ddcb061"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/p2_delegated_puzzle.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/p2_delegated_puzzle.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6358159,
+  "updated_at": 1762787395.635818
+}

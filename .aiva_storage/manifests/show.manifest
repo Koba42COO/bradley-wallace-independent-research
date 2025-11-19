@@ -1,0 +1,18 @@
+{
+  "tool_name": "show",
+  "tool_hash": "726d14b25b6d7b0369928ca0ce7f8695fa70e99b5ea4166334d776e16185c95f",
+  "total_size": 5247,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "726d14b25b6d7b0369928ca0ce7f8695fa70e99b5ea4166334d776e16185c95f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/show.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/show.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.509791,
+  "updated_at": 1762787395.509794
+}

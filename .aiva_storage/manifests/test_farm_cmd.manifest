@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_farm_cmd",
+  "tool_hash": "3c98d28b09c464aa33d314de4abb38e680e18bacb03b15c91f5ffd5330fa77fc",
+  "total_size": 4803,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3c98d28b09c464aa33d314de4abb38e680e18bacb03b15c91f5ffd5330fa77fc"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/test_farm_cmd.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/test_farm_cmd.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.4400342,
+  "updated_at": 1762787395.440037
+}

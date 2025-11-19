@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_dump_keyring",
+  "tool_hash": "04aaf427b8460c69085a27b19a30ec8ecbfd4782a440f68f8b68944eb131fb29",
+  "total_size": 4349,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "04aaf427b8460c69085a27b19a30ec8ecbfd4782a440f68f8b68944eb131fb29"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_dump_keyring.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_dump_keyring.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.413256,
+  "updated_at": 1762787395.413259
+}

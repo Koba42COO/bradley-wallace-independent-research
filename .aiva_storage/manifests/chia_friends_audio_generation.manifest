@@ -1,0 +1,18 @@
+{
+  "tool_name": "chia_friends_audio_generation",
+  "tool_hash": "dd8c6550735e945e08578b5b685c8d2c460c4a8864ce5f20a570d388dff29499",
+  "total_size": 21956,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "dd8c6550735e945e08578b5b685c8d2c460c4a8864ce5f20a570d388dff29499"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia_friends_audio_generation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia_friends_audio_generation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787394.9918349,
+  "updated_at": 1762787394.991838
+}

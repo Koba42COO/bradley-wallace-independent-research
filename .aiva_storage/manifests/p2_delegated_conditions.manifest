@@ -1,0 +1,18 @@
+{
+  "tool_name": "p2_delegated_conditions",
+  "tool_hash": "8fd1b6662868107c40e77544744fd322c17aec246227b5e422c3b4cd335716b0",
+  "total_size": 3280,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "8fd1b6662868107c40e77544744fd322c17aec246227b5e422c3b4cd335716b0"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/p2_delegated_conditions.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/p2_delegated_conditions.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.63495,
+  "updated_at": 1762787395.634953
+}

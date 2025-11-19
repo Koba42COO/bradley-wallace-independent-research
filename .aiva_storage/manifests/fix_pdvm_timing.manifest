@@ -1,0 +1,18 @@
+{
+  "tool_name": "fix_pdvm_timing",
+  "tool_hash": "1876219fdd9dc3d305a8e26b4cdcaa74675095c6254f47dcb3e528e962927148",
+  "total_size": 5040,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1876219fdd9dc3d305a8e26b4cdcaa74675095c6254f47dcb3e528e962927148"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/fix_pdvm_timing.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/fix_pdvm_timing.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.094676,
+  "updated_at": 1762787395.09468
+}

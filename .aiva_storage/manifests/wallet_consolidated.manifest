@@ -1,0 +1,18 @@
+{
+  "tool_name": "wallet_consolidated",
+  "tool_hash": "cc68196d81b7faebba1f29550e3810b310b1a848bf8f1c832991934e8ac8c82e",
+  "total_size": 22569,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cc68196d81b7faebba1f29550e3810b310b1a848bf8f1c832991934e8ac8c82e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/environments/wallet_consolidated.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/environments/wallet_consolidated.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.434446,
+  "updated_at": 1762787395.43445
+}

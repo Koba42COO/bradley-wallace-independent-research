@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_sync_simulated",
+  "tool_hash": "91531ee9c688dfc9acbec048eea6a19b3670eafff7b17d621bde4c28204f22c6",
+  "total_size": 22032,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "91531ee9c688dfc9acbec048eea6a19b3670eafff7b17d621bde4c28204f22c6"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/plot_sync/test_sync_simulated.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/plot_sync/test_sync_simulated.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.347733,
+  "updated_at": 1762787395.347737
+}

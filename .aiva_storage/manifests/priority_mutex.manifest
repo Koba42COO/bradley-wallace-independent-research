@@ -1,0 +1,18 @@
+{
+  "tool_name": "priority_mutex",
+  "tool_hash": "91fd3a0083a6e96127dfeb37b497d44c81cf37b931c14253cf446b6d7ccfc131",
+  "total_size": 5501,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "91fd3a0083a6e96127dfeb37b497d44c81cf37b931c14253cf446b6d7ccfc131"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/priority_mutex.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/priority_mutex.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.314156,
+  "updated_at": 1762787395.31416
+}

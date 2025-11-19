@@ -1,0 +1,309 @@
+irmed_for_wallet(wallet_id)
+        removal_dict: dict[bytes32, Coin] = {}
+        for tx in unconfirmed_tx:
+            for coin in tx.removals:
+                # TODO, "if" might not be necessary once unconfirmed tx doesn't contain coins for other wallets
+                if await self.does_coin_belong_to_wallet(coin, wallet_id, tx.hint_dict()):
+                    removal_dict[coin.name()] = coin
+
+        # Coins that are part of the trade
+        offer_locked_coins: dict[bytes32, WalletCoinRecord] = await self.trade_manager.get_locked_coins()
+
+        filtered = set()
+        for record in records:
+            if record.coin.name() in offer_locked_coins:
+                continue
+            if record.coin.name() in removal_dict:
+                continue
+            filtered.add(record)
+
+        return filtered
+
+    async def new_peak(self, height: uint32) -> None:
+        for wallet_id, wallet in self.wallets.items():
+            if wallet.type() == WalletType.POOLING_WALLET:
+                assert isinstance(wallet, PoolWallet)
+                await wallet.new_peak(height)
+        current_time = int(time.time())
+
+        if self.wallet_node.last_wallet_tx_resend_time < current_time - self.wallet_node.wallet_tx_resend_timeout_secs:
+            self.tx_pending_changed()
+
+    async def add_interested_puzzle_hashes(self, puzzle_hashes: list[bytes32], wallet_ids: list[int]) -> None:
+        # TODO: It's unclear if the intended use for this is that each puzzle hash should store all
+        # the elements of wallet_ids. It only stores one wallet_id per puzzle hash in the interested_store
+        # but the coin_cache keeps all wallet_ids for each puzzle hash
+        for puzzle_hash in puzzle_hashes:
+            if puzzle_hash in self.interested_coin_cache:
+                wallet_ids_to_add = list({w for w in wallet_ids if w not in self.interested_coin_cache[puzzle_hash]})
+                self.interested_coin_cache[puzzle_hash].extend(wallet_ids_to_add)
+            else:
+                self.interested_coin_cache[puzzle_hash] = list(set(wallet_ids))
+        for puzzle_hash, wallet_id in zip(puzzle_hashes, wallet_ids):
+            await self.interested_store.add_interested_puzzle_hash(puzzle_hash, wallet_id)
+        if len(puzzle_hashes) > 0:
+            await self.wallet_node.new_peak_queue.subscribe_to_puzzle_hashes(puzzle_hashes)
+
+    async def add_interested_coin_ids(self, coin_ids: list[bytes32], wallet_ids: list[int] = []) -> None:
+        # TODO: FIX: wallet_ids is sometimes populated unexpectedly when called from add_pending_transaction
+        for coin_id in coin_ids:
+            if coin_id in self.interested_coin_cache:
+                # prevent repeated wallet_ids from appearing in the coin cache
+                wallet_ids_to_add = list({w for w in wallet_ids if w not in self.interested_coin_cache[coin_id]})
+                self.interested_coin_cache[coin_id].extend(wallet_ids_to_add)
+            else:
+                self.interested_coin_cache[coin_id] = list(set(wallet_ids))
+        for coin_id in coin_ids:
+            await self.interested_store.add_interested_coin_id(coin_id)
+        if len(coin_ids) > 0:
+            await self.wallet_node.new_peak_queue.subscribe_to_coin_ids(coin_ids)
+
+    async def delete_trade_transactions(self, trade_id: bytes32) -> None:
+        txs: list[TransactionRecord] = await self.tx_store.get_transactions_by_trade_id(trade_id)
+        for tx in txs:
+            await self.tx_store.delete_transaction_record(tx.name)
+
+    async def convert_puzzle_hash(self, wallet_id: uint32, puzzle_hash: bytes32) -> bytes32:
+        wallet = self.wallets[wallet_id]
+        # This should be general to wallets but for right now this is just for CATs so we'll add this if
+        if wallet.type() in {WalletType.CAT.value, WalletType.CRCAT.value, WalletType.RCAT.value}:
+            assert isinstance(wallet, CATWallet)
+            return await wallet.convert_puzzle_hash(puzzle_hash)
+
+        return puzzle_hash
+
+    def get_dl_wallet(self) -> DataLayerWallet:
+        for wallet in self.wallets.values():
+            if wallet.type() == WalletType.DATA_LAYER.value:
+                assert isinstance(wallet, DataLayerWallet), (
+                    f"WalletType.DATA_LAYER should be a DataLayerWallet instance got: {type(wallet).__name__}"
+                )
+                return wallet
+        raise ValueError("DataLayerWallet not available")
+
+    async def get_or_create_vc_wallet(self) -> VCWallet:
+        for _, wallet in self.wallets.items():
+            if WalletType(wallet.type()) == WalletType.VC:
+                assert isinstance(wallet, VCWallet)
+                vc_wallet: VCWallet = wallet
+                break
+        else:
+            # Create a new VC wallet
+            vc_wallet = await VCWallet.create_new_vc_wallet(self, self.main_wallet)
+
+        return vc_wallet
+
+    async def sum_hint_for_pubkey(self, pk: bytes) -> Optional[SumHint]:
+        return await self.main_wallet.sum_hint_for_pubkey(pk)
+
+    async def path_hint_for_pubkey(self, pk: bytes) -> Optional[PathHint]:
+        return await self.main_wallet.path_hint_for_pubkey(pk)
+
+    async def key_hints_for_pubkeys(self, pks: list[bytes]) -> KeyHints:
+        return KeyHints(
+            [sum_hint for pk in pks for sum_hint in (await self.sum_hint_for_pubkey(pk),) if sum_hint is not None],
+            [path_hint for pk in pks for path_hint in (await self.path_hint_for_pubkey(pk),) if path_hint is not None],
+        )
+
+    async def gather_signing_info(self, spends: list[Spend]) -> SigningInstructions:
+        pks: list[bytes] = []
+        signing_targets: list[SigningTarget] = []
+        for spend in spends:
+            coin_spend = spend.as_coin_spend()
+            # Get AGG_SIG conditions
+            conditions_dict = conditions_dict_for_solution(
+                Program.from_serialized(coin_spend.puzzle_reveal),
+                Program.from_serialized(coin_spend.solution),
+                self.constants.MAX_BLOCK_COST_CLVM,
+            )
+            # Create signature
+            for pk, msg in pkm_pairs_for_conditions_dict(
+                conditions_dict, coin_spend.coin, self.constants.AGG_SIG_ME_ADDITIONAL_DATA
+            ):
+                pk_bytes = bytes(pk)
+                pks.append(pk_bytes)
+                fingerprint: bytes = pk.get_fingerprint().to_bytes(4, "big")
+                signing_targets.append(SigningTarget(fingerprint, msg, std_hash(pk_bytes + msg)))
+
+        return SigningInstructions(
+            await self.key_hints_for_pubkeys(pks),
+            signing_targets,
+        )
+
+    async def gather_signing_info_for_bundles(self, bundles: list[WalletSpendBundle]) -> list[UnsignedTransaction]:
+        utxs: list[UnsignedTransaction] = []
+        for bundle in bundles:
+            signer_protocol_spends: list[Spend] = [Spend.from_coin_spend(spend) for spend in bundle.coin_spends]
+            utxs.append(
+                UnsignedTransaction(
+                    TransactionInfo(signer_protocol_spends), await self.gather_signing_info(signer_protocol_spends)
+                )
+            )
+
+        return utxs
+
+    async def gather_signing_info_for_txs(self, txs: list[TransactionRecord]) -> list[UnsignedTransaction]:
+        return await self.gather_signing_info_for_bundles(
+            [tx.spend_bundle for tx in txs if tx.spend_bundle is not None]
+        )
+
+    async def gather_signing_info_for_trades(self, offers: list[Offer]) -> list[UnsignedTransaction]:
+        return await self.gather_signing_info_for_bundles([offer._bundle for offer in offers])
+
+    async def execute_signing_instructions(
+        self, signing_instructions: SigningInstructions, partial_allowed: bool = False
+    ) -> list[SigningResponse]:
+        return await self.main_wallet.execute_signing_instructions(signing_instructions, partial_allowed)
+
+    async def apply_signatures(
+        self, spends: list[Spend], signing_responses: list[SigningResponse]
+    ) -> SignedTransaction:
+        return await self.main_wallet.apply_signatures(spends, signing_responses)
+
+    def signed_tx_to_spendbundle(self, signed_tx: SignedTransaction) -> WalletSpendBundle:
+        if len([_ for _ in signed_tx.signatures if _.type != "bls_12381_aug_scheme"]) > 0:
+            raise ValueError("Unable to handle signatures that are not bls_12381_aug_scheme")  # pragma: no cover
+        return WalletSpendBundle(
+            [spend.as_coin_spend() for spend in signed_tx.transaction_info.spends],
+            AugSchemeMPL.aggregate([G2Element.from_bytes(sig.signature) for sig in signed_tx.signatures]),
+        )
+
+    async def sign_transactions(
+        self,
+        tx_records: list[TransactionRecord],
+        additional_signing_responses: list[SigningResponse] = [],
+        partial_allowed: bool = False,
+    ) -> tuple[list[TransactionRecord], list[SigningResponse]]:
+        unsigned_txs: list[UnsignedTransaction] = await self.gather_signing_info_for_txs(tx_records)
+        new_txs: list[TransactionRecord] = []
+        all_signing_responses = additional_signing_responses.copy()
+        for unsigned_tx, tx in zip(
+            unsigned_txs, [tx_record for tx_record in tx_records if tx_record.spend_bundle is not None]
+        ):
+            signing_responses: list[SigningResponse] = await self.execute_signing_instructions(
+                unsigned_tx.signing_instructions, partial_allowed=partial_allowed
+            )
+            all_signing_responses.extend(signing_responses)
+            new_bundle = self.signed_tx_to_spendbundle(
+                await self.apply_signatures(
+                    unsigned_tx.transaction_info.spends,
+                    [*additional_signing_responses, *signing_responses],
+                )
+            )
+            new_txs.append(dataclasses.replace(tx, spend_bundle=new_bundle, name=new_bundle.name()))
+        new_txs.extend([tx_record for tx_record in tx_records if tx_record.spend_bundle is None])
+        return new_txs, all_signing_responses
+
+    async def sign_offers(
+        self,
+        offers: list[Offer],
+        additional_signing_responses: list[SigningResponse] = [],
+        partial_allowed: bool = False,
+    ) -> tuple[list[Offer], list[SigningResponse]]:
+        unsigned_txs: list[UnsignedTransaction] = await self.gather_signing_info_for_trades(offers)
+        new_offers: list[Offer] = []
+        all_signing_responses = additional_signing_responses.copy()
+        for unsigned_tx, offer in zip(unsigned_txs, [offer for offer in offers]):
+            signing_responses: list[SigningResponse] = await self.execute_signing_instructions(
+                unsigned_tx.signing_instructions, partial_allowed=partial_allowed
+            )
+            all_signing_responses.extend(signing_responses)
+            new_bundle = self.signed_tx_to_spendbundle(
+                await self.apply_signatures(
+                    unsigned_tx.transaction_info.spends,
+                    [*additional_signing_responses, *signing_responses],
+                )
+            )
+            new_offers.append(Offer(offer.requested_payments, new_bundle, offer.driver_dict))
+        return new_offers, all_signing_responses
+
+    async def sign_bundle(
+        self,
+        coin_spends: list[CoinSpend],
+        additional_signing_responses: list[SigningResponse] = [],
+        partial_allowed: bool = False,
+    ) -> tuple[WalletSpendBundle, list[SigningResponse]]:
+        [unsigned_tx] = await self.gather_signing_info_for_bundles([WalletSpendBundle(coin_spends, G2Element())])
+        signing_responses: list[SigningResponse] = await self.execute_signing_instructions(
+            unsigned_tx.signing_instructions, partial_allowed=partial_allowed
+        )
+        return (
+            self.signed_tx_to_spendbundle(
+                await self.apply_signatures(
+                    unsigned_tx.transaction_info.spends,
+                    [*additional_signing_responses, *signing_responses],
+                )
+            ),
+            signing_responses,
+        )
+
+    async def submit_transactions(self, signed_txs: list[SignedTransaction]) -> list[bytes32]:
+        bundles: list[WalletSpendBundle] = [self.signed_tx_to_spendbundle(tx) for tx in signed_txs]
+        for bundle in bundles:
+            await self.wallet_node.push_tx(bundle)
+        return [bundle.name() for bundle in bundles]
+
+    @contextlib.asynccontextmanager
+    async def new_action_scope(
+        self,
+        tx_config: TXConfig,
+        push: bool = False,
+        merge_spends: bool = True,
+        sign: Optional[bool] = None,
+        additional_signing_responses: list[SigningResponse] = [],
+        extra_spends: list[WalletSpendBundle] = [],
+        puzzle_for_pk: Optional[Callable[[G1Element], Program]] = None,
+    ) -> AsyncIterator[WalletActionScope]:
+        async with new_wallet_action_scope(
+            self,
+            tx_config,
+            push=push,
+            merge_spends=merge_spends,
+            sign=sign,
+            additional_signing_responses=additional_signing_responses,
+            extra_spends=extra_spends,
+            puzzle_for_pk=puzzle_for_pk,
+        ) as action_scope:
+            yield action_scope
+
+    async def delete_wallet(self, wallet_id: uint32) -> None:
+        await self.user_store.delete_wallet(wallet_id)
+        await self.puzzle_store.delete_wallet(wallet_id)
+
+    def encode_puzzle_hash(self, puzzle_hash: bytes32) -> str:
+        return encode_puzzle_hash(puzzle_hash, AddressType.XCH.hrp(self.config))
+
+    def new_outgoing_transaction(
+        self,
+        *,
+        wallet_id: uint32,
+        puzzle_hash: bytes32,
+        amount: uint64,
+        fee: uint64,
+        spend_bundle: WalletSpendBundle,
+        additions: list[Coin],
+        removals: list[Coin],
+        name: bytes32,
+        extra_conditions: tuple[Condition, ...] = tuple(),
+        trade_id: bytes32 | None = None,
+    ) -> TransactionRecord:
+        return TransactionRecord(
+            confirmed_at_height=uint32(0),
+            created_at_time=uint64(time.time()),
+            to_puzzle_hash=puzzle_hash,
+            to_address=self.encode_puzzle_hash(puzzle_hash),
+            amount=amount,
+            fee_amount=fee,
+            confirmed=False,
+            sent=uint32(0),
+            spend_bundle=spend_bundle,
+            additions=additions,
+            removals=removals,
+            wallet_id=wallet_id,
+            sent_to=[],
+            trade_id=trade_id,
+            type=uint32(TransactionType.OUTGOING_TX.value),
+            name=name,
+            memos=compute_memos(spend_bundle),
+            valid_times=parse_timelock_info(extra_conditions),
+        )

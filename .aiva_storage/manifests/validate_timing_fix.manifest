@@ -1,0 +1,18 @@
+{
+  "tool_name": "validate_timing_fix",
+  "tool_hash": "17e0d8b45150bba40a0e79c1d19ad3729142c523565014342d3e271b00ffe732",
+  "total_size": 6545,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "17e0d8b45150bba40a0e79c1d19ad3729142c523565014342d3e271b00ffe732"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/validate_timing_fix.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/validate_timing_fix.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.093902,
+  "updated_at": 1762787395.093905
+}

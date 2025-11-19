@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_farmer_harvester_rpc",
+  "tool_hash": "c2e1e7af75adb12d7d32f610525b252632a632573e19c5892c17704d71934ab5",
+  "total_size": 26460,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c2e1e7af75adb12d7d32f610525b252632a632573e19c5892c17704d71934ab5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_farmer_harvester_rpc.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_farmer_harvester_rpc.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3587992,
+  "updated_at": 1762787395.3588018
+}

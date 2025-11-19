@@ -1,0 +1,18 @@
+{
+  "tool_name": "prime_graph_computation_system",
+  "tool_hash": "efcd6382dfa3dc6f481fb152f2dcdfc32c088cd44944cd2f1b9b3964505a427d",
+  "total_size": 19120,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "efcd6382dfa3dc6f481fb152f2dcdfc32c088cd44944cd2f1b9b3964505a427d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/src/blockchain/prime_graph_blockchain/prime_graph_computation_system.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/src/blockchain/prime_graph_blockchain/prime_graph_computation_system.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.671216,
+  "updated_at": 1762787395.6712189
+}

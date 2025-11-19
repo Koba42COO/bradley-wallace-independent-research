@@ -1,0 +1,18 @@
+{
+  "tool_name": "nft_puzzles",
+  "tool_hash": "1a99d5872a7486db9ad6e975b2878d64e89e02987cf15d2d56a48e0eeb7eeb2d",
+  "total_size": 1170,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1a99d5872a7486db9ad6e975b2878d64e89e02987cf15d2d56a48e0eeb7eeb2d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/nft_wallet/nft_puzzles.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/nft_wallet/nft_puzzles.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.621386,
+  "updated_at": 1762787395.6213892
+}

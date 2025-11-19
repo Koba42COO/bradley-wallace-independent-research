@@ -1,0 +1,18 @@
+{
+  "tool_name": "wallet_protocol",
+  "tool_hash": "d91458fe4ace8f8d7dcfbf9c436614481ae004ffea718eb6da21e439166abf0a",
+  "total_size": 10977,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d91458fe4ace8f8d7dcfbf9c436614481ae004ffea718eb6da21e439166abf0a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/wallet_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/wallet_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.667695,
+  "updated_at": 1762787395.667697
+}

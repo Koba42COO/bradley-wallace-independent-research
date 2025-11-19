@@ -1,0 +1,211 @@
+from __future__ import annotations
+
+from collections import defaultdict
+from collections.abc import Iterator
+from dataclasses import dataclass, replace
+from typing import Optional
+
+from chia_rs import ConsensusConstants, SpendBundle
+from chia_rs.sized_bytes import bytes32
+from chia_rs.sized_ints import uint32, uint64
+
+from chia._tests.util.get_name_puzzle_conditions import get_name_puzzle_conditions
+from chia.consensus.check_time_locks import check_time_locks
+from chia.consensus.cost_calculator import NPCResult
+from chia.full_node.bundle_tools import simple_solution_generator
+from chia.types.blockchain_format.coin import Coin
+from chia.types.coin_record import CoinRecord
+from chia.util.errors import Err
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+MAX_COST = 11000000000
+
+
+class BadSpendBundleError(Exception):
+    pass
+
+
+@dataclass
+class CoinTimestamp:
+    seconds: int
+    height: uint32
+
+
+class CoinStore:
+    def __init__(self, constants: ConsensusConstants, reward_mask: int = 0):
+        self._db: dict[bytes32, CoinRecord] = dict()
+        self._ph_index: dict = defaultdict(list)
+        self._reward_mask = reward_mask
+        self._constants = constants
+
+    def farm_coin(
+        self,
+        puzzle_hash: bytes32,
+        birthday: CoinTimestamp,
+        amount: int = 1024,
+        prefix=bytes32.fromhex("ccd5bb71183532bff220ba46c268991a00000000000000000000000000000000"),
+    ) -> Coin:
+        parent = bytes32(
+            [
+                a | b
+                for a, b in zip(
+                    prefix,
+                    birthday.height.to_bytes(32, "big"),
+                )
+            ],
+        )
+        # parent = birthday.height.to_bytes(32, "big")
+        coin = Coin(parent, puzzle_hash, uint64(amount))
+        self._add_coin_entry(coin, birthday)
+        return coin
+
+    def validate_spend_bundle(self, spend_bundle: SpendBundle, now: CoinTimestamp, max_cost: int) -> int:
+        # this should use blockchain consensus code
+
+        program = simple_solution_generator(spend_bundle)
+        # always use the post soft-fork2 semantics
+        result: NPCResult = get_name_puzzle_conditions(
+            program, max_cost, mempool_mode=True, height=uint32(3886635), constants=self._constants
+        )
+        if result.error is not None:
+            raise BadSpendBundleError(f"condition validation failure {Err(result.error)}")
+
+        ephemeral_db = dict(self._db)
+        assert result.conds is not None
+        for spend in result.conds.spends:
+            for puzzle_hash, amount, hint in spend.create_coin:
+                coin = Coin(spend.coin_id, puzzle_hash, uint64(amount))
+                name = coin.name()
+                ephemeral_db[name] = CoinRecord(
+                    coin,
+                    uint32(now.height),
+                    uint32(0),
+                    False,
+                    uint64(now.seconds),
+                )
+
+        err = check_time_locks(
+            ephemeral_db,
+            result.conds,
+            # TODO: this is technically not right, it's supposed to be the
+            # previous transaction block's height
+            uint32(now.height),
+            # TODO: this is technically not right, it's supposed to be the
+            # previous transaction block's timestamp
+            uint64(now.seconds),
+        )
+
+        if err is not None:
+            raise BadSpendBundleError(f"condition validation failure {Err(err)}")
+
+        return 0
+
+    def update_coin_store_for_spend_bundle(
+        self,
+        spend_bundle: SpendBundle,
+        now: CoinTimestamp,
+        max_cost: int,
+    ):
+        err = self.validate_spend_bundle(spend_bundle, now, max_cost)
+        if err != 0:
+            raise BadSpendBundleError(f"validation failure {err}")
+        additions = spend_bundle.additions()
+        removals = spend_bundle.removals()
+        for new_coin in additions:
+            self._add_coin_entry(new_coin, now)
+        for spent_coin in removals:
+            coin_name = spent_coin.name()
+            coin_record = self._db[coin_name]
+            self._db[coin_name] = replace(coin_record, spent_block_index=now.height)
+        return additions, spend_bundle.coin_spends
+
+    def coins_for_puzzle_hash(self, puzzle_hash: bytes32) -> Iterator[Coin]:
+        for coin_name in self._ph_index[puzzle_hash]:
+            coin_entry = self._db[coin_name]
+            assert coin_entry.coin.puzzle_hash == puzzle_hash
+            yield coin_entry.coin
+
+    def all_coins(self) -> Iterator[Coin]:
+        for coin_entry in self._db.values():
+            yield coin_entry.coin
+
+    def all_unspent_coins(self) -> Iterator[Coin]:
+        for coin_entry in self._db.values():
+            if not coin_entry.spent:
+                yield coin_entry.coin
+
+    def _add_coin_entry(self, coin: Coin, birthday: CoinTimestamp) -> None:
+        name = coin.name()
+        # assert name not in self._db
+        self._db[name] = CoinRecord(
+            coin,
+            uint32(birthday.height),
+            uint32(0),
+            False,
+            uint64(birthday.seconds),
+        )
+        self._ph_index[coin.puzzle_hash].append(name)
+
+    def coin_record(self, coin_id: bytes32) -> Optional[CoinRecord]:
+        return self._db.get(coin_id)

@@ -1,0 +1,42 @@
+{
+  "id": "pac_core_constants",
+  "data": {
+    "consciousness_ratio": 0.79,
+    "golden_ratio": 1.618033988749895,
+    "delta_scaling_factor": 2.414213562373095,
+    "reality_distortion_factor": 1.1808,
+    "prime_topology_coordinates": {
+      "x": 1.618033988749895,
+      "y": 2.414213562373095,
+      "z": 0.79
+    }
+  },
+  "metadata": {
+    "domain": "consciousness_guided_computing",
+    "category": "core_mathematics",
+    "significance": "fundamental"
+  },
+  "consciousness_amplitude": 0.395,
+  "golden_ratio_optimization": {
+    "consciousness_ratio": 1.278246851112417,
+    "golden_ratio": 2.618033988749895,
+    "delta_scaling_factor": 3.906279600020632,
+    "reality_distortion_factor": 1.910574533915876,
+    "prime_topology_coordinates": {
+      "x": 1.618033988749895,
+      "y": 2.414213562373095,
+      "z": 0.79
+    }
+  },
+  "prime_alignment": 0.5,
+  "reality_distortion": 1.3694692352241928,
+  "prime_topology_coordinates": {
+    "x": 1.618033988749895,
+    "y": 2.414213562373095,
+    "z": 0.79
+  },
+  "timestamp": "2025-10-20T23:40:50.732899",
+  "phi_protocol_version": "\u03c6.1",
+  "validation_status": "active",
+  "universal_hash": "b32df0e3ed876c50fbac1e57ad91361c6e13cdc844cf643845710590123f5277"
+}

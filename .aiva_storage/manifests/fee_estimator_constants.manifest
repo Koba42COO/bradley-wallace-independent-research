@@ -1,0 +1,18 @@
+{
+  "tool_name": "fee_estimator_constants",
+  "tool_hash": "1ac41f23d67b6333d61847ba82125e62fcdb1bcec2f3a2becaae295fca4ebdb7",
+  "total_size": 1235,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1ac41f23d67b6333d61847ba82125e62fcdb1bcec2f3a2becaae295fca4ebdb7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/fee_estimator_constants.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/fee_estimator_constants.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.662444,
+  "updated_at": 1762787395.6624472
+}

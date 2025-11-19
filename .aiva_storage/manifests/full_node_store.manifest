@@ -1,0 +1,18 @@
+{
+  "tool_name": "full_node_store",
+  "tool_hash": "73f9dd671d1a1eb3f9004fc6b485fcf0b8dca86bfef6746710eb4b32fe8245c7",
+  "total_size": 51032,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "73f9dd671d1a1eb3f9004fc6b485fcf0b8dca86bfef6746710eb4b32fe8245c7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/full_node_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/full_node_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6606772,
+  "updated_at": 1762787395.6606789
+}

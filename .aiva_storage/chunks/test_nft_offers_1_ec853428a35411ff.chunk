@@ -1,0 +1,109 @@
+r)])
+
+    taker_fee = uint64(1)
+
+    async with trade_manager_taker.wallet_state_manager.new_action_scope(
+        wallet_environments.tx_config, push=True, additional_signing_responses=signing_response
+    ) as action_scope:
+        trade_take = await trade_manager_taker.respond_to_offer(maker_offer, peer, action_scope, fee=taker_fee)
+
+    await wallet_environments.process_pending_states(
+        [
+            WalletStateTransition(
+                pre_block_balance_updates={
+                    "xch": {
+                        "<=#spendable_balance": -maker_fee,
+                        "<=#max_send_amount": -maker_fee,
+                        "pending_coin_removal_count": 1,
+                    },
+                    "taker cat": {
+                        "<=#spendable_balance": -taker_cat_amount,
+                        "<=#max_send_amount": -taker_cat_amount,
+                        "pending_coin_removal_count": 1,
+                    },
+                    "maker cat": {
+                        "<=#spendable_balance": -maker_cat_amount,
+                        "<=#max_send_amount": -maker_cat_amount,
+                        "pending_coin_removal_count": 1,
+                    },
+                    "nft": {},
+                },
+                post_block_balance_updates={
+                    "xch": {
+                        "unconfirmed_wallet_balance": -maker_fee,
+                        "confirmed_wallet_balance": -maker_fee,
+                        ">=#spendable_balance": 1,
+                        ">=#max_send_amount": 1,
+                        "pending_coin_removal_count": -1,
+                    },
+                    "taker cat": {
+                        "unconfirmed_wallet_balance": -taker_cat_amount,
+                        "confirmed_wallet_balance": -taker_cat_amount,
+                        ">=#spendable_balance": 1,
+                        ">=#max_send_amount": 1,
+                        "pending_coin_removal_count": -1,
+                    },
+                    "maker cat": {
+                        "unconfirmed_wallet_balance": -maker_cat_amount,
+                        "confirmed_wallet_balance": -maker_cat_amount,
+                        ">=#spendable_balance": 1,
+                        ">=#max_send_amount": 1,
+                        "pending_coin_removal_count": -1,
+                    },
+                    "nft": {
+                        "unspent_coin_count": 1,
+                    },
+                },
+            ),
+            WalletStateTransition(
+                pre_block_balance_updates={
+                    "xch": {
+                        "unconfirmed_wallet_balance": -taker_fee,
+                        "<=#spendable_balance": -taker_fee,
+                        "<=#max_send_amount": -taker_fee,
+                        ">=#pending_change": 1,
+                        "pending_coin_removal_count": 1,
+                    },
+                    "taker cat": {
+                        "unconfirmed_wallet_balance": taker_cat_amount,
+                    },
+                    "maker cat": {
+                        "unconfirmed_wallet_balance": maker_cat_amount,
+                    },
+                    "nft": {
+                        "pending_coin_removal_count": 1,
+                    },
+                },
+                post_block_balance_updates={
+                    "xch": {
+                        "confirmed_wallet_balance": -taker_fee,
+                        ">=#spendable_balance": 1,
+                        ">=#max_send_amount": 1,
+                        "<=#pending_change": -1,
+                        "pending_coin_removal_count": -1,
+                    },
+                    "taker cat": {
+                        "confirmed_wallet_balance": taker_cat_amount,
+                        "spendable_balance": taker_cat_amount,
+                        "max_send_amount": taker_cat_amount,
+                        "unspent_coin_count": 1,
+                    },
+                    "maker cat": {
+                        "confirmed_wallet_balance": maker_cat_amount,
+                        "spendable_balance": maker_cat_amount,
+                        "max_send_amount": maker_cat_amount,
+                        "unspent_coin_count": 1,
+                    },
+                    "nft": {
+                        "pending_coin_removal_count": -1,
+                        "unspent_coin_count": -1,
+                    },
+                },
+            ),
+        ]
+    )
+
+    await time_out_assert(20, get_trade_and_status, TradeStatus.CONFIRMED, trade_manager_maker, trade_make)
+    await time_out_assert(20, get_trade_and_status, TradeStatus.CONFIRMED, trade_manager_taker, trade_take)
+    assert await nft_wallet_maker.get_nft_count() == 1
+    assert await nft_wallet_taker.get_nft_count() == 0

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_clawback_lifecycle",
+  "tool_hash": "20e05e5a4d415c074b6077a7a56be272206e98a96107f911589ad3f02683ac83",
+  "total_size": 15538,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "20e05e5a4d415c074b6077a7a56be272206e98a96107f911589ad3f02683ac83"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/clawback/test_clawback_lifecycle.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/clawback/test_clawback_lifecycle.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.494366,
+  "updated_at": 1762787395.494369
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_antarctica_signal_decoding",
+  "tool_hash": "e5a250ebe7f1c9af7877171aa03400ee761355bd7b33a214a6436581080c7a6d",
+  "total_size": 6322,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e5a250ebe7f1c9af7877171aa03400ee761355bd7b33a214a6436581080c7a6d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/datasets/generate_datasets_antarctica_signal_decoding.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/datasets/generate_datasets_antarctica_signal_decoding.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2169259,
+  "updated_at": 1762787395.216929
+}

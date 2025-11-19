@@ -1,0 +1,117 @@
+from __future__ import annotations
+
+from typing import Any
+
+from typing_extensions import Protocol, Self
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+# If accepted for general use then this should be moved to a common location
+# and probably implemented by the framework instead of manual decoration.
+
+
+class MarshallableProtocol(Protocol):
+    @classmethod
+    def unmarshal(cls, marshalled: dict[str, Any]) -> Self: ...
+
+    def marshal(self) -> dict[str, Any]: ...
+
+
+class UnboundRoute(Protocol):
+    async def __call__(self, request: dict[str, Any]) -> dict[str, Any]:
+        pass
+
+
+class UnboundMarshalledRoute(Protocol):
+    async def __call__(protocol_self, self: Any, request: MarshallableProtocol) -> MarshallableProtocol:
+        pass
+
+
+class RouteDecorator(Protocol):
+    def __call__(self, route: UnboundMarshalledRoute) -> UnboundRoute:
+        pass
+
+
+def marshal() -> RouteDecorator:
+    def decorator(route: UnboundMarshalledRoute) -> UnboundRoute:
+        from typing import get_type_hints
+
+        hints = get_type_hints(route)
+        request_class: type[MarshallableProtocol] = hints["request"]
+
+        async def wrapper(self: object, request: dict[str, object]) -> dict[str, object]:
+            # import json
+            # name = route.__name__
+            # print(f"\n ==== {name} request.json\n{json.dumps(request, indent=2)}")
+            unmarshalled_request = request_class.unmarshal(request)
+
+            response = await route(self, request=unmarshalled_request)
+            marshalled_response = response.marshal()
+            # print(f"\n ==== {name} response.json\n{json.dumps(marshalled_response, indent=2)}")
+
+            return marshalled_response
+
+        # type ignoring since mypy is having issues with bound vs. unbound methods
+        return wrapper  # type: ignore[return-value]
+
+    return decorator

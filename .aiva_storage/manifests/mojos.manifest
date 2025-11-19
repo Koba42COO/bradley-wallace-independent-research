@@ -1,0 +1,18 @@
+{
+  "tool_name": "mojos",
+  "tool_hash": "395071c803b3ab31600261a8628fd8e71998982958b05e3b73d3c8312667b77b",
+  "total_size": 136,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "395071c803b3ab31600261a8628fd8e71998982958b05e3b73d3c8312667b77b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/mojos.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/mojos.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.301107,
+  "updated_at": 1762787395.301109
+}

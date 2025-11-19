@@ -1,0 +1,18 @@
+{
+  "tool_name": "receiver",
+  "tool_hash": "2a018a42877ce58f674ea868b42adae3ae45e28d9522afc052a80f6a09b51dad",
+  "total_size": 18133,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2a018a42877ce58f674ea868b42adae3ae45e28d9522afc052a80f6a09b51dad"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plot_sync/receiver.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plot_sync/receiver.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.293977,
+  "updated_at": 1762787395.293979
+}

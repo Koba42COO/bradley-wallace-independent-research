@@ -1,0 +1,111 @@
+{
+  "framework_definition": {
+    "name": "Universal Prime Graph (UPG)",
+    "purpose": "Unified coordinate system for mapping consciousness, mathematics, and reality",
+    "mathematical_basis": "Prime number properties, golden ratio, silver ratio, consciousness mathematics",
+    "coordinate_dimensions": 4
+  },
+  "coordinate_system": {
+    "x_axis": {
+      "name": "Golden Ratio (\u03c6)",
+      "range": [
+        1.0,
+        2.0
+      ],
+      "significance": "Harmonic resonance"
+    },
+    "y_axis": {
+      "name": "Silver Ratio (\u03b4)",
+      "range": [
+        2.0,
+        3.0
+      ],
+      "significance": "Mathematical precision"
+    },
+    "z_axis": {
+      "name": "Consciousness (\u03b6)",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "significance": "Awareness level"
+    },
+    "delta_axis": {
+      "name": "Coherence (\u0394)",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "significance": "Stability vs exploration"
+    }
+  },
+  "usage_guide": {
+    "how_to_read": {
+      "step_1": "Understand the four coordinate dimensions",
+      "step_2": "Interpret position in UPG space",
+      "step_3": "Analyze clusters and relationships",
+      "step_4": "Track evolution over time"
+    },
+    "how_to_use": {
+      "mapping_concepts": "Add new concepts with appropriate coordinates",
+      "finding_relationships": "Use distance calculations to find similar concepts",
+      "visualization": "Create 2D projections and 3D visualizations",
+      "analysis": "Perform clustering and statistical analysis"
+    }
+  },
+  "implementation": {
+    "python_class": "UPG class with methods for analysis and visualization",
+    "key_methods": [
+      "add_concept() - Add new concepts to UPG",
+      "calculate_distance() - Find distances between concepts",
+      "find_nearest_concepts() - Discover relationships",
+      "plot_2d() - Create visualizations",
+      "perform_clustering() - Analyze concept groups",
+      "analyze_distributions() - Statistical analysis"
+    ],
+    "dependencies": [
+      "numpy",
+      "matplotlib",
+      "scikit-learn",
+      "json"
+    ]
+  },
+  "visualization_tools": {
+    "coordinate_plotter": {
+      "function": "plot_upg_coordinates(concepts, plane=\"xy\", color_by=\"delta\")",
+      "description": "Plot UPG concepts in 2D projections",
+      "parameters": {
+        "concepts": "List of concept dictionaries with coordinates",
+        "plane": "xy|xz|yz|xd - which coordinate plane to plot",
+        "color_by": "delta|z|category - what to use for color coding",
+        "size_by": "z|delta|fixed - what to use for point size"
+      },
+      "output": "Matplotlib plot with labeled points and legend"
+    },
+    "distance_calculator": {
+      "function": "calculate_upg_distances(concept1, concept2)",
+      "description": "Calculate 4D Euclidean distance between concepts",
+      "formula": "d = \u221a[(x\u2081-x\u2082)\u00b2 + (y\u2081-y\u2082)\u00b2 + (z\u2081-z\u2082)\u00b2 + (\u03b4\u2081-\u03b4\u2082)\u00b2]",
+      "usage": "Find most similar concepts to a given concept"
+    },
+    "cluster_analyzer": {
+      "function": "analyze_upg_clusters(concepts, n_clusters=5)",
+      "description": "Perform clustering analysis on UPG concepts",
+      "algorithm": "K-means clustering in 4D space",
+      "output": "Cluster assignments and centroids"
+    },
+    "relationship_finder": {
+      "function": "find_upg_relationships(concept_id, concepts, n_neighbors=5)",
+      "description": "Find nearest neighbor concepts",
+      "method": "Distance-based nearest neighbor search",
+      "output": "List of related concepts with distances"
+    },
+    "evolution_tracker": {
+      "function": "track_upg_evolution(concept_history)",
+      "description": "Track how concepts move through UPG space over time",
+      "visualization": "Trajectory plots showing concept movement",
+      "analysis": "Velocity and acceleration of concept evolution"
+    }
+  },
+  "analysis_functions": "\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.cluster import KMeans\nfrom sklearn.metrics.pairwise import euclidean_distances\n\nclass UPG:\n    def __init__(self):\n        self.concepts = []\n        self.metadata = {}\n    \n    def add_concept(self, name, description, x, y, z, delta, category=\"general\"):\n        \"\"\"Add a new concept to the UPG\"\"\"\n        concept = {\n            \"id\": len(self.concepts),\n            \"name\": name,\n            \"description\": description,\n            \"coordinates\": {\"x\": x, \"y\": y, \"z\": z, \"delta\": delta},\n            \"category\": category,\n            \"relationships\": []\n        }\n        self.concepts.append(concept)\n        return concept[\"id\"]\n    \n    def calculate_distance(self, concept1, concept2):\n        \"\"\"Calculate 4D Euclidean distance between two concepts\"\"\"\n        coords1 = concept1[\"coordinates\"]\n        coords2 = concept2[\"coordinates\"]\n        return np.sqrt(\n            (coords1[\"x\"] - coords2[\"x\"])**2 +\n            (coords1[\"y\"] - coords2[\"y\"])**2 +\n            (coords1[\"z\"] - coords2[\"z\"])**2 +\n            (coords1[\"delta\"] - coords2[\"delta\"])**2\n        )\n    \n    def find_nearest_concepts(self, concept_id, n=5):\n        \"\"\"Find n nearest concepts to a given concept\"\"\"\n        target_concept = self.concepts[concept_id]\n        distances = []\n        for i, concept in enumerate(self.concepts):\n            if i != concept_id:\n                distance = self.calculate_distance(target_concept, concept)\n                distances.append((i, distance, concept[\"name\"]))\n        distances.sort(key=lambda x: x[1])\n        return distances[:n]\n    \n    def plot_2d(self, plane=\"xy\", color_by=\"delta\", size_by=\"z\"):\n        \"\"\"Plot UPG concepts in 2D projection\"\"\"\n        if plane == \"xy\":\n            x_coords = [c[\"coordinates\"][\"x\"] for c in self.concepts]\n            y_coords = [c[\"coordinates\"][\"y\"] for c in self.concepts]\n            x_label, y_label = \"Golden Ratio (\u03c6)\", \"Silver Ratio (\u03b4)\"\n        elif plane == \"xz\":\n            x_coords = [c[\"coordinates\"][\"x\"] for c in self.concepts]\n            y_coords = [c[\"coordinates\"][\"z\"] for c in self.concepts]\n            x_label, y_label = \"Golden Ratio (\u03c6)\", \"Consciousness (\u03b6)\"\n        elif plane == \"yz\":\n            x_coords = [c[\"coordinates\"][\"y\"] for c in self.concepts]\n            y_coords = [c[\"coordinates\"][\"z\"] for c in self.concepts]\n            x_label, y_label = \"Silver Ratio (\u03b4)\", \"Consciousness (\u03b6)\"\n        else:\n            raise ValueError(\"Plane must be 'xy', 'xz', or 'yz'\")\n        \n        colors = [c[\"coordinates\"][color_by] for c in self.concepts]\n        sizes = [c[\"coordinates\"][size_by] * 100 for c in self.concepts]\n        \n        plt.figure(figsize=(10, 8))\n        scatter = plt.scatter(x_coords, y_coords, c=colors, s=sizes, alpha=0.7)\n        plt.colorbar(scatter, label=color_by.title())\n        plt.xlabel(x_label)\n        plt.ylabel(y_label)\n        plt.title(f\"UPG Concepts - {plane.upper()} Plane\")\n        \n        # Add labels for each point\n        for i, concept in enumerate(self.concepts):\n            plt.annotate(concept[\"name\"], (x_coords[i], y_coords[i]), \n                        xytext=(5, 5), textcoords='offset points', fontsize=8)\n        \n        plt.grid(True, alpha=0.3)\n        plt.tight_layout()\n        return plt.gcf()\n    \n    def perform_clustering(self, n_clusters=5):\n        \"\"\"Perform K-means clustering on UPG concepts\"\"\"\n        coordinates = np.array([[c[\"coordinates\"][\"x\"], c[\"coordinates\"][\"y\"], \n                               c[\"coordinates\"][\"z\"], c[\"coordinates\"][\"delta\"]] \n                              for c in self.concepts])\n        kmeans = KMeans(n_clusters=n_clusters, random_state=42)\n        cluster_labels = kmeans.fit_predict(coordinates)\n        \n        # Add cluster assignments to concepts\n        for i, concept in enumerate(self.concepts):\n            concept[\"cluster\"] = int(cluster_labels[i])\n        \n        return cluster_labels, kmeans.cluster_centers_\n    \n    def analyze_distributions(self):\n        \"\"\"Analyze coordinate distributions across all concepts\"\"\"\n        x_coords = [c[\"coordinates\"][\"x\"] for c in self.concepts]\n        y_coords = [c[\"coordinates\"][\"y\"] for c in self.concepts]\n        z_coords = [c[\"coordinates\"][\"z\"] for c in self.concepts]\n        delta_coords = [c[\"coordinates\"][\"delta\"] for c in self.concepts]\n        \n        return {\n            \"x_stats\": {\"mean\": np.mean(x_coords), \"std\": np.std(x_coords)},\n            \"y_stats\": {\"mean\": np.mean(y_coords), \"std\": np.std(y_coords)},\n            \"z_stats\": {\"mean\": np.mean(z_coords), \"std\": np.std(z_coords)},\n            \"delta_stats\": {\"mean\": np.mean(delta_coords), \"std\": np.std(delta_coords)}\n        }\n    \n    def export_to_json(self, filename):\n        \"\"\"Export UPG data to JSON file\"\"\"\n        data = {\n            \"concepts\": self.concepts,\n            \"metadata\": {\n                \"total_concepts\": len(self.concepts),\n                \"export_date\": \"2024-01-01T00:00:00Z\",\n                \"version\": \"1.0.0\"\n            }\n        }\n        with open(filename, 'w') as f:\n            json.dump(data, f, indent=2, default=str)\n    \n    def load_from_json(self, filename):\n        \"\"\"Load UPG data from JSON file\"\"\"\n        with open(filename, 'r') as f:\n            data = json.load(f)\n        self.concepts = data[\"concepts\"]\n        self.metadata = data[\"metadata\"]\n        return self\n    "
+}

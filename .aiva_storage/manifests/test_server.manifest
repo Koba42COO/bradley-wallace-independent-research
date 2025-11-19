@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_server",
+  "tool_hash": "55106aa097343a8b49a61fcb09517d723b215f5e9e553f8276fa2e274353d70f",
+  "total_size": 13223,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "55106aa097343a8b49a61fcb09517d723b215f5e9e553f8276fa2e274353d70f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_server.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_server.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.377247,
+  "updated_at": 1762787395.37725
+}

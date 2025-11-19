@@ -1,0 +1,18 @@
+{
+  "tool_name": "setup_consolidated",
+  "tool_hash": "02eee62c1c0ef4b9cbc70a1e7297268001a4e8a50bb01cbe670dc466f20fcc72",
+  "total_size": 5085,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "02eee62c1c0ef4b9cbc70a1e7297268001a4e8a50bb01cbe670dc466f20fcc72"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/setup_consolidated.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/setup_consolidated.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.093494,
+  "updated_at": 1762787395.093497
+}

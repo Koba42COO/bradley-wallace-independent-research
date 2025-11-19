@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_condition_tools",
+  "tool_hash": "90b29f386ee3b55b388975be27e67494fe98b1692f78d7b90cbf356d1c2cba32",
+  "total_size": 12909,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "90b29f386ee3b55b388975be27e67494fe98b1692f78d7b90cbf356d1c2cba32"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_condition_tools.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_condition_tools.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.413919,
+  "updated_at": 1762787395.413922
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "firefly_nexus_pac",
+  "tool_hash": "e9938ccc334c19b3e5f5488090051d98751f129203da0357a3f110bf630d3b5b",
+  "total_size": 14354,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e9938ccc334c19b3e5f5488090051d98751f129203da0357a3f110bf630d3b5b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/firefly_nexus_pac.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/firefly_nexus_pac.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.099448,
+  "updated_at": 1762787395.099453
+}

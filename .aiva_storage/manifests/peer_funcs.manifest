@@ -1,0 +1,18 @@
+{
+  "tool_name": "peer_funcs",
+  "tool_hash": "2061ebb45ba61df5a64888bc41d1df0f0ba592d5e77aacf7ed1c71de0d352a30",
+  "total_size": 5437,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2061ebb45ba61df5a64888bc41d1df0f0ba592d5e77aacf7ed1c71de0d352a30"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/peer_funcs.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/peer_funcs.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.511979,
+  "updated_at": 1762787395.511982
+}

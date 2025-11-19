@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_singleton_lifecycle_fast",
+  "tool_hash": "157ad8e1bd03ee5842a0227d896628ad1d1c87ce431c5f3fdc3a5cceb317ff88",
+  "total_size": 35212,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "157ad8e1bd03ee5842a0227d896628ad1d1c87ce431c5f3fdc3a5cceb317ff88"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_singleton_lifecycle_fast.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_singleton_lifecycle_fast.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.471356,
+  "updated_at": 1762787395.471359
+}

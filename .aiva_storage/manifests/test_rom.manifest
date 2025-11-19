@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_rom",
+  "tool_hash": "cc59c9f38e8df73c0b773bf687f7ce049382e7a82b46ead44fa17f7d6d3525df",
+  "total_size": 9714,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cc59c9f38e8df73c0b773bf687f7ce049382e7a82b46ead44fa17f7d6d3525df"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/generator/test_rom.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/generator/test_rom.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4595158,
+  "updated_at": 1762787395.45952
+}

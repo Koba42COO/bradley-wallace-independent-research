@@ -1,0 +1,134 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Optional
+
+import pytest
+from chia_rs.sized_bytes import bytes32
+from chia_rs.sized_ints import uint32
+
+from chia.consensus.get_block_generator import get_block_generator
+from chia.types.blockchain_format.serialized_program import SerializedProgram
+from chia.types.generator_types import BlockGenerator
+from chia.util.casts import int_to_bytes
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+@dataclass(frozen=True)
+class BR:
+    prev_header_hash: bytes32
+    transactions_generator: Optional[SerializedProgram]
+    transactions_generator_ref_list: list[uint32]
+
+
+@dataclass(frozen=True)
+class FB:
+    prev_header_hash: bytes32
+    transactions_generator: Optional[SerializedProgram]
+    height: uint32
+
+
+def blockhash(i: int) -> bytes32:
+    return bytes32([i] * 32)
+
+
+def program(i: int) -> SerializedProgram:
+    return SerializedProgram.from_bytes(int_to_bytes(i))
+
+
+async def zero_hits(hh: bytes32, refs: set[uint32]) -> dict[uint32, bytes]:
+    return {}
+
+
+async def never_called(hh: bytes32, refs: set[uint32]) -> dict[uint32, bytes]:
+    assert False  # pragma: no cover
+
+
+async def only_lookup_5(hh: bytes32, refs: set[uint32]) -> dict[uint32, bytes]:
+    assert refs == {uint32(5)}
+    return {uint32(5): bytes(program(5))}
+
+
+DUMMY_PROGRAM = SerializedProgram.from_bytes(b"\x80")
+
+
+@pytest.mark.anyio
+async def test_failing_lookup() -> None:
+    br = BR(bytes32.zeros, DUMMY_PROGRAM, [uint32(1)])
+    with pytest.raises(KeyError):
+        await get_block_generator(zero_hits, br)
+
+
+@pytest.mark.anyio
+async def test_no_generator() -> None:
+    br = BR(bytes32.zeros, None, [uint32(1)])
+    with pytest.raises(AssertionError):
+        await get_block_generator(zero_hits, br)
+
+
+@pytest.mark.anyio
+async def test_no_refs() -> None:
+    br = BR(bytes32.zeros, DUMMY_PROGRAM, [])
+    bg = await get_block_generator(never_called, br)
+    assert bg == BlockGenerator(DUMMY_PROGRAM, [])

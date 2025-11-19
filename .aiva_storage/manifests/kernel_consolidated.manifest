@@ -1,0 +1,18 @@
+{
+  "tool_name": "kernel_consolidated",
+  "tool_hash": "67fe5356f40a3cf4c40e6d96826148d30e048edd8f98fbc8b073465d6c9c46fc",
+  "total_size": 17617,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "67fe5356f40a3cf4c40e6d96826148d30e048edd8f98fbc8b073465d6c9c46fc"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/legacy/aiva-core/os/kernel_consolidated.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/legacy/aiva-core/os/kernel_consolidated.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2681222,
+  "updated_at": 1762787395.268126
+}

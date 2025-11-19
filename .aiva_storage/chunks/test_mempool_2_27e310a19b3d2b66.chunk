@@ -1,0 +1,518 @@
+metrize("old", [True, False])
+def test_timeout(old: bool) -> None:
+    mempool = construct_mempool()
+
+    for i in range(50):
+        item = mk_item(coins[i : i + 1], flags=[0], fee=0, cost=50)
+        add_info = mempool.add_to_pool(item)
+        assert add_info.error is None
+
+    create_block = mempool.create_block_generator if old else mempool.create_block_generator2
+
+    # the timeout is set to 0, we should *always* fail with a timeout
+    generator = create_block(DEFAULT_CONSTANTS, uint32(10), 0.0)
+    assert generator is None
+
+
+def rand_hash() -> bytes32:
+    # TODO: does this need to be creating a new rng?
+    return bytes32.random(r=random.Random())
+
+
+def item_cost(cost: int, fee_rate: float) -> MempoolItem:
+    fee = cost * fee_rate
+    amount = uint64(fee + 100)
+    coin = Coin(rand_hash(), rand_hash(), amount)
+    return mk_item([coin], cost=cost, fee=int(cost * fee_rate))
+
+
+@pytest.mark.parametrize(
+    "items,add,expected",
+    [
+        # the max size is 100
+        # we need to evict two items
+        ([50, 25, 13, 12, 5], 10, [10, 50, 25, 13]),
+        # we don't need to evict anything
+        ([50, 25, 13], 10, [10, 50, 25, 13]),
+        # we need to evict everything
+        ([95, 5], 10, [10]),
+        # we evict a single item
+        ([75, 15, 9], 10, [10, 75, 15]),
+    ],
+)
+def test_full_mempool(items: list[int], add: int, expected: list[int]) -> None:
+    fee_estimator = create_bitcoin_fee_estimator(uint64(11000000000))
+
+    mempool_info = MempoolInfo(
+        CLVMCost(uint64(100)),
+        FeeRate(uint64(1000000)),
+        CLVMCost(uint64(100)),
+    )
+    mempool = Mempool(mempool_info, fee_estimator)
+    invariant_check_mempool(mempool)
+    fee_rate: float = 3.0
+    for i in items:
+        mempool.add_to_pool(item_cost(i, fee_rate))
+        fee_rate -= 0.1
+        invariant_check_mempool(mempool)
+
+    # now, add the item we're testing
+    mempool.add_to_pool(item_cost(add, 3.1))
+    invariant_check_mempool(mempool)
+
+    ordered_items = list(mempool.items_by_feerate())
+
+    assert len(ordered_items) == len(expected)
+
+    for mi, expected_cost in zip(ordered_items, expected):
+        assert mi.cost == expected_cost
+
+
+@pytest.mark.parametrize("height", [True, False])
+@pytest.mark.parametrize(
+    "items,expected,increase_fee",
+    [
+        # the max size is 100
+        # the max block size is 50
+        # which is also the max size for expiring transactions
+        # the increasing fee will order the transactions in the reverse
+        # insertion order
+        ([10, 11, 12, 13, 14], [14, 13, 12, 11], True),
+        # decreasing fee rate will make the last one fail to be inserted
+        ([10, 11, 12, 13, 14], [10, 11, 12, 13], False),
+        # the last is big enough to evict all previous ones
+        ([10, 11, 12, 13, 50], [50], True),
+        # the last one will not evict any earlier ones, because the fee rate is
+        # lower
+        ([10, 11, 12, 13, 50], [10, 11, 12, 13], False),
+    ],
+)
+def test_limit_expiring_transactions(height: bool, items: list[int], expected: list[int], increase_fee: bool) -> None:
+    fee_estimator = create_bitcoin_fee_estimator(uint64(11000000000))
+
+    mempool_info = MempoolInfo(
+        CLVMCost(uint64(100)),
+        FeeRate(uint64(1000000)),
+        CLVMCost(uint64(50)),
+    )
+    mempool = Mempool(mempool_info, fee_estimator)
+    mempool.new_tx_block(uint32(10), uint64(100000))
+    invariant_check_mempool(mempool)
+
+    # fill the mempool with regular transactions (without expiration)
+    fee_rate: float = 3.0
+    for i in range(1, 20):
+        mempool.add_to_pool(item_cost(i, fee_rate))
+        fee_rate -= 0.1
+        invariant_check_mempool(mempool)
+
+    # now add the expiring transactions from the test case
+    fee_rate = 2.7
+    for cost in items:
+        fee = cost * fee_rate
+        amount = uint64(fee + 100)
+        coin = Coin(rand_hash(), rand_hash(), amount)
+        if height:
+            ret = mempool.add_to_pool(mk_item([coin], cost=cost, fee=int(cost * fee_rate), assert_before_height=15))
+        else:
+            ret = mempool.add_to_pool(mk_item([coin], cost=cost, fee=int(cost * fee_rate), assert_before_seconds=10400))
+        invariant_check_mempool(mempool)
+        if increase_fee:
+            fee_rate += 0.1
+            assert ret.error is None
+        else:
+            fee_rate -= 0.1
+
+    ordered_costs = [
+        item.cost
+        for item in mempool.items_by_feerate()
+        if item.assert_before_height is not None or item.assert_before_seconds is not None
+    ]
+
+    assert ordered_costs == expected
+
+    print("")
+    for item in mempool.items_by_feerate():
+        if item.assert_before_seconds is not None or item.assert_before_height is not None:
+            ttl = "yes"
+        else:
+            ttl = "No"
+        print(f"- cost: {item.cost} TTL: {ttl}")
+
+    assert mempool.total_mempool_cost() > 90
+    invariant_check_mempool(mempool)
+
+
+@pytest.mark.parametrize(
+    "items,coin_ids,expected",
+    [
+        # None of these spend those coins
+        (
+            [mk_item(coins[0:1]), mk_item(coins[1:2]), mk_item(coins[2:3])],
+            [coins[3].name(), coins[4].name()],
+            [],
+        ),
+        # One of these spends one of the coins
+        (
+            [mk_item(coins[0:1]), mk_item(coins[1:2]), mk_item(coins[2:3])],
+            [coins[1].name(), coins[3].name()],
+            [mk_item(coins[1:2])],
+        ),
+        # One of these spends one another spends two
+        (
+            [mk_item(coins[0:1]), mk_item(coins[1:3]), mk_item(coins[2:4]), mk_item(coins[3:4])],
+            [coins[2].name(), coins[3].name()],
+            [mk_item(coins[1:3]), mk_item(coins[2:4]), mk_item(coins[3:4])],
+        ),
+    ],
+)
+def test_get_items_by_coin_ids(items: list[MempoolItem], coin_ids: list[bytes32], expected: list[MempoolItem]) -> None:
+    mempool = construct_mempool()
+    for i in items:
+        mempool.add_to_pool(i)
+        invariant_check_mempool(mempool)
+    result = mempool.get_items_by_coin_ids(coin_ids)
+    assert set(result) == set(expected)
+
+
+def make_test_spendbundle(coin: Coin, *, fee: int = 0, with_higher_cost: bool = False) -> SpendBundle:
+    conditions = []
+    actual_fee = fee
+    if with_higher_cost:
+        conditions.extend([[ConditionOpcode.CREATE_COIN, IDENTITY_PUZZLE_HASH, i] for i in range(3)])
+        actual_fee += 3
+    conditions.append([ConditionOpcode.CREATE_COIN, IDENTITY_PUZZLE_HASH, uint64(coin.amount - actual_fee)])
+    sb = spend_bundle_from_conditions(conditions, coin)
+    return sb
+
+
+def construct_mempool() -> Mempool:
+    fee_estimator = create_bitcoin_fee_estimator(test_constants.MAX_BLOCK_COST_CLVM)
+    mempool_info = MempoolInfo(
+        CLVMCost(uint64(test_constants.MAX_BLOCK_COST_CLVM * 3)),
+        FeeRate(uint64(1000000)),
+        CLVMCost(test_constants.MAX_BLOCK_COST_CLVM),
+    )
+    return Mempool(mempool_info, fee_estimator)
+
+
+def make_coin(idx: int) -> Coin:
+    return Coin(IDENTITY_PUZZLE_HASH, IDENTITY_PUZZLE_HASH, uint64(2_000_000_000 + idx * 2))
+
+
+@pytest.mark.parametrize("old", [True, False])
+def test_dedup_by_fee(old: bool) -> None:
+    """
+    We pick the solution to use for dedup based on the spendbundle with the highest
+    fee per cost, not based on which one would give the overall best fee per cost
+    """
+    mempool = construct_mempool()
+
+    def add_spend_bundles(spend_bundles: list[SpendBundle]) -> None:
+        sb = SpendBundle.aggregate(spend_bundles)
+        mi = mempool_item_from_spendbundle(sb)
+        mempool.add_to_pool(mi)
+        invariant_check_mempool(mempool)
+
+    DEDUP_COIN = make_coin(0)
+    COIN_A1 = make_coin(1)
+    COIN_A2 = make_coin(2)
+    # all other coins belong to solution B, the dedup alternative to solution A
+
+    # Create a spend bundle with a high fee, spending sb_A, which supports dedup
+    sb_A = make_test_spendbundle(DEDUP_COIN)
+    sb_high_rate = make_test_spendbundle(COIN_A1, fee=10)
+    add_spend_bundles([sb_A, sb_high_rate])
+
+    # Create a spend bundle, with a low fee, that spends the dedup coin using the same solution A
+    sb_low_rate = make_test_spendbundle(COIN_A2, fee=10)
+    add_spend_bundles([sb_A, sb_low_rate])
+
+    create_block = mempool.create_block_generator if old else mempool.create_block_generator2
+    # validate that dedup happens at all for sb_A
+    result = create_block(test_constants, uint32(0), 5.0)
+    assert result is not None
+    # Make sure both items would be processed
+    assert result.removals == [DEDUP_COIN, COIN_A1, COIN_A2]
+
+    # Now we add a bunch of alternative spends for coin 0, with lower fees
+    # Even though the total fee would be higher if we deduped on this solution,
+    # we won't.
+    sb_B = make_test_spendbundle(DEDUP_COIN, with_higher_cost=True)
+    for i in range(3, 600):
+        sb_high_rate = make_test_spendbundle(make_coin(i), fee=10)
+        add_spend_bundles([sb_B, sb_high_rate])
+
+    result = create_block(test_constants, uint32(0), 5.0)
+    assert result is not None
+    # We ran with solution A and missed bigger savings on solution B
+    # we've added 599 spend bundles now. 2 with solution A and 598 with solution B
+    assert mempool.size() == 599
+    assert result.removals == [DEDUP_COIN, COIN_A1, COIN_A2]
+
+    # Now, if we add a high fee per-cost-for sb_B, it should be picked
+    sb_high_rate = make_test_spendbundle(make_coin(600), fee=1_000_000_000)
+    add_spend_bundles([sb_B, sb_high_rate])
+
+    result = create_block(test_constants, uint32(0), 5.0)
+    assert result is not None
+    # The 3 items got skipped here
+    # We ran with solution B
+    # we've added 600 spend bundles now. 2 with solution A and 599 with solution B
+    assert mempool.size() == 600
+    spends_in_block = set(result.removals)
+    assert DEDUP_COIN in spends_in_block
+    assert COIN_A1 not in spends_in_block
+    assert COIN_A2 not in spends_in_block
+
+    for i in range(3, 601):
+        assert make_coin(i) in spends_in_block
+
+
+def test_get_puzzle_and_solution_for_coin_failure() -> None:
+    with pytest.raises(
+        ValueError,
+        match=f"Failed to get puzzle and solution for coin {TEST_COIN}, "
+        "error: \\('InvalidOperatorArg: coin not found', '80'\\)",
+    ):
+        try:
+            get_puzzle_and_solution_for_coin(
+                SerializedProgram.to(None),
+                [],
+                test_constants.MAX_BLOCK_COST_CLVM,
+                TEST_COIN,
+                get_flags_for_height_and_constants(0, test_constants),
+            )
+        except Exception as e:
+            raise ValueError(f"Failed to get puzzle and solution for coin {TEST_COIN}, error: {e}") from e
+
+
+# this puzzle just creates coins, however many are requested by the solution
+# (mod (A)
+#    (defun loop (n)
+#        (if (= n 1)
+#            (list)
+#            (c (list 51 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff n) (loop (- n 1))))
+#    )
+#    (loop A)
+# )
+create_coins_loop: str = (
+    "ff02ffff01ff02ff02ffff04ff02ffff04ff05ff80808080ffff04ffff01ff02"
+    "ffff03ffff09ff05ffff010180ff80ffff01ff04ffff04ffff0133ffff04ffff"
+    "01a0ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    "ffffffff04ff05ff80808080ffff02ff02ffff04ff02ffff04ffff11ff05ffff"
+    "010180ff808080808080ff0180ff018080"
+)
+
+
+# this test uses artificial puzzles just to exercise the block creation. These
+# spends are expected not to verify any signatures
+# This is to keep the test simple.
+@pytest.mark.parametrize(
+    "puzzle, solution",
+    [
+        # create 2000 coins
+        (create_coins_loop, "ff8207d180"),
+        # create 1000 coins
+        (create_coins_loop, "ff8203e980"),
+        # create 500 coins
+        (create_coins_loop, "ff8201f580"),
+    ],
+)
+@pytest.mark.parametrize("old", [True, False])
+def test_create_block_generator_custom_spend(puzzle: str, solution: str, old: bool) -> None:
+    mempool_info = MempoolInfo(
+        CLVMCost(uint64(11000000000 * 3)),
+        FeeRate(uint64(1000000)),
+        CLVMCost(uint64(11000000000)),
+    )
+
+    fee_estimator = create_bitcoin_fee_estimator(test_constants.MAX_BLOCK_COST_CLVM)
+    solution_str = SerializedProgram.fromhex(solution)
+    puzzle_reveal = SerializedProgram.fromhex(puzzle)
+    puzzle_hash = puzzle_reveal.get_tree_hash()
+    mempool = Mempool(mempool_info, fee_estimator)
+    coins = [Coin(bytes32.random(), puzzle_hash, uint64(amount)) for amount in range(100000000, 100000022)]
+
+    spend_bundles = [
+        SpendBundle(
+            coin_spends=[CoinSpend(coin, puzzle_reveal=puzzle_reveal, solution=solution_str)],
+            aggregated_signature=G2Element(),
+        )
+        for coin in coins
+    ]
+
+    for sb in spend_bundles:
+        mi = mempool_item_from_spendbundle(sb)
+        mempool.add_to_pool(mi)
+        invariant_check_mempool(mempool)
+
+    create_block = mempool.create_block_generator if old else mempool.create_block_generator2
+    generator = create_block(test_constants, test_constants.HARD_FORK2_HEIGHT, 10.0)
+    assert generator is not None
+
+    assert generator.signature == G2Element()
+
+    removals = set(generator.removals)
+
+    err, conds = run_block_generator2(
+        bytes(generator.program),
+        generator.generator_refs,
+        test_constants.MAX_BLOCK_COST_CLVM,
+        0,
+        generator.signature,
+        None,
+        test_constants,
+    )
+
+    assert err is None
+    assert conds is not None
+
+    assert len(conds.spends) == len(removals)
+
+    for spend in conds.spends:
+        removal = Coin(spend.parent_id, spend.puzzle_hash, uint64(spend.coin_amount))
+        assert removal in coins
+        assert removal in removals
+
+    invariant_check_mempool(mempool)
+
+
+@pytest.mark.parametrize("old", [True, False])
+def test_create_block_generator(old: bool) -> None:
+    mempool = construct_mempool()
+    coins = [
+        Coin(IDENTITY_PUZZLE_HASH, IDENTITY_PUZZLE_HASH, uint64(amount)) for amount in range(2000000000, 2000000020, 2)
+    ]
+
+    spend_bundles = set(make_test_spendbundle(c) for c in coins)
+    expected_additions = set(Coin(c.name(), IDENTITY_PUZZLE_HASH, c.amount) for c in coins)
+    expected_signature = AugSchemeMPL.aggregate([sb.aggregated_signature for sb in spend_bundles])
+
+    for sb in spend_bundles:
+        mi = mempool_item_from_spendbundle(sb)
+        mempool.add_to_pool(mi)
+        invariant_check_mempool(mempool)
+
+    create_block = mempool.create_block_generator if old else mempool.create_block_generator2
+    generator = create_block(test_constants, uint32(0), 10.0)
+    assert generator is not None
+
+    assert set(generator.additions) == expected_additions
+    assert len(generator.additions) == len(expected_additions)
+    assert generator.signature == expected_signature
+
+    err, conds = run_block_generator2(
+        bytes(generator.program),
+        generator.generator_refs,
+        test_constants.MAX_BLOCK_COST_CLVM,
+        0,
+        generator.signature,
+        None,
+        test_constants,
+    )
+
+    assert err is None
+    assert conds is not None
+
+    assert len(conds.spends) == len(coins)
+
+    num_additions = 0
+    for spend in conds.spends:
+        assert Coin(spend.parent_id, spend.puzzle_hash, uint64(spend.coin_amount)) in coins
+        for add2 in spend.create_coin:
+            assert Coin(spend.coin_id, add2[0], uint64(add2[1])) in expected_additions
+            num_additions += 1
+
+    assert num_additions == len(generator.additions)
+    invariant_check_mempool(mempool)
+
+
+def test_keccak() -> None:
+    # the keccak operator is 62. The assemble() function doesn't support it
+    # (yet)
+
+    keccak_prg = Program.to(
+        assemble(
+            "(softfork (q . 1134) (q . 1) (q a (i "
+            "(= "
+            '(62 (q . "foobar"))'
+            "(q . 0x38d18acb67d25c8bb9942764b62f18e17054f66a817bd4295423adf9ed98873e))"
+            "(q . 0) (q x)) (q . ())) (q . ()))"
+        )
+    )
+
+    cost, ret = keccak_prg.run_with_flags(1215, 0, [])
+    assert cost == 1215
+    assert ret.atom == b""
+
+    # make sure keccak is actually executed, by comparing with the wrong output
+    keccak_prg = Program.to(
+        assemble(
+            "(softfork (q . 1134) (q . 1) (q a (i "
+            '(= (62 (q . "foobar")) '
+            "(q . 0x58d18acb67d25c8bb9942764b62f18e17054f66a817bd4295423adf9ed98873e))"
+            "(q . 0) (q x)) (q . ())) (q . ()))"
+        )
+    )
+    with pytest.raises(ValueError, match="clvm raise"):
+        keccak_prg.run_with_flags(1215, 0, [])
+
+    # === HARD FORK ===
+    # new operators *outside* the softfork guard
+    # keccak256 is available outside the guard with the appropriate flag
+    keccak_prg = Program.to(
+        assemble(
+            "(a (i (= "
+            '(62 (q . "foobar")) '
+            "(q . 0x38d18acb67d25c8bb9942764b62f18e17054f66a817bd4295423adf9ed98873e)) "
+            "(q . 0) (q x)) (q . ()))"
+        )
+    )
+
+    cost, ret = keccak_prg.run_with_flags(994, ENABLE_KECCAK_OPS_OUTSIDE_GUARD, [])
+    assert cost == 994
+    assert ret.atom == b""
+
+
+@pytest.mark.anyio
+async def test_lineage_cache(seeded_random: random.Random) -> None:
+    called = 0
+
+    info1 = UnspentLineageInfo(
+        bytes32.random(seeded_random), bytes32.random(seeded_random), bytes32.random(seeded_random)
+    )
+
+    async def callback1(ph: bytes32) -> Optional[UnspentLineageInfo]:
+        nonlocal called
+        called += 1
+        return info1
+
+    cache = LineageInfoCache(callback1)
+
+    ph = bytes32.random(seeded_random)
+
+    # cache miss
+    assert await cache.get_unspent_lineage_info(ph) == info1
+    assert called == 1
+
+    # cache hit
+    assert await cache.get_unspent_lineage_info(ph) == info1
+    assert called == 1
+
+    called = 0
+
+    async def callback_none(ph: bytes32) -> Optional[UnspentLineageInfo]:
+        nonlocal called
+        called += 1
+        return None
+
+    cache = LineageInfoCache(callback_none)
+
+    # cache miss
+    assert await cache.get_unspent_lineage_info(ph) is None
+    assert called == 1
+
+    # cache hit
+    assert await cache.get_unspent_lineage_info(ph) is None
+    assert called == 1

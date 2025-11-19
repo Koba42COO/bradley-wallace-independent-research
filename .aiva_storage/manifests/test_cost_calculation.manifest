@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_cost_calculation",
+  "tool_hash": "9b6b64cd439f4018105ab7bde651b015a085d4df1cdeb0aa5e0c83cf48e5b8d5",
+  "total_size": 15675,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "9b6b64cd439f4018105ab7bde651b015a085d4df1cdeb0aa5e0c83cf48e5b8d5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_cost_calculation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_cost_calculation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.358318,
+  "updated_at": 1762787395.358321
+}

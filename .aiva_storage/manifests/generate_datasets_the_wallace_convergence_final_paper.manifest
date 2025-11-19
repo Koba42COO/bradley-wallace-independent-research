@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_the_wallace_convergence_final_paper",
+  "tool_hash": "4442bd4a0814528a312a14fe10de36f14bafc1bd8b46a6664535f9d83aec7185",
+  "total_size": 6381,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4442bd4a0814528a312a14fe10de36f14bafc1bd8b46a6664535f9d83aec7185"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/missing_papers/wallace_convergence/supporting_materials/datasets/generate_datasets_the_wallace_convergence_final_paper.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/missing_papers/wallace_convergence/supporting_materials/datasets/generate_datasets_the_wallace_convergence_final_paper.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.1969988,
+  "updated_at": 1762787395.197002
+}

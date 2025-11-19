@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_notifications",
+  "tool_hash": "87cf34f3d4f603475e9f6abf896eb8b030af037ee3e199208d5abbc6a966fa64",
+  "total_size": 8942,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "87cf34f3d4f603475e9f6abf896eb8b030af037ee3e199208d5abbc6a966fa64"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_notifications.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_notifications.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.478972,
+  "updated_at": 1762787395.478975
+}

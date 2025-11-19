@@ -1,0 +1,180 @@
+from __future__ import annotations
+
+import logging
+
+from chia_rs import CoinSpend
+from chia_rs.sized_ints import uint32
+
+from chia.util.db_wrapper import DBWrapper2
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+log = logging.getLogger(__name__)
+
+
+class WalletPoolStore:
+    db_wrapper: DBWrapper2
+
+    @classmethod
+    async def create(cls, wrapper: DBWrapper2):
+        self = cls()
+        self.db_wrapper = wrapper
+
+        async with self.db_wrapper.writer_maybe_transaction() as conn:
+            await conn.execute(
+                "CREATE TABLE IF NOT EXISTS pool_state_transitions("
+                " transition_index integer,"
+                " wallet_id integer,"
+                " height bigint,"
+                " coin_spend blob,"
+                " PRIMARY KEY(transition_index, wallet_id))"
+            )
+
+        return self
+
+    async def add_spend(
+        self,
+        wallet_id: int,
+        spend: CoinSpend,
+        height: uint32,
+    ) -> None:
+        """
+        Appends (or replaces) entries in the DB. The new list must be at least as long as the existing list, and the
+        parent of the first spend must already be present in the DB. Note that this is not committed to the DB
+        until db_wrapper.commit() is called. However it is written to the cache, so it can be fetched with
+        get_all_state_transitions.
+        """
+        async with self.db_wrapper.writer_maybe_transaction() as conn:
+            # find the most recent transition in wallet_id
+            rows = list(
+                await conn.execute_fetchall(
+                    "SELECT transition_index, height, coin_spend "
+                    "FROM pool_state_transitions "
+                    "WHERE wallet_id=? "
+                    "ORDER BY transition_index DESC "
+                    "LIMIT 1",
+                    (wallet_id,),
+                )
+            )
+            serialized_spend = bytes(spend)
+            if len(rows) == 0:
+                transition_index = 0
+            else:
+                existing = list(
+                    await conn.execute_fetchall(
+                        "SELECT COUNT(*) FROM pool_state_transitions WHERE wallet_id=? AND height=? AND coin_spend=?",
+                        (wallet_id, height, serialized_spend),
+                    )
+                )
+                if existing[0][0] != 0:
+                    # we already have this transition in the DB
+                    return
+
+                row = rows[0]
+                if height < row[1]:
+                    raise ValueError("Height cannot go down")
+                prev = CoinSpend.from_bytes(row[2])
+                if spend.coin.parent_coin_info != prev.coin.name():
+                    raise ValueError("New spend does not extend")
+                transition_index = row[0]
+
+            cursor = await conn.execute(
+                "INSERT OR IGNORE INTO pool_state_transitions VALUES (?, ?, ?, ?)",
+                (
+                    transition_index + 1,
+                    wallet_id,
+                    height,
+                    serialized_spend,
+                ),
+            )
+            await cursor.close()
+
+    async def get_spends_for_wallet(self, wallet_id: int) -> list[tuple[uint32, CoinSpend]]:
+        """
+        Retrieves all entries for a wallet ID.
+        """
+
+        async with self.db_wrapper.reader_no_transaction() as conn:
+            rows = await conn.execute_fetchall(
+                "SELECT height, coin_spend FROM pool_state_transitions WHERE wallet_id=? ORDER BY transition_index",
+                (wallet_id,),
+            )
+        return [(uint32(row[0]), CoinSpend.from_bytes(row[1])) for row in rows]
+
+    async def rollback(self, height: int, wallet_id_arg: int) -> None:
+        """
+        Rollback removes all entries which have entry_height > height passed in. Note that this is not committed to the
+        DB until db_wrapper.commit() is called. However it is written to the cache, so it can be fetched with
+        get_all_state_transitions.
+        """
+
+        async with self.db_wrapper.writer_maybe_transaction() as conn:
+            cursor = await conn.execute(
+                "DELETE FROM pool_state_transitions WHERE height>? AND wallet_id=?", (height, wallet_id_arg)
+            )
+            await cursor.close()
+
+    async def delete_wallet(self, wallet_id: uint32) -> None:
+        async with self.db_wrapper.writer_maybe_transaction() as conn:
+            cursor = await conn.execute("DELETE FROM pool_state_transitions WHERE wallet_id=?", (wallet_id,))
+            await cursor.close()

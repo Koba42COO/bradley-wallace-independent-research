@@ -1,0 +1,18 @@
+{
+  "tool_name": "client",
+  "tool_hash": "aa01aefb753a8c60541253d74ec74be07fbe6236cfa72a9d7606843877c35e72",
+  "total_size": 12094,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "aa01aefb753a8c60541253d74ec74be07fbe6236cfa72a9d7606843877c35e72"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/daemon/client.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/daemon/client.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.542494,
+  "updated_at": 1762787395.542497
+}

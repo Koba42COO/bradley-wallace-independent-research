@@ -1,0 +1,18 @@
+{
+  "tool_name": "eligible_coin_spends",
+  "tool_hash": "48ea1dc69cde4a3bc99d46c43d871e24ee51b6703a3c5d0203700081642186c7",
+  "total_size": 16687,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "48ea1dc69cde4a3bc99d46c43d871e24ee51b6703a3c5d0203700081642186c7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/eligible_coin_spends.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/eligible_coin_spends.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.647639,
+  "updated_at": 1762787395.647645
+}

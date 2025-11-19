@@ -1,0 +1,18 @@
+{
+  "tool_name": "analyze_memory_profile",
+  "tool_hash": "d8fd04c48dfa2467a9f411d2123e0f7fe7e66fb31c13fc666d35fa159b2a9d84",
+  "total_size": 9591,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d8fd04c48dfa2467a9f411d2123e0f7fe7e66fb31c13fc666d35fa159b2a9d84"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/tools/analyze_memory_profile.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/tools/analyze_memory_profile.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.274195,
+  "updated_at": 1762787395.274198
+}

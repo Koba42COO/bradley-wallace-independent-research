@@ -1,0 +1,18 @@
+{
+  "tool_name": "protocol_timing",
+  "tool_hash": "64b5fe6b78264f8ce20fcf489ad1c7f3d6e1ae1abe2551229057311eb7388c5a",
+  "total_size": 300,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "64b5fe6b78264f8ce20fcf489ad1c7f3d6e1ae1abe2551229057311eb7388c5a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/protocol_timing.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/protocol_timing.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.667208,
+  "updated_at": 1762787395.667211
+}

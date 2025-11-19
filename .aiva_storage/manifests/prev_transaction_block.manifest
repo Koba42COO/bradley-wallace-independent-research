@@ -1,0 +1,18 @@
+{
+  "tool_name": "prev_transaction_block",
+  "tool_hash": "09ca7670a9c779428f635c6b3aba2382519b6be7b284e10564c9643fe3764588",
+  "total_size": 3418,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "09ca7670a9c779428f635c6b3aba2382519b6be7b284e10564c9643fe3764588"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/prev_transaction_block.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/prev_transaction_block.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.282898,
+  "updated_at": 1762787395.282901
+}

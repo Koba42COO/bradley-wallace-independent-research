@@ -1,0 +1,18 @@
+{
+  "tool_name": "solver_funcs",
+  "tool_hash": "385976c56b8bb979774350af0ccb1f374f3ec047775e6b52a47249375ba44ec1",
+  "total_size": 668,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "385976c56b8bb979774350af0ccb1f374f3ec047775e6b52a47249375ba44ec1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/solver_funcs.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/solver_funcs.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.514373,
+  "updated_at": 1762787395.514376
+}

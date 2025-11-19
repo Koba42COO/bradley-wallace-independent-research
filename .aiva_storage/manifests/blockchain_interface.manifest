@@ -1,0 +1,18 @@
+{
+  "tool_name": "blockchain_interface",
+  "tool_hash": "5415c8aaea6797469cfc1493bca7a24a99fbd35c3a6274a9efcf081c72beafad",
+  "total_size": 5135,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5415c8aaea6797469cfc1493bca7a24a99fbd35c3a6274a9efcf081c72beafad"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/blockchain_interface.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/blockchain_interface.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.282212,
+  "updated_at": 1762787395.2822149
+}

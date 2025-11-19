@@ -1,0 +1,116 @@
+from __future__ import annotations
+
+from typing import Optional
+
+from chia_rs import BlockRecord, ConsensusConstants
+from chia_rs.sized_ints import uint8, uint32
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+def calculate_deficit(
+    constants: ConsensusConstants,
+    height: uint32,
+    prev_b: Optional[BlockRecord],
+    overflow: bool,
+    num_finished_sub_slots: int,
+) -> uint8:
+    """
+    Returns the deficit of the block to be created at height.
+
+    Args:
+        constants: consensus constants being used for this chain
+        height: block height of the block that we care about
+        prev_b: previous block
+        overflow: whether or not this is an overflow block
+        num_finished_sub_slots: the number of finished slots between infusion points of prev and current
+    """
+    if height == 0:
+        return uint8(constants.MIN_BLOCKS_PER_CHALLENGE_BLOCK - 1)
+    else:
+        assert prev_b is not None
+        prev_deficit: uint8 = prev_b.deficit
+        if prev_deficit == constants.MIN_BLOCKS_PER_CHALLENGE_BLOCK:
+            # Prev sb must be an overflow sb. However maybe it's in a different sub-slot
+            if overflow:
+                if num_finished_sub_slots > 0:
+                    # We are an overflow block, but in a new sub-slot, so we can decrease the deficit
+                    return uint8(prev_deficit - 1)
+                # Still overflowed, so we cannot decrease the deficit
+                return uint8(prev_deficit)
+            else:
+                # We are no longer overflow, can decrease
+                return uint8(prev_deficit - 1)
+        elif prev_deficit == 0:
+            if num_finished_sub_slots == 0:
+                return uint8(0)
+            elif num_finished_sub_slots == 1:
+                if overflow:
+                    return uint8(constants.MIN_BLOCKS_PER_CHALLENGE_BLOCK)
+                else:
+                    return uint8(constants.MIN_BLOCKS_PER_CHALLENGE_BLOCK - 1)
+            else:
+                # More than one finished sub slot, we can decrease deficit
+                return uint8(constants.MIN_BLOCKS_PER_CHALLENGE_BLOCK - 1)
+        else:
+            return uint8(prev_deficit - 1)

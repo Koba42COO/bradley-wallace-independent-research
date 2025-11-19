@@ -1,0 +1,597 @@
+{
+  "seed_generation": {
+    "coordinate_concatenation": {
+      "value": "2156892",
+      "hash_sha256": "04faea29e3b0b2c9167f93d3cf662cf91b877d39d2cfda441159ad5ed3ccf1a2",
+      "hash_sha3_256": "7620d33bf2531961393c1611743e69c800e40bc96bb25abf58151af46d03a9da"
+    },
+    "ratio_based": {
+      "ratio": 2.4170403587443947,
+      "ratio_str": "2.4170403587",
+      "hash_sha256": "a8c8e5563b1c34702a3d2330c006157fe3aaeffa2e76885bf5635e2a26813abc"
+    },
+    "prime_factors": {
+      "factors_2156": [
+        2,
+        2,
+        7,
+        7,
+        11
+      ],
+      "factors_892": [
+        2,
+        2,
+        223
+      ],
+      "concatenated": "22771122223",
+      "hash_sha256": "664a71f32519dc94cb61cd98bc4f539a3878d3443c95db3652d0716605626f44"
+    },
+    "bittorrent_style": {
+      "format": "chia_friends:2156:892",
+      "hash_sha1": "da30ee165a4ceb092897feddfe7947fbe78e2fdc",
+      "hash_sha256": "1dd21012054a320150bb3e4ae62d27ef4165a4412036e2b452a44f50ed1821cd"
+    }
+  },
+  "ethiopian_bible": {
+    "chapter_verse_analysis": {
+      "8:92": {
+        "chapter": 8,
+        "verse": 92,
+        "validity_check": {
+          "is_valid": true,
+          "possible_books": [
+            {
+              "book_number": 1,
+              "book_name": "Genesis",
+              "estimated_chapters": 50
+            },
+            {
+              "book_number": 2,
+              "book_name": "Exodus",
+              "estimated_chapters": 40
+            },
+            {
+              "book_number": 3,
+              "book_name": "Leviticus",
+              "estimated_chapters": 27
+            },
+            {
+              "book_number": 4,
+              "book_name": "Numbers",
+              "estimated_chapters": 36
+            },
+            {
+              "book_number": 5,
+              "book_name": "Deuteronomy",
+              "estimated_chapters": 34
+            },
+            {
+              "book_number": 6,
+              "book_name": "Joshua",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 7,
+              "book_name": "Judges",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 8,
+              "book_name": "Ruth",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 9,
+              "book_name": "1 Samuel",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 10,
+              "book_name": "2 Samuel",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 11,
+              "book_name": "1 Kings",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 12,
+              "book_name": "2 Kings",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 13,
+              "book_name": "1 Chronicles",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 14,
+              "book_name": "2 Chronicles",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 15,
+              "book_name": "Ezra",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 16,
+              "book_name": "Nehemiah",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 17,
+              "book_name": "Esther",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 18,
+              "book_name": "Job",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 19,
+              "book_name": "Psalms",
+              "estimated_chapters": 151
+            },
+            {
+              "book_number": 20,
+              "book_name": "Proverbs",
+              "estimated_chapters": 31
+            },
+            {
+              "book_number": 21,
+              "book_name": "Ecclesiastes",
+              "estimated_chapters": 12
+            },
+            {
+              "book_number": 22,
+              "book_name": "Song of Solomon",
+              "estimated_chapters": 8
+            },
+            {
+              "book_number": 23,
+              "book_name": "Isaiah",
+              "estimated_chapters": 66
+            },
+            {
+              "book_number": 24,
+              "book_name": "Jeremiah",
+              "estimated_chapters": 52
+            },
+            {
+              "book_number": 25,
+              "book_name": "Lamentations",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 26,
+              "book_name": "Ezekiel",
+              "estimated_chapters": 48
+            },
+            {
+              "book_number": 27,
+              "book_name": "Daniel",
+              "estimated_chapters": 12
+            },
+            {
+              "book_number": 28,
+              "book_name": "Hosea",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 29,
+              "book_name": "Joel",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 30,
+              "book_name": "Amos",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 31,
+              "book_name": "Obadiah",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 32,
+              "book_name": "Jonah",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 33,
+              "book_name": "Micah",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 34,
+              "book_name": "Nahum",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 35,
+              "book_name": "Habakkuk",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 36,
+              "book_name": "Zephaniah",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 37,
+              "book_name": "Haggai",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 38,
+              "book_name": "Zechariah",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 39,
+              "book_name": "Malachi",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 40,
+              "book_name": "Matthew",
+              "estimated_chapters": 28
+            },
+            {
+              "book_number": 41,
+              "book_name": "Mark",
+              "estimated_chapters": 16
+            },
+            {
+              "book_number": 42,
+              "book_name": "Luke",
+              "estimated_chapters": 24
+            },
+            {
+              "book_number": 43,
+              "book_name": "John",
+              "estimated_chapters": 21
+            },
+            {
+              "book_number": 44,
+              "book_name": "Acts",
+              "estimated_chapters": 28
+            },
+            {
+              "book_number": 45,
+              "book_name": "Romans",
+              "estimated_chapters": 16
+            },
+            {
+              "book_number": 46,
+              "book_name": "1 Corinthians",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 47,
+              "book_name": "2 Corinthians",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 48,
+              "book_name": "Galatians",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 49,
+              "book_name": "Ephesians",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 50,
+              "book_name": "Philippians",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 51,
+              "book_name": "Colossians",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 52,
+              "book_name": "1 Thessalonians",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 53,
+              "book_name": "2 Thessalonians",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 54,
+              "book_name": "1 Timothy",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 55,
+              "book_name": "2 Timothy",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 56,
+              "book_name": "Titus",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 57,
+              "book_name": "Philemon",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 58,
+              "book_name": "Hebrews",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 59,
+              "book_name": "James",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 60,
+              "book_name": "1 Peter",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 61,
+              "book_name": "2 Peter",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 62,
+              "book_name": "1 John",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 63,
+              "book_name": "2 John",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 64,
+              "book_name": "3 John",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 65,
+              "book_name": "Jude",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 66,
+              "book_name": "Revelation",
+              "estimated_chapters": 22
+            },
+            {
+              "book_number": 67,
+              "book_name": "Jubilees",
+              "estimated_chapters": 50
+            },
+            {
+              "book_number": 68,
+              "book_name": "Enoch",
+              "estimated_chapters": 108
+            },
+            {
+              "book_number": 69,
+              "book_name": "1 Meqabyan",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 70,
+              "book_name": "2 Meqabyan",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 71,
+              "book_name": "3 Meqabyan",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 72,
+              "book_name": "Book of the Covenant",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 73,
+              "book_name": "Book of the Bee",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 74,
+              "book_name": "Book of Adam and Eve",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 75,
+              "book_name": "Book of the Mysteries of Heaven and Earth",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 76,
+              "book_name": "Book of the Pearl",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 77,
+              "book_name": "Book of the Redemption of Adam",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 78,
+              "book_name": "Book of the Cave of Treasures",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 79,
+              "book_name": "Book of the Combat of Adam",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 80,
+              "book_name": "Book of the Commandments",
+              "estimated_chapters": 30
+            },
+            {
+              "book_number": 81,
+              "book_name": "Book of the Shepherd of Hermas",
+              "estimated_chapters": 30
+            }
+          ]
+        }
+      },
+      "89:2": {
+        "chapter": 89,
+        "verse": 2,
+        "validity_check": {
+          "is_valid": true,
+          "possible_books": [
+            {
+              "book_number": 19,
+              "book_name": "Psalms",
+              "estimated_chapters": 151
+            },
+            {
+              "book_number": 68,
+              "book_name": "Enoch",
+              "estimated_chapters": 108
+            }
+          ]
+        }
+      }
+    },
+    "numerical_properties": {
+      "gematria_value": 10,
+      "book_count": 81,
+      "ratio_to_book_count": 11.012345679012345
+    },
+    "ethiopian_calendar": {
+      "ethiopian_year_info": {
+        "months_in_year": 13,
+        "days_in_regular_month": 30,
+        "days_in_pagum\u0113": 5,
+        "total_days_regular": 365
+      },
+      "calendar_relationships": {
+        "days_in_2_years": 730,
+        "days_in_2_years_approx": 730,
+        "difference_from_892": 162,
+        "possible_date_interpretation": {
+          "day_month_format": {
+            "day": 92,
+            "month": 8,
+            "valid_day": false,
+            "valid_month": true,
+            "is_valid_date": false
+          },
+          "year_day_format": {
+            "year": 2089,
+            "day_of_year": 2,
+            "valid_day": true,
+            "is_valid_date": true
+          }
+        }
+      }
+    }
+  },
+  "wallet_connections": {
+    "chia_friends_2156_892": {
+      "seed_phrase": "chia_friends_2156_892",
+      "bip39_compatible": {
+        "word_count": 1,
+        "is_standard_length": false,
+        "estimated_entropy_bits": 11,
+        "checksum_valid": false
+      },
+      "chia_address_derivation": {
+        "derived_address": "xch1cac67lcxyhba5cmnfvoqj6ag7ypfxdxvd5sbeucacuannbh2pruq====",
+        "key_hash": "1005efac57c1c20e898d2d5d04f806fe",
+        "seed_hash": "ba361fe601cbe5b06281be480756776360b4a0bcd37e95f1dbfc4db15901c450"
+      },
+      "entropy_analysis": {
+        "shannon_entropy": 3.9754180179138325,
+        "unique_chars": 17,
+        "total_chars": 21,
+        "normalized_entropy": 0.9725881732291828
+      }
+    },
+    "ethiopian_bible_892": {
+      "seed_phrase": "ethiopian_bible_892",
+      "bip39_compatible": {
+        "word_count": 1,
+        "is_standard_length": false,
+        "estimated_entropy_bits": 11,
+        "checksum_valid": false
+      },
+      "chia_address_derivation": {
+        "derived_address": "xch1fziwpuopqn4ve6m6ns2qaj7cp43izxkpp4nfgsjt7rrrntpyy2rq====",
+        "key_hash": "2e5167d1cf837952799e6cb50027e27f",
+        "seed_hash": "bea7c53b9a6290bccfe750bd0f23ee053a1ed178dbe8c5e57e1adeeb4b9510af"
+      },
+      "entropy_analysis": {
+        "shannon_entropy": 3.681880802803402,
+        "unique_chars": 14,
+        "total_chars": 19,
+        "normalized_entropy": 0.9670442809186824
+      }
+    },
+    "bram_cohen_puzzle_2156892": {
+      "seed_phrase": "bram_cohen_puzzle_2156892",
+      "bip39_compatible": {
+        "word_count": 1,
+        "is_standard_length": false,
+        "estimated_entropy_bits": 11,
+        "checksum_valid": false
+      },
+      "chia_address_derivation": {
+        "derived_address": "xch12g3oufo5wae5tokqtcxxjh5xx2zdgdm4mkrca4jrqkf3ij26ccrq====",
+        "key_hash": "d1b6ea15ddb009d9b95098af749fb7be",
+        "seed_hash": "27d7f78ec0c3d5396aad821baad6762a8c8e90eb68220e49efde5f31ff567d31"
+      },
+      "entropy_analysis": {
+        "shannon_entropy": 4.213660689688185,
+        "unique_chars": 20,
+        "total_chars": 25,
+        "normalized_entropy": 0.9749492812415707
+      }
+    }
+  },
+  "cross_references": {
+    "mathematical_alignments": {
+      "golden_ratio_proximity": 0.7990063699944998,
+      "silver_ratio_proximity": 0.002826796371299789,
+      "egyptian_fraction": "2156/892"
+    },
+    "bible_numerology": {
+      "book_count": 81,
+      "reference_892": 892,
+      "ratio_to_bible": 11.012345679012345,
+      "prime_factors_892": [
+        2,
+        2,
+        223
+      ]
+    },
+    "bram_cohen_elements": {
+      "puzzle_designer": true,
+      "bittorrent_creator": true,
+      "chia_founder": true,
+      "consciousness_mathematics": true,
+      "steganography_expert": true
+    },
+    "prize_mechanism_hypothesis": {
+      "seed_based_claim": "CHIA_FRIENDS_SEED suggests wallet seed",
+      "bible_reference": "ETHIOPIAN_BIBLE_REFERENCE suggests specific passage",
+      "coordinate_based": "Coordinates (2156, 892) may be key to claim",
+      "bittorrent_inspired": "May involve torrent-like distribution mechanism"
+    }
+  }
+}

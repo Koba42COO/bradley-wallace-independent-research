@@ -1,0 +1,18 @@
+{
+  "tool_name": "beta_funcs",
+  "tool_hash": "09a98ca2a9043720d606ab6ad8d36a8d8f86735a15a0ed7cb5cb5a20bf9b3d0e",
+  "total_size": 7505,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "09a98ca2a9043720d606ab6ad8d36a8d8f86735a15a0ed7cb5cb5a20bf9b3d0e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/beta_funcs.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/beta_funcs.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.515892,
+  "updated_at": 1762787395.5158951
+}

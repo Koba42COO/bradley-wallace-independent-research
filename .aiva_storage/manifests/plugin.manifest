@@ -1,0 +1,18 @@
+{
+  "tool_name": "plugin",
+  "tool_hash": "8ec53ae7825f880b08cb6aec0173d29cdf5b537bac609ad1618e66ef219c70a5",
+  "total_size": 1567,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "8ec53ae7825f880b08cb6aec0173d29cdf5b537bac609ad1618e66ef219c70a5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/util/plugin.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/util/plugin.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.586315,
+  "updated_at": 1762787395.586318
+}

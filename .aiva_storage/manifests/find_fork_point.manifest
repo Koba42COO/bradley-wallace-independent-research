@@ -1,0 +1,18 @@
+{
+  "tool_name": "find_fork_point",
+  "tool_hash": "3348852c905a96a3566ebc86b60fffea5ea461ac808a3106d3dee2de3949a0f1",
+  "total_size": 3231,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3348852c905a96a3566ebc86b60fffea5ea461ac808a3106d3dee2de3949a0f1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/find_fork_point.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/find_fork_point.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.286031,
+  "updated_at": 1762787395.286033
+}

@@ -1,0 +1,330 @@
+#!/usr/bin/env python3
+"""
+JWT Cosmological Lensing Visualization
+3D Consciousness Space Rendering of JWT Geometric Lensing Effects
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import math
+
+class JWTCosmologicalVisualizer:
+    def __init__(self):
+        self.phi = 1.618033988749895
+        self.delta = 2.414213562373095
+        self.c = 0.79
+        self.reality_distortion = 1.1808
+        
+        # JWT lens positions in consciousness space
+        self.jwt_lenses = {
+            'header': {'x': 0.21, 'y': 0.21, 'z': 0.21, 'mass': 0.21, 'color': 'red'},
+            'payload': {'x': 0.5, 'y': 0.79, 'z': 0.79, 'mass': 0.79, 'color': 'blue'},
+            'signature': {'x': 0.79, 'y': 0.5, 'z': 0.79, 'mass': 0.79, 'color': 'green'}
+        }
+    
+    def create_lensing_field(self, x_range, y_range, lens_positions, lens_masses):
+        """Create gravitational lensing potential field"""
+        X, Y = np.meshgrid(x_range, y_range)
+        
+        # Initialize potential field
+        potential = np.zeros_like(X)
+        
+        for (x_lens, y_lens), mass in zip(lens_positions, lens_masses):
+            # Simplified gravitational potential: -GM/r
+            r = np.sqrt((X - x_lens)**2 + (Y - y_lens)**2)
+            r = np.where(r < 0.01, 0.01, r)  # Avoid singularity
+            potential += -mass / r
+        
+        return X, Y, potential
+    
+    def plot_jwt_cosmological_lensing(self):
+        """Create 3D visualization of JWT as cosmological lensing system"""
+        fig = plt.figure(figsize=(15, 10))
+        
+        # Subplot 1: JWT lenses in consciousness space
+        ax1 = fig.add_subplot(221, projection='3d')
+        
+        for name, lens in self.jwt_lenses.items():
+            # Apply Wallace Transform to get consciousness coordinates
+            x_prime = self.phi * lens['x'] * self.c + 0.21
+            y_prime = self.delta * lens['y'] * self.c + 0.21  
+            z_prime = lens['z'] * 1.0 * self.c
+            
+            # Size based on mass/consciousness weight
+            size = lens['mass'] * 1000
+            
+            ax1.scatter(x_prime, y_prime, z_prime, 
+                       c=lens['color'], s=size, alpha=0.8,
+                       label=f'{name} (m={lens["mass"]})')
+            
+            # Add label
+            ax1.text(x_prime, y_prime, z_prime, name, fontsize=10)
+        
+        ax1.set_xlabel('Golden Ratio Coordinate (φ)')
+        ax1.set_ylabel('Silver Ratio Coordinate (δ)')
+        ax1.set_zlabel('Consciousness Amplitude (c)')
+        ax1.set_title('JWT Lenses in Consciousness Space')
+        ax1.legend()
+        
+        # Subplot 2: Gravitational lensing potential
+        ax2 = fig.add_subplot(222)
+        
+        x_range = np.linspace(0, 1, 100)
+        y_range = np.linspace(0, 1, 100)
+        
+        lens_positions = [(lens['x'], lens['y']) for lens in self.jwt_lenses.values()]
+        lens_masses = [lens['mass'] for lens in self.jwt_lenses.values()]
+        
+        X, Y, potential = self.create_lensing_field(x_range, y_range, lens_positions, lens_masses)
+        
+        # Plot potential field
+        im = ax2.contourf(X, Y, potential, levels=20, cmap='viridis')
+        plt.colorbar(im, ax=ax2, label='Gravitational Potential')
+        
+        # Plot lens positions
+        colors = ['red', 'blue', 'green']
+        for i, (pos, mass) in enumerate(zip(lens_positions, lens_masses)):
+            ax2.scatter(pos[0], pos[1], c=colors[i], s=mass*500, alpha=0.8,
+                       label=f'Lens {i+1} (m={mass:.2f})')
+        
+        ax2.set_xlabel('X Coordinate')
+        ax2.set_ylabel('Y Coordinate') 
+        ax2.set_title('JWT Gravitational Lensing Potential')
+        ax2.legend()
+        ax2.grid(True, alpha=0.3)
+        
+        # Subplot 3: Einstein rings approximation
+        ax3 = fig.add_subplot(223)
+        
+        # Calculate Einstein radius for each lens pair
+        for i, (name1, lens1) in enumerate(self.jwt_lenses.items()):
+            for j, (name2, lens2) in enumerate(self.jwt_lenses.items()):
+                if i < j:
+                    dx = lens2['x'] - lens1['x']
+                    dy = lens2['y'] - lens1['y']
+                    distance = math.sqrt(dx**2 + dy**2)
+                    
+                    if distance > 0:
+                        combined_mass = lens1['mass'] + lens2['mass']
+                        einstein_radius = math.sqrt(combined_mass)
+                        
+                        # Draw Einstein ring approximation
+                        center_x = (lens1['x'] + lens2['x']) / 2
+                        center_y = (lens1['y'] + lens2['y']) / 2
+                        
+                        theta = np.linspace(0, 2*np.pi, 100)
+                        ring_x = center_x + einstein_radius * np.cos(theta)
+                        ring_y = center_y + einstein_radius * np.sin(theta)
+                        
+                        ax3.plot(ring_x, ring_y, '--', alpha=0.7,
+                                label=f'{name1}-{name2} Ring (θ_E={einstein_radius:.3f})')
+        
+        # Plot lenses
+        for name, lens in self.jwt_lenses.items():
+            ax3.scatter(lens['x'], lens['y'], c=lens['color'], s=lens['mass']*500, alpha=0.8)
+            ax3.text(lens['x'], lens['y'], name, ha='center', va='bottom')
+        
+        ax3.set_xlabel('X Coordinate')
+        ax3.set_ylabel('Y Coordinate')
+        ax3.set_title('JWT Einstein Rings (Cosmological Analogy)')
+        ax3.legend()
+        ax3.grid(True, alpha=0.3)
+        ax3.set_aspect('equal')
+        
+        # Subplot 4: Prime number cosmological harmonics
+        ax4 = fig.add_subplot(224)
+        
+        primes = [7, 13, 17, 23, 29, 31, 37, 41, 43]
+        harmonics = []
+        
+        for prime in primes:
+            harmonic = self.phi**(math.log(prime)/8) * self.delta**(math.log(prime)/13) * self.c * math.log(prime + 1)
+            harmonics.append(harmonic)
+        
+        # Plot prime harmonics as cosmological resonances
+        ax4.plot(primes, harmonics, 'o-', linewidth=2, markersize=8, alpha=0.8)
+        ax4.fill_between(primes, harmonics, alpha=0.3)
+        
+        # Add prime gap critical curves
+        for i in range(1, len(primes)):
+            gap = primes[i] - primes[i-1]
+            gap_harmonic = self.phi**(math.log(gap)/8) if gap > 1 else 0
+            
+            ax4.axvline(x=(primes[i-1] + primes[i])/2, 
+                       ymin=0, ymax=gap_harmonic/max(harmonics), 
+                       color='red', alpha=0.5, linestyle='--',
+                       label=f'Δ{gap}' if i == 1 else "")
+        
+        ax4.set_xlabel('Prime Number')
+        ax4.set_ylabel('Consciousness Harmonic Amplitude')
+        ax4.set_title('Prime Numbers as Cosmological Resonances')
+        ax4.grid(True, alpha=0.3)
+        ax4.legend()
+        
+        plt.tight_layout()
+        plt.savefig('jwt_cosmological_lensing_visualization.png', dpi=300, bbox_inches='tight')
+        plt.show()
+    
+    def plot_dark_spots_consciousness_field(self):
+        """Visualize dark spots as consciousness amplitude minima"""
+        fig = plt.figure(figsize=(12, 8))
+        
+        # Create consciousness field
+        x = np.linspace(0, 1, 100)
+        y = np.linspace(0, 1, 100)
+        X, Y = np.meshgrid(x, y)
+        
+        # JWT claims as consciousness sources/sinks
+        claims_positions = {
+            'jti': {'pos': (0.1, 0.1), 'amplitude': 0.86},  # Dark spot
+            'nbf': {'pos': (0.2, 0.8), 'amplitude': 0.87},  # Grey zone
+            'aud': {'pos': (0.3, 0.2), 'amplitude': 0.88},
+            'iss': {'pos': (0.7, 0.9), 'amplitude': 0.89},
+            'iat': {'pos': (0.8, 0.3), 'amplitude': 0.90},
+            'sub': {'pos': (0.6, 0.6), 'amplitude': 0.91},
+            'exp': {'pos': (0.9, 0.8), 'amplitude': 0.92}   # Bright spot
+        }
+        
+        # Calculate consciousness field (simplified Gaussian mixture)
+        consciousness_field = np.zeros_like(X)
+        
+        for claim_data in claims_positions.values():
+            x0, y0 = claim_data['pos']
+            amplitude = claim_data['amplitude']
+            
+            # Gaussian consciousness distribution
+            r_squared = (X - x0)**2 + (Y - y0)**2
+            consciousness_field += amplitude * np.exp(-r_squared / 0.1)
+        
+        # Plot consciousness field
+        plt.contourf(X, Y, consciousness_field, levels=20, cmap='plasma')
+        plt.colorbar(label='Consciousness Amplitude')
+        
+        # Plot claim positions
+        for claim, data in claims_positions.items():
+            x_pos, y_pos = data['pos']
+            amplitude = data['amplitude']
+            
+            # Color based on amplitude (dark to bright)
+            color_intensity = (amplitude - 0.8) / 0.15  # Normalize to 0-1
+            color = plt.cm.plasma(color_intensity)
+            
+            plt.scatter(x_pos, y_pos, c=[color], s=200, edgecolors='white', linewidth=2)
+            plt.text(x_pos, y_pos, f'{claim}\n{amplitude:.2f}', 
+                    ha='center', va='center', fontsize=8, 
+                    bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8))
+        
+        # Highlight dark spots
+        dark_spots = [(name, data) for name, data in claims_positions.items() if data['amplitude'] < 0.87]
+        for name, data in dark_spots:
+            x_pos, y_pos = data['pos']
+            plt.scatter(x_pos, y_pos, s=300, facecolors='none', edgecolors='red', linewidth=3, label='Dark Spot')
+        
+        plt.xlabel('JWT Token Space Coordinate')
+        plt.ylabel('Consciousness Field Coordinate')
+        plt.title('JWT Claims as Consciousness Field: Dark Spots & Bright Regions\n(Cosmological Dark Matter Analogy)')
+        plt.legend()
+        plt.grid(True, alpha=0.3)
+        plt.axis('equal')
+        
+        plt.tight_layout()
+        plt.savefig('jwt_dark_spots_consciousness_field.png', dpi=300, bbox_inches='tight')
+        plt.show()
+    
+    def plot_twin_galaxy_lensing(self):
+        """Visualize JWT payload/signature as twin galaxy lensing system"""
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
+        
+        # Twin lens positions
+        payload_pos = (0.4, 0.6)
+        signature_pos = (0.6, 0.4)
+        payload_mass = 0.79
+        signature_mass = 0.79
+        
+        # Source positions behind lenses
+        source_positions = [(0.3, 0.7), (0.5, 0.5), (0.7, 0.3)]
+        
+        # Left plot: Lens configuration
+        ax1.scatter(*payload_pos, c='blue', s=payload_mass*1000, alpha=0.8, label='Payload Lens')
+        ax1.scatter(*signature_pos, c='green', s=signature_mass*1000, alpha=0.8, label='Signature Lens')
+        
+        # Draw critical curves (simplified)
+        for pos, mass, color in [(payload_pos, payload_mass, 'blue'), (signature_pos, signature_mass, 'green')]:
+            theta = np.linspace(0, 2*np.pi, 100)
+            einstein_radius = math.sqrt(mass) * 0.3  # Scaled for visualization
+            x_curve = pos[0] + einstein_radius * np.cos(theta)
+            y_curve = pos[1] + einstein_radius * np.sin(theta)
+            ax1.plot(x_curve, y_curve, '--', color=color, alpha=0.7, label=f'Critical Curve (m={mass})')
+        
+        ax1.set_xlabel('X Coordinate')
+        ax1.set_ylabel('Y Coordinate')
+        ax1.set_title('JWT Twin Galaxy Lens System')
+        ax1.legend()
+        ax1.grid(True, alpha=0.3)
+        ax1.set_aspect('equal')
+        
+        # Right plot: Multiple imaging effects
+        ax2.scatter(*payload_pos, c='blue', s=payload_mass*1000, alpha=0.8)
+        ax2.scatter(*signature_pos, c='green', s=signature_mass*1000, alpha=0.8)
+        
+        colors = ['red', 'orange', 'purple']
+        for i, source_pos in enumerate(source_positions):
+            ax2.scatter(*source_pos, c='red', marker='*', s=200, label=f'Source {i+1}')
+            
+            # Calculate multiple images (simplified)
+            # This is a very simplified approximation
+            for lens_pos, lens_mass, offset in [(payload_pos, payload_mass, -0.1), (signature_pos, signature_mass, 0.1)]:
+                dx = source_pos[0] - lens_pos[0]
+                dy = source_pos[1] - lens_pos[1]
+                
+                # Simple deflection approximation
+                deflection_scale = lens_mass / (dx**2 + dy**2 + 0.1)
+                
+                image_x = source_pos[0] + deflection_scale * offset
+                image_y = source_pos[1] + deflection_scale * offset
+                
+                ax2.scatter(image_x, image_y, c=colors[i], marker='o', s=100, alpha=0.7)
+        
+        ax2.set_xlabel('X Coordinate')
+        ax2.set_ylabel('Y Coordinate')
+        ax2.set_title('JWT Multiple Imaging: Twin Galaxy Lensing Effects')
+        ax2.legend()
+        ax2.grid(True, alpha=0.3)
+        ax2.set_aspect('equal')
+        
+        plt.tight_layout()
+        plt.savefig('jwt_twin_galaxy_lensing.png', dpi=300, bbox_inches='tight')
+        plt.show()
+    
+    def generate_all_cosmological_visualizations(self):
+        """Generate all cosmological visualizations"""
+        print("🌌 Generating JWT Cosmological Lensing Visualizations")
+        print("=" * 65)
+        
+        print("📊 Creating JWT 3D Consciousness Lensing System...")
+        self.plot_jwt_cosmological_lensing()
+        
+        print("🌑 Creating Dark Spots Consciousness Field...")
+        self.plot_dark_spots_consciousness_field()
+        
+        print("🌌 Creating Twin Galaxy Lensing Effects...")
+        self.plot_twin_galaxy_lensing()
+        
+        print("\n✅ Cosmological visualizations generated!")
+        print("Files created:")
+        print("- jwt_cosmological_lensing_visualization.png")
+        print("- jwt_dark_spots_consciousness_field.png") 
+        print("- jwt_twin_galaxy_lensing.png")
+        
+        print("\n🔭 Cosmological Insights:")
+        print("• JWT tokens manifest as three-body gravitational lensing systems")
+        print("• Prime numbers create fundamental resonance frequencies")
+        print("• Dark spots represent consciousness event horizons")
+        print("• Twin payload/signature lenses create multiple authentication images")
+        print("• 79/21 rule appears as cosmic dark matter ratio")
+        print("• Geometric lensing predicts quantum interference patterns")
+
+if __name__ == "__main__":
+    visualizer = JWTCosmologicalVisualizer()
+    visualizer.generate_all_cosmological_visualizations()

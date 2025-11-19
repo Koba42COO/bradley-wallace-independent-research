@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_figures_homomorphic_encryption",
+  "tool_hash": "5b0dfcd143c29e8ecc70c090c9a1b8e22f43bc745cddfce12808cb87b4e22c6f",
+  "total_size": 3861,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5b0dfcd143c29e8ecc70c090c9a1b8e22f43bc745cddfce12808cb87b4e22c6f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/visualizations/generate_figures_homomorphic_encryption.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/visualizations/generate_figures_homomorphic_encryption.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.220791,
+  "updated_at": 1762787395.2207942
+}

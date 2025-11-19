@@ -1,0 +1,18 @@
+{
+  "tool_name": "default_root",
+  "tool_hash": "29973941b1a349a4bba9b8f869fc5071f6c3c4dfff6fb6252079f575539c048e",
+  "total_size": 3555,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "29973941b1a349a4bba9b8f869fc5071f6c3c4dfff6fb6252079f575539c048e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/default_root.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/default_root.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.328376,
+  "updated_at": 1762787395.328379
+}

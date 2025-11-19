@@ -1,0 +1,18 @@
+{
+  "tool_name": "lock",
+  "tool_hash": "ad9f493b9a29fc556e59c3bf34b031f4fdc6e1a6ada314c4370d45d21771aefa",
+  "total_size": 4083,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ad9f493b9a29fc556e59c3bf34b031f4fdc6e1a6ada314c4370d45d21771aefa"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/lock.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/lock.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.323811,
+  "updated_at": 1762787395.323814
+}

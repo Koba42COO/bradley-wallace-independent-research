@@ -1,0 +1,18 @@
+{
+  "tool_name": "timing",
+  "tool_hash": "2bce0d8ab90cafd51771f669d44cf4929268e60ab73ceaba42fcee578d83b6ff",
+  "total_size": 4302,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2bce0d8ab90cafd51771f669d44cf4929268e60ab73ceaba42fcee578d83b6ff"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/timing.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/timing.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3223748,
+  "updated_at": 1762787395.322378
+}

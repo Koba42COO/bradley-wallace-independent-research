@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_receiver",
+  "tool_hash": "51ae3fd33638b6334c1c087c7ee1129bd348073092ae66eab5ad70010b71dbd7",
+  "total_size": 22553,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "51ae3fd33638b6334c1c087c7ee1129bd348073092ae66eab5ad70010b71dbd7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/plot_sync/test_receiver.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/plot_sync/test_receiver.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.345748,
+  "updated_at": 1762787395.345751
+}

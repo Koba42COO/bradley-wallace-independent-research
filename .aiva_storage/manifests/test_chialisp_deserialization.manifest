@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_chialisp_deserialization",
+  "tool_hash": "61e0521d11dc29c7f41042affc497b8d6ba55b30bdf4bc534f5a22739b5517d9",
+  "total_size": 6660,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "61e0521d11dc29c7f41042affc497b8d6ba55b30bdf4bc534f5a22739b5517d9"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_chialisp_deserialization.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_chialisp_deserialization.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.342895,
+  "updated_at": 1762787395.342898
+}

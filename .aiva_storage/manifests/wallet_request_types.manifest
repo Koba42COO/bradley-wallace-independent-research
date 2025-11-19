@@ -1,0 +1,18 @@
+{
+  "tool_name": "wallet_request_types",
+  "tool_hash": "7982d99c9202020d527d0555e45f130a8f1beb2e487226f9b2c32e0e5f4b6193",
+  "total_size": 55272,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7982d99c9202020d527d0555e45f130a8f1beb2e487226f9b2c32e0e5f4b6193"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_request_types.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_request_types.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.612863,
+  "updated_at": 1762787395.612868
+}

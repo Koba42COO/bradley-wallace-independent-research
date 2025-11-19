@@ -1,0 +1,18 @@
+{
+  "tool_name": "proof_of_space",
+  "tool_hash": "75cf94d094139152c097c1218623ba20a3f7873cfd99793bf5e3baf182f297ed",
+  "total_size": 10185,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "75cf94d094139152c097c1218623ba20a3f7873cfd99793bf5e3baf182f297ed"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/blockchain_format/proof_of_space.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/blockchain_format/proof_of_space.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3052,
+  "updated_at": 1762787395.305203
+}

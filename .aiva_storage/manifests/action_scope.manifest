@@ -1,0 +1,18 @@
+{
+  "tool_name": "action_scope",
+  "tool_hash": "7959ae317ba18ca4c7a12bbcd1abb095fd0e200fbe01bfa0e595dce0f1e41888",
+  "total_size": 9507,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7959ae317ba18ca4c7a12bbcd1abb095fd0e200fbe01bfa0e595dce0f1e41888"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/action_scope.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/action_scope.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3296618,
+  "updated_at": 1762787395.329665
+}

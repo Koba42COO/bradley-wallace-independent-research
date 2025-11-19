@@ -1,0 +1,18 @@
+{
+  "tool_name": "block_header_validation",
+  "tool_hash": "a6304b7d15ac0922455e287cd4563caa639669a0388c266614c237a9ce618e48",
+  "total_size": 53178,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a6304b7d15ac0922455e287cd4563caa639669a0388c266614c237a9ce618e48"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/block_header_validation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/block_header_validation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.292439,
+  "updated_at": 1762787395.292442
+}

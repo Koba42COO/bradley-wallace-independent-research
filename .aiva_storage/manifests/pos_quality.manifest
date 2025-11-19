@@ -1,0 +1,18 @@
+{
+  "tool_name": "pos_quality",
+  "tool_hash": "6de2b38fa476180e6e29be6c9da30c73246613b22ad94f40264076c7a939666d",
+  "total_size": 4328,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6de2b38fa476180e6e29be6c9da30c73246613b22ad94f40264076c7a939666d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/pos_quality.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/pos_quality.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.290571,
+  "updated_at": 1762787395.290574
+}

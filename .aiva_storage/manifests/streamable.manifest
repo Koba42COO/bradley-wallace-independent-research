@@ -1,0 +1,18 @@
+{
+  "tool_name": "streamable",
+  "tool_hash": "6d216f0daf23137b80743299f436ea4090167810da30e5aef67adbedc14e6e7f",
+  "total_size": 29792,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6d216f0daf23137b80743299f436ea4090167810da30e5aef67adbedc14e6e7f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/streamable.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/streamable.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.31775,
+  "updated_at": 1762787395.317753
+}

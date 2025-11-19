@@ -1,0 +1,27 @@
+{
+  "title": "79/21 Coherence Rule Framework - Complete Validation",
+  "domain": "research_methodology",
+  "content": "Comprehensive framework validating the 79/21 energy partition across 23 disciplines and massive datasets. Includes Fibonacci echo, observer resonance, injection experiments, and arXiv-ready documentation with p<10^-12 significance.",
+  "formulas": [
+    "Log Gap Transform: g_i = ln(|Δx_i| + ε)",
+    "FFT Spectral Power: P(f) = |∫ g(t) e^{-2πift} dt|^2",
+    "Energy Partition: E_primary = ∫_{f_min}^{f_cut} P(f) df / E_total (f_cut sets E_primary = 0.79)",
+    "Complementary Energy: E_complement = 1 - E_primary ≈ 0.21",
+    "Fibonacci Echo: P_echo(f) = P(f) × 21/1618",
+    "Bootstrap Confidence: Mean ± 1.96σ from 500 resamples",
+    "Observer Node: f = 0.002 Hz resonance port"
+  ],
+  "gems": [
+    "Universal invariant: 79% coherent, 21% anomalous energy partition",
+    "Fibonacci song: 2-1-3-5-8 ratios from observer-driven recursion",
+    "Missing 1: 0.002 Hz hole as injection point for cross-domain synchronization",
+    "Injection experiments: Synthetic gaps trigger measurable responses (markets, weather, CMB)",
+    "ArXiv paper: Full derivations, methods, results, reproducibility code",
+    "Trading integration: 82% hit rate on 0.5%+ moves with FFT anomaly detection",
+    "Massive datasets: Planck, NOAA, LIGO, IceCube confirm rule at cosmic scales",
+    "Observer effect: Systems respond to measurement, gaps 'hate back'"
+  ],
+  "validation": "Mean 21.20% ±0.38% across 23 disciplines, extended to 21.07% ±0.16% on massive data (p<10^-12). Injection responses statistically significant (p<10^-9).",
+  "source": "Complete 79/21 coherence rule framework from parsed text block",
+  "timestamp": "2025-10-21"
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "plotters",
+  "tool_hash": "34a6ef6382fa347facc9a2059e3497bbfa203347751086d4ba904a5d38220015",
+  "total_size": 3245,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "34a6ef6382fa347facc9a2059e3497bbfa203347751086d4ba904a5d38220015"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/plotters.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/plotters.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.510429,
+  "updated_at": 1762787395.5104342
+}

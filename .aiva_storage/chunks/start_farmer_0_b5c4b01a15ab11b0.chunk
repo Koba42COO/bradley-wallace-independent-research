@@ -1,0 +1,164 @@
+from __future__ import annotations
+
+import os
+import pathlib
+import sys
+from typing import Any, Optional
+
+from chia_rs import ConsensusConstants
+
+from chia.apis import ApiProtocolRegistry
+from chia.consensus.constants import replace_str_to_bytes
+from chia.consensus.default_constants import DEFAULT_CONSTANTS, update_testnet_overrides
+from chia.farmer.farmer import Farmer
+from chia.farmer.farmer_api import FarmerAPI
+from chia.farmer.farmer_rpc_api import FarmerRpcApi
+from chia.farmer.farmer_service import FarmerService
+from chia.protocols.outbound_message import NodeType
+from chia.server.resolve_peer_info import get_unresolved_peer_infos
+from chia.server.signal_handlers import SignalHandlers
+from chia.server.start_service import RpcInfo, Service, async_run
+from chia.util.chia_logging import initialize_service_logging
+from chia.util.config import load_config, load_config_cli
+from chia.util.default_root import resolve_root_path
+from chia.util.keychain import Keychain
+from chia.util.task_timing import maybe_manage_task_instrumentation
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+# See: https://bugs.python.org/issue29288
+"".encode("idna")
+
+SERVICE_NAME = "farmer"
+
+
+def create_farmer_service(
+    root_path: pathlib.Path,
+    config: dict[str, Any],
+    config_pool: dict[str, Any],
+    consensus_constants: ConsensusConstants,
+    keychain: Optional[Keychain] = None,
+    connect_to_daemon: bool = True,
+) -> FarmerService:
+    service_config = config[SERVICE_NAME]
+
+    network_id = service_config["selected_network"]
+    overrides = service_config["network_overrides"]["constants"][network_id]
+    update_testnet_overrides(network_id, overrides)
+    updated_constants = replace_str_to_bytes(consensus_constants, **overrides)
+
+    node = Farmer(
+        root_path, service_config, config_pool, consensus_constants=updated_constants, local_keychain=keychain
+    )
+    peer_api = FarmerAPI(node)
+
+    rpc_info: Optional[RpcInfo[FarmerRpcApi]] = None
+    if service_config.get("start_rpc_server", True):
+        rpc_info = (FarmerRpcApi, service_config["rpc_port"])
+
+    return Service(
+        root_path=root_path,
+        config=config,
+        node=node,
+        peer_api=peer_api,
+        node_type=NodeType.FARMER,
+        advertised_port=service_config["port"],
+        service_name=SERVICE_NAME,
+        connect_peers=get_unresolved_peer_infos(service_config, NodeType.FULL_NODE)
+        | get_unresolved_peer_infos(service_config, NodeType.SOLVER),
+        on_connect_callback=node.on_connect,
+        network_id=network_id,
+        rpc_info=rpc_info,
+        connect_to_daemon=connect_to_daemon,
+        class_for_type=ApiProtocolRegistry,
+    )
+
+
+async def async_main(root_path: pathlib.Path) -> int:
+    # TODO: refactor to avoid the double load
+    config = load_config(root_path, "config.yaml", fill_missing_services=True)
+    service_config = load_config_cli(root_path, "config.yaml", SERVICE_NAME)
+    config[SERVICE_NAME] = service_config
+    config_pool = load_config_cli(root_path, "config.yaml", "pool")
+    config["pool"] = config_pool
+    initialize_service_logging(service_name=SERVICE_NAME, config=config, root_path=root_path)
+
+    service = create_farmer_service(root_path, config, config_pool, DEFAULT_CONSTANTS)
+    async with SignalHandlers.manage() as signal_handlers:
+        await service.setup_process_global_state(signal_handlers=signal_handlers)
+        await service.run()
+
+    return 0
+
+
+def main() -> int:
+    root_path = resolve_root_path(override=None)
+
+    with maybe_manage_task_instrumentation(
+        enable=os.environ.get(f"CHIA_INSTRUMENT_{SERVICE_NAME.upper()}") is not None
+    ):
+        return async_run(coro=async_main(root_path=root_path))
+
+
+if __name__ == "__main__":
+    sys.exit(main())

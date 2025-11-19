@@ -1,0 +1,18 @@
+{
+  "tool_name": "core_ops",
+  "tool_hash": "c2621c91bf76ca53dd5049c025335d6be7f80817d2074dc2f3408d1cc1edbd8a",
+  "total_size": 4803,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c2621c91bf76ca53dd5049c025335d6be7f80817d2074dc2f3408d1cc1edbd8a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/clvm/core_ops.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/clvm/core_ops.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.060333,
+  "updated_at": 1762787395.060336
+}

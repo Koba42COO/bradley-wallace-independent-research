@@ -1,0 +1,19 @@
+{
+  "tool_name": "test_wallet_sync",
+  "tool_hash": "57fe4af0c7279c5e278f2aa3b08e0a9df258c91b9e995186fe2cf28e78a013d8",
+  "total_size": 86699,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fa487484a2f067bbcd5c78686031cd3bb29d9711f0f0bcf08c8e396c1da86820",
+    "ce1eed0517d7289d9ac0e2b9310f82a68d589177097161a68e3624ff16c21b13"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/sync/test_wallet_sync.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/sync/test_wallet_sync.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4957,
+  "updated_at": 1762787395.4957051
+}

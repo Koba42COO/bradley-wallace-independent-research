@@ -1,0 +1,18 @@
+{
+  "tool_name": "get_name_puzzle_conditions",
+  "tool_hash": "80b1e0d438919f81038fb8738efd70ca6a329bf0c1223d4fd7f8b6cfd94cd402",
+  "total_size": 4238,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "80b1e0d438919f81038fb8738efd70ca6a329bf0c1223d4fd7f8b6cfd94cd402"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/get_name_puzzle_conditions.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/get_name_puzzle_conditions.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.422018,
+  "updated_at": 1762787395.422025
+}

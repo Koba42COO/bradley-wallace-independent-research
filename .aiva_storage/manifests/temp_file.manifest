@@ -1,0 +1,18 @@
+{
+  "tool_name": "temp_file",
+  "tool_hash": "d8309c4edc641ca9df70a46882520cbeacc04b8ba46eb8f9b3a20cf61e184cfe",
+  "total_size": 3051,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d8309c4edc641ca9df70a46882520cbeacc04b8ba46eb8f9b3a20cf61e184cfe"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/temp_file.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/temp_file.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4152699,
+  "updated_at": 1762787395.415273
+}

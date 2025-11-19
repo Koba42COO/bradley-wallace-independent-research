@@ -1,0 +1,18 @@
+{
+  "tool_name": "did_info",
+  "tool_hash": "be2f8bf9facceeb3d9cebfc48eaf2278f83eb201cd6969d1360296ce6be36686",
+  "total_size": 4343,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "be2f8bf9facceeb3d9cebfc48eaf2278f83eb201cd6969d1360296ce6be36686"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/did_wallet/did_info.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/did_wallet/did_info.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6389399,
+  "updated_at": 1762787395.638943
+}

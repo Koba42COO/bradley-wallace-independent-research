@@ -1,0 +1,18 @@
+{
+  "tool_name": "log_exceptions",
+  "tool_hash": "322b26534f4eb730880178abce48573122c9352e70ff7e7e1b5fd3c858800dc1",
+  "total_size": 3527,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "322b26534f4eb730880178abce48573122c9352e70ff7e7e1b5fd3c858800dc1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/log_exceptions.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/log_exceptions.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.330091,
+  "updated_at": 1762787395.330094
+}

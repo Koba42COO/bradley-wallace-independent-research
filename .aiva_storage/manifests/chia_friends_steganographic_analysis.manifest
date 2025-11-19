@@ -1,0 +1,18 @@
+{
+  "tool_name": "chia_friends_steganographic_analysis",
+  "tool_hash": "c3be2ed0ab6be6f329d5217edd68eee9c51d5fbacba297e5f9d38ff0d5572fba",
+  "total_size": 30582,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c3be2ed0ab6be6f329d5217edd68eee9c51d5fbacba297e5f9d38ff0d5572fba"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia_friends_steganographic_analysis.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia_friends_steganographic_analysis.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787394.995177,
+  "updated_at": 1762787394.9951801
+}

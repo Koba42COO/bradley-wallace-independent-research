@@ -1,0 +1,18 @@
+{
+  "tool_name": "keys_funcs",
+  "tool_hash": "68e5281f15d5bd1a8bfcdb22476d47c09d9b8615549db7cc118071faa1a37e3b",
+  "total_size": 34641,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "68e5281f15d5bd1a8bfcdb22476d47c09d9b8615549db7cc118071faa1a37e3b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/keys_funcs.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/keys_funcs.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.509566,
+  "updated_at": 1762787395.509569
+}

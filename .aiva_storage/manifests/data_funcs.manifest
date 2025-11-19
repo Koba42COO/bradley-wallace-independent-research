@@ -1,0 +1,18 @@
+{
+  "tool_name": "data_funcs",
+  "tool_hash": "5360c77168eb44e9f8f9e90bae5891b6e0874d1aad8974bddf727770301af68d",
+  "total_size": 12375,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5360c77168eb44e9f8f9e90bae5891b6e0874d1aad8974bddf727770301af68d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/data_funcs.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/data_funcs.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.518632,
+  "updated_at": 1762787395.518636
+}

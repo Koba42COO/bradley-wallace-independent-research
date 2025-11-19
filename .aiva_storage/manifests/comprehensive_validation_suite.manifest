@@ -1,0 +1,18 @@
+{
+  "tool_name": "comprehensive_validation_suite",
+  "tool_hash": "f78b75c3c2fcadb1fa723884aaec838c3c75f32932c29a9827c2e84ed3b13059",
+  "total_size": 26565,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f78b75c3c2fcadb1fa723884aaec838c3c75f32932c29a9827c2e84ed3b13059"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/arxiv_papers/code_examples/comprehensive_validation_suite.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/arxiv_papers/code_examples/comprehensive_validation_suite.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.110538,
+  "updated_at": 1762787395.110541
+}

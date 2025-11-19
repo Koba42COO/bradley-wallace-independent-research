@@ -1,0 +1,158 @@
+{
+  "timestamp": "2025-10-22T00:02:22.198280",
+  "protocol_version": "\u03c6.1",
+  "total_tests": 61,
+  "passed_tests": 52,
+  "failed_tests": 9,
+  "test_categories": {
+    "graph": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0
+    },
+    "metadata": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "domain": {
+      "total": 17,
+      "passed": 17,
+      "failed": 0
+    },
+    "amplitude": {
+      "total": 5,
+      "passed": 4,
+      "failed": 1
+    },
+    "golden": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "wallace": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "harmonic": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "delta": {
+      "total": 2,
+      "passed": 1,
+      "failed": 1
+    },
+    "prime": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "consciousness": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "topology": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "query": {
+      "total": 7,
+      "passed": 7,
+      "failed": 0
+    },
+    "knowledge": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "memory": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "integration": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "validation": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "storage": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "p": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "sigma": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "correlation": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "reality": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "distortion": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "metaphysical": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "protocol": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "schema": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "mathematical": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "statistical": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "system": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "final": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    }
+  },
+  "performance_metrics": {},
+  "validation_results": {},
+  "total_runtime": 0.003462076187133789,
+  "success_rate": 85.24590163934425
+}

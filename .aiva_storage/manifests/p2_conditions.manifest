@@ -1,0 +1,18 @@
+{
+  "tool_name": "p2_conditions",
+  "tool_hash": "cd9c86ef757ad27c2f20856f271616ecca1747d230f8962eb371415e41b8d63b",
+  "total_size": 3490,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cd9c86ef757ad27c2f20856f271616ecca1747d230f8962eb371415e41b8d63b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/p2_conditions.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/p2_conditions.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.636647,
+  "updated_at": 1762787395.63665
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "permissions",
+  "tool_hash": "76c21e05570e9ccd53635d49fd32d1e25ef1f8e2465113824a52a887bfc4924d",
+  "total_size": 3231,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "76c21e05570e9ccd53635d49fd32d1e25ef1f8e2465113824a52a887bfc4924d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/permissions.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/permissions.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.324699,
+  "updated_at": 1762787395.3247008
+}

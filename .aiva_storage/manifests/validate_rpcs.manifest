@@ -1,0 +1,18 @@
+{
+  "tool_name": "validate_rpcs",
+  "tool_hash": "28ea12ca8145dc71005a1590d2a223cd3c9ce1476c74aa301acfc862bcf45a14",
+  "total_size": 11712,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "28ea12ca8145dc71005a1590d2a223cd3c9ce1476c74aa301acfc862bcf45a14"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/tools/validate_rpcs.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/tools/validate_rpcs.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2733262,
+  "updated_at": 1762787395.273328
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_db_validation",
+  "tool_hash": "6249bbacac85a2bfa933d08769c939e5821f8aedc3e7d91dc6a90cc81ce677cc",
+  "total_size": 9857,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6249bbacac85a2bfa933d08769c939e5821f8aedc3e7d91dc6a90cc81ce677cc"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_db_validation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_db_validation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3636842,
+  "updated_at": 1762787395.363689
+}

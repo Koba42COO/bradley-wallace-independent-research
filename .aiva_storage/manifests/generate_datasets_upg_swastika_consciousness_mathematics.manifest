@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_upg_swastika_consciousness_mathematics",
+  "tool_hash": "46091f78aa80ceae290de673c5e1367f1dfb34c4a0d7a1aa8b1802f343fe30de",
+  "total_size": 6346,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "46091f78aa80ceae290de673c5e1367f1dfb34c4a0d7a1aa8b1802f343fe30de"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/datasets/generate_datasets_upg_swastika_consciousness_mathematics.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/datasets/generate_datasets_upg_swastika_consciousness_mathematics.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2172601,
+  "updated_at": 1762787395.2172632
+}

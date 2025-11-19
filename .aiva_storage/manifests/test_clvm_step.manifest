@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_clvm_step",
+  "tool_hash": "e668ba319c96675f666d8493b06fcc600ff5f7c68e17700619dc92f759805379",
+  "total_size": 3904,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e668ba319c96675f666d8493b06fcc600ff5f7c68e17700619dc92f759805379"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_clvm_step.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_clvm_step.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3403761,
+  "updated_at": 1762787395.3403788
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "math",
+  "tool_hash": "c05209bd7b4d880e7cf37b9788291235d1812df5a6a02dfacca6d1fa63cfc9d2",
+  "total_size": 3201,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c05209bd7b4d880e7cf37b9788291235d1812df5a6a02dfacca6d1fa63cfc9d2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/math.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/math.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.325239,
+  "updated_at": 1762787395.325242
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_nft_lifecycle",
+  "tool_hash": "0412d65441b531dd0bbdc4297e943f8bc361b1abb7474dedede614ed2e9c9a72",
+  "total_size": 15633,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "0412d65441b531dd0bbdc4297e943f8bc361b1abb7474dedede614ed2e9c9a72"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/nft_wallet/test_nft_lifecycle.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/nft_wallet/test_nft_lifecycle.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.489687,
+  "updated_at": 1762787395.489689
+}

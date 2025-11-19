@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_cat_outer_puzzle",
+  "tool_hash": "9aa6fc6885e6541bd9dac6c93a8e780a68091f3bd27b7ee1cdce47ea70b367cd",
+  "total_size": 5503,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "9aa6fc6885e6541bd9dac6c93a8e780a68091f3bd27b7ee1cdce47ea70b367cd"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/cat_wallet/test_cat_outer_puzzle.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/cat_wallet/test_cat_outer_puzzle.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.501921,
+  "updated_at": 1762787395.5019252
+}

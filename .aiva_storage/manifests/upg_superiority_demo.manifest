@@ -1,0 +1,18 @@
+{
+  "tool_name": "upg_superiority_demo",
+  "tool_hash": "135478d39ba1d291a720c02274bcb58060257b6b9fc928b7d42d028bc5a6b681",
+  "total_size": 21328,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "135478d39ba1d291a720c02274bcb58060257b6b9fc928b7d42d028bc5a6b681"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/upg_superiority_demo.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/upg_superiority_demo.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.001166,
+  "updated_at": 1762787395.001169
+}

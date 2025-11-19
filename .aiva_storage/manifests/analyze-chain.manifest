@@ -1,0 +1,18 @@
+{
+  "tool_name": "analyze-chain",
+  "tool_hash": "3758126d25823ae64e68f2d252f83b484f15e5356bb929c8994c39581772e207",
+  "total_size": 8740,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3758126d25823ae64e68f2d252f83b484f15e5356bb929c8994c39581772e207"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/tools/analyze-chain.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/tools/analyze-chain.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2745621,
+  "updated_at": 1762787395.2745652
+}

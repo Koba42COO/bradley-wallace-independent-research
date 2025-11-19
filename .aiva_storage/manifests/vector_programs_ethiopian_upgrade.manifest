@@ -1,0 +1,18 @@
+{
+  "tool_name": "vector_programs_ethiopian_upgrade",
+  "tool_hash": "de7b80151ce36123f101f75f95f19f6f99e3a793964faf2f7540f5d191d85a11",
+  "total_size": 28715,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "de7b80151ce36123f101f75f95f19f6f99e3a793964faf2f7540f5d191d85a11"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/vector_programs_ethiopian_upgrade.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/vector_programs_ethiopian_upgrade.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787394.99666,
+  "updated_at": 1762787394.996663
+}

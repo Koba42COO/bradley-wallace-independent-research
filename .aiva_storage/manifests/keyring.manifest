@@ -1,0 +1,18 @@
+{
+  "tool_name": "keyring",
+  "tool_hash": "61f4a9744b89513d924f08051d2a62b68dfd857920b9a7f3f45153714511c057",
+  "total_size": 7812,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "61f4a9744b89513d924f08051d2a62b68dfd857920b9a7f3f45153714511c057"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/keyring.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/keyring.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5497558,
+  "updated_at": 1762787395.54976
+}

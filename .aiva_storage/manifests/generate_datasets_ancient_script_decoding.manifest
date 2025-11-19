@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_datasets_ancient_script_decoding",
+  "tool_hash": "bba37f134fe961850a6e2cffa48922feef13100b010de779e3c1a4a74269785c",
+  "total_size": 6316,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "bba37f134fe961850a6e2cffa48922feef13100b010de779e3c1a4a74269785c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/datasets/generate_datasets_ancient_script_decoding.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/datasets/generate_datasets_ancient_script_decoding.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2187579,
+  "updated_at": 1762787395.21876
+}

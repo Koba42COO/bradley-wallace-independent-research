@@ -1,0 +1,18 @@
+{
+  "tool_name": "fix_backup_files_upg_foundations",
+  "tool_hash": "7cfbc1e5b072bc4c6f1cad6a77eea59d11ecf63e5ba38a0ad1b8ac43cd93938d",
+  "total_size": 9785,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "7cfbc1e5b072bc4c6f1cad6a77eea59d11ecf63e5ba38a0ad1b8ac43cd93938d"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/fix_backup_files_upg_foundations.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/fix_backup_files_upg_foundations.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787394.996149,
+  "updated_at": 1762787394.996153
+}

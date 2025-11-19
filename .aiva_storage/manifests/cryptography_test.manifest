@@ -1,0 +1,18 @@
+{
+  "tool_name": "cryptography_test",
+  "tool_hash": "9f3bad85a87230c52d6ab465d27ad67e9278f4307662769f5a9bf89c6adf1e55",
+  "total_size": 7518,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "9f3bad85a87230c52d6ab465d27ad67e9278f4307662769f5a9bf89c6adf1e55"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/consciousness_research_docs/cryptography_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/consciousness_research_docs/cryptography_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.085741,
+  "updated_at": 1762787395.0857441
+}

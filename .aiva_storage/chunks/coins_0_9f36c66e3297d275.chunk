@@ -1,0 +1,244 @@
+from __future__ import annotations
+
+from collections.abc import Sequence
+from typing import Optional
+
+import click
+from chia_rs.sized_bytes import bytes32
+
+from chia.cmds.cmd_classes import (
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+    chia_command,
+    option,
+)
+from chia.cmds.cmd_helpers import (
+    NeedsCoinSelectionConfig,
+    NeedsWalletRPC,
+    TransactionEndpoint,
+    transaction_endpoint_runner,
+)
+from chia.cmds.param_types import AmountParamType, Bytes32ParamType, CliAmount
+from chia.wallet.transaction_record import TransactionRecord
+
+
+@click.group("coins", help="Manage your wallets coins")
+@click.pass_context
+def coins_cmd(ctx: click.Context) -> None:
+    pass
+
+
+@chia_command(
+    group=coins_cmd,
+    name="list",
+    short_help="List all coins",
+    help="List all coins",
+)
+class ListCMD:
+    rpc_info: NeedsWalletRPC
+    coin_selection_config: NeedsCoinSelectionConfig
+    id: int = option(
+        "-i", "--id", help="Id of the wallet to use", type=int, default=1, show_default=True, required=True
+    )
+    show_unconfirmed: bool = option(
+        "-u", "--show-unconfirmed", help="Separately display unconfirmed coins.", is_flag=True
+    )
+    paginate: Optional[bool] = option(
+        "--paginate/--no-paginate",
+        default=None,
+        help="Prompt for each page of data.  Defaults to true for interactive consoles, otherwise false.",
+    )
+
+    async def run(self) -> None:
+        async with self.rpc_info.wallet_rpc() as wallet_rpc:
+            from chia.cmds.coin_funcs import async_list
+
+            await async_list(
+                client_info=wallet_rpc,
+                wallet_id=self.id,
+                max_coin_amount=self.coin_selection_config.max_coin_amount,
+                min_coin_amount=self.coin_selection_config.min_coin_amount,
+                excluded_amounts=self.coin_selection_config.amounts_to_exclude,
+                excluded_coin_ids=self.coin_selection_config.coins_to_exclude,
+                show_unconfirmed=self.show_unconfirmed,
+                paginate=self.paginate,
+            )
+
+
+@chia_command(
+    group=coins_cmd,
+    name="combine",
+    short_help="Combine dust coins",
+    help="Combine dust coins",
+)
+class CombineCMD(TransactionEndpoint):
+    id: int = option(
+        "-i", "--id", help="Id of the wallet to use", type=int, default=1, show_default=True, required=True
+    )
+    target_amount: Optional[CliAmount] = option(
+        "-a",
+        "--target-amount",
+        help="Select coins until this amount (in XCH or CAT) is reached. \
+        Combine all selected coins into one coin, which will have a value of at least target-amount",
+        type=AmountParamType(),
+        default=None,
+    )
+    number_of_coins: int = option(
+        "-n",
+        "--number-of-coins",
+        type=int,
+        default=500,
+        show_default=True,
+        help="The number of coins we are combining.",
+    )
+    input_coins: Sequence[bytes32] = option(
+        "--input-coin",
+        multiple=True,
+        help="Only combine coins with these ids.",
+        type=Bytes32ParamType(),
+    )
+    largest_first: bool = option(
+        "--largest-first/--smallest-first",
+        default=False,
+        help="Sort coins from largest to smallest or smallest to largest.",
+    )
+    override: bool = option(
+        "--override", help="Submits transaction without checking for unusual values", is_flag=True, default=False
+    )
+
+    @transaction_endpoint_runner
+    async def run(self) -> list[TransactionRecord]:
+        async with self.rpc_info.wallet_rpc() as wallet_rpc:
+            from chia.cmds.coin_funcs import async_combine
+
+            return await async_combine(
+                client_info=wallet_rpc,
+                wallet_id=self.id,
+                fee=self.fee,
+                max_coin_amount=self.tx_config_loader.max_coin_amount,
+                min_coin_amount=self.tx_config_loader.min_coin_amount,
+                excluded_amounts=self.tx_config_loader.amounts_to_exclude,
+                coins_to_exclude=self.tx_config_loader.coins_to_exclude,
+                reuse_puzhash=self.tx_config_loader.reuse,
+                number_of_coins=self.number_of_coins,
+                target_coin_amount=self.target_amount,
+                target_coin_ids=self.input_coins,
+                largest_first=self.largest_first,
+                push=self.push,
+                condition_valid_times=self.load_condition_valid_times(),
+                override=self.override,
+            )
+
+
+@chia_command(
+    group=coins_cmd,
+    name="split",
+    short_help="Split up larger coins",
+    help="Split up larger coins",
+)
+class SplitCMD(TransactionEndpoint):
+    id: int = option(
+        "-i", "--id", help="Id of the wallet to use", type=int, default=1, show_default=True, required=True
+    )
+    number_of_coins: int = option(
+        "-n",
+        "--number-of-coins",
+        type=int,
+        help="The number of coins we are creating.",
+        required=True,
+    )
+    amount_per_coin: CliAmount = option(
+        "-a",
+        "--amount-per-coin",
+        help="The amount of each newly created coin, in XCH or CAT units",
+        type=AmountParamType(),
+        required=True,
+    )
+    target_coin_id: bytes32 = option(
+        "-t",
+        "--target-coin-id",
+        type=Bytes32ParamType(),
+        required=True,
+        help="The coin id of the coin we are splitting.",
+    )
+
+    @transaction_endpoint_runner
+    async def run(self) -> list[TransactionRecord]:
+        async with self.rpc_info.wallet_rpc() as wallet_rpc:
+            from chia.cmds.coin_funcs import async_split
+
+            return await async_split(
+                client_info=wallet_rpc,
+                wallet_id=self.id,
+                fee=self.fee,
+                max_coin_amount=self.tx_config_loader.max_coin_amount,
+                min_coin_amount=self.tx_config_loader.min_coin_amount,
+                excluded_amounts=self.tx_config_loader.amounts_to_exclude,
+                coins_to_exclude=self.tx_config_loader.coins_to_exclude,
+                reuse_puzhash=self.tx_config_loader.reuse,
+                number_of_coins=self.number_of_coins,
+                amount_per_coin=self.amount_per_coin,
+                target_coin_id=self.target_coin_id,
+                push=self.push,
+                condition_valid_times=self.load_condition_valid_times(),
+            )

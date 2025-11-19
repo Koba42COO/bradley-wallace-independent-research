@@ -1,0 +1,18 @@
+{
+  "tool_name": "p2_puzzle_hash",
+  "tool_hash": "cd5625527add245827977d8914c2e1dabd5395cd06a1b346088314fd71df0f9e",
+  "total_size": 3566,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cd5625527add245827977d8914c2e1dabd5395cd06a1b346088314fd71df0f9e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/p2_puzzle_hash.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/p2_puzzle_hash.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6322901,
+  "updated_at": 1762787395.632292
+}

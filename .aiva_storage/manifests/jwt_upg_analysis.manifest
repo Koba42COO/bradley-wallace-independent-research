@@ -1,0 +1,18 @@
+{
+  "tool_name": "jwt_upg_analysis",
+  "tool_hash": "928ca665ea9bdda80700e161c18d95bdec000d0f2be802da86ffdf6347e237ff",
+  "total_size": 13508,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "928ca665ea9bdda80700e161c18d95bdec000d0f2be802da86ffdf6347e237ff"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/jwt_upg_analysis.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/jwt_upg_analysis.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787394.992605,
+  "updated_at": 1762787394.992608
+}

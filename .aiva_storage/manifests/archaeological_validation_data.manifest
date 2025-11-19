@@ -1,0 +1,18 @@
+{
+  "tool_name": "archaeological_validation_data",
+  "tool_hash": "255b118a4674bc01de254b037636a6e2b57b39255254fa909c17710027201c52",
+  "total_size": 30064,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "255b118a4674bc01de254b037636a6e2b57b39255254fa909c17710027201c52"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/wallace_unified_theory/archaeology/archaeological_validation_data.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/wallace_unified_theory/archaeology/archaeological_validation_data.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2454169,
+  "updated_at": 1762787395.24542
+}

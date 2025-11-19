@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_chain",
+  "tool_hash": "9776a72b2a78e20a583d91c27c8cc7a9f0adb75bddd1891c420a8260fdca4120",
+  "total_size": 11452,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "9776a72b2a78e20a583d91c27c8cc7a9f0adb75bddd1891c420a8260fdca4120"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/tools/generate_chain.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/tools/generate_chain.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.27114,
+  "updated_at": 1762787395.271144
+}

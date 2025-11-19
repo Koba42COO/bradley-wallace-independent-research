@@ -1,0 +1,235 @@
+{
+  "wallace_refined": {
+    "electron_1": {
+      "input": 1,
+      "computed": 0.013000000000000046,
+      "description": "Electron trough",
+      "is_golden": false,
+      "is_twin_echo": true
+    },
+    "twin_gap_2": {
+      "input": 2,
+      "computed": 0.4114606605690754,
+      "description": "Twin lock",
+      "is_golden": false,
+      "is_twin_echo": false
+    },
+    "first_zeta_14.1347": {
+      "input": 14.1347,
+      "computed": 3.49957354227082,
+      "description": "First zeta zero",
+      "is_golden": false,
+      "is_twin_echo": false
+    },
+    "silence_prime_101": {
+      "input": 101,
+      "computed": 8.5756069420849,
+      "description": "Kintu seam",
+      "is_golden": false,
+      "is_twin_echo": false
+    },
+    "muon_mass_207": {
+      "input": 207,
+      "computed": 10.831397676851704,
+      "description": "Muon crest",
+      "is_golden": false,
+      "is_twin_echo": false
+    },
+    "golden_phi": {
+      "input": 1.618033988749895,
+      "computed": 0.23377230224314036,
+      "description": "Golden ratio",
+      "is_golden": false,
+      "is_twin_echo": false
+    },
+    "silver_delta": {
+      "input": 2.414213562373095,
+      "computed": 0.6007631193163935,
+      "description": "Silver ratio",
+      "is_golden": false,
+      "is_twin_echo": false
+    },
+    "epsilon_0": {
+      "input": 1e-10,
+      "computed": -109.77835497114071,
+      "description": "Kintu silence",
+      "is_golden": false,
+      "is_twin_echo": false
+    }
+  },
+  "prime_predictability_refined": {
+    "predicted": [
+      2,
+      5,
+      11,
+      17,
+      19,
+      23,
+      29,
+      37,
+      41,
+      47,
+      53,
+      59,
+      67,
+      73,
+      79,
+      89,
+      97,
+      103,
+      109,
+      127
+    ],
+    "actual": [
+      2,
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31,
+      37,
+      41,
+      43,
+      47,
+      53,
+      59,
+      61,
+      67,
+      71
+    ],
+    "matches": 1,
+    "accuracy": 5.0,
+    "avg_error": 23.57894736842105,
+    "errors": [
+      2,
+      6,
+      10,
+      8,
+      10,
+      12,
+      18,
+      18,
+      18,
+      22
+    ]
+  },
+  "twin_cancellation_refined": [
+    {
+      "twin": [
+        3,
+        5
+      ],
+      "w1": 0.8525044010637219,
+      "w2": 1.5701885059507403,
+      "phase_diff": 0.7176841048870184,
+      "near_pi": false,
+      "very_near_pi": false,
+      "zeta_resonance": false,
+      "zeta_zero": 14.1347
+    },
+    {
+      "twin": [
+        5,
+        7
+      ],
+      "w1": 1.5701885059507403,
+      "w2": 2.1301213647411834,
+      "phase_diff": 0.5599328587904431,
+      "near_pi": false,
+      "very_near_pi": false,
+      "zeta_resonance": false,
+      "zeta_zero": 21.022
+    },
+    {
+      "twin": [
+        11,
+        13
+      ],
+      "w1": 2.981338718113752,
+      "w2": 3.323081284870655,
+      "phase_diff": 0.34174256675690273,
+      "near_pi": false,
+      "very_near_pi": false,
+      "zeta_resonance": false,
+      "zeta_zero": 25.0109
+    },
+    {
+      "twin": [
+        17,
+        19
+      ],
+      "w1": 3.9011097017375453,
+      "w2": 4.151065350634441,
+      "phase_diff": 0.24995564889689526,
+      "near_pi": false,
+      "very_near_pi": false,
+      "zeta_resonance": false,
+      "zeta_zero": 30.4249
+    },
+    {
+      "twin": [
+        29,
+        31
+      ],
+      "w1": 5.154552625177106,
+      "w2": 5.320325551613114,
+      "phase_diff": 0.1657729264360075,
+      "near_pi": false,
+      "very_near_pi": false,
+      "zeta_resonance": false,
+      "zeta_zero": 32.9351
+    },
+    {
+      "twin": [
+        41,
+        43
+      ],
+      "w1": 6.036901402762577,
+      "w2": 6.162403639535552,
+      "phase_diff": 0.12550223677297456,
+      "near_pi": false,
+      "very_near_pi": false,
+      "zeta_resonance": false,
+      "zeta_zero": 14.1347
+    },
+    {
+      "twin": [
+        59,
+        61
+      ],
+      "w1": 7.020771091357087,
+      "w2": 7.113706933185332,
+      "phase_diff": 0.0929358418282451,
+      "near_pi": false,
+      "very_near_pi": false,
+      "zeta_resonance": false,
+      "zeta_zero": 21.022
+    }
+  ],
+  "consciousness_79_21_refined": {
+    "n_points": 2000,
+    "noise_percent": 21.0,
+    "peaks_found": 217,
+    "coherence": 0.1712962962962963,
+    "phi_cluster": 0.1712962962962963,
+    "zeta_patterns": 0,
+    "self_organized": false
+  },
+  "metatron_refined": {
+    "circles": 13,
+    "lines": 78,
+    "wallace_13": 3.323081284870655,
+    "phi": 1.618033988749895,
+    "ratio_to_phi": 2.053777181428736,
+    "diff_from_phi": 1.70504729612076,
+    "is_golden_related": true,
+    "sum_first_12_primes": 197,
+    "sum_relationship_78": false,
+    "note": "78 = 3 \u00d7 26 (bosonic string), not sum of primes"
+  }
+}

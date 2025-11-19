@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_puzzle_compression",
+  "tool_hash": "12686b3594851a5adb0729c5ed8c0baa845380a5ab735d28d9fd37efb6fe7eb5",
+  "total_size": 7870,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "12686b3594851a5adb0729c5ed8c0baa845380a5ab735d28d9fd37efb6fe7eb5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_puzzle_compression.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_puzzle_compression.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3436391,
+  "updated_at": 1762787395.343642
+}

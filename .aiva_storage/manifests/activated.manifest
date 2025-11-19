@@ -1,0 +1,18 @@
+{
+  "tool_name": "activated",
+  "tool_hash": "363063c11041bf1732fd6ef475b05657a1bab8b6016ef11b9df9f2b51bb0b282",
+  "total_size": 3605,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "363063c11041bf1732fd6ef475b05657a1bab8b6016ef11b9df9f2b51bb0b282"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/activated.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/activated.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.269771,
+  "updated_at": 1762787395.2697742
+}

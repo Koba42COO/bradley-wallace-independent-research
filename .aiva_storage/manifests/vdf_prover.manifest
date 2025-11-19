@@ -1,0 +1,18 @@
+{
+  "tool_name": "vdf_prover",
+  "tool_hash": "5d3e029bca0364663a272f1919a088567370e1c49e2d999aa68bbebfdb1eacd7",
+  "total_size": 3726,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5d3e029bca0364663a272f1919a088567370e1c49e2d999aa68bbebfdb1eacd7"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/vdf_prover.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/vdf_prover.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.544309,
+  "updated_at": 1762787395.544312
+}

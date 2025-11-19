@@ -1,0 +1,18 @@
+{
+  "tool_name": "setup_services",
+  "tool_hash": "cbcd03b302cf02270e7b13fdcd137aeca5907091f9745131eb74e10bfbc6e12f",
+  "total_size": 23493,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cbcd03b302cf02270e7b13fdcd137aeca5907091f9745131eb74e10bfbc6e12f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/setup_services.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/simulator/setup_services.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.546335,
+  "updated_at": 1762787395.54634
+}

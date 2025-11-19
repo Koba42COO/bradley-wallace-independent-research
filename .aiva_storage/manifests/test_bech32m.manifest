@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_bech32m",
+  "tool_hash": "774098584f5ebe75974c28c2651747bb91250045c13bc2095827befc00fedb6c",
+  "total_size": 4130,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "774098584f5ebe75974c28c2651747bb91250045c13bc2095827befc00fedb6c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_bech32m.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_bech32m.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4839308,
+  "updated_at": 1762787395.483934
+}

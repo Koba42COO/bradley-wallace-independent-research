@@ -1,0 +1,178 @@
+from __future__ import annotations
+
+from typing import Any
+
+from chia_rs import ConsensusConstants
+from chia_rs.sized_bytes import bytes32
+from chia_rs.sized_ints import uint8, uint16, uint32, uint64, uint128
+
+from chia.util.hash import std_hash
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+AGG_SIG_DATA = bytes32.fromhex("ccd5bb71183532bff220ba46c268991a3ff07eb358e8255a65c30a2dce0e5fbb")
+
+DEFAULT_CONSTANTS = ConsensusConstants(
+    SLOT_BLOCKS_TARGET=uint32(32),
+    MIN_BLOCKS_PER_CHALLENGE_BLOCK=uint8(16),  # Must be less than half of SLOT_BLOCKS_TARGET
+    MAX_SUB_SLOT_BLOCKS=uint32(128),  # Must be less than half of SUB_EPOCH_BLOCKS
+    NUM_SPS_SUB_SLOT=uint8(64),  # Must be a power of 2
+    SUB_SLOT_ITERS_STARTING=uint64(2**27),
+    # DIFFICULTY_STARTING is the starting difficulty for the first epoch, which is then further
+    # multiplied by another factor of DIFFICULTY_CONSTANT_FACTOR, to be used in the VDF iter calculation formula.
+    DIFFICULTY_CONSTANT_FACTOR=uint128(2**67),
+    DIFFICULTY_STARTING=uint64(7),
+    DIFFICULTY_CHANGE_MAX_FACTOR=uint32(3),  # The next difficulty is truncated to range [prev / FACTOR, prev * FACTOR]
+    # These 3 constants must be changed at the same time
+    SUB_EPOCH_BLOCKS=uint32(384),  # The number of blocks per sub-epoch, mainnet 384
+    EPOCH_BLOCKS=uint32(4608),  # The number of blocks per epoch, mainnet 4608. Must be multiple of SUB_EPOCH_SB
+    SIGNIFICANT_BITS=uint8(8),  # The number of bits to look at in difficulty and min iters. The rest are zeroed
+    DISCRIMINANT_SIZE_BITS=uint16(1024),  # Max is 1024 (based on ClassGroupElement int size)
+    NUMBER_ZERO_BITS_PLOT_FILTER_V1=uint8(
+        9
+    ),  # H(plot signature of the challenge) must start with these many zeroes, for v1 plots
+    NUMBER_ZERO_BITS_PLOT_FILTER_V2=uint8(
+        5
+    ),  # H(plot signature of the challenge) must start with these many zeroes. for v2 plots
+    MIN_PLOT_SIZE_V1=uint8(32),  # 32 for mainnet
+    MAX_PLOT_SIZE_V1=uint8(50),
+    MIN_PLOT_SIZE_V2=uint8(28),
+    MAX_PLOT_SIZE_V2=uint8(32),
+    SUB_SLOT_TIME_TARGET=uint16(600),  # The target number of seconds per slot, mainnet 600
+    NUM_SP_INTERVALS_EXTRA=uint8(3),  # The number of sp intervals to add to the signage point
+    MAX_FUTURE_TIME2=uint32(2 * 60),  # The next block can have a timestamp of at most these many seconds in the future
+    NUMBER_OF_TIMESTAMPS=uint8(11),  # Than the average of the last NUMBER_OF_TIMESTAMPS blocks
+    # Used as the initial cc rc challenges, as well as first block back pointers, and first SES back pointer
+    # We override this value based on the chain being run (testnet0, testnet1, mainnet, etc)
+    # Default used for tests is std_hash(b'')
+    GENESIS_CHALLENGE=bytes32.fromhex("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"),
+    # Forks of chia should change the AGG_SIG_*_ADDITIONAL_DATA values to provide
+    # replay attack protection. This is set to mainnet genesis challenge
+    AGG_SIG_ME_ADDITIONAL_DATA=AGG_SIG_DATA,
+    AGG_SIG_PARENT_ADDITIONAL_DATA=std_hash(AGG_SIG_DATA + bytes([43])),
+    AGG_SIG_PUZZLE_ADDITIONAL_DATA=std_hash(AGG_SIG_DATA + bytes([44])),
+    AGG_SIG_AMOUNT_ADDITIONAL_DATA=std_hash(AGG_SIG_DATA + bytes([45])),
+    AGG_SIG_PUZZLE_AMOUNT_ADDITIONAL_DATA=std_hash(AGG_SIG_DATA + bytes([46])),
+    AGG_SIG_PARENT_AMOUNT_ADDITIONAL_DATA=std_hash(AGG_SIG_DATA + bytes([47])),
+    AGG_SIG_PARENT_PUZZLE_ADDITIONAL_DATA=std_hash(AGG_SIG_DATA + bytes([48])),
+    GENESIS_PRE_FARM_POOL_PUZZLE_HASH=bytes32.fromhex(
+        "d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc"
+    ),
+    GENESIS_PRE_FARM_FARMER_PUZZLE_HASH=bytes32.fromhex(
+        "3d8765d3a597ec1d99663f6c9816d915b9f68613ac94009884c4addaefcce6af"
+    ),
+    MAX_VDF_WITNESS_SIZE=uint8(64),
+    # Size of mempool = 10x the size of block
+    MEMPOOL_BLOCK_BUFFER=uint8(10),
+    # Max coin amount, fits into 64 bits
+    MAX_COIN_AMOUNT=uint64((1 << 64) - 1),
+    # Max block cost in clvm cost units
+    MAX_BLOCK_COST_CLVM=uint64(11000000000),
+    # The cost per byte of generator program
+    COST_PER_BYTE=uint64(12000),
+    WEIGHT_PROOF_THRESHOLD=uint8(2),
+    BLOCKS_CACHE_SIZE=uint32(4608 + (128 * 4)),
+    WEIGHT_PROOF_RECENT_BLOCKS=uint32(1000),
+    # Allow up to 33 blocks per request. This defines the max allowed difference
+    # between start and end in the block request message. But the range is
+    # inclusive, so the max allowed range of 32 is a request for 33 blocks
+    # (which is allowed)
+    MAX_BLOCK_COUNT_PER_REQUESTS=uint32(32),
+    MAX_GENERATOR_REF_LIST_SIZE=uint32(512),  # Number of references allowed in the block generator ref list
+    POOL_SUB_SLOT_ITERS=uint64(37600000000),  # iters limit * NUM_SPS
+    # June 2024
+    HARD_FORK_HEIGHT=uint32(5496000),
+    # TODO: todo_v2_plots finalize fork height
+    HARD_FORK2_HEIGHT=uint32(0xFFFFFFFA),
+    # starting at the hard fork 2 height, v1 plots will gradually be phased out,
+    # and stop working entirely after this many blocks
+    PLOT_V1_PHASE_OUT=uint32(1179648),
+    # June 2027
+    PLOT_FILTER_128_HEIGHT=uint32(10542000),
+    # June 2030
+    PLOT_FILTER_64_HEIGHT=uint32(15592000),
+    # June 2033
+    PLOT_FILTER_32_HEIGHT=uint32(20643000),
+    PLOT_STRENGTH_INITIAL=uint8(2),
+    QUALITY_PROOF_SCAN_FILTER=uint8(5),
+    # TODO: todo_v2_plots finalize plot filter schedule
+    PLOT_FILTER_V2_FIRST_ADJUSTMENT_HEIGHT=uint32(0xFFFFFFFB),
+    PLOT_FILTER_V2_SECOND_ADJUSTMENT_HEIGHT=uint32(0xFFFFFFFC),
+    PLOT_FILTER_V2_THIRD_ADJUSTMENT_HEIGHT=uint32(0xFFFFFFFD),
+)
+
+
+def update_testnet_overrides(network_id: str, overrides: dict[str, Any]) -> None:
+    # These constants changed names to support v2 plots
+    if "MIN_PLOT_SIZE_V1" not in overrides and "MIN_PLOT_SIZE" in overrides:
+        overrides["MIN_PLOT_SIZE_V1"] = overrides["MIN_PLOT_SIZE"]
+        overrides.pop("MIN_PLOT_SIZE")
+    if "MAX_PLOT_SIZE_V1" not in overrides and "MAX_PLOT_SIZE" in overrides:
+        overrides["MAX_PLOT_SIZE_V1"] = overrides["MAX_PLOT_SIZE"]
+        overrides.pop("MAX_PLOT_SIZE")
+    if network_id in {"testnet11", "testneta"}:
+        if "MIN_PLOT_SIZE_V2" not in overrides:
+            overrides["MIN_PLOT_SIZE_V2"] = 18
+    if network_id == "testneta":
+        if "HARD_FORK_HEIGHT" not in overrides:
+            overrides["HARD_FORK_HEIGHT"] = 3693395

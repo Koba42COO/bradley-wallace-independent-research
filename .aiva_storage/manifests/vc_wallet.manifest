@@ -1,0 +1,18 @@
+{
+  "tool_name": "vc_wallet",
+  "tool_hash": "3710852c4f1102d7bd383df165c30dd43989e80e376f76bdc5e80ed270f61766",
+  "total_size": 32875,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3710852c4f1102d7bd383df165c30dd43989e80e376f76bdc5e80ed270f61766"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/vc_wallet/vc_wallet.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/vc_wallet/vc_wallet.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.617402,
+  "updated_at": 1762787395.617405
+}

@@ -1,0 +1,279 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Optional
+
+from chia_rs import EndOfSubSlotBundle, FullBlock, SpendBundle, UnfinishedBlock
+from chia_rs.sized_bytes import bytes32
+from chia_rs.sized_ints import uint8, uint32, uint64, uint128
+
+from chia.types.blockchain_format.vdf import VDFInfo, VDFProof
+from chia.types.peer_info import TimestampedPeerInfo
+from chia.types.weight_proof import WeightProof
+from chia.util.streamable import Streamable, streamable
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+"""
+Protocol between full nodes.
+Note: When changing this file, also change protocol_message_types.py, and the protocol version in shared_protocol.py
+"""
+
+
+@streamable
+@dataclass(frozen=True)
+class NewPeak(Streamable):
+    header_hash: bytes32
+    height: uint32
+    weight: uint128
+    fork_point_with_previous_peak: uint32
+    unfinished_reward_block_hash: bytes32
+
+
+@streamable
+@dataclass(frozen=True)
+class NewTransaction(Streamable):
+    transaction_id: bytes32
+    cost: uint64
+    fees: uint64
+
+
+@streamable
+@dataclass(frozen=True)
+class RequestTransaction(Streamable):
+    transaction_id: bytes32
+
+
+@streamable
+@dataclass(frozen=True)
+class RespondTransaction(Streamable):
+    transaction: SpendBundle
+
+
+@streamable
+@dataclass(frozen=True)
+class RequestProofOfWeight(Streamable):
+    total_number_of_blocks: uint32
+    tip: bytes32
+
+
+@streamable
+@dataclass(frozen=True)
+class RespondProofOfWeight(Streamable):
+    wp: WeightProof
+    tip: bytes32
+
+
+@streamable
+@dataclass(frozen=True)
+class RequestBlock(Streamable):
+    height: uint32
+    include_transaction_block: bool
+
+
+@streamable
+@dataclass(frozen=True)
+class RejectBlock(Streamable):
+    height: uint32
+
+
+@streamable
+@dataclass(frozen=True)
+class RequestBlocks(Streamable):
+    start_height: uint32
+    end_height: uint32
+    include_transaction_block: bool
+
+
+@streamable
+@dataclass(frozen=True)
+class RespondBlocks(Streamable):
+    start_height: uint32
+    end_height: uint32
+    blocks: list[FullBlock]
+
+
+@streamable
+@dataclass(frozen=True)
+class RejectBlocks(Streamable):
+    start_height: uint32
+    end_height: uint32
+
+
+@streamable
+@dataclass(frozen=True)
+class RespondBlock(Streamable):
+    block: FullBlock
+
+
+@streamable
+@dataclass(frozen=True)
+class NewUnfinishedBlock(Streamable):
+    unfinished_reward_hash: bytes32
+
+
+@streamable
+@dataclass(frozen=True)
+class RequestUnfinishedBlock(Streamable):
+    unfinished_reward_hash: bytes32
+
+
+@streamable
+@dataclass(frozen=True)
+class NewUnfinishedBlock2(Streamable):
+    unfinished_reward_hash: bytes32
+    foliage_hash: Optional[bytes32]
+
+
+@streamable
+@dataclass(frozen=True)
+class RequestUnfinishedBlock2(Streamable):
+    unfinished_reward_hash: bytes32
+    foliage_hash: Optional[bytes32]
+
+
+@streamable
+@dataclass(frozen=True)
+class RespondUnfinishedBlock(Streamable):
+    unfinished_block: UnfinishedBlock
+
+
+@streamable
+@dataclass(frozen=True)
+class NewSignagePointOrEndOfSubSlot(Streamable):
+    prev_challenge_hash: Optional[bytes32]
+    challenge_hash: bytes32
+    index_from_challenge: uint8
+    last_rc_infusion: bytes32
+
+
+@streamable
+@dataclass(frozen=True)
+class RequestSignagePointOrEndOfSubSlot(Streamable):
+    challenge_hash: bytes32
+    index_from_challenge: uint8
+    last_rc_infusion: bytes32
+
+
+@streamable
+@dataclass(frozen=True)
+class RespondSignagePoint(Streamable):
+    index_from_challenge: uint8
+    challenge_chain_vdf: VDFInfo
+    challenge_chain_proof: VDFProof
+    reward_chain_vdf: VDFInfo
+    reward_chain_proof: VDFProof
+
+
+@streamable
+@dataclass(frozen=True)
+class RespondEndOfSubSlot(Streamable):
+    end_of_slot_bundle: EndOfSubSlotBundle
+
+
+@streamable
+@dataclass(frozen=True)
+class RequestMempoolTransactions(Streamable):
+    filter: bytes
+
+
+@streamable
+@dataclass(frozen=True)
+class NewCompactVDF(Streamable):
+    height: uint32
+    header_hash: bytes32
+    field_vdf: uint8
+    vdf_info: VDFInfo
+
+
+@streamable
+@dataclass(frozen=True)
+class RequestCompactVDF(Streamable):
+    height: uint32
+    header_hash: bytes32
+    field_vdf: uint8
+    vdf_info: VDFInfo
+
+
+@streamable
+@dataclass(frozen=True)
+class RespondCompactVDF(Streamable):
+    height: uint32
+    header_hash: bytes32
+    field_vdf: uint8
+    vdf_info: VDFInfo
+    vdf_proof: VDFProof
+
+
+@streamable
+@dataclass(frozen=True)
+class RequestPeers(Streamable):
+    """
+    Return full list of peers
+    """
+
+
+@streamable
+@dataclass(frozen=True)
+class RespondPeers(Streamable):
+    peer_list: list[TimestampedPeerInfo]

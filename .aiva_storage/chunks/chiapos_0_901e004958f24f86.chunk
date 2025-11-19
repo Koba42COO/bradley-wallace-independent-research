@@ -1,0 +1,125 @@
+"""
+NOTE: This contains duplicate code from `chia.cmds.plots`.
+After `chia plots create` becomes obsolete, consider removing it from there.
+"""
+
+from __future__ import annotations
+
+import asyncio
+import importlib.metadata
+import logging
+from argparse import Namespace
+from pathlib import Path
+from typing import Any, Optional
+
+from chia.plotting.create_plots import create_plots, resolve_plot_keys
+from chia.plotting.util import Params, add_plot_directory, validate_plot_size
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+log = logging.getLogger(__name__)
+
+
+def get_chiapos_install_info() -> Optional[dict[str, Any]]:
+    chiapos_version = importlib.metadata.version("chiapos")
+    return {"display_name": "Chia Proof of Space", "version": chiapos_version, "installed": True}
+
+
+def plot_chia(args: Namespace, root_path: Path) -> None:
+    try:
+        validate_plot_size(root_path, args.size, args.override)
+    except ValueError as e:
+        print(e)
+        return
+
+    plot_keys = asyncio.run(
+        resolve_plot_keys(
+            None if args.farmerkey == b"" else args.farmerkey.hex(),
+            args.alt_fingerprint,
+            None if args.pool_key == b"" else args.pool_key.hex(),
+            None if args.contract == "" else args.contract,
+            root_path,
+            log,
+            args.connect_to_daemon,
+        )
+    )
+    params = Params(
+        size=args.size,
+        num=args.count,
+        buffer=args.buffer,
+        num_threads=args.threads,
+        buckets=args.buckets,
+        stripe_size=args.stripes,
+        tmp_dir=Path(args.tmpdir),
+        tmp2_dir=Path(args.tmpdir2) if args.tmpdir2 else None,
+        final_dir=Path(args.finaldir),
+        plotid=args.id,
+        memo=args.memo,
+        nobitfield=args.nobitfield,
+    )
+    asyncio.run(create_plots(params, plot_keys))
+    if not args.exclude_final_dir:
+        try:
+            add_plot_directory(root_path, args.finaldir)
+        except ValueError as e:
+            print(e)

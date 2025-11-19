@@ -1,0 +1,18 @@
+{
+  "tool_name": "farmer_rpc_client",
+  "tool_hash": "15cee6a6c7b4b40e0e17e33fdbd6bcf0fd577f2f96011f54415c8aacbe371fd3",
+  "total_size": 6924,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "15cee6a6c7b4b40e0e17e33fdbd6bcf0fd577f2f96011f54415c8aacbe371fd3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/farmer/farmer_rpc_client.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/farmer/farmer_rpc_client.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.334739,
+  "updated_at": 1762787395.334742
+}

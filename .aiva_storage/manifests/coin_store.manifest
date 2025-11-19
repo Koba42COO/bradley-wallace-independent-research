@@ -1,0 +1,18 @@
+{
+  "tool_name": "coin_store",
+  "tool_hash": "90dbbf8a195f98741ac5e23c9be1db0f0f28027d9c6352266ad410df2ad206b8",
+  "total_size": 32613,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "90dbbf8a195f98741ac5e23c9be1db0f0f28027d9c6352266ad410df2ad206b8"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/coin_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/coin_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.650383,
+  "updated_at": 1762787395.650387
+}

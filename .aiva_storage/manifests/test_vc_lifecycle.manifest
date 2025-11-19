@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_vc_lifecycle",
+  "tool_hash": "1d226e6a3d622317416182cd9a3ab65a626225a6655c0ba2a536fe7fe13384d2",
+  "total_size": 36632,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1d226e6a3d622317416182cd9a3ab65a626225a6655c0ba2a536fe7fe13384d2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/vc_wallet/test_vc_lifecycle.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/vc_wallet/test_vc_lifecycle.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.487783,
+  "updated_at": 1762787395.487786
+}

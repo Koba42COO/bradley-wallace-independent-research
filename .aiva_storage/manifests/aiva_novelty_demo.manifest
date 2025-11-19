@@ -1,0 +1,18 @@
+{
+  "tool_name": "aiva_novelty_demo",
+  "tool_hash": "4a3af8881954724b32f385e593d56588e35d538701c74f82198bfaca6003318b",
+  "total_size": 10595,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4a3af8881954724b32f385e593d56588e35d538701c74f82198bfaca6003318b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/aiva_novelty_demo.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/aiva_novelty_demo.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.026509,
+  "updated_at": 1762787395.026512
+}

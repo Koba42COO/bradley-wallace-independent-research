@@ -1,0 +1,18 @@
+{
+  "tool_name": "production_deployment",
+  "tool_hash": "d89b35d9328cc7c74c6e8eef20bb7db37b1a1a43a9b222ba87a28592baeda0e4",
+  "total_size": 26629,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d89b35d9328cc7c74c6e8eef20bb7db37b1a1a43a9b222ba87a28592baeda0e4"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/production_deployment.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/production_deployment.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0957649,
+  "updated_at": 1762787395.0957692
+}

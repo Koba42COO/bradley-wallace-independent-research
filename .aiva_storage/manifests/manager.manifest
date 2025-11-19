@@ -1,0 +1,18 @@
+{
+  "tool_name": "manager",
+  "tool_hash": "c81f04b15677446b636353331ecd254155b16f3e481b2ef99253436743341f76",
+  "total_size": 21984,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c81f04b15677446b636353331ecd254155b16f3e481b2ef99253436743341f76"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plotting/manager.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plotting/manager.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.569939,
+  "updated_at": 1762787395.569942
+}

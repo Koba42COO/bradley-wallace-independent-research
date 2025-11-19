@@ -1,0 +1,18 @@
+{
+  "tool_name": "omniforge",
+  "tool_hash": "104edc719321a7aeb02e48694a073baf8d14d6175b75704a4a73e3c2e2752969",
+  "total_size": 5275,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "104edc719321a7aeb02e48694a073baf8d14d6175b75704a4a73e3c2e2752969"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/consciousness_framework/omniforge.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/consciousness_framework/omniforge.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.1158469,
+  "updated_at": 1762787395.115851
+}

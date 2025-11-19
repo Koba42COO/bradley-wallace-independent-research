@@ -1,0 +1,18 @@
+{
+  "tool_name": "mempool_funcs",
+  "tool_hash": "b89b5b94416621e8a14ae042353b672d83ed013349b39b06dc0f71f18f965b78",
+  "total_size": 2013,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b89b5b94416621e8a14ae042353b672d83ed013349b39b06dc0f71f18f965b78"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/dev/mempool_funcs.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/dev/mempool_funcs.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.531093,
+  "updated_at": 1762787395.5310981
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "passphrase",
+  "tool_hash": "b69b5c2b17c8113c379182e693a17a58b883da06acbe41c2ca90dbc2d0030a35",
+  "total_size": 7665,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b69b5c2b17c8113c379182e693a17a58b883da06acbe41c2ca90dbc2d0030a35"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/passphrase.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/passphrase.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5263512,
+  "updated_at": 1762787395.5263538
+}

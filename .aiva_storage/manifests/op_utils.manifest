@@ -1,0 +1,18 @@
+{
+  "tool_name": "op_utils",
+  "tool_hash": "d5e77b3c06fe095c90dc7e7f973f5d17c96ad8859f1f9439cf5b85c6bcb55d2f",
+  "total_size": 3697,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d5e77b3c06fe095c90dc7e7f973f5d17c96ad8859f1f9439cf5b85c6bcb55d2f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/clvm/op_utils.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/clvm/op_utils.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.060569,
+  "updated_at": 1762787395.060571
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_service_groups",
+  "tool_hash": "f779318b8e22b991043312e5e70d2ed5759eb1e0058f1b6b05e2dd0bc503dc90",
+  "total_size": 3148,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f779318b8e22b991043312e5e70d2ed5759eb1e0058f1b6b05e2dd0bc503dc90"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_service_groups.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_service_groups.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.408637,
+  "updated_at": 1762787395.408641
+}

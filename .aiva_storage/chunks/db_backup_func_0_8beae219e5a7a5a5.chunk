@@ -1,0 +1,139 @@
+from __future__ import annotations
+
+from pathlib import Path
+from typing import Any, Optional
+
+from chia.util.config import load_config
+from chia.util.path import path_from_root
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+def db_backup_func(
+    root_path: Path,
+    backup_db_file: Optional[Path] = None,
+    *,
+    no_indexes: bool,
+) -> None:
+    config: dict[str, Any] = load_config(root_path, "config.yaml")["full_node"]
+    selected_network: str = config["selected_network"]
+    db_pattern: str = config["database_path"]
+    db_path_replaced: str = db_pattern.replace("CHALLENGE", selected_network)
+    source_db = path_from_root(root_path, db_path_replaced)
+    if backup_db_file is None:
+        db_path_replaced_backup = db_path_replaced.replace("blockchain_", "vacuumed_blockchain_")
+        backup_db_file = path_from_root(root_path, db_path_replaced_backup)
+
+    backup_db(source_db, backup_db_file, no_indexes=no_indexes)
+
+    print(f"\n\nDatabase backup finished : {backup_db_file}\n")
+
+
+def backup_db(source_db: Path, backup_db: Path, *, no_indexes: bool) -> None:
+    import sqlite3
+    from contextlib import closing
+
+    # VACUUM INTO is only available starting with SQLite version 3.27.0
+    if not no_indexes and sqlite3.sqlite_version_info < (3, 27, 0):
+        raise RuntimeError(
+            f"SQLite {sqlite3.sqlite_version} not supported. Version needed is 3.27.0"
+            f"\n\tuse '--no_indexes' option to create a backup without indexes instead."
+            f"\n\tIn case of a restore, the missing indexes will be recreated during full node startup."
+        )
+
+    if not backup_db.parent.exists():
+        print(f"backup destination path doesn't exist. {backup_db.parent}")
+        raise RuntimeError(f"can't find {backup_db}")
+
+    print(f"reading from blockchain database: {source_db}")
+    print(f"writing to backup file: {backup_db}")
+    with closing(sqlite3.connect(source_db)) as in_db:
+        try:
+            if no_indexes:
+                in_db.execute("ATTACH DATABASE ? AS backup", (str(backup_db),))
+                in_db.execute("pragma backup.journal_mode=OFF")
+                in_db.execute("pragma backup.synchronous=OFF")
+                # Use writable_schema=1 to allow create table using internal sqlite names like sqlite_stat1
+                in_db.execute("pragma backup.writable_schema=1")
+                cursor = in_db.cursor()
+                for row in cursor.execute(
+                    "select replace(sql,'CREATE TABLE ', 'CREATE TABLE backup.') from sqlite_master "
+                    "where upper(type)='TABLE'"
+                ):
+                    in_db.execute(row[0])
+
+                in_db.execute("BEGIN TRANSACTION")
+                for row in cursor.execute(
+                    "select 'INSERT INTO backup.'||name||' SELECT * FROM main.'||name from sqlite_master "
+                    "where upper(type)='TABLE'"
+                ):
+                    in_db.execute(row[0])
+                in_db.execute("COMMIT")
+                in_db.execute("DETACH DATABASE backup")
+            else:
+                in_db.execute("VACUUM INTO ?", [str(backup_db)])
+        except sqlite3.OperationalError as e:
+            raise RuntimeError(
+                f"backup failed with error: '{e}'"
+                f"\n\tYour backup file {backup_db} is probably left over in an insconsistent state."
+            )

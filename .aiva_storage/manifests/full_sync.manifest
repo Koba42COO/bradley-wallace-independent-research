@@ -1,0 +1,18 @@
+{
+  "tool_name": "full_sync",
+  "tool_hash": "88571b7ab6edd73fd2bc8a6adf4cb24aad6ba5b81b8788b9086f3ea766657daf",
+  "total_size": 12318,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "88571b7ab6edd73fd2bc8a6adf4cb24aad6ba5b81b8788b9086f3ea766657daf"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/full_sync.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/full_sync.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.421061,
+  "updated_at": 1762787395.421064
+}

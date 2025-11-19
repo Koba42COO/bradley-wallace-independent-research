@@ -1,0 +1,18 @@
+{
+  "tool_name": "amino_acid_consciousness_contribution",
+  "tool_hash": "5fd5ea98fbed893c308ba9c32acc79be06289e799d32bfb03ef712c5ca6268a2",
+  "total_size": 26525,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5fd5ea98fbed893c308ba9c32acc79be06289e799d32bfb03ef712c5ca6268a2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/amino_acid_consciousness_contribution.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/amino_acid_consciousness_contribution.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.016202,
+  "updated_at": 1762787395.016205
+}

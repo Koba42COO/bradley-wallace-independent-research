@@ -1,0 +1,18 @@
+{
+  "tool_name": "introducer_api",
+  "tool_hash": "aa257d1d1c970dd534ea6e4f5f01a5b393f1734fcea9044c1977371e9e01d3f2",
+  "total_size": 5527,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "aa257d1d1c970dd534ea6e4f5f01a5b393f1734fcea9044c1977371e9e01d3f2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/introducer/introducer_api.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/introducer/introducer_api.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.280591,
+  "updated_at": 1762787395.2805939
+}

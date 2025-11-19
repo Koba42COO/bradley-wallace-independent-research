@@ -1,0 +1,18 @@
+{
+  "tool_name": "data_layer_rpc_util",
+  "tool_hash": "f7feb65824824572896c58b506ebdd5b74b8e520bc44e68a2866a211f1e86c50",
+  "total_size": 4544,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f7feb65824824572896c58b506ebdd5b74b8e520bc44e68a2866a211f1e86c50"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/data_layer_rpc_util.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/data_layer_rpc_util.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5840461,
+  "updated_at": 1762787395.584049
+}

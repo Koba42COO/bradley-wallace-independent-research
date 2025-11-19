@@ -1,0 +1,18 @@
+{
+  "tool_name": "supplement_crystallographic_visualization",
+  "tool_hash": "eba771985d0cf07f39047a3db507e6cf9e3cd2df0a0586ec6ad51465aefa910c",
+  "total_size": 33991,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "eba771985d0cf07f39047a3db507e6cf9e3cd2df0a0586ec6ad51465aefa910c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/supplement_crystallographic_visualization.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/supplement_crystallographic_visualization.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0065532,
+  "updated_at": 1762787395.0065558
+}

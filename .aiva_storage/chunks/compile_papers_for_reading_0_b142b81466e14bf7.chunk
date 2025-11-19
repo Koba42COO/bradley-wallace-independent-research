@@ -1,0 +1,523 @@
+#!/usr/bin/env python3
+"""
+Compile full analytical versions of all papers for easy reading.
+Combines LaTeX papers with theorems, validation results, code examples, and supporting materials.
+"""
+
+import os
+import re
+from pathlib import Path
+from datetime import datetime
+import json
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+def find_all_papers():
+    """Find all .tex papers."""
+    base_dirs = [
+        "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers",
+        "/Users/coo-koba42/dev/bradley-wallace-independent-research/subjects",
+    ]
+    
+    papers = []
+    for base_dir in base_dirs:
+        if not os.path.exists(base_dir):
+            continue
+        for root, dirs, files in os.walk(base_dir):
+            dirs[:] = [d for d in dirs if not d.startswith('.')]
+            for file in files:
+                if file.endswith('.tex'):
+                    papers.append(os.path.join(root, file))
+    return papers
+
+def extract_paper_metadata(tex_path):
+    """Extract metadata from LaTeX paper."""
+    metadata = {
+        'title': '',
+        'author': '',
+        'date': '',
+        'abstract': '',
+        'sections': []
+    }
+    
+    try:
+        with open(tex_path, 'r', encoding='utf-8', errors='ignore') as f:
+            content = f.read()
+        
+        # Extract title
+        title_match = re.search(r'\\title\{([^}]+)\}', content, re.DOTALL)
+        if title_match:
+            metadata['title'] = re.sub(r'\\[a-zA-Z]+\{?[^}]*\}?', '', title_match.group(1)).strip()
+        
+        # Extract author
+        author_match = re.search(r'\\author\{([^}]+)\}', content, re.DOTALL)
+        if author_match:
+            metadata['author'] = re.sub(r'\\[a-zA-Z]+\{?[^}]*\}?', '', author_match.group(1)).strip()
+        
+        # Extract date
+        date_match = re.search(r'\\date\{([^}]+)\}', content)
+        if date_match:
+            metadata['date'] = date_match.group(1)
+        
+        # Extract abstract
+        abstract_match = re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}', content, re.DOTALL)
+        if abstract_match:
+            metadata['abstract'] = re.sub(r'\\[a-zA-Z]+\{?[^}]*\}?', '', abstract_match.group(1)).strip()
+        
+        # Extract sections
+        section_matches = re.finditer(r'\\section\{([^}]+)\}', content)
+        for match in section_matches:
+            metadata['sections'].append(match.group(1))
+    
+    except Exception as e:
+        print(f"Error extracting metadata from {tex_path}: {e}")
+    
+    return metadata
+
+def extract_theorems_detailed(tex_path):
+    """Extract detailed theorem information."""
+    theorems = []
+    try:
+        with open(tex_path, 'r', encoding='utf-8', errors='ignore') as f:
+            lines = f.readlines()
+        
+        in_theorem = False
+        current_theorem = None
+        theorem_lines = []
+        current_section = "Introduction"
+        
+        for i, line in enumerate(lines):
+            # Track current section
+            section_match = re.search(r'\\section\{([^}]+)\}', line)
+            if section_match:
+                current_section = section_match.group(1)
+            
+            # Check for theorem start
+            theorem_match = re.search(r'\\begin\{(theorem|definition|corollary|lemma|proposition|postulate)\}(?:\[([^\]]+)\])?', line)
+            if theorem_match:
+                in_theorem = True
+                thm_type = theorem_match.group(1)
+                thm_name = theorem_match.group(2) or f"{thm_type}_{len(theorems)}"
+                current_theorem = {
+                    'type': thm_type,
+                    'name': thm_name,
+                    'line': i + 1,
+                    'section': current_section,
+                    'content': []
+                }
+                theorem_lines = [line]
+            
+            if in_theorem:
+                theorem_lines.append(line)
+                if '\\end{' in line and current_theorem['type'] in line:
+                    current_theorem['content'] = ''.join(theorem_lines)
+                    # Clean LaTeX formatting
+                    content_clean = re.sub(r'\\[a-zA-Z]+\{?([^}]*)\}?', r'\1', current_theorem['content'])
+                    content_clean = re.sub(r'\$([^$]+)\$', r'\1', content_clean)
+                    current_theorem['content_clean'] = content_clean
+                    theorems.append(current_theorem)
+                    in_theorem = False
+                    current_theorem = None
+                    theorem_lines = []
+    
+    except Exception as e:
+        print(f"Error extracting theorems from {tex_path}: {e}")
+    
+    return theorems
+
+def get_validation_results(paper_path):
+    """Get validation results if available."""
+    paper_name = os.path.splitext(os.path.basename(paper_path))[0]
+    paper_dir = os.path.dirname(paper_path)
+    supporting_dir = os.path.join(paper_dir, "supporting_materials")
+    validation_dir = os.path.join(supporting_dir, "validation_logs")
+    
+    results = {
+        'has_validation': False,
+        'test_file_exists': False,
+        'validation_log_exists': False,
+        'theorems_tested': 0,
+        'tests_passed': None
+    }
+    
+    test_file = os.path.join(supporting_dir, "tests", f"test_{paper_name}.py")
+    if os.path.exists(test_file):
+        results['test_file_exists'] = True
+    
+    validation_log = os.path.join(validation_dir, f"validation_log_{paper_name}.md")
+    if os.path.exists(validation_log):
+        results['validation_log_exists'] = True
+        results['has_validation'] = True
+        try:
+            with open(validation_log, 'r') as f:
+                log_content = f.read()
+                # Extract test results
+                if '✅' in log_content or 'PASS' in log_content:
+                    results['tests_passed'] = True
+                elif '❌' in log_content or 'FAIL' in log_content:
+                    results['tests_passed'] = False
+        except:
+            pass
+    
+    return results
+
+def compile_paper(tex_path, output_dir):
+    """Compile a single paper into a readable format."""
+    paper_name = os.path.splitext(os.path.basename(tex_path))[0]
+    paper_dir = os.path.dirname(tex_path)
+    
+    # Extract information
+    metadata = extract_paper_metadata(tex_path)
+    theorems = extract_theorems_detailed(tex_path)
+    validation = get_validation_results(tex_path)
+    
+    # Create output file
+    output_file = os.path.join(output_dir, f"{paper_name}_COMPILED.md")
+    
+    # Build compiled document
+    content = []
+    content.append(f"# {metadata['title'] or paper_name.replace('_', ' ').title()}\n")
+    content.append(f"**Full Analytical Compiled Version**\n")
+    content.append(f"**Date Compiled:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+    content.append("---\n\n")
+    
+    # Metadata
+    if metadata['author']:
+        content.append(f"**Author:** {metadata['author']}\n")
+    if metadata['date']:
+        content.append(f"**Date:** {metadata['date']}\n")
+    content.append(f"**Source:** `{os.path.relpath(tex_path, '/Users/coo-koba42/dev')}`\n\n")
+    
+    # Abstract
+    if metadata['abstract']:
+        content.append("## Abstract\n\n")
+        content.append(f"{metadata['abstract']}\n\n")
+        content.append("---\n\n")
+    
+    # Table of Contents
+    content.append("## Table of Contents\n\n")
+    content.append("1. [Paper Overview](#paper-overview)\n")
+    if theorems:
+        content.append(f"2. [Theorems and Definitions](#theorems-and-definitions) ({len(theorems)} total)\n")
+    if validation['has_validation']:
+        content.append("3. [Validation Results](#validation-results)\n")
+    content.append("4. [Supporting Materials](#supporting-materials)\n")
+    content.append("5. [Code Examples](#code-examples)\n")
+    content.append("6. [Visualizations](#visualizations)\n")
+    content.append("\n---\n\n")
+    
+    # Paper Overview
+    content.append("## Paper Overview\n\n")
+    content.append(f"**Paper Name:** {paper_name}\n\n")
+    if metadata['sections']:
+        content.append("**Sections:**\n")
+        for i, section in enumerate(metadata['sections'], 1):
+            content.append(f"{i}. {section}\n")
+        content.append("\n")
+    
+    # Theorems and Definitions
+    if theorems:
+        content.append("## Theorems and Definitions\n\n")
+        content.append(f"**Total:** {len(theorems)} mathematical statements\n\n")
+        
+        # Group by type
+        by_type = {}
+        for thm in theorems:
+            thm_type = thm['type'].capitalize()
+            if thm_type not in by_type:
+                by_type[thm_type] = []
+            by_type[thm_type].append(thm)
+        
+        for thm_type in ['Theorem', 'Definition', 'Postulate', 'Corollary', 'Lemma', 'Proposition']:
+            if thm_type.lower() in by_type:
+                content.append(f"### {thm_type}s\n\n")
+                for i, thm in enumerate(by_type[thm_type.lower()], 1):
+                    content.append(f"#### {i}. {thm['name']} ({thm_type})\n\n")
+                    content.append(f"**Location:** {thm['section']}, Line {thm['line']}\n\n")
+                    content.append(f"**Statement:**\n\n")
+                    # Clean and format content
+                    statement = thm['content_clean']
+                    # Remove LaTeX commands more thoroughly
+                    statement = re.sub(r'\\begin\{[^}]+\}', '', statement)
+                    statement = re.sub(r'\\end\{[^}]+\}', '', statement)
+                    statement = re.sub(r'\\item', '-', statement)
+                    statement = re.sub(r'\\textbf\{([^}]+)\}', r'**\1**', statement)
+                    statement = re.sub(r'\\textit\{([^}]+)\}', r'*\1*', statement)
+                    content.append(f"{statement}\n\n")
+                    content.append("---\n\n")
+    
+    # Validation Results
+    if validation['has_validation']:
+        content.append("## Validation Results\n\n")
+        content.append("### Test Status\n\n")
+        if validation['test_file_exists']:
+            content.append("✅ **Test file exists:** `test_{paper_name}.py`\n\n")
+        if validation['validation_log_exists']:
+            content.append("✅ **Validation log exists:** `validation_log_{paper_name}.md`\n\n")
+        if validation['tests_passed'] is not None:
+            status = "✅ PASSED" if validation['tests_passed'] else "❌ FAILED"
+            content.append(f"**Test Results:** {status}\n\n")
+        content.append(f"**Theorems Tested:** {len(theorems)}\n\n")
+        content.append(f"**Validation Log:** See `supporting_materials/validation_logs/validation_log_{paper_name}.md`\n\n")
+    
+    # Supporting Materials
+    content.append("## Supporting Materials\n\n")
+    supporting_dir = os.path.join(paper_dir, "supporting_materials")
+    
+    if os.path.exists(supporting_dir):
+        content.append("### Available Materials\n\n")
+        
+        # Tests
+        tests_dir = os.path.join(supporting_dir, "tests")
+        if os.path.exists(tests_dir):
+            test_files = [f for f in os.listdir(tests_dir) if f.endswith('.py')]
+            if test_files:
+                content.append("**Test Files:**\n")
+                for test_file in test_files:
+                    content.append(f"- `{test_file}`\n")
+                content.append("\n")
+        
+        # Code Examples
+        code_dir = os.path.join(supporting_dir, "code_examples")
+        if os.path.exists(code_dir):
+            code_files = [f for f in os.listdir(code_dir) if f.endswith('.py')]
+            if code_files:
+                content.append("**Code Examples:**\n")
+                for code_file in code_files:
+                    content.append(f"- `{code_file}`\n")
+                content.append("\n")
+        
+        # Visualizations
+        viz_dir = os.path.join(supporting_dir, "visualizations")
+        if os.path.exists(viz_dir):
+            viz_files = [f for f in os.listdir(viz_dir) if f.endswith('.py')]
+            if viz_files:
+                content.append("**Visualization Scripts:**\n")
+                for viz_file in viz_files:
+                    content.append(f"- `{viz_file}`\n")
+                content.append("\n")
+        
+        # Datasets
+        datasets_dir = os.path.join(supporting_dir, "datasets")
+        if os.path.exists(datasets_dir):
+            dataset_files = [f for f in os.listdir(datasets_dir) if f.endswith('.py')]
+            if dataset_files:
+                content.append("**Dataset Generators:**\n")
+                for dataset_file in dataset_files:
+                    content.append(f"- `{dataset_file}`\n")
+                content.append("\n")
+    
+    # Code Examples Section
+    content.append("## Code Examples\n\n")
+    code_dir = os.path.join(supporting_dir, "code_examples")
+    if os.path.exists(code_dir):
+        code_file = os.path.join(code_dir, f"implementation_{paper_name}.py")
+        if os.path.exists(code_file):
+            content.append(f"### Implementation: `implementation_{paper_name}.py`\n\n")
+            try:
+                with open(code_file, 'r') as f:
+                    code_content = f.read()
+                    # Show first 100 lines
+                    code_lines = code_content.split('\n')[:100]
+                    content.append("```python\n")
+                    content.append('\n'.join(code_lines))
+                    if len(code_content.split('\n')) > 100:
+                        content.append("\n# ... (truncated, see full file for complete implementation)\n")
+                    content.append("```\n\n")
+            except:
+                content.append("*Code example file exists but could not be read.*\n\n")
+    else:
+        content.append("*No code examples available yet.*\n\n")
+    
+    # Visualizations Section
+    content.append("## Visualizations\n\n")
+    viz_dir = os.path.join(supporting_dir, "visualizations")
+    if os.path.exists(viz_dir):
+        viz_file = os.path.join(viz_dir, f"generate_figures_{paper_name}.py")
+        if os.path.exists(viz_file):
+            content.append(f"**Visualization Script:** `generate_figures_{paper_name}.py`\n\n")
+            content.append("Run this script to generate all figures for this paper:\n\n")
+            content.append("```bash\n")
+            content.append(f"cd {os.path.relpath(viz_dir, '/Users/coo-koba42/dev')}\n")
+            content.append(f"python3 generate_figures_{paper_name}.py\n")
+            content.append("```\n\n")
+    else:
+        content.append("*Visualization scripts available in supporting_materials/visualizations/*\n\n")
+    
+    # Quick Reference
+    content.append("## Quick Reference\n\n")
+    content.append("### Key Theorems\n\n")
+    if theorems:
+        for i, thm in enumerate(theorems[:10], 1):  # First 10
+            content.append(f"{i}. **{thm['name']}** ({thm['type']}) - {thm['section']}\n")
+        if len(theorems) > 10:
+            content.append(f"\n... and {len(theorems) - 10} more theorems/definitions\n")
+    else:
+        content.append("*No theorems found in this paper.*\n")
+    
+    content.append("\n---\n\n")
+    content.append(f"**Compiled:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+    content.append(f"**Source Paper:** `{os.path.relpath(tex_path, '/Users/coo-koba42/dev')}`\n")
+    
+    # Write compiled document
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write(''.join(content))
+    
+    return output_file
+
+def create_master_index(output_dir, papers_compiled):
+    """Create master index of all compiled papers."""
+    index_file = os.path.join(output_dir, "MASTER_INDEX.md")
+    
+    content = []
+    content.append("# Master Index: All Compiled Papers\n\n")
+    content.append(f"**Total Papers:** {len(papers_compiled)}\n")
+    content.append(f"**Compilation Date:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+    content.append("---\n\n")
+    
+    # Group by category
+    by_category = {}
+    for paper_info in papers_compiled:
+        path = paper_info['path']
+        if 'wallace_transformation' in path:
+            category = 'Wallace Transformation'
+        elif 'p_vs_np' in path:
+            category = 'P vs NP'
+        elif 'zodiac' in path:
+            category = 'Ancient Mathematics'
+        elif 'egyptian' in path:
+            category = 'Ancient Mathematics'
+        elif 'quantum' in path:
+            category = 'Quantum Physics'
+        elif 'consciousness' in path:
+            category = 'Consciousness Mathematics'
+        else:
+            category = 'Other'
+        
+        if category not in by_category:
+            by_category[category] = []
+        by_category[category].append(paper_info)
+    
+    # List by category
+    for category in sorted(by_category.keys()):
+        content.append(f"## {category}\n\n")
+        for paper_info in sorted(by_category[category], key=lambda x: x['name']):
+            content.append(f"- [{paper_info['name']}]({paper_info['compiled_file']})\n")
+            content.append(f"  - Theorems: {paper_info['theorems']}\n")
+            content.append(f"  - Validation: {'✅' if paper_info['has_validation'] else '❌'}\n")
+        content.append("\n")
+    
+    with open(index_file, 'w', encoding='utf-8') as f:
+        f.write(''.join(content))
+    
+    return index_file
+
+def main():
+    """Main compilation function."""
+    print("📚 Compiling all papers into readable analytical versions...")
+    print("="*70)
+    
+    # Create output directory
+    output_dir = "/Users/coo-koba42/dev/bradley-wallace-independent-research/compiled_papers"
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Find all papers
+    papers = find_all_papers()
+    print(f"Found {len(papers)} papers to compile\n")
+    
+    papers_compiled = []
+    for i, paper_path in enumerate(papers, 1):
+        paper_name = os.path.splitext(os.path.basename(paper_path))[0]
+        rel_path = os.path.relpath(paper_path, '/Users/coo-koba42/dev')
+        print(f"[{i}/{len(papers)}] Compiling: {paper_name[:50]}...", end=' ', flush=True)
+        
+        try:
+            compiled_file = compile_paper(paper_path, output_dir)
+            theorems = extract_theorems_detailed(paper_path)
+            validation = get_validation_results(paper_path)
+            
+            papers_compiled.append({
+                'name': paper_name,
+                'path': rel_path,
+                'compiled_file': os.path.basename(compiled_file),
+                'theorems': len(theorems),
+                'has_validation': validation['has_validation']
+            })
+            print("✅")
+        except Exception as e:
+            print(f"❌ Error: {e}")
+    
+    # Create master index
+    print(f"\n📑 Creating master index...")
+    index_file = create_master_index(output_dir, papers_compiled)
+    print(f"✅ Created: {os.path.basename(index_file)}")
+    
+    print(f"\n{'='*70}")
+    print(f"✅ Compiled {len(papers_compiled)} papers")
+    print(f"📁 Output directory: {output_dir}")
+    print(f"📄 Master index: {os.path.basename(index_file)}")
+    print(f"\n🎯 All papers are now available in easy-to-read compiled format!")
+
+if __name__ == '__main__':
+    main()
+

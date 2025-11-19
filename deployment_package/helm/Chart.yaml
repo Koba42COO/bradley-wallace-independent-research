@@ -1,6 +1,0 @@
-apiVersion: v2
-appVersion: 1.0.0
-description: A Helm chart for chAIos Polymath Brain Platform
-name: chaios-platform
-type: application
-version: 1.0.0

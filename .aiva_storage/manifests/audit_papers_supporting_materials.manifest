@@ -1,0 +1,18 @@
+{
+  "tool_name": "audit_papers_supporting_materials",
+  "tool_hash": "d06a040b11022c0db6e769ca9e82cca8c50f67b55bf11c918ed220c381404328",
+  "total_size": 12117,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d06a040b11022c0db6e769ca9e82cca8c50f67b55bf11c918ed220c381404328"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/audit_papers_supporting_materials.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/audit_papers_supporting_materials.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.029025,
+  "updated_at": 1762787395.0290282
+}

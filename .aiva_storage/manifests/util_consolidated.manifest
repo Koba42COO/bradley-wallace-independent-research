@@ -1,0 +1,18 @@
+{
+  "tool_name": "util_consolidated",
+  "tool_hash": "4d83c3176b433d301270d34c4231d41037353bbdc49caf1e7c4f8f4a59ec943b",
+  "total_size": 15314,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4d83c3176b433d301270d34c4231d41037353bbdc49caf1e7c4f8f4a59ec943b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plotting/util_consolidated.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plotting/util_consolidated.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5649788,
+  "updated_at": 1762787395.5649831
+}

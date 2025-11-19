@@ -1,0 +1,129 @@
+import json
+import platform
+import sys
+from typing import Dict
+
+from . import __version__ as pyjwt_version
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+try:
+    import cryptography
+
+    cryptography_version = cryptography.__version__
+except ModuleNotFoundError:
+    cryptography_version = ""
+
+
+def info() -> Dict[str, Dict[str, str]]:
+    """
+    Generate information for a bug report.
+    Based on the requests package help utility module.
+    """
+    try:
+        platform_info = {
+            "system": platform.system(),
+            "release": platform.release(),
+        }
+    except OSError:
+        platform_info = {"system": "Unknown", "release": "Unknown"}
+
+    implementation = platform.python_implementation()
+
+    if implementation == "CPython":
+        implementation_version = platform.python_version()
+    elif implementation == "PyPy":
+        pypy_version_info = sys.pypy_version_info  # type: ignore[attr-defined]
+        implementation_version = (
+            f"{pypy_version_info.major}."
+            f"{pypy_version_info.minor}."
+            f"{pypy_version_info.micro}"
+        )
+        if pypy_version_info.releaselevel != "final":
+            implementation_version = "".join(
+                [
+                    implementation_version,
+                    pypy_version_info.releaselevel,
+                ]
+            )
+    else:
+        implementation_version = "Unknown"
+
+    return {
+        "platform": platform_info,
+        "implementation": {
+            "name": implementation,
+            "version": implementation_version,
+        },
+        "cryptography": {"version": cryptography_version},
+        "pyjwt": {"version": pyjwt_version},
+    }
+
+
+def main() -> None:
+    """Pretty-print the bug information as JSON."""
+    print(json.dumps(info(), sort_keys=True, indent=2))
+
+
+if __name__ == "__main__":
+    main()

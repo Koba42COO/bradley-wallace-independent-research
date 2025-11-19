@@ -1,0 +1,18 @@
+{
+  "tool_name": "start_service",
+  "tool_hash": "263316d51cbc177ae802396fdbc027872d0ee6122269262a4c27a95f365683a1",
+  "total_size": 16110,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "263316d51cbc177ae802396fdbc027872d0ee6122269262a4c27a95f365683a1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/server/start_service.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/server/start_service.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.538155,
+  "updated_at": 1762787395.538163
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "beta_metrics",
+  "tool_hash": "a2d1037f58a97e319c2bf378d0e85a732f5854ee5a48fc45eb2167c43f7d4275",
+  "total_size": 7167,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a2d1037f58a97e319c2bf378d0e85a732f5854ee5a48fc45eb2167c43f7d4275"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/beta_metrics.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/beta_metrics.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.316698,
+  "updated_at": 1762787395.316701
+}

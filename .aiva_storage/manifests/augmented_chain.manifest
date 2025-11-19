@@ -1,0 +1,18 @@
+{
+  "tool_name": "augmented_chain",
+  "tool_hash": "24289e7e7c0ae2e6d2c2aa38752e5bf8eaa25cae3a6cfdc559c5dde0bb65fb3e",
+  "total_size": 8693,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "24289e7e7c0ae2e6d2c2aa38752e5bf8eaa25cae3a6cfdc559c5dde0bb65fb3e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/augmented_chain.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/augmented_chain.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.290998,
+  "updated_at": 1762787395.291001
+}

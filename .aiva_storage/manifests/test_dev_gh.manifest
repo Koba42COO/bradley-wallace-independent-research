@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_dev_gh",
+  "tool_hash": "b30f56fa6a1c03cbe515519e1416ea1583cbd7517c6df0635025fbe6f522b730",
+  "total_size": 6744,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b30f56fa6a1c03cbe515519e1416ea1583cbd7517c6df0635025fbe6f522b730"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/test_dev_gh.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/test_dev_gh.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.441376,
+  "updated_at": 1762787395.441379
+}

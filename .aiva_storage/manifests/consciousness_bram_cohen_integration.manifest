@@ -1,0 +1,18 @@
+{
+  "tool_name": "consciousness_bram_cohen_integration",
+  "tool_hash": "20e5faa1f0e3172f0a2e9148859a540821eb59f11af12f9582f3ba592815f5ee",
+  "total_size": 24788,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "20e5faa1f0e3172f0a2e9148859a540821eb59f11af12f9582f3ba592815f5ee"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/consciousness_bram_cohen_integration.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/consciousness_bram_cohen_integration.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.010218,
+  "updated_at": 1762787395.010221
+}

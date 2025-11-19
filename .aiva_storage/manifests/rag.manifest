@@ -1,0 +1,18 @@
+{
+  "tool_name": "rag",
+  "tool_hash": "8ac5a662891f62db85aceade18674b0ba3c5b986bcad4d433e854f9e8a1c4b4e",
+  "total_size": 4417,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "8ac5a662891f62db85aceade18674b0ba3c5b986bcad4d433e854f9e8a1c4b4e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/rag.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/rag.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.12676,
+  "updated_at": 1762787395.126763
+}

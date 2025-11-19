@@ -1,0 +1,73 @@
+_kill)
+    return result
+
+
+def is_running(services: dict[str, subprocess.Popen], service_name: str) -> bool:
+    process = services.get(service_name)
+    return process is not None and process.poll() is None
+
+
+async def async_run_daemon(root_path: Path, wait_for_unlock: bool = False) -> int:
+    # When wait_for_unlock is true, we want to skip the check_keys() call in chia_init
+    # since it might be necessary to wait for the GUI to unlock the keyring first.
+    chia_init(root_path, should_check_keys=(not wait_for_unlock))
+    config = load_config(root_path, "config.yaml")
+    setproctitle("chia_daemon")
+    initialize_service_logging("daemon", config, root_path=root_path)
+    crt_path = root_path / config["daemon_ssl"]["private_crt"]
+    key_path = root_path / config["daemon_ssl"]["private_key"]
+    ca_crt_path = root_path / config["private_ssl_ca"]["crt"]
+    ca_key_path = root_path / config["private_ssl_ca"]["key"]
+    sys.stdout.flush()
+    try:
+        with Lockfile.create(daemon_launch_lock_path(root_path), timeout=1):
+            log.info(f"chia-blockchain version: {chia_short_version()}")
+
+            beta_metrics = None
+            if config.get("beta", {}).get("enabled", False):
+                from chia.util.beta_metrics import BetaMetricsLogger
+
+                beta_metrics = BetaMetricsLogger(root_path)
+                beta_metrics.start_logging()
+
+            ws_server = WebSocketServer(
+                root_path,
+                ca_crt_path,
+                ca_key_path,
+                crt_path,
+                key_path,
+                run_check_keys_on_unlock=wait_for_unlock,
+            )
+            async with SignalHandlers.manage() as signal_handlers:
+                await ws_server.setup_process_global_state(signal_handlers=signal_handlers)
+                async with ws_server.run():
+                    await ws_server.shutdown_event.wait()
+
+            if beta_metrics is not None:
+                await beta_metrics.stop_logging()
+
+            log.info("Daemon WebSocketServer closed")
+            sys.stdout.close()
+            return 0
+    except LockfileError:
+        print("daemon: already launching")
+        return 2
+
+
+def run_daemon(root_path: Path, wait_for_unlock: bool = False) -> int:
+    result = asyncio.run(async_run_daemon(root_path, wait_for_unlock))
+    return result
+
+
+def main() -> int:
+    from chia.util.default_root import resolve_root_path
+    from chia.util.keychain import Keychain
+
+    root_path = resolve_root_path(override=None)
+
+    wait_for_unlock = "--wait-for-unlock" in sys.argv[1:] and Keychain.is_keyring_locked()
+    return run_daemon(root_path, wait_for_unlock)
+
+
+if __name__ == "__main__":
+    main()

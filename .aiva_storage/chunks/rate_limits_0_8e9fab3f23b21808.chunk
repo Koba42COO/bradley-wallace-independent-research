@@ -1,0 +1,218 @@
+from __future__ import annotations
+
+import dataclasses
+import logging
+import time
+from collections import Counter
+from typing import Callable, Optional, Union
+
+from chia.protocols.outbound_message import Message
+from chia.protocols.protocol_message_types import ProtocolMessageTypes
+from chia.protocols.shared_protocol import Capability
+from chia.server.rate_limit_numbers import RLSettings, Unlimited, get_rate_limits_to_use
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+log = logging.getLogger(__name__)
+
+
+# TODO: only full node disconnects based on rate limits
+class RateLimiter:
+    incoming: bool
+    reset_seconds: int
+    current_slot: int
+    message_counts: Counter[ProtocolMessageTypes]
+    message_cumulative_sizes: Counter[ProtocolMessageTypes]
+    percentage_of_limit: int
+    non_tx_message_counts: int = 0
+    non_tx_cumulative_size: int = 0
+    get_time: Callable[[], float]
+
+    def __init__(
+        self,
+        incoming: bool,
+        reset_seconds: int = 60,
+        percentage_of_limit: int = 100,
+        *,
+        get_time: Callable[[], float] = time.monotonic,
+    ):
+        """
+        The incoming parameter affects whether counters are incremented
+        unconditionally or not. For incoming messages, the counters are always
+        incremented. For outgoing messages, the counters are only incremented
+        if they are allowed to be sent by the rate limiter, since we won't send
+        the messages otherwise.
+        """
+        self.get_time = get_time
+        self.incoming = incoming
+        self.reset_seconds = reset_seconds
+        self.current_slot = int(get_time() // reset_seconds)
+        self.message_counts = Counter()
+        self.message_cumulative_sizes = Counter()
+        self.percentage_of_limit = percentage_of_limit
+        self.non_tx_message_counts = 0
+        self.non_tx_cumulative_size = 0
+
+    def process_msg_and_check(
+        self, message: Message, our_capabilities: list[Capability], peer_capabilities: list[Capability]
+    ) -> Optional[str]:
+        """
+        Returns a string indicating which limit was hit if a rate limit is
+        exceeded, and the message should be blocked. Returns None if the limit was not
+        hit and the message is good to be sent or received.
+        """
+
+        current_slot = int(self.get_time() // self.reset_seconds)
+        if current_slot != self.current_slot:
+            self.current_slot = current_slot
+            self.message_counts = Counter()
+            self.message_cumulative_sizes = Counter()
+            self.non_tx_message_counts = 0
+            self.non_tx_cumulative_size = 0
+        try:
+            message_type = ProtocolMessageTypes(message.type)
+        except Exception as e:
+            log.warning(f"Invalid message: {message.type}, {e}")
+            return None
+
+        new_message_counts: int = self.message_counts[message_type] + 1
+        new_cumulative_size: int = self.message_cumulative_sizes[message_type] + len(message.data)
+        new_non_tx_count: int = self.non_tx_message_counts
+        new_non_tx_size: int = self.non_tx_cumulative_size
+        proportion_of_limit: float = self.percentage_of_limit / 100
+
+        ret: bool = False
+        rate_limits: dict[ProtocolMessageTypes, Union[RLSettings, Unlimited]]
+        rate_limits, agg_limit = get_rate_limits_to_use(our_capabilities, peer_capabilities)
+
+        try:
+            limits: Union[RLSettings, Unlimited] = rate_limits[message_type]
+            if isinstance(limits, RLSettings) and limits.aggregate_limit:
+                non_tx_freq = agg_limit.frequency
+                assert agg_limit.max_total_size is not None
+                non_tx_max_total_size = agg_limit.max_total_size
+                new_non_tx_count = self.non_tx_message_counts + 1
+                new_non_tx_size = self.non_tx_cumulative_size + len(message.data)
+                if new_non_tx_count > non_tx_freq * proportion_of_limit:
+                    return " ".join(
+                        [
+                            f"non-tx count: {new_non_tx_count}",
+                            f"> {non_tx_freq * proportion_of_limit}",
+                            f"(scale factor: {proportion_of_limit})",
+                        ]
+                    )
+                if new_non_tx_size > non_tx_max_total_size * proportion_of_limit:
+                    return " ".join(
+                        [
+                            f"non-tx size: {new_non_tx_size}",
+                            f"> {non_tx_max_total_size * proportion_of_limit}",
+                            f"(scale factor: {proportion_of_limit})",
+                        ]
+                    )
+
+            if isinstance(limits, Unlimited):
+                # this message type is not rate limited. This is used for
+                # response messages and must be combined with banning peers
+                # sending unsolicited responses of this type
+                if len(message.data) > limits.max_size:
+                    return f"message size: {len(message.data)} > {limits.max_size}"
+                ret = True
+                return None
+            elif isinstance(limits, RLSettings):
+                if limits.max_total_size is None:
+                    limits = dataclasses.replace(limits, max_total_size=limits.frequency * limits.max_size)
+                assert limits.max_total_size is not None
+
+                if new_message_counts > limits.frequency * proportion_of_limit:
+                    return " ".join(
+                        [
+                            f"message count: {new_message_counts}",
+                            f"> {limits.frequency * proportion_of_limit}",
+                            f"(scale factor: {proportion_of_limit})",
+                        ]
+                    )
+                if len(message.data) > limits.max_size:
+                    return f"message size: {len(message.data)} > {limits.max_size}"
+                if new_cumulative_size > limits.max_total_size * proportion_of_limit:
+                    return " ".join(
+                        [
+                            f"cumulative size: {new_cumulative_size}",
+                            f"> {limits.max_total_size * proportion_of_limit}",
+                            f"(scale factor: {proportion_of_limit})",
+                        ]
+                    )
+
+                ret = True
+                return None
+            else:  # pragma: no cover
+                return f"Internal Error, unknown rate limit for message: {message_type}, limit: {limits}"
+        finally:
+            if self.incoming or ret:
+                # now that we determined that it's OK to send the message, commit the
+                # updates to the counters. Alternatively, if this was an
+                # incoming message, we already received it and it should
+                # increment the counters unconditionally
+                self.message_counts[message_type] = new_message_counts
+                self.message_cumulative_sizes[message_type] = new_cumulative_size
+                self.non_tx_message_counts = new_non_tx_count
+                self.non_tx_cumulative_size = new_non_tx_size

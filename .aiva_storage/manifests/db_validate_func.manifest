@@ -1,0 +1,18 @@
+{
+  "tool_name": "db_validate_func",
+  "tool_hash": "bb9ce7d4048a99ee2b2136d124bd639adf86db12f9ebd26903ffbf90bb7913cd",
+  "total_size": 10878,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "bb9ce7d4048a99ee2b2136d124bd639adf86db12f9ebd26903ffbf90bb7913cd"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/db_validate_func.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/db_validate_func.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.520158,
+  "updated_at": 1762787395.520161
+}

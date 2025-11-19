@@ -1,0 +1,18 @@
+{
+  "tool_name": "boot_extended",
+  "tool_hash": "517fa7bf59703dbb1285413316470793fed732a188d854028513ca3051f6408f",
+  "total_size": 3965,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "517fa7bf59703dbb1285413316470793fed732a188d854028513ca3051f6408f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/boot_extended.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/boot_extended.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.125036,
+  "updated_at": 1762787395.125039
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "security",
+  "tool_hash": "e10e2567ef4b0a5edd8dfd6a7a9ceb6b44b2f25577b23b22cfaa4f15401957d5",
+  "total_size": 3212,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e10e2567ef4b0a5edd8dfd6a7a9ceb6b44b2f25577b23b22cfaa4f15401957d5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/security.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/security.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.126268,
+  "updated_at": 1762787395.126271
+}

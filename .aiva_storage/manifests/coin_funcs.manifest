@@ -1,0 +1,18 @@
+{
+  "tool_name": "coin_funcs",
+  "tool_hash": "4e20696d34a7f7915eb5efed648a7dc2967a52f0d3e39265b0bbfd5b36621aff",
+  "total_size": 13901,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4e20696d34a7f7915eb5efed648a7dc2967a52f0d3e39265b0bbfd5b36621aff"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/coin_funcs.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/coin_funcs.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.520931,
+  "updated_at": 1762787395.5209348
+}

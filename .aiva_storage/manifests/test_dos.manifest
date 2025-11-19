@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_dos",
+  "tool_hash": "b99e13d0a72256894d1aa85a4b2ca1f4e0014170b714d349ac3f02da83e57fa1",
+  "total_size": 15352,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b99e13d0a72256894d1aa85a4b2ca1f4e0014170b714d349ac3f02da83e57fa1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_dos.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_dos.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3763032,
+  "updated_at": 1762787395.3763049
+}

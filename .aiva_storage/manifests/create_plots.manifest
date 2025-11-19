@@ -1,0 +1,18 @@
+{
+  "tool_name": "create_plots",
+  "tool_hash": "26c52d61b0fa4851ef808d547b29fcc8cbfceabfa0d5cfe1af83e994f12b9053",
+  "total_size": 13681,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "26c52d61b0fa4851ef808d547b29fcc8cbfceabfa0d5cfe1af83e994f12b9053"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plotting/create_plots.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plotting/create_plots.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.574354,
+  "updated_at": 1762787395.574358
+}

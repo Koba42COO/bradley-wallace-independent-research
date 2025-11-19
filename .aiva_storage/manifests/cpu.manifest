@@ -1,0 +1,18 @@
+{
+  "tool_name": "cpu",
+  "tool_hash": "4832bd17974116d438d45b45311dd4933c95b56ab0801f2af4bb215b1b9d221a",
+  "total_size": 3175,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4832bd17974116d438d45b45311dd4933c95b56ab0801f2af4bb215b1b9d221a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/cpu.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/cpu.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3185549,
+  "updated_at": 1762787395.318558
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "ethiopian_numpy_consolidated",
+  "tool_hash": "54b522c201115d74c72771cb67751bef48f895e4e07d51613205c9ee94a401dc",
+  "total_size": 5521,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "54b522c201115d74c72771cb67751bef48f895e4e07d51613205c9ee94a401dc"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/ethiopian_numpy_consolidated.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/ethiopian_numpy_consolidated.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.033299,
+  "updated_at": 1762787395.033302
+}

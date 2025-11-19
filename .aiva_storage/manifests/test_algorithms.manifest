@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_algorithms",
+  "tool_hash": "8df9e4e2fbe57dfcafe24da38ee39e2f646afe48315a0adf9432daa781a968bd",
+  "total_size": 46097,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "8df9e4e2fbe57dfcafe24da38ee39e2f646afe48315a0adf9432daa781a968bd"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pyjwt_repo/tests/test_algorithms.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pyjwt_repo/tests/test_algorithms.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.082263,
+  "updated_at": 1762787395.082269
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "cmds_util",
+  "tool_hash": "54002fbc0d46cfa736267bfb0d9f78d4fafa692a236cf7f450e6d611bcb036e2",
+  "total_size": 22404,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "54002fbc0d46cfa736267bfb0d9f78d4fafa692a236cf7f450e6d611bcb036e2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/cmds_util.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/cmds_util.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.507641,
+  "updated_at": 1762787395.507643
+}

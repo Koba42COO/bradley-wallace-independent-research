@@ -1,0 +1,18 @@
+{
+  "tool_name": "data_layer_errors",
+  "tool_hash": "a7a0b370795690903c27c8faa67320d288dec42b1f7fe4afdc7b33172b1a7e8a",
+  "total_size": 4157,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a7a0b370795690903c27c8faa67320d288dec42b1f7fe4afdc7b33172b1a7e8a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/data_layer_errors.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/data_layer_errors.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.585309,
+  "updated_at": 1762787395.585312
+}

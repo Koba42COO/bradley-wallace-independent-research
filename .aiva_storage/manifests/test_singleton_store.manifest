@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_singleton_store",
+  "tool_hash": "617514c998d9173fedc353d3db2fe2d4e49ec1a4553872e0e0bb62d23c859534",
+  "total_size": 9440,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "617514c998d9173fedc353d3db2fe2d4e49ec1a4553872e0e0bb62d23c859534"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_singleton_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_singleton_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.480116,
+  "updated_at": 1762787395.480119
+}

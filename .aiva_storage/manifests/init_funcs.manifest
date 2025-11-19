@@ -1,0 +1,18 @@
+{
+  "tool_name": "init_funcs",
+  "tool_hash": "86a9f8b0ba7073b6f9b00a7f3d502a9a14a6a230b673c6df19cfd8f4424c891f",
+  "total_size": 16952,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "86a9f8b0ba7073b6f9b00a7f3d502a9a14a6a230b673c6df19cfd8f4424c891f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/init_funcs.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/init_funcs.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.519815,
+  "updated_at": 1762787395.519818
+}

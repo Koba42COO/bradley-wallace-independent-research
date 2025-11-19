@@ -1,0 +1,18 @@
+{
+  "tool_name": "bladebit",
+  "tool_hash": "5f0bad1c2ba993d74d2139be76b727ca088c9170d5a348f7e347787d396558c4",
+  "total_size": 16962,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5f0bad1c2ba993d74d2139be76b727ca088c9170d5a348f7e347787d396558c4"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plotters/bladebit.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plotters/bladebit.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.505847,
+  "updated_at": 1762787395.50585
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "EvalError",
+  "tool_hash": "1b603a3f7ff4a6a54bbfb68b419fae3b036d93044a399e0dbdca511bfc239016",
+  "total_size": 3012,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1b603a3f7ff4a6a54bbfb68b419fae3b036d93044a399e0dbdca511bfc239016"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/clvm/EvalError.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/clvm/EvalError.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0581,
+  "updated_at": 1762787395.0581021
+}

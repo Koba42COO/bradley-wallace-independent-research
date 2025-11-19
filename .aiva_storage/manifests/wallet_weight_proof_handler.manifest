@@ -1,0 +1,18 @@
+{
+  "tool_name": "wallet_weight_proof_handler",
+  "tool_hash": "31f973280344194b1e949421b2a2426308daac5f07bba108dbc3d1693ab72ec4",
+  "total_size": 7620,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "31f973280344194b1e949421b2a2426308daac5f07bba108dbc3d1693ab72ec4"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_weight_proof_handler.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_weight_proof_handler.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.5934458,
+  "updated_at": 1762787395.593448
+}

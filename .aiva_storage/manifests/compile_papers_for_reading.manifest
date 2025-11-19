@@ -1,0 +1,18 @@
+{
+  "tool_name": "compile_papers_for_reading",
+  "tool_hash": "b142b81466e14bf7f1fbad28159857fee7787bbad9fcd099e47358a2cada1c05",
+  "total_size": 21786,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b142b81466e14bf7f1fbad28159857fee7787bbad9fcd099e47358a2cada1c05"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/compile_papers_for_reading.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/compile_papers_for_reading.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787394.994424,
+  "updated_at": 1762787394.994427
+}

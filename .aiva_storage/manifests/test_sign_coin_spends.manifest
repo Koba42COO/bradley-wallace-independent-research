@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_sign_coin_spends",
+  "tool_hash": "cfbc89349dd66465d9a566a194ef93017043dba9e42696f54c21c55d73cac054",
+  "total_size": 6233,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cfbc89349dd66465d9a566a194ef93017043dba9e42696f54c21c55d73cac054"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_sign_coin_spends.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_sign_coin_spends.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.479711,
+  "updated_at": 1762787395.4797142
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "CLVMObject",
+  "tool_hash": "746666b8191cf1e4661494f75ee6caa198af8c3d68d6fb468235bcb0d1e2fb6f",
+  "total_size": 4479,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "746666b8191cf1e4661494f75ee6caa198af8c3d68d6fb468235bcb0d1e2fb6f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/clvm/CLVMObject.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/clvm/CLVMObject.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.058889,
+  "updated_at": 1762787395.058892
+}

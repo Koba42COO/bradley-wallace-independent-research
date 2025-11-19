@@ -1,0 +1,18 @@
+{
+  "tool_name": "condition_costs",
+  "tool_hash": "8c32729376db249b72dea0ac48495c6de80db5a6963e05b5a028fab898691161",
+  "total_size": 3123,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "8c32729376db249b72dea0ac48495c6de80db5a6963e05b5a028fab898691161"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/condition_costs.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/condition_costs.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.282518,
+  "updated_at": 1762787395.282521
+}

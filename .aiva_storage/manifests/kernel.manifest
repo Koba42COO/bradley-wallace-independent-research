@@ -1,0 +1,18 @@
+{
+  "tool_name": "kernel",
+  "tool_hash": "93750b37a46c7a5c3c23f2cb51e569120f6ee430b477e3d0b5f772a8c9913cf0",
+  "total_size": 18444,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "93750b37a46c7a5c3c23f2cb51e569120f6ee430b477e3d0b5f772a8c9913cf0"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/legacy/aiva-core/os/kernel.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/legacy/aiva-core/os/kernel.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2675579,
+  "updated_at": 1762787395.267561
+}

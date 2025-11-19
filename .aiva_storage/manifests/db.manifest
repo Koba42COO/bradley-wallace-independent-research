@@ -1,0 +1,18 @@
+{
+  "tool_name": "db",
+  "tool_hash": "ec766c5da72cabab872384f64cd0e9d4b54ba8bdf6698c80b63a3d5e855cde8f",
+  "total_size": 5776,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ec766c5da72cabab872384f64cd0e9d4b54ba8bdf6698c80b63a3d5e855cde8f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/db.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/db.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.509048,
+  "updated_at": 1762787395.5090501
+}

@@ -1,0 +1,134 @@
+"""
+This is an implementation of `sha256_treehash`, used to calculate
+puzzle hashes in clvm.
+
+This implementation goes to great pains to be non-recursive so we don't
+have to worry about blowing out the python stack.
+"""
+
+from __future__ import annotations
+
+from typing import Callable, Optional
+
+from chia_rs.sized_bytes import bytes32
+from clvm.CLVMObject import CLVMStorage
+from clvm.SExp import SExp
+
+from chia.util.hash import std_hash
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+ValueType = bytes | CLVMStorage
+ValueStackType = list[ValueType]
+Op = Callable[[ValueStackType, "OpStackType", set[bytes32]], None]
+OpStackType = list[Op]
+
+
+def sha256_treehash(sexp: CLVMStorage, precalculated: Optional[set[bytes32]] = None) -> bytes32:
+    """
+    Hash values in `precalculated` are presumed to have been hashed already.
+    """
+
+    if precalculated is None:
+        precalculated = set()
+
+    def handle_sexp(sexp_stack: ValueStackType, op_stack: OpStackType, precalculated: set[bytes32]) -> None:
+        # just trusting it is right, otherwise we get an attribute error
+        sexp: SExp = sexp_stack.pop()  # type: ignore[assignment]
+        if sexp.pair:
+            p0, p1 = sexp.pair
+            sexp_stack.append(p0)
+            sexp_stack.append(p1)
+            op_stack.append(handle_pair)
+            op_stack.append(handle_sexp)
+            op_stack.append(roll)
+            op_stack.append(handle_sexp)
+        else:
+            # not a pair, so an atom
+            atom: bytes = sexp.atom  # type: ignore[assignment]
+            if atom in precalculated:
+                r = atom
+            else:
+                r = std_hash(b"\1" + atom)
+            sexp_stack.append(r)
+
+    def handle_pair(sexp_stack: ValueStackType, op_stack: OpStackType, precalculated: set[bytes32]) -> None:
+        # just trusting it is right, otherwise we get a type error
+        p0: bytes = sexp_stack.pop()  # type: ignore[assignment]
+        p1: bytes = sexp_stack.pop()  # type: ignore[assignment]
+        sexp_stack.append(std_hash(b"\2" + p0 + p1))
+
+    def roll(sexp_stack: ValueStackType, op_stack: OpStackType, precalculated: set[bytes32]) -> None:
+        p0 = sexp_stack.pop()
+        p1 = sexp_stack.pop()
+        sexp_stack.append(p0)
+        sexp_stack.append(p1)
+
+    sexp_stack: ValueStackType = [sexp]
+    op_stack: list[Op] = [handle_sexp]
+    while len(op_stack) > 0:
+        op = op_stack.pop()
+        op(sexp_stack, op_stack, precalculated)
+    # just trusting it is right, otherwise we get some error, probably
+    result: bytes = sexp_stack[0]  # type: ignore[assignment]
+    return bytes32(result)

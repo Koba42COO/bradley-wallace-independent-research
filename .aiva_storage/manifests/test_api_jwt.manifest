@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_api_jwt",
+  "tool_hash": "f0d4c627c811536afa7ec952d560025a1d9a600b6d83d93cd39d602092ba788b",
+  "total_size": 37090,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f0d4c627c811536afa7ec952d560025a1d9a600b6d83d93cd39d602092ba788b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pyjwt_repo/tests/test_api_jwt.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pyjwt_repo/tests/test_api_jwt.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.078305,
+  "updated_at": 1762787395.078308
+}

@@ -1,0 +1,134 @@
+from __future__ import annotations
+
+import unittest
+
+import pytest
+
+from chia.util.lru_cache import LRUCache
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+class TestLRUCache(unittest.TestCase):
+    def test_lru_cache(self):
+        cache = LRUCache(5)
+
+        assert cache.get(b"0") is None
+
+        assert len(cache.cache) == 0
+        cache.put(b"0", 1)
+        assert len(cache.cache) == 1
+        assert cache.get(b"0") == 1
+        cache.put(b"0", 2)
+        cache.put(b"0", 3)
+        cache.put(b"0", 4)
+        cache.put(b"0", 6)
+        assert cache.get(b"0") == 6
+        assert len(cache.cache) == 1
+
+        cache.put(b"1", 1)
+        assert len(cache.cache) == 2
+        assert cache.get(b"0") == 6
+        assert cache.get(b"1") == 1
+        cache.put(b"2", 2)
+        assert len(cache.cache) == 3
+        assert cache.get(b"0") == 6
+        assert cache.get(b"1") == 1
+        assert cache.get(b"2") == 2
+        cache.put(b"3", 3)
+        assert len(cache.cache) == 4
+        assert cache.get(b"0") == 6
+        assert cache.get(b"1") == 1
+        assert cache.get(b"2") == 2
+        assert cache.get(b"3") == 3
+        cache.put(b"4", 4)
+        assert len(cache.cache) == 5
+        assert cache.get(b"0") == 6
+        assert cache.get(b"1") == 1
+        assert cache.get(b"2") == 2
+        assert cache.get(b"4") == 4
+        cache.put(b"5", 5)
+        assert cache.get(b"5") == 5
+        assert len(cache.cache) == 5
+        print(cache.cache)
+        assert cache.get(b"3") is None  # 3 is least recently used
+        assert cache.get(b"1") == 1
+        assert cache.get(b"2") == 2
+        cache.put(b"7", 7)
+        assert len(cache.cache) == 5
+        assert cache.get(b"0") is None
+        assert cache.get(b"1") == 1
+
+
+@pytest.mark.parametrize(argnames="capacity", argvalues=[-10, -1, 0])
+def test_with_zero_capacity(capacity: int) -> None:
+    cache: LRUCache[bytes, int] = LRUCache(capacity=capacity)
+    cache.put(b"0", 1)
+    assert cache.get(b"0") is None
+    assert len(cache.cache) == 0
+
+
+@pytest.mark.parametrize(argnames="capacity", argvalues=[-10, -1, 0, 1, 5, 10])
+def test_get_capacity(capacity: int) -> None:
+    cache: LRUCache[object, object] = LRUCache(capacity=capacity)
+    assert cache.get_capacity() == capacity

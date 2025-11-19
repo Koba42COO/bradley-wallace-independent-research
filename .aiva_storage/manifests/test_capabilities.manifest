@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_capabilities",
+  "tool_hash": "b21a2cc1d537d27fcd80738f31303b630b2145b6073d8240b2237de3279894ec",
+  "total_size": 4692,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b21a2cc1d537d27fcd80738f31303b630b2145b6073d8240b2237de3279894ec"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_capabilities.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_capabilities.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3748071,
+  "updated_at": 1762787395.3748102
+}

@@ -1,0 +1,127 @@
+from __future__ import annotations
+
+import ipaddress
+from dataclasses import dataclass
+from typing import Union
+
+from chia_rs.sized_ints import uint16, uint64
+
+from chia.util.ip_address import IPAddress
+from chia.util.streamable import Streamable, streamable
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+@dataclass(frozen=True)
+class UnresolvedPeerInfo:
+    host: str
+    port: uint16
+
+
+# TODO, Replace unsafe_hash with frozen and drop the __init__ as soon as all PeerInfo call sites pass in an IPAddress.
+@dataclass(unsafe_hash=True)
+class PeerInfo:
+    _ip: IPAddress
+    _port: uint16
+
+    # TODO, Drop this as soon as all call PeerInfo calls pass in an IPAddress
+    def __init__(self, host: Union[IPAddress, str], port: int):
+        self._ip = host if isinstance(host, IPAddress) else IPAddress.create(host)
+        self._port = uint16(port)
+
+    # Kept here for compatibility until all places where its used transitioned to IPAddress instead of str.
+    @property
+    def host(self) -> str:
+        return str(self._ip)
+
+    @property
+    def ip(self) -> IPAddress:
+        return self._ip
+
+    @property
+    def port(self) -> uint16:
+        return self._port
+
+    # Functions related to peer bucketing in new/tried tables.
+    def get_key(self) -> bytes:
+        if self.ip.is_v4:
+            key = ipaddress.IPv6Address(int(ipaddress.IPv6Address("2002::")) | (int(self.ip) << 80)).packed
+        else:
+            key = self.ip.packed
+        key += bytes([self.port // 0x100, self.port & 0x0FF])
+        return key
+
+    def get_group(self) -> bytes:
+        # TODO: Port everything from Bitcoin.
+        if self.ip.is_v4:
+            return bytes([1]) + self.ip.packed[:2]
+        else:
+            return bytes([0]) + self.ip.packed[:4]
+
+
+@streamable
+@dataclass(frozen=True)
+class TimestampedPeerInfo(Streamable):
+    host: str
+    port: uint16
+    timestamp: uint64

@@ -1,0 +1,18 @@
+{
+  "tool_name": "conftest",
+  "tool_hash": "ad86ab7b5f5b89ae3036106ca63a6ca22dba523c0e54c50121a778c7261db987",
+  "total_size": 16235,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ad86ab7b5f5b89ae3036106ca63a6ca22dba523c0e54c50121a778c7261db987"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/conftest.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/conftest.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4696388,
+  "updated_at": 1762787395.469643
+}

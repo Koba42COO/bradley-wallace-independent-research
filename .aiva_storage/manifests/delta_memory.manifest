@@ -1,0 +1,18 @@
+{
+  "tool_name": "delta_memory",
+  "tool_hash": "cae4e44e694aaf40722cc53cc1f8ecbe737747b4f585fb557ededeb5e1dc9bb3",
+  "total_size": 8622,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "cae4e44e694aaf40722cc53cc1f8ecbe737747b4f585fb557ededeb5e1dc9bb3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/delta_memory.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/delta_memory.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.12936,
+  "updated_at": 1762787395.129363
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_legacy_keyring",
+  "tool_hash": "bf7d4f97ae264dddee4e8926b57de4c70bbbd361783cd2fa9b9f2e5064676713",
+  "total_size": 6021,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "bf7d4f97ae264dddee4e8926b57de4c70bbbd361783cd2fa9b9f2e5064676713"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/tools/test_legacy_keyring.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/tools/test_legacy_keyring.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3496718,
+  "updated_at": 1762787395.349674
+}

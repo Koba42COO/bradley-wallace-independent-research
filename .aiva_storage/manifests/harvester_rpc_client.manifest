@@ -1,0 +1,18 @@
+{
+  "tool_name": "harvester_rpc_client",
+  "tool_hash": "e3b5ef8884ac6c041922afb05cfffcaf8bcd9b9d048f9e3ee862c2a5a72bae51",
+  "total_size": 5007,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e3b5ef8884ac6c041922afb05cfffcaf8bcd9b9d048f9e3ee862c2a5a72bae51"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/harvester/harvester_rpc_client.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/harvester/harvester_rpc_client.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.330792,
+  "updated_at": 1762787395.330795
+}

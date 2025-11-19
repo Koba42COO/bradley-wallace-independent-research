@@ -1,0 +1,18 @@
+{
+  "tool_name": "sender",
+  "tool_hash": "bf3503faf216cf5dd5b4df23f0fb49f3b183c6d9038d815dd72406540f17eb66",
+  "total_size": 17102,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "bf3503faf216cf5dd5b4df23f0fb49f3b183c6d9038d815dd72406540f17eb66"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plot_sync/sender.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plot_sync/sender.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.293401,
+  "updated_at": 1762787395.2934039
+}

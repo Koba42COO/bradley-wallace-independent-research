@@ -1,0 +1,18 @@
+{
+  "tool_name": "firefly_demo",
+  "tool_hash": "d1494c3a51caf28f03dafd6772a66d66f9f146e80ffcd9bb9484f60bf13e6c55",
+  "total_size": 7358,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d1494c3a51caf28f03dafd6772a66d66f9f146e80ffcd9bb9484f60bf13e6c55"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/firefly_demo.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/firefly_demo.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0430238,
+  "updated_at": 1762787395.043027
+}

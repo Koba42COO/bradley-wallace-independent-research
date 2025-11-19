@@ -1,0 +1,18 @@
+{
+  "tool_name": "aiva_cli",
+  "tool_hash": "c7d43744ef9e1385f4862dae901f0d172141ddba27cf5c2d3cae759557bf35ab",
+  "total_size": 5058,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c7d43744ef9e1385f4862dae901f0d172141ddba27cf5c2d3cae759557bf35ab"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/aiva_cli.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/aiva_cli.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.124244,
+  "updated_at": 1762787395.124247
+}

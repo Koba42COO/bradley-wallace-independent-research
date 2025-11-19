@@ -1,0 +1,18 @@
+{
+  "tool_name": "testing_classes",
+  "tool_hash": "f6bb67308c0b20ce50c6683ea59caa94c951dac4cf15a75d72ed148d1caec977",
+  "total_size": 4538,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f6bb67308c0b20ce50c6683ea59caa94c951dac4cf15a75d72ed148d1caec977"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/testing_classes.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/testing_classes.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.44256,
+  "updated_at": 1762787395.442563
+}

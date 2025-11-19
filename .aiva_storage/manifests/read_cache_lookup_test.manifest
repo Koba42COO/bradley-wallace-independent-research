@@ -1,0 +1,18 @@
+{
+  "tool_name": "read_cache_lookup_test",
+  "tool_hash": "d75a0b0b5fb0c7df927995ecf9583cf0def08e5f44cdaa8a3aa046720dfff36b",
+  "total_size": 6761,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d75a0b0b5fb0c7df927995ecf9583cf0def08e5f44cdaa8a3aa046720dfff36b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/tests/read_cache_lookup_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/tests/read_cache_lookup_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.064518,
+  "updated_at": 1762787395.064522
+}

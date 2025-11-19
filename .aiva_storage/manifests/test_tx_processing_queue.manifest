@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_tx_processing_queue",
+  "tool_hash": "4ced0199fe49899e54abc6151637a5eae57fd362ce89b85598db78139577bc74",
+  "total_size": 8510,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4ced0199fe49899e54abc6151637a5eae57fd362ce89b85598db78139577bc74"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/full_node/test_tx_processing_queue.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/full_node/test_tx_processing_queue.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.387769,
+  "updated_at": 1762787395.387773
+}

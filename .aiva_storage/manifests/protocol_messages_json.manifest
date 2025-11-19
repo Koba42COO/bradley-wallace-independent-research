@@ -1,0 +1,20 @@
+{
+  "tool_name": "protocol_messages_json",
+  "tool_hash": "f96f9d03c10f0f6f285d18717d4e6214913617306cc27a458b69cc986a20a0f4",
+  "total_size": 184167,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "63a5b6fdb63ab8922b0d0731fdd96bf4005175ba70ae779e66cfa5474a3225d1",
+    "c73f8e1af2986675796c08fa33dec1fd3d98539f5e8c1fc7443264d1ca437cd9",
+    "173d6e39353714cfcae31f15dc9f4c535a647a787f6ac8da316f685160c43e12"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/protocol_messages_json.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/protocol_messages_json.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.428734,
+  "updated_at": 1762787395.428746
+}

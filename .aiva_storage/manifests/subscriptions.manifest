@@ -1,0 +1,18 @@
+{
+  "tool_name": "subscriptions",
+  "tool_hash": "20983106f928f9cea5ec88c601fb6057b52f16ec7b2b32569a24d23d409e7272",
+  "total_size": 11386,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "20983106f928f9cea5ec88c601fb6057b52f16ec7b2b32569a24d23d409e7272"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/subscriptions.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/full_node/subscriptions.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.654743,
+  "updated_at": 1762787395.654746
+}

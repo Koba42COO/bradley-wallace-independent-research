@@ -1,0 +1,18 @@
+{
+  "tool_name": "engine",
+  "tool_hash": "f80c4c8b576a00cc3f467af939442a265dc5e1781afb0c99606894339ddbb5af",
+  "total_size": 5083,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f80c4c8b576a00cc3f467af939442a265dc5e1781afb0c99606894339ddbb5af"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/research/external/repo_clone/consciousness_framework/engine.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/research/external/repo_clone/consciousness_framework/engine.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2539232,
+  "updated_at": 1762787395.2539258
+}

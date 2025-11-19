@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_pprint",
+  "tool_hash": "be4c1bfd8e32767e0f1935cb0b83539a43f5841a6b8756e487ae36ea12d66923",
+  "total_size": 3405,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "be4c1bfd8e32767e0f1935cb0b83539a43f5841a6b8756e487ae36ea12d66923"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_pprint.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_pprint.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.407109,
+  "updated_at": 1762787395.407135
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "block_ref",
+  "tool_hash": "284df5f8b37df35b1bbc14da5f0f45d4cccee429b286f36dd6eed7182df5ee9a",
+  "total_size": 6116,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "284df5f8b37df35b1bbc14da5f0f45d4cccee429b286f36dd6eed7182df5ee9a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/benchmarks/block_ref.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/benchmarks/block_ref.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.276924,
+  "updated_at": 1762787395.276927
+}

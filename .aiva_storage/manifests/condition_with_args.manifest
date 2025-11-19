@@ -1,0 +1,18 @@
+{
+  "tool_name": "condition_with_args",
+  "tool_hash": "f20e5cec8aa25b6ec990801bdcf060120bcd4cd45710caf5245816dc07c57807",
+  "total_size": 3134,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f20e5cec8aa25b6ec990801bdcf060120bcd4cd45710caf5245816dc07c57807"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/condition_with_args.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/condition_with_args.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.298778,
+  "updated_at": 1762787395.298781
+}

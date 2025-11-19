@@ -1,0 +1,18 @@
+{
+  "tool_name": "config_consolidated",
+  "tool_hash": "942bc9edb21d1deaa97be1948f522a9f539f6f4bc466bf193a6351a32a6971e4",
+  "total_size": 15520,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "942bc9edb21d1deaa97be1948f522a9f539f6f4bc466bf193a6351a32a6971e4"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/config_consolidated.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/config_consolidated.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3137221,
+  "updated_at": 1762787395.313726
+}

@@ -1,0 +1,118 @@
+from __future__ import annotations
+
+import json
+
+import pytest
+
+from chia._tests.core.data_layer.util import ChiaRoot
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+pytestmark = pytest.mark.data_layer
+
+
+@pytest.mark.anyio
+async def test_help(chia_root: ChiaRoot) -> None:
+    """Just a trivial test to make sure the subprocessing is at least working and the
+    data executable does run.
+    """
+    completed_process = chia_root.run(args=["data", "--help"])
+    assert "Show this message and exit" in completed_process.stdout
+
+
+@pytest.mark.skip
+@pytest.mark.anyio
+def test_round_trip(chia_root: ChiaRoot, chia_daemon: None, chia_data: None) -> None:
+    """Create a table, insert a row, get the row by its hash."""
+
+    with chia_root.print_log_after():
+        create = chia_root.run(args=["data", "create_data_store"])
+        print(f"create_data_store: {create}")
+        dic = json.loads(create.stdout)
+        assert dic["success"]
+        store_id = dic["id"]
+        key = "1a6f915513173902a7216e7d9e4a16bfd088e20683f45de3b432ce72e9cc7aa8"
+        value = "ffff8353594d8083616263"
+        changelist: list[dict[str, str]] = [{"action": "insert", "key": key, "value": value}]
+        print(json.dumps(changelist))
+        update = chia_root.run(
+            args=["data", "update_data_store", "--id", store_id, "--changelist", json.dumps(changelist)]
+        )
+        dic = json.loads(create.stdout)
+        assert dic["success"]
+        print(f"update_data_store: {update}")
+        completed_process = chia_root.run(args=["data", "get_value", "--id", store_id, "--key", key])
+        parsed = json.loads(completed_process.stdout)
+        expected = {"value": value, "success": True}
+        assert parsed == expected
+        get_keys_values = chia_root.run(args=["data", "get_keys_values", "--id", store_id])
+        print(f"get_keys_values: {get_keys_values}")
+        changelist = [{"action": "delete", "key": key}]
+        update = chia_root.run(
+            args=["data", "update_data_store", "--id", store_id, "--changelist", json.dumps(changelist)]
+        )
+        print(f"update_data_store: {update}")
+        completed_process = chia_root.run(args=["data", "get_value", "--id", store_id, "--key", key])
+        parsed = json.loads(completed_process.stdout)
+        expected = {"data": None, "success": True}
+        assert parsed == expected

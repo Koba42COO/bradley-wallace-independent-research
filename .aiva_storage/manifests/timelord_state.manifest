@@ -1,0 +1,18 @@
+{
+  "tool_name": "timelord_state",
+  "tool_hash": "c9a16cca2f7abd9af203fe8f106469094b744c03730be44788c4d6eeaa6d58b8",
+  "total_size": 15060,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c9a16cca2f7abd9af203fe8f106469094b744c03730be44788c4d6eeaa6d58b8"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/timelord/timelord_state.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/timelord/timelord_state.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3095329,
+  "updated_at": 1762787395.309536
+}

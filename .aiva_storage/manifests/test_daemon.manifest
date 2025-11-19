@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_daemon",
+  "tool_hash": "d780fc6450352869c612d47c1439d5d4b26604f5296111c0c1ed98d6aa0bdfdb",
+  "total_size": 5796,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d780fc6450352869c612d47c1439d5d4b26604f5296111c0c1ed98d6aa0bdfdb"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/test_daemon.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/test_daemon.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.441797,
+  "updated_at": 1762787395.4417999
+}

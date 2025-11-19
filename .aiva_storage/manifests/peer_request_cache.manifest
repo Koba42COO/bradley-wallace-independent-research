@@ -1,0 +1,18 @@
+{
+  "tool_name": "peer_request_cache",
+  "tool_hash": "b56050bad123c4cf238bb2e2e6301220b3c57403407e38500a91a95cc8bd6eb0",
+  "total_size": 11228,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b56050bad123c4cf238bb2e2e6301220b3c57403407e38500a91a95cc8bd6eb0"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/peer_request_cache.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/peer_request_cache.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.628577,
+  "updated_at": 1762787395.628582
+}

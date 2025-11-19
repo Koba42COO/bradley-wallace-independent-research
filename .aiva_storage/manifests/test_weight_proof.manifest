@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_weight_proof",
+  "tool_hash": "bb53787dee797ac2c5a4544a0f30c83ae1c8af616846433242b8c5f08ae24064",
+  "total_size": 24308,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "bb53787dee797ac2c5a4544a0f30c83ae1c8af616846433242b8c5f08ae24064"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/weight_proof/test_weight_proof.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/weight_proof/test_weight_proof.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.436882,
+  "updated_at": 1762787395.436887
+}

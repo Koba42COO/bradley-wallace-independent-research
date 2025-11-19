@@ -1,0 +1,18 @@
+{
+  "tool_name": "crawl_store",
+  "tool_hash": "f37f4dbf9140712950e5b8d78a2a4c586b8500b6c7c34cc922633bfc0b7cc5e1",
+  "total_size": 19377,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f37f4dbf9140712950e5b8d78a2a4c586b8500b6c7c34cc922633bfc0b7cc5e1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/seeder/crawl_store.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/seeder/crawl_store.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.311948,
+  "updated_at": 1762787395.311954
+}

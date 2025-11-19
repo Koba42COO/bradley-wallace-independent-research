@@ -1,0 +1,126 @@
+from typing import Any, Callable, Dict, TypedDict
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+JWKDict = Dict[str, Any]
+
+HashlibHash = Callable[..., Any]
+
+
+class SigOptions(TypedDict):
+    """Options for PyJWS class (TypedDict). Note that this is a smaller set of options than
+    for :py:func:`jwt.decode()`."""
+
+    verify_signature: bool
+    """verify the JWT cryptographic signature"""
+
+
+class Options(TypedDict, total=False):
+    """Options for :py:func:`jwt.decode()` and :py:func:`jwt.api_jwt.decode_complete()` (TypedDict).
+
+    .. warning::
+
+        Some claims, such as ``exp``, ``iat``, ``jti``, ``nbf``, and ``sub``,
+        will only be verified if present. Please refer to the documentation below
+        for which ones, and make sure to include them in the ``require`` param
+        if you want to make sure that they are always present (and therefore always verified
+        if ``verify_{claim} = True`` for that claim).
+    """
+
+    verify_signature: bool
+    """Default: ``True``. Verify the JWT cryptographic signature."""
+    require: list[str]
+    """Default: ``[]``. List of claims that must be present.
+          Example: ``require=["exp", "iat", "nbf"]``.
+          **Only verifies that the claims exists**. Does not verify that the claims are valid."""
+    strict_aud: bool
+    """Default: ``False``. (requires ``verify_aud=True``) Check that the ``aud`` claim is a single value (not a list), and matches ``audience`` exactly."""
+    verify_aud: bool
+    """Default: ``verify_signature``. Check that ``aud`` (audience) claim matches ``audience``."""
+    verify_exp: bool
+    """Default: ``verify_signature``. Check that ``exp`` (expiration) claim value is in the future (if present in payload). """
+    verify_iat: bool
+    """Default: ``verify_signature``. Check that ``iat`` (issued at) claim value is an integer (if present in payload). """
+    verify_iss: bool
+    """Default: ``verify_signature``. Check that ``iss`` (issuer) claim matches ``issuer``. """
+    verify_jti: bool
+    """Default: ``verify_signature``. Check that ``jti`` (JWT ID) claim is a string (if present in payload). """
+    verify_nbf: bool
+    """Default: ``verify_signature``. Check that ``nbf`` (not before) claim value is in the past (if present in payload). """
+    verify_sub: bool
+    """Default: ``verify_signature``. Check that ``sub`` (subject) claim is a string and matches ``subject`` (if present in payload). """
+
+
+# The only difference between Options and FullOptions is that FullOptions
+# required _every_ value to be there; Options doesn't require any
+class FullOptions(TypedDict):
+    verify_signature: bool
+    require: list[str]
+    strict_aud: bool
+    verify_aud: bool
+    verify_exp: bool
+    verify_iat: bool
+    verify_iss: bool
+    verify_jti: bool
+    verify_nbf: bool
+    verify_sub: bool

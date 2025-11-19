@@ -1,0 +1,18 @@
+{
+  "tool_name": "serialized_program",
+  "tool_hash": "e2937a0e288b3b1dc27d720b82e15b242b433a420a711ad303c1967ee514d296",
+  "total_size": 88,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e2937a0e288b3b1dc27d720b82e15b242b433a420a711ad303c1967ee514d296"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/blockchain_format/serialized_program.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/blockchain_format/serialized_program.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.305851,
+  "updated_at": 1762787395.3058538
+}

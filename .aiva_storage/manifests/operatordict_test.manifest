@@ -1,0 +1,18 @@
+{
+  "tool_name": "operatordict_test",
+  "tool_hash": "50fa0c744e613a20000661826538576dcbbd1dad9ea951ee5651840b83e90daf",
+  "total_size": 4198,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "50fa0c744e613a20000661826538576dcbbd1dad9ea951ee5651840b83e90daf"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/tests/operatordict_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/tests/operatordict_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.06552,
+  "updated_at": 1762787395.065523
+}

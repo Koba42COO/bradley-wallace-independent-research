@@ -1,0 +1,18 @@
+{
+  "tool_name": "exceptions",
+  "tool_hash": "5e15d6041546e44f099ae0719b4ac6518a4777c160fb9fcd71970a4f570dbcb5",
+  "total_size": 5059,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "5e15d6041546e44f099ae0719b4ac6518a4777c160fb9fcd71970a4f570dbcb5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/plot_sync/exceptions.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/plot_sync/exceptions.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.2947059,
+  "updated_at": 1762787395.294711
+}

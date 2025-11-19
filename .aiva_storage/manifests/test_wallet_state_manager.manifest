@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_wallet_state_manager",
+  "tool_hash": "c9cf211f76993db3e12d739727a1b3a0b091de12cb97fcf9d81935588b808943",
+  "total_size": 21549,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c9cf211f76993db3e12d739727a1b3a0b091de12cb97fcf9d81935588b808943"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_wallet_state_manager.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_wallet_state_manager.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.480902,
+  "updated_at": 1762787395.480905
+}

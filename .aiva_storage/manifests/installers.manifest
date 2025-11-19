@@ -1,0 +1,18 @@
+{
+  "tool_name": "installers",
+  "tool_hash": "515845f8e197ea15169a8de524ec3574f1b5aae7e58fd1b4c85db7d60e661259",
+  "total_size": 7185,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "515845f8e197ea15169a8de524ec3574f1b5aae7e58fd1b4c85db7d60e661259"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/dev/installers.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/dev/installers.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.529237,
+  "updated_at": 1762787395.5292401
+}

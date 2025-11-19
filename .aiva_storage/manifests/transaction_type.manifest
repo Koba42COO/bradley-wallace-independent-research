@@ -1,0 +1,18 @@
+{
+  "tool_name": "transaction_type",
+  "tool_hash": "1554ba9f932b26072e514b7bd5a511373ee84a13fe34a367db618a0e1cd10a7c",
+  "total_size": 3288,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1554ba9f932b26072e514b7bd5a511373ee84a13fe34a367db618a0e1cd10a7c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/transaction_type.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/transaction_type.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.6276412,
+  "updated_at": 1762787395.6276438
+}

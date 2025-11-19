@@ -1,0 +1,18 @@
+{
+  "tool_name": "extreme_stress_test",
+  "tool_hash": "a3383fd8bbefc3b9290bf34255becb53a07791a5c4ba08fbc3d75c96a878a9cb",
+  "total_size": 24656,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a3383fd8bbefc3b9290bf34255becb53a07791a5c4ba08fbc3d75c96a878a9cb"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/extreme_stress_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/extreme_stress_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.1026251,
+  "updated_at": 1762787395.102628
+}

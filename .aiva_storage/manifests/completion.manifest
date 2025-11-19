@@ -1,0 +1,18 @@
+{
+  "tool_name": "completion",
+  "tool_hash": "76b949cf7924744230d995f88b61e73ab58e1c3a663a5e44c4ff707e7bb087f1",
+  "total_size": 4132,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "76b949cf7924744230d995f88b61e73ab58e1c3a663a5e44c4ff707e7bb087f1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/completion.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/completion.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.512576,
+  "updated_at": 1762787395.512579
+}

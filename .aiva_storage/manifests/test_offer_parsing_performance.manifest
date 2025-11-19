@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_offer_parsing_performance",
+  "tool_hash": "17628c3fcffed437cb0cb33572faec35f8dc72c0541944f633ded5c97e4b25f4",
+  "total_size": 17054,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "17628c3fcffed437cb0cb33572faec35f8dc72c0541944f633ded5c97e4b25f4"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_offer_parsing_performance.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_offer_parsing_performance.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.469989,
+  "updated_at": 1762787395.469992
+}

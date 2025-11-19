@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_crawler",
+  "tool_hash": "75f6df3baf3fc4fca3ee378015d01d271ef10b1e2d8d6524d680ea952c47c2ae",
+  "total_size": 9171,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "75f6df3baf3fc4fca3ee378015d01d271ef10b1e2d8d6524d680ea952c47c2ae"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_crawler.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/test_crawler.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.362808,
+  "updated_at": 1762787395.3628109
+}

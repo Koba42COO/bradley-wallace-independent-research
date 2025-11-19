@@ -1,0 +1,18 @@
+{
+  "tool_name": "compute_hints",
+  "tool_hash": "1f1e08124050025580e112fc006246439f7881d4742c3a8db154a918a52a7d55",
+  "total_size": 5216,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1f1e08124050025580e112fc006246439f7881d4742c3a8db154a918a52a7d55"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/compute_hints.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/compute_hints.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.623927,
+  "updated_at": 1762787395.6239302
+}

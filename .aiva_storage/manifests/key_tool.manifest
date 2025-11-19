@@ -1,0 +1,18 @@
+{
+  "tool_name": "key_tool",
+  "tool_hash": "57633e8697ac0fc68aa3c1156217323933119125a3b8df3d290c7ab923237f42",
+  "total_size": 4321,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "57633e8697ac0fc68aa3c1156217323933119125a3b8df3d290c7ab923237f42"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/key_tool.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/key_tool.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.427544,
+  "updated_at": 1762787395.427547
+}

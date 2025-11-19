@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_cmd_framework",
+  "tool_hash": "d43ee3b4321f3c9c8852c8691f6c19f245e4e90839086d383a225389fd39bece",
+  "total_size": 22470,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d43ee3b4321f3c9c8852c8691f6c19f245e4e90839086d383a225389fd39bece"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/test_cmd_framework.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/test_cmd_framework.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.443224,
+  "updated_at": 1762787395.4432268
+}

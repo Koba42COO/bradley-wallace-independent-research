@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_lockfile",
+  "tool_hash": "099c8c7af95a3006ebbc5be24d89a842914609b4d52d12900933ed5c9af5bb1e",
+  "total_size": 17262,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "099c8c7af95a3006ebbc5be24d89a842914609b4d52d12900933ed5c9af5bb1e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/util/test_lockfile.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/util/test_lockfile.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.36749,
+  "updated_at": 1762787395.3674932
+}

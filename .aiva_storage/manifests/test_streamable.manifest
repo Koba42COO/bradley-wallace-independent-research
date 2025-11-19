@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_streamable",
+  "tool_hash": "b010fa9148ae1f06ccfc8691e482eb838fea79f7f653c51f3e69ab6c5188e9db",
+  "total_size": 35633,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b010fa9148ae1f06ccfc8691e482eb838fea79f7f653c51f3e69ab6c5188e9db"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/util/test_streamable.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/util/test_streamable.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.367925,
+  "updated_at": 1762787395.367928
+}

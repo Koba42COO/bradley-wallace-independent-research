@@ -1,0 +1,18 @@
+{
+  "tool_name": "harvester_protocol",
+  "tool_hash": "e86c88548654ccb5ece44382d8c9699d85e333d5d47c54187b12cbf53c7429d2",
+  "total_size": 9219,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e86c88548654ccb5ece44382d8c9699d85e333d5d47c54187b12cbf53c7429d2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/harvester_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/protocols/harvester_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.669997,
+  "updated_at": 1762787395.67
+}

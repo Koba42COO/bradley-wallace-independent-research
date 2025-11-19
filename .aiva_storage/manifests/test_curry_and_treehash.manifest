@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_curry_and_treehash",
+  "tool_hash": "4001d38dea6ff295cfbe140b53279fcbeceed9e94e9d110db4171d17fbd6acc1",
+  "total_size": 4646,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4001d38dea6ff295cfbe140b53279fcbeceed9e94e9d110db4171d17fbd6acc1"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_curry_and_treehash.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_curry_and_treehash.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.341067,
+  "updated_at": 1762787395.3410702
+}

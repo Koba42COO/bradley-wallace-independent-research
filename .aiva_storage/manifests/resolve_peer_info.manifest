@@ -1,0 +1,18 @@
+{
+  "tool_name": "resolve_peer_info",
+  "tool_hash": "b19c586ba82110a2da17380b72e8e5183948b16ea9efe5a17fe8b2f7525ca634",
+  "total_size": 4528,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b19c586ba82110a2da17380b72e8e5183948b16ea9efe5a17fe8b2f7525ca634"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/server/resolve_peer_info.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/server/resolve_peer_info.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.537684,
+  "updated_at": 1762787395.537686
+}

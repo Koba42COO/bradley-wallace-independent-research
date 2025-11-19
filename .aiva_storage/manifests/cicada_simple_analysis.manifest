@@ -1,0 +1,18 @@
+{
+  "tool_name": "cicada_simple_analysis",
+  "tool_hash": "d38b25e737a7b18e341d896254e56919da52d3bbbab335d0d6f8b80832c4b675",
+  "total_size": 10045,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d38b25e737a7b18e341d896254e56919da52d3bbbab335d0d6f8b80832c4b675"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/organized/research/external/repo_clone/research_papers/cicada_simple_analysis.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/organized/research/external/repo_clone/research_papers/cicada_simple_analysis.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.256778,
+  "updated_at": 1762787395.256781
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "param_types",
+  "tool_hash": "0fc0b135bf2462f4a1e7e990b5bacd8b3339cf9dbc0c1fb72c728089b8b09dcd",
+  "total_size": 12384,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "0fc0b135bf2462f4a1e7e990b5bacd8b3339cf9dbc0c1fb72c728089b8b09dcd"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/param_types.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/param_types.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.517081,
+  "updated_at": 1762787395.517084
+}

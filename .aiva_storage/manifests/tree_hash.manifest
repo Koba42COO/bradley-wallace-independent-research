@@ -1,0 +1,18 @@
+{
+  "tool_name": "tree_hash",
+  "tool_hash": "c150c08cb8eb74cc58a6508796b359d37dd7c2d2b4be952752cd0effd2fdff0e",
+  "total_size": 5321,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c150c08cb8eb74cc58a6508796b359d37dd7c2d2b4be952752cd0effd2fdff0e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/blockchain_format/tree_hash.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/blockchain_format/tree_hash.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.304627,
+  "updated_at": 1762787395.304631
+}

@@ -1,0 +1,129 @@
+from __future__ import annotations
+
+from typing import Optional
+
+from chia_rs import CoinState
+from chia_rs.sized_bytes import bytes32
+from chia_rs.sized_ints import uint32
+
+from chia.util.db_wrapper import DBWrapper2
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+class WalletRetryStore:
+    """
+    Persistent coin states that we have received but failed to add
+    """
+
+    db_wrapper: DBWrapper2
+
+    @classmethod
+    async def create(cls, db_wrapper: DBWrapper2) -> WalletRetryStore:
+        self = cls()
+        self.db_wrapper = db_wrapper
+        async with self.db_wrapper.writer_maybe_transaction() as conn:
+            await conn.execute(
+                "CREATE TABLE IF NOT EXISTS retry_store( coin_state blob PRIMARY KEY, peer blob, fork_height int)"
+            )
+
+        return self
+
+    async def get_all_states_to_retry(self) -> list[tuple[CoinState, bytes32, uint32]]:
+        """
+        Return all states that were failed to sync
+        """
+
+        async with self.db_wrapper.reader_no_transaction() as conn:
+            rows = await conn.execute_fetchall("SELECT * from retry_store")
+
+        return [(CoinState.from_bytes(row[0]), bytes32(row[1]), uint32(row[2])) for row in rows]
+
+    async def add_state(self, state: CoinState, peer_id: bytes32, fork_height: Optional[uint32]) -> None:
+        """
+        Adds object to key val store. Obj MUST support __bytes__ and bytes() methods.
+        """
+        async with self.db_wrapper.writer_maybe_transaction() as conn:
+            cursor = await conn.execute(
+                "INSERT OR IGNORE INTO retry_store VALUES(?, ?, ?)",
+                (bytes(state), peer_id, 0 if fork_height is None else fork_height),
+            )
+            await cursor.close()
+
+    async def remove_state(self, state: CoinState) -> None:
+        async with self.db_wrapper.writer_maybe_transaction() as conn:
+            cursor = await conn.execute("DELETE FROM retry_store where coin_state=?", (bytes(state),))
+            await cursor.close()
+
+    async def rollback_to_block(self, height: int) -> None:
+        """
+        Delete all ignored states above a certain height
+        :param height: Reorg height
+        :return None:
+        """
+        async with self.db_wrapper.writer_maybe_transaction() as conn:
+            cursor = await conn.execute(
+                "DELETE from retry_store WHERE fork_height>?",
+                (height,),
+            )
+            await cursor.close()

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_keychain_proxy",
+  "tool_hash": "3dd5e422745bcbf728953cdfb50ce47194227c34b2ca7947128bdafbbea25d5f",
+  "total_size": 4332,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3dd5e422745bcbf728953cdfb50ce47194227c34b2ca7947128bdafbbea25d5f"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/daemon/test_keychain_proxy.py",
+  "consciousness_level": 0,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/daemon/test_keychain_proxy.py",
+    "has_upg": false,
+    "has_pell": false
+  },
+  "created_at": 1762787395.3791418,
+  "updated_at": 1762787395.379145
+}

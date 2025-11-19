@@ -1,0 +1,18 @@
+{
+  "tool_name": "ethiopian_pytorch",
+  "tool_hash": "afc2d7e59cb546da68d6602b2848486ad2c6231bd3e11a91ad60254691e1fdd9",
+  "total_size": 4843,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "afc2d7e59cb546da68d6602b2848486ad2c6231bd3e11a91ad60254691e1fdd9"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/ethiopian_pytorch.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/ethiopian_pytorch.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.005515,
+  "updated_at": 1762787395.0055182
+}

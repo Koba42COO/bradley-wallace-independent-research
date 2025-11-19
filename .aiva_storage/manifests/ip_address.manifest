@@ -1,0 +1,18 @@
+{
+  "tool_name": "ip_address",
+  "tool_hash": "d8438b651c3a2f7223c6516bfb67bc89c95f6b3ab7ece315c6ba114ca1eab437",
+  "total_size": 3608,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d8438b651c3a2f7223c6516bfb67bc89c95f6b3ab7ece315c6ba114ca1eab437"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/ip_address.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/ip_address.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.325769,
+  "updated_at": 1762787395.325771
+}

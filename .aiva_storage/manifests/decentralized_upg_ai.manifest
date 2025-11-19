@@ -1,0 +1,19 @@
+{
+  "tool_name": "decentralized_upg_ai",
+  "tool_hash": "0fe5a8096cd5b1d7b3d0beb80d0f5550d0a21a81baa2165fd1ab0cba4238ddab",
+  "total_size": 128830,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "0d76cfb80bf3108742bc3fbaf203dd2a7e81a8eeaa2306e9b859e5f9bbc5652a",
+    "7203f3288801572f526103d01361839b7b30e274009ca1e4c6f1298ef0653f14"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/decentralized_upg_ai.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/decentralized_upg_ai.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.003038,
+  "updated_at": 1762787395.003041
+}

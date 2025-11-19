@@ -1,0 +1,18 @@
+{
+  "tool_name": "multiprocess_validation",
+  "tool_hash": "a884d5bf31334ed37337dfed81a0735d10e0cd1c90ca27993446b62a7b055515",
+  "total_size": 13296,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a884d5bf31334ed37337dfed81a0735d10e0cd1c90ca27993446b62a7b055515"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/multiprocess_validation.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/multiprocess_validation.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.283503,
+  "updated_at": 1762787395.283506
+}

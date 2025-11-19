@@ -1,0 +1,18 @@
+{
+  "tool_name": "iters_from_block",
+  "tool_hash": "65588a8b771c64f6e733527bd6cd3f4b91307c9357293c595adc475fa8c1e5e2",
+  "total_size": 4290,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "65588a8b771c64f6e733527bd6cd3f4b91307c9357293c595adc475fa8c1e5e2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/timelord/iters_from_block.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/timelord/iters_from_block.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.307553,
+  "updated_at": 1762787395.3075562
+}

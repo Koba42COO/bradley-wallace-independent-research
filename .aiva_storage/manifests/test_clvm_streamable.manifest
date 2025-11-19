@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_clvm_streamable",
+  "tool_hash": "882da97bc8b4504e1c331a3270043d29a85b9a428908e66e6e71055383384a6e",
+  "total_size": 12263,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "882da97bc8b4504e1c331a3270043d29a85b9a428908e66e6e71055383384a6e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_clvm_streamable.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/wallet/test_clvm_streamable.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.475414,
+  "updated_at": 1762787395.475416
+}

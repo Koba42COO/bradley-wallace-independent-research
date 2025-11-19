@@ -1,0 +1,18 @@
+{
+  "tool_name": "unfinished_header_block",
+  "tool_hash": "b2479d691abe557320d99b9c44e2ea6e7be8b91a81e40032cd38761c3fbbfa1a",
+  "total_size": 4121,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b2479d691abe557320d99b9c44e2ea6e7be8b91a81e40032cd38761c3fbbfa1a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/unfinished_header_block.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/unfinished_header_block.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.302424,
+  "updated_at": 1762787395.3024268
+}

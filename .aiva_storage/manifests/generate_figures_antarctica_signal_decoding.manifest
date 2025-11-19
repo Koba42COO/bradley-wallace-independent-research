@@ -1,0 +1,18 @@
+{
+  "tool_name": "generate_figures_antarctica_signal_decoding",
+  "tool_hash": "64a8518dffbcb4ebf6f0f73d01f03d7d1a11bda9322e11e430942ab5e357ee4a",
+  "total_size": 3865,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "64a8518dffbcb4ebf6f0f73d01f03d7d1a11bda9322e11e430942ab5e357ee4a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/visualizations/generate_figures_antarctica_signal_decoding.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/research_papers/arxiv_papers/individual/supporting_materials/visualizations/generate_figures_antarctica_signal_decoding.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.223553,
+  "updated_at": 1762787395.223555
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "aiva_upg_bittorrent_storage",
+  "tool_hash": "f5921b72262edd05c676ba893dd074e0bbaf8c5e3153dc5122b8855492cf1540",
+  "total_size": 18268,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f5921b72262edd05c676ba893dd074e0bbaf8c5e3153dc5122b8855492cf1540"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/aiva_upg_bittorrent_storage.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/aiva_upg_bittorrent_storage.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0272892,
+  "updated_at": 1762787395.027292
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "consolidate_duplicate_tools",
+  "tool_hash": "4afcfdf5401c47f37c3223a2b6ab180ac6b1cec2af3866545606a4e4fe038256",
+  "total_size": 19086,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "4afcfdf5401c47f37c3223a2b6ab180ac6b1cec2af3866545606a4e4fe038256"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/consolidate_duplicate_tools.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/consolidate_duplicate_tools.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.028291,
+  "updated_at": 1762787395.0282938
+}

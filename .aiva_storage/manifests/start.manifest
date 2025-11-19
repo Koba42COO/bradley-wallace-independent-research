@@ -1,0 +1,18 @@
+{
+  "tool_name": "start",
+  "tool_hash": "599aa872e8a340e3f60b93aab86f1a5159dcec9e961e154a333ae1e058931474",
+  "total_size": 3746,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "599aa872e8a340e3f60b93aab86f1a5159dcec9e961e154a333ae1e058931474"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/start.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/cmds/start.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.517351,
+  "updated_at": 1762787395.517353
+}

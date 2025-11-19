@@ -1,0 +1,18 @@
+{
+  "tool_name": "task_referencer",
+  "tool_hash": "c0fc81bf59928441e5386d0618500e6378e660f5c7b6d3638e3f04b08d10d355",
+  "total_size": 4433,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c0fc81bf59928441e5386d0618500e6378e660f5c7b6d3638e3f04b08d10d355"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/task_referencer.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/task_referencer.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3159628,
+  "updated_at": 1762787395.315966
+}

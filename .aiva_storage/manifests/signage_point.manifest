@@ -1,0 +1,18 @@
+{
+  "tool_name": "signage_point",
+  "tool_hash": "ced7cccd835f5e56b8972a6eca6ca156e747afdf6c0845593ec2004d89a6d3e5",
+  "total_size": 3159,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ced7cccd835f5e56b8972a6eca6ca156e747afdf6c0845593ec2004d89a6d3e5"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/signage_point.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/consensus/signage_point.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.288419,
+  "updated_at": 1762787395.2884219
+}

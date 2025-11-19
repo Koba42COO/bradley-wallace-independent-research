@@ -1,0 +1,18 @@
+{
+  "tool_name": "firefly_homophonic_bram_integration",
+  "tool_hash": "6cc11c00a2d2524f549c036280014e74760a0b7fd063560f9399128b22e00a97",
+  "total_size": 31436,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6cc11c00a2d2524f549c036280014e74760a0b7fd063560f9399128b22e00a97"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/firefly_homophonic_bram_integration.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/firefly_homophonic_bram_integration.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.017466,
+  "updated_at": 1762787395.017469
+}

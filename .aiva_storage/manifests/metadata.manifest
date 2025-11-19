@@ -1,0 +1,18 @@
+{
+  "tool_name": "metadata",
+  "tool_hash": "b3f52d73066d37d3947109138384464b3999f324860cc6488be800bfcac5b810",
+  "total_size": 3857,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b3f52d73066d37d3947109138384464b3999f324860cc6488be800bfcac5b810"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/clawback/metadata.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/puzzles/clawback/metadata.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.637734,
+  "updated_at": 1762787395.637742
+}

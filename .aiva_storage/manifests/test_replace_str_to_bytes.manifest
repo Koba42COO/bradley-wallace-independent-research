@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_replace_str_to_bytes",
+  "tool_hash": "df2b0d49666115e2b94ad142f5e9b6bf371e75ae5eaeec069c7136b4f63d7506",
+  "total_size": 9013,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "df2b0d49666115e2b94ad142f5e9b6bf371e75ae5eaeec069c7136b4f63d7506"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_replace_str_to_bytes.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_replace_str_to_bytes.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4267662,
+  "updated_at": 1762787395.4267719
+}

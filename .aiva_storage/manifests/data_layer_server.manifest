@@ -1,0 +1,18 @@
+{
+  "tool_name": "data_layer_server",
+  "tool_hash": "81d5317bc858af7fc1fe2fd85dae28675abda27d3691233878884b93bf5429f3",
+  "total_size": 8240,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "81d5317bc858af7fc1fe2fd85dae28675abda27d3691233878884b93bf5429f3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/data_layer_server.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/data_layer/data_layer_server.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.578947,
+  "updated_at": 1762787395.57895
+}

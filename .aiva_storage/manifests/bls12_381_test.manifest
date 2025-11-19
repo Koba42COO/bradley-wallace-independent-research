@@ -1,0 +1,18 @@
+{
+  "tool_name": "bls12_381_test",
+  "tool_hash": "2874b81e4fb222287ab50fae9be2f56b784b0a73aea149e9f7a5fb890fa038d2",
+  "total_size": 3180,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2874b81e4fb222287ab50fae9be2f56b784b0a73aea149e9f7a5fb890fa038d2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/tests/bls12_381_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/tests/bls12_381_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.063859,
+  "updated_at": 1762787395.063861
+}

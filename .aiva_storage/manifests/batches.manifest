@@ -1,0 +1,18 @@
+{
+  "tool_name": "batches",
+  "tool_hash": "3f66f72dd30e254b4e10ef43ff61acc5699b133ea7dc4fe86b0c287a43300001",
+  "total_size": 4050,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3f66f72dd30e254b4e10ef43ff61acc5699b133ea7dc4fe86b0c287a43300001"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/util/batches.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/util/batches.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.326999,
+  "updated_at": 1762787395.327002
+}

@@ -1,0 +1,259 @@
+n_chain:
+                update_tx_rec0 = bytes32.from_hexstr(res["tx_id"][0])
+            else:
+                assert res == {"success": True}
+        else:  # pragma: no cover
+            assert False, "unhandled parametrization"
+
+        if not submit_on_chain:
+            if layer == InterfaceLayer.direct:
+                res = await data_rpc_api.submit_all_pending_roots({})
+                update_tx_rec0 = res["tx_id"][0]
+            elif layer == InterfaceLayer.funcs:
+                res = await submit_all_pending_roots_cmd(
+                    rpc_port=rpc_port,
+                    fee=None,
+                    fingerprint=None,
+                    root_path=bt.root_path,
+                )
+                update_tx_rec0 = bytes32.from_hexstr(res["tx_id"][0])
+            elif layer == InterfaceLayer.cli:
+                process = await run_cli_cmd(
+                    "data",
+                    "submit_all_pending_roots",
+                    "--data-rpc-port",
+                    str(rpc_port),
+                    root_path=bt.root_path,
+                )
+                assert process.stdout is not None
+                raw_output = await process.stdout.read()
+                res = json.loads(raw_output)
+                update_tx_rec0 = bytes32.from_hexstr(res["tx_id"][0])
+            elif layer == InterfaceLayer.client:
+                async with DataLayerRpcClient.create_as_context(
+                    self_hostname=self_hostname,
+                    port=rpc_port,
+                    root_path=bt.root_path,
+                    net_config=bt.config,
+                ) as client:
+                    res = await client.submit_all_pending_roots(fee=None)
+
+                update_tx_rec0 = bytes32.from_hexstr(res["tx_id"][0])
+            else:  # pragma: no cover
+                assert False, "unhandled parametrization"
+
+        await farm_block_with_spend(full_node_api, ph, update_tx_rec0, wallet_rpc_api)
+
+        for index, store_id in enumerate(store_ids):
+            for offset in (0, 1000):
+                key = (index + offset).to_bytes(2, "big")
+                value = (index + offset).to_bytes(2, "big")
+                res = await data_rpc_api.get_value({"id": store_id.hex(), "key": key.hex()})
+                assert hexstr_to_bytes(res["value"]) == value
+
+        with pytest.raises(Exception, match="No pending roots found to submit"):
+            await data_rpc_api.submit_all_pending_roots({})
+        for store_id in store_ids:
+            pending_root = await data_store.get_pending_root(store_id=store_id)
+            assert pending_root is None
+
+        store_updates = []
+        key = b"0000"
+        value = b"0000"
+        changelist = [{"action": "insert", "key": key.hex(), "value": value.hex()}]
+        store_updates.append({"store_id": store_id.hex(), "changelist": changelist})
+        key = b"0001"
+        value = b"0001"
+        changelist = [{"action": "insert", "key": key.hex(), "value": value.hex()}]
+        store_updates.append({"store_id": store_id.hex(), "changelist": changelist})
+        with pytest.raises(Exception, match=f"Store id {store_id.hex()} must appear in a single update"):
+            await data_rpc_api.multistore_batch_update({"store_updates": store_updates})
+        store_updates = [{"changelist": changelist}]
+        with pytest.raises(Exception, match="Each update must specify a store_id"):
+            await data_rpc_api.multistore_batch_update({"store_updates": store_updates})
+        store_updates = [{"store_id": store_id.hex()}]
+        with pytest.raises(Exception, match="Each update must specify a changelist"):
+            await data_rpc_api.multistore_batch_update({"store_updates": store_updates})
+
+
+@pytest.mark.limit_consensus_modes(reason="does not depend on consensus rules")
+@pytest.mark.anyio
+async def test_unsubmitted_batch_db_migration(
+    self_hostname: str,
+    one_wallet_and_one_simulator_services: SimulatorsAndWalletsServices,
+    tmp_path: Path,
+    bt: BlockTools,
+    monkeypatch: Any,
+) -> None:
+    with monkeypatch.context() as m:
+
+        class OldStatus(IntEnum):
+            PENDING = 1
+            COMMITTED = 2
+            PENDING_BATCH = 3
+
+        class ModifiedStatus(IntEnum):
+            PENDING = 1
+            COMMITTED = 2
+
+        m.setattr("chia.data_layer.data_layer_util.Status", ModifiedStatus)
+        m.setattr("chia.data_layer.data_store.Status", ModifiedStatus)
+        m.setattr("chia.data_layer.data_layer.Status", ModifiedStatus)
+
+        wallet_rpc_api, full_node_api, wallet_rpc_port, ph, bt = await init_wallet_and_node(
+            self_hostname, one_wallet_and_one_simulator_services
+        )
+
+        async with init_data_layer_service(
+            wallet_rpc_port=wallet_rpc_port, bt=bt, db_path=tmp_path
+        ) as data_layer_service:
+            assert data_layer_service.rpc_server is not None
+            data_layer = data_layer_service._api.data_layer
+            data_rpc_api = DataLayerRpcApi(data_layer)
+            res = await data_rpc_api.create_data_store({})
+            assert res is not None
+
+            store_id = bytes32.from_hexstr(res["id"])
+            await farm_block_check_singleton(data_layer, full_node_api, ph, store_id, wallet=wallet_rpc_api.service)
+
+            m.setattr("chia.data_layer.data_layer_util.Status", OldStatus)
+            m.setattr("chia.data_layer.data_store.Status", OldStatus)
+            m.setattr("chia.data_layer.data_layer.Status", OldStatus)
+
+            key = b"0000"
+            value = b"0000"
+            changelist: list[dict[str, str]] = [{"action": "insert", "key": key.hex(), "value": value.hex()}]
+            res = await data_rpc_api.batch_update({"id": store_id.hex(), "changelist": changelist})
+            update_tx_rec0 = res["tx_id"]
+            await farm_block_with_spend(full_node_api, ph, update_tx_rec0, wallet_rpc_api)
+            keys = await data_rpc_api.get_keys({"id": store_id.hex()})
+            assert keys == {"keys": ["0x30303030"]}
+
+            key = b"0001"
+            value = b"0001"
+            changelist = [{"action": "insert", "key": key.hex(), "value": value.hex()}]
+            with pytest.raises(sqlite3.IntegrityError, match="CHECK constraint failed: status == 1 OR status == 2"):
+                await data_rpc_api.batch_update(
+                    {"id": store_id.hex(), "changelist": changelist, "submit_on_chain": False}
+                )
+
+    async with init_data_layer_service(wallet_rpc_port=wallet_rpc_port, bt=bt, db_path=tmp_path) as data_layer_service:
+        assert data_layer_service.rpc_server is not None
+        data_layer = data_layer_service._api.data_layer
+        data_rpc_api = DataLayerRpcApi(data_layer)
+        # Test we don't migrate twice.
+        with pytest.raises(sqlite3.IntegrityError, match="CHECK constraint failed: status == 1 OR status == 2"):
+            await data_rpc_api.batch_update({"id": store_id.hex(), "changelist": changelist, "submit_on_chain": False})
+
+    # Artificially remove the first migration.
+    async with DataStore.managed(
+        database=tmp_path.joinpath("db.sqlite"),
+        merkle_blobs_path=tmp_path.joinpath("merkle-blobs"),
+        key_value_blobs_path=tmp_path.joinpath("key-value-blobs"),
+    ) as data_store:
+        async with data_store.db_wrapper.writer() as writer:
+            await writer.execute("DELETE FROM schema")
+
+    async with init_data_layer_service(wallet_rpc_port=wallet_rpc_port, bt=bt, db_path=tmp_path) as data_layer_service:
+        assert data_layer_service.rpc_server is not None
+        data_layer = data_layer_service._api.data_layer
+        data_rpc_api = DataLayerRpcApi(data_layer)
+        res = await data_rpc_api.batch_update(
+            {"id": store_id.hex(), "changelist": changelist, "submit_on_chain": False}
+        )
+        assert res == {}
+
+        res = await data_rpc_api.submit_pending_root({"id": store_id.hex()})
+        update_tx_rec1 = res["tx_id"]
+        await farm_block_with_spend(full_node_api, ph, update_tx_rec1, wallet_rpc_api)
+        keys = await data_rpc_api.get_keys({"id": store_id.hex()})
+        # order agnostic comparison of the list
+        keys["keys"] = set(keys["keys"])
+        assert keys == {"keys": {"0x30303031", "0x30303030"}}
+
+
+@pytest.mark.limit_consensus_modes(reason="does not depend on consensus rules")
+@boolean_datacases(name="auto_subscribe_to_local_stores", false="do not auto subscribe", true="auto subscribe")
+@pytest.mark.anyio
+async def test_auto_subscribe_to_local_stores(
+    self_hostname: str,
+    one_wallet_and_one_simulator_services: SimulatorsAndWalletsServices,
+    tmp_path: Path,
+    monkeypatch: Any,
+    auto_subscribe_to_local_stores: bool,
+) -> None:
+    _wallet_rpc_api, _full_node_api, wallet_rpc_port, _ph, bt = await init_wallet_and_node(
+        self_hostname, one_wallet_and_one_simulator_services
+    )
+    manage_data_interval = 5
+    fake_store = bytes32([1] * 32)
+
+    async def mock_get_store_ids(self: Any) -> set[bytes32]:
+        return {fake_store}
+
+    async def mock_dl_track_new(self: Any, request: dict[str, Any]) -> dict[str, Any]:
+        # ignore and just return empty response
+        return {}
+
+    with monkeypatch.context() as m:
+        m.setattr("chia.data_layer.data_store.DataStore.get_store_ids", mock_get_store_ids)
+        m.setattr("chia.wallet.wallet_rpc_client.WalletRpcClient.dl_track_new", mock_dl_track_new)
+
+        config = bt.config
+        config["data_layer"]["auto_subscribe_to_local_stores"] = auto_subscribe_to_local_stores
+        bt.change_config(new_config=config)
+
+        async with init_data_layer(
+            wallet_rpc_port=wallet_rpc_port,
+            bt=bt,
+            db_path=tmp_path,
+            manage_data_interval=manage_data_interval,
+            maximum_full_file_count=100,
+        ) as data_layer:
+            data_rpc_api = DataLayerRpcApi(data_layer)
+
+            await asyncio.sleep(manage_data_interval)
+
+            response = await data_rpc_api.subscriptions(request={})
+
+            if auto_subscribe_to_local_stores:
+                assert fake_store.hex() in response["store_ids"]
+            else:
+                assert fake_store.hex() not in response["store_ids"]
+
+
+@pytest.mark.limit_consensus_modes(reason="does not depend on consensus rules")
+@pytest.mark.anyio
+async def test_local_store_exception(
+    self_hostname: str,
+    one_wallet_and_one_simulator_services: SimulatorsAndWalletsServices,
+    tmp_path: Path,
+    monkeypatch: Any,
+    caplog: pytest.LogCaptureFixture,
+) -> None:
+    _wallet_rpc_api, _full_node_api, wallet_rpc_port, _ph, bt = await init_wallet_and_node(
+        self_hostname, one_wallet_and_one_simulator_services
+    )
+    manage_data_interval = 5
+    fake_store = bytes32([1] * 32)
+
+    async def mock_get_store_ids(self: Any) -> set[bytes32]:
+        return {fake_store}
+
+    with monkeypatch.context() as m, caplog.at_level(logging.INFO):
+        m.setattr("chia.data_layer.data_store.DataStore.get_store_ids", mock_get_store_ids)
+
+        config = bt.config
+        config["data_layer"]["auto_subscribe_to_local_stores"] = True
+        bt.change_config(new_config=config)
+
+        async with init_data_layer(
+            wallet_rpc_port=wallet_rpc_port,
+            bt=bt,
+            db_path=tmp_path,
+            manage_data_interval=manage_data_interval,
+            maximum_full_file_count=100,
+        ):
+            await asyncio.sleep(manage_data_interval)
+
+            assert f"Can't subscribe to local store {fake_store.hex()}:" in caplog.text

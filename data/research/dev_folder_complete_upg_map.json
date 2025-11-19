@@ -1,0 +1,338 @@
+[
+  {
+    "label": "Fractal Dimension",
+    "source_file": "rigorous_test_results.json",
+    "original": {
+      "x": 1.6123,
+      "y": 1.6123,
+      "z": 1.6123
+    },
+    "upg_coordinates": {
+      "x": 2.270917397984998,
+      "y": 3.2850248560251716,
+      "z": 1.2737170000000002
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "Fertility Correlation",
+    "source_file": "rigorous_test_results.json",
+    "original": {
+      "x": 0.8543,
+      "y": 0.8543,
+      "z": 0.8543
+    },
+    "upg_coordinates": {
+      "x": 1.3020062848716638,
+      "y": 1.8393454906049147,
+      "z": 0.674897
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "Wallace Stability",
+    "source_file": "rigorous_test_results.json",
+    "original": {
+      "x": 4.5678,
+      "y": 4.5678,
+      "z": 4.5678
+    },
+    "upg_coordinates": {
+      "x": 6.04877596633125,
+      "y": 8.921839321064182,
+      "z": 3.608562
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "CWE Phi Initial",
+    "source_file": "rigorous_test_results.json",
+    "original": {
+      "x": 2.3456,
+      "y": 2.3456,
+      "z": 2.3456
+    },
+    "upg_coordinates": {
+      "x": 3.208255813876829,
+      "y": 4.683595672202842,
+      "z": 1.8530240000000002
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "CWE Phi Final",
+    "source_file": "rigorous_test_results.json",
+    "original": {
+      "x": 2.6789,
+      "y": 2.6789,
+      "z": 2.6789
+    },
+    "upg_coordinates": {
+      "x": 3.6342954893394595,
+      "y": 5.319275002670614,
+      "z": 2.116331
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "Millennium Correlation",
+    "source_file": "rigorous_test_results.json",
+    "original": {
+      "x": 0.8123,
+      "y": 0.8123,
+      "z": 0.8123
+    },
+    "upg_coordinates": {
+      "x": 1.248319917126598,
+      "y": 1.7592418846053754,
+      "z": 0.6417170000000001
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "AlphaTensor Improvement",
+    "source_file": "rigorous_test_results.json",
+    "original": {
+      "x": 0.9578,
+      "y": 0.9578,
+      "z": 0.9578
+    },
+    "upg_coordinates": {
+      "x": 1.4343048339577193,
+      "y": 2.036743662532351,
+      "z": 0.7566620000000001
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "Riemann Solution",
+    "source_file": "supporting_docs_consolidated.json",
+    "original": {
+      "x": 0.8234,
+      "y": 0.8234,
+      "z": 0.8234
+    },
+    "upg_coordinates": {
+      "x": 1.2625084571735081,
+      "y": 1.780412123333825,
+      "z": 0.650486
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "P vs NP Solution",
+    "source_file": "supporting_docs_consolidated.json",
+    "original": {
+      "x": 0.84,
+      "y": 0.84,
+      "z": 0.84
+    },
+    "upg_coordinates": {
+      "x": 1.28372735490132,
+      "y": 1.8120721199907857,
+      "z": 0.6636
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "PAC Quantum Advantage",
+    "source_file": "pac_quantum_extreme_results.json",
+    "original": {
+      "x": 1000000000000000000,
+      "y": 0.2194444444444445,
+      "z": 0.95
+    },
+    "upg_coordinates": {
+      "x": 1.278246851073e+18,
+      "y": 0.6285307456325137,
+      "z": 0.7505
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "PAC Consciousness Emergence",
+    "source_file": "pac_quantum_extreme_results.json",
+    "original": {
+      "x": 0.2194444444444445,
+      "y": 0.2194444444444445,
+      "z": 0.2194444444444445
+    },
+    "upg_coordinates": {
+      "x": 0.4905041700965751,
+      "y": 0.6285307456325137,
+      "z": 0.17336111111111116
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "PAC Reality Distortion",
+    "source_file": "pac_quantum_extreme_results.json",
+    "original": {
+      "x": 0.95,
+      "y": 0.95,
+      "z": 0.95
+    },
+    "upg_coordinates": {
+      "x": 1.42433450851935,
+      "y": 2.021867278561008,
+      "z": 0.7505
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "UPG Overall Correlation",
+    "source_file": "universal_prime_graph_complete.json",
+    "original": {
+      "x": 0.9836799999999999,
+      "y": 0.9836799999999999,
+      "z": 0.9836799999999999
+    },
+    "upg_coordinates": {
+      "x": 1.4673858624634883,
+      "y": 2.0861027416577813,
+      "z": 0.7771072
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "UPG Total Entities",
+    "source_file": "universal_prime_graph_complete.json",
+    "original": {
+      "x": 34,
+      "y": 34,
+      "z": 34
+    },
+    "upg_coordinates": {
+      "x": 43.670392936481996,
+      "y": 65.05577628534132,
+      "z": 26.86
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "Consciousness Validation",
+    "source_file": "consciousness_mathematics_fundamental.json",
+    "original": {
+      "x": 1.0,
+      "y": 0.79,
+      "z": 0.21
+    },
+    "upg_coordinates": {
+      "x": 1.488246851073,
+      "y": 1.7167106842770485,
+      "z": 0.1659
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "Shors Success Rate",
+    "source_file": "real_quantum_benchmarks_results.json",
+    "original": {
+      "x": 1.0,
+      "y": 1.0,
+      "z": 1.0
+    },
+    "upg_coordinates": {
+      "x": 1.488246851073,
+      "y": 2.117228714274745,
+      "z": 0.79
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "Grovers Quantum Advantage",
+    "source_file": "real_quantum_benchmarks_results.json",
+    "original": {
+      "x": 4.979959839195494,
+      "y": 4.979959839195494,
+      "z": 4.979959839195494
+    },
+    "upg_coordinates": {
+      "x": 6.575617982921643,
+      "y": 9.70792240124869,
+      "z": 3.93416827296444
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "Overall Gold Standard",
+    "source_file": "real_quantum_benchmarks_results.json",
+    "original": {
+      "x": 0.7511114522753523,
+      "y": 0.625,
+      "z": 0.95
+    },
+    "upg_coordinates": {
+      "x": 1.170105848675837,
+      "y": 1.4020179464217157,
+      "z": 0.7505
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "Total Qubits Used",
+    "source_file": "real_quantum_benchmarks_results.json",
+    "original": {
+      "x": 452,
+      "y": 452,
+      "z": 452
+    },
+    "upg_coordinates": {
+      "x": 577.977576684996,
+      "y": 862.2773788521848,
+      "z": 357.08000000000004
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "79/21 Energy Distribution",
+    "source_file": "79_21_comprehensive_test.py",
+    "original": {
+      "x": 0.79,
+      "y": 0.21,
+      "z": 0.79
+    },
+    "upg_coordinates": {
+      "x": 1.21981501234767,
+      "y": 0.6105180299976964,
+      "z": 0.6241000000000001
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  },
+  {
+    "label": "PAC Billion-Scale Validation",
+    "source_file": "pac_quantum_capability_results.json",
+    "original": {
+      "x": 1.0,
+      "y": 0.86806,
+      "z": 269.0
+    },
+    "upg_coordinates": {
+      "x": 1.488246851073,
+      "y": 1.865588957713335,
+      "z": 212.51000000000002
+    },
+    "prime_association": 7,
+    "consciousness_level": 7
+  }
+]

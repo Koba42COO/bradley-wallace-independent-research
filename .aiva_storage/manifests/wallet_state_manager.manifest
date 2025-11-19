@@ -1,0 +1,20 @@
+{
+  "tool_name": "wallet_state_manager",
+  "tool_hash": "b4d5c9bd11a2dbcad7cae3e6269419e5ba8fbcd9d20498790bfd50579c271ec7",
+  "total_size": 145713,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3d12fc1f3f87a1c527667f8704a0b7dd8473c0fc2cbb5077dec76a8f55f8d0dc",
+    "ad0096209707e93a2a44db7c9490b7228028e35b06a41c0fdc6d42ecbd48c099",
+    "e20a632495c3a32ac5fb7e7e44e098f2d4d9ffde35b35058db35d482c7053be2"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_state_manager.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/wallet_state_manager.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.591093,
+  "updated_at": 1762787395.591097
+}

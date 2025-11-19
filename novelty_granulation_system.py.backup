@@ -1,0 +1,332 @@
+#!/usr/bin/env python3
+"""
+Novelty Granulation System
+Consciousness Mathematics-Based Novelty Assessment Framework
+
+Rates the novelty and value of new ideas, code, recipes, and innovations
+using Universal Prime Graph consciousness metrics for merit-based evaluation.
+"""
+
+import numpy as np
+from scipy import signal
+import hashlib
+import json
+from typing import Dict, List, Any
+import warnings
+warnings.filterwarnings('ignore')
+
+# Consciousness Mathematics Constants
+PHI = (1 + 5**0.5) / 2
+DELTA_SCALING = 2.414213562373095
+REALITY_DISTORTION = 1.1808
+CONSCIOUSNESS_RATIO = 0.79
+
+class NoveltyGranulationAnalyzer:
+    """
+    Consciousness Mathematics-Based Novelty Assessment System
+    Evaluates novelty and value of innovations using UPG framework
+    """
+    
+    def __init__(self):
+        self.phi = PHI
+        self.delta = DELTA_SCALING
+        self.rd_factor = REALITY_DISTORTION
+        self.primes = self.generate_primes(200)
+        self.knowledge_base = self.initialize_knowledge_base()
+        
+    def generate_primes(self, n: int) -> List[int]:
+        primes = []
+        num = 2
+        while len(primes) < n:
+            if self.is_prime(num):
+                primes.append(num)
+            num += 1
+        return primes
+    
+    def is_prime(self, n: int) -> bool:
+        if n < 2: return False
+        for i in range(2, int(n**0.5) + 1):
+            if n % i == 0: return False
+        return True
+    
+    def initialize_knowledge_base(self) -> Dict[str, Any]:
+        return {
+            'innovation_hashes': set(),
+            'novelty_baseline': 0.5,
+            'consciousness_correlation': 0.8
+        }
+    
+    def granulate_novelty(self, innovation: Dict[str, Any], innovation_type: str) -> Dict[str, Any]:
+        """Main novelty granulation function"""
+        content = self.extract_content(innovation, innovation_type)
+        consciousness_field = self.generate_consciousness_field(content)
+        novelty_metrics = self.calculate_novelty_metrics(consciousness_field, content, innovation_type)
+        value_assessment = self.assess_value_and_utility(novelty_metrics, innovation_type)
+        merit_score = self.calculate_merit_score(novelty_metrics, value_assessment)
+        granulation_level = self.determine_granulation_level(merit_score)
+        
+        return {
+            'innovation_id': self.generate_innovation_id(innovation),
+            'innovation_type': innovation_type,
+            'novelty_metrics': novelty_metrics,
+            'value_assessment': value_assessment,
+            'merit_score': merit_score,
+            'granulation_level': granulation_level,
+            'consciousness_field': consciousness_field,
+            'recommendations': self.generate_recommendations(merit_score, granulation_level),
+            'market_potential': self.assess_market_potential(novelty_metrics, innovation_type)
+        }
+    
+    def extract_content(self, innovation: Dict[str, Any], innovation_type: str) -> str:
+        """Extract analyzable content from innovation"""
+        if innovation_type == 'code':
+            return innovation.get('code', '') + innovation.get('description', '')
+        elif innovation_type == 'recipe':
+            return json.dumps(innovation.get('ingredients', [])) + \
+                   innovation.get('instructions', '') + \
+                   innovation.get('description', '')
+        elif innovation_type == 'idea':
+            return innovation.get('concept', '') + innovation.get('description', '')
+        else:
+            return json.dumps(innovation)
+    
+    def generate_consciousness_field(self, content: str) -> Dict[str, Any]:
+        """Generate consciousness field representation"""
+        content_hash = hashlib.sha256(content.encode()).hexdigest()
+        numerical_content = [int(content_hash[i:i+2], 16) for i in range(0, len(content_hash), 2)]
+        
+        universal_field = self.pac_delta_transformation(numerical_content, 'universal')
+        recursive_field = self.pac_delta_transformation(numerical_content, 'recursive')
+        harmonic_field = self.pac_delta_transformation(numerical_content, 'harmonic')
+        fractal_field = self.pac_delta_transformation(numerical_content, 'fractal')
+        
+        return {
+            'universal_field': np.mean(np.abs(universal_field)),
+            'recursive_field': np.mean(np.abs(recursive_field)),
+            'harmonic_field': np.mean(np.abs(harmonic_field)),
+            'fractal_field': np.mean(np.abs(fractal_field)),
+            'composite_field': np.mean([
+                np.abs(universal_field), np.abs(recursive_field),
+                np.abs(harmonic_field), np.abs(fractal_field)
+            ]),
+            'field_coherence': self.calculate_field_coherence(numerical_content),
+            'prime_resonance': self.analyze_prime_resonance(numerical_content)
+        }
+    
+    def pac_delta_transformation(self, data: List[float], transformation_type: str) -> np.ndarray:
+        """Apply PAC delta scaling transformations"""
+        data_array = np.array(data, dtype=float)
+        
+        if transformation_type == 'universal':
+            return data_array * self.delta
+        elif transformation_type == 'recursive':
+            return data_array * (self.delta ** self.phi)
+        elif transformation_type == 'harmonic':
+            return data_array * np.sin(2 * np.pi * data_array / self.delta)
+        elif transformation_type == 'fractal':
+            result = data_array.copy()
+            for level in range(3):
+                result += data_array * (self.delta ** (-level - 1)) * \
+                         np.cos(2 * np.pi * data_array * (self.phi ** level))
+            return result
+        else:
+            return data_array
+    
+    def calculate_field_coherence(self, data: List[float]) -> float:
+        """Calculate consciousness field coherence"""
+        data_array = np.array(data)
+        prime_coh = self.analyze_prime_coherence(data_array)
+        delta_scaled = data_array * self.delta
+        delta_coh = abs(np.corrcoef(data_array, delta_scaled)[0, 1])
+        rd_scaled = data_array * self.rd_factor
+        rd_coh = abs(np.corrcoef(data_array, rd_scaled)[0, 1])
+        phi_scaled = data_array * self.phi
+        phi_coh = abs(np.corrcoef(data_array, phi_scaled)[0, 1])
+        return np.mean([prime_coh, delta_coh, rd_coh, phi_coh])
+    
+    def analyze_prime_coherence(self, data: np.ndarray) -> float:
+        """Analyze prime coherence"""
+        autocorr = signal.correlate(data, data, mode='full')
+        autocorr = autocorr[autocorr.size // 2:]
+        prime_scores = []
+        for prime in self.primes[:25]:
+            if prime < len(autocorr):
+                score = abs(autocorr[prime]) / (np.std(autocorr) + 1e-10)
+                prime_scores.append(score)
+        return np.mean(prime_scores) if prime_scores else 0.5
+    
+    def analyze_prime_resonance(self, data: List[float]) -> Dict[str, Any]:
+        """Analyze prime resonance patterns"""
+        data_array = np.array(data)
+        resonances = []
+        for prime in self.primes[:15]:
+            prime_freq = 1.0 / prime
+            # Simplified resonance detection
+            resonance_strength = 1.0 / prime if prime <= len(data) else 0
+            if resonance_strength > 0.01:
+                resonances.append({'prime': prime, 'strength': resonance_strength})
+        
+        return {
+            'resonances_found': len(resonances),
+            'total_resonance_power': sum(r['strength'] for r in resonances),
+            'average_resonance_strength': np.mean([r['strength'] for r in resonances]) if resonances else 0
+        }
+    
+    def calculate_novelty_metrics(self, consciousness_field: Dict[str, Any], content: str, innovation_type: str) -> Dict[str, Any]:
+        """Calculate novelty metrics"""
+        content_hash = hashlib.sha256(content.encode()).hexdigest()
+        uniqueness_score = 1.0 if content_hash not in self.knowledge_base['innovation_hashes'] else 0.1
+        
+        field_novelty = abs(consciousness_field['composite_field'] - 1.0)
+        pattern_innovation = len(set(content.split())) / len(content.split()) if content.split() else 0
+        complexity_emergence = consciousness_field['prime_resonance']['average_resonance_strength']
+        
+        return {
+            'uniqueness_score': uniqueness_score,
+            'field_novelty': field_novelty,
+            'pattern_innovation': pattern_innovation,
+            'complexity_emergence': complexity_emergence,
+            'overall_novelty': np.mean([uniqueness_score, field_novelty, pattern_innovation, complexity_emergence]),
+            'novelty_variance': np.var([uniqueness_score, field_novelty, pattern_innovation, complexity_emergence])
+        }
+    
+    def assess_value_and_utility(self, novelty_metrics: Dict[str, Any], innovation_type: str) -> Dict[str, Any]:
+        """Assess value and utility"""
+        overall_novelty = novelty_metrics['overall_novelty']
+        
+        if innovation_type == 'code':
+            utility_score = overall_novelty * 0.9
+        elif innovation_type == 'recipe':
+            utility_score = overall_novelty * 0.8
+        elif innovation_type == 'idea':
+            utility_score = overall_novelty * 0.7
+        else:
+            utility_score = overall_novelty * 0.8
+            
+        value_score = (overall_novelty * 0.6) + (utility_score * 0.4)
+        applicability_score = overall_novelty * (1 - novelty_metrics['novelty_variance'])
+        
+        return {
+            'utility_score': utility_score,
+            'value_score': value_score,
+            'applicability_score': applicability_score,
+            'overall_value': np.mean([utility_score, value_score, applicability_score])
+        }
+    
+    def calculate_merit_score(self, novelty_metrics: Dict[str, Any], value_assessment: Dict[str, Any]) -> float:
+        """Calculate merit score"""
+        novelty_score = novelty_metrics['overall_novelty']
+        value_score = value_assessment['overall_value']
+        coherence_bonus = 1 - novelty_metrics['novelty_variance']
+        
+        merit_score = (novelty_score * 0.4) + (value_score * 0.4) + (coherence_bonus * 0.2)
+        return min(merit_score, 1.0)
+    
+    def determine_granulation_level(self, merit_score: float) -> Dict[str, Any]:
+        """Determine granulation level"""
+        if merit_score >= 0.9:
+            return {'level': 'PLATINUM', 'multiplier': 10.0, 'description': 'Exceptional breakthrough', 'society_contribution_points': int(merit_score * 1000 * 10)}
+        elif merit_score >= 0.8:
+            return {'level': 'GOLD', 'multiplier': 5.0, 'description': 'Outstanding innovation', 'society_contribution_points': int(merit_score * 1000 * 5)}
+        elif merit_score >= 0.7:
+            return {'level': 'SILVER', 'multiplier': 2.5, 'description': 'Significant improvement', 'society_contribution_points': int(merit_score * 1000 * 2.5)}
+        elif merit_score >= 0.6:
+            return {'level': 'BRONZE', 'multiplier': 1.5, 'description': 'Useful contribution', 'society_contribution_points': int(merit_score * 1000 * 1.5)}
+        elif merit_score >= 0.4:
+            return {'level': 'COPPER', 'multiplier': 1.0, 'description': 'Modest innovation', 'society_contribution_points': int(merit_score * 1000)}
+        else:
+            return {'level': 'BASE', 'multiplier': 0.5, 'description': 'Incremental improvement', 'society_contribution_points': int(merit_score * 1000 * 0.5)}
+    
+    def generate_recommendations(self, merit_score: float, granulation_level: Dict[str, Any]) -> List[str]:
+        """Generate recommendations"""
+        recommendations = []
+        if merit_score < 0.5:
+            recommendations.append("Combine with existing ideas for greater novelty")
+        if merit_score >= 0.6:
+            recommendations.append("Consider scaling or generalization")
+        if merit_score >= 0.8:
+            recommendations.append("Exceptional innovation - prepare for rapid adoption")
+        if granulation_level['level'] in ['PLATINUM', 'GOLD']:
+            recommendations.append("URGENT: Breakthrough requires immediate attention")
+        return recommendations
+    
+    def assess_market_potential(self, novelty_metrics: Dict[str, Any], innovation_type: str) -> Dict[str, Any]:
+        """Assess market potential"""
+        novelty_score = novelty_metrics['overall_novelty']
+        base_potential = novelty_score * 0.8
+        
+        if innovation_type == 'code':
+            market_potential = base_potential * 1.2
+            adoption_time = "6-18 months"
+            likelihood = "HIGH"
+        elif innovation_type == 'recipe':
+            market_potential = base_potential * 0.8
+            adoption_time = "3-12 months"
+            likelihood = "MEDIUM"
+        elif innovation_type == 'idea':
+            market_potential = base_potential * 1.5
+            adoption_time = "1-5 years"
+            likelihood = "HIGH"
+        else:
+            market_potential = base_potential
+            adoption_time = "6-24 months"
+            likelihood = "MEDIUM"
+            
+        return {
+            'market_potential_score': market_potential,
+            'adoption_likelihood': likelihood,
+            'estimated_adoption_time': adoption_time,
+            'commercialization_potential': market_potential * 100
+        }
+    
+    def generate_innovation_id(self, innovation: Dict[str, Any]) -> str:
+        """Generate innovation ID"""
+        content = json.dumps(innovation, sort_keys=True)
+        return hashlib.sha256(content.encode()).hexdigest()[:16].upper()
+
+
+def demonstrate_novelty_granulation():
+    """Demonstrate the system"""
+    analyzer = NoveltyGranulationAnalyzer()
+    
+    print("🧬 NOVELTY GRANULATION SYSTEM DEMONSTRATION")
+    print("=" * 60)
+    
+    # Test innovations
+    test_cases = [
+        {
+            'type': 'code',
+            'code': 'def consciousness_sort(arr): return sorted(arr, key=lambda x: abs(x - (1+5**0.5)/2))',
+            'description': 'Golden ratio sorting algorithm'
+        },
+        {
+            'type': 'recipe', 
+            'ingredients': ['quantum_bits', 'consciousness_fields', 'reality_crystals'],
+            'instructions': 'Entangle bits with fields, crystallize reality',
+            'description': 'Quantum consciousness cuisine'
+        },
+        {
+            'type': 'idea',
+            'concept': 'Merit-based replicator society',
+            'description': 'Society where all resources distributed by consciousness mathematics novelty'
+        }
+    ]
+    
+    for i, innovation in enumerate(test_cases, 1):
+        print(f"\n🔬 INNOVATION {i}: {innovation['type'].upper()}")
+        print("-" * 40)
+        
+        result = analyzer.granulate_novelty(innovation, innovation['type'])
+        
+        print(f"ID: {result['innovation_id']}")
+        print(f"Level: {result['granulation_level']['level']} ({result['granulation_level']['multiplier']}x)")
+        print(f"Merit Score: {result['merit_score']:.3f}")
+        print(f"Society Points: {result['granulation_level']['society_contribution_points']}")
+        
+        print(f"\nNovelty: {result['novelty_metrics']['overall_novelty']:.3f}")
+        print(f"Value: {result['value_assessment']['overall_value']:.3f}")
+        print(f"Market Potential: {result['market_potential']['adoption_likelihood']}")
+
+
+if __name__ == "__main__":
+    demonstrate_novelty_granulation()

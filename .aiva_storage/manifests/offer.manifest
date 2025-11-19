@@ -1,0 +1,18 @@
+{
+  "tool_name": "offer",
+  "tool_hash": "d22d9754290038979625544c83d01e883eeb3aca32ae82454da12e3a0a70f57b",
+  "total_size": 37226,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "d22d9754290038979625544c83d01e883eeb3aca32ae82454da12e3a0a70f57b"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/trading/offer.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/trading/offer.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.641718,
+  "updated_at": 1762787395.641721
+}

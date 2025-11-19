@@ -1,0 +1,18 @@
+{
+  "tool_name": "boot",
+  "tool_hash": "b826c244e449f106891e7a673e5b63b6d10cb208182062cf777b8bb52da65cdf",
+  "total_size": 11462,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b826c244e449f106891e7a673e5b63b6d10cb208182062cf777b8bb52da65cdf"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/boot.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/aiva-core/core/boot.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.125707,
+  "updated_at": 1762787395.12571
+}

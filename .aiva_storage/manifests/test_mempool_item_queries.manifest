@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_mempool_item_queries",
+  "tool_hash": "a439dce6e6198bc162760c5feea0579bebbb2104693ab1a4b5a0b6705a8aed1a",
+  "total_size": 9733,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a439dce6e6198bc162760c5feea0579bebbb2104693ab1a4b5a0b6705a8aed1a"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/mempool/test_mempool_item_queries.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/mempool/test_mempool_item_queries.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4022179,
+  "updated_at": 1762787395.402221
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_consts",
+  "tool_hash": "1d49c03569602fbe5e244f02c86e58917e845bad790100440689b1cfa0b11951",
+  "total_size": 4495,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "1d49c03569602fbe5e244f02c86e58917e845bad790100440689b1cfa0b11951"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/wallet/test_consts.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/wallet/test_consts.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.456962,
+  "updated_at": 1762787395.4569652
+}

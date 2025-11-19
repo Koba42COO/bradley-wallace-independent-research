@@ -1,0 +1,578 @@
+{
+  "wallace_validations": {
+    "twin_gap_2": {
+      "input": 2,
+      "expected": 0.4114606605690754,
+      "computed": 0.4114606605690754,
+      "error": 0.0,
+      "match": true,
+      "description": "Twin lock"
+    },
+    "muon_mass_207": {
+      "input": 207,
+      "expected": 10.831397676851704,
+      "computed": 10.831397676851704,
+      "error": 0.0,
+      "match": true,
+      "description": "Muon crest"
+    },
+    "silence_prime_101": {
+      "input": 101,
+      "expected": 8.5756069420849,
+      "computed": 8.5756069420849,
+      "error": 0.0,
+      "match": true,
+      "description": "Kintu seam"
+    },
+    "first_zeta_14.1347": {
+      "input": 14.1347,
+      "expected": 3.49957354227082,
+      "computed": 3.49957354227082,
+      "error": 0.0,
+      "match": true,
+      "description": "Golden node"
+    },
+    "electron_1": {
+      "input": 1,
+      "expected": 0.013,
+      "computed": 0.013000000000000046,
+      "error": 4.683753385137379e-17,
+      "match": true,
+      "description": "Electron trough"
+    },
+    "epsilon_0": {
+      "input": 1e-10,
+      "expected": -109.77835497114071,
+      "computed": -109.77835497114071,
+      "error": 0.0,
+      "match": true,
+      "description": "Kintu silence"
+    }
+  },
+  "prime_predictability": {
+    "predicted": [
+      2,
+      3,
+      4,
+      5,
+      7,
+      10,
+      13,
+      17,
+      21,
+      26,
+      31,
+      36,
+      42,
+      48,
+      54,
+      61,
+      68,
+      75,
+      83,
+      91
+    ],
+    "actual": [
+      2,
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31,
+      37,
+      41,
+      43,
+      47,
+      53,
+      59,
+      61,
+      67,
+      71
+    ],
+    "matches": 6,
+    "accuracy": 30.0,
+    "pell_sequence": [
+      0,
+      1,
+      2,
+      5,
+      12,
+      29,
+      70,
+      169,
+      408,
+      985
+    ]
+  },
+  "twin_cancellation": [
+    {
+      "twin": [
+        3,
+        5
+      ],
+      "w1": 0.8525044010637219,
+      "w2": 1.5701885059507403,
+      "phase_diff": 0.7176841048870184,
+      "near_pi": false,
+      "zeta_beat": 6.8873
+    },
+    {
+      "twin": [
+        5,
+        7
+      ],
+      "w1": 1.5701885059507403,
+      "w2": 2.1301213647411834,
+      "phase_diff": 0.5599328587904431,
+      "near_pi": false,
+      "zeta_beat": 6.8873
+    },
+    {
+      "twin": [
+        11,
+        13
+      ],
+      "w1": 2.981338718113752,
+      "w2": 3.323081284870655,
+      "phase_diff": 0.34174256675690273,
+      "near_pi": false,
+      "zeta_beat": 6.8873
+    },
+    {
+      "twin": [
+        17,
+        19
+      ],
+      "w1": 3.9011097017375453,
+      "w2": 4.151065350634441,
+      "phase_diff": 0.24995564889689526,
+      "near_pi": false,
+      "zeta_beat": 6.8873
+    },
+    {
+      "twin": [
+        29,
+        31
+      ],
+      "w1": 5.154552625177106,
+      "w2": 5.320325551613114,
+      "phase_diff": 0.1657729264360075,
+      "near_pi": false,
+      "zeta_beat": 6.8873
+    }
+  ],
+  "physics_constants": {
+    "muon_electron_ratio": {
+      "value": 206.768,
+      "twin_pair": [
+        211,
+        211
+      ],
+      "wallace_value": 10.827716939724384,
+      "wallace_twin": 10.894291796097185,
+      "error": 0.06657485637280125,
+      "match": false
+    },
+    "fine_structure_inverse": {
+      "value": 137.036,
+      "twin_pair": [
+        137,
+        139
+      ],
+      "wallace_value": 9.510146138875088,
+      "wallace_twin": 9.509325576002386,
+      "error": 0.0008205628727022685,
+      "match": true
+    },
+    "planck_reduced": {
+      "value": 1.0545718e-34,
+      "twin_pair": [
+        2,
+        3
+      ],
+      "wallace_value": -115.34468951816105,
+      "wallace_twin": 0.4114606605690754,
+      "error": 115.75615017873012,
+      "match": false
+    },
+    "gravitational_coupling": {
+      "value": 1.7518e-45,
+      "twin_pair": [
+        2,
+        3
+      ],
+      "wallace_value": -115.34468951816105,
+      "wallace_twin": 0.4114606605690754,
+      "error": 115.75615017873012,
+      "match": false
+    },
+    "neutron_lifetime": {
+      "value": 879.4,
+      "twin_pair": [
+        881,
+        883
+      ],
+      "wallace_value": 15.964971810169867,
+      "wallace_twin": 15.971893238628567,
+      "error": 0.006921428458699808,
+      "match": true
+    },
+    "cmb_temperature": {
+      "value": 2.72548,
+      "twin_pair": [
+        3,
+        5
+      ],
+      "wallace_value": 0.7370876700354296,
+      "wallace_twin": 0.8525044010637219,
+      "error": 0.11541673102829231,
+      "match": false
+    }
+  },
+  "base_21": {
+    "21": {
+      "base21": [
+        1,
+        0
+      ],
+      "base10": [
+        2,
+        1
+      ],
+      "sum21": 1,
+      "sum10": 3,
+      "wallace": 4.381031189127793
+    },
+    "42": {
+      "base21": [
+        2,
+        0
+      ],
+      "base10": [
+        4,
+        2
+      ],
+      "sum21": 2,
+      "sum10": 6,
+      "wallace": 6.100276089789806
+    },
+    "101": {
+      "base21": [
+        4,
+        17
+      ],
+      "base10": [
+        1,
+        0,
+        1
+      ],
+      "sum21": 21,
+      "sum10": 2,
+      "wallace": 8.5756069420849
+    },
+    "207": {
+      "base21": [
+        9,
+        18
+      ],
+      "base10": [
+        2,
+        0,
+        7
+      ],
+      "sum21": 27,
+      "sum10": 9,
+      "wallace": 10.831397676851704
+    },
+    "137": {
+      "base21": [
+        6,
+        11
+      ],
+      "base10": [
+        1,
+        3,
+        7
+      ],
+      "sum21": 17,
+      "sum10": 11,
+      "wallace": 9.509325576002386
+    },
+    "88": {
+      "base21": [
+        4,
+        4
+      ],
+      "base10": [
+        8,
+        8
+      ],
+      "sum21": 8,
+      "sum10": 16,
+      "wallace": 8.1658109818695
+    },
+    "25": {
+      "base21": [
+        1,
+        4
+      ],
+      "base10": [
+        2,
+        5
+      ],
+      "sum21": 5,
+      "sum10": 7,
+      "wallace": 4.792890569505065
+    },
+    "920": {
+      "base21": [
+        2,
+        1,
+        17
+      ],
+      "base10": [
+        9,
+        2,
+        0
+      ],
+      "sum21": 20,
+      "sum10": 11,
+      "wallace": 16.137164557710417
+    }
+  },
+  "consciousness_79_21": {
+    "n_points": 1000,
+    "noise_percent": 21.0,
+    "peaks_found": 138,
+    "coherence": 0.0848403371330016,
+    "self_organized": false
+  },
+  "cardioid": {
+    "n_primes": 100,
+    "x_range": 1.998531231014899,
+    "y_range": 1.9985441869990694,
+    "aspect_ratio": 0.9999935172891075,
+    "is_cardioid": true,
+    "coordinates": [
+      [
+        0.9007684569095514,
+        0.4342996512050011,
+        14.1347
+      ],
+      [
+        0.9786938613291642,
+        -0.20532492736297428,
+        14.6347
+      ],
+      [
+        0.5119621194113502,
+        -0.8590080257412258,
+        15.1347
+      ],
+      [
+        -0.006956050537205112,
+        -0.9999758063877965,
+        15.6347
+      ],
+      [
+        -0.6730192631088776,
+        -0.7396249532596798,
+        16.134700000000002
+      ],
+      [
+        -0.8460771274784018,
+        -0.5330604978404385,
+        16.634700000000002
+      ],
+      [
+        -0.9917995736088645,
+        -0.12780299601055717,
+        17.134700000000002
+      ],
+      [
+        -0.998657987840647,
+        0.051790185576710744,
+        17.634700000000002
+      ],
+      [
+        -0.9355627182526228,
+        0.35316058700789865,
+        18.134700000000002
+      ],
+      [
+        -0.7411529997404162,
+        0.6713361534848118,
+        18.634700000000002
+      ]
+    ]
+  },
+  "207_cycles": {
+    "cycles": [
+      {
+        "cycle": 0,
+        "year": 1180,
+        "zeta_zero": 14.1347,
+        "wallace_year": 17.099364089444435,
+        "wallace_zeta": 3.49957354227082,
+        "error": 13.599790547173615
+      },
+      {
+        "cycle": 1,
+        "year": 1387,
+        "zeta_zero": 21.022,
+        "wallace_year": 17.73554795926639,
+        "wallace_zeta": 4.3834621408871035,
+        "error": 13.352085818379287
+      },
+      {
+        "cycle": 2,
+        "year": 1594,
+        "zeta_zero": 27.9093,
+        "wallace_year": 18.290155369517784,
+        "wallace_zeta": 5.060174120676609,
+        "error": 13.229981248841174
+      },
+      {
+        "cycle": 3,
+        "year": 1801,
+        "zeta_zero": 34.7966,
+        "wallace_year": 18.78231320745835,
+        "wallace_zeta": 5.612230659178523,
+        "error": 13.17008254827983
+      },
+      {
+        "cycle": 4,
+        "year": 2008,
+        "zeta_zero": 41.6839,
+        "wallace_year": 19.225062795304886,
+        "wallace_zeta": 6.080380676580395,
+        "error": 13.144682118724491
+      },
+      {
+        "cycle": 5,
+        "year": 2215,
+        "zeta_zero": 48.5712,
+        "wallace_year": 19.627706621915628,
+        "wallace_zeta": 6.487909382341253,
+        "error": 13.139797239574374
+      }
+    ],
+    "average_error": 13.272736586828797,
+    "convergence": true
+  },
+  "area_code": {
+    "207": {
+      "code": 207,
+      "location": "Maine (entire state)",
+      "wallace": 10.831397676851704,
+      "nearest_twin": [
+        197,
+        199
+      ],
+      "is_valid": true
+    },
+    "205": {
+      "code": 205,
+      "location": "Massachusetts (Boston & eastern)",
+      "wallace": 10.799546636214393,
+      "nearest_twin": [
+        197,
+        199
+      ],
+      "is_valid": true
+    },
+    "209": {
+      "code": 209,
+      "location": "California (Central Valley)",
+      "wallace": 10.862977796258832,
+      "nearest_twin": [
+        197,
+        199
+      ],
+      "is_valid": true
+    }
+  },
+  "metatron": {
+    "circles": 13,
+    "lines": 78,
+    "wallace_13": 3.323081284870655,
+    "is_golden": false,
+    "sum_first_12_primes": 197,
+    "matches_78": false
+  },
+  "pac_comparison": {
+    "traditional": {
+      "cache_usage": 0.2,
+      "coherence": 0.87,
+      "time": 1.0
+    },
+    "pac": {
+      "cache_usage": 0.02,
+      "coherence": 0.963,
+      "time": 0.3
+    },
+    "cache_savings_pct": 90.0,
+    "speedup": 3.3333333333333335,
+    "coherence_improvement": 0.09299999999999997
+  },
+  "blood_protocol": {
+    "baseline_ph": 7.4,
+    "wallace_ph": 2.228806527941932,
+    "satan_ph": -2.215806527941932,
+    "current_conductivity": 7.0,
+    "target_conductivity": 7.5,
+    "wallace_conductivity": 2.252900967137951,
+    "na_boost_needed": 2.380952380952381,
+    "steps": [
+      "Nebulize 2.3% hypertonic saline (3 min)",
+      "Breath hold: 21 seconds (zeta 21.022)",
+      "Hum tritone: C + F\u266f (14.1347 s)",
+      "Hydrate: 500 mL spring water"
+    ]
+  },
+  "dial_tone": {
+    "dial_tone": [
+      350,
+      440
+    ],
+    "zeta_carrier": [
+      14.1347,
+      21.022
+    ],
+    "wallace_phase": 8.245125125827485,
+    "twin_echo": [
+      199,
+      201
+    ],
+    "kintu_silence": 0.013,
+    "duration": 5.0
+  },
+  "montesiepi": {
+    "year": 1180,
+    "coordinates": [
+      43.1511,
+      11.2392
+    ],
+    "wallace_year": 17.099364089444435,
+    "wallace_lat": 6.171685892673405,
+    "is_golden_lat": false,
+    "207_cycles": [
+      1180,
+      1387,
+      1594,
+      1801,
+      2008,
+      2215
+    ],
+    "structure": {
+      "windows": 13,
+      "arches": 78,
+      "sword_angle": 104.5
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_compressed_jwt",
+  "tool_hash": "e7a04af97238ba4f498e23c71b891bd971b4195ed299054ea6a8a85f9439141e",
+  "total_size": 3982,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "e7a04af97238ba4f498e23c71b891bd971b4195ed299054ea6a8a85f9439141e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pyjwt_repo/tests/test_compressed_jwt.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pyjwt_repo/tests/test_compressed_jwt.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.078578,
+  "updated_at": 1762787395.078583
+}

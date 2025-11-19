@@ -1,0 +1,18 @@
+{
+  "tool_name": "create_precision_tests",
+  "tool_hash": "edb8c2d5187de845edf53e1174a1e71950a2031d2a8cdcf51039b2a9218fd7a8",
+  "total_size": 6803,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "edb8c2d5187de845edf53e1174a1e71950a2031d2a8cdcf51039b2a9218fd7a8"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/create_precision_tests.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/create_precision_tests.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.023821,
+  "updated_at": 1762787395.023824
+}

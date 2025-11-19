@@ -1,0 +1,18 @@
+{
+  "tool_name": "block_protocol",
+  "tool_hash": "522c789f989ee3929c377eb743e531cd14e2b9c5823f6100f01608d38898e811",
+  "total_size": 3266,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "522c789f989ee3929c377eb743e531cd14e2b9c5823f6100f01608d38898e811"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/types/block_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/types/block_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.303301,
+  "updated_at": 1762787395.303304
+}

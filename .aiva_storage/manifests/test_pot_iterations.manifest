@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_pot_iterations",
+  "tool_hash": "fbed49a6e2d53d85d296d87b440b5c07192547948f54349f29b976be4dc959e6",
+  "total_size": 11426,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fbed49a6e2d53d85d296d87b440b5c07192547948f54349f29b976be4dc959e6"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/consensus/test_pot_iterations.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/consensus/test_pot_iterations.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.364235,
+  "updated_at": 1762787395.3642392
+}

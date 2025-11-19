@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_testnet_overrides",
+  "tool_hash": "3ea0ca8f216516f666344b02a2080970ba7f4b70809de94d2136bd35ba5c232e",
+  "total_size": 3619,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "3ea0ca8f216516f666344b02a2080970ba7f4b70809de94d2136bd35ba5c232e"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_testnet_overrides.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/util/test_testnet_overrides.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.4155278,
+  "updated_at": 1762787395.415531
+}

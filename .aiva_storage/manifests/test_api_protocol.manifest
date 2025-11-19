@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_api_protocol",
+  "tool_hash": "6fc550482eceecddd8e48d34f9ee4df29adb9591f94423d61ae6ac7c164371af",
+  "total_size": 3474,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6fc550482eceecddd8e48d34f9ee4df29adb9591f94423d61ae6ac7c164371af"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_api_protocol.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/core/server/test_api_protocol.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.375654,
+  "updated_at": 1762787395.3756568
+}

@@ -1,0 +1,213 @@
+from __future__ import annotations
+
+from collections.abc import Collection
+from typing import Optional, Protocol
+
+from chia_rs import CoinState
+from chia_rs.sized_bytes import bytes32
+from chia_rs.sized_ints import uint32, uint64
+
+from chia.types.blockchain_format.coin import Coin
+from chia.types.coin_record import CoinRecord
+from chia.types.mempool_item import UnspentLineageInfo
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+class CoinStoreProtocol(Protocol):
+    """
+    Protocol defining the interface for CoinStore.
+    This is a substitute for importing from chia.full_node.coin_store directly.
+    """
+
+    async def new_block(
+        self,
+        height: uint32,
+        timestamp: uint64,
+        included_reward_coins: Collection[Coin],
+        tx_additions: Collection[tuple[bytes32, Coin, bool]],
+        tx_removals: list[bytes32],
+    ) -> None:
+        """
+        Add a new block to the coin store
+        """
+
+    async def get_coin_record(self, coin_id: bytes32) -> Optional[CoinRecord]:
+        """
+        Returns the coin record for the specified coin id
+        """
+
+    async def get_coin_records(self, coin_ids: Collection[bytes32]) -> list[CoinRecord]:
+        """
+        Returns the coin records for the specified coin ids
+        """
+
+    async def get_coins_added_at_height(self, height: uint32) -> list[CoinRecord]:
+        """
+        Returns the coins added at a specific height
+        """
+
+    async def get_coins_removed_at_height(self, height: uint32) -> list[CoinRecord]:
+        """
+        Returns the coins removed at a specific height
+        """
+
+    async def get_coin_records_by_puzzle_hash(
+        self,
+        include_spent_coins: bool,
+        puzzle_hash: bytes32,
+        start_height: uint32 = ...,
+        end_height: uint32 = ...,
+    ) -> list[CoinRecord]:
+        """
+        Returns the coin records for a specific puzzle hash
+        """
+
+    async def get_coin_records_by_puzzle_hashes(
+        self,
+        coins: bool,
+        puzzle_hashes: list[bytes32],
+        start_height: uint32 = ...,
+        end_height: uint32 = ...,
+    ) -> list[CoinRecord]:
+        """
+        Returns the coin records for a list of puzzle hashes
+        """
+
+    async def get_coin_records_by_names(
+        self,
+        include_spent_coins: bool,
+        names: list[bytes32],
+        start_height: uint32 = ...,
+        end_height: uint32 = ...,
+    ) -> list[CoinRecord]:
+        """
+        Returns the coin records for a list of coin names
+        """
+
+    async def get_coin_states_by_puzzle_hashes(
+        self,
+        include_spent_coins: bool,
+        puzzle_hashes: set[bytes32],
+        min_height: uint32 = uint32(0),
+        *,
+        max_items: int = ...,
+    ) -> set[CoinState]:
+        """
+        Returns the coin states for a set of puzzle hashes
+        """
+
+    async def get_coin_records_by_parent_ids(
+        self,
+        include_spent_coins: bool,
+        parent_ids: list[bytes32],
+        start_height: uint32 = ...,
+        end_height: uint32 = ...,
+    ) -> list[CoinRecord]:
+        """
+        Returns the coin records for a list of parent ids
+        """
+
+    async def get_coin_states_by_ids(
+        self,
+        include_spent_coins: bool,
+        coin_ids: Collection[bytes32],
+        min_height: uint32 = uint32(0),
+        *,
+        max_height: uint32 = ...,
+        max_items: int = ...,
+    ) -> list[CoinState]:
+        """
+        Returns the coin states for a collection of coin ids
+        """
+
+    async def batch_coin_states_by_puzzle_hashes(
+        self,
+        puzzle_hashes: list[bytes32],
+        *,
+        min_height: uint32 = ...,
+        include_spent: bool = ...,
+        include_unspent: bool = ...,
+        include_hinted: bool = ...,
+        min_amount: uint64 = ...,
+        max_items: int = ...,
+    ) -> tuple[list[CoinState], Optional[uint32]]:
+        """
+        Returns the coin states, as well as the next block height (or `None` if finished).
+        """
+
+    async def get_unspent_lineage_info_for_puzzle_hash(self, puzzle_hash: bytes32) -> Optional[UnspentLineageInfo]:
+        """
+        Lookup the most recent unspent lineage that matches a puzzle hash
+        """
+
+    async def rollback_to_block(self, block_index: int) -> dict[bytes32, CoinRecord]:
+        """
+        Rolls back the blockchain to the specified block index
+        """
+
+    # DEPRECATED: do not use in new code
+    async def is_empty(self) -> bool:
+        """
+        Returns True if the coin store is empty
+        """

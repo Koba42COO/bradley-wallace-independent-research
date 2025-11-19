@@ -1,0 +1,18 @@
+{
+  "tool_name": "introducer_peers",
+  "tool_hash": "106d68c6438634de649e1bc13200707fdcefdec0a9f9928c6b6b59ba2c9fedd0",
+  "total_size": 5164,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "106d68c6438634de649e1bc13200707fdcefdec0a9f9928c6b6b59ba2c9fedd0"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/server/introducer_peers.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/server/introducer_peers.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.531803,
+  "updated_at": 1762787395.531806
+}

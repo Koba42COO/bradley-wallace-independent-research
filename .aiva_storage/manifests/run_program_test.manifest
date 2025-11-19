@@ -1,0 +1,18 @@
+{
+  "tool_name": "run_program_test",
+  "tool_hash": "fb76313d291a1a1a72c4abcce5f1541048bc1ac929674218bd4935e4ffb2c9ba",
+  "total_size": 3483,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "fb76313d291a1a1a72c4abcce5f1541048bc1ac929674218bd4935e4ffb2c9ba"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/clvm/tests/run_program_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/clvm/tests/run_program_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.063224,
+  "updated_at": 1762787395.063227
+}

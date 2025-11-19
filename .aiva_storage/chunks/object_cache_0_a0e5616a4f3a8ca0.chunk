@@ -1,0 +1,168 @@
+from typing import Callable, Dict, Generic, Optional, Tuple, TypeVar
+
+import hashlib
+
+from .CLVMObject import CLVMStorage
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+T = TypeVar("T")
+
+
+class ObjectCache(Generic[T]):
+    """
+    `ObjectCache` provides a way to calculate and cache values for each node
+    in a clvm object tree. It can be used to calculate the sha256 tree hash
+    for an object and save the hash for all the child objects for building
+    usage tables, for example.
+
+    It also allows a function that's defined recursively on a clvm tree to
+    have a non-recursive implementation (as it keeps a stack of uncached
+    objects locally).
+    """
+
+    def __init__(self, f: Callable[["ObjectCache[T]", CLVMStorage], Optional[T]]):
+        """
+        `f`: Callable[ObjectCache, CLVMObject] -> Union[None, T]
+
+        The function `f` is expected to calculate its T value recursively based
+        on the T values for the left and right child for a pair. For an atom, the
+        function f must calculate the T value directly.
+
+        If a pair is passed and one of the children does not have its T value cached
+        in `ObjectCache` yet, return `None` and f will be called with each child in turn.
+        Don't recurse in f; that's part of the point of this function.
+        """
+        self.f = f
+        self.lookup: Dict[int, Tuple[T, CLVMStorage]] = dict()
+
+    def get(self, obj: CLVMStorage) -> T:
+        obj_id = id(obj)
+        if obj_id not in self.lookup:
+            obj_list = [obj]
+            while obj_list:
+                node = obj_list.pop()
+                node_id = id(node)
+                if node_id not in self.lookup:
+                    v = self.f(self, node)
+                    if v is None:
+                        if node.pair is None:
+                            raise ValueError("f returned None for atom", node)
+                        obj_list.append(node)
+                        obj_list.append(node.pair[0])
+                        obj_list.append(node.pair[1])
+                    else:
+                        self.lookup[node_id] = (v, node)
+        return self.lookup[obj_id][0]
+
+    def contains(self, obj: CLVMStorage) -> bool:
+        return id(obj) in self.lookup
+
+
+def treehash(cache: ObjectCache[bytes], obj: CLVMStorage) -> Optional[bytes]:
+    """
+    This function can be fed to `ObjectCache` to calculate the sha256 tree
+    hash for all objects in a tree.
+    """
+    if obj.pair:
+        left, right = obj.pair
+
+        # ensure both `left` and `right` have cached values
+        if cache.contains(left) and cache.contains(right):
+            left_hash = cache.get(left)
+            right_hash = cache.get(right)
+            return hashlib.sha256(b"\2" + left_hash + right_hash).digest()
+        return None
+    assert obj.atom is not None
+    return hashlib.sha256(b"\1" + obj.atom).digest()
+
+
+def serialized_length(cache: ObjectCache[int], obj: CLVMStorage) -> Optional[int]:
+    """
+    This function can be fed to `ObjectCache` to calculate the serialized
+    length for all objects in a tree.
+    """
+    if obj.pair:
+        left, right = obj.pair
+
+        # ensure both `left` and `right` have cached values
+        if cache.contains(left) and cache.contains(right):
+            left_length = cache.get(left)
+            right_length = cache.get(right)
+            return 1 + left_length + right_length
+        return None
+    assert obj.atom is not None
+    lb = len(obj.atom)
+    if lb == 0 or (lb == 1 and obj.atom[0] < 128):
+        return 1
+    if lb < 0x40:
+        return 1 + lb
+    if lb < 0x2000:
+        return 2 + lb
+    if lb < 0x100000:
+        return 3 + lb
+    if lb < 0x8000000:
+        return 4 + lb
+    if lb < 0x400000000:
+        return 5 + lb
+    raise ValueError("atom of size %d too long" % lb)

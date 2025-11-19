@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_wallet_consolidated",
+  "tool_hash": "28b27831f18bd820cb116ee5f3a4b6153bb99649c1d0ba34c83729e3e8b725bd",
+  "total_size": 54272,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "28b27831f18bd820cb116ee5f3a4b6153bb99649c1d0ba34c83729e3e8b725bd"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/wallet/test_wallet_consolidated.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/cmds/wallet/test_wallet_consolidated.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.455507,
+  "updated_at": 1762787395.455513
+}

@@ -1,0 +1,545 @@
+#!/usr/bin/env python3
+"""
+Prime Graph Computation System
+Decentralized Marketplace for Mathematical Computation
+
+This system implements the core prime graph computation marketplace
+that enables users to get paid for computing prime graph topologies
+using Wallace Transform mathematics on the Chia blockchain.
+"""
+
+import numpy as np
+import json
+import hashlib
+import time
+from typing import Dict, List, Tuple, Any, Optional
+from dataclasses import dataclass
+from pathlib import Path
+import asyncio
+import aiohttp
+
+@dataclass
+class ComputationTask:
+    """Represents a prime graph computation task."""
+    task_id: str
+    prime_range_start: int
+    prime_range_end: int
+    difficulty_level: int
+    reward_mojos: int  # Chia mojos (1 XCH = 1e12 mojos)
+    wallace_iterations: int
+    status: str  # 'open', 'assigned', 'completed', 'verified'
+    created_timestamp: float
+    assigned_worker: Optional[str] = None
+    completion_timestamp: Optional[float] = None
+    result_hash: Optional[str] = None
+
+@dataclass
+class PrimeGraphResult:
+    """Result of prime graph computation."""
+    primes_found: List[int]
+    graph_topology: Dict[str, Any]
+    wallace_values: Dict[str, float]
+    consciousness_levels: List[int]
+    computation_hash: str
+    validation_proof: Dict[str, Any]
+
+class PrimeGraphComputationSystem:
+    """
+    Core system for prime graph computation marketplace.
+
+    Enables decentralized computation of prime graph topologies
+    using Wallace Transform mathematics with Chia blockchain rewards.
+    """
+
+    def __init__(self, wallet_address: str, chia_rpc_url: str = "https://localhost:8555"):
+        self.wallet_address = wallet_address
+        self.chia_rpc_url = chia_rpc_url
+        self.phi = (1 + np.sqrt(5)) / 2  # Golden ratio
+        self.delta = 2 + np.sqrt(2)      # Silver ratio
+
+        # Computation state
+        self.active_tasks: Dict[str, ComputationTask] = {}
+        self.completed_tasks: Dict[str, ComputationTask] = {}
+        self.worker_reputation: Dict[str, float] = {}
+
+        # Prime cache for efficiency
+        self.prime_cache: List[int] = []
+        self._initialize_prime_cache()
+
+        print("🔢 Prime Graph Computation System initialized")
+        print(f"   👛 Wallet: {wallet_address[:10]}...")
+        print(f"   🔗 Chia RPC: {chia_rpc_url}")
+        print(f"   📊 Prime cache: {len(self.prime_cache)} primes")
+
+    def _initialize_prime_cache(self, max_prime: int = 10000):
+        """Initialize prime cache for efficient computation."""
+        print("🔍 Generating initial prime cache...")
+
+        # Sieve of Eratosthenes for initial primes
+        sieve = [True] * (max_prime + 1)
+        sieve[0] = sieve[1] = False
+
+        for i in range(2, int(np.sqrt(max_prime)) + 1):
+            if sieve[i]:
+                for j in range(i*i, max_prime + 1, i):
+                    sieve[j] = False
+
+        self.prime_cache = [i for i in range(max_prime + 1) if sieve[i]]
+        print(f"   ✅ Generated {len(self.prime_cache)} primes")
+
+    def create_computation_task(self, prime_range_start: int, prime_range_end: int,
+                              difficulty: int = 3, reward_mojos: int = 1000000) -> str:
+        """
+        Create a new prime graph computation task.
+
+        Args:
+            prime_range_start: Starting prime number for computation
+            prime_range_end: Ending prime number for computation
+            difficulty: Difficulty level (1-5, affects Wallace iterations)
+            reward_mojos: Reward in Chia mojos
+
+        Returns:
+            Task ID string
+        """
+        task_id = self._generate_task_id()
+
+        wallace_iterations = difficulty * 10  # Scale iterations with difficulty
+
+        task = ComputationTask(
+            task_id=task_id,
+            prime_range_start=prime_range_start,
+            prime_range_end=prime_range_end,
+            difficulty_level=difficulty,
+            reward_mojos=reward_mojos,
+            wallace_iterations=wallace_iterations,
+            status='open',
+            created_timestamp=time.time()
+        )
+
+        self.active_tasks[task_id] = task
+
+        print(f"🎯 Created computation task: {task_id}")
+        print(f"   🔢 Range: {prime_range_start} - {prime_range_end}")
+        print(f"   ⚡ Difficulty: {difficulty} ({wallace_iterations} iterations)")
+        print(f"   💰 Reward: {reward_mojos/1e12:.6f} XCH")
+
+        return task_id
+
+    def _generate_task_id(self) -> str:
+        """Generate unique task ID."""
+        timestamp = str(time.time())
+        random_data = str(np.random.randint(0, 1000000))
+        combined = timestamp + random_data + self.wallet_address
+
+        return hashlib.sha256(combined.encode()).hexdigest()[:16]
+
+    def assign_task_to_worker(self, task_id: str, worker_address: str) -> bool:
+        """
+        Assign a computation task to a worker.
+
+        Args:
+            task_id: Task to assign
+            worker_address: Worker's wallet address
+
+        Returns:
+            True if assignment successful
+        """
+        if task_id not in self.active_tasks:
+            return False
+
+        if self.active_tasks[task_id].status != 'open':
+            return False
+
+        self.active_tasks[task_id].assigned_worker = worker_address
+        self.active_tasks[task_id].status = 'assigned'
+
+        print(f"👷 Assigned task {task_id} to worker {worker_address[:10]}...")
+
+        return True
+
+    async def submit_computation_result(self, task_id: str, worker_address: str,
+                                      computation_result: PrimeGraphResult) -> bool:
+        """
+        Submit computation result for verification.
+
+        Args:
+            task_id: Task ID
+            worker_address: Worker's address
+            computation_result: Computation result
+
+        Returns:
+            True if submission successful and task marked complete
+        """
+        if task_id not in self.active_tasks:
+            return False
+
+        task = self.active_tasks[task_id]
+        if task.assigned_worker != worker_address or task.status != 'assigned':
+            return False
+
+        # Verify computation result
+        if not await self._verify_computation_result(task, computation_result):
+            print(f"❌ Computation verification failed for task {task_id}")
+            return False
+
+        # Mark task as completed
+        task.status = 'completed'
+        task.completion_timestamp = time.time()
+        task.result_hash = computation_result.computation_hash
+
+        # Move to completed tasks
+        self.completed_tasks[task_id] = task
+        del self.active_tasks[task_id]
+
+        # Update worker reputation
+        if worker_address not in self.worker_reputation:
+            self.worker_reputation[worker_address] = 1.0
+        else:
+            self.worker_reputation[worker_address] = min(
+                self.worker_reputation[worker_address] + 0.1, 2.0
+            )
+
+        print(f"✅ Task {task_id} completed successfully")
+        print(f"   👷 Worker reputation: {self.worker_reputation[worker_address]:.2f}")
+
+        return True
+
+    async def _verify_computation_result(self, task: ComputationTask,
+                                       result: PrimeGraphResult) -> bool:
+        """
+        Verify the correctness of a computation result.
+
+        Args:
+            task: Original computation task
+            result: Submitted result
+
+        Returns:
+            True if result is correct
+        """
+        try:
+            # Verify prime range
+            if not all(task.prime_range_start <= p <= task.prime_range_end
+                      for p in result.primes_found):
+                return False
+
+            # Verify all found numbers are actually prime
+            for prime in result.primes_found:
+                if not self._is_prime(prime):
+                    return False
+
+            # Verify graph topology consistency
+            topology_valid = self._verify_graph_topology(
+                result.primes_found, result.graph_topology
+            )
+            if not topology_valid:
+                return False
+
+            # Verify Wallace transform values
+            wallace_valid = self._verify_wallace_transforms(
+                result.primes_found, result.wallace_values, task.wallace_iterations
+            )
+            if not wallace_valid:
+                return False
+
+            # Verify consciousness level mapping
+            consciousness_valid = self._verify_consciousness_levels(
+                result.primes_found, result.consciousness_levels
+            )
+            if not consciousness_valid:
+                return False
+
+            # Verify computation hash
+            expected_hash = self._compute_result_hash(result)
+            if expected_hash != result.computation_hash:
+                return False
+
+            return True
+
+        except Exception as e:
+            print(f"❌ Verification error: {e}")
+            return False
+
+    def _is_prime(self, n: int) -> bool:
+        """Check if number is prime."""
+        if n < 2:
+            return False
+        if n == 2 or n == 3:
+            return True
+        if n % 2 == 0 or n % 3 == 0:
+            return False
+
+        for i in range(5, int(np.sqrt(n)) + 1, 6):
+            if n % i == 0 or n % (i + 2) == 0:
+                return False
+        return True
+
+    def _verify_graph_topology(self, primes: List[int],
+                              topology: Dict[str, Any]) -> bool:
+        """Verify prime graph topology."""
+        try:
+            # Check basic structure
+            if 'connections' not in topology or 'weights' not in topology:
+                return False
+
+            # Verify connections exist for all primes
+            if len(topology['connections']) != len(primes):
+                return False
+
+            # Verify delta scaling weights
+            for weight in topology['weights']:
+                if not (0 < weight < self.delta * 2):
+                    return False
+
+            return True
+        except:
+            return False
+
+    def _verify_wallace_transforms(self, primes: List[int],
+                                  wallace_values: Dict[str, float],
+                                  iterations: int) -> bool:
+        """Verify Wallace transform values."""
+        try:
+            for prime in primes:
+                if str(prime) not in wallace_values:
+                    return False
+
+                # Verify Wallace transform calculation
+                expected_value = self._wallace_transform(prime, iterations)
+                actual_value = wallace_values[str(prime)]
+
+                # Allow small numerical tolerance
+                if abs(expected_value - actual_value) > 1e-6:
+                    return False
+
+            return True
+        except:
+            return False
+
+    def _wallace_transform(self, x: float, iterations: int = 1) -> float:
+        """Compute Wallace transform value."""
+        epsilon = 1e-12
+        alpha = self.phi
+        beta = 1.0 / self.phi
+
+        value = x
+        for _ in range(iterations):
+            value = alpha * abs(np.log(abs(value) + epsilon))**self.phi * \
+                   np.sign(np.log(abs(value) + epsilon)) + beta
+
+        return value
+
+    def _verify_consciousness_levels(self, primes: List[int],
+                                    consciousness_levels: List[int]) -> bool:
+        """Verify consciousness level mapping."""
+        try:
+            if len(consciousness_levels) != len(primes):
+                return False
+
+            for level in consciousness_levels:
+                if not (1 <= level <= 21):  # 21-dimensional consciousness
+                    return False
+
+            return True
+        except:
+            return False
+
+    def _compute_result_hash(self, result: PrimeGraphResult) -> str:
+        """Compute hash of computation result for verification."""
+        data = {
+            'primes': result.primes_found,
+            'topology': result.graph_topology,
+            'wallace': result.wallace_values,
+            'consciousness': result.consciousness_levels
+        }
+
+        data_str = json.dumps(data, sort_keys=True)
+        return hashlib.sha256(data_str.encode()).hexdigest()
+
+    async def get_available_tasks(self) -> List[ComputationTask]:
+        """Get list of available computation tasks."""
+        return [task for task in self.active_tasks.values()
+                if task.status == 'open']
+
+    async def compute_prime_graph(self, task: ComputationTask) -> PrimeGraphResult:
+        """
+        Compute prime graph for a given task.
+
+        This is the core computation that workers perform to earn rewards.
+        """
+        print(f"🔢 Computing prime graph for task {task.task_id}")
+        print(f"   🔢 Range: {task.prime_range_start} - {task.prime_range_end}")
+
+        # Find primes in the specified range
+        primes_found = []
+        for num in range(max(task.prime_range_start, 2),
+                        task.prime_range_end + 1):
+            if self._is_prime(num):
+                primes_found.append(num)
+
+        print(f"   📊 Found {len(primes_found)} primes")
+
+        # Compute graph topology
+        graph_topology = self._compute_graph_topology(primes_found)
+
+        # Compute Wallace transform values
+        wallace_values = {}
+        for prime in primes_found:
+            wallace_values[str(prime)] = self._wallace_transform(
+                prime, task.wallace_iterations
+            )
+
+        # Assign consciousness levels
+        consciousness_levels = []
+        for prime in primes_found:
+            level = len(str(prime))  # Digit count as consciousness level
+            consciousness_levels.append(min(level, 21))  # Cap at 21 dimensions
+
+        # Create result object
+        result = PrimeGraphResult(
+            primes_found=primes_found,
+            graph_topology=graph_topology,
+            wallace_values=wallace_values,
+            consciousness_levels=consciousness_levels,
+            computation_hash="",
+            validation_proof={}
+        )
+
+        # Compute and set hash
+        result.computation_hash = self._compute_result_hash(result)
+
+        # Add validation proof
+        result.validation_proof = {
+            'prime_count': len(primes_found),
+            'range_verified': f"{task.prime_range_start}-{task.prime_range_end}",
+            'wallace_iterations': task.wallace_iterations,
+            'computation_timestamp': time.time(),
+            'system_version': '1.0.0'
+        }
+
+        print("   ✅ Computation completed")
+        print(f"   🔗 Result hash: {result.computation_hash[:16]}...")
+
+        return result
+
+    def _compute_graph_topology(self, primes: List[int]) -> Dict[str, Any]:
+        """Compute graph topology for prime relationships."""
+        connections = []
+        weights = []
+
+        for i, prime1 in enumerate(primes):
+            for j, prime2 in enumerate(primes):
+                if i != j:
+                    # Compute connection weight using delta scaling
+                    diff = abs(prime1 - prime2)
+                    weight = diff / (prime1 * self.delta)
+
+                    if weight < 1.0:  # Only connect nearby primes
+                        connections.append((prime1, prime2))
+                        weights.append(weight)
+
+        return {
+            'connections': connections,
+            'weights': weights,
+            'delta_scaling': self.delta,
+            'phi_weighting': self.phi,
+            'topology_type': 'consciousness_guided'
+        }
+
+    async def payout_worker(self, task_id: str) -> bool:
+        """
+        Pay out reward to worker via Chia blockchain.
+
+        Args:
+            task_id: Completed task ID
+
+        Returns:
+            True if payout successful
+        """
+        if task_id not in self.completed_tasks:
+            return False
+
+        task = self.completed_tasks[task_id]
+        if not task.assigned_worker:
+            return False
+
+        try:
+            # In a real implementation, this would interact with Chia RPC
+            # For demonstration, we'll simulate the payout
+
+            print(f"💰 Paying out {task.reward_mojos/1e12:.6f} XCH")
+            print(f"   📤 To: {task.assigned_worker}")
+            print(f"   🔗 Task: {task_id}")
+
+            # Simulate blockchain transaction
+            await asyncio.sleep(1)  # Simulate network delay
+
+            print("   ✅ Payout confirmed on blockchain")
+
+            return True
+
+        except Exception as e:
+            print(f"❌ Payout failed: {e}")
+            return False
+
+    def get_system_stats(self) -> Dict[str, Any]:
+        """Get system statistics."""
+        return {
+            'active_tasks': len(self.active_tasks),
+            'completed_tasks': len(self.completed_tasks),
+            'total_workers': len(self.worker_reputation),
+            'average_reputation': np.mean(list(self.worker_reputation.values())) if self.worker_reputation else 0.0,
+            'total_rewards_paid': sum(task.reward_mojos for task in self.completed_tasks.values()),
+            'prime_cache_size': len(self.prime_cache),
+            'system_uptime': time.time()  # Would be actual uptime in production
+        }
+
+async def demonstrate_prime_graph_computation():
+    """Demonstrate the prime graph computation marketplace."""
+    print("🌐 Prime Graph Computation Marketplace Demonstration")
+    print("=" * 60)
+
+    # Initialize the system
+    wallet_address = "xch1k8uq8w0k8uq8w0k8uq8w0k8uq8w0k8uq8w0k8uq8w0k8uq8w0k8uq8w"
+    system = PrimeGraphComputationSystem(wallet_address)
+
+    # Create some computation tasks
+    task1_id = system.create_computation_task(100, 200, difficulty=2, reward_mojos=500000)
+    task2_id = system.create_computation_task(1000, 1100, difficulty=3, reward_mojos=1000000)
+
+    print("
+🎯 Created computation tasks"    # Simulate worker activity
+    worker_address = "xch1worker1234567890123456789012345678901234567890"
+
+    # Get available tasks
+    available_tasks = await system.get_available_tasks()
+    print(f"\n📋 Available tasks: {len(available_tasks)}")
+
+    # Assign and compute first task
+    if available_tasks:
+        task = available_tasks[0]
+        system.assign_task_to_worker(task.task_id, worker_address)
+
+        print(f"\n🔢 Computing task: {task.task_id}")
+        result = await system.compute_prime_graph(task)
+
+        # Submit result
+        success = await system.submit_computation_result(
+            task.task_id, worker_address, result
+        )
+
+        if success:
+            # Payout worker
+            await system.payout_worker(task.task_id)
+
+    # Show system statistics
+    stats = system.get_system_stats()
+    print("
+📊 System Statistics"    print(f"   🔢 Active tasks: {stats['active_tasks']}")
+    print(f"   ✅ Completed tasks: {stats['completed_tasks']}")
+    print(f"   👷 Total workers: {stats['total_workers']}")
+    print(".2f"    print(".6f"    print(f"   🧠 Prime cache: {stats['prime_cache_size']} primes")
+
+    return True
+
+if __name__ == "__main__":
+    asyncio.run(demonstrate_prime_graph_computation())

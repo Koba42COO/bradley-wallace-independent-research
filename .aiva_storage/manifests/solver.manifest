@@ -1,0 +1,18 @@
+{
+  "tool_name": "solver",
+  "tool_hash": "b603f4f5f339a96cda6323a3a12caf21e96c8bd90b6a9cd9b427e762c67834c3",
+  "total_size": 6732,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "b603f4f5f339a96cda6323a3a12caf21e96c8bd90b6a9cd9b427e762c67834c3"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/solver/solver.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/solver/solver.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.538522,
+  "updated_at": 1762787395.5385249
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_advisory",
+  "tool_hash": "f71790c6026ba9142862c3a226af21fd34d6ab60657e31007315b845d8b1445c",
+  "total_size": 7836,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "f71790c6026ba9142862c3a226af21fd34d6ab60657e31007315b845d8b1445c"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/pyjwt_repo/tests/test_advisory.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/pyjwt_repo/tests/test_advisory.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.078841,
+  "updated_at": 1762787395.0788438
+}

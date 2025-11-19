@@ -1,0 +1,18 @@
+{
+  "tool_name": "failed_tests_analysis_and_fixes",
+  "tool_hash": "c99a7f320070d5a6b671a83a360665ffc15a963ec29d9687c3c7b59f983ae478",
+  "total_size": 13888,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "c99a7f320070d5a6b671a83a360665ffc15a963ec29d9687c3c7b59f983ae478"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/failed_tests_analysis_and_fixes.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/failed_tests_analysis_and_fixes.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0275981,
+  "updated_at": 1762787395.027601
+}

@@ -1,0 +1,18 @@
+{
+  "tool_name": "hardware_validation_test",
+  "tool_hash": "ee3b4af5279fbd7d5aa5c332d17acc0019410da5d87b5da8df0a729779dd2013",
+  "total_size": 18919,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "ee3b4af5279fbd7d5aa5c332d17acc0019410da5d87b5da8df0a729779dd2013"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/bradley-wallace-independent-research/hardware_validation_test.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/bradley-wallace-independent-research/hardware_validation_test.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.0973282,
+  "updated_at": 1762787395.097332
+}

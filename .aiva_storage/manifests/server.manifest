@@ -1,0 +1,19 @@
+{
+  "tool_name": "server",
+  "tool_hash": "757d750e04afe4a43a40f19cb03d981546ecd4e5210f8c314bfbfad521e77ac9",
+  "total_size": 68232,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "43e0838dc09cebf7759cd7e885a39e3808a161d39043d31a48f6be9f44641c54",
+    "ab0fadc69803395ff9c430ba99696f74a8faa251b580c51e0547f73bb826c874"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/daemon/server.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/daemon/server.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.542009,
+  "updated_at": 1762787395.542012
+}

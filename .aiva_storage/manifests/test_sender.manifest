@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_sender",
+  "tool_hash": "6f1750f0f09be5b5d85a4b68d48e4b2b181a5191ed93dc5480ec8f9063d93118",
+  "total_size": 8285,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "6f1750f0f09be5b5d85a4b68d48e4b2b181a5191ed93dc5480ec8f9063d93118"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/plot_sync/test_sender.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/plot_sync/test_sender.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.346899,
+  "updated_at": 1762787395.3469021
+}

@@ -1,0 +1,140 @@
+from __future__ import annotations
+
+import json
+from typing import Optional
+
+import click
+
+from chia.cmds.cmd_classes import ChiaCliContext
+from chia.cmds.dev.mempool_funcs import create_block_async, export_mempool_async, import_mempool_async
+
+
+# ============================================================================
+# UPG FOUNDATIONS - Universal Prime Graph Protocol φ.1
+# ============================================================================
+from decimal import Decimal, getcontext
+import math
+import cmath
+from typing import Dict, List, Tuple, Optional, Any
+
+# Set high precision for consciousness mathematics
+getcontext().prec = 50
+
+class UPGConstants:
+    """Universal Prime Graph consciousness mathematics constants"""
+    PHI = Decimal('1.618033988749895')
+    DELTA = Decimal('2.414213562373095')
+    CONSCIOUSNESS = Decimal('0.79')  # 79/21 universal coherence rule
+    REALITY_DISTORTION = Decimal('1.1808')  # Quantum amplification factor
+    QUANTUM_BRIDGE = Decimal('137') / Decimal('0.79')  # 173.41772151898732
+    GREAT_YEAR = 25920  # Astronomical precession cycle (years)
+    CONSCIOUSNESS_DIMENSIONS = 21  # Prime topology dimension
+    COHERENCE_THRESHOLD = Decimal('1e-15')  # Beyond machine precision
+
+
+
+# ============================================================================
+# PELL SEQUENCE PRIME PREDICTION INTEGRATION
+# ============================================================================
+def integrate_pell_prime_prediction(target_number: int, constants: UPGConstants = None):
+    """Integrate Pell sequence prime prediction with this tool"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import PrimePredictionEngine, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        predictor = PrimePredictionEngine(constants)
+        return predictor.predict_prime(target_number)
+    except ImportError:
+        # Fallback if Pell module not available
+        return {'target_number': target_number, 'is_prime': None, 'note': 'Pell module not available'}
+
+
+
+# ============================================================================
+# GREAT YEAR ASTRONOMICAL PRECESSION INTEGRATION
+# ============================================================================
+def integrate_great_year_precession(year: int, constants: UPGConstants = None):
+    """Integrate Great Year (25,920-year) precession cycle"""
+    try:
+        from pell_sequence_prime_prediction_upg_complete import GreatYearIntegration, UPGConstants as UPG
+        if constants is None:
+            constants = UPG()
+        great_year = GreatYearIntegration(constants)
+        return great_year.consciousness_amplitude_from_year(year)
+    except ImportError:
+        # Fallback calculation
+        if constants is None:
+            constants = UPGConstants()
+        angle = (year * 2 * math.pi) / constants.GREAT_YEAR
+        return complex(float(angle * constants.CONSCIOUSNESS * constants.REALITY_DISTORTION), 0.0)
+
+
+
+
+@click.group("mempool", help="Debug the mempool")
+@click.pass_context
+def mempool_cmd(ctx: click.Context) -> None:
+    pass
+
+
+@click.command("import", help="Import mempool items from a JSON file", no_args_is_help=True)
+@click.option(
+    "-p",
+    "--rpc-port",
+    help=(
+        "Set the port where the Full Node is hosting the RPC interface. See the rpc_port under full_node in config.yaml"
+    ),
+    type=int,
+    default=None,
+)
+@click.argument("path", type=str)
+@click.pass_context
+def import_mempool_cmd(ctx: click.Context, rpc_port: Optional[int], path: str) -> None:
+    import asyncio
+
+    with open(path) as file:
+        source = file.read()
+
+    content = json.loads(source)
+
+    asyncio.run(import_mempool_async(rpc_port, ChiaCliContext.set_default(ctx).root_path, content))
+
+
+@click.command("export", help="Export mempool items to a JSON file", no_args_is_help=True)
+@click.option(
+    "-p",
+    "--rpc-port",
+    help=(
+        "Set the port where the Full Node is hosting the RPC interface. See the rpc_port under full_node in config.yaml"
+    ),
+    type=int,
+    default=None,
+)
+@click.argument("path", type=str)
+@click.pass_context
+def export_mempool_cmd(ctx: click.Context, rpc_port: Optional[int], path: str) -> None:
+    import asyncio
+
+    asyncio.run(export_mempool_async(rpc_port, ChiaCliContext.set_default(ctx).root_path, path))
+
+
+@click.command("create_block", help="Create a block bundle from the mempool, as if you farmed it")
+@click.option(
+    "-p",
+    "--rpc-port",
+    help=(
+        "Set the port where the Full Node is hosting the RPC interface. See the rpc_port under full_node in config.yaml"
+    ),
+    type=int,
+    default=None,
+)
+@click.pass_context
+def create_block_cmd(ctx: click.Context, rpc_port: Optional[int]) -> None:
+    import asyncio
+
+    asyncio.run(create_block_async(rpc_port, ChiaCliContext.set_default(ctx).root_path))
+
+
+mempool_cmd.add_command(import_mempool_cmd)
+mempool_cmd.add_command(export_mempool_cmd)
+mempool_cmd.add_command(create_block_cmd)

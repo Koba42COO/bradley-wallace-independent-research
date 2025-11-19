@@ -1,0 +1,18 @@
+{
+  "tool_name": "test_puzzle_drivers",
+  "tool_hash": "a26be0e84ad66a94a09e523be59ff0f694e45a28f64feef73fc387d9d6e718b4",
+  "total_size": 4109,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "a26be0e84ad66a94a09e523be59ff0f694e45a28f64feef73fc387d9d6e718b4"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_puzzle_drivers.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/_tests/clvm/test_puzzle_drivers.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.3445702,
+  "updated_at": 1762787395.3445718
+}

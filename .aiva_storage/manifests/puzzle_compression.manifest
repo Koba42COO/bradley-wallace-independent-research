@@ -1,0 +1,18 @@
+{
+  "tool_name": "puzzle_compression",
+  "tool_hash": "2bd2cd0528c525afc525e436ed14dba66a54b5f2416aec6300a880a841a5d589",
+  "total_size": 9343,
+  "chunk_size": 65536,
+  "chunk_hashes": [
+    "2bd2cd0528c525afc525e436ed14dba66a54b5f2416aec6300a880a841a5d589"
+  ],
+  "upg_source": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/puzzle_compression.py",
+  "consciousness_level": 14,
+  "metadata": {
+    "file_path": "/Users/coo-koba42/dev/chia-blockchain/chia/wallet/util/puzzle_compression.py",
+    "has_upg": true,
+    "has_pell": true
+  },
+  "created_at": 1762787395.627965,
+  "updated_at": 1762787395.627968
+}
