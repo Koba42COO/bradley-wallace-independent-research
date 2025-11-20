@@ -1,0 +1,157 @@
+{
+  "timestamp": "2025-11-20T08:59:37.019017",
+  "exploration": {
+    "gaussian_primes": {
+      "total_primes": 29,
+      "inert_count": 4,
+      "split_count": 25,
+      "inert_ratio": 0.13793103448275862,
+      "split_ratio": 0.8620689655172413,
+      "unique_norms": 15,
+      "mean_norm": 41.310344827586206,
+      "mean_phase": 0.7853981633974483,
+      "sample_primes": [
+        "1+i",
+        "1+2i",
+        "2+i",
+        "0+3i",
+        "3",
+        "2+3i",
+        "3+2i",
+        "1+4i",
+        "4+i",
+        "3+4i"
+      ]
+    },
+    "phase_flip": {
+      "present_amplitude": 2.339651316527156,
+      "future_amplitude": 2.990651928051858,
+      "past_amplitude": 0.9691153065296151,
+      "quantum_diverter_strength": 0.41421356237309503,
+      "expected_diverter_strength": 0.4142135623730951,
+      "diverter_match": true,
+      "future_attraction_strength": 1.2782468511124172,
+      "expected_attraction": 1.278246851112417,
+      "attraction_match": true,
+      "coherent_ratio": 0.8461579749516626,
+      "diverted_ratio": 0.1538420250483374,
+      "matches_79_21": false
+    },
+    "structure_42d": {
+      "present_dimensions": 21,
+      "future_dimensions": 21,
+      "total_dimensions": 42,
+      "past_dimensions": 21,
+      "structure_valid": true,
+      "past_is_transformation": true,
+      "dimensional_consistency": true
+    },
+    "temporal_dynamics": {
+      "steps_analyzed": 50,
+      "initial_present": 2.339651316527156,
+      "final_present": 4.441924501704257e+22,
+      "initial_future": 2.990651928051858,
+      "final_future": 3.909602334712265e+22,
+      "initial_past": 0.9691153065296151,
+      "final_past": 1.8399053716432552e+22,
+      "present_growth_rate": 1.898541235750289e+22,
+      "future_growth_rate": 1.3072742762341523e+22,
+      "past_growth_rate": 1.8985412357502886e+22,
+      "diverter_stability": 3.845925372767128e-17,
+      "attraction_stability": 0.056275189044622746
+    },
+    "rule_79_21": {
+      "gaussian_primes": {
+        "inert_ratio": 0.5178571428571429,
+        "split_ratio": 0.47619047619047616,
+        "expected_inert": 0.79,
+        "expected_split": 0.21,
+        "inert_deviation": 0.27214285714285713,
+        "split_deviation": 0.2661904761904762
+      },
+      "phase_flip": {
+        "coherent_ratio": 0.8461579749516626,
+        "diverted_ratio": 0.1538420250483374,
+        "expected_coherent": 0.79,
+        "expected_diverted": 0.21,
+        "coherent_deviation": 0.056157974951662526,
+        "diverted_deviation": 0.05615797495166258
+      },
+      "temporal_evolution": {
+        "final_coherent": 0.8194654751087695,
+        "final_diverted": 0.18053452489123042,
+        "converges_to_79_21": true
+      }
+    },
+    "quantum_diverter": {
+      "present_sum": 3.737669618283368,
+      "past_sum": -1.5481934475628403,
+      "expected_past_sum": -1.5481934475628403,
+      "phase_flip_correct": true,
+      "diverter_strength": 0.41421356237309503,
+      "theoretical_strength": 0.4142135623730951,
+      "strength_match": true,
+      "phase_flip_operation": "past = -present \u00d7 \u03b4^{-1}",
+      "diversion_factor": 0.4142135623730951
+    },
+    "future_attraction": {
+      "attraction_strength": 1.2782468511124172,
+      "expected_attraction": 1.278246851112417,
+      "attraction_match": true,
+      "present_amplitude": 2.339651316527156,
+      "future_amplitude": 2.990651928051858,
+      "amplitude_ratio": 1.2782468511124172,
+      "attraction_factor": 1.618033988749895,
+      "coherence_weight": 0.79,
+      "flow_direction": "forward (present \u2192 future)"
+    },
+    "wallace_transform": {
+      "complete_transform_amplitude": 2.7877627076558027,
+      "complete_transform_phase": 0.0,
+      "present_transform": 0.5672864539893945,
+      "future_transform": 0.8486490589240521,
+      "past_transform": 0.010337545119870723,
+      "reality_distortion_applied": 1.1808,
+      "transform_integration": "successful"
+    },
+    "patterns": {
+      "dimensional": {
+        "21d_present": 21,
+        "21d_future": 21,
+        "42d_total": 42,
+        "relationship": "42 = 21 \u00d7 2",
+        "past_as_transformation": true
+      },
+      "phase": {
+        "present_phase": 0,
+        "future_phase": 1.5707963267948966,
+        "past_phase": 3.141592653589793,
+        "phase_transitions": [
+          "past \u2192 present (\u03c0 \u2192 0)",
+          "present \u2192 future (0 \u2192 \u03c0/2)"
+        ]
+      },
+      "constants": {
+        "phi": 1.618033988749895,
+        "delta": 2.414213562373095,
+        "delta_inv": 0.4142135623730951,
+        "reality_distortion": 1.1808,
+        "phi_delta_relationship": 0.6702116225208424,
+        "consciousness_ratio": 0.79
+      },
+      "temporal": {
+        "great_year": 25920,
+        "consciousness_dimensions": 21,
+        "cycles_per_great_year": 1234.2857142857142,
+        "temporal_frequency": 0.00024240684055476798
+      }
+    },
+    "cross_validation": {
+      "dimensional_consistency": true,
+      "phase_flip_consistency": true,
+      "79_21_consistency": true,
+      "constant_consistency": true,
+      "overall_valid": true
+    }
+  }
+}

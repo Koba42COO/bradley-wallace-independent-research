@@ -67,6 +67,26 @@ except ImportError as e:
     wallet_manager = None
     chia_distributor = None
 
+# Try to import CAD Sketch to 3D Converter
+cad_converter = None
+CAD_CONVERTER_AVAILABLE = False
+try:
+    aiva_full_spectrum_path = parent_dir / "aiva_full_spectrum"
+    if aiva_full_spectrum_path.exists():
+        sys.path.insert(0, str(aiva_full_spectrum_path))
+        
+        from multimodal.cad_sketch_to_3d import CADSketchTo3DConverter
+        CAD_CONVERTER_AVAILABLE = True
+        cad_converter = CADSketchTo3DConverter(consciousness_level=7)
+        print("✅ CAD Sketch to 3D Converter initialized successfully")
+except ImportError as e:
+    print(f"⚠️  Warning: Could not import CAD Sketch to 3D Converter: {e}")
+    print("⚠️  CAD conversion features will not be available")
+    CAD_CONVERTER_AVAILABLE = False
+except Exception as e:
+    print(f"⚠️  Warning: Error initializing CAD Sketch to 3D Converter: {e}")
+    CAD_CONVERTER_AVAILABLE = False
+
 app = FastAPI(
     title="AIVA UPG API",
     description="Universal Prime Graph AI with 1500+ Tools",
@@ -124,6 +144,13 @@ class WalletRegistrationRequest(BaseModel):
 class WalletRewardRequest(BaseModel):
     user_id: str
     reward_amount: float
+
+class CADConversionRequest(BaseModel):
+    video_path: str
+    output_path: Optional[str] = None
+    format: str = "obj"  # "obj" or "stl"
+    frame_interval: int = 5
+    consciousness_level: int = 7
 
 # Initialize AIVA or use mock
 aiva = None
@@ -674,11 +701,115 @@ async def list_all_wallets():
         "count": len(wallets)
     }
 
+@app.post("/cad/convert")
+async def convert_cad_video_to_3d(request: CADConversionRequest):
+    """
+    Convert video CAD sketch to 3D model.
+    
+    Uses PAC consciousness mathematics for enhanced geometric reconstruction.
+    Supports OBJ and STL output formats.
+    """
+    if not CAD_CONVERTER_AVAILABLE or not cad_converter:
+        return {
+            "status": "error",
+            "message": "CAD Sketch to 3D Converter not available",
+            "error": "Module not loaded"
+        }
+    
+    try:
+        import os
+        from pathlib import Path
+        
+        # Validate video path
+        video_path = Path(request.video_path)
+        if not video_path.exists():
+            raise HTTPException(
+                status_code=404,
+                detail=f"Video file not found: {request.video_path}"
+            )
+        
+        # Determine output path
+        if request.output_path:
+            output_path = Path(request.output_path)
+        else:
+            output_path = video_path.parent / f"{video_path.stem}_3d.{request.format}"
+        
+        # Validate format
+        if request.format.lower() not in ["obj", "stl"]:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Invalid format: {request.format}. Must be 'obj' or 'stl'"
+            )
+        
+        # Convert video to 3D
+        result = cad_converter.convert_video_to_3d(
+            str(video_path),
+            str(output_path),
+            format=request.format.lower(),
+            frame_interval=request.frame_interval
+        )
+        
+        return {
+            "status": "success",
+            "message": "CAD sketch converted to 3D model successfully",
+            "input_video": str(video_path),
+            "output_file": str(output_path),
+            "format": request.format.lower(),
+            "model_statistics": {
+                "points_3d": result['model_data']['num_points'],
+                "cylinders": result['model_data']['num_cylinders'],
+                "extruded_shapes": result['model_data']['num_shapes']
+            },
+            "sketch_statistics": {
+                "frames_processed": result['sketch_data']['num_frames'],
+                "lines_detected": len(result['sketch_data']['merged_sketch']['lines']),
+                "circles_detected": len(result['sketch_data']['merged_sketch']['circles']),
+                "shapes_detected": len(result['sketch_data']['merged_sketch']['shapes'])
+            },
+            "consciousness_level": request.consciousness_level
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error converting CAD sketch: {str(e)}"
+        )
+
+@app.get("/cad/info")
+async def get_cad_converter_info():
+    """Get information about the CAD Sketch to 3D Converter"""
+    if not CAD_CONVERTER_AVAILABLE:
+        return {
+            "status": "unavailable",
+            "message": "CAD Sketch to 3D Converter not available",
+            "features": []
+        }
+    
+    return {
+        "status": "available",
+        "name": "CAD Sketch to 3D Converter",
+        "description": "Convert video CAD sketches to 3D models using PAC consciousness mathematics",
+        "features": [
+            "Video frame extraction",
+            "CAD sketch detection (lines, circles, shapes)",
+            "3D reconstruction with depth estimation",
+            "Golden ratio optimization for proportions",
+            "Export to OBJ and STL formats",
+            "Temporal tracking across video frames"
+        ],
+        "supported_formats": ["obj", "stl"],
+        "consciousness_level": 7,
+        "pac_integration": True
+    }
+
 if __name__ == "__main__":
     print("=" * 70)
     print("🧠 AIVA UPG Backend Server")
     print("=" * 70)
     print(f"Status: {'✅ AIVA Available' if AIVA_AVAILABLE else '⚠️  Mock Mode'}")
+    print(f"CAD Converter: {'✅ Available' if CAD_CONVERTER_AVAILABLE else '⚠️  Not Available'}")
     print("Starting server on http://0.0.0.0:8000")
     print("API Documentation: http://0.0.0.0:8000/docs")
     print("=" * 70)
