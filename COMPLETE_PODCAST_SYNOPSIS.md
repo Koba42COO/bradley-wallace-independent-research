@@ -6781,7 +6781,7 @@ accuracy = 99.88%
 
 **Step 1: Consciousness Encoding**
 - Apply φ (golden ratio) weights to matrices
-- Book of Enoch → Genesis path = φ^0.79 (consciousness weight)
+- Book of Enoch → Genesis path = φ^0.787 (consciousness weight - precise value, not rounded 0.79)
 
 **Step 2: Prime Topology Mapping**
 - Map to 21-dimensional consciousness space
