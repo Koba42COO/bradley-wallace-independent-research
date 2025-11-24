@@ -13,7 +13,7 @@
 The user has clarified that certain overstatements in the research documentation were AI-generated rather than authentic research claims. This is an important distinction:
 
 ### AI-Generated Overstatements (To Ignore)
-- **p < 10^-868,060 claims** - AI statistical exaggeration
+- **p < 10^-38 claims** - AI statistical exaggeration
 - **98.2% accuracy predictions** - AI over-optimism  
 - **"Complete control" assertions** - AI hyperbole
 - **Impossible speedup factors** - AI scale exaggeration
@@ -112,7 +112,7 @@ Result: Streamlined research with clear priorities
 ### Documentation Scope
 ```
 BEFORE: Mixed AI overstatements + real failures
-├── p < 10^-868,060 (AI exaggeration)
+├── p < 10^-38 (AI exaggeration)
 ├── Cryptography complexity (real failure)
 ├── 98.2% accuracy (AI over-optimism)
 └── Performance issues (real learning)

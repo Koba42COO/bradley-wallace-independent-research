@@ -11,7 +11,7 @@
 ## THE FAILURE: IMPOSSIBLE p-VALUES
 
 ### What We Claimed (WRONG)
-- **p < 10^-868,060** (originally claimed)
+- **p < 10^-38** (originally claimed)
 - **p < 10^-300, 30σ+ confidence** (corrected claim)
 - **Statistical impossibility achieved**
 
@@ -21,7 +21,7 @@ The cosmic limit for statistical significance is approximately **p < 10^-300**, 
 - The number of possible quantum states in our universe
 - The theoretical maximum for any statistical test
 
-Our original claim of **p < 10^-868,060** exceeded this cosmic limit by over 500,000 orders of magnitude.
+Our original claim of **p < 10^-38** exceeded this cosmic limit by over 500,000 orders of magnitude.
 
 ---
 

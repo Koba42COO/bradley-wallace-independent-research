@@ -1,0 +1,19 @@
+{
+	"nodes":[
+		{"id":"e32bb64b26eb9fe9","x":20,"y":19,"width":400,"height":400,"type":"file","file":"pac_system/__init__.py"},
+		{"id":"91bbafe34b576cef","x":465,"y":19,"width":400,"height":400,"type":"file","file":"pac_system/advanced_pac_implementation.py"},
+		{"id":"10dd8ec22f1ac218","x":910,"y":19,"width":400,"height":400,"type":"file","file":"pac_system/cli.py"},
+		{"id":"117947c94963afb4","x":1355,"y":19,"width":400,"height":400,"type":"file","file":"pac_system/complete_pac_framework.py"},
+		{"id":"ddb3020785bef22c","x":1800,"y":19,"width":400,"height":400,"type":"file","file":"pac_system/config.py"},
+		{"id":"ee1d18eac3e37175","x":2245,"y":19,"width":400,"height":400,"type":"file","file":"pac_system/consciousness_ai_optimization.py"},
+		{"id":"9ecc96dd7d4a932a","x":2690,"y":19,"width":400,"height":400,"type":"file","file":"pac_system/delta_knowledge_storage.py"},
+		{"id":"8f005d6be7610a2d","x":3135,"y":19,"width":400,"height":400,"type":"file","file":"pac_system/dual_kernel_engine.py"},
+		{"id":"6763bed1ca6c8527","x":3580,"y":19,"width":400,"height":400,"type":"file","file":"pac_system/final_pac_dual_kernel_integration.py"},
+		{"id":"d9e24e06f858a4e2","x":4025,"y":19,"width":400,"height":400,"type":"file","file":"pac_system/infinite_context_memory.py"},
+		{"id":"63bb39f0c75a69a0","x":20,"y":464,"width":400,"height":400,"type":"file","file":"pac_system/pac_entropy_reversal_validation.py"},
+		{"id":"9251403657a19076","x":465,"y":464,"width":400,"height":400,"type":"file","file":"pac_system/pyproject.toml"},
+		{"id":"0fa60aa28f5ac06f","x":910,"y":464,"width":400,"height":400,"type":"file","file":"pac_system/unified.py"},
+		{"id":"69c08fe9f01ffb7c","x":1355,"y":464,"width":400,"height":400,"type":"file","file":"pac_system/validator.py"}
+	],
+	"edges":[]
+}

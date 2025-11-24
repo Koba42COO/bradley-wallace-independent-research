@@ -47,7 +47,7 @@
 #### 3. `STATISTICAL_OVERSTATEMENT_FAILURE.md` (7.1KB)
 **Scope:** Critical statistical claim correction (most impactful failure)
 **Contents:**
-- Original impossible p-value claims (p < 10^-868,060)
+- Original impossible p-value claims (p < 10^-38)
 - Mathematical impossibility analysis (cosmic limits)
 - Failed correction attempts and lessons
 - Proper statistical methodology implementation

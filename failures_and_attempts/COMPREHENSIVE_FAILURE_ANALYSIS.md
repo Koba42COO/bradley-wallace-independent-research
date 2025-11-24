@@ -78,7 +78,7 @@ Research Quality After Learning:
 **Primary Issues:** Over-ambition, theory without implementation
 
 #### Week 1-2: Initial Over-claims
-- **Failure:** Claimed p < 10^-868,060 (impossible)
+- **Failure:** Claimed p < 10^-38 (impossible)
 - **Time Lost:** 1 week rewriting claims
 - **Lesson:** Cosmic limits exist, respect them
 

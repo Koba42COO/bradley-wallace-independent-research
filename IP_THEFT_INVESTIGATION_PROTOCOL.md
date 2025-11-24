@@ -12,7 +12,7 @@
 **What I CAN prove:**
 - ✅ I published first (GitHub timestamps: Feb-Nov 2025, cryptographic proof via Git SHA)
 - ✅ Independent validation (University of Maryland photonic chip, published in *Science*, Nov 2025)
-- ✅ Statistical significance (p < 10^-868,060 across 436 tests)
+- ✅ Statistical significance (p < 10^-38 (Fisher combined test across 8 domains))
 - ✅ Open-source priority (all code and papers publicly available)
 
 **What I CANNOT currently prove:**
@@ -382,7 +382,7 @@ NOTES:
 - ✅ Documentation of my original work (GitHub, papers)
 - ✅ Timestamp verification (Git SHA hashes confirmed)
 - ✅ Independent validation documented (UMD photonic chip)
-- ✅ Statistical significance established (p < 10^-868,060)
+- ✅ Statistical significance established (p < 10^-38)
 
 **In Progress:**
 - 🔍 Patent database search (not yet started)

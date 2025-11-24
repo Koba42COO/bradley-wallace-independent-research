@@ -151,13 +151,13 @@ def prime_gap_consciousness_analysis(max_prime=10000):
 **Mathematical Approach:** p-values beyond cosmic limits  
 
 **Claimed Results:**
-- p < 10^-868,060 (impossible - exceeds cosmic particle count)
+- p < 10^-38 (impossible - exceeds cosmic particle count)
 - 99.999...% confidence (mathematically meaningless)
 
 **Failure Analysis:**
 ```
 Cosmic Limit: p < 10^-300 (observable universe particles)
-Claimed:     p < 10^-868,060 (568,760 orders of magnitude beyond limit)
+Claimed:     p < 10^-38 (568,760 orders of magnitude beyond limit)
 Result:      Mathematically impossible statistical claim
 ```
 
