@@ -1,18 +1,18 @@
 {
   "library_info": {
-    "created_date": "2025-11-24T11:13:06.808802",
-    "total_sources": 19,
+    "created_date": "2025-11-24T12:05:44.256850",
+    "total_sources": 20,
     "framework": "Universal Prime Graph Protocol \u03c6.1",
     "decoder": "Firefly Multi-Spectral Analysis",
     "author": "Bradley Wallace (COO Koba42)"
   },
   "statistics": {
-    "undeciphered_count": 7,
+    "undeciphered_count": 8,
     "partially_deciphered": 3,
     "deciphered_count": 9,
-    "multispectral_capable": 13,
+    "multispectral_capable": 14,
     "oldest_language_years": 7000,
-    "total_estimated_symbols": 9092
+    "total_estimated_symbols": 9117
   },
   "sources": [
     {
@@ -327,6 +327,24 @@
       "decipherment_status": "undeciphered",
       "multispectral_capable": false,
       "notes": "Oldest potential writing system. 5,500-4,500 BCE. Debated if true writing."
+    },
+    {
+      "name": "Voynich Manuscript Digital Archive",
+      "language_family": "Unknown (possibly constructed/coded language)",
+      "age_years": 600,
+      "origin_location": "Europe (possibly Italy)",
+      "script_type": "Voynichese (unique script)",
+      "repo_url": "https://beinecke.library.yale.edu/collections/highlights/voynich-manuscript",
+      "image_formats": [
+        "jpg",
+        "png",
+        "tif",
+        "raw"
+      ],
+      "estimated_symbols": 25,
+      "decipherment_status": "undeciphered",
+      "multispectral_capable": true,
+      "notes": "240 vellum pages. ~170,000 glyphs. Multi-spectral imaging available. Carbon dated 1404-1438 CE. Most mysterious manuscript in the world. Contains botanical, astronomical, biological, and pharmaceutical illustrations."
     }
   ]
 }

@@ -387,6 +387,23 @@ class AncientLanguageLibraryBuilder:
                 multispectral_capable=False,
                 notes="Oldest potential writing system. 5,500-4,500 BCE. Debated if true writing."
             ),
+            
+            # ═══════════════════════════════════════════════════════════════
+            # VOYNICH MANUSCRIPT (UNDECIPHERED - FAMOUS MYSTERY!)
+            # ═══════════════════════════════════════════════════════════════
+            LanguageSource(
+                name="Voynich Manuscript Digital Archive",
+                language_family="Unknown (possibly constructed/coded language)",
+                age_years=600,
+                origin_location="Europe (possibly Italy)",
+                script_type="Voynichese (unique script)",
+                repo_url="https://beinecke.library.yale.edu/collections/highlights/voynich-manuscript",
+                image_formats=["jpg", "png", "tif", "raw"],
+                estimated_symbols=25,  # Core glyphs (plus gallows, benches, loops)
+                decipherment_status="undeciphered",
+                multispectral_capable=True,
+                notes="240 vellum pages. ~170,000 glyphs. Multi-spectral imaging available. Carbon dated 1404-1438 CE. Most mysterious manuscript in the world. Contains botanical, astronomical, biological, and pharmaceutical illustrations."
+            ),
         ]
         
         return sources
