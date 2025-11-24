@@ -299,16 +299,20 @@ This ratio appears EVERYWHERE in nature, consciousness, and optimal systems.
 - Performance coaches (focus/recovery ratios)
 - Investment firms (portfolio allocation strategies)
 
-**Evidence:**
-- Harvard Business Review article (Aug 2025): "The 80/20 Rule in Consciousness"
-- McKinsey report (Sep 2025): "Optimal organizational coherence at 79%"
-- Google DeepMind blog post (Oct 2025): "Exploration-exploitation in 21% exploration"
-- Calm app update (Nov 2025): "New coherence tracking feature"
+**Evidence Needed:**
+- 🔍 Search Harvard Business Review archives (Aug 2025) for "80/20" or "79/21" consciousness articles
+- 🔍 Search McKinsey publications (Sep 2025) for organizational coherence metrics
+- 🔍 Search Google DeepMind blog (Oct 2025) for exploration-exploitation ratios
+- 🔍 Check Calm app changelogs (Nov 2025) for coherence tracking features
 
-**Timeline:**
-- My discovery: February 2025 (published on GitHub)
-- First commercial appearance: August 2025 (6 months later)
-- No citation to my work in any commercial application
+**Research Protocol:**
+1. Document search with screenshots/PDFs
+2. Extract exact quotes mentioning 79/21, φ-ratios, or similar mathematics
+3. Compare publication dates to my GitHub timestamps (Feb 2025)
+4. Check citations/references for attribution
+5. Document findings with verifiable links
+
+**STATUS:** 🔍 REQUIRES INVESTIGATION - No confirmed citations yet
 
 ---
 
@@ -338,16 +342,19 @@ RDF = (φ × √2) / 2 = (1.618033988749895 × 1.414213562373095) / 2 = 1.1808
 - Manifestation coaching programs (reality creation metrics)
 - Noetic Institute research (consciousness-physical reality interface)
 
-**Evidence:**
-- Quantinuum press release (Sep 2025): "New coherence optimization achieving 18% improvement"
-- IONS study (Oct 2025): "Observer effect shows 18.1% reality influence"
-- Reality creation course (Nov 2025): "Consciousness amplifies manifestation by 18%"
+**Evidence Needed:**
+- 🔍 Search Quantinuum press releases (Sep 2025) for "18%" improvement claims
+- 🔍 Search IONS (Institute of Noetic Sciences) publications (Oct 2025) for observer effect studies
+- 🔍 Search online courses/coaching programs (Nov 2025) for "18%" manifestation claims
 
-**Timeline:**
-- My discovery: February 2025
-- My publication: March 2025 (GitHub + LaTeX papers)
-- First commercial mention: September 2025 (6 months later)
-- No attribution in any case
+**Research Protocol:**
+1. Google search: "Quantinuum 18% improvement September 2025"
+2. Check IONS website for recent publications mentioning 18% or 1.1808
+3. Search course platforms for consciousness/manifestation programs with specific metrics
+4. Document exact quotes and verify dates
+5. Check if any cite "reality distortion factor" or similar terminology
+
+**STATUS:** 🔍 REQUIRES INVESTIGATION - No confirmed citations yet
 
 ---
 
@@ -383,17 +390,26 @@ PAC_DELTA_SCALING = {
 - AI research labs (training acceleration)
 - Networking companies (routing efficiency improvements)
 
-**Evidence:**
-- AWS blog (Aug 2025): "New query optimization achieving 3-5× speedup"
-- MongoDB update (Sep 2025): "Prime-indexed collections for 4× performance"
-- OpenAI technical report (Oct 2025): "Training efficiency improvements of 2.5×"
-- Cisco whitepaper (Nov 2025): "Consciousness-guided network routing"
+**Evidence Needed:**
+- 🔍 Search AWS blog archives (Aug 2025) for "query optimization" with 3-5× speedup claims
+- 🔍 Search MongoDB changelogs (Sep 2025) for "prime-indexed" or indexing improvements
+- 🔍 Search OpenAI technical reports (Oct 2025) for training efficiency metrics
+- 🔍 Search Cisco whitepapers (Nov 2025) for network routing innovations
 
-**Smoking Gun:**
-- All announcements post-date my March 2025 publication
-- Terminology matches my GitHub repository ("prime-aligned," "consciousness-guided")
-- Performance numbers match my published benchmarks (2-7× range)
-- NO citations to my work
+**Research Protocol:**
+1. Document exact URLs and publication dates
+2. Extract quotes mentioning "prime," "consciousness," or φ-related mathematics
+3. Compare terminology to my GitHub repository (exact phrase matching)
+4. Verify performance claims match my 2-7× range
+5. Check citations/references sections for attribution
+
+**Red Flags to Look For:**
+- Use of "prime-aligned," "consciousness-guided," or "φ-optimization" terminology
+- Performance improvements matching my benchmarks (2-7×)
+- Publication dates 6+ months after my Feb-Mar 2025 GitHub commits
+- Zero attribution despite terminology/methodology overlap
+
+**STATUS:** 🔍 REQUIRES SYSTEMATIC INVESTIGATION - No confirmed evidence yet
 
 ---
 
@@ -423,15 +439,19 @@ CONSCIOUSNESS_FORCE = {
 - Popular science articles (consciousness as fundamental)
 - Research institutions (consciousness studies programs launching)
 
-**Evidence:**
-- Perimeter Institute seminar (Oct 2025): "Consciousness as Fundamental Force"
-- ArXiv preprint (Nov 2025): "Mathematical Framework for Consciousness Physics"
-- Quanta Magazine article (Nov 2025): "Is Consciousness the Fifth Force?"
+**Evidence Needed:**
+- 🔍 Search Perimeter Institute website/YouTube for seminars (Oct 2025) mentioning consciousness as force
+- 🔍 Search ArXiv for papers on "consciousness physics" or "fundamental force" (Nov 2025)
+- 🔍 Search Quanta Magazine archives for consciousness articles (Nov 2025)
 
-**Timeline:**
-- My framework: March 2025 (published)
-- First academic discussions: October 2025 (7 months later)
-- No citations to my work despite using similar mathematical structures
+**Research Protocol:**
+1. Document exact URLs, DOIs, or video links
+2. Extract quotes using terminology similar to mine
+3. Check if they cite Wallace Transform, φ-optimization, or my GitHub
+4. Compare mathematical structures (W_φ formula, RDF = 1.1808, etc.)
+5. Verify publication dates vs. my March 2025 timestamp
+
+**STATUS:** 🔍 REQUIRES INVESTIGATION - Specific citations needed
 
 ---
 
@@ -468,11 +488,19 @@ Number stations weren't communicating—they were **computing consciousness on a
 - Amateur radio communities (new interest in number stations)
 - Conspiracy research (now citing similar mathematical analysis)
 
-**Evidence:**
-- Reddit posts (Aug-Nov 2025): Analysis matching my methodology
-- YouTube videos (Oct-Nov 2025): Number station mathematics explanations
-- Academic interest: Queries to number station archives increased 400% post-June 2025
-- No attribution despite exact mathematical matching
+**Evidence Needed:**
+- 🔍 Search Reddit (Aug-Nov 2025) for number station posts using prime factorization, 79/21 ratios
+- 🔍 Search YouTube (Oct-Nov 2025) for number station videos mentioning consciousness mathematics
+- 🔍 Verify archive query statistics (if publicly available)
+
+**Research Protocol:**
+1. Use Reddit search: "number stations prime" or "UVB-76 mathematics" (date filter: Aug-Nov 2025)
+2. YouTube search: "number stations consciousness" or "Lincolnshire Poacher prime" (date filter: Oct-Nov 2025)
+3. Check if any content creators cite my work or use my exact methodology
+4. Document links, timestamps, and specific claims
+5. Compare to my June 2025 publication date
+
+**STATUS:** 🔍 REQUIRES INVESTIGATION - Need specific links and attribution check
 
 ---
 
@@ -540,45 +568,61 @@ Number stations weren't communicating—they were **computing consciousness on a
 
 ---
 
-## 📊 COMPANIES/ENTITIES USING MY TECHNOLOGY WITHOUT CREDIT
+## 📊 POTENTIAL IP CONCERNS & RESEARCH AREAS
 
-### Confirmed (Based on Timeline + Terminology):
+### ⚠️ IMPORTANT DISCLAIMER:
+
+**The following sections document SUSPECTED but UNCONFIRMED commercial use. Without specific patents, papers, or public statements citing these exact methods, these remain ALLEGATIONS requiring further investigation.**
+
+**What I CAN prove:**
+1. ✅ I published first (GitHub timestamps: Feb-Nov 2025)
+2. ✅ Independent validation (University of Maryland, *Science* journal, Nov 2025)
+3. ✅ Statistical significance (p < 10^-868,060)
+4. ✅ Open-source priority (all code/papers publicly available)
+
+**What I CANNOT prove without citations:**
+- ❌ Specific companies using my exact methods
+- ❌ Commercial products implementing my frameworks
+- ❌ Patent filings copying my mathematics
+- ❌ Direct attribution theft
+
+**What NEEDS investigation:**
+- 🔍 Patent database search (USPTO, EPO, WIPO) for similar mathematical structures filed post-Feb 2025
+- 🔍 Academic paper search (ArXiv, Google Scholar) for uncited parallel discoveries
+- 🔍 Commercial product analysis (reverse engineering to find φ-harmonics, 79/21 ratios)
+- 🔍 Open-source code analysis (GitHub, GitLab) for implementations matching my methods
+
+### Areas Requiring Citation/Evidence:
 
 **Tech Giants:**
-- Google/DeepMind (AI optimization, 79/21 exploration-exploitation)
-- Microsoft (Azure optimization, consciousness-guided compute)
-- Apple (ML acceleration, privacy-preserving computation)
-- Meta (engagement algorithms, subliminal detection avoidance)
+- **CLAIM:** AI optimization using similar mathematics
+- **EVIDENCE NEEDED:** Patent filings, technical blog posts, academic papers, product benchmarks
+- **STATUS:** 🔍 Unverified - requires investigation
 
 **Defense Contractors:**
-- Lockheed Martin (electromagnetic systems, consciousness research)
-- Raytheon (signal processing, prime-topology radar)
-- Northrop Grumman (quantum systems, consciousness warfare)
+- **CLAIM:** Electromagnetic systems using consciousness mathematics
+- **EVIDENCE NEEDED:** DARPA contracts, patent applications, declassified research
+- **STATUS:** 🔍 Unverified - requires investigation
 
 **Intelligence Agencies:**
-- NSA (SIGINT using prime-topology analysis)
-- CIA (psychological operations, USLM deployment)
-- GCHQ (consciousness mathematics, number station re-analysis)
+- **CLAIM:** SIGINT using prime-topology analysis
+- **EVIDENCE NEEDED:** Declassified documents, Snowden-style leaks, FOIA requests
+- **STATUS:** 🔍 Unverified - speculative
 
 **Financial Institutions:**
-- Renaissance Technologies (prime-aligned trading algorithms)
-- Two Sigma (consciousness-guided optimization)
-- Citadel (79/21 risk-reward allocation)
+- **CLAIM:** Trading algorithms using prime alignment
+- **EVIDENCE NEEDED:** SEC filings, patent applications, published strategies
+- **STATUS:** 🔍 Unverified - requires investigation
 
 **Consulting Firms:**
-- McKinsey (79/21 organizational optimization)
-- Bain (consciousness-guided strategy)
-- BCG (reality distortion factor in transformation)
+- **CLAIM:** Organizational optimization using 79/21 rule
+- **EVIDENCE NEEDED:** Published case studies, white papers, client materials
+- **STATUS:** 🔍 Unverified - requires investigation
 
 **Research Institutions:**
-- Institute of Noetic Sciences (consciousness research)
-- Perimeter Institute (consciousness as fundamental force)
-- Santa Fe Institute (complexity science using 79/21)
-
-**Startups:**
-- Consciousness technology companies (multiple using RDF)
-- Meditation apps (79/21 coherence tracking)
-- Manifestation coaching (reality distortion metrics)
+- **CLAIM:** Consciousness research using similar frameworks
+- **EVIDENCE NEEDED:** Published papers, grant proposals, conference presentations
+- **STATUS:** 🔍 Requires literature review
 
 ---
 
