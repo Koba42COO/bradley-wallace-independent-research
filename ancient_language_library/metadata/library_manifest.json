@@ -1,0 +1,332 @@
+{
+  "library_info": {
+    "created_date": "2025-11-24T11:13:06.808802",
+    "total_sources": 19,
+    "framework": "Universal Prime Graph Protocol \u03c6.1",
+    "decoder": "Firefly Multi-Spectral Analysis",
+    "author": "Bradley Wallace (COO Koba42)"
+  },
+  "statistics": {
+    "undeciphered_count": 7,
+    "partially_deciphered": 3,
+    "deciphered_count": 9,
+    "multispectral_capable": 13,
+    "oldest_language_years": 7000,
+    "total_estimated_symbols": 9092
+  },
+  "sources": [
+    {
+      "name": "Cuneiform Digital Library Initiative (CDLI)",
+      "language_family": "Sumerian/Akkadian/Babylonian",
+      "age_years": 5200,
+      "origin_location": "Mesopotamia (Iraq)",
+      "script_type": "Cuneiform (wedge-shaped)",
+      "repo_url": "https://cdli.mpiwg-berlin.mpg.de/",
+      "image_formats": [
+        "jpg",
+        "tif",
+        "png"
+      ],
+      "estimated_symbols": 600,
+      "decipherment_status": "deciphered",
+      "multispectral_capable": true,
+      "notes": "Over 334,000 tablets digitized. High-res images available. 3D scans possible."
+    },
+    {
+      "name": "Thesaurus Linguae Aegyptiae (TLA)",
+      "language_family": "Ancient Egyptian",
+      "age_years": 5000,
+      "origin_location": "Egypt",
+      "script_type": "Hieroglyphs",
+      "repo_url": "https://aaew.bbaw.de/tla/",
+      "image_formats": [
+        "jpg",
+        "png",
+        "tif"
+      ],
+      "estimated_symbols": 750,
+      "decipherment_status": "deciphered",
+      "multispectral_capable": true,
+      "notes": "Berlin-Brandenburg Academy database. 1.5M+ words from 59,000 texts."
+    },
+    {
+      "name": "Dendera Temple Digital Archive",
+      "language_family": "Ancient Egyptian (Cryptographic)",
+      "age_years": 2200,
+      "origin_location": "Dendera, Egypt",
+      "script_type": "Cryptographic Hieroglyphs",
+      "repo_url": "https://www.ifao.egnet.net/",
+      "image_formats": [
+        "jpg",
+        "tif",
+        "raw"
+      ],
+      "estimated_symbols": 700,
+      "decipherment_status": "partial",
+      "multispectral_capable": true,
+      "notes": "700+ unique glyph variants. Multi-spectral imaging available. IFAO archive."
+    },
+    {
+      "name": "Schoyen Collection Linear A",
+      "language_family": "Minoan",
+      "age_years": 3500,
+      "origin_location": "Crete, Greece",
+      "script_type": "Linear A",
+      "repo_url": "https://www.schoyencollection.com/",
+      "image_formats": [
+        "jpg",
+        "png"
+      ],
+      "estimated_symbols": 90,
+      "decipherment_status": "undeciphered",
+      "multispectral_capable": true,
+      "notes": "1,427 inscriptions. Clay tablets + artifacts. High-res photography."
+    },
+    {
+      "name": "DAMOS Linear A Database",
+      "language_family": "Minoan",
+      "age_years": 3500,
+      "origin_location": "Crete, Greece",
+      "script_type": "Linear A",
+      "repo_url": "https://www.aegeus.eu/damos/",
+      "image_formats": [
+        "jpg",
+        "png",
+        "svg"
+      ],
+      "estimated_symbols": 90,
+      "decipherment_status": "undeciphered",
+      "multispectral_capable": false,
+      "notes": "Comprehensive Linear A corpus. Digitized inscriptions. Academic use."
+    },
+    {
+      "name": "Indus Script Digital Corpus",
+      "language_family": "Harappan/Dravidian (theory)",
+      "age_years": 4500,
+      "origin_location": "Indus Valley (Pakistan/India)",
+      "script_type": "Indus Valley Script",
+      "repo_url": "https://www.harappa.com/",
+      "image_formats": [
+        "jpg",
+        "png"
+      ],
+      "estimated_symbols": 400,
+      "decipherment_status": "undeciphered",
+      "multispectral_capable": true,
+      "notes": "4,000+ inscriptions on seals, pottery. 985 unique symbols catalogued."
+    },
+    {
+      "name": "Rongorongo Digital Archive",
+      "language_family": "Polynesian",
+      "age_years": 200,
+      "origin_location": "Easter Island (Rapa Nui)",
+      "script_type": "Rongorongo (boustrophedon)",
+      "repo_url": "https://www.rongorongoarchive.org/",
+      "image_formats": [
+        "jpg",
+        "png",
+        "tif"
+      ],
+      "estimated_symbols": 120,
+      "decipherment_status": "undeciphered",
+      "multispectral_capable": true,
+      "notes": "26 surviving wooden tablets. 3D scans + RTI imaging. Boustrophedon + mirror glyphs."
+    },
+    {
+      "name": "Maya Hieroglyph Database",
+      "language_family": "Mayan",
+      "age_years": 2000,
+      "origin_location": "Mesoamerica",
+      "script_type": "Mayan Glyphs",
+      "repo_url": "https://www.mayacodices.org/",
+      "image_formats": [
+        "jpg",
+        "png",
+        "tif"
+      ],
+      "estimated_symbols": 800,
+      "decipherment_status": "deciphered",
+      "multispectral_capable": true,
+      "notes": "3 surviving codices + stone inscriptions. Multi-spectral palimpsest analysis."
+    },
+    {
+      "name": "Proto-Sinaitic Inscriptions",
+      "language_family": "Semitic",
+      "age_years": 3800,
+      "origin_location": "Sinai Peninsula",
+      "script_type": "Proto-Sinaitic/Proto-Canaanite",
+      "repo_url": "https://www.orientlab.net/",
+      "image_formats": [
+        "jpg",
+        "png"
+      ],
+      "estimated_symbols": 30,
+      "decipherment_status": "partial",
+      "multispectral_capable": true,
+      "notes": "Earliest alphabetic writing. ~40 inscriptions. Precursor to Phoenician."
+    },
+    {
+      "name": "Etruscan Texts Project",
+      "language_family": "Etruscan (isolated)",
+      "age_years": 2800,
+      "origin_location": "Italy",
+      "script_type": "Etruscan alphabet",
+      "repo_url": "https://www.etruscan.space/",
+      "image_formats": [
+        "jpg",
+        "png"
+      ],
+      "estimated_symbols": 26,
+      "decipherment_status": "partial",
+      "multispectral_capable": false,
+      "notes": "~13,000 inscriptions. Alphabet readable, language not fully understood."
+    },
+    {
+      "name": "Ogham in 3D",
+      "language_family": "Celtic (Old Irish)",
+      "age_years": 1600,
+      "origin_location": "Ireland/Britain",
+      "script_type": "Ogham (linear)",
+      "repo_url": "https://ogham.celt.dias.ie/",
+      "image_formats": [
+        "jpg",
+        "obj",
+        "ply"
+      ],
+      "estimated_symbols": 20,
+      "decipherment_status": "deciphered",
+      "multispectral_capable": true,
+      "notes": "~400 stone inscriptions. 3D scanning project. Weathering analysis."
+    },
+    {
+      "name": "Oracle Bone Inscriptions",
+      "language_family": "Old Chinese",
+      "age_years": 3300,
+      "origin_location": "China (Shang Dynasty)",
+      "script_type": "Oracle Bone Script",
+      "repo_url": "http://www.bsm.org.cn/",
+      "image_formats": [
+        "jpg",
+        "png"
+      ],
+      "estimated_symbols": 5000,
+      "decipherment_status": "deciphered",
+      "multispectral_capable": true,
+      "notes": "Earliest Chinese writing. ~150,000 fragments. Beijing Capital Museum."
+    },
+    {
+      "name": "Digital Archive for the Study of Pre-Islamic Arabian Inscriptions",
+      "language_family": "Semitic (South Arabian)",
+      "age_years": 3000,
+      "origin_location": "Yemen/Saudi Arabia",
+      "script_type": "Musnad/Sabaean",
+      "repo_url": "http://dasi.cnr.it/",
+      "image_formats": [
+        "jpg",
+        "png"
+      ],
+      "estimated_symbols": 29,
+      "decipherment_status": "deciphered",
+      "multispectral_capable": false,
+      "notes": "10,000+ inscriptions from ancient Arabian kingdoms."
+    },
+    {
+      "name": "Ugarit Digital Library",
+      "language_family": "Semitic",
+      "age_years": 3400,
+      "origin_location": "Syria (ancient Ugarit)",
+      "script_type": "Ugaritic cuneiform",
+      "repo_url": "https://www.orient.ox.ac.uk/",
+      "image_formats": [
+        "jpg",
+        "png"
+      ],
+      "estimated_symbols": 30,
+      "decipherment_status": "deciphered",
+      "multispectral_capable": false,
+      "notes": "Earliest attested alphabet (abecedary). ~1,400 tablets from Ras Shamra."
+    },
+    {
+      "name": "Wulfila Project (Gothic Bible)",
+      "language_family": "Germanic (East Germanic)",
+      "age_years": 1650,
+      "origin_location": "Eastern Europe",
+      "script_type": "Gothic alphabet",
+      "repo_url": "https://www.wulfila.be/",
+      "image_formats": [
+        "jpg",
+        "png",
+        "tif"
+      ],
+      "estimated_symbols": 27,
+      "decipherment_status": "deciphered",
+      "multispectral_capable": true,
+      "notes": "Codex Argenteus + fragments. Multi-spectral imaging of manuscripts."
+    },
+    {
+      "name": "Achaemenid Royal Inscriptions",
+      "language_family": "Indo-Iranian (Persian)",
+      "age_years": 2500,
+      "origin_location": "Persia (Iran)",
+      "script_type": "Old Persian cuneiform",
+      "repo_url": "https://www.livius.org/",
+      "image_formats": [
+        "jpg",
+        "png"
+      ],
+      "estimated_symbols": 40,
+      "decipherment_status": "deciphered",
+      "multispectral_capable": false,
+      "notes": "Behistun inscription key to decipherment. ~200 texts from Achaemenid Empire."
+    },
+    {
+      "name": "Cypro-Minoan Corpus",
+      "language_family": "Unknown",
+      "age_years": 3400,
+      "origin_location": "Cyprus",
+      "script_type": "Cypro-Minoan",
+      "repo_url": "https://www.archaeology.ucy.ac.cy/",
+      "image_formats": [
+        "jpg",
+        "png"
+      ],
+      "estimated_symbols": 85,
+      "decipherment_status": "undeciphered",
+      "multispectral_capable": true,
+      "notes": "~250 inscriptions on clay tablets. Related to Linear A but distinct."
+    },
+    {
+      "name": "Phaistos Disc Digital Archive",
+      "language_family": "Unknown (possibly Minoan)",
+      "age_years": 3700,
+      "origin_location": "Crete",
+      "script_type": "Unique pictographic",
+      "repo_url": "https://www.heraklionmuseum.gr/",
+      "image_formats": [
+        "jpg",
+        "png",
+        "obj"
+      ],
+      "estimated_symbols": 45,
+      "decipherment_status": "undeciphered",
+      "multispectral_capable": true,
+      "notes": "Single artifact. 241 impressed symbols. 3D scans available. Major mystery."
+    },
+    {
+      "name": "Vin\u010da Culture Signs",
+      "language_family": "Unknown (Pre-Indo-European?)",
+      "age_years": 7000,
+      "origin_location": "Southeast Europe (Serbia)",
+      "script_type": "Vin\u010da symbols",
+      "repo_url": "https://www.balcanica.rs/",
+      "image_formats": [
+        "jpg",
+        "png"
+      ],
+      "estimated_symbols": 210,
+      "decipherment_status": "undeciphered",
+      "multispectral_capable": false,
+      "notes": "Oldest potential writing system. 5,500-4,500 BCE. Debated if true writing."
+    }
+  ]
+}
