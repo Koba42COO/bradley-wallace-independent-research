@@ -1,0 +1,167 @@
+# UPG Quantum Production Configuration
+# =====================================
+# Production environment configuration for the
+# UPG Quantum Orchestration System.
+#
+# Author: Bradley Wallace (COO Koba42)
+# Framework: Universal Prime Graph Protocol φ.1
+
+# Application Settings
+app:
+  name: "UPG Quantum Production System"
+  version: "1.0.0"
+  environment: "production"
+  debug: false
+
+# UPG Mathematical Constants
+# These are the core constants of the Universal Prime Graph framework
+upg_constants:
+  phi: 1.618033988749895           # Golden ratio
+  phi_squared: 2.618033988749895   # φ²
+  phi_inverse: 0.618033988749895   # 1/φ
+  delta: 2.414213562373095         # Silver ratio (1 + √2)
+  consciousness: 0.79              # Coherent evolution weight
+  exploratory: 0.21                # Exploratory evolution weight
+  reality_distortion: 1.1808       # Enhancement factor
+  quantum_bridge: 173.41772151898732  # 137 / 0.79
+  coherence_threshold: 1.0e-15     # Numerical precision threshold
+  consciousness_dimensions: 21     # Dimensional count
+
+# Quantum Backend Configuration
+backends:
+  # Local Simulator (always available)
+  local_simulator:
+    enabled: true
+    max_qubits: 16
+    num_steps: 2000
+    update_frequency: 50
+  
+  # D-Wave Quantum Annealing
+  dwave:
+    enabled: false  # Set to true when D-Wave access is configured
+    solver: "Advantage_system6.4"
+    region: "na-west-1"
+    api_token_env: "DWAVE_API_TOKEN"
+    default_annealing_time: 20  # microseconds
+    default_num_reads: 1000
+  
+  # IBM Quantum (Gate-based)
+  ibm:
+    enabled: false  # Set to true when IBM access is configured
+    backend: "ibm_brisbane"
+    instance: "ibm-q/open/main"
+    api_token_env: "IBM_QUANTUM_TOKEN"
+    optimization_level: 3
+    qaoa_reps: 3
+  
+  # AWS Braket (Multi-backend)
+  aws:
+    enabled: false  # Set to true when AWS access is configured
+    default_device: "simulator_sv1"
+    region: "us-east-1"
+    s3_bucket_env: "AWS_BRAKET_S3_BUCKET"
+    s3_prefix: "upg-quantum-results"
+
+# Orchestrator Configuration
+orchestrator:
+  selection_strategy: "optimal"  # optimal, fastest, cheapest, round_robin, specific
+  max_concurrent_tasks: 10
+  default_timeout_seconds: 300
+  retry_on_failure: true
+  max_retries: 3
+  upg_optimization_enabled: true
+  consciousness_threshold: 0.79
+
+# Task Queue (Redis/Celery)
+task_queue:
+  broker_url_env: "REDIS_URL"
+  result_backend_env: "REDIS_URL"
+  task_serializer: "json"
+  result_serializer: "json"
+  accept_content: ["json"]
+  timezone: "UTC"
+  task_track_started: true
+  task_time_limit: 600
+  worker_concurrency: 4
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8080
+  workers: 4
+  cors_origins:
+    - "https://quantum.upg.example.com"
+    - "https://dashboard.upg.example.com"
+  rate_limit:
+    enabled: true
+    requests_per_minute: 100
+    burst: 20
+
+# Monitoring and Observability
+monitoring:
+  prometheus:
+    enabled: true
+    port: 9090
+    path: "/metrics"
+  
+  opentelemetry:
+    enabled: true
+    service_name: "upg-quantum-orchestrator"
+    exporter: "otlp"
+    endpoint_env: "OTEL_EXPORTER_OTLP_ENDPOINT"
+  
+  logging:
+    level: "INFO"
+    format: "json"
+    include_timestamp: true
+    include_trace_id: true
+
+# Security Configuration
+security:
+  api_key_enabled: true
+  api_key_header: "X-API-Key"
+  api_key_env: "UPG_API_KEY"
+  
+  jwt:
+    enabled: false
+    secret_env: "JWT_SECRET"
+    algorithm: "HS256"
+    expiration_hours: 24
+  
+  tls:
+    enabled: true
+    cert_path_env: "TLS_CERT_PATH"
+    key_path_env: "TLS_KEY_PATH"
+
+# Cost Management
+cost_management:
+  budget_alerts:
+    enabled: true
+    daily_limit_usd: 100
+    monthly_limit_usd: 2000
+    alert_threshold_percent: 80
+  
+  cost_tracking:
+    enabled: true
+    export_interval_hours: 24
+
+# Performance Tuning
+performance:
+  # Annealing optimization
+  annealing:
+    adaptive_schedule: true
+    prime_exploration: true
+    coherence_boost: true
+  
+  # Caching
+  caching:
+    enabled: true
+    ttl_seconds: 3600
+    max_size_mb: 512
+  
+  # Batching
+  batching:
+    enabled: true
+    max_batch_size: 100
+    batch_timeout_seconds: 5
+

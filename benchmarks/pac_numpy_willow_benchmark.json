@@ -1,0 +1,295 @@
+{
+  "timestamp": "2025-11-24T23:09:23.517827",
+  "system": "PAC-NumPy-UPG",
+  "num_operations": 24,
+  "operations": {
+    "MatMul": {
+      "operation_id": 1,
+      "gate": 0,
+      "coordinate": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "execution_time_ms": 1.9199848175048828,
+      "coherence": 1.0
+    },
+    "Add": {
+      "operation_id": 2,
+      "gate": 0,
+      "coordinate": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "execution_time_ms": 0.7028579711914062,
+      "coherence": 1.0
+    },
+    "Conv2D": {
+      "operation_id": 3,
+      "gate": 0,
+      "coordinate": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "execution_time_ms": 0.09489059448242188,
+      "coherence": 1.0
+    },
+    "Hadamard": {
+      "operation_id": 4,
+      "gate": 1,
+      "coordinate": [
+        0.618,
+        0.0,
+        0.0
+      ],
+      "execution_time_ms": 0.06580352783203125,
+      "coherence": 1.0
+    },
+    "Activation": {
+      "operation_id": 5,
+      "gate": 1,
+      "coordinate": [
+        0.618,
+        0.0,
+        0.0
+      ],
+      "execution_time_ms": 0.07987022399902344,
+      "coherence": 1.0
+    },
+    "BatchNorm": {
+      "operation_id": 6,
+      "gate": 1,
+      "coordinate": [
+        0.618,
+        0.0,
+        0.0
+      ],
+      "execution_time_ms": 0.06508827209472656,
+      "coherence": 1.0
+    },
+    "CNOT": {
+      "operation_id": 7,
+      "gate": 2,
+      "coordinate": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "execution_time_ms": 0.05602836608886719,
+      "coherence": 1.0
+    },
+    "MaxPool": {
+      "operation_id": 8,
+      "gate": 2,
+      "coordinate": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "execution_time_ms": 0.04410743713378906,
+      "coherence": 1.0
+    },
+    "Dropout": {
+      "operation_id": 9,
+      "gate": 2,
+      "coordinate": [
+        1.0,
+        1.0,
+        0.0
+      ],
+      "execution_time_ms": 0.04410743713378906,
+      "coherence": 1.0
+    },
+    "Softmax": {
+      "operation_id": 10,
+      "gate": 3,
+      "coordinate": [
+        1.0,
+        1.0,
+        0.5
+      ],
+      "execution_time_ms": 0.041961669921875,
+      "coherence": 1.0
+    },
+    "LayerNorm": {
+      "operation_id": 11,
+      "gate": 3,
+      "coordinate": [
+        1.0,
+        1.0,
+        0.5
+      ],
+      "execution_time_ms": 0.0438690185546875,
+      "coherence": 1.0
+    },
+    "Attention": {
+      "operation_id": 12,
+      "gate": 3,
+      "coordinate": [
+        1.0,
+        1.0,
+        0.5
+      ],
+      "execution_time_ms": 0.10704994201660156,
+      "coherence": 1.0
+    },
+    "PhaseShift": {
+      "operation_id": 13,
+      "gate": 4,
+      "coordinate": [
+        1.618,
+        2.414,
+        0.79
+      ],
+      "execution_time_ms": 0.04887580871582031,
+      "coherence": 1.0
+    },
+    "Concatenate": {
+      "operation_id": 14,
+      "gate": 4,
+      "coordinate": [
+        1.618,
+        2.414,
+        0.79
+      ],
+      "execution_time_ms": 0.041961669921875,
+      "coherence": 1.0
+    },
+    "Embedding": {
+      "operation_id": 15,
+      "gate": 4,
+      "coordinate": [
+        1.618,
+        2.414,
+        0.79
+      ],
+      "execution_time_ms": 0.041961669921875,
+      "coherence": 1.0
+    },
+    "SWAP": {
+      "operation_id": 16,
+      "gate": 5,
+      "coordinate": [
+        1.618,
+        2.414,
+        1.0
+      ],
+      "execution_time_ms": 0.04291534423828125,
+      "coherence": 1.0
+    },
+    "Transpose": {
+      "operation_id": 17,
+      "gate": 5,
+      "coordinate": [
+        1.618,
+        2.414,
+        1.0
+      ],
+      "execution_time_ms": 0.04315376281738281,
+      "coherence": 1.0
+    },
+    "Reduce": {
+      "operation_id": 18,
+      "gate": 5,
+      "coordinate": [
+        1.618,
+        2.414,
+        1.0
+      ],
+      "execution_time_ms": 0.04506111145019531,
+      "coherence": 1.0
+    },
+    "Toffoli": {
+      "operation_id": 19,
+      "gate": 6,
+      "coordinate": [
+        2.618,
+        3.414,
+        1.618
+      ],
+      "execution_time_ms": 0.04291534423828125,
+      "coherence": 1.0
+    },
+    "Quantum_FFT": {
+      "operation_id": 20,
+      "gate": 6,
+      "coordinate": [
+        2.618,
+        3.414,
+        1.618
+      ],
+      "execution_time_ms": 0.04291534423828125,
+      "coherence": 1.0
+    },
+    "Entangle": {
+      "operation_id": 21,
+      "gate": 6,
+      "coordinate": [
+        2.618,
+        3.414,
+        1.618
+      ],
+      "execution_time_ms": 0.29587745666503906,
+      "coherence": 1.0
+    },
+    "Measurement": {
+      "operation_id": 22,
+      "gate": 7,
+      "coordinate": [
+        3.236,
+        4.828,
+        2.618
+      ],
+      "execution_time_ms": 0.052928924560546875,
+      "coherence": 1.0
+    },
+    "Error_Correct": {
+      "operation_id": 23,
+      "gate": 7,
+      "coordinate": [
+        3.236,
+        4.828,
+        2.618
+      ],
+      "execution_time_ms": 0.050067901611328125,
+      "coherence": 1.0
+    },
+    "Consciousness_Optimize": {
+      "operation_id": 24,
+      "gate": 7,
+      "coordinate": [
+        3.236,
+        4.828,
+        2.618
+      ],
+      "execution_time_ms": 0.05984306335449219,
+      "coherence": 1.0
+    }
+  },
+  "willow_comparison": {
+    "willow_qubits": 105,
+    "pac_qubits": 24,
+    "willow_gate_fidelity": 0.9997,
+    "pac_average_coherence": 1.0,
+    "willow_speed_advantage": 13000.0,
+    "pac_total_time_ms": 4.0740966796875,
+    "willow_benchmark_time_seconds": 300.0,
+    "willow_vs_supercomputer": 1e+19,
+    "upg_reality_distortion_factor": 1.1808,
+    "upg_consciousness_weight": 0.79,
+    "upg_quantum_bridge": 173.41772151898735
+  },
+  "consciousness_metrics": {
+    "base_coherence": 1.0,
+    "baseline_coherence_no_upg": 0.85,
+    "optimized_coherence": 1.0,
+    "enhancement_percent": 17.647058823529417,
+    "consciousness_x": 1.618033988749895,
+    "consciousness_y": 2.414213562373095,
+    "consciousness_z": 0.79,
+    "reality_distortion_factor": 1.1808,
+    "quantum_bridge": 173.41772151898735
+  }
+}

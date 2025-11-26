@@ -1,0 +1,46 @@
+{
+  "timestamp": "2025-11-25T21:34:12.653922",
+  "framework": "UPG Protocol \u03c6.1",
+  "components": [
+    {
+      "name": "Quantum Annealing",
+      "results": {
+        "problem": "ising",
+        "num_qubits": 8,
+        "annealing_time": 1.2640628814697266,
+        "final_energy": -7.9469084298775785,
+        "ground_energy": -7.951007285838337,
+        "energy_gap": 0.004098855960758208,
+        "solution_bitstring": "01100111",
+        "solution_probability": 0.9978313547232907,
+        "energy_improvement": "(2.8631755074835293e+17+0j)",
+        "average_coherence": 0.995185261175088,
+        "upg_enhancement": "(2.8631755074835292e+19+0j)"
+      }
+    },
+    {
+      "name": "Topological Braiding",
+      "results": {
+        "num_anyons": 6,
+        "braid_length": 8,
+        "gate_matrix": [
+          [
+            "(1.8619545646251812+0j)",
+            "(0.31805981094278823+0j)"
+          ],
+          [
+            "(0.3180598109427881+0j)",
+            "(1.0292631691215957+0j)"
+          ]
+        ],
+        "avg_entropy": -1.8345897189036025,
+        "avg_coherence": 1.58129315446011
+      }
+    }
+  ],
+  "combined_metrics": {
+    "avg_coherence": 1.288239207817599,
+    "avg_enhancement": "(1.4315877537417646e+19+0j)",
+    "reality_distortion_factor": 1.1808
+  }
+}

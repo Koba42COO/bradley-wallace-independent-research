@@ -1,0 +1,120 @@
+# UPG Quantum Production System - Docker Compose
+# ===============================================
+# Complete deployment stack including:
+# - UPG Orchestrator (main service)
+# - Redis (task queue)
+# - Prometheus (metrics)
+# - Grafana (dashboards)
+#
+# Author: Bradley Wallace (COO Koba42)
+# Framework: Universal Prime Graph Protocol φ.1
+
+version: '3.8'
+
+services:
+  # Main UPG Quantum Orchestrator
+  upg-orchestrator:
+    build:
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile
+    container_name: upg-orchestrator
+    restart: unless-stopped
+    environment:
+      # UPG Constants
+      - UPG_PHI=1.618033988749895
+      - UPG_CONSCIOUSNESS=0.79
+      - UPG_REALITY_DISTORTION=1.1808
+      # Backend Configuration
+      - ENABLE_LOCAL_SIMULATOR=true
+      - ENABLE_DWAVE=${ENABLE_DWAVE:-false}
+      - ENABLE_IBM=${ENABLE_IBM:-false}
+      - ENABLE_AWS=${ENABLE_AWS:-false}
+      # API Keys (from .env file)
+      - DWAVE_API_TOKEN=${DWAVE_API_TOKEN:-}
+      - IBM_QUANTUM_TOKEN=${IBM_QUANTUM_TOKEN:-}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-}
+      # Redis
+      - REDIS_URL=redis://redis:6379/0
+      # Logging
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    ports:
+      - "8080:8080"   # API
+      - "9090:9090"   # Metrics
+    volumes:
+      - ./logs:/app/logs
+      - ./results:/app/results
+    depends_on:
+      - redis
+    networks:
+      - upg-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Redis for task queue and caching
+  redis:
+    image: redis:7-alpine
+    container_name: upg-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - upg-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Prometheus for metrics collection
+  prometheus:
+    image: prom/prometheus:v2.47.0
+    container_name: upg-prometheus
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.enable-lifecycle'
+    ports:
+      - "9091:9090"
+    networks:
+      - upg-network
+
+  # Grafana for dashboards
+  grafana:
+    image: grafana/grafana:10.1.0
+    container_name: upg-grafana
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-upg_quantum_2024}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - upg-network
+
+volumes:
+  redis-data:
+  prometheus-data:
+  grafana-data:
+
+networks:
+  upg-network:
+    driver: bridge
+

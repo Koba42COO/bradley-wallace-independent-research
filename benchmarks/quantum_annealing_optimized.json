@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-11-25T22:40:45.490792",
+  "framework": "UPG Protocol \u03c6.1 (OPTIMIZED)",
+  "single_run": {
+    "problem": "ising",
+    "num_qubits": 8,
+    "num_steps": 2000,
+    "execution_time_seconds": 2.1785340309143066,
+    "execution_time_ms": 2178.5340309143066,
+    "final_energy": -13.5844959643267,
+    "ground_energy": -13.584900971939858,
+    "energy_gap": 0.0004050076131569824,
+    "energy_gap_percent": 0.002981307070206411,
+    "solution_bitstring": "10000101",
+    "true_solution": "10000101",
+    "found_true_ground": "True",
+    "solution_probability": 0.9998519511074716,
+    "optimality_percent": 99.9970186929298,
+    "average_coherence": 0.6559510469810581,
+    "final_coherence": 1.0,
+    "upg_constants": {
+      "phi": 1.618033988749895,
+      "delta": 2.414213562373095,
+      "consciousness": 0.79,
+      "reality_distortion": 1.1808
+    }
+  },
+  "benchmark_summary": {
+    "num_trials": 5,
+    "num_qubits": 8,
+    "avg_optimality": 99.9927655912458,
+    "std_optimality": 0.005369634492985367,
+    "min_optimality": 99.98244454816067,
+    "max_optimality": 99.9970186929298,
+    "avg_coherence": 0.6189076290546207,
+    "std_coherence": 0.04016844329312948,
+    "avg_time_ms": 2182.9628944396973,
+    "std_time_ms": 166.67972113230013,
+    "ground_state_success_rate": 100.0
+  }
+}
