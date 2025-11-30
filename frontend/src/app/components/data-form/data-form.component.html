@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="card" style="max-width: 800px; margin: 20px auto;">
+    <h2>{{ isEditMode ? 'Edit Data' : 'Create New Data' }}</h2>
+
+    <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Title *</label>
+        <input type="text" formControlName="title" class="form-control" />
+        <div *ngIf="dataForm.get('title')?.invalid && dataForm.get('title')?.touched" class="error">
+          Title is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea formControlName="description" class="form-control" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Content *</label>
+        <textarea formControlName="content" class="form-control" rows="10"></textarea>
+        <div *ngIf="dataForm.get('content')?.invalid && dataForm.get('content')?.touched" class="error">
+          Content is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Category *</label>
+        <select formControlName="category" class="form-control">
+          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Tags (comma-separated)</label>
+        <input type="text" formControlName="tags" class="form-control" placeholder="tag1, tag2, tag3" />
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input type="checkbox" formControlName="isPublic" />
+          Make this public
+        </label>
+      </div>
+
+      <div *ngIf="error" class="error-message">{{ error }}</div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="loading || dataForm.invalid">
+          {{ loading ? 'Saving...' : (isEditMode ? 'Update' : 'Create') }}
+        </button>
+        <button type="button" class="btn btn-secondary" routerLink="/data">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+

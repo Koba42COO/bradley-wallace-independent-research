@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="card" style="max-width: 400px; margin: 50px auto;">
+    <h2 class="text-center mb-3">Login</h2>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" formControlName="email" class="form-control" />
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+          Please enter a valid email
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" formControlName="password" class="form-control" />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+          Password must be at least 6 characters
+        </div>
+      </div>
+
+      <div *ngIf="error" class="error-message">{{ error }}</div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="loading || loginForm.invalid" style="width: 100%;">
+        {{ loading ? 'Logging in...' : 'Login' }}
+      </button>
+    </form>
+
+    <p class="text-center mt-2">
+      Don't have an account? <a routerLink="/register">Register here</a>
+    </p>
+  </div>
+</div>
+

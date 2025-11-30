@@ -1,299 +1,228 @@
-# 🌱 SquashPlot Beta - Advanced Chia Plot Compression Tool
+# MEAN Stack Application
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)](https://flask.palletsprojects.com/)
-[![Chia](https://img.shields.io/badge/Chia-Farming-orange.svg)](https://www.chia.net/)
+A full-stack web application built with the MEAN stack (MongoDB, Express.js, Angular, Node.js).
 
-> **Professional Chia plotting solution featuring advanced multi-stage compression, real-time monitoring, and comprehensive farming management.**
+## 🚀 Technology Stack
 
-## 🚀 Features
+- **MongoDB** - NoSQL database
+- **Express.js** - Backend web framework
+- **Angular** - Frontend framework
+- **Node.js** - JavaScript runtime
 
-### 🗜️ **Advanced Compression Technology**
-- **Multi-Stage Compression**: Zstandard, Brotli, LZ4 algorithms
-- **5 Compression Levels**: 0% to 35% space savings
-- **Chia-Aware Processing**: Optimized for Chia plot data
-- **100% Fidelity**: Lossless compression with SHA256 verification
+## 📁 Project Structure
 
-### 📊 **Professional Dashboard**
-- **Real-Time Monitoring**: System resources, plotting progress, network stats
-- **Live Market Data**: XCH price, network space, farming metrics
-- **Job Management**: Queue, monitor, and control plotting jobs
-- **Storage Management**: Drive optimization and health monitoring
-
-### ⚡ **Performance Optimization**
-- **GPU Acceleration**: CUDA support for F2 optimization
-- **Multi-Threading**: Parallel processing for maximum efficiency
-- **Resource Management**: Intelligent CPU, memory, and storage allocation
-- **Multi-Plotter Integration**: Compatible with Mad Max, BladeBit, and Dr. Plotter
-
-### 🎯 **Farming Management**
-- **Pool Integration**: Connect to Chia pools
-- **Rewards Tracking**: Monitor earnings and ROI
-- **Analytics**: Performance insights and trends
-- **Automation**: Auto-claim, auto-compress, scheduling
-
-## 🛠️ Installation
-
-### Prerequisites
-- Python 3.9 or higher
-- 8GB+ RAM recommended
-- 100GB+ free storage for plotting
-- CUDA-compatible GPU (optional, for acceleration)
-
-### Quick Start
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta.git
-   cd 222hr-Hackathon-Entry-Squashplot-Beta
-   ```
-
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Run SquashPlot**
-   ```bash
-   # Web Dashboard (Recommended)
-   python main.py --web
-   
-   # Command Line Interface
-   python main.py --cli
-   
-   # Interactive Demo
-   python main.py --demo
-   ```
-
-4. **Access the Dashboard**
-   - Open your browser to `http://localhost:5000`
-   - Default port can be changed with `--port` flag
-
-## 📖 Usage
-
-### Web Dashboard
-The web dashboard provides a comprehensive interface for managing your Chia farming operations:
-
-- **Dashboard**: System overview and real-time metrics
-- **Jobs**: Plotting job management and monitoring
-- **Storage**: Drive management and optimization
-- **Rewards**: Earnings tracking and analysis
-- **Pools**: Pool management and switching
-- **Analytics**: Performance insights and trends
-- **Settings**: Configuration and preferences
-- **Help**: Documentation and support
-
-### Command Line Interface
-For advanced users and automation:
-
-```bash
-# Basic compression
-python squashplot.py --input plot.plot --output compressed.plot --level 3
-
-# Batch processing
-python squashplot.py --batch --input-dir /plots --output-dir /compressed --level 5
-
-# GPU acceleration
-python squashplot.py --gpu --input plot.plot --output compressed.plot --level 7
-
-# Dr. Plotter integration
-python squashplot.py --plotter drplotter --tmp /tmp --final /plots --farmer-key YOUR_KEY
+```
+.
+├── backend/              # Express.js backend
+│   ├── models/          # MongoDB models
+│   ├── routes/          # API routes
+│   ├── middleware/      # Custom middleware
+│   ├── server.js        # Entry point
+│   └── package.json     # Backend dependencies
+│
+├── frontend/            # Angular frontend
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── components/  # Angular components
+│   │   │   ├── services/    # Angular services
+│   │   │   ├── models/       # TypeScript models
+│   │   │   ├── guards/       # Route guards
+│   │   │   └── interceptors/ # HTTP interceptors
+│   │   └── environments/    # Environment configs
+│   └── package.json         # Frontend dependencies
+│
+└── docker-compose.yml   # Docker orchestration
 ```
 
-### API Endpoints
-SquashPlot provides a REST API for integration:
+## 🛠️ Prerequisites
+
+- Node.js 18+ and npm 9+
+- MongoDB (or use Docker)
+- Angular CLI 17+
+
+## 📦 Installation
+
+### Option 1: Manual Setup
+
+#### Backend Setup
 
 ```bash
-# System status
-curl http://localhost:5000/api/status
-
-# Job management
-curl http://localhost:5000/api/jobs
-
-# Market data
-curl http://localhost:5000/api/live-price
-
-# Compression levels
-curl http://localhost:5000/api/compression-levels
+cd backend
+npm install
+cp .env.example .env
+# Edit .env with your configuration
+npm run dev
 ```
 
-## 🏗️ Architecture
+Backend will run on `http://localhost:3000`
 
-### Core Components
-- **SquashPlot Engine**: Core compression algorithms
-- **Web Server**: Flask-based dashboard and API
-- **Job Queue**: Asynchronous job management
-- **Storage Manager**: Drive and plot organization
-- **Market Data**: Real-time Chia network information
-- **Analytics Engine**: Performance monitoring and insights
+#### Frontend Setup
 
-### Plotter Integrations
-SquashPlot supports multiple plotting tools for maximum flexibility:
+```bash
+cd frontend
+npm install
+npm start
+```
 
-- **Mad Max**: Fast plotting with excellent performance
-- **BladeBit**: GPU-accelerated plotting with compression support
-- **Dr. Plotter**: Advanced plotting with built-in optimization features
+Frontend will run on `http://localhost:4200`
 
-The system automatically detects available plotters and selects the optimal one based on your configuration and system capabilities.
+### Option 2: Docker Setup
 
-### Technology Stack
-- **Backend**: Python 3.9+, Flask, SQLAlchemy
-- **Frontend**: HTML5, CSS3, JavaScript, Chart.js
-- **Compression**: Zstandard, Brotli, LZ4, zlib, bz2, lzma
-- **Plotters**: Mad Max, BladeBit, Dr. Plotter integration
-- **Data**: JSON, SQLite, CSV export
-- **APIs**: RESTful endpoints, real-time updates
+```bash
+# Start all services
+docker-compose up -d
 
-## 📊 Performance
+# View logs
+docker-compose logs -f
 
-### Compression Benchmarks
-| Level | Algorithm | Savings | Size (K32) | Speed |
-|-------|-----------|---------|------------|-------|
-| 0 | None | 0% | 108.8 GB | Instant |
-| 1 | LZ4 + zlib | 20% | 87.0 GB | Fast |
-| 2 | Zstandard | 25% | 81.6 GB | Medium |
-| 3 | Brotli | 30% | 76.2 GB | Medium |
-| 4 | Advanced | 35% | 70.7 GB | Slow |
-
-### System Requirements
-- **Minimum**: 4 CPU cores, 8GB RAM, 200GB storage
-- **Recommended**: 8+ CPU cores, 16GB+ RAM, 1TB+ storage
-- **Optimal**: 16+ CPU cores, 32GB+ RAM, 2TB+ NVMe storage
+# Stop all services
+docker-compose down
+```
 
 ## 🔧 Configuration
 
-### Environment Variables
-```bash
-# Database
-export DATABASE_URL="sqlite:///squashplot.db"
+### Backend Environment Variables
 
-# API Keys
-export API_KEY="your-api-key"
-export SESSION_SECRET="your-session-secret"
+Create a `.env` file in the `backend` directory:
 
-# Chia Configuration
-export CHIA_ROOT="/path/to/chia"
-export FARMER_KEY="your-farmer-key"
-export POOL_KEY="your-pool-key"
+```env
+PORT=3000
+NODE_ENV=development
+MONGODB_URI=mongodb://localhost:27017/mean-app
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_EXPIRES_IN=7d
+CORS_ORIGIN=http://localhost:4200
 ```
 
-### Settings File
-Create `config.json` for advanced configuration:
+### Frontend Environment
 
-```json
-{
-  "compression": {
-    "default_level": 3,
-    "auto_compress": true,
-    "verify_integrity": true
-  },
-  "plotting": {
-    "default_plotter": "madmax",
-    "threads": 4,
-    "temp_dir": "/tmp",
-    "final_dir": "/plots"
-  },
-  "farming": {
-    "auto_claim": false,
-    "pool_url": "https://pool.space",
-    "wallet_address": "xch1..."
-  }
-}
+Edit `frontend/src/environments/environment.ts`:
+
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000/api'
+};
+```
+
+## 📡 API Endpoints
+
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login user
+- `GET /api/auth/me` - Get current user
+
+### Users
+- `GET /api/users` - Get all users (Admin only)
+- `GET /api/users/:id` - Get user by ID
+- `PUT /api/users/:id` - Update user
+- `DELETE /api/users/:id` - Delete user (Admin only)
+
+### Data
+- `GET /api/data` - Get all data items (with pagination, search, filters)
+- `GET /api/data/:id` - Get data item by ID
+- `POST /api/data` - Create new data item
+- `PUT /api/data/:id` - Update data item
+- `DELETE /api/data/:id` - Delete data item
+
+### Health
+- `GET /api/health` - Health check endpoint
+
+## 🎯 Features
+
+- ✅ User authentication (JWT)
+- ✅ User registration and login
+- ✅ Protected routes
+- ✅ CRUD operations for data
+- ✅ Search and filtering
+- ✅ Pagination
+- ✅ Responsive design
+- ✅ Error handling
+- ✅ Input validation
+
+## 🧪 Testing
+
+### Backend Tests
+```bash
+cd backend
+npm test
+```
+
+### Frontend Tests
+```bash
+cd frontend
+npm test
 ```
 
 ## 🚀 Deployment
 
-### Docker Deployment
-```bash
-# Build image
-docker build -t squashplot .
+### Production Build
 
-# Run container
-docker run -p 5000:5000 -v /plots:/plots squashplot
+#### Backend
+```bash
+cd backend
+NODE_ENV=production npm start
 ```
 
-### Production Deployment
+#### Frontend
 ```bash
-# Install production dependencies
-pip install -r requirements-prod.txt
-
-# Run with Gunicorn
-gunicorn --bind 0.0.0.0:5000 src.web_server:app
+cd frontend
+npm run build
+# Serve the dist/ folder with a web server
 ```
 
-### Cloud Deployment
-SquashPlot is compatible with:
-- **AWS**: EC2, ECS, Lambda
-- **Google Cloud**: Compute Engine, Cloud Run
-- **Azure**: Virtual Machines, Container Instances
-- **DigitalOcean**: Droplets, App Platform
+### Docker Production
 
-## 📈 Roadmap
+Update `docker-compose.yml` with production settings and run:
+```bash
+docker-compose -f docker-compose.prod.yml up -d
+```
 
-### Version 1.1 (Q2 2024)
-- [ ] Advanced GPU optimization
-- [ ] Multi-node clustering
-- [ ] Enhanced analytics
-- [ ] Mobile app
+## 📝 Development
 
-### Version 1.2 (Q3 2024)
-- [ ] Machine learning optimization
-- [ ] Advanced compression algorithms
-- [ ] Enterprise features
-- [ ] API v2
+### Backend Development
+```bash
+cd backend
+npm run dev  # Uses nodemon for auto-reload
+```
+
+### Frontend Development
+```bash
+cd frontend
+npm start  # Angular dev server with hot reload
+```
+
+## 🔒 Security Features
+
+- JWT-based authentication
+- Password hashing with bcrypt
+- CORS configuration
+- Helmet.js security headers
+- Input validation
+- Route protection
+- Role-based access control
+
+## 📚 Documentation
+
+- API documentation available at `http://localhost:3000/api/health` when server is running
+- Angular components are documented with TypeScript types
+- Models include JSDoc comments
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### Development Setup
-```bash
-# Clone repository
-git clone https://github.com/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta.git
-cd 222hr-Hackathon-Entry-Squashplot-Beta
-
-# Install development dependencies
-pip install -r requirements-dev.txt
-
-# Run tests
-python -m pytest tests/
-
-# Run linting
-flake8 src/
-```
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License
 
-## 🙏 Acknowledgments
+## 👤 Author
 
-- **Chia Network** for the innovative blockchain technology
-- **Mad Max Plotter** for the efficient plotting algorithms
-- **BladeBit** for GPU-accelerated plotting
-- **Open Source Community** for the amazing tools and libraries
-
-## 📞 Support
-
-- **Documentation**: [Wiki](https://github.com/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta/wiki)
-- **Issues**: [GitHub Issues](https://github.com/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/Koba42COO/222hr-Hackathon-Entry-Squashplot-Beta/discussions)
-- **Email**: support@squashplot.dev
-
-## 🏆 Hackathon Entry
-
-This project was developed for the **222hr Hackathon** and represents a complete solution for Chia farming optimization. The system combines advanced compression technology with professional-grade management tools to create the ultimate Chia farming platform.
-
-### Key Innovations
-- **Advanced Compression**: Up to 35% space savings
-- **Real-Time Monitoring**: Comprehensive dashboard
-- **Professional UI/UX**: Enterprise-grade interface
-- **API Integration**: RESTful endpoints for automation
-- **Responsive Design**: Works on all devices
+Jeff
 
 ---
 
-**Made with ❤️ for the Chia farming community**
-
-*SquashPlot - Compress More, Farm Better*
+**Built with ❤️ using the MEAN Stack**

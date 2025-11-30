@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="card">
+    <h1>Welcome to MEAN Stack Dashboard</h1>
+    <div *ngIf="currentUser">
+      <p>Hello, <strong>{{ currentUser.username }}</strong>!</p>
+      <p>Email: {{ currentUser.email }}</p>
+      <p *ngIf="currentUser.firstName || currentUser.lastName">
+        Name: {{ currentUser.firstName }} {{ currentUser.lastName }}
+      </p>
+    </div>
+    
+    <div class="dashboard-stats">
+      <div class="stat-card">
+        <h3>Quick Actions</h3>
+        <a routerLink="/data" class="btn btn-primary">View Data</a>
+        <a routerLink="/data/new" class="btn btn-primary">Create New Data</a>
+      </div>
+    </div>
+  </div>
+</div>
+

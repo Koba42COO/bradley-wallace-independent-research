@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <h2>Data Management</h2>
+      <a routerLink="/data/new" class="btn btn-primary">Create New</a>
+    </div>
+
+    <div class="filters" style="margin-bottom: 20px;">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search..."
+        class="form-control"
+        style="display: inline-block; width: 300px; margin-right: 10px;"
+        (keyup.enter)="onSearch()"
+      />
+      <select
+        [(ngModel)]="selectedCategory"
+        (change)="onCategoryChange()"
+        class="form-control"
+        style="display: inline-block; width: 200px; margin-right: 10px;"
+      >
+        <option value="">All Categories</option>
+        <option value="general">General</option>
+        <option value="research">Research</option>
+        <option value="documentation">Documentation</option>
+        <option value="code">Code</option>
+        <option value="other">Other</option>
+      </select>
+      <button class="btn btn-primary" (click)="onSearch()">Search</button>
+    </div>
+
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+    <div *ngIf="loading">Loading...</div>
+
+    <div *ngIf="!loading && dataList.length === 0" class="text-center">
+      <p>No data found. <a routerLink="/data/new">Create your first item</a></p>
+    </div>
+
+    <div *ngIf="!loading && dataList.length > 0">
+      <div class="data-item" *ngFor="let item of dataList">
+        <div class="data-header">
+          <h3>{{ item.title }}</h3>
+          <span class="badge badge-{{ item.category }}">{{ item.category }}</span>
+        </div>
+        <p *ngIf="item.description">{{ item.description }}</p>
+        <div class="data-footer">
+          <small>Created: {{ item.createdAt | date }}</small>
+          <div class="actions">
+            <button class="btn btn-secondary" (click)="editData(item._id!)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteData(item._id!)">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+

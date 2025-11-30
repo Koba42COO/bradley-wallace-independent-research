@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mean-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: mean-app
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - mean-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mean-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      MONGODB_URI: mongodb://admin:password@mongodb:27017/mean-app?authSource=admin
+      JWT_SECRET: your-super-secret-jwt-key-change-this-in-production
+      JWT_EXPIRES_IN: 7d
+      CORS_ORIGIN: http://localhost:4200
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - mean-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mean-frontend
+    restart: unless-stopped
+    ports:
+      - "4200:4200"
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - mean-network
+
+networks:
+  mean-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+
