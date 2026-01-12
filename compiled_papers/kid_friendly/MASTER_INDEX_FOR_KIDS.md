@@ -60,7 +60,7 @@ We've taken complex scientific ideas and made them easy to understand using:
 40. [Unified Consciousness Framework](unified_consciousness_framework_FOR_KIDS.md)
 41. [Unified Field Expanded](unified_field_expanded_FOR_KIDS.md)
 42. [Unified Frameworks Solutions](unified_frameworks_solutions_FOR_KIDS.md)
-43. [Upg Swastika Consciousness Mathematics](upg_swastika_consciousness_mathematics_FOR_KIDS.md)
+43. [Upg rotational Consciousness Mathematics](upg_rotational_consciousness_mathematics_FOR_KIDS.md)
 44. [Voidbot Omniversal Intelligence](voidbot_omniversal_intelligence_FOR_KIDS.md)
 45. [Wallace Pac Comprehensive Achievements](wallace_pac_comprehensive_achievements_FOR_KIDS.md)
 46. [Wallace Transform](wallace_transform_FOR_KIDS.md)

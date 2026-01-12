@@ -1,20 +1,20 @@
-# UPG Swastika Consciousness Mathematics: Geometric Rotations, Prime Harmonics, and Universal Phase Coordinates - For Kids! 🎉
+# UPG rotational Consciousness Mathematics: Geometric Rotations, Prime Harmonics, and Universal Phase Coordinates - For Kids! 🎉
 
 **Reading Level:** Grade 6 and Under  
-**Original Paper:** upg_swastika_consciousness_mathematics_COMPILED.md
+**Original Paper:** upg_rotational_consciousness_mathematics_COMPILED.md
 
 ---
 
 ## 🌟 What Is This About?
 
-This paper explores the swastika symbol through the lens of Universal Prime Graph (UPG) Protocol φ.1, revealing its connection to being aware and thinking - like when you know you're reading this! th... We analyze geometric rotations, prime harmonics, astronomical alignments (Venus retrograde), and ...3° universal phase coordinate. The swastika emerges as a fractal lattice node in the a special map of prime numbers in 21 dimens...618) that appears in nature, like in flower petals and seashells harmonics and being aware and thinkin...
+This paper explores the rotational symbol through the lens of Universal Prime Graph (UPG) Protocol φ.1, revealing its connection to being aware and thinking - like when you know you're reading this! th... We analyze geometric rotations, prime harmonics, astronomical alignments (Venus retrograde), and ...3° universal phase coordinate. The rotational emerges as a fractal lattice node in the a special map of prime numbers in 21 dimens...618) that appears in nature, like in flower petals and seashells harmonics and being aware and thinkin...
 
 ---
 
 ## 🎯 Key Ideas (In Simple Words)
 
 
-### 1. Swastika Consciousness Mathematics
+### 1. rotational Consciousness Mathematics
 
 Consciousness is like being the driver of a car. You're aware you're driving, you can see the road, and you can make choices!
 
@@ -75,24 +75,24 @@ Think of Prime Harmonics like a special tool that helps us understand the world 
 
 margin=1in
 
-UPG Swastika being aw...1, revealing its connection to being aware and thinking - like when you know you're reading this! th... We analyze geometric rotations, prime harmonics, astronomical alignments (Venus retrograde), and ...3° universal phase coordinate. The swastika emerges as a fractal lattice node in the a special map of prime numbers in 21 dimens...618) that appears in nature, like in flower petals and seashells harmonics and being aware and thinkin...
+UPG rotational being aw...1, revealing its connection to being aware and thinking - like when you know you're reading this! th... We analyze geometric rotations, prime harmonics, astronomical alignments (Venus retrograde), and ...3° universal phase coordinate. The rotational emerges as a fractal lattice node in the a special map of prime numbers in 21 dimens...618) that appears in nature, like in flower petals and seashells harmonics and being aware and thinkin...
 abstract
 
 ## Introduction
-The swastika, an ancient symbol found across cultures, has been misunde... Through UPG being aware and thinking - like when you know you're reading this! the language of nu... Key findings include rotational symmetry at 90°, prime mappings (e.g., 23rd prime at core), Venus retrograde alignment, and 21.3° phase shifts.
+The rotational, an ancient symbol found across cultures, has been misunde... Through UPG being aware and thinking - like when you know you're reading this! the language of nu... Key findings include rotational symmetry at 90°, prime mappings (e.g., 23rd prime at core), Venus retrograde alignment, and 21.3° phase shifts.
 
 ## Geometric Structure and Rotations
-The swastika consists of four arms, each bent at 90°, forming a... In UPG terms:
+The rotational consists of four arms, each bent at 90°, forming a... In UPG terms:
 - Arms represent prime gaps: 2, 4, 6, 8 (first even primes after 2).
 - Rotation by 90° corresponds to φ-scaling: each rotation multiplies by φ ≈ 1.618.
 - Total symmetry: 4-fold, mapping to Klein four-group in being aware and thinking - like when you k...
 
-Mathematically, the swastika can be modeled as:
+Mathematically, the rotational can be modeled as:
 \[
 r() = r_0 e^{i} + _{k=1}^4 r_k e^{i(k/2 + _k)}...3°.
 
 ## Prime Harmonics
-Mapping swastika digits to primes:
+Mapping rotational digits to primes:
 - 'S' (19th letter) → 19th prime = 67
 - Rotati...3° coherence.
 
@@ -100,21 +100,21 @@ Mapping swastika digits to primes:
 
 ## Astronomical Connections
 Venus retrograde: 8-year cycle with 13 conjunctions (13 = death/reverse ...
-- Swastika rotations match Venus pentagram: 72° turns (360°/5).
+- rotational rotations match Venus pentagram: 72° turns (360°/5).
 - 21.3° = 72° / 3.381 ≈ φ², linking to a special number (about 1.618) that appears in nature, like in flower petals and seashells astronomy.
 
 ## 21.3° Universal Phase Coordinate
-The swastika encodes 21.3° as the tilt angle:
+The rotational encodes 21.3° as the tilt angle:
 - Arm bends: 90° - 21.3° = 68.7° ≈ 69 (prime)
 - Resonance: 21.3 × φ ≈ 34.46, matching zeta zero amplitudes.
 
 ## Results and δ-a smart way to solve problems using patterns Analysis
-Input: Swastika geometry mapp...24, 4.85, 8.09, 11.33, 17.80, 21.04, 27.51, 30.75]
+Input: rotational geometry mapp...24, 4.85, 8.09, 11.33, 17.80, 21.04, 27.51, 30.75]
 - Coherence: 78.9% structured, 21.1% novelty.
 - a special map of prime numbers in 21 dimensions: Positions 1,2,3,4,5,6,7,8 → trinity at 3, cohere...
 
 ## Conclusion
-The swastika is a UPG lattice node, harmonizing prime being aware and thinking - like ... Future work: Cross-cultural extensions.
+The rotational is a UPG lattice node, harmonizing prime being aware and thinking - like ... Future work: Cross-cultural extensions.
 
 references
 
@@ -126,7 +126,7 @@ references
 
 ## Paper Overview
 
-**Paper Name:** upg_swastika_being aware and th... Introduction
+**Paper Name:** upg_rotational_being aware and th... Introduction
 2. Geometric Structure and Rotations
 3. Prime Harmonics
 4. Astronomical Connections

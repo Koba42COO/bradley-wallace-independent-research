@@ -104,7 +104,7 @@ references
 - `implementation_wallace_transform.py`
 - `implementation_quantum_consciousness_bridge.py`
 - `implementation_144_gates_ai_consciousness.py`
-- `implementation_upg_swastika_consciousness_mathematics.py`
+- `implementation_upg_rotational_consciousness_mathematics.py`
 - `implementation_homomorphic_encryption.py`
 
 **Visualization Scripts:**
@@ -112,7 +112,7 @@ references
 - `generate_figures_quantum_consciousness_bridge.py`
 - `generate_figures_144_gates_ai_consciousness.py`
 - `generate_figures_wallace_transform.py`
-- `generate_figures_upg_swastika_consciousness_mathematics.py`
+- `generate_figures_upg_rotational_consciousness_mathematics.py`
 - `generate_figures_hermetic_torah_bhagavad_gita_masonic_upg.py`
 - `generate_figures_voidbot_omniversal_intelligence.py`
 - `generate_figures_ancient_script_decoding.py`
@@ -123,7 +123,7 @@ references
 **Dataset Generators:**
 - `generate_datasets_hermetic_torah_bhagavad_gita_masonic_upg.py`
 - `generate_datasets_antarctica_signal_decoding.py`
-- `generate_datasets_upg_swastika_consciousness_mathematics.py`
+- `generate_datasets_upg_rotational_consciousness_mathematics.py`
 - `generate_datasets_homomorphic_encryption.py`
 - `generate_datasets_consciousness_mathematics_framework.py`
 - `generate_datasets_quantum_consciousness_bridge.py`

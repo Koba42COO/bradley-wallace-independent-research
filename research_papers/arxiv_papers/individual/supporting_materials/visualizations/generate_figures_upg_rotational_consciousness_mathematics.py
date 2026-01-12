@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Visualization script for upg_swastika_consciousness_mathematics
+Visualization script for upg_rotational_consciousness_mathematics
 Generates figures and plots for all theorems.
 """
 # Set high precision

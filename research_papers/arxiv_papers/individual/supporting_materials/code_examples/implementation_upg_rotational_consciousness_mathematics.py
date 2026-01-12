@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Code examples for upg_swastika_consciousness_mathematics
+Code examples for upg_rotational_consciousness_mathematics
 Demonstrates key implementations and algorithms.
 """
 # Set high precision

@@ -108,7 +108,7 @@ All research papers have been organized by reading level to make it easy to find
 - [The Wallace Convergence Appendices](3-5/the_wallace_convergence_appendices_FOR_KIDS.md)
 - [The Wallace Convergence Final Paper](3-5/the_wallace_convergence_final_paper_FOR_KIDS.md)
 - [Unified Consciousness Framework](3-5/unified_consciousness_framework_FOR_KIDS.md)
-- [Upg Swastika Consciousness Mathematics](3-5/upg_swastika_consciousness_mathematics_FOR_KIDS.md)
+- [Upg rotational Consciousness Mathematics](3-5/upg_rotational_consciousness_mathematics_FOR_KIDS.md)
 - [Voidbot Omniversal Intelligence](3-5/voidbot_omniversal_intelligence_FOR_KIDS.md)
 - [Wallace Pac Comprehensive Achievements](3-5/wallace_pac_comprehensive_achievements_FOR_KIDS.md)
 - [Zodiac Consciousness Mathematics](3-5/zodiac_consciousness_mathematics_FOR_KIDS.md)

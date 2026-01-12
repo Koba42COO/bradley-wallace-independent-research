@@ -45,7 +45,7 @@ They use simple language, fun examples, and activities you can try at home!
 28. [The Wallace Convergence Appendices](the_wallace_convergence_appendices_FOR_KIDS.md)
 29. [The Wallace Convergence Final Paper](the_wallace_convergence_final_paper_FOR_KIDS.md)
 30. [Unified Consciousness Framework](unified_consciousness_framework_FOR_KIDS.md)
-31. [Upg Swastika Consciousness Mathematics](upg_swastika_consciousness_mathematics_FOR_KIDS.md)
+31. [Upg rotational Consciousness Mathematics](upg_rotational_consciousness_mathematics_FOR_KIDS.md)
 32. [Voidbot Omniversal Intelligence](voidbot_omniversal_intelligence_FOR_KIDS.md)
 33. [Wallace Pac Comprehensive Achievements](wallace_pac_comprehensive_achievements_FOR_KIDS.md)
 34. [Zodiac Consciousness Mathematics](zodiac_consciousness_mathematics_FOR_KIDS.md)

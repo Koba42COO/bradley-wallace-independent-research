@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Validation script for upg_swastika_consciousness_mathematics
+Validation script for upg_rotational_consciousness_mathematics
 Runs tests and generates validation report.
 """
 
@@ -80,14 +80,14 @@ def run_validation():
     output_dir.mkdir(exist_ok=True)
     
     results = {
-        'paper': 'upg_swastika_consciousness_mathematics',
+        'paper': 'upg_rotational_consciousness_mathematics',
         'timestamp': datetime.now().isoformat(),
         'theorems_tested': 0,
         'tests': []
     }
     
     # Run test file if it exists
-    test_file = tests_dir / f"test_upg_swastika_consciousness_mathematics.py"
+    test_file = tests_dir / f"test_upg_rotational_consciousness_mathematics.py"
     if test_file.exists():
         print(f"Running tests from {test_file}...")
         try:
@@ -118,16 +118,16 @@ def run_validation():
         results['test_file_missing'] = True
     
     # Save results
-    results_file = output_dir / f"validation_results_upg_swastika_consciousness_mathematics.json"
+    results_file = output_dir / f"validation_results_upg_rotational_consciousness_mathematics.json"
     with open(results_file, 'w') as f:
         json.dump(results, f, indent=2)
     
     # Generate markdown report
-    report_file = output_dir / f"validation_log_upg_swastika_consciousness_mathematics.md"
+    report_file = output_dir / f"validation_log_upg_rotational_consciousness_mathematics.md"
     with open(report_file, 'w') as f:
-        f.write(f"# Validation Log: upg_swastika_consciousness_mathematics\n\n")
+        f.write(f"# Validation Log: upg_rotational_consciousness_mathematics\n\n")
         f.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-        f.write(f"**Paper:** upg_swastika_consciousness_mathematics\n")
+        f.write(f"**Paper:** upg_rotational_consciousness_mathematics\n")
         f.write(f"**Total Theorems:** 0\n\n")
         f.write("## Test Execution Summary\n\n")
         

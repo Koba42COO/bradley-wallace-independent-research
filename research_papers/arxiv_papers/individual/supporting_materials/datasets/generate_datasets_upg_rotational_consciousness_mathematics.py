@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Synthetic dataset generator for upg_swastika_consciousness_mathematics
+Synthetic dataset generator for upg_rotational_consciousness_mathematics
 Creates validation datasets for testing theorems.
 """
 # Set high precision
@@ -146,7 +146,7 @@ def generate_datasets():
     
     # Create metadata
     metadata = {
-        'paper': 'upg_swastika_consciousness_mathematics',
+        'paper': 'upg_rotational_consciousness_mathematics',
         'theorems': 0,
         'datasets': [
             'eigenvalues.npy',

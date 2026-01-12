@@ -90,7 +90,7 @@ Qibla direction: 21.3° from North.
 Kaaba: Cube with Black Stone at corner.
 - a direction you can move in - we live in 3D (up/down, left/right, forward/back)s: 12.86m × 10.97m × 14.41m (approximating φ ratios).
 - Stone position: Prime mapping to 7th prime (17).
-- Rotational symmetry: 4-fold, aligning with swastika.
+- Rotational symmetry: 4-fold, aligning with rotational.
 
 ## Well of Zamzam Patterns
 Zamzam: Sacred well with water flow patterns.

@@ -73,7 +73,7 @@
 - [unified_consciousness_framework](unified_consciousness_framework_COMPILED.md)
   - Validation: ✅
 
-- [upg_swastika_consciousness_mathematics](upg_swastika_consciousness_mathematics_COMPILED.md)
+- [upg_rotational_consciousness_mathematics](upg_rotational_consciousness_mathematics_COMPILED.md)
   - Validation: ✅
 
 - [wallace_pac_comprehensive_achievements](wallace_pac_comprehensive_achievements_COMPILED.md)
